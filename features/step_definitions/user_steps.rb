@@ -30,11 +30,8 @@ end
 def sign_up
   delete_user
   visit '/users/sign_up'
-  fill_in "Name", :with => @visitor[:name]
   fill_in "Email", :with => @visitor[:email]
-  fill_in "user_password", :with => @visitor[:password]
-  fill_in "user_password_confirmation", :with => @visitor[:password_confirmation]
-  click_button "Sign up"
+  click_button "Request Invitation"
   find_user
 end
 
@@ -103,7 +100,7 @@ end
 
 When /^I sign up with a mismatched password confirmation$/ do
   create_visitor
-  @visitor = @visitor.merge(:password_confirmation => "changeme123")
+  @visitor = @visitor.merge(:password_confirmation => "please123")
   sign_up
 end
 
@@ -124,7 +121,7 @@ end
 When /^I edit my account details$/ do
   click_link "Edit account"
   fill_in "Name", :with => "newname"
-  fill_in "user_current_password", :with => @visitor[:password]
+  fill_in "Current password", :with => @visitor[:password]
   click_button "Update"
 end
 
@@ -154,23 +151,23 @@ Then /^I see a successful sign in message$/ do
 end
 
 Then /^I should see a successful sign up message$/ do
-  page.should have_content "A message with a confirmation link has been sent to your email address."
+  page.should have_content "Thank You"
 end
 
 Then /^I should see an invalid email message$/ do
-  page.should have_content "Emailis invalid"
+  page.should have_content "Email is invalid"
 end
 
 Then /^I should see a missing password message$/ do
-  page.should have_content "Passwordcan't be blank"
+  page.should have_content "Password can't be blank"
 end
 
 Then /^I should see a missing password confirmation message$/ do
-  page.should have_content "Passworddoesn't match confirmation"
+  page.should have_content "Password doesn't match confirmation"
 end
 
 Then /^I should see a mismatched password message$/ do
-  page.should have_content "Passworddoesn't match confirmation"
+  page.should have_content "Password doesn't match confirmation"
 end
 
 Then /^I should see a signed out message$/ do

@@ -8,8 +8,12 @@
 # Add application configuration variables here, as shown below.
 #
 MANDRILL_USERNAME: Your_Username
-MANDRILL_API_KEY: Your_API_Key
+MANDRILL_API_KEY: Your_Mandrill_API_Key
+MAILCHIMP_API_KEY: Your_MailChimp_API_Key
+MAILCHIMP_LIST_ID: My_List_ID
 ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
-ROLES: [admin, user, VIP]
+ROLES: [admin, user]
+EMAIL_ADDRESS: user@example.com
+DOMAIN: example.com
