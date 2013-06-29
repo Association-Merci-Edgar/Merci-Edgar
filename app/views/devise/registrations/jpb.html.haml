@@ -1,0 +1,784 @@
+!!!
+%html{:lang => "en"}
+  %head
+    /
+      BOOTSTARTER premium Bootstrap html5 template v 1.0.0.
+      ArtLabs 2013 - http://www.sitediscount.ru
+      \####### Released under GNU GENERAL PUBLIC LICENSE
+      Version 2 ############
+    %meta{:charset => "utf-8"}/
+    %title BOOTSTARTER | responsive parallax Bootstrap template
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "responsive parallax Bootstrap template", :name => "description"}/
+    %meta{:content => "ArtLabs", :name => "author"}/
+    /
+      \######################## Styles ######################
+      \=======================================================
+    %link{:href => "assets/css/animate.min.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/bootstrap.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/bootstrap-responsive.css", :rel => "stylesheet"}/
+    / <link href="assets/css/flat-ui.css" rel="stylesheet">
+    /
+      \=========================================================================
+      \!important THIS FILE -= style.css =- ON BOTTOM OF BOOTSTRAP STYLEs  LIST
+      This override bootstrap def. style
+      \===================================================
+    %link{:href => "assets/css/style.css", :rel => "stylesheet"}/
+    / FontAwesome styles (iconic font)
+    %link{:href => "assets/css/font-awesome.min.css", :rel => "stylesheet"}/
+    %link{:href => "assets/icomoon-edgar/edgar-icons.css", :rel => "stylesheet"}/
+    / prettyPhoto styles
+    / Gallery inlarge script styles
+    %link{:href => "assets/css/prettyPhoto.css", :rel => "stylesheet", :type => "text/css"}/
+    / Le HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    / Google web fonts
+    %link{:href => "http://fonts.googleapis.com/css?family=Medula+One|Roboto:400,300,400italic,500,700,900", :rel => "stylesheet", :type => "text/css"}/
+    / Le fav and touch icons
+    %link{:href => "assets/ico/favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => "assets/ico/apple-touch-icon-144-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "144x144"}/
+    %link{:href => "assets/ico/apple-touch-icon-114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}/
+    %link{:href => "assets/ico/apple-touch-icon-72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}/
+    %link{:href => "assets/ico/apple-touch-icon-57-precomposed.png", :rel => "apple-touch-icon-precomposed"}/
+  %body{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
+    /
+      \################# START MAIN-WRAPPER ####################
+      \============================================================
+    .main-wrapper
+      / START SCROLL EVENTS ELEMENTS
+      / !!CLICK EVENT TOP SCROLL
+      .top-link-click.right.hidden-phone
+      / !!HOVER EVENT TOP SCROLL
+      .top-link.right.hidden-phone
+      / !!HOVER EVENT TOP SCROLL
+      .bottom-link.right.hidden-phone
+      / !!CLICK EVENT TOP SCROLL
+      .bottom-link-click.right.hidden-phone
+      .top-corner
+      .bottom-corner
+      / /. SCROLL EVENTS ELEMENTS
+      /
+        \######################  START HEADER ######################
+        \==============================================================
+      %header#header-section.headertop.needhead
+        / START PARALLAX BG
+        .innerbg
+          .overlaybg
+            /
+              \###################### START TOP MENU ####################
+              \==============================================================
+            .nav-top
+              / navbar-fixed-top
+              #top-nav.navbar.navbar-fixed-top
+                / INNER
+                .navbar-inner
+                  .container
+                    / Collapse button
+                    %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+                      %span.icon-bar
+                      %span.icon-bar
+                      %span.icon-bar
+                    / LOGO
+                    %a{:href => "#header-section"}
+                      / <span><i class="fa-icon-chevron-down"></i></span>
+                      %span.icon-ed-logo
+                    / TOP NAVIGATION
+                    #main-nav.scroller-spy
+                      %nav.nav-collapse.collapse
+                        %ul#nav.nav.pull-right
+                          / <li class="active"><a href="#header-section">Home</a> </li>
+                          %li
+                            %a{:href => "#features-section"} C'est quoi ?
+                          %li
+                            %a{:href => "#team-section"} Edgar TV
+                          %li
+                            %a{:href => "#portfolio-section"} Actus
+                          %li
+                            %a{:href => "#price-section"} C'est qui ?
+                          %li
+                            %a{:href => "#contact-section"} Contact
+            /
+              \############################ END TOP MENU ###############
+              \==========================================================
+            / HEADER MAIN
+            #ed-promise.hero-unit
+              .container
+                .row-fluid
+                  .text-center
+                    %hr.half/
+                    %h1 - de gestion, + de création
+                    %p.text-center
+                      Vous êtes artiste ?
+                      %br/
+                      Vous passez plus de temps à gérer l’administratif qu’à créer ?
+                      %br/
+                      Merci Edgar est là pour vous aider !
+                    %hr.half/
+                    .camein
+                      %a.btn.btn-large.btn-danger{:href => "#", :title => ""} ça m’intéresse !
+                      /
+                        <i class="or">- or -</i>
+                        <a href="#" class="btn btn-large btn-block-third btn-info" title="">LEARN MORE</a>
+          / /overlaybg
+        / / END PARALLAX BG
+      /
+        \/ ###################### END MAIN HEADER ####################
+        \===============================================================
+      /
+        \######################## FEATURES SECTION ##################
+        \==============================================================
+      %section#features-section
+        .container
+          .row-fluid.label-blocks
+            / ITEM
+            .span3
+              .label.label-large.label-info.text-center
+                %i.fa-icon-bold.fa-icon-large.white
+              %h4 BOOTSTRAP IS AWESOME
+              %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+            / / ITEM
+            / ITEM
+            .span3
+              .label.label-large.label-info.text-center
+                %i.fa-icon-signal.fa-icon-large.white
+              %h4 YOUR SITE GROW FASTER
+              %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+            / / ITEM
+            / ITEM
+            .span3
+              .label.label-large.label-info.text-center
+                %i.fa-icon-table.fa-icon-large.white
+              %h4 WITH FLEXIBLE GRID
+              %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+            / / ITEM
+            / ITEM
+            .span3
+              .label.label-large.label-info.text-center
+                %i.fa-icon-tablet.fa-icon-large.white
+              %h4 AND RESPONSIVE LAYOUT
+              %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+            / / ITEM
+        / /CONTAINER
+        /
+          \/ ##################### FEATURES section ###########
+          \======================================================
+        / / MARKETING INTRO
+        .container
+          / FEATURED IMAGE
+          .row-fluid
+            .span6
+              .panel.first
+                %span.text-right
+                  Pourquoi choisir Edgar ?
+                %hr/
+                %p
+                  Vous êtes artiste ? Vous n'avez pas encore de tourneur ? 
+                  %br/
+                  Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul ! alors que vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, effectuer les tâches administratives, jouer au commercial pour se vendre...
+                  %br/
+                  Avec le logiciel Merci Edgar, vous aurez enfin un outil vous permettant d'être plus efficace, organisé dans votre recherche de dates. Bref, vous allez gagner du temps, du temps que vous pourrez consacrer à votre art, pour notre plaisir à tous !
+                %p.text-center
+                  %a.btn.btn-large.btn-info.btn-block{:href => "#", :title => ""} ça m’intéresse
+            .span6
+              .panel.first
+                .row-fluid.paragraph-middle
+                  .span3.text-center
+                    %span.label.label-new
+                      %i.fa-icon-desktop.fa-icon-medium.color-dark
+                  .span9
+                    %p
+                      %strong Vous êtes libre
+                      %br/
+                      Vous pouvez vous désengager à tout moment et récupérer toutes vos données
+                .row-fluid.paragraph-middle
+                  .span3.text-center
+                    %span.label.label-new
+                      %i.fa-icon-laptop.fa-icon-medium.color-dark
+                  .span9
+                    %p
+                      %strong Un outil simple
+                      %br/
+                      La prise en main de l'outil est rapide et à la portée de tous
+                      %br/
+                .row-fluid.paragraph-middle
+                  .span3.text-center
+                    %span.label.label-new
+                      %i.fa-icon-tablet.fa-icon-medium.color-dark
+                  .span9
+                    %p
+                      %strong Aucune installation requise
+                      %br/
+                      Merci Edgar est accessible depuis n'importe quel navigateur
+                      %br/
+                .row-fluid.paragraph-middle
+                  .span3.text-center
+                    %span.label.label-new
+                      %i.fa-icon-tablet.fa-icon-medium.color-dark
+                  .span9
+                    %p
+                      %strong Fait par des artistes, pour des artistes
+                      %br/
+                      et ça, ça change tout ! Voir la bio de l'équipe
+          /
+            \##################### TEAM SECTION ###################
+            \=======================================================
+          %section#team-section
+            .panel
+              .container
+                .row-fluid
+                  .span12.text-center
+                    %span
+                      Show your awesome features!
+                      %span.inner BOOTSTARTER provides easy start and faster growing!
+            .container
+              .row-fluid.features-more.o-hidden
+                .span6.text-center
+                  %h3 Responsive &amp; Flexible
+                  %p.lead
+                    BOOTSTARTER looks good on all devices and all major browsers. The structure created by today's standards one-page sites. Based on the latest version of the bootstrap is easy to grow and develop. The template contains a simple library for CSS3 animations.
+                  %p.lead
+                    BOOTSTARTER looks good on all devices and all major browsers. The structure created by today's standards one-page sites. Based on the latest version of the bootstrap is easy to grow and develop. The template contains a simple library for CSS3 animations.
+                .span6.relative.hidden-phone
+                  %img#show1.showthis{:alt => "", :src => "images/responsive.png"}/
+              .row-fluid.features-more.o-hidden
+                .span6.relative.hidden-phone
+                  %img#show2.showthis{:alt => "", :src => "images/crystal.png"}/
+                .span6
+                  %h3 Crystal clear &amp; Flat
+                  %p.lead
+                    Its design is inspired by clear trends of modern web. BOOTSTARTER based on FlatUI and has a library of components for rapid growth and development of your project simple with minimal time.
+                  %p.lead
+                    Its design is inspired by clear trends of modern web. BOOTSTARTER based on FlatUI and has a library of components for rapid growth and development of your project simple with minimal time.
+            / /CONTAINER
+            .panel
+              .container
+                .row-fluid
+                  .span12.text-center
+                    %span Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+            .container
+              .row-fluid.label-blocks
+                / ITEM
+                .span3
+                  .label.label-large.label-info.text-center
+                    %i.fa-icon-bold.fa-icon-large.white
+                  %h4 BOOTSTRAP IS AWESOME
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-info.text-center
+                    %i.fa-icon-signal.fa-icon-large.white
+                  %h4 YOUR SITE GROW FASTER
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-info.text-center
+                    %i.fa-icon-table.fa-icon-large.white
+                  %h4 WITH FLEXIBLE GRID
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-info.text-center
+                    %i.fa-icon-tablet.fa-icon-large.white
+                  %h4 AND RESPONSIVE LAYOUT
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-gray.text-center
+                    %i.fa-icon-bold.fa-icon-large.white
+                  %h4 BOOTSTRAP IS AWESOME
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-info.text-center
+                    %i.fa-icon-signal.fa-icon-large.white
+                  %h4 YOUR SITE GROW FASTER
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-saccess.text-center
+                    %i.fa-icon-table.fa-icon-large.white
+                  %h4 WITH FLEXIBLE GRID
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+                / ITEM
+                .span3
+                  .label.label-large.label-inverse.text-center
+                    %i.fa-icon-tablet.fa-icon-large.white
+                  %h4 AND RESPONSIVE LAYOUT
+                  %p Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                / / ITEM
+            / /CONTAINER
+            .marketing-lines.panel
+              .container
+                .row-fluid
+                  .span9
+                    %p.lead.slogan
+                      How does it work? Here goes awesome marketing call to action. Attract the attention of your users!
+                  .span3.text-center
+                    %a.btn.btn-action{:href => "#", :title => ""}
+                      %i.fa-icon-play-circle
+                      See it in action
+                / /ROW
+            .red-panel-bottom
+              .overlay-panel
+                .container
+                  .row-fluid
+                    .span5.pull-right
+                      .panel.text-center
+                        %img{:alt => "", :src => "images/iphones.png"}/
+                    .span6
+                      .panel
+                        %span Here goes app name
+                        %p.lead
+                          Here goes your App description and marketing slogan. Present your product well! Attract the attention of your users to see plans and pricing and buy!
+                        .row-fluid.label-blocks
+                          / BUTTONS
+                          .span12
+                            .row-fluid
+                              .span5
+                                %p
+                                  %strong Android app.
+                                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                              .span7
+                                %a.btn.btn-large.btn-white.btn-block
+                                  %i.anroid-logo.hidden-phone
+                                  %span Download it from
+                                  ANDROID MARKET
+                            / ROW-FLUID
+                            .row-fluid
+                              .span5
+                                %p
+                                  %strong iPhone app.
+                                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                              .span7
+                                %a.btn.btn-large.btn-white.btn-block
+                                  %i.appstore-logo.hidden-phone
+                                  %span Available on the
+                                  APP STORE
+                            / ROW-FLUID
+                            .row-fluid
+                              .span5
+                                %p
+                                  %strong Desktop app.
+                                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                              .span7
+                                %a.btn.btn-large.btn-white.btn-block
+                                  %i.gplay-logo.hidden-phone
+                                  = succeed "GOOGLE" do
+                                    %span Get it on
+                                  PLAY
+                            / ROW-FLUID
+                          / / BUTTONS
+                          / / RIGHT SIDE
+                        / / ROW ITEMS ICONS
+                        / / ITEM ICON
+                      / / PANEL
+                  / ROW-FLUID
+                  %hr.hidden-phone/
+                  .row-fluid.panel
+                    .span6
+                      .row-fluid
+                        .span2.text-center.hidden-phone
+                          %span.label.label-new
+                            %i.fa-icon-mobile-phone
+                        .span10
+                          %h4 App Store Submission
+                          %p
+                            Show more your awesome features! BOOTSTARTER provides easy start and faster growing! Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+                    .span6
+                      .row-fluid
+                        .span2.text-center.hidden-phone
+                          %span.label.label-new
+                            %i.fa-icon-tablet
+                        .span10
+                          %h4 Api integration
+                          %p
+                            Show more your awesome features! BOOTSTARTER provides easy start and faster growing! Show more your awesome features! BOOTSTARTER provides easy start and faster growing!
+            .container
+              .row-fluid.panel
+                .span12.text-center
+                  %span
+                    What people say
+                    %span.inner Customer reviews the best indicator of confidence in you!
+              .row-fluid
+                .span3.text-center.testimonial-box
+                  .row-fluid
+                    .span8.offset2
+                      %img.img-circle{:alt => "", :src => "images/staff3.jpg"}/
+                  %blockquote
+                    %p
+                      Here goes client testimonial about you greate app!
+                      %small
+                        Someone famous
+                        %cite{:title => "Source Title"} ppl
+                  %a{:href => "#", :title => ""} Find out more &rarr;
+                .span3.text-center.testimonial-box
+                  .row-fluid
+                    .span8.offset2
+                      %img.img-circle{:alt => "", :src => "images/staff5.jpg"}/
+                  %blockquote
+                    %p
+                      Here goes client testimonial about you greate app!
+                      %small
+                        Someone famous
+                        %cite{:title => "Source Title"} ppl
+                  %a{:href => "#", :title => ""} Find out more &rarr;
+                .span3.text-center.testimonial-box
+                  .row-fluid
+                    .span8.offset2
+                      %img.img-circle{:alt => "", :src => "images/staff4.jpg"}/
+                  %blockquote
+                    %p
+                      Here goes client testimonial about you greate app!
+                      %small
+                        Someone famous
+                        %cite{:title => "Source Title"} ppl
+                  %a{:href => "#", :title => ""} Find out more &rarr;
+                .span3.text-center.testimonial-box
+                  .row-fluid
+                    .span8.offset2
+                      %img.img-circle{:alt => "", :src => "images/staff2.jpg"}/
+                  %blockquote
+                    %p
+                      Here goes client testimonial about you greate app!
+                      %small
+                        Someone famous
+                        %cite{:title => "Source Title"} ppl
+                  %a{:href => "#", :title => ""} Find out more &rarr;
+              / /ROW
+            / /CONTAINER
+            %hr/
+            / CLIENTS LOGO BLOCK
+            .container
+              .row-fluid.panel
+                .span12.text-center
+                  %span
+                    Some of our clients
+                    %span.inner Some of our most famous clients
+              .row-fluid.client-wrap
+                / LOGO ITEM
+                .span2.logo-client.text-center
+                  %img{:alt => "", :src => "images/mashablelogosmall.jpg"}/
+                / / LOGO ITEM
+                / LOGO ITEM
+                .span2.logo-client.text-center
+                  %img{:alt => "", :src => "images/tnwlogosmall.jpg"}/
+                / / LOGO ITEM
+                / LOGO ITEM
+                .span2.logo-client.text-center
+                  %img{:alt => "", :src => "images/mashablelogosmall.jpg"}/
+                / / LOGO ITEM
+                / LOGO ITEM
+                .span2.logo-client.text-center
+                  %img{:alt => "", :src => "images/tnwlogosmall.jpg"}/
+                / / LOGO ITEM
+                / LOGO ITEM
+                .span2.logo-client.text-center
+                  %img{:alt => "", :src => "images/mashablelogosmall.jpg"}/
+                / / LOGO ITEM
+                / LOGO ITEM
+                .span2.logo-client.text-center
+                  %img{:alt => "", :src => "images/tnwlogosmall.jpg"}/
+                / / LOGO ITEM
+            / /CONTAINER
+            / / CLIENTS LOGO BLOCK
+          / /TEAM SECTION
+          /
+            \################## NEWS - or - PORTFOLIO SECTION #################
+            \=======================================================
+          %section#portfolio-section
+            .container
+              / TITLE
+              .row-fluid.panel
+                .span12.text-center
+                  %span
+                    Latest news
+                    %span.inner See our blog posts and publications!
+              / TITLE
+              /
+                \################### START NEWS ###################
+                \=======================================================
+              #container-folio.row
+                / portfolio item
+                .span4.project-item.seo.graphics.box
+                  .thumbnail
+                    / IMAGE CONTAINER
+                    %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbonelarge.jpg"}
+                      %img{:alt => "iPhonegraphy", :src => "images/thumbone.jpg"}/
+                    / END IMAGE CONTAINER
+                    / CAPTION
+                    .caption.text-center
+                      / TITLE
+                      %h4
+                        %a{:href => "#"} Here goes news title
+                      / / TITLE
+                    / END CAPTION
+                  / END: THUMBNAIL
+                / END: portfolio item
+                / portfolio item
+                .span4.project-item.seo.graphics.box
+                  .thumbnail
+                    / IMAGE CONTAINER
+                    %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
+                      %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
+                    / END IMAGE CONTAINER
+                    / CAPTION
+                    .caption.text-center
+                      / TITLE
+                      %h4
+                        %a{:href => "#"} Here goes news title
+                      / / TITLE
+                    / END CAPTION
+                  / END: THUMBNAIL
+                / END: portfolio item
+                / portfolio item
+                .span4.project-item.seo.graphics.box
+                  .thumbnail
+                    / IMAGE CONTAINER
+                    %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbthreelarge.jpg"}
+                      %img{:alt => "iPhonegraphy", :src => "images/thumbthree.jpg"}/
+                    / END IMAGE CONTAINER
+                    / CAPTION
+                    .caption.text-center
+                      / TITLE
+                      %h4
+                        %a{:href => "#"} Here goes news title
+                      / / TITLE
+                    / END CAPTION
+                  / END: THUMBNAIL
+                / END: portfolio item
+              / /container-folio row
+            / /CONTAINER
+            .red-panel-bottom
+              .overlay-panel
+                .container
+                  .row-fluid
+                    .panel.text-center
+                      .span12
+                        %span
+                          Subscribe to news updates!
+                        %hr/
+                      .input-append.row-fluid.glass-border
+                        %input#appendedInputButton.subscribe-input.span9{:placeholder => "Type in your Email", :type => "text"}/
+                        %button.btn.btn-large.btn-danger Subscribe!
+            .container
+              / PRESS BLOCK
+              .row-fluid.panel
+                .span12.text-center
+                  %span
+                    Press write about us
+                    %span.inner Here's just a few places we've been covered.
+              .row-fluid
+                .thumbnail.news-thumb
+                  .span4.pull-right.text-center
+                    %img{:alt => "", :src => "images/MashableLogo.jpg"}/
+                  .caption.span8
+                    %h4 Our App Launches Public Beta to Help our Clients
+                    %p.lead
+                      "A product like this is important in the visual field, where an artist can open themselves up to criticism that, frankly, doesn't make a lick of sense. Google docs 2.0 - App, a new online collaboration tool, just launched. The venue provides a secure environment for creative teams in web, mobile, print, video, design, 3D and motion graphics to present their work for feedback and approval."
+                    %p.text-right
+                      %a.btn{:href => "#", :title => ""} Read more &rarr;
+                .thumbnail.news-thumb
+                  .span4.pull-right.text-center
+                    %img{:alt => "", :src => "images/tnwLogo.jpg"}/
+                  .caption.span8
+                    %h4 Our App Launches Public Beta to Help our Clients
+                    %p.lead
+                      "A product like this is important in the visual field, where an artist can open themselves up to criticism that, frankly, doesn't make a lick of sense. Google docs 2.0 - App, a new online collaboration tool, just launched. The venue provides a secure environment for creative teams in web, mobile, print, video, design, 3D and motion graphics to present their work for feedback and approval."
+                    %p.text-right
+                      %a.btn{:href => "#", :title => ""} Read more &rarr;
+                .span4
+              / / PRESS BLOCK
+            / /CONTAINER
+          / / portfolio section
+          %section#price-section
+            / ################ PRICE SECTION HEADER #############
+            .container
+              .row-fluid.panel
+                .span12.text-center
+                  %span
+                    Plans and Pricing
+                    %span.inner
+                      Check out our Plans and Pricing
+            /
+              \################# PRICE SECTION #############
+              \================================================
+            .container
+              .row-fluid.text-center.plans
+                .plan.span4
+                  %h2.plan-title Solo
+                  %p.plan-price
+                    $19
+                    %span /mo
+                  %ul.plan-features
+                    %li
+                      %strong 1
+                      user
+                    %li
+                      %strong Unlimited
+                      projects
+                    %li
+                      %strong 2GB
+                      storage
+                  %p.text-center
+                    %a.btn{:href => "index.html"} Start Now
+                .plan.plan-tall.span4
+                  %h2.plan-title Team
+                  %p.plan-price
+                    $49
+                    %span /mo
+                  %ul.plan-features
+                    %li
+                      %strong 10
+                      users
+                    %li
+                      %strong Unlimited
+                      projects
+                    %li
+                      %strong 20GB
+                      storage
+                  %p.text-center
+                    %a.btn{:href => "index.html"} Start Now
+                .plan.span4
+                  %h2.plan-title Agency
+                  %p.plan-price
+                    $99
+                    %span /mo
+                  %ul.plan-features
+                    %li
+                      %strong Unlimited
+                      users
+                    %li
+                      %strong Unlimited
+                      projects
+                    %li
+                      %strong 100GB
+                      storage
+                  %p.text-center
+                    %a.btn{:href => "index.html"} Start Now
+              / / row-fluid
+            / / CONTAINER
+          /
+            \############### END PRICE SECTION #########
+            \==================================================
+          .container
+            .row-fluid.panel
+              .span8
+                %p.lead.slogan
+                  Ready to buy? Sign in up now for download app!
+              .span3
+                %a.btn.btn-info.btn-block.btn-large{:href => "#", :title => ""}
+                  %i.fa-icon-play-circle
+                  SIGN UP NOW!
+          .red-panel-bottom
+            .overlay-panel
+              .container
+                .row-fluid
+                  .panel.text-center
+                    .span12.text-center
+                      .span12.text-center
+                        %i.fa-icon-twitter.fa-icon-medium.twitt-icon
+                        / TWITTER FEED
+                        %span#tweets.slogan.text-center
+                        / /TWITTER FEED
+                      %hr/
+          /
+            \###################### FOOTER #######################
+            \==================================================
+          %footer#contact-section.footer
+            .container
+              .row-fluid
+                .span3.text-center
+                  %a.brand{:href => "", :title => ""} BOOTSTARTER
+                .span5.text-center
+                  %address
+                    %i.fa-icon-map-marker
+                    795 Folsom Ave, Suite 600, San Francisco, CA 94107
+                    %br/
+                    %i.fa-icon-phone-sign
+                    + 4 (123) 456-7890
+                  .foot-line
+                .span4.text-center
+                  %ul.social-top
+                    %li
+                      %a{:href => "#", :title => ""}
+                        %i.fa-icon-facebook
+                    %li
+                      %a{:href => "#", :title => ""}
+                        %i.fa-icon-twitter
+                    %li
+                      %a{:href => "#", :title => ""}
+                        %i.fa-icon-github-alt
+                    %li
+                      %a{:href => "#", :title => ""}
+                        %i.fa-icon-google-plus
+                    %li
+                      %a{:href => "#", :title => ""}
+                        %i.fa-icon-linkedin
+              / ROW-FLUID
+          / END: FOOTER
+        / END: MAIN-WRAPPER
+        /
+          Le javascript
+          \==================================================
+        / Placed at the end of the document so the pages load faster
+        %script{:src => "assets/js/jquery.js", :type => "text/javascript"}
+        %script{:src => "assets/js/google-code-prettify/prettify.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-transition.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-alert.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-modal.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-dropdown.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-scrollspy.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-tab.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-tooltip.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-popover.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-button.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-collapse.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-carousel.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-typeahead.js", :type => "text/javascript"}
+        %script{:src => "assets/js/bootstrap-affix.js", :type => "text/javascript"}
+        %script{:src => "assets/js/application.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.easing.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.waitforimages.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.isotope.min.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.prettyPhoto-3.1.4-W3C.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.ui.totop.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.inview.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.parallax-1.1.3.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.localscroll-1.2.7-min.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.scrollTo-1.4.2-min.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.nicescroll.min.js", :type => "text/javascript"}
+        %script{:src => "assets/js/custom.js", :type => "text/javascript"}
+        / TWITTER
+        %script{:src => "assets/js/tweetable.jquery.js", :type => "text/javascript"}
+        %script{:src => "assets/js/jquery.timeago.js", :type => "text/javascript"}
+        :javascript
+          jQuery(function(){
+          	jQuery('#tweets').tweetable({
+          		username: 'wrapbootstrap', 
+          		time: true,
+          		rotate: true,
+          		speed: 4000, 
+          		limit: 2,
+          		replies: false,
+          		position: 'append',
+          		failed: "Sorry, twitter is currently unavailable for this user.",
+          		html5: true,
+          		onComplete:function(jQueryul){
+          			jQuery('time').timeago();
+          		}
+          	});
+          });
+        :javascript
+          jQuery(document).ready(
+            function() {  
+              jQuery("html").niceScroll({cursorcolor:"#5bc0de"});
+            }
+          );

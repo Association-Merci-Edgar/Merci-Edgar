@@ -1,0 +1,66 @@
+/
+  \######################  START HEADER ######################
+  \==============================================================
+%header#header-section.headertop.needhead
+  / START PARALLAX BG
+  .innerbg
+    .overlaybg
+      /
+        \###################### START TOP MENU ####################
+        \==============================================================
+      .nav-top
+        / navbar-fixed-top
+        #top-nav.navbar.navbar-fixed-top
+          / INNER
+          .navbar-inner
+            .container
+              / Collapse button
+              %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+              / LOGO
+              %a{:href => "#header-section"}
+                %span.icon-ed-logo
+              / TOP NAVIGATION
+              #main-nav.scroller-spy
+                %nav.nav-collapse.collapse
+                  %ul#nav.nav.pull-right
+                    %li.active
+                      %a{:href => "#header-section"} Home
+                    %li
+                      %a{:href => "#features-section"} C'est quoi ?
+                    %li
+                      %a{:href => "#tv-section"} Edgar TV
+                    %li
+                      %a{:href => "#news-section"} Actus
+                    %li
+                      %a{:href => "#team-section"} Qui sommes nous ?
+      /
+        \############################ END TOP MENU ###############
+        \==========================================================
+      / HEADER MAIN
+      .hero-unit
+        .container
+          .row-fluid
+            .span8
+              %img{:alt => "", :src => "images/hero-img1.png"}/
+            .span4
+              .text-center
+                %hr.half/
+                %h1 - de gestion, + de création
+                %p.text-center
+                  Vous êtes artiste ?
+                  %br/
+                  Vous passez plus de temps à gérer l’administratif qu’à créer ?
+                  %br/
+                  Merci Edgar est là pour vous aider !
+                %hr.half/
+                .camein
+                  %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"} Je veux tester !
+    / /overlaybg
+  / / END PARALLAX BG
+/
+  \/ ###################### END MAIN HEADER ####################
+  \===============================================================
+
