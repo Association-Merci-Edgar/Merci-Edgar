@@ -1,0 +1,35 @@
+.icon-ed_relations,.icon-ed-tv,.icon-ed-time,.icon-ed-search,.icon-ed-logo,.icon-ed-evenements,.icon-ed-equipe,.icon-ed-actualites,.icon-ed_comm {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background-image: url(sprites.svg);
+	background-repeat: no-repeat;
+}
+.icon-ed_relations {
+	background-position: 0 0;
+}
+.icon-ed-tv {
+	background-position: -64px 0;
+}
+.icon-ed-time {
+	background-position: -128px 0;
+}
+.icon-ed-search {
+	background-position: -192px 0;
+}
+.icon-ed-logo {
+	background-position: -256px 0;
+	width: 59px;
+}
+.icon-ed-evenements {
+	background-position: -320px 0;
+}
+.icon-ed-equipe {
+	background-position: -384px 0;
+}
+.icon-ed-actualites {
+	background-position: -448px 0;
+}
+.icon-ed_comm {
+	background-position: -512px 0;
+}
