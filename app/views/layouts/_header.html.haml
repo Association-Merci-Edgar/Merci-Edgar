@@ -20,15 +20,27 @@
                 %span.icon-bar
                 %span.icon-bar
               / LOGO
-              %a{:href => "#header-section"}
-                %span.icon-ed-logo
+              .logo
+                %i.ed-icon-ed-logo-bkg.logotype
+                %a{:href => "#header-section"}
+                  %i.ed-icon-ed-logo.logotype
+              #baseline
+                l’assistant virtuel
+                %br>/
+                des artistes
+              #langswitch.noselect
+                %a.fr.active{:href => "../fr"} FR
+                |
+                %a.en{:href => "../en"} EN
               / TOP NAVIGATION
               #main-nav.scroller-spy
                 %nav.nav-collapse.collapse
                   %ul#nav.nav.pull-right
+                    /
+                      <li class='active'>
+                      <a href='#header-section'>Home</a>
+                      </li>
                     %li.active
-                      %a{:href => "#header-section"} Home
-                    %li
                       %a{:href => "#features-section"} C'est quoi ?
                     %li
                       %a{:href => "#tv-section"} Edgar TV
@@ -39,28 +51,10 @@
       /
         \############################ END TOP MENU ###############
         \==========================================================
-      / HEADER MAIN
-      .hero-unit
-        .container
-          .row-fluid
-            .span8
-              %img{:alt => "", :src => "images/hero-img1.png"}/
-            .span4
-              .text-center
-                %hr.half/
-                %h1 - de gestion, + de création
-                %p.text-center
-                  Vous êtes artiste ?
-                  %br/
-                  Vous passez plus de temps à gérer l’administratif qu’à créer ?
-                  %br/
-                  Merci Edgar est là pour vous aider !
-                %hr.half/
-                .camein
-                  %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"} Je veux tester !
+      = yield(:hero)
+      
     / /overlaybg
   / / END PARALLAX BG
 /
   \/ ###################### END MAIN HEADER ####################
   \===============================================================
-

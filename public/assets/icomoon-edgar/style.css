@@ -25,9 +25,9 @@
 /*
 Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
-[class*="icon-"] {
+[class*="ed-icon-"] {
 */
-.icon-ed-evenements, .icon-ed-equipe, .icon-ed-actualites, .icon-ed-comm, .icon-ed-logo, .icon-twitter, .icon-ed_relations, .icon-ed-tv, .icon-ed-time, .icon-ed-search, .icon-check, .icon-email, .icon-facebook, .icon-moins, .icon-plus, .icon-rss {
+.ed-icon-ed-evenements, .ed-icon-ed-equipe, .ed-icon-ed-actualites, .ed-icon-ed-comm, .ed-icon-ed-logo, .ed-icon-twitter, .ed-icon-ed_relations, .ed-icon-ed-tv, .ed-icon-ed-time, .ed-icon-ed-search, .ed-icon-check, .ed-icon-email, .ed-icon-facebook, .ed-icon-moins, .ed-icon-plus, .ed-icon-rss, .ed-icon-ed-logo-bkg, .ed-icon-flech-sml {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -37,51 +37,57 @@ you can use the generic selector below, but it's slower:
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-ed-evenements:before {
+.ed-icon-ed-evenements:before {
 	content: "\e005";
 }
-.icon-ed-equipe:before {
+.ed-icon-ed-equipe:before {
 	content: "\e006";
 }
-.icon-ed-actualites:before {
+.ed-icon-ed-actualites:before {
 	content: "\e007";
 }
-.icon-ed-comm:before {
+.ed-icon-ed-comm:before {
 	content: "\e008";
 }
-.icon-ed-logo:before {
+.ed-icon-ed-logo:before {
 	content: "\e004";
 }
-.icon-twitter:before {
+.ed-icon-twitter:before {
 	content: "\e00b";
 }
-.icon-ed_relations:before {
+.ed-icon-ed_relations:before {
 	content: "\e000";
 }
-.icon-ed-tv:before {
+.ed-icon-ed-tv:before {
 	content: "\e001";
 }
-.icon-ed-time:before {
+.ed-icon-ed-time:before {
 	content: "\e002";
 }
-.icon-ed-search:before {
+.ed-icon-ed-search:before {
 	content: "\e003";
 }
-.icon-check:before {
+.ed-icon-check:before {
 	content: "\e009";
 }
-.icon-email:before {
+.ed-icon-email:before {
 	content: "\e00a";
 }
-.icon-facebook:before {
+.ed-icon-facebook:before {
 	content: "\e00c";
 }
-.icon-moins:before {
+.ed-icon-moins:before {
 	content: "\e00d";
 }
-.icon-plus:before {
+.ed-icon-plus:before {
 	content: "\e00e";
 }
-.icon-rss:before {
+.ed-icon-rss:before {
 	content: "\e00f";
+}
+.ed-icon-ed-logo-bkg:before {
+	content: "\e011";
+}
+.ed-icon-flech-sml:before {
+	content: "\e010";
 }
