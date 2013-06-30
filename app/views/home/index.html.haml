@@ -307,18 +307,16 @@
       %input{:name => "authenticity_token", :type => "hidden", :value => "uNEhYbdVO1e5rDIZs2bHO293xamrV8DgEcblB4X8tqU="}/
     .modal-header
       %a.close{"data-dismiss" => "modal"} ×
-      %h3 Demande d'invitation
+      %h3= t("home.request.invitation")
     .modal-body
-      %p
-        Nous allons travailler tout l'été pour vous permettre de tester en septembre notre logiciel de booking.
-        Si vous voulez faire partie des privilégiés à tester le logiciel, laissez votre mail dès maintenant. Attention, seuls les premiers seront servis !
+      %p= t("home.request.explanation")
       .control-group.email.optional.user_email
         %label.email.optional.control-label{:for => "user_email"} Email
         .controls
           %input#user_email.string.email.optional{:name => "user[email]", :placeholder => "user@example.com", :size => "50", :type => "email", :value => ""}/
     .modal-footer
-      %input#invitation_button.btn.btn-primary{:name => "commit", :type => "submit", :value => "Demande d'invitation"}/
-      %a.btn{"data-dismiss" => "modal", :href => "#"} Annuler
+      %input#invitation_button.btn.btn-primary{:name => "commit", :type => "submit", :value => "#{t("home.request.invitation")}"}/
+      %a.btn{"data-dismiss" => "modal", :href => "#"}= t("cancel")
 #team-christophe.modal{:style => "display: none"}
   .modal-header
     %a.close{"data-dismiss" => "modal"} ×
