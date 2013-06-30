@@ -1,0 +1,41 @@
+--- 
+fr: 
+  home:
+    menu:
+      what: "C'est quoi ?"
+      who: "Qui est derrière ?"
+      news: "Actualités"
+    slogan: 
+      are_you_artist: "Vous êtes artiste ?"
+      creation: création
+      edgar_for_you: "est là pour vous aider !"
+      management: gestion
+      of: de
+      time: "Vous passez plus de temps \x03à gérer l’administratif qu’à créer ?"
+    i_want_it: "Je veux le tester !"
+    features:
+      find: Trouvez rapidement les lieux
+      find_what: "compatibles avec votre style, selon leur emplacement, selon leur jauge, ..."
+      track: Gérez vos relations avec un lieu
+      track_what: "suivez l'historique de vos échanges, générez automatiquement le bon contrat, envoyez votre dernière fiche technique"
+      communicate: "Communiquez auprès des pros et de vos fans"
+      communicate_what: "via Facebook ou par mail, et suivez qui a ouvert vos mails, qui a cliqué sur vos liens"
+      schedule: Planifiez et gérez en un coup d'œil
+      schedule_what: "vos tâches en cours, en retard, le planning de vos prochaines dates ou répétitions"
+    promise: 
+      why: "Pourquoi choisir Merci Edgar ?"
+      alone: "Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul !"
+      more_time_for: "Vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, des tâches administratives ou commerciales ?"
+      goal: "Avec Merci Edgar, vous avez enfin un outil vous permettant d'être plus efficace, organisé dans vos recherches de dates. Bref, vous allez gagner du temps, du temps que vous pourrez consacrer à votre passion, pour le plaisir de votre public !"
+    commitments:
+      free: "Vous êtes libre !"
+      free_details: "Vous pouvez vous désengager à tout moment et récupérer toutes vos données."
+      simple: Un outil simple
+      simple_details: La prise en main est rapide et à la portée de tous.
+      no_installation: Aucune installation requise
+      no_installation_details: "Merci Edgar est accessible depuis n'importe quel navigateur"
+      byfor: "Fait par des artistes, pour des artistes !"
+      byfor_details: "et ça, ça change tout !"
+      evolutive: "Un outil evolutif et collectif"
+      evolutive_details: "Nous allons construire l'outil avec vous ! Il évoluera en fonction de vos besoins."
+      
