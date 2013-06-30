@@ -7,19 +7,23 @@
       \################# START MAIN-WRAPPER ####################
       \============================================================
     .main-wrapper
-      / START SCROLL EVENTS ELEMENTS
-      / !!CLICK EVENT TOP SCROLL
-      .top-link-click.right.hidden-phone
-      / !!HOVER EVENT TOP SCROLL
-      .top-link.right.hidden-phone
-      / !!HOVER EVENT TOP SCROLL
-      .bottom-link.right.hidden-phone
-      / !!CLICK EVENT TOP SCROLL
-      .bottom-link-click.right.hidden-phone
-      .top-corner
-      .bottom-corner
-      / /. SCROLL EVENTS ELEMENTS
-      /
+      / 
+      / LEFT SOCIALS
+      #socialfixed
+        %ul.social-left
+          %li
+            %a{:href => "#", :title => ""}
+              %i.ed-icon-facebook
+          %li
+            %a{:href => "#", :title => ""}
+              %i.ed-icon-twitter
+          %li
+            %a{:href => "#", :title => ""}
+              %i.ed-icon-rss
+          %li
+            %a{:href => "#", :title => ""}
+              %i.ed-icon-email
+      / END LEFT SOCIALS
 
 
       = render 'layouts/header'

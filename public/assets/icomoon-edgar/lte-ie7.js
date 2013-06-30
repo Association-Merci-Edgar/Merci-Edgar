@@ -6,22 +6,24 @@ window.onload = function() {
 		el.innerHTML = '<span style="font-family: \'icomoon\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-			'icon-ed-evenements' : '&#xe005;',
-			'icon-ed-equipe' : '&#xe006;',
-			'icon-ed-actualites' : '&#xe007;',
-			'icon-ed-comm' : '&#xe008;',
-			'icon-ed-logo' : '&#xe004;',
-			'icon-twitter' : '&#xe00b;',
-			'icon-ed_relations' : '&#xe000;',
-			'icon-ed-tv' : '&#xe001;',
-			'icon-ed-time' : '&#xe002;',
-			'icon-ed-search' : '&#xe003;',
-			'icon-check' : '&#xe009;',
-			'icon-email' : '&#xe00a;',
-			'icon-facebook' : '&#xe00c;',
-			'icon-moins' : '&#xe00d;',
-			'icon-plus' : '&#xe00e;',
-			'icon-rss' : '&#xe00f;'
+			'ed-icon-ed-evenements' : '&#xe005;',
+			'ed-icon-ed-equipe' : '&#xe006;',
+			'ed-icon-ed-actualites' : '&#xe007;',
+			'ed-icon-ed-comm' : '&#xe008;',
+			'ed-icon-ed-logo' : '&#xe004;',
+			'ed-icon-twitter' : '&#xe00b;',
+			'ed-icon-ed_relations' : '&#xe000;',
+			'ed-icon-ed-tv' : '&#xe001;',
+			'ed-icon-ed-time' : '&#xe002;',
+			'ed-icon-ed-search' : '&#xe003;',
+			'ed-icon-check' : '&#xe009;',
+			'ed-icon-email' : '&#xe00a;',
+			'ed-icon-facebook' : '&#xe00c;',
+			'ed-icon-moins' : '&#xe00d;',
+			'ed-icon-plus' : '&#xe00e;',
+			'ed-icon-rss' : '&#xe00f;',
+			'ed-icon-ed-logo-bkg' : '&#xe011;',
+			'ed-icon-flech-sml' : '&#xe010;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
@@ -35,7 +37,7 @@ window.onload = function() {
 			addIcon(el, attr);
 		}
 		c = el.className;
-		c = c.match(/icon-[^\s'"]+/);
+		c = c.match(/ed-icon-[^\s'"]+/);
 		if (c && icons[c[0]]) {
 			addIcon(el, icons[c[0]]);
 		}
