@@ -1,0 +1,40 @@
+en:
+  home:
+    menu:
+      what: "What's that?"
+      who: "Who's behind?"
+      news: News
+    slogan:
+      creation: creation
+      management: management
+      of: ''
+      are_you_artist: You are an artist?
+      time: You spend more time managing your admin than creating?
+      edgar_for_you: is here to help you!      
+    i_want_it: "I want to test it !"
+    features:
+      find: Find quickly venues
+      find_what: "matching your style, according to their location, their capacity, ..."
+      track: Manage your relationships with a venue
+      track_what: "follow the history of your exchanges, produce automatically the right contract and send your last technical specifications"
+      communicate: "Communicate with professionals and your fans"
+      communicate_what: "via Facebook or mail, and follow who opened your mails, who clicked on your links"
+      schedule: Plan and manage in a glimpse
+      schedule_what: "your ongoing tasks, overdue, planning of your next dates or rehearsal"
+    promise: 
+      why: "Merci Edgar is for you !"
+      alone: "You don't have a tour manager yet? No other choice than doing everything yourself, on your own! "
+      more_time_for: "You would rather dedicate more time to creation, rehearsal, staging than communication, admin or business tasks?"
+      goal: "With Merci Edgar, you finally have a tool enabling you to be more efficient, more organized in your researches to plan dates. So you can spare time, time for your passion, for your audience's delight!"     
+    commitments:
+      free: "You are free"
+      free_details: "You can cancel your contract anytime and get all your data back "
+      simple: A simple tool
+      simple_details: easy to use for everyone
+      no_installation: No installation required
+      no_installation_details: Merci Edgar is accessible from any browser
+      byfor: "Created by artists for artists"
+      byfor_details: "and that's what makes it so different!"
+      evolutive: "An evolutive and mutual tool"
+      evolutive_details: "we will build this tool with you! It will evolve according to your needs"
+          

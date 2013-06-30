@@ -10,22 +10,27 @@
             %hr.half/
             %span.slogan
               %span.slogan-primo
-                %span.de> de
-                gestion
+                %span.de>
+                  = t("home.slogan.of")
+                
+                = t("home.slogan.management")
+                
               %br/
               %span.slogan-secundo
-                %span.de> de
-                création
+                = t("home.slogan.of")
+              
+              = t("home.slogan.creation")
             %p
-              Vous êtes artiste ?
+              = t("home.slogan.are_you_artist")
               %br/
-              Vous passez plus de temps à gérer l’administratif qu’à créer ?
+              =t("home.slogan.time")
               %br/
               %span.lenom Merci Edgar
-              est là pour vous aider !
+              =t("home.slogan.edgar_for_you")
             %hr.half/
             .camein
-              %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"} Je veux tester !
+              %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+                = t("home.i_want_it")
 
 
 %section#features-section
@@ -36,32 +41,32 @@
         .label.label-large.label-info
           / <i class='ed-icon-ed-search fa-icon-large black'></i>
           %img{:alt => "", :src => "images/pic-photo-1.png"}/
-        %h4 Trouver rapidement des lieux
-        %p compatibles avec votre style, selon leur emplacement, selon leur jauge, …
+        %h4= t("home.features.find")
+        %p= t("home.features.find_what")
       / / ITEM
       / ITEM
       .span3
         .label.label-large.label-info
           / <i class='ed-icon-ed_relations fa-icon-large black'></i>
           %img{:alt => "", :src => "images/pic-photo-2.png"}/
-        %h4 Gérez vos relations avec un lieu
-        %p suivez l'historique de vos échanges, générez automatiquement le bon contrat, envoyez votre dernière fiche technique
+        %h4= t("home.features.track")
+        %p= t("home.features.track_what")
       / / ITEM
       / ITEM
       .span3
         .label.label-large.label-info
           / <i class='ed-icon-ed-comm fa-icon-large black'></i>
           %img{:alt => "", :src => "images/pic-photo-3.png"}/
-        %h4 Communiquez auprès des pros et de vos fans
-        %p via Facebook ou par mail, et suivez qui a ouvert vos mails, qui a cliqué sur vos liens
+        %h4= t("home.features.communicate")
+        %p= t("home.features.communicate_what")
       / / ITEM
       / ITEM
       .span3
         .label.label-large.label-info
           / <i class='ed-icon-ed-time fa-icon-large black'></i>
           %img{:alt => "", :src => "images/pic-photo-4.png"}/
-        %h4 Planifier et gérer en un coup d'oeil
-        %p vos tâches en cours, en retard, le planning de vos prochaines dates ou répétitions
+        %h4= t("home.features.schedule")
+        %p= t("home.features.schedule_what")
       / / ITEM
   / /CONTAINER
   /
@@ -72,42 +77,44 @@
     / FEATURED IMAGE
     .row-fluid
       .span12
-        %span.section-title Pourquoi choisir Edgar ?
+        %span.section-title= t("home.promise.why")
     .row-fluid
       .span6
         .panel.first
           %p
-            Vous êtes artiste ? Vous n'avez pas encore de tourneur ? 
+            = t("home.promise.alone")
             %br/
-            Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul ! alors que vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, effectuer les tâches administratives, jouer au commercial pour se vendre...
+            = t("home.promise.more_time_for")
             %br/
-            Avec le logiciel Merci Edgar, vous aurez enfin un outil vous permettant d'être plus efficace, organisé dans votre recherche de dates. Bref, vous allez gagner du temps, du temps que vous pourrez consacrer à votre art, pour notre plaisir à tous !
-          %p
-            %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"} Je veux tester !
+            = t("home.promise.goal")
+            %p
+            %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+              = t("home.i_want_it")
       .span6
         .panel.first
           .row-fluid.paragraph-middle
             %ul.engagements
               %li
-                %strong Vous êtes libre
+                %strong= t("home.commitments.free")
                 %br/
-                Vous pouvez vous désengager à tout moment et récupérer toutes vos données
+                = t("home.commitments.free_details")
               %li
-                %strong Un outil simple
+                %strong= t("home.commitments.simple")
                 %br/
-                La prise en main de l'outil est rapide et à la portée de tous
+                = t("home.commitments.simple_details")
               %li
-                %strong Aucune installation requise
+                %strong= t("home.commitments.no_installation")
                 %br/
-                Merci Edgar est accessible depuis n'importe quel navigateur
+                = t("home.commitments.no_installation_details")
               %li
-                %strong Fait par des artistes, pour des artistes
+                %strong= t("home.commitments.byfor")
                 %br/
-                et ça, ça change tout ! Voir la bio de l'équipe
+                = t("home.commitments.byfor_details")
               %li
-                %strong Base communautaire
+                %strong= t("home.commitments.evolutive")
                 %br/
-                et ça, ça change tout ! Voir la bio de l'équipe
+                = t("home.commitments.evolutive_details")
+              
 /
   \################## EDGAR TV SECTION #################
   \=======================================================
