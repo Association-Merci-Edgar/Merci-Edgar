@@ -38,4 +38,7 @@ fr:
       byfor_details: "et ça, ça change tout !"
       evolutive: "Un outil evolutif et collectif"
       evolutive_details: "Nous allons construire l'outil avec vous ! Il évoluera en fonction de vos besoins."
+    request:
+      invitation: "Demande d'invitation"
+      explanation: "Nous travaillons tout l'été pour développer les premières briques de Merci Edgar. Si vous voulez faire partie des quelques privilégiés qui pourront tester le logiciel dès le mois de septembre, laissez votre mail dès maintenant. Attention, seuls les premiers seront servis !"
       
