@@ -1,4 +1,6 @@
 Edgar::Application.routes.draw do
+  get "errors/routing"
+
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
       root :to => 'home#index', :as => :locale_root
@@ -16,4 +18,5 @@ Edgar::Application.routes.draw do
 
 # handles /
   root to: redirect("/#{I18n.default_locale}")
+  match '*path', :to => 'errors#routing'
 end
