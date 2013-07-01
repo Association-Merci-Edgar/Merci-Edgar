@@ -29,9 +29,9 @@
                 %br>/
                 des artistes
               #langswitch.noselect
-                %a.fr.active{:href => "../fr"} FR
+                = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
                 |
-                %a.en{:href => "../en"} EN
+                = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
                  
               / LEFT SOCIALS
               #socialfixed

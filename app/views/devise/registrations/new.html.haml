@@ -281,14 +281,14 @@
         %p.subtitle= t("home.events.description")
         .row-fluid
           .edgar-news
-            .span6
+            .span5
               %h4= t("home.events.event1.title")
               %p= t("home.events.event1.description").html_safe
                 
               %p.text-right
                 %a.sml-link{:href => "#", :title => ""} Lire la suite
           .edgar-news
-            .span6
+            .span5.offset2
               %h4= t("home.events.event2.title")
               %p= t("home.events.event2.description").html_safe
               
@@ -301,13 +301,13 @@
         %p.subtitle= t("home.news.description")
         .row-fluid
           .edgar-news
-            .span6
+            .span5
               %h4= t("home.news.news1.title")
               %p= t("home.news.news1.description").html_safe
               %p.text-right
                 %a.sml-link{:href => "#", :title => ""} Lire la suite
           .edgar-news
-            .span6
+            .span5.offset2
               %h4= t("home.news.news2.title")
               %p= t("home.news.news2.description").html_safe
               
@@ -319,123 +319,89 @@
   .container
     .row-fluid.panel
       .span12
-        %span.section-title
-          L'équipe
-          %span.inner Customer reviews the best indicator of confidence in you!
+        %span.section-title= t("home.team.title")
+        %p.subtitle= t("home.team.description")
     .row-fluid
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff3.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/robi.jpg"}/
         %p
         %h4 Christophe Robillard
         %br/
-        %small Fondateur de Merci Edgar
-        %br/
-        %small Developpeur
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.robi.title")
+        %p= t("home.team.robi.description")
+          
         %a.sml-link{"data-toggle" => "modal", :href => "#team-christophe", :title => ""} En savoir plus
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff4.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/aurelie.jpg"}/
         %p
         %h4 Aurélie Thuot
         %br/
-        %small Conseillere technique pour Merci Edgar
-        %br/
-        %small Fondatrice et directrice du Label Adone.
-        %br/
-        %small Fondatrice et consultante d'Aglaé Services.
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.aurelie.title")
+        %p= t("home.team.aurelie.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff1.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/jp.jpg"}/
         %p
         %h4 Jean-Paul Bagnis
         %br/
-        %small Responsable design de Merci Edgar
-        %br/
-        %small Graphiste Freelance
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.jp.title")
+        %p= t("home.team.jp.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff2.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/aline.jpg"}/
         %p
         %h4 Aline Texier
         %br/
-        %small Conseillere technique pour Merci Edgar
-        %br/
-        %small Fondatrice et directrice du Label Adone.
-        %br/
-        %small Fondatrice et consultante d'Aglaé Services.
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.aline.title")
+        %p= t("home.team.aline.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
     / /ROW
     .row-fluid
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff8.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/lylian.jpg"}/
         %p
-        %h4 Christophe Robillard
+        %h4 Lylian Monty
         %br/
-        %small Fondateur de Merci Edgar
-        %br/
-        %small Developpeur
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.lylian.title")
+        %p= t("home.team.lylian.description")
         %a.sml-link{"data-toggle" => "modal", :href => "#team-christophe", :title => ""} En savoir plus
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff5.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/nath.jpg"}/
         %p
-        %h4 Aurélie Thuot
+        %h4 Nathalie Jacomet Young
         %br/
-        %small Conseillere technique pour Merci Edgar
-        %br/
-        %small Fondatrice et directrice du Label Adone.
-        %br/
-        %small Fondatrice et consultante d'Aglaé Services.
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.nath.title")
+        %p= t("home.team.nath.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff6.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/fred.jpg"}/
         %p
-        %h4 Jean-Paul Bagnis
+        %h4 Frédéric Desreumaux
         %br/
-        %small Responsable design de Merci Edgar
-        %br/
-        %small Graphiste Freelance
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %small= t("home.team.fred.title")
+        %p= t("home.team.fred.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
       .span3.testimonial-box
         .row-fluid
           .span8.offset2
-            %img.img-circle{:alt => "", :src => "images/staff7.jpg"}/
+            %img.img-circle{:alt => "", :src => "images/staff/people.jpg"}/
         %p
-        %h4 Aline Texier
-        %br/
-        %small Conseillere technique pour Merci Edgar
-        %br/
-        %small Fondatrice et directrice du Label Adone.
-        %br/
-        %small Fondatrice et consultante d'Aglaé Services.
-        %p
-          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %h4= t("home.team.people.title")
+        %p= t("home.team.people.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
     / /ROW
   / /CONTAINER
