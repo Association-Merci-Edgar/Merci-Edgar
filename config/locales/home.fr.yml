@@ -41,4 +41,25 @@ fr:
     request:
       invitation: "Demande d'invitation"
       explanation: "Nous travaillons tout l'été pour développer les premières briques de Merci Edgar. Si vous voulez faire partie des quelques privilégiés qui pourront tester le logiciel dès le mois de septembre, laissez votre mail dès maintenant. Attention, seuls les premiers seront servis !"
-      
+    tv:
+      description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
+    events:
+      title: "Evénements"
+      description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d'Edgar"
+      event1:
+        title: "Pique-nique d'Edgar au parc de la Villette"
+        description: "Avant que tout le monde ne parte par monts et par vaux, venez toutes et tous au Pique-Nique d'Edgar !
+          <br/>Le principe : On vient avec son instrument si on est musicien, avec sa bonne humeur si on ne l'est pas, on discute, on échange, une petite démo du logiciel de booking qu'on est en train de vous concocter, et hop ! Vous pouvez ramener aussi à boire et à manger si cela vous dit :) Ca vous branche ?
+          <br/>Alors à dimanche 7/07 pour le premier pique-nique d'Edgar !"
+      event2:
+        title: "Edgar sera à Avignon !"
+        description: "Du 18 au 20 juillet, venez boire un verre avec Edgar. On en profitera pour discuter, et vous faire une démo de notre logiciel de booking, ou plutôt de votre futur assistant virtuel !"
+    news:
+      title: "Actualités"
+      description: "Edgar est toujours sur la brèche. Ne manquez pas une miette de son actualité en parcourant régulièrement notre blog !"  
+      news1:
+        title: "Edgar en ebullition"
+        description: "99% des personnes qui sont au courant de l’existence aujourd’hui de Merci Edgar ne le sont que grâce à Internet. Et l’idée au départ du lancement de ces apéros, c’était de pouvoir se rencontrer dans la vraie vie. On y voyait l’occasion d’échanger, de vous parler de nos différents projets, on ne pensait pas que ces discussions allaient être aussi riches, qu’autant d’idées allaient jaillir et nourir le projet Merci Edgar."
+      news2:
+        title: "Edgar a la pêche, et c'est grâce au FIDIM !"
+        description: "Samedi 25 mai, Edgar participait au FIDIM, le Forum des Initiatives Digitales pour la Musique, au centre FGO-Barbara. L’occasion de vous faire une démo de notre futur logiciel en ligne de booking, permettant aux artistes d’être plus efficace et organisé dans leur recherche de dates. C’était la première fois qu’on vous présentait notre logiciel, que vous pouviez découvrir ses différentes fonctionnalités (suivi personnalisé des contacts pro, gestion des tâches, envoi de mails en masse, génération des contrats, factures, …) et l’on ne vous cache pas qu’on a été agréablement surpris de constater que notre stand n’a pas désempli !"
