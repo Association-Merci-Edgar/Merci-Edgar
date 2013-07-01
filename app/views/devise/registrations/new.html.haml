@@ -125,37 +125,22 @@
       .span12
         %span.section-title
           Edgar TV
-        %p
-          Le logiciel Merci Edgar va vous aider à être plus efficace dans votre recherche de dates.
-          %br/
-          Retrouvez un dimanche sur deux l'interview d'un professionnel du spectacle vivant.
+        %p= t("home.tv.description")
+        
     / TITLE
     /
       \################### START NEWS ###################
       \=======================================================
     #container-folio.row
       / portfolio item
-      .span4.project-item.seo.graphics.box
+      .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "276", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/60321828?title=0&portrait=0&byline=0", :webkitallowfullscreen => "", :width => "368", :title => 0, :portrait => 0}
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbonelarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbone.jpg"}/
           / END IMAGE CONTAINER
           / CAPTION
-          .caption
-            / TITLE
-            %h4
-              %a{:href => "#"} Stephanie Berrebi, journaliste
-            / / TITLE
-          / END CAPTION
-        / END: THUMBNAIL
-      / END: portfolio item
-      .span4.project-item.seo.graphics.box
-        .thumbnail
-          / IMAGE CONTAINER
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "276", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/57886759?title=0&portrait=0&byline=0", :webkitallowfullscreen => "", :width => "368"}
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption
+          .caption.text-center
             / TITLE
             %h4
               %a{:href => "#"} Sanseverino, artiste
@@ -163,13 +148,98 @@
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-      .span4.project-item.seo.graphics.box
+      / portfolio item
+      .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "276", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/59316999?title=0&portrait=0&byline=0", :webkitallowfullscreen => "", :width => "368"}
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
           / END IMAGE CONTAINER
           / CAPTION
-          .caption
+          .caption.text-center
+            / TITLE
+            %h4
+              %a{:href => "#"} Aurelie Thuot, productrice de spectacles
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
+          / END IMAGE CONTAINER
+          / CAPTION
+          .caption.text-center
+            / TITLE
+            %h4
+              %a{:href => "#"} Stephanie Berrebi, journaliste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbthreelarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbthree.jpg"}/
+          / END IMAGE CONTAINER
+          / CAPTION
+          .caption.text-center
+            / TITLE
+            %h4
+              %a{:href => "#"} Papy, accompagnateur d'artistes
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+    / /container-folio row
+    #container-folio.row
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbonelarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbone.jpg"}/
+          / END IMAGE CONTAINER
+          / CAPTION
+          .caption.text-center
+            / TITLE
+            %h4
+              %a{:href => "#"} François Alquier, journaliste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
+          / END IMAGE CONTAINER
+          / CAPTION
+          .caption.text-center
+            / TITLE
+            %h4
+              %a{:href => "#"} Didier Pascalis, producteur
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
+          / END IMAGE CONTAINER
+          / CAPTION
+          .caption.text-center
             / TITLE
             %h4
               %a{:href => "#"} Karim Kanal, accompagnateur-conseil
@@ -178,44 +248,15 @@
         / END: THUMBNAIL
       / END: portfolio item
 
-    / /container-folio row
-    #container-folio.row
       / portfolio item
-      .span4.project-item.seo.graphics.box
+      .span3.project-item.seo.graphics.box
         .thumbnail
-          / IMAGE CONTAINER https://vimeo.com/57263996
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "276", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/57263996?title=0&portrait=0&byline=0", :webkitallowfullscreen => "", :width => "368", :title => 0, :portrait => 0}
+          / IMAGE CONTAINER
+          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbthreelarge.jpg"}
+            %img{:alt => "iPhonegraphy", :src => "images/thumbthree.jpg"}/
           / END IMAGE CONTAINER
           / CAPTION
-          .caption
-            / TITLE
-            %h4
-              %a{:href => "#"} Aurelie Thuot, productrice de spectacles
-            / / TITLE
-          / END CAPTION
-        / END: THUMBNAIL
-      / END: portfolio item
-      .span4.project-item.seo.graphics.box
-        .thumbnail
-          / IMAGE CONTAINER https://vimeo.com/54195561
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "276", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/54195561?title=0&portrait=0&byline=0", :webkitallowfullscreen => "", :width => "368"}
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption
-            / TITLE
-            %h4
-              %a{:href => "#"} Papy, accompagnateur d'artiste
-            / / TITLE
-          / END CAPTION
-        / END: THUMBNAIL
-      / END: portfolio item
-      .span4.project-item.seo.graphics.box
-        .thumbnail
-          / IMAGE CONTAINER https://vimeo.com/51145062
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "276", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/51145062?title=0&portrait=0&byline=0", :webkitallowfullscreen => "", :width => "368"}
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption
+          .caption.text-center
             / TITLE
             %h4
               %a{:href => "#"} Marion Geoffroy, directrice de salle
@@ -223,10 +264,10 @@
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-
     / /container-folio row
-
   / /CONTAINER
+/
+
 /
   \################## NEWS SECTION #################
   \=======================================================
@@ -236,40 +277,40 @@
     .row-fluid.panel
       .span6
         %span.section-title
-          %span.h3 Événements
-          %span.inner Here's just a few places we've been covered.
+          = t("home.events.title")
+        %p= t("home.events.description")
         .row-fluid
           .edgar-news
             .span6
-              %h4 Our App Launches Public Beta to Help our Clients
-              %p
-                "A product like this is important in the visual field, where an artist can open themselves up to criticism that, frankly, doesn't make a lick of sense. Google docs 2.0 - App, a new online collaboration tool, just launched. The venue provides a secure environment for creative teams in web, mobile, print, video, design, 3D and motion graphics to present their work for feedback and approval."
+              %h4= t("home.events.event1.title")
+              %p= t("home.events.event1.description").html_safe
+                
               %p.text-right
                 %a.sml-link{:href => "#", :title => ""} Lire la suite
           .edgar-news
             .span6
-              %h4 Our App Launches Public Beta to Help our Clients
-              %p
-                "A product like this is important in the visual field, where an artist can open themselves up to criticism that, frankly, doesn't make a lick of sense. Google docs 2.0 - App, a new online collaboration tool, just launched. The venue provides a secure environment for creative teams in web, mobile, print, video, design, 3D and motion graphics to present their work for feedback and approval."
+              %h4= t("home.events.event2.title")
+              %p= t("home.events.event2.description").html_safe
+              
               %p.text-right
                 %a.sml-link{:href => "#", :title => ""} Lire la suite
+
       .span6
         %span.section-title
-          Actualités
-          %span.inner Here's just a few places we've been covered.
+          = t("home.news.title")
+        %p= t("home.news.description")
         .row-fluid
           .edgar-news
             .span6
-              %h4 Our App Launches Public Beta to Help our Clients
-              %p
-                "A product like this is important in the visual field, where an artist can open themselves up to criticism that, frankly, doesn't make a lick of sense. Google docs 2.0 - App, a new online collaboration tool, just launched. The venue provides a secure environment for creative teams in web, mobile, print, video, design, 3D and motion graphics to present their work for feedback and approval."
+              %h4= t("home.news.news1.title")
+              %p= t("home.news.news1.description").html_safe
               %p.text-right
                 %a.sml-link{:href => "#", :title => ""} Lire la suite
           .edgar-news
             .span6
-              %h4 Our App Launches Public Beta to Help our Clients
-              %p
-                "A product like this is important in the visual field, where an artist can open themselves up to criticism that, frankly, doesn't make a lick of sense. Google docs 2.0 - App, a new online collaboration tool, just launched. The venue provides a secure environment for creative teams in web, mobile, print, video, design, 3D and motion graphics to present their work for feedback and approval."
+              %h4= t("home.news.news2.title")
+              %p= t("home.news.news2.description").html_safe
+              
               %p.text-right
                 %a.sml-link{:href => "#", :title => ""} Lire la suite
   / /CONTAINER

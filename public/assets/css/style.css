@@ -64,7 +64,7 @@ a .ed-icon-ed-logo:hover {
 
 
 #baseline {
-	margin-top:58px;
+	margin-top:55px;
 	display:inline-block;
 	color:#e53c21;
 	font-size:18px;
@@ -72,13 +72,59 @@ a .ed-icon-ed-logo:hover {
 	}
 	
 #langswitch {float:right; right:0px;
-font-size:13px;}
+font-size:12px;
+font-family: Helvetica, Arial, sans-serif;
+
+}
 #langswitch a {color:#000;}
 
 #langswitch .active, #langswitch a:hover {
 	border-bottom:#000 2px solid;
 	text-decoration:none;
+	padding-bottom:2px;
+}
+
+#socialfixed, #langswitch { padding-top:6px;}
+#socialfixed { height:22px;float:right; margin-right: 15px;} 
+
+.social-left li a { color:#000;}
+.social-left li a:hover {
+	text-decoration: none;
+color:#e53c21;
+}
+
+ul.social-left {
+		display: inline-block;
+		margin-top: 0px;
+		margin-left: 1px;
+		padding: 0px;
+		padding-left: 0px;
+		font-size:21px;
+		
 	}
+	
+	ul.social-left li {
+	/*	background: #000;*/
+		
+		display: block;
+		float: left;
+		height: 26px;
+		width: 26px;
+		list-style: none;
+		padding: 2px 3px 0px 3px;
+		-moz-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		
+		text-align: center;
+		transition: all 0.3s ease-in-out;
+		-webkit-transition: all 0.3s ease-in-out;
+		background-position: 0px 0px;
+		
+}
+
+/**********/
+
 	
 .nav-collapse { margin-top:50px;}
 
@@ -282,12 +328,16 @@ line-height:33px;}
 
   
   .navbar .nav > li > a {
-	border-bottom:4px solid transparent;
+	border-bottom:2px solid transparent;
  	padding : 10px 0px;
-	margin: 0 15px;
+	padding-bottom:5px;
+	margin: 0;
+	margin-left:30px;
  }
  .navbar .nav > li > a:hover{
 	background:none;
+	color:#e53c21;
+	border-bottom:2px solid #000;
  }
  .navbar .nav .active > a, .navbar .nav .active > a:hover, .navbar .nav  .active > a:focus {
 	background: none;
@@ -295,7 +345,7 @@ line-height:33px;}
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none; 
-	border-bottom:4px solid #000;
+	border-bottom:2px solid #000;
   }
 
 	.navbar .brand {
@@ -373,13 +423,15 @@ line-height:33px;}
 		margin: 9px 10px 0 0;
 	}
 	
-	.scroll .nav-collapse, .scroll #baseline { margin-top:30px;}
+	.scroll .nav-collapse, .scroll #baseline { margin-top:38px;}
+	.scroll #baseline { margin-top:40px;}
 	.navbar-inner.scroll{
 		height: 90px;
 		padding: 10px 0px;
 	}
 	
 	.navbar-inner.scroll .logotype {
+		margin-top:2px;
 		font-size:80px;
 	}
 	
@@ -416,83 +468,50 @@ line-height:33px;}
 /***************************** SOCIAL BUTTONS ******************************/	
 
 
-#socialfixed { position:fixed; margin: 25% auto; height:180px; width: 52px; z-index:3000;
-background:#FFF;} 
-
-ul.social-left {
-		display: inline-block;
-		margin-top: 0px;
-		margin-left: 1px;
-		padding: 0px;
-		padding-left: 0px;
-		font-size:26px;
-		
-	}
-	
-	ul.social-left li {
-	/*	background: #000;*/
-		
-		display: block;
-		float: left;
-		height: 26px;
-		width: 26px;
-		list-style: none;
-		margin: 0px 6px 4px 6px;
-		-moz-transition: all 0.3s ease-in-out;
-		-ms-transition: all 0.3s ease-in-out;
-		-o-transition: all 0.3s ease-in-out;
-		padding-top: 10px;
-		padding-bottom: 1px;
-		text-align: center;
-		transition: all 0.3s ease-in-out;
-		-webkit-transition: all 0.3s ease-in-out;
-		
-		background-position: 0px 0px;
-		
-	}
-
-/**********/
 
 
 
 	ul.social-top {
+		float:right;
 		display: inline-block;
 		margin-top: 0px;
 		margin-left: 1px;
 		padding: 0px;
 		padding-left: 0px;
-		font-size:40px;
+		font-size:36px;
 	}
 	
-	ul.social-top li a{
-		background: #000;
-		color:#e53c21;
+	ul.social-top li a {
+		background:none;
+		color:#fff;
 		
 		display: block;
 		float: left;
 		height: 40px;
 		list-style: none;
+		text-align: center;
 		margin: 14px 2px 4px 2px;
 		-moz-transition: all 0.3s ease-in-out;
 		-ms-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
-		padding-top: 10px;
-		padding-bottom: 1px;
-		text-align: center;
+		
+		
+		
 		transition: all 0.3s ease-in-out;
 		-webkit-transition: all 0.3s ease-in-out;
 		width: 40px;
-		background-position: 0px 0px;
+		background-position: Opx 0px;
+		
 		
 	}
 	.thumbnail:hover ul.social-top li:hover {
-		background: #2b2b2b;
+		color: #e53c21;
 		
 	}
 	
 	
 	.thumbnail:hover ul.social-top li{
-		background:#16a085;
+		color:#16a085;
 		
 	}
 	.thumbnail:hover ul.social-top li a{
@@ -501,59 +520,49 @@ ul.social-left {
 	}
 	
 	.social-top i {width:40px; height:40px;}
+	
+	footer .social-top { margin-top: -30px;}
+	
 	footer ul.social-top li {
-		background: #000;
 		
 		display: block;
+		text-align: left;
 		float: left;
 		height: 20px;
 		list-style: none;
 		margin: 3px 1px 1px;
+		
 		-moz-transition: all 0.3s ease-in-out;
 		-ms-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
 		
-		
-		text-align: left;
 		transition: all 0.3s ease-in-out;
 		-webkit-transition: all 0.3s ease-in-out;
 		width: 40px;
 		
-		/*background-position: 20px 10px;*/
-		-webkit-border-radius: 20px;
-		-moz-border-radius: 20px;
-		border-radius: 20px;
+	
+		padding-left:12px;
 	}
 	
 	
 	footer .logotype {
-		font-size:60px;}
-	footer .logo {
 		
+		font-size:50px;
+		margin-left : 20px;
+		margin-top : 40px;
+		
+		}
+	footer .logo {
+		margin-top: -100px;
+		width:140px;
+		height:140px;
 		background:#FFF;
-	-webkit-border-radius: 100px;
-		-moz-border-radius: 100px;
-		border-radius: 100px;
+		-webkit-border-radius: 200px;
+		-moz-border-radius: 200px;
+		border-radius: 200px;
+		margin-bottom:30px;
 	}
-	
-	footer ul.social-top li:hover {
-		background: #e53c21;
-	}
-	
-	footer ul.social-top li a{
-		color:#fff;
-		text-decoration:none;
-		display:inline-block;
-		width:100%;
-		height:100%;
-	}
-	ul.social-top li a{
-		color:#16a085;
-		text-decoration:none;
-		display:inline-block;
-		width:100%;
-		height:100%;
-	}
+
 	
 	
 
@@ -1125,7 +1134,7 @@ box-shadow:         0px 1px 0px rgba(50, 50, 50, 0.31);*/
 
 /**************************** TEAM & ABOUT ***************************/
 #team-section{
-	background:#fff;
+	/*background:#fff;*/
 }
 
 .team-items-row{
@@ -1722,12 +1731,32 @@ footer{
 	background:#000; /*#6bcdd6;*/
 	
 }
-footer *{
+footer {
 	color:#fff;
 }
 footer a{
 
 }
+
+	
+	footer ul.social-top li a:hover {
+		color: #e53c21;
+	}
+	
+	footer ul.social-top li a {
+		color:#fff;
+		text-decoration:none;
+		display:inline-block;
+		width:100%;
+		height:100%;
+	}
+	ul.social-top li a{
+		color:#16a085;
+		text-decoration:none;
+		display:inline-block;
+		width:100%;
+		height:100%;
+	}
 
 #map {
 display: block;
@@ -1771,8 +1800,9 @@ border-top: 4px solid #2fe2bf;
 
 footer address{
 	line-height:22px;
-	.
 }
+
+
 
 /****************************** BUTTONS *********************************************/
 .btn.btn-large {
