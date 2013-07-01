@@ -62,3 +62,31 @@ fr:
       news2:
         title: "Edgar a la pêche, et c'est grâce au FIDIM !"
         description: "Samedi 25 mai, Edgar participait au FIDIM, le Forum des Initiatives Digitales pour la Musique, au centre FGO-Barbara. L’occasion de vous faire une démo de notre futur logiciel en ligne de booking..."
+    team:
+      title: "L'équipe"
+      description: "Nous avons un objectif : faire d'Edgar votre meilleur assistant !"
+      robi:
+        title: Fondateur de Merci Edgar / Responsable developpement / Musicien
+        description: "J'aime chanter sur scène et former des informaticiens. J'aime jouer du piano et pianoter sur mon clavier pour développer des applications web. J'aime composer des mélodies et écrire des lignes de code. Et j'essaie de faire ce que j'aime, tout simplement !"
+      aurelie:
+        title: "Conseillère technique pour Merci Edgar / Fondatrice et directrice du label Adone / Fondatrice et consultante d'Aglae Services"
+        description: "Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale..."
+      jp:
+        title: "Designer de Merci Edgar / Graphiste freelance"
+        description: "Ai-je vraiment besoin de me décrire ?"
+      aline: 
+        title: "Conseillère technique pour Merci Edgar / Chargée de production du label Adone"
+        description: "A défaut d'études supérieures, après mon bac je déménage à Paris et intègre les Cours Florent (cours d'art dramatique) avec le rêve fou de devenir comédienne et surtout.. d'en vivre ! Je ferai les 3 ans du cursus mais la réalité du métier me rattrape vite car en parallèle des cours, je découvre le Théâtre Les Blancs Manteaux et je commence à y travailler en tant qu'accessoiriste sur un spectacle. Rapidement..."
+      lylian:
+        title: "Responsable juridique et administratif de Merci Edgar / Ecrivain / Fleuriste / Consultant Maitrise d'ouvrage chez Micropole"
+        description: "Je suis un artisan au service de la reine des fleurs (fleuriste en un mot !) doublé d’un consultant au royaume de la technologie, à moins que ce ne soit le contraire.
+        J’ai écrit des romans singuliers parmi lesquels un triptyque plutôt acide qui m’a valu quelques lecteurs dont Robi de Robi & Co. De fil en aiguille..."
+      nath:
+        title: "Responsable de l'internationalisation pour Merci Edgar / Traductrice Freelance"
+        description: "Après avoir travaillé en tant que chef de projet multilingue chez Levi's et Nike pendant 10 ans en voyageant dans toute l'Europe, j'ai décidé de devenir traductrice freelance spécialisée dans les sites web, le marketing et la communication. Fan de rock, blues, musiques alternatives, j'adore sortir et découvrir de nouveaux sons, en France comme à l'étranger."
+      fred:
+        title: "Responsable de la production audiovisuelle pour Merci Edgar / Réalisateur / Chef opérateur"
+        description: "Je suis un ex-jeune réalisateur indépendant de courts métrages diffusés dans des festivals de films à travers le monde, notamment un reboot du Zombie de Romero et  je suis également chef opérateur de documentaires sur des sujets divers diffusés sur France Télévision, notamment un film sur le fonctionnement d'un CECOS (centre d'étude et de conservation des oeufs et du sperme humains)"
+      people:
+        title: "Vous"
+        description: "Vous faites partie de l'équipe ! Grâce aux apéros d'Edgar notamment, nous construisons ensemble l'assistant virtuel dont vous ne pourrez plus vous passer !"
