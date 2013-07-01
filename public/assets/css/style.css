@@ -60,18 +60,25 @@ a .ed-icon-ed-logo:hover {
 }
 
 .logo {display: inline-block; width:220px; height:100px;}
-
+.scroll .logo {width:180px;}
 
 
 #baseline {
-	display:inline-block;
 	margin-top:58px;
+	display:inline-block;
 	color:#e53c21;
 	font-size:18px;
 	line-height:19px;
 	}
 	
-#langswitch {float:right; right:0px;}
+#langswitch {float:right; right:0px;
+font-size:13px;}
+#langswitch a {color:#000;}
+
+#langswitch .active, #langswitch a:hover {
+	border-bottom:#000 2px solid;
+	text-decoration:none;
+	}
 	
 .nav-collapse { margin-top:50px;}
 
@@ -90,6 +97,7 @@ ul.engagements li {
 }
 
 ul.engagements li:before {
+	color:#e53c21;
 	font-family: 'icomoon';
 	content: "\e009";
 	padding-right:.25em; /* give the bullet some padding from the text Make sure to use em*/
@@ -142,9 +150,6 @@ line-height:33px;}
 }
 
 
-
-	
-	section{}
 	
 	.section-title, h3 {
 		color: #e53c21;
@@ -368,13 +373,18 @@ line-height:33px;}
 		margin: 9px 10px 0 0;
 	}
 	
-	
+	.scroll .nav-collapse, .scroll #baseline { margin-top:30px;}
 	.navbar-inner.scroll{
+		height: 90px;
 		padding: 10px 0px;
 	}
 	
+	.navbar-inner.scroll .logotype {
+		font-size:80px;
+	}
+	
 	section{
-		padding-top:50px;
+		padding-top:80px;
 		border-bottom:1px solid #dedede;
 		
 	}
@@ -399,6 +409,7 @@ line-height:33px;}
 		border-radius: 0;
 	}
 	
+	/*.hero-unit img {width: 100%;}*/
 
 
 
@@ -415,6 +426,7 @@ ul.social-left {
 		padding: 0px;
 		padding-left: 0px;
 		font-size:26px;
+		
 	}
 	
 	ul.social-left li {
@@ -452,8 +464,9 @@ ul.social-left {
 		font-size:40px;
 	}
 	
-	ul.social-top li {
+	ul.social-top li a{
 		background: #000;
+		color:#e53c21;
 		
 		display: block;
 		float: left;
@@ -1428,7 +1441,7 @@ filter: alpha(opacity=0);
 
 /***************************** PRICE ********************************/
 #price-section{
-	background:#fff;
+	/*background:#fff;*/
 		
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
 		-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
@@ -1894,7 +1907,7 @@ fieldset[disabled] .btn-warning.active {
 .btn-danger {
   background-color: #e53c21;
   border-color: #e53c21;
-  font-size:30px;
+  font-size:27px;
 }
 
 .btn-danger:hover,
@@ -2217,6 +2230,7 @@ fieldset[disabled] .btn-link:focus {
 			
 		
 		}
+		.hero-unit img {bottom:0px;}
 		
 /*****************************  @MEDIA *************************************************/
 
@@ -2224,11 +2238,24 @@ fieldset[disabled] .btn-link:focus {
 	#main-nav select {
 		display:none;
 	}
-	
-}/* \media 1200 */
+}
+/* \media 1200 */
 
 @media (max-width:979px){
-
+	
+	.slogan {
+		font-size:38px;
+	line-height:38px;
+	}
+	
+	.slogan .de {font-size:26px;}
+	
+	.slogan-primo:before, .slogan-secundo:before {
+	font-family: 'icomoon';
+	font-size:26px
+}
+	
+	
 	body{
 		padding:0px;
 	}
@@ -2348,6 +2375,11 @@ fieldset[disabled] .btn-link:focus {
 }
 
 @media (max-width: 767px){
+	/*.hero-unit .slogan {background:#FFF;}
+	.hero-unit .half {display:none;}
+	.hero-unit .span8 { float:right;}
+	.hero-unit .span4 { float:left; }*/
+	
 	.page-header h3{
 		display:block;
 		text-align:center;
