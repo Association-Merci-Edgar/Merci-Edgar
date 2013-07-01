@@ -27,7 +27,7 @@ $('document').ready(function() {
     var dataString = 'user[email]='+ email;
     $.ajax({
       type: "POST",
-      url: "/users",
+      url: "/fr/users",
       data: dataString,
       success: function(data) {
         $('#request-invite').html(data);

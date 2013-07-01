@@ -1,10 +1,10 @@
 Edgar::Application.routes.draw do
-  get "errors/routing"
-
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
-    root :to => 'home#index', :as => :locale_root
+    authenticated :user do
+      root :to => 'home#index'
+    end
     devise_scope :user do
-    #  root :to => "devise/registrations#new"
+      root :to => "devise/registrations#new", :as => "locale_root"
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
     end
     devise_for :users, :controllers => { :registrations => "registrations", :confirmations => "confirmations" }
