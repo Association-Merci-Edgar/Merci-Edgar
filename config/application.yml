@@ -17,7 +17,7 @@ development:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: www.merciedgar.com
+  DOMAIN: localhost:3000
 
 staging:
   MANDRILL_USERNAME: staging@merciedgar.com
