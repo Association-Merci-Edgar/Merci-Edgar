@@ -41,56 +41,55 @@ en:
       invitation: Invitation request
       explanation: "We are working all summer long to develop the bases of Merci Edgar. If you want to be one of the very few lucky ones to test the software as of September, leave your email address now.  Be quick, only the first ones will have a go!"
     tv:
-      description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
+      description: "Edgar is not only a virtual assistant, it also helps artists to interview professionals from the showbusiness, enabling them to better understand the environment in which they want to evolve. Already 17 interviews since October 2012 !"
     thankyou:
-      title: "Merci !"
-      info: "Votre demande a bien été enregistrée. Profitez de votre été. Nous, de notre côté, nous construisons votre futur assistant virtuel et reprenons contact avec vous dès le mois de septembre !"
-      share: "Faites-en profiter vos ami-e-s artistes ! Partagez la nouvelle sur Facebook, Twitter ou Google Plus !"
-      social_message: "Je me suis inscrit pour faire partie des premiers à tester Merci Edgar ! Et vous ?"
+      title: "Thank you !"
+      info: "Your request has been well received. Enjoy your summer ! We will carry on developping your future virtual assistant"
+      contact: "We will get in touch with you early September !"
+      share: "Let your artists friends know about it ! Share the news on Facebook, Twitter or Google Plus !"
+      social_message: "I applied to be one of the firsts to test Merci Edgar ! And you ?"
     events:
-      title: "Evénements"
-      description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d'Edgar"
+      title: "Events"
+      description: "Put right now in your agenda Edgar's next apero or picnic"
       event1:
-        title: "Pique-nique d'Edgar au parc de la Villette"
-        description: "Avant que tout le monde ne parte par monts et par vaux, venez toutes et tous au Pique-Nique d'Edgar !
-          <br/>Le principe : On vient avec son instrument si on est musicien, avec sa bonne humeur..."
+        title: "Edgar's picnic at Parc de la Villette"
+        description: "Before everyone goes on holidays, come all to Edgar's picnic !"
       event2:
-        title: "Edgar sera à Avignon !"
-        description: "Du 18 au 20 juillet, venez boire un verre avec Edgar. On en profitera pour discuter, et vous faire une démo de notre logiciel de booking, ou plutôt de votre futur assistant virtuel !"
+        title: "Edgar will be in Avignon !"
+        description: "From July 18th to 20th, come and have a drink with Edgar..."
     news:
-      title: "Actualités"
-      description: "Edgar est toujours sur la brèche. Ne manquez pas une miette de son actualité en parcourant régulièrement notre blog !"  
+      title: "News"
+      description: "Edgar is always on the go. Don't miss anything about Edgar's news, read our blog !"  
       news1:
-        title: "Edgar en ebullition"
-        description: "99% des personnes qui sont au courant de l’existence aujourd’hui de Merci Edgar ne le sont que grâce à Internet. Et l’idée au départ du lancement de ces apéros, c’était de pouvoir se rencontrer dans la vraie vie..."
+        title: "Edgar is buzzing"
+        description: "99% of the people are aware about the existence of Merci Edgar today via Internet..."
       news2:
-        title: "Edgar a la pêche, et c'est grâce au FIDIM !"
-        description: "Samedi 25 mai, Edgar participait au FIDIM, le Forum des Initiatives Digitales pour la Musique, au centre FGO-Barbara. L’occasion de vous faire une démo de notre futur logiciel en ligne de booking..."
+        title: "Edgar is full on, thanks to the FIDIM !"
+        description: "Saturday, May 25th, Edgar participated to the FIDIM, le Forum des Initiatives Digitales (Forum for Digital Initiatives for Music, at the Centre FGO-Barbara..."
     team:
-      title: "L'équipe"
-      description: "Nous avons un objectif : faire d'Edgar votre meilleur assistant !"
+      title: "The team"
+      description: "We have a goal: developp Edgar to be your best assistant !"
       robi:
-        title: Fondateur de Merci Edgar / Responsable developpement / Musicien
-        description: "J'aime chanter sur scène et former des informaticiens. J'aime jouer du piano et pianoter sur mon clavier pour développer des applications web. J'aime composer des mélodies et écrire des lignes de code. Et j'essaie de faire ce que j'aime, tout simplement !"
+        title: Founder of Merci Edgar / In charge of development / Musician
+        description: "I like to sing on stage and to train IT technicians..."
       aurelie:
-        title: "Conseillère technique pour Merci Edgar / Fondatrice et directrice du label Adone / Fondatrice et consultante d'Aglae Services"
-        description: "Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale..."
+        title: "Technical adviser for Merci Edgar / Founder and director of label Adone / Founder and adviser of Aglae Services"
+        description: "Having studied sociology, then design and implementation of cultural projects, I specialized in careers related to live shows, especially music, I trained in artists management, show production, musical edition..."
       jp:
-        title: "Designer de Merci Edgar / Graphiste freelance"
-        description: "Ai-je vraiment besoin de me décrire ?"
+        title: "Designer of Merci Edgar / Freelance graphic designer"
+        description: "Do I really have to describe myself?"
       aline: 
-        title: "Conseillère technique pour Merci Edgar / Chargée de production du label Adone"
-        description: "A défaut d'études supérieures, après mon bac je déménage à Paris et intègre les Cours Florent (cours d'art dramatique) avec le rêve fou de devenir comédienne et surtout.. d'en vivre ! Je ferai les 3 ans du cursus mais la réalité du métier me rattrape vite car en parallèle des cours, je découvre le Théâtre Les Blancs Manteaux et je commence à y travailler en tant qu'accessoiriste sur un spectacle. Rapidement..."
+        title: "Technical adviser for Merci Edgar / Production manager for label Adone"
+        description: "Having decided not to pursue university studies after my bac, I moved to Paris and started the famous Cours Florent (drama school) with the crazy dream to become an actress.. and make a living from it..."
       lylian:
-        title: "Responsable juridique et administratif de Merci Edgar / Ecrivain / Fleuriste / Consultant Maitrise d'ouvrage chez Micropole"
-        description: "Je suis un artisan au service de la reine des fleurs (fleuriste en un mot !) doublé d’un consultant au royaume de la technologie, à moins que ce ne soit le contraire.
-        J’ai écrit des romans singuliers parmi lesquels un triptyque plutôt acide qui m’a valu quelques lecteurs dont Robi de Robi & Co. De fil en aiguille..."
+        title: "Administrative and legal manager for Merci Edgar / Writer / Flowerist / Contracting adviser at Micropole"
+        description: "I'm an artisan servicing the queen of flowers (florist in one word !) and an adviser in technology or maybe the contrary..."
       nath:
-        title: "Responsable de l'internationalisation pour Merci Edgar / Traductrice Freelance"
-        description: "Après avoir travaillé en tant que chef de projet multilingue chez Levi's et Nike pendant 10 ans en voyageant dans toute l'Europe, j'ai décidé de devenir traductrice freelance spécialisée dans les sites web, le marketing et la communication. Fan de rock, blues, musiques alternatives, j'adore sortir et découvrir de nouveaux sons, en France comme à l'étranger."
+        title: "In charge of international development for Merci Edgar / Freelance translator"
+        description: "After having worked as international project manager for Levi's and Nike for 10 years travelling all over Europe, I decided to become freelance translator specialized in websites, marketing and communication..."
       fred:
-        title: "Responsable de la production audiovisuelle pour Merci Edgar / Réalisateur / Chef opérateur"
-        description: "Je suis un ex-jeune réalisateur indépendant de courts métrages diffusés dans des festivals de films à travers le monde, notamment un reboot du Zombie de Romero et  je suis également chef opérateur de documentaires sur des sujets divers diffusés sur France Télévision, notamment un film sur le fonctionnement d'un CECOS (centre d'étude et de conservation des oeufs et du sperme humains)"
+        title: "Audiovisual production manager for Merci Edgar / Director/ Cameraman"
+        description: "I'm an ex young independant producer of short films shown in films festivals all over the world, in particular a reboot of Zombie from Romero..."
       people:
-        title: "Vous"
-        description: "Vous faites partie de l'équipe ! Grâce aux apéros d'Edgar notamment, nous construisons ensemble l'assistant virtuel dont vous ne pourrez plus vous passer !"
+        title: "You"
+        description: "You are part of the team ! Notably thanks to Edgar's aperos, we build together the virtual assistant you can't do without!"
