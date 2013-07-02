@@ -3,9 +3,10 @@
   .hero-unit
     .container
       .row-fluid
-        .span8
-          %img{:alt => "", :src => "images/hero-img1.png"}/
-        .span4
+        .span12
+          %img{:alt => "", :src => "images/hero-img2.png"}/
+      .row-fluid
+        .span12
           %div
             %span.slogan
               %span.slogan-primo
@@ -13,7 +14,7 @@
                 
                 = t("home.slogan.management")
                 
-              %br/
+              
               %span.slogan-secundo
                 %span.de= t("home.slogan.of")
               = t("home.slogan.creation")
@@ -545,4 +546,14 @@
         %p
           Ma marque de fabrique c’est l’éclectisme et une passion sans limite pour la création artistique. Merci Edgar ! est résolument au service d’artistes créatifs désireux de se produire sur scène. Alors, prêts pour le grand saut ?
           
-          
+#share-edgar.modal{:style => "display: none"}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3= t("home.share.title")
+  .modal-body{:style => "margin-bottom: 120px; overflow: visible"}
+    %p= t("home.thankyou.share")
+    #tweet{:style => "display:inline-block;"}
+      %a.twitter-share-button{"data-count" => "horizontal", "data-related" => "Merci Edgar", "data-text" => "#{t("home.thankyou.social_message")}", "data-url" => "http://#{ENV["DOMAIN"]}/", "data-via" => "Merci Edgar", :href => "https://twitter.com/share"}
+    %span{:style => "display:inline-block; vertical-align:text-bottom;"}
+      .fb-like{"data-href" => "http://#{ENV["DOMAIN"]}/", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "90"}
+    .g-plusone{"data-annotation" => "inline", "data-href" => "http://#{ENV["DOMAIN"]}/", "data-size" => "medium", "data-width" => "120"}          
