@@ -25,9 +25,7 @@
                 %a{:href => "#header-section"}
                   %i.ed-icon-ed-logo.logotype
               #baseline
-                l’assistant virtuel
-                %br>/
-                des artistes
+                = t("home.baseline").html_safe 
               #langswitch.noselect
                 = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
                 |
@@ -37,17 +35,12 @@
               #socialfixed
                 %ul.social-left
                   %li
-                    %a{:href => "#", :title => ""}
+                    %a{:href => "https://www.facebook.com/pages/Merci-Edgar/164510577033726", :title => "Facebook Merci Edgar", :target => "blank"}
                       %i.ed-icon-facebook
                   %li
-                    %a{:href => "#", :title => ""}
+                    %a{:href => "https://twitter.com/MerciEdgar", :title => "Twitter Merci Edgar", :target => "blank"}
                       %i.ed-icon-twitter
-                  %li
-                    %a{:href => "#", :title => ""}
-                      %i.ed-icon-rss
-                  %li
-                    %a{:href => "#", :title => ""}
-                      %i.ed-icon-email
+                  
               / END LEFT SOCIALS    
               / TOP NAVIGATION
               #main-nav.scroller-spy
