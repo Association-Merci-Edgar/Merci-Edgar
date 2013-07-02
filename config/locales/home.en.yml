@@ -42,6 +42,11 @@ en:
       explanation: "We are working all summer long to develop the bases of Merci Edgar. If you want to be one of the very few lucky ones to test the software as of September, leave your email address now.  Be quick, only the first ones will have a go!"
     tv:
       description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
+    thankyou:
+      title: "Merci !"
+      info: "Votre demande a bien été enregistrée. Profitez de votre été. Nous, de notre côté, nous construisons votre futur assistant virtuel et reprenons contact avec vous dès le mois de septembre !"
+      share: "Faites-en profiter vos ami-e-s artistes ! Partagez la nouvelle sur Facebook, Twitter ou Google Plus !"
+      social_message: "Je me suis inscrit pour faire partie des premiers à tester Merci Edgar ! Et vous ?"
     events:
       title: "Evénements"
       description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d'Edgar"
@@ -89,4 +94,3 @@ en:
       people:
         title: "Vous"
         description: "Vous faites partie de l'équipe ! Grâce aux apéros d'Edgar notamment, nous construisons ensemble l'assistant virtuel dont vous ne pourrez plus vous passer !"
-        
