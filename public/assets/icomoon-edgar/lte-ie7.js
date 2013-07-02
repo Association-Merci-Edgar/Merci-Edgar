@@ -23,7 +23,8 @@ window.onload = function() {
 			'ed-icon-plus' : '&#xe00e;',
 			'ed-icon-rss' : '&#xe00f;',
 			'ed-icon-ed-logo-bkg' : '&#xe011;',
-			'ed-icon-flech-sml' : '&#xe010;'
+			'ed-icon-flech-sml' : '&#xe010;',
+			'ed-icon-share' : '&#xe012;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
