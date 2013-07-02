@@ -7,18 +7,15 @@
           %img{:alt => "", :src => "images/hero-img1.png"}/
         .span4
           %div
-            %hr.half/
             %span.slogan
               %span.slogan-primo
-                %span.de>
-                  = t("home.slogan.of")
+                %span.de= t("home.slogan.of")
                 
                 = t("home.slogan.management")
                 
               %br/
               %span.slogan-secundo
-                = t("home.slogan.of")
-              
+                %span.de= t("home.slogan.of")
               = t("home.slogan.creation")
             %p
               = t("home.slogan.are_you_artist")
@@ -125,7 +122,7 @@
       .span12
         %span.section-title
           Edgar TV
-        %p= t("home.tv.description")
+        %p.subtitle= t("home.tv.description")
         
     / TITLE
     /
@@ -136,14 +133,67 @@
       .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbonelarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbone.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Sanseverino, artiste
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/sansev.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Sanseverino, artiste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/aurelie.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Aurélie Thuot, productrice de spectacles
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/alquier.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                François Alquier, journaliste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/marion.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Marion Geoffroy, directrice de salle
             / / TITLE
           / END CAPTION
         / END: THUMBNAIL
@@ -152,118 +202,72 @@
       .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Aurelie Thuot, productrice de spectacles
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/papy.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Papy, accompagnateur d'artistes
             / / TITLE
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-      / portfolio item
       .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Stephanie Berrebi, journaliste
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/steph.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Stéphanie Berrebi, journaliste
             / / TITLE
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-
-      / portfolio item
       .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbthreelarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbthree.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Papy, accompagnateur d'artistes
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/karim.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Karim Kanal, accompagnateur-conseil
             / / TITLE
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-    / /container-folio row
-    #container-folio.row
-      / portfolio item
       .span3.project-item.seo.graphics.box
         .thumbnail
           / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbonelarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbone.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} François Alquier, journaliste
+          %a{:href => "#"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/sansev.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Sanseverino, artiste
             / / TITLE
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-      / portfolio item
-      .span3.project-item.seo.graphics.box
-        .thumbnail
-          / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Didier Pascalis, producteur
-            / / TITLE
-          / END CAPTION
-        / END: THUMBNAIL
-      / END: portfolio item
-      / portfolio item
-      .span3.project-item.seo.graphics.box
-        .thumbnail
-          / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbtwolarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbtwo.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Karim Kanal, accompagnateur-conseil
-            / / TITLE
-          / END CAPTION
-        / END: THUMBNAIL
-      / END: portfolio item
-
-      / portfolio item
-      .span3.project-item.seo.graphics.box
-        .thumbnail
-          / IMAGE CONTAINER
-          %a.img-wrap{"data-gal" => "prettyPhoto[gallery]", :href => "images/thumbthreelarge.jpg"}
-            %img{:alt => "iPhonegraphy", :src => "images/thumbthree.jpg"}/
-          / END IMAGE CONTAINER
-          / CAPTION
-          .caption.text-center
-            / TITLE
-            %h4
-              %a{:href => "#"} Marion Geoffroy, directrice de salle
-            / / TITLE
-          / END CAPTION
-        / END: THUMBNAIL
-      / END: portfolio item
+      
     / /container-folio row
   / /CONTAINER
 /
@@ -395,7 +399,7 @@
         %small= t("home.team.fred.title")
         %p= t("home.team.fred.description")
         %a.sml-link{:href => "#", :title => ""} En savoir plus
-      .span3.testimonial-box
+      .span3.testimonial-box.youto
         .row-fluid
           .span8.offset2
             %img.img-circle{:alt => "", :src => "images/staff/people.jpg"}/
