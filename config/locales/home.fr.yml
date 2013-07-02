@@ -45,7 +45,8 @@ fr:
       description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
     thankyou:
       title: "Merci !"
-      info: "Votre demande a bien été enregistrée. Profitez de votre été. Nous, de notre côté, nous construisons votre futur assistant virtuel et reprenons contact avec vous dès le mois de septembre !"
+      info: "Votre demande a bien été enregistrée. Profitez de votre été. Nous, de notre côté, nous construisons votre futur assistant virtuel..."
+      contact: "On reprend contact avec vous dès le mois de septembre !"
       share: "Faites-en profiter vos ami-e-s artistes ! Partagez la nouvelle sur Facebook, Twitter ou Google Plus !"
       social_message: "Je me suis inscrit pour faire partie des premiers à tester Merci Edgar ! Et vous ?"
     events:
