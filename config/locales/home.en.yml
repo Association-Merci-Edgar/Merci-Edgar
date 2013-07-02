@@ -1,5 +1,6 @@
 en:
   home:
+    baseline: "the virtual assistant<br>for artists"
     menu:
       what: "What's that?"
       who: "Who's behind?"
@@ -69,6 +70,7 @@ en:
     team:
       title: "The team"
       description: "We have a goal: developp Edgar to be your best assistant !"
+      more: "More ..."
       robi:
         title: Founder of Merci Edgar / In charge of development / Musician
         description: "I like to sing on stage and to train IT technicians..."

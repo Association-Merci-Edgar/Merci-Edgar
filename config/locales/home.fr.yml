@@ -1,6 +1,7 @@
 --- 
 fr: 
   home:
+    baseline: "l'assistant virtuel<br>des artistes"
     menu:
       what: "C'est quoi ?"
       who: "Qui est derrière ?"
@@ -71,6 +72,7 @@ fr:
     team:
       title: "L'équipe"
       description: "Nous avons un objectif : faire d'Edgar votre meilleur assistant !"
+      more: "En savoir plus"
       robi:
         title: Fondateur de Merci Edgar / Responsable developpement / Musicien
         description: "J'aime chanter sur scène et former des informaticiens. J'aime jouer du piano et pianoter sur mon clavier pour développer des applications web. J'aime composer des mélodies et écrire des lignes de code. Et j'essaie de faire ce que j'aime, tout simplement !"
@@ -78,8 +80,8 @@ fr:
         title: "Conseillère technique pour Merci Edgar / Fondatrice et directrice du label Adone / Fondatrice et consultante d'Aglae Services"
         description: "Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale..."
       jp:
-        title: "Designer de Merci Edgar / Graphiste freelance"
-        description: "Ai-je vraiment besoin de me décrire ?"
+        title: "Designer graphique et d'interface de Merci Edgar / Concepteur / Directeur artistique freelance"
+        description: "Je consacre une grande part de mon activité à créer des campagnes de communication, identités visuelles et sites Internet pour de jeunes entreprises, des projets associatifs ou engagés.<p>La variété des domaines d'activité de mes commanditaires m'ouvrent des horizons insoupçonnés, et les rencontres nourrissent ma curiosité toujours à l'affût de nouvelles manières de travailler et de penser."
       aline: 
         title: "Conseillère technique pour Merci Edgar / Chargée de production du label Adone"
         description: "A défaut d'études supérieures, après mon bac je déménage à Paris et intègre les Cours Florent (cours d'art dramatique) avec le rêve fou de devenir comédienne et surtout.. d'en vivre ! Je ferai les 3 ans du cursus mais la réalité du métier me rattrape vite car en parallèle des cours, je découvre le Théâtre Les Blancs Manteaux et je commence à y travailler en tant qu'accessoiriste sur un spectacle. Rapidement..."
