@@ -43,6 +43,7 @@ en:
       explanation: "We are working all summer long to develop the bases of Merci Edgar. If you want to be one of the very few lucky ones to test the software as of September, leave your email address now.  Be quick, only the first ones will have a go!"
     tv:
       description: "Edgar is not only a virtual assistant, it also helps artists to interview professionals from the showbusiness, enabling them to better understand the environment in which they want to evolve. Already 17 interviews since October 2012 !"
+      more: "More videos"
     thankyou:
       title: "Thank you !"
       info: "Your request has been well received. Enjoy your summer ! We will carry on developping your future virtual assistant"
@@ -52,6 +53,7 @@ en:
     events:
       title: "Events"
       description: "Put right now in your agenda Edgar's next apero or picnic"
+      more: "More events"
       event1:
         title: "Edgar's picnic at Parc de la Villette"
         description: "Before everyone goes on holidays, come all to Edgar's picnic !"
@@ -60,6 +62,7 @@ en:
         description: "From July 18th to 20th, come and have a drink with Edgar..."
     news:
       title: "News"
+      more: "More news"
       description: "Edgar is always on the go. Don't miss anything about Edgar's news, read our blog !"  
       news1:
         title: "Edgar is buzzing"

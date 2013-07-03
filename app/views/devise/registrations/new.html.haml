@@ -124,6 +124,7 @@
         %span.section-title
           Edgar TV
         %p.subtitle= t("home.tv.description")
+        %a.sml-link{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
         
     / TITLE
     /
@@ -257,19 +258,87 @@
           %a{:href => "http://blog.merciedgar.com/post/34491364088/didierpascalis", :target => "blank"}
             %div
               .thumb-hover
-              %img{:src => "images/screens/sansev.jpg"}/
+              %img{:src => "images/screens/didierpascalis.jpg"}/
             / END IMAGE CONTAINER
             / CAPTION
             .caption.text-center
               / TITLE
               %h4
-                Sanseverino, artiste
+                Didier Pascalis, producteur
             / / TITLE
           / END CAPTION
         / END: THUMBNAIL
       / END: portfolio item
-      
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/38631124519/kidibuzz", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/nomi.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Nomi, programmateur
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/51384353684/roxanne-joseph-avec-carole-chichin-et-nicolas", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/roxanne.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Roxane Joseph, directrice de festival
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item            
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/53671067577/edgard-garcia-est-le-directeur-de-zebrock-une", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/garcia.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Edgard Garcia, directeur d'une association d'action culturelle
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item      
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/47936599491/florence-faissat-est-programmatrice-pour-les", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/faissat.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Florence Faissat, programmatrice télé
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
     / /container-folio row
+    
   / /CONTAINER
 /
 
@@ -283,7 +352,9 @@
       .span6
         %span.section-title
           = t("home.events.title")
-        %p.subtitle= t("home.events.description")
+        %p.subtitle
+          = t("home.events.description")
+          %a.sml-link{:href => "http://blog.merciedgar.com/tagged/event", :target => "blank"}= t("home.events.more")
         .row-fluid
           .edgar-news
             .span5
@@ -303,7 +374,9 @@
       .span6
         %span.section-title
           = t("home.news.title")
-        %p.subtitle= t("home.news.description")
+        %p.subtitle
+          = t("home.news.description")
+          %a.sml-link{:href => "http://blog.merciedgar.com/tagged/news", :target => "blank"}= t("home.news.more")
         .row-fluid
           .edgar-news
             .span5
