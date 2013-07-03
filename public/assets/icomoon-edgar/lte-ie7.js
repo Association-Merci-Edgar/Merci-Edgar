@@ -24,7 +24,9 @@ window.onload = function() {
 			'ed-icon-rss' : '&#xe00f;',
 			'ed-icon-ed-logo-bkg' : '&#xe011;',
 			'ed-icon-flech-sml' : '&#xe010;',
-			'ed-icon-share' : '&#xe012;'
+			'ed-icon-share' : '&#xe012;',
+			'ed-icon-vimeo' : '&#xe013;',
+			'ed-icon-home' : '&#xe014;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

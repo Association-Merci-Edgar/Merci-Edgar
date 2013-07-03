@@ -121,8 +121,9 @@
     / TITLE
     .row-fluid.panel
       .span12
-        %span.section-title
-          Edgar TV
+        %h3
+          %span
+            Edgar TV
         %p.subtitle= t("home.tv.description")
         %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
         
@@ -350,8 +351,9 @@
     / PRESS BLOCK
     .row-fluid.panel
       .span6
-        %span.section-title
-          = t("home.events.title")
+        %h3
+          %span
+            = t("home.events.title")
         %p.subtitle
           = t("home.events.description")
           
@@ -372,7 +374,8 @@
                 %a.sml-link{:href => "http://blog.merciedgar.com/post/54441606419/edgar-sera-a-avignon", :title => "", :target => "blank"}= t("home.team.more")
           %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/event", :target => "blank"}= t("home.events.more")
       .span6
-        %span.section-title
+        %h3
+          %span
           = t("home.news.title")
         %p.subtitle
           = t("home.news.description")
@@ -398,7 +401,9 @@
   .container
     .row-fluid.panel
       .span12
-        %span.section-title= t("home.team.title")
+        %h3
+          %span
+            = t("home.team.title")
         %p.subtitle= t("home.team.description")
     .row-fluid
       .span3.testimonial-box
