@@ -1,5 +1,6 @@
 --- 
-fr: 
+fr:
+  baseline: "l'assistant virtuel des artistes" 
   home:
     baseline: "l'assistant virtuel<br>des artistes"
     menu:
@@ -12,7 +13,7 @@ fr:
       edgar_for_you: "est là pour vous aider !"
       management: gestion
       of: de
-      time: "Vous passez plus de temps \x03à gérer l’administratif qu’à créer ?"
+      time: "Vous passez plus de temps à gérer l’administratif qu’à créer ?"
     i_want_it: "Je veux le tester !"
     features:
       find: Trouvez rapidement les lieux
@@ -44,6 +45,7 @@ fr:
       explanation: "Nous travaillons tout l'été pour développer les premières briques de Merci Edgar. Si vous voulez faire partie des quelques privilégiés qui pourront tester le logiciel dès le mois de septembre, laissez votre mail dès maintenant. Attention, seuls les premiers seront servis !"
     tv:
       description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
+      more: "Plus de videos"
     thankyou:
       title: "Merci !"
       info: "Votre demande a bien été enregistrée. Profitez de votre été. Nous, de notre côté, nous construisons votre futur assistant virtuel..."
@@ -53,6 +55,7 @@ fr:
     events:
       title: "Evénements"
       description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d'Edgar"
+      more: "Tous les événements"
       event1:
         title: "Pique-nique d'Edgar au parc de la Villette"
         description: "Avant que tout le monde ne parte par monts et par vaux, venez toutes et tous au Pique-Nique d'Edgar !
@@ -63,6 +66,7 @@ fr:
     news:
       title: "Actualités"
       description: "Edgar est toujours sur la brèche. Ne manquez pas une miette de son actualité en parcourant régulièrement notre blog !"  
+      more: "Toutes les actualités"
       news1:
         title: "Edgar en ebullition"
         description: "99% des personnes qui sont au courant de l’existence aujourd’hui de Merci Edgar ne le sont que grâce à Internet. Et l’idée au départ du lancement de ces apéros, c’était de pouvoir se rencontrer dans la vraie vie..."
