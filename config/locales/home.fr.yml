@@ -2,7 +2,7 @@
 fr:
   baseline: "l'assistant virtuel des artistes" 
   home:
-    baseline: "l'assistant virtuel des artistes"
+    baseline: "l'assistant virtuel<br>des artistes"
     menu:
       what: "C'est quoi ?"
       who: "Qui est derrière ?"
