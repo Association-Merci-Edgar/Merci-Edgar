@@ -226,13 +226,6 @@ h3, .section-title {
 
 .section-title { margin-bottom: 10px; margin-top:10px;}
 		
-h3 {
-    position: relative;
-    z-index: 20;    
-}
-
-h3 span { background: #fffaf5; padding-right:12px; width: inherit; }
-
 .modal-header h3 {
 	font-size: 36px;
 	border: none;
