@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="ed-icon-"] {
 */
-.ed-icon-ed-evenements, .ed-icon-ed-equipe, .ed-icon-ed-actualites, .ed-icon-ed-comm, .ed-icon-ed-logo, .ed-icon-twitter, .ed-icon-ed_relations, .ed-icon-ed-tv, .ed-icon-ed-time, .ed-icon-ed-search, .ed-icon-check, .ed-icon-email, .ed-icon-facebook, .ed-icon-moins, .ed-icon-plus, .ed-icon-rss, .ed-icon-ed-logo-bkg, .ed-icon-flech-sml, .ed-icon-share {
+.ed-icon-ed-evenements, .ed-icon-ed-equipe, .ed-icon-ed-actualites, .ed-icon-ed-comm, .ed-icon-ed-logo, .ed-icon-twitter, .ed-icon-ed_relations, .ed-icon-ed-tv, .ed-icon-ed-time, .ed-icon-ed-search, .ed-icon-check, .ed-icon-email, .ed-icon-facebook, .ed-icon-moins, .ed-icon-plus, .ed-icon-rss, .ed-icon-ed-logo-bkg, .ed-icon-flech-sml, .ed-icon-share, .ed-icon-vimeo, .ed-icon-home {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -93,4 +93,10 @@ you can use the generic selector below, but it's slower:
 }
 .ed-icon-share:before {
 	content: "\e012";
+}
+.ed-icon-vimeo:before {
+	content: "\e013";
+}
+.ed-icon-home:before {
+	content: "\e014";
 }

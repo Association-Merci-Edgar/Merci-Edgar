@@ -31,17 +31,24 @@ body{
 		
 	}
 
-.logotype {position:absolute;
-font-size:100px;
+.logotype {
+	position:absolute;
+	font-size:100px;
 }
-	
-a .ed-icon-ed-logo {
-	 color:#000;
+
+/*.logotype {
 	-moz-transition: all 0.2s ease-in-out;
 	-ms-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 	-webkit-transition: all 0.2s ease-in-out;
+}*/
+
+.ed-icon-home:before {font-size:.8em;}
+	
+a .ed-icon-ed-logo {
+	 color:#000;
+	
 }
 
 a .ed-icon-ed-logo:hover {
@@ -144,7 +151,7 @@ ul.social-left {
 
 
 
-ul.engagements { list-style:outside; list-style-position:outside; list-style:none;}
+ul.engagements { list-style:outside; list-style-position:outside; list-style:none; margin-top:10px;}
 
 ul.engagements li {
 	text-indent:-25px;
@@ -155,7 +162,7 @@ ul.engagements li:before {
 	color:#e53c21;
 	font-family: 'icomoon';
 	content: "\e009";
-	padding-right:.25em; /* give the bullet some padding from the text Make sure to use em*/
+	padding-right:6px; /* give the bullet some padding from the text Make sure to use em*/
   position:relative;
     top:.1em; /* set the vertical position of the bullet if necessary. Make sure to use em or % */
 }
@@ -210,10 +217,27 @@ line-height:33px;}
 
 
 	
-	.section-title, h3 {
+h3, .section-title {
 		color: #e53c21;
 		font-family: 'PodkovaRegular', serif;
-		font-size: 46px;}
+		font-size: 46px;
+		display:block;
+}
+
+.section-title { margin-bottom: 10px; margin-top:10px;}
+		
+h3 {
+    position: relative;
+    z-index: 20;    
+}
+
+h3 span { background: #fffaf5; padding-right:12px; width: inherit; }
+
+.modal-header h3 {
+	font-size: 36px;
+	border: none;
+}
+
 	
 	
 	.container{
@@ -231,7 +255,7 @@ line-height:33px;}
 	
 	
 	
-	#team-section small { color:#3BB2C4; font-weight:bold;
+	small { color:#3BB2C4; font-weight:bold;
 	font-size:13px; line-height:22px; margin-top:-10px; display:block;}
 	
 	.main-wrapper
@@ -245,8 +269,7 @@ line-height:33px;}
 		position:relative;
 		width: 100%;
 	}
-
-.sml-link{
+.sml-link {
 	font-size:0.9em;
 	float: right;
 	text-align:right;
@@ -262,12 +285,20 @@ line-height:33px;}
 	font-family: 'icomoon';
 	content: "\e010";/*\e28082*/
 	padding-right : 7px;
-	font-size: 14px;
+	font-size: 1em;
 	top:.1em;
 	padding-top:2px;
 }
 .sml-link:hover {color: #000; text-decoration:none;}
-.bigger { font-size:0.9em; font-weight:bold; margin-top:30px; color:#3BB2C4;}
+
+#news-section span6 { height:100%;}
+.row-fluid .span6 { height:100%;}
+
+.bigger { font-size:0.9em; font-weight:bold; margin-top:50px;
+color:#3BB2C4;
+
+bottom:0px;}
+
  .ed-icon-check:before {font-size:20px;}
 
 	/*************** FIX BS MARGIN on fluid scafolding **************/ 
@@ -472,6 +503,7 @@ line-height:33px;}
 	
 	section{
 		padding-top:80px;
+		/*border-bottom:1px solid #3BB2C4;*/
 		
 	}
 	.headertop {
@@ -488,7 +520,7 @@ line-height:33px;}
 	.hero-unit {
 		margin-top:0px;
 		margin-bottom:0px;
-		padding-top:45px;
+		padding-top:105px;
 		font-family: 'PodkovaRegular', serif;
 		padding-bottom:30px;
 		border:none;
@@ -977,7 +1009,7 @@ box-shadow:         0px 1px 0px rgba(50, 50, 50, 0.31);*/
 	*.main-color{
 		color:#2b2b2b;
 	}
-	.hero-unit .btn-block{ width:290px; margin: 0 auto;}
+	.hero-unit .btn-block { width:290px; margin: 0 auto;}
 	.camein {
 		/*width: 100%;
 		min-width: 100%;*/
@@ -1036,7 +1068,7 @@ box-shadow:         0px 1px 0px rgba(50, 50, 50, 0.31);*/
 				background:#a6e1e7;
 				/*background-image: url(../../images/ed-degrade.jpg)#ECF0F1*/;
 				background-position:bottom;
-				padding-top:120px;
+				/*padding-top:120px;*/
 				z-index:2;
 				position:relative;
 			}
@@ -1282,6 +1314,8 @@ h3{
 	
 	/*display: none;*/
 }
+
+#tv-section .bigger { margin-top:30px;}
 	
 	
 	#features-section{
@@ -1290,9 +1324,9 @@ h3{
 				position:relative;
 				overflow:hidden;
 				color:#333;
-				margin-top:-50px;
-				padding:0;
 				z-index: 800;
+				padding:0;
+				margin-top:-50px;
 					
 	}
 	
@@ -1331,7 +1365,7 @@ h3{
 				text-shadow:none;
 				font-size:50px;
 				font-weight:300;
-				width:100%;
+				/*width:100%;*/
 				display:inline-block;
 				line-height:52px;
 				
@@ -1411,7 +1445,7 @@ h3{
 Izotope Boxes
 ********/
 #container-folio{
-	margin-bottom:50px;
+	/*margin-bottom:50px;*/
 }
 .isotope-item {
 	-moz-transition-property: -moz-transform, opacity;

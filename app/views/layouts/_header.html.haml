@@ -41,17 +41,20 @@
                   %li
                     %a{:href => "https://twitter.com/MerciEdgar", :title => "Twitter Merci Edgar", :target => "blank"}
                       %i.ed-icon-twitter
+                  %li
+                    %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
+                      %i.ed-icon-vimeo
                   
               / END LEFT SOCIALS    
               / TOP NAVIGATION
               #main-nav.scroller-spy
                 %nav.nav-collapse.collapse
                   %ul#nav.nav.pull-right
-                    /
-                      <li class='active'>
-                      <a href='#header-section'>Home</a>
-                      </li>
+                    
                     %li.active
+                      %a{:href => "#header-section"}
+                        %i.ed-icon-home
+                    %li
                       %a{:href => "#features-anchor"}= t("home.menu.what")
                     %li
                       %a{:href => "#tv-section"} Edgar TV
