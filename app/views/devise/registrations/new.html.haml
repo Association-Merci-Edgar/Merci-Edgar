@@ -26,7 +26,7 @@
               %span.lenom Merci Edgar
               =t("home.slogan.edgar_for_you")
             %hr.half/
-            .camein
+            #features-anchor.camein
               %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
                 = t("home.i_want_it")
 
@@ -124,7 +124,7 @@
         %span.section-title
           Edgar TV
         %p.subtitle= t("home.tv.description")
-        %a.sml-link{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
+        %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
         
     / TITLE
     /
@@ -338,7 +338,7 @@
         / END: THUMBNAIL
       / END: portfolio item
     / /container-folio row
-    
+    %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
   / /CONTAINER
 /
 
@@ -354,7 +354,7 @@
           = t("home.events.title")
         %p.subtitle
           = t("home.events.description")
-          %a.sml-link{:href => "http://blog.merciedgar.com/tagged/event", :target => "blank"}= t("home.events.more")
+          
         .row-fluid
           .edgar-news
             .span5
@@ -370,7 +370,7 @@
               
               %p.text-right
                 %a.sml-link{:href => "http://blog.merciedgar.com/post/54441606419/edgar-sera-a-avignon", :title => "", :target => "blank"}= t("home.team.more")
-
+          %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/event", :target => "blank"}= t("home.events.more")
       .span6
         %span.section-title
           = t("home.news.title")
@@ -391,6 +391,7 @@
               
               %p.text-right
                 %a.sml-link{:href => "http://blog.merciedgar.com/post/52058967916/edgar-a-la-peche-et-cest-grace-au-fidim", :title => ""}= t("home.team.more")
+          %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/news", :target => "blank"}= t("home.news.more")
   / /CONTAINER
 / / portfolio section
 %section#team-section
