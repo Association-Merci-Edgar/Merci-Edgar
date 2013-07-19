@@ -87,14 +87,14 @@ font-size:12px;
 font-family: Helvetica, Arial, sans-serif;
 
 }
-#langswitch a {color:#000;}
+#langswitch a, #login-menu a {color:#000;}
 
 #langswitch .active, #langswitch a:hover {
 	border-bottom:#000 2px solid;
 	text-decoration:none;
 	padding-bottom:2px;
 }
-
+#login-menu {float:right}
 #socialfixed, #langswitch { padding-top:6px;}
 #socialfixed { height:22px;float:right; margin-right: 15px;} 
 

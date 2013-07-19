@@ -34,7 +34,6 @@
               / LEFT SOCIALS
               #socialfixed
                 %ul.social-left
-                  
                   %li
                     %a{:href => "https://www.facebook.com/pages/Merci-Edgar/164510577033726", :title => "Facebook Merci Edgar", :target => "blank"}
                       %i.ed-icon-facebook
@@ -44,7 +43,15 @@
                   %li
                     %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
                       %i.ed-icon-vimeo
+              #login-menu
+                - if user_signed_in?
+                  - if current_user.has_role? :admin
+                    = link_to "Administration", users_path
+                  = link_to 'Se deconnecter', destroy_user_session_path, :method => :delete
+                - else
+                  = link_to 'Se connecter', new_user_session_path
                   
+          
               / END LEFT SOCIALS    
               / TOP NAVIGATION
               #main-nav.scroller-spy
@@ -52,16 +59,17 @@
                   %ul#nav.nav.pull-right
                     
                     %li.active
-                      %a{:href => "#header-section"}
+                      / %a{:href => "#header-section"}
+                      = link_to locale_root_path, :anchor => "header-section" do
                         %i.ed-icon-home
                     %li
-                      %a{:href => "#features-anchor"}= t("home.menu.what")
+                      = link_to t("home.menu.what"), locale_root_path, :anchor => "header-anchor"
                     %li
-                      %a{:href => "#tv-section"} Edgar TV
+                      = link_to "Edgar TV", locale_root_path, :anchor => "tv-section"
                     %li
-                      %a{:href => "#news-section"}= t("home.menu.news")
+                      = link_to t("home.menu.news"), locale_root_path, :anchor => "news-section"
                     %li
-                      %a{:href => "#team-section"}= t("home.menu.who")
+                      = link_to t("home.menu.who"), locale_root_path, :anchor => "team-section"
       /
         \############################ END TOP MENU ###############
         \==========================================================
