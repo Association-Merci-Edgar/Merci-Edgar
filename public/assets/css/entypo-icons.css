@@ -1,0 +1,163 @@
+/**
+ * Stylesheet that implements Entypo font
+ * http://www.entypo.com/
+ * http://www.entypo.com/characters/
+ * Autor Yordan Ivanov // yordan.t.ivanov@gmail.com
+ */
+ 
+@font-face {
+    font-family: 'entypo';
+    src: url('../ico/entypo-icons/entypo-webfont.eot');
+    src: url('../ico/entypo-icons/entypo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../ico/entypo-icons/entypo-webfont.woff') format('woff'),
+         url('../ico/entypo-icons/entypo-webfont.ttf') format('truetype'),
+         url('../ico/entypo-icons/entypo-webfont.svg#EntypoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+    font-family: 'entypo';
+    content: attr(data-icon);
+    speak: none;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}
+/*
+.pictogram {
+	font-family: 'entypo';
+	font-size: 20px;
+	font-weight: normal;
+	vertical-align: middle; 
+	line-height: 0;
+	margin-right: .1em;
+}
+*/
+
+
+.entypo:before { font-family: 'entypo';}
+ 
+.entypo.phone:before{ content:'\0021'; }
+.entypo.smartphone:before{ content:'\0022'; }
+.entypo.mouse:before{ content:'\0023'; }
+.entypo.roadsign:before{ content:'\0024'; }
+.entypo.mail:before{ content:'\0025'; }
+.entypo.write:before{ content:'\0026'; }
+.entypo.attachment:before{ content:'\0027'; }
+.entypo.back:before{ content:'\0028'; }
+.entypo.doubleback:before{ content:'\0029'; }
+.entypo.forward:before{ content:'\002A'; }
+.entypo.user:before{ content:'\002B'; }
+.entypo.usergroup:before{ content:'\002C'; }
+.entypo.adduser:before{ content:'\002D'; }
+.entypo.profie:before{ content:'\002E'; }
+.entypo.newwindow:before{ content:'\002F'; }
+.entypo.mappin:before{ content:'\0030'; }
+.entypo.map:before{ content:'\0031'; }
+.entypo.compass:before{ content:'\0032'; }
+.entypo.compasshand:before{ content:'\0033'; }
+.entypo.crosshair:before{ content:'\0034'; }
+.entypo.link:before{ content:'\0035'; }
+.entypo.heart:before{ content:'\0036'; }
+.entypo.star:before{ content:'\0037'; }
+.entypo.thumbsup:before{ content:'\0038'; }
+.entypo.conversation:before{ content:'\0039'; }
+.entypo.comment:before{ content:'\003A'; }
+.entypo.rightquote:before{ content:'\003B'; }
+.entypo.printer:before{ content:'\003C'; }
+.entypo.bell:before{ content:'\003D'; }
+.entypo.brokenlink:before{ content:'\003E'; }
+.entypo.flag:before{ content:'\003F'; }
+.entypo.gear:before{ content:'\0040'; }
+.entypo.flashlight:before{ content:'\0041'; }
+.entypo.trophy:before{ content:'\0042'; }
+.entypo.tag:before{ content:'\0043'; }
+.entypo.camera:before{ content:'\0044'; }
+.entypo.moon:before{ content:'\0045'; }
+.entypo.palette:before{ content:'\0046'; }
+.entypo.envato:before{ content:'\0047'; }
+.entypo.musicnote:before{ content:'\0048'; }
+.entypo.bag:before{ content:'\0049'; }
+.entypo.airplane:before{ content:'\004A'; }
+.entypo.lifesaver:before{ content:'\004B'; }
+.entypo.rings:before{ content:'\004C'; }
+.entypo.eye:before{ content:'\004D'; }
+.entypo.clock:before{ content:'\004E'; }
+.entypo.microphone:before{ content:'\004F'; }
+.entypo.calender:before{ content:'\0050'; }
+.entypo.bolt:before{ content:'\0051'; }
+.entypo.hourglass:before{ content:'\0052'; }
+.entypo.rss:before{ content:'\0053'; }
+.entypo.signal:before{ content:'\0054'; }
+.entypo.lock:before{ content:'\0055'; }
+.entypo.unlock:before{ content:'\0056'; }
+.entypo.checkmark:before{ content:'\0057'; }
+.entypo.xmark:before{ content:'\0058'; }
+.entypo.minuscircle:before{ content:'\0059'; }
+.entypo.pluscircle:before{ content:'\005A'; }
+.entypo.xmarkcircle:before{ content:'\005B'; }
+.entypo.minus:before{ content:'\005C'; }
+.entypo.plus:before{ content:'\005D'; }
+.entypo.cancel:before{ content:'\005E'; }
+.entypo.info:before{ content:'\005F'; }
+.entypo.infocircle:before{ content:'\0060'; }
+.entypo.questionmark:before{ content:'\0061'; }
+.entypo.questioncircle:before{ content:'\0062'; }
+.entypo.caution:before{ content:'\0063'; }
+.entypo.clockwise:before{ content:'\0064'; }
+.entypo.counterclockwise:before{ content:'\0065'; }
+.entypo.crosspaths:before{ content:'\0066'; }
+.entypo.backarrow:before{ content:'\0067'; }
+.entypo.looparrow:before{ content:'\0068'; }
+.entypo.list:before{ content:'\0069'; }
+.entypo.listadd:before{ content:'\006A'; }
+.entypo.window:before{ content:'\006B'; }
+.entypo.document:before{ content:'\006C'; }
+.entypo.portrait:before{ content:'\006D'; }
+.entypo.copydocument:before{ content:'\006E'; }
+.entypo.landscape:before{ content:'\006F'; }
+.entypo.photos:before{ content:'\0070'; }
+.entypo.video:before{ content:'\0071'; }
+.entypo.music:before{ content:'\0072'; }
+.entypo.folder:before{ content:'\0073'; }
+.entypo.cabinet:before{ content:'\0074'; }
+.entypo.trash:before{ content:'\0075'; }
+.entypo.upload:before{ content:'\0076'; }
+.entypo.download:before{ content:'\0077'; }
+.entypo.hdd:before{ content:'\0078'; }
+.entypo.cloud:before{ content:'\0079'; }
+.entypo.cloudupload:before{ content:'\007A'; }
+.entypo.play:before{ content:'\007B'; }
+.entypo.pause:before{ content:'\007C'; }
+.entypo.record:before{ content:'\007D'; }
+.entypo.stop:before{ content:'\007E'; }
+.entypo.creativecommons:before{ content:'\00A9'; }
+.entypo.widewindow:before{ content:'\00AE'; }
+.entypo.nexttrack:before{ content:'\00C4'; }
+.entypo.previoustrack:before{ content:'\00C5'; }
+.entypo.beginningtrack:before{ content:'\00C7'; }
+.entypo.endtrack:before{ content:'\00C9'; }
+.entypo.zoomout:before{ content:'\00D1'; }
+.entypo.zoomin:before{ content:'\00D6'; }
+.entypo.volume:before{ content:'\00DC'; }
+.entypo.volumeoff:before{ content:'\00E0'; }
+.entypo.volumeon:before{ content:'\00E1'; }
+.entypo.leftarrow:before{ content:'\00E2'; }
+.entypo.uparrow:before{ content:'\00E3'; }
+.entypo.downarrow:before{ content:'\00E4'; }
+.entypo.rightarrow:before{ content:'\00E5'; }
+.entypo.leftarrowsmall:before{ content:'\00E7'; }
+.entypo.uparrowsmall:before{ content:'\00E8'; }
+.entypo.downarrowsmall:before{ content:'\00E9'; }
+.entypo.rightarrowsmall:before{ content:'\00EA'; }
+.entypo.leftarrowcircle:before{ content:'\00EB'; }
+.entypo.uparrowcircle:before{ content:'\00EC'; }
+.entypo.downarrowcircle:before{ content:'\00ED'; }
+.entypo.rightarrowcircle:before{ content:'\00EE'; }
+.entypo.home:before{ content:'\00EF'; }
+.entypo.bookmark:before{ content:'\00F1'; }
+.entypo.maximize:before{ content:'\00F2'; }
+.entypo.opendocument:before{ content:'\00F3'; }
+.entypo.search:before{ content:'\00F4'; }
+.entypo.ellipsis:before{ content:'\00F6'; }

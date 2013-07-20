@@ -1,0 +1,54 @@
+/*.mainwrapper { height:100%;}*/
+
+.maincontent{
+	float: left;
+	width: 100%;
+}
+.maincontentinner {
+	padding-left: 20px;
+}
+.leftpanel {
+	float: left;
+	width: 260px;
+	background: #eee;
+	height:100%;
+	position:fixed;
+}
+
+.leftpanel .entypo:before { font-size:60px;}
+.entypo {margin-right: .1em; display:block; vertical-align: middle; 
+line-height: 0; width:40px;}
+
+.mainpanel {
+	margin: 0 260px;
+}
+.rightpanel {
+	width: 260px;
+	float: right;
+	background: #eee;
+}
+
+.nav li a i {
+	display:inline-block;
+	padding-left:25px;
+}
+.nav li a {
+	color:#000;
+	font-size:20px;
+	height: 25px;
+	padding : 10px 0;
+}
+.nav li a:hover {
+	background: transparent;
+}
+.nav li {
+	margin:0;
+
+}
+
+.nav li:hover {
+	background: #fff;
+}
+
+i {font-style: normal;
+	font}
