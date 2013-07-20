@@ -1,3 +1,7 @@
 %h3 Home
-
-= link_to 'Logout', destroy_user_session_path, :method => :delete
+- if user_signed_in?
+  - if current_user.has_role? :admin
+    = link_to "Administration", users_path
+  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+- else
+  = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
