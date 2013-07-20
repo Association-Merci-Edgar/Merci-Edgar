@@ -1,15 +1,15 @@
-en:
+fr:
   simple_form:
     "yes": 'Yes'
     "no": 'No'
     required:
-      text: 'required'
+      text: 'obligatoire'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
+      default_message: "Veuillez vérifier les problèmes suivants :"
     # Labels and hints examples
     # labels:
     #   defaults:
@@ -25,14 +25,14 @@ en:
     #     password: 'No special characters, please.'
     labels:
       defaults:
-        first_name: "First name"
-        last_name: "Last name"
-        org_name_choices: "Enter the name of your association, label, porduction company…"
-        password: "Enter your password"
-        forgot_password : "Forgot your password?"
-        choose_password : "Choose a password"
-        repeat_password : "Repeat your password"
-        signin: "Sign in"
-        signout: "Sign out"
-        signup_fun: "Let's go!"
+        first_name: "Prénom"
+        last_name: "Nom"
+        org_name_choices: "Nom de votre association, label, groupe..."
+        password: "Saisissez votre mot de passe"
+        forgot_password : "Mot de passe oublié ?"
+        choose_password : "Choisissez un mot de passe"
+        repeat_password : "Répéter votre mot de passe"
+        signin: "Se connecter"
+        signout: "Se déconnecter"
+        signup_fun: "C’est parti !"
 

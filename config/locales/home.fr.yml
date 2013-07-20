@@ -1,10 +1,10 @@
 --- 
 fr:
-  baseline: "l'assistant virtuel des artistes" 
+  baseline: "l’assistant virtuel des artistes" 
   home:
-    baseline: "l'assistant virtuel<br>des artistes"
+    baseline: "l’assistant virtuel<br>des artistes"
     menu:
-      what: "C'est quoi ?"
+      what: "C’est quoi ?"
       who: "Qui est derrière ?"
       news: "Actualités"
     slogan: 
@@ -74,7 +74,7 @@ fr:
         title: "Edgar a la pêche, et c'est grâce au FIDIM !"
         description: "Samedi 25 mai, Edgar participait au FIDIM, le Forum des Initiatives Digitales pour la Musique, au centre FGO-Barbara. L’occasion de vous faire une démo de notre futur logiciel en ligne de booking..."
     team:
-      title: "L'équipe"
+      title: "L’équipe"
       description: "Nous avons un objectif : faire d'Edgar votre meilleur assistant !"
       more: "En savoir plus"
       robi:
