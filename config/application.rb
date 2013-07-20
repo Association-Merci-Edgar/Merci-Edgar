@@ -81,6 +81,7 @@ module Edgar
 
     config.to_prepare do
       Devise::RegistrationsController.layout "onepage"
+      Devise::PasswordsController.layout "simple"
     end
   end
 end
