@@ -1,13 +1,16 @@
 !!!
 %html
   %head
-    = render 'layouts/head'
-  %body{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
-    /
-      \################# START MAIN-WRAPPER ####################
-      \============================================================
-    .main-wrapper
-      = render 'layouts/header'
-      = yield
-    = render 'layouts/javascripts'
+    = render 'layouts/head_app'
+  %body
+    #mainwrapper.mainwrapper
+      .leftpanel
+        = render 'layouts/left_panel'
+      .mainpanel
+        .maincontent
+          .maincontentinner
+            = yield
+      .rightpanel
+        = yield(:right_panel)
+    = render 'layouts/javascripts_app'
 

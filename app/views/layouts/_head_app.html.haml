@@ -1,0 +1,34 @@
+%meta{:charset => "utf-8"}/
+%title Bootstrap, from Twitter
+%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+%meta{:content => "", :name => "description"}/
+%meta{:content => "", :name => "author"}/
+
+/ Le styles
+%link{:href => "/assets/css/bootstrap.css", :rel => "stylesheet"}/
+:css
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+
+  @media (max-width: 980px) {
+    /* Enable use of floated navbar text */
+    .navbar-text.pull-right {
+      float: none;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+%link{:href => "/assets/css/bootstrap-responsive.css", :rel => "stylesheet"}/
+%link{:href => "/assets/css/edgarapp.css", :rel => "stylesheet"}/
+%link{:href => "/assets/css/entypo-icons.css", :rel => "stylesheet", :type => "text/css"}/
+/ <link href="/assets/css/demo-icons.css" rel="stylesheet">
+/ HTML5 shim, for IE6-8 support of HTML5 elements
+/[if lt IE 9]
+  <script src="/assets/js/html5shiv.js"></script>
+/ Fav and touch icons
+%link{:href => "/assets/ico/apple-touch-icon-144-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "144x144"}/
+%link{:href => "/assets/ico/apple-touch-icon-114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}/
+%link{:href => "/assets/ico/apple-touch-icon-72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}/
+%link{:href => "/assets/ico/apple-touch-icon-57-precomposed.png", :rel => "apple-touch-icon-precomposed"}/
+%link{:href => "/assets/ico/favicon.png", :rel => "shortcut icon"}/
