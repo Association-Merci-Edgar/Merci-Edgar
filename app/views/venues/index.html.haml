@@ -1,0 +1,35 @@
+-content_for :right_panel do
+  .leftmenu
+    .sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header
+          %a{:href => "#"}
+          %i.entypo.edi-gauge>
+          Informations
+        %li
+          %a{:href => "#"}
+          %i.entypo.edi-gauge>
+          Tableau de bord
+
+.page-title
+  Listing venues
+
+.row-fluid
+  .span12
+    %table
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+      - @venues.each do |venue|
+        %tr
+          %td= venue.name
+          %td= link_to 'Show', venue
+          %td= link_to 'Edit', edit_venue_path(venue)
+          %td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+    %br
+
+    = link_to 'New Venue', new_venue_path

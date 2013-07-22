@@ -1,54 +1,184 @@
-/*.mainwrapper { height:100%;}*/
-
 .maincontent{
 	float: left;
 	width: 100%;
 }
 .maincontentinner {
-	padding-left: 20px;
+	padding: 0 28px;
+	padding-top: 34px;
 }
+
+
 .leftpanel {
 	float: left;
 	width: 260px;
-	background: #eee;
+	background: #efefef;
 	height:100%;
-	position:fixed;
+	position: absolute;
 }
 
-.leftpanel .entypo:before { font-size:60px;}
-.entypo {margin-right: .1em; display:block; vertical-align: middle; 
-line-height: 0; width:40px;}
+.leftpanel .entypo:before { font-size:24px;}
+.entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
 
-.mainpanel {
-	margin: 0 260px;
+.entypo {
+	margin-right: .1em; display:block; vertical-align: middle; 
+	line-height: 0;
+}
+
+.mainpanel {margin: 0;
+	margin-left:260px;
 }
 .rightpanel {
 	width: 260px;
 	float: right;
-	background: #eee;
+	background: #efefef;
+	top:0px;
+	right:0px;
+	position:absolute;
+	
 }
+
+.leftmenu, .logo { }
+.leftpanel li a i.entypo { margin-bottom:6px; }
+.nav li a.user-tab { padding-top: 24px; padding-bottom:8px;}
+
+.leftmenu .badge { float:right; margin-top:5px; margin-right:5px;}
+.rightbt {
+	display : block;
+	float: right;
+
+	margin:0;
+	
+	width:25px;
+	
+	 margin-right:15px;
+}
+.nav-list {padding:0;}
+.nav-list > li > a, .nav-list .nav-header {margin:0;}
+
+.nav li a.rightbt:hover {background: transparent;}
+li a.rightbt {float:right;/* background-color:#9F0;*/}
+.rightbt i { margin-left:-14px;  padding-top:7px;}
+
+.account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
+
+
+/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
+.rightbt .entypo:before {color: #999;  font-size:16px;}
+.rightbt.entypo:before { font-size:16px;}
+.edi-cog.entypo:before {font-size:13px;}
+.rightbt:hover .entypo:before {color: #000;}
+
+/* NAV BAR ____________________ */
+
+.logo {
+	height:80px;
+	background: #ccc;
+	padding-left:20px;
+	padding-top:4px;
+}
+
+.logotype {
+	position:absolute;
+	margin-top:13px;
+	color:#fff;
+}
+.leftpanel .entypo.logotype:before { font-size:50px;}
+.leftpanel .entypo { width:30px;}
+a .logotype { color:#000;
+}
+
+.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
 
 .nav li a i {
 	display:inline-block;
-	padding-left:25px;
 }
+
 .nav li a {
-	color:#000;
-	font-size:20px;
+	color:#000; font-size:18px;
 	height: 25px;
-	padding : 10px 0;
+	padding : 9px 0;
+	padding-top:11px;
+	padding-left:25px;
+	padding-right:0px;
+	
 }
-.nav li a:hover {
-	background: transparent;
-}
+
+.nav li.comingsoon a, .comingsoon li a{color:#999;}
+
 .nav li {
 	margin:0;
-
 }
 
-.nav li:hover {
+.nav li a:hover {
 	background: #fff;
 }
 
-i {font-style: normal;
-	font}
+i {font-style: normal;}
+
+.recent { margin-top:16px;}
+.recent li a {font-size:15px;height: 16px; }
+
+/* NAV BAR -- END ____________________ */
+
+h1 {font-size:37px;}
+.page-title {font-size:37px; margin-bottom:30px;}
+.togglemenu {
+	display:none;
+	position:absolute;
+	bottom: 40px;
+	left: 0px;
+}
+/*.togglemenu .entypo { width:20px;}*/
+.togglemenu .entypo:before {font-size:24px;  color:#fff;}
+.togglemenu .btn {
+	background-image: none;
+	background-color:#000;
+	height:40px;
+	padding: 8px 8px;
+	padding-bottom:12px;
+}
+
+.leftpanel.collapsed {margin-left : -260px;}
+.mainpanel.goleft { margin-left:0px;}
+
+/* ELEMENTS ____________________ */
+
+.label-blocks .span4 { min-width:220px;}
+.label.label-large {
+    display: inline-block;
+    min-height: 200px;
+    width: 100%;
+	text-align:center;
+	font-weight:normal;
+}
+.label {
+    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 transparent;
+    color: #2B2B2B;
+    display: block;
+    padding: 5px;
+}
+h4 {font-weight:normal;}
+a.label-large:hover {color:#000;}
+a.label-large:hover i {background: #FF6;}
+
+.label-large h4 { font-size:22px;}
+.label-large p { font-size:16px; color: #666;}
+.label-large i:before{ line-height:140px;}
+.label-large i {
+		font-size:70px;
+		display:inline-block;
+		width:140px;
+		height:140px;
+		background:#eee;
+		-webkit-border-radius: 200px;
+		-moz-border-radius: 200px;
+		border-radius: 200px;
+		margin-bottom:8px;
+	}
+
+/* MEDIA SCREEN SIZE ____________________ */
+@media (max-width: 767px) {
+body { padding:0px;}
+.togglemenu {display: inline; margin-left:-20px;}
+}

@@ -1,7 +1,35 @@
-%h3 Home
-- if user_signed_in?
-  - if current_user.has_role? :admin
-    = link_to "Administration", users_path
-  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
-- else
-  = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+.page-title
+  Home
+
+.row-fluid.label-blocks
+  .span12
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        /.label.label-large
+        %i.edi-binoculars
+        %h4
+          Prospecter
+        %p
+          dans la base collective
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i.edi-vcard
+        %h4
+          Importer des contacts
+        %p
+          depuis un fichier Excel
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i.edi-user-add
+        %h4
+          Créer un contact
+        %p
+          manuellement
+  
+      
+  - if user_signed_in?
+    - if current_user.has_role? :admin
+      = link_to "Administration", users_path
+    = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+  - else
+    = link_to t("simple_form.labels.defaults.signin"), new_user_session_path

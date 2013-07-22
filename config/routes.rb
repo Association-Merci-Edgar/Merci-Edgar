@@ -1,7 +1,11 @@
 Edgar::Application.routes.draw do
+
+
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
       root :to => 'home#index'
+      resources :venues
+      get "search/index"
     end
     devise_scope :user do
       root :to => "devise/registrations#new", :as => "locale_root"
