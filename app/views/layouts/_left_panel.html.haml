@@ -1,44 +1,79 @@
 .logo
-  lelogo
+  %i.entypo.edi-logoedgar_under.logotype
+  %a{:href => "#"}
+    %i.entypo.edi-logoedgar.logotype
+  .account-tab
+    The Beatles
+    %a.rightbt{:href => "#"}
+      %i.entypo.edi-cog
 .leftmenu
   .sidebar-nav
     %ul.nav.nav-list
       %li
-        %a{:href => "#"} Prenom N.
+        %a.user-tab.rightbt{:href => "#"}
+          %i.entypo.edi-cog
+        %a.user-tab{:href => "##"}
+          Prénom N.
+          /User: #{@user.name}
+        
       %li
-        %a{:href => "#"}
-          %i.entypo.compass>
+        %a.rightbt{:href => "#"}
+          %i.entypo.edi-plus-3
+        = link_to root_path do
+          %i.entypo.edi-gauge
           Tableau de bord
+          
       %li
-        %a{:href => "#"}
-          %i.entypo.conversation>
+        = link_to new_venue_path, :class => "rightbt" do
+          %i.entypo.edi-plus-3
+        = link_to venues_path do
+          %i.entypo.edi-book
           Contacts
-      / book
-      %li
+          
+      %li.comingsoon
+        %a.rightbt{:href => "#"}
+          %i.entypo.edi-plus-3
         %a{:href => "#"}
-          %i.entypo.bell>
+          %i.entypo.edi-check_2
           Tâches
-      %li
+          %span.badge
+            1
+            
+      %li.comingsoon
+        = link_to new_venue_path, :class => "rightbt" do
+          %i.entypo.edi-plus-3
         %a{:href => "#"}
-          %i.entypo.calender>
+          %i.entypo.edi-calendar
           Dates
-      %li
-        %a{:href => "#"}
-          %i.entypo.mail>
+          
+      %li.comingsoon
+        %a.rightbt{:href => "#"}
+          %i.entypo.edi-plus-3
+        = link_to search_index_path do
+          %i.entypo.edi-megaphone
           Campagnes
-      / megaphone
+          
       %li
-        %a{:href => "#"}
-          %i.entypo.search>
+        = link_to search_index_path do
+          %i.entypo.edi-search
           Recherche
-    %ul.nav.nav-list
+          
+    %ul.nav.nav-list.recent.comingsoon
       %li.nav-header Récemment consulté
       %li
-        %a{:href => "#"} Albert Untel
+        %a{:href => "#"}
+          %i.entypo.edi-github-2
+          Albert Untel
       %li
-        %a{:href => "#"} Salle Machin
+        %a{:href => "#"}
+          %i.entypo.edi-github-2
+          Salle Machin
       %li
-        %a{:href => "#"} Albert Untel
+        %a{:href => "#"}
+          %i.entypo.edi-github-2
+          Albert Untel
       %li
-        %a{:href => "#"} Salle Machin
+        %a{:href => "#"}
+          %i.entypo.edi-github-2
+          Salle Machin
   / /.well
