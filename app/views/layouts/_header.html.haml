@@ -63,13 +63,13 @@
                       = link_to locale_root_path, :anchor => "header-section" do
                         %i.ed-icon-home
                     %li
-                      = link_to t("home.menu.what"), locale_root_path, :anchor => "header-anchor"
+                      = link_to t("home.menu.what"), locale_root_path(:anchor => "features-anchor")
                     %li
-                      = link_to "Edgar TV", locale_root_path, :anchor => "tv-section"
+                      = link_to "Edgar TV", locale_root_path(:anchor => "tv-section")
                     %li
-                      = link_to t("home.menu.news"), locale_root_path, :anchor => "news-section"
+                      = link_to t("home.menu.news"), locale_root_path(:anchor => "news-section")
                     %li
-                      = link_to t("home.menu.who"), locale_root_path, :anchor => "team-section"
+                      = link_to t("home.menu.who"), locale_root_path(:anchor => "team-section")
       /
         \############################ END TOP MENU ###############
         \==========================================================
