@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
   rolify
+  has_and_belongs_to_many :accounts
+  accepts_nested_attributes_for :accounts
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :accounts_attributes
 
   after_create :add_user_to_mailchimp
   before_destroy :remove_user_from_mailchimp
@@ -45,6 +47,7 @@ class User < ActiveRecord::Base
     p = {}
     p[:password] = params[:password]
     p[:password_confirmation] = params[:password_confirmation]
+    p[:accounts_attributes] = params[:accounts_attributes]
     update_attributes(p)
   end
 

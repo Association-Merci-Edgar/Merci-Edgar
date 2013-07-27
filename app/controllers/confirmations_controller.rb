@@ -62,6 +62,7 @@ class ConfirmationsController < Devise::PasswordsController
   def do_show
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
+    @account = @confirmable.accounts.build if @confirmable.accounts.blank?
     render 'devise/confirmations/show'
   end
 
