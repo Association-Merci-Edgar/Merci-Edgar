@@ -1,4 +1,5 @@
-class VenuesController < ApplicationController
+class VenuesController < AppController
+
   # GET /venues
   # GET /venues.json
   def index
