@@ -3,14 +3,11 @@ class SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    
-    if request.subdomain.blank?
-      account = resource.accounts.first
+
+    if resource.has_role? :admin || resource.authorized_for_domain?(request.subdomain)
+      respond_with resource, :location => after_sign_in_path_for(resource)
     else
-      if resource.accounts.exclude?(Account.find_by_domain(request.subdomain))
-        raise ActionController::RoutingError.new('User Not Found')
-      end
+      redirect_to "#{request.protocol}#{resource.accounts.first.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"
     end
-    respond_with resource, :location => after_sign_in_path_for(resource)
   end
 end
