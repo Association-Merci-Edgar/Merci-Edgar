@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   rolify
   has_and_belongs_to_many :accounts
   accepts_nested_attributes_for :accounts
+  validates_associated :accounts
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -59,6 +60,10 @@ class User < ActiveRecord::Base
   # new function to provide access to protected method pending_any_confirmation
   def only_if_unconfirmed
     pending_any_confirmation {yield}
+  end
+
+  def authorized_for_domain?(domain)
+    self.accounts.map{|a| a.domain}.include?(domain)
   end
 
   private

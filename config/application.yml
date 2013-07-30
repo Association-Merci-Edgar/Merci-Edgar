@@ -18,6 +18,7 @@ development:
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
   DOMAIN: localhost:3000
+  SESSION_DOMAIN: ".lvh.me"
 
 staging:
   MANDRILL_USERNAME: staging@merciedgar.com

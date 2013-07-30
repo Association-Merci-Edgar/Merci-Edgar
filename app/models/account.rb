@@ -4,6 +4,7 @@ class Account < ActiveRecord::Base
   attr_accessible :domain, :name
   validates_presence_of :name
   validates_uniqueness_of :domain
+  validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
   before_create :ensure_domain_uniqueness
 
   def ensure_domain_uniqueness
