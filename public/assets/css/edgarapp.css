@@ -1,6 +1,9 @@
+.mainwrapper {}
+
 .maincontent{
 	float: left;
 	width: 100%;
+	
 }
 .maincontentinner {
 	padding: 0 28px;
@@ -10,31 +13,47 @@
 
 .leftpanel {
 	float: left;
-	width: 260px;
+	width: 240px;
 	background: #efefef;
-	height:100%;
-	position: absolute;
+/*	background: url(../img/ed-nav-bkg.png) top left repeat;
+*/	height:100%;
+	position:absolute;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	
 }
 
+
+/*#outer1 {float:left; width:180px; padding:10px; background:#e0d0d0;}
+#outer3 {float:right; width:180px; padding:10px; background:#b0b0b0;}
+#outer2 {background:#e0e0e0; margin:10px 210px;}
+
+#outer1, #outer2, #outer3 {padding-bottom:32767px; margin-bottom:-32767px;}
+#wrapper {overflow:hidden; background:#e0e0e0;} */
+
+
 .leftpanel .entypo:before { font-size:24px;}
-.entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
+.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
 
 .entypo {
 	margin-right: .1em; display:block; vertical-align: middle; 
 	line-height: 0;
 }
 
-.mainpanel {margin: 0;
-	margin-left:260px;
+.mainpanel {
+	margin: 0;
+	margin-left: 240px; margin-right: 300px;
 }
 .rightpanel {
-	width: 260px;
+	width: 300px;
 	float: right;
-	background: #efefef;
+	background: #fff;
 	top:0px;
 	right:0px;
 	position:absolute;
-	
 }
 
 .leftmenu, .logo { }
@@ -45,14 +64,12 @@
 .rightbt {
 	display : block;
 	float: right;
-
-	margin:0;
-	
 	width:25px;
-	
-	 margin-right:15px;
+	margin:0;
+	margin-right:15px;
 }
-.nav-list {padding:0;}
+
+.leftmenu .nav-list {padding:0;}
 .nav-list > li > a, .nav-list .nav-header {margin:0;}
 
 .nav li a.rightbt:hover {background: transparent;}
@@ -83,17 +100,14 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 	color:#fff;
 }
 .leftpanel .entypo.logotype:before { font-size:50px;}
-.leftpanel .entypo { width:30px;}
+.leftpanel .entypo { width:30px; display:inline-block;}
 a .logotype { color:#000;
 }
 
 .account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
 
-.nav li a i {
-	display:inline-block;
-}
 
-.nav li a {
+.leftmenu li a {
 	color:#000; font-size:18px;
 	height: 25px;
 	padding : 9px 0;
@@ -105,18 +119,18 @@ a .logotype { color:#000;
 
 .nav li.comingsoon a, .comingsoon li a{color:#999;}
 
-.nav li {
+.leftmenu li {
 	margin:0;
 }
 
-.nav li a:hover {
+.leftmenu li a:hover {
 	background: #fff;
 }
 
 i {font-style: normal;}
 
-.recent { margin-top:16px;}
-.recent li a {font-size:15px;height: 16px; }
+.recent { margin-top:20px;}
+.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 25px; color:#999;}
 
 /* NAV BAR -- END ____________________ */
 
@@ -138,11 +152,22 @@ h1 {font-size:37px;}
 	padding-bottom:12px;
 }
 
-.leftpanel.collapsed {margin-left : -260px;}
+.leftpanel.collapsed {margin-left : -240px;}
 .mainpanel.goleft { margin-left:0px;}
 
-/* ELEMENTS ____________________ */
+/* label-blocks ____________________ */
+.pic { height:30px; width:30px; background-color:#CCC; display:inline-block; text-align:center; margin-right:8px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+.pic i:before {line-height:30px;}
 
+
+
+/* ELEMENTS ________________________________________ */
+
+/* label-blocks (Hero-blocks)____________________ */
 .label-blocks .span4 { min-width:220px;}
 .label.label-large {
     display: inline-block;
@@ -175,7 +200,26 @@ a.label-large:hover i {background: #FF6;}
 		-moz-border-radius: 200px;
 		border-radius: 200px;
 		margin-bottom:8px;
-	}
+}
+
+/* Views SHOW ________________________________________ */
+.showitem header {display:inline-block;}
+header .pic { height:60px; width:60px; font-size:50px;}
+header .pic i:before{ line-height:60px; text-align:center;}
+header h3 { display:inline-block;}
+
+
+/* Views SHOW Right Menu ________________________________________ */
+
+.rightmenu {padding: 20px;}
+.infolabel { font-size:0.8em; color: #999;}
+.rightpanel .entypo {display:inline-block;}
+.rightpanel ul {padding-top: 6px; border-top: #CCC solid thin; margin-top:16px;}
+.rightpanel .nav-header {display:inline-block; padding-left:0;}
+.rightpanel ul a { display:inline;}
+
+.meta { float:right; font-size:20px;}
+.meta i {display:inline-block;}
 
 /* MEDIA SCREEN SIZE ____________________ */
 @media (max-width: 767px) {
