@@ -3,6 +3,27 @@
 
   .form-inputs
     = f.input :name
-
+    
   .form-actions
     = f.button :submit
+%p
+  %label
+    Small Input
+  %span.field
+    %input.input-small
+    / type="text" placeholder=".input-small" name="input1">
+  %small.desc
+    Small description of this field
+      
+      
+%p
+  %label
+    Select
+    %span.field
+      %select.uniformselect{:name => "select"}
+        %option{:value => ""}
+          Selection One
+        %option{:value => ""}
+          Selection Four
+        
+

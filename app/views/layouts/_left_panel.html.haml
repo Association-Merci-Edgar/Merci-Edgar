@@ -6,7 +6,7 @@
     The Beatles
     %a.rightbt{:href => "#"}
       %i.entypo.edi-cog
-.leftmenu
+%nav.leftmenu
   .sidebar-nav
     %ul.nav.nav-list
       %li
@@ -15,10 +15,8 @@
         %a.user-tab{:href => "##"}
           = current_user.email
           /User: #{@user.name}
-        
+          
       %li
-        %a.rightbt{:href => "#"}
-          %i.entypo.edi-plus-3
         = link_to root_path do
           %i.entypo.edi-gauge
           Tableau de bord
@@ -29,6 +27,7 @@
         = link_to venues_path do
           %i.entypo.edi-book
           Contacts
+          %span.infolabel ~15
           
       %li.comingsoon
         %a.rightbt{:href => "#"}
@@ -62,18 +61,21 @@
       %li.nav-header Récemment consulté
       %li
         %a{:href => "#"}
-          %i.entypo.edi-github-2
+          .pic
+            %i.entypo.edi-user
           Albert Untel
       %li
         %a{:href => "#"}
-          %i.entypo.edi-github-2
+          .pic
+            %i.entypo.edi-github
           Salle Machin
       %li
         %a{:href => "#"}
-          %i.entypo.edi-github-2
+          .pic
+            %i.entypo.edi-user
           Albert Untel
       %li
         %a{:href => "#"}
-          %i.entypo.edi-github-2
+          .pic
+            %i.entypo.edi-github
           Salle Machin
-  / /.well

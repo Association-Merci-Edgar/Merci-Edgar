@@ -1,9 +1,97 @@
-%p#notice= notice
+-content_for :right_panel do
+  .rightmenu
+    .sidebar-nav
+      = link_to 'Éditer cette fiche', edit_venue_path(@venue)
+      %br
+      %span.infolabel modifié le 20/02/2013 par Untel
+      %ul.nav
+        %li.nav-header
+          /%a{:href => "#"}
+          %i.entypo.edi-check_2
+          Tâches
+        %li
+          Relance de paiement pour tel date
+        %li
+          tache 2
+          
+      %ul.nav
+        %li.nav-header
+          %i.entypo.edi-info
+          Information
+        %li
+          Ouverture au public
+        %li
+          Saison
+          
+      %ul.nav
+        %li.nav-header
+          %i.entypo.edi-location-2
+          Coordonnées
+        %li
+          %span.infolabel Bureau
+          %img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
+          %br 2, rue des Haies
+          75020
+          Paris
+        %li
+          %a{:href => "#"}
+            email@provider.com
+          %span.infolabel Bureau
+        %li
+          01 85 23 56 25
+          %span.infolabel Bureau
+        %li
+          %a{:href => "#"}
+            www.lesite.com
+      
+      %ul.nav
+        %li.nav-header
+          %i.entypo.edi-info
+          Administratif
+        %li
+          adresse
+          %span.infolabel Administratif
+        %li
+          %a{:href => "#"}
+            email@provider.com
+          %span.infolabel Administratif
+          
+/.page-title
+/  Listing venues
 
-%p
-  %b Name:
-  = @venue.name
-
-= link_to 'Edit', edit_venue_path(@venue)
-\|
-= link_to 'Back', venues_path
+.row-fluid.showitem
+  .span12
+    %header
+      .pic
+        %i.entypo.edi-house
+      %h3= @venue.name
+      %p#notice= notice
+    .meta
+      %i.entypo.edi-flag
+      %i.entypo.edi-heart
+      
+.row-fluid
+  .span12
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#activity"} Activité
+        %li
+          %a{"data-toggle" => "tab", :href => "#people"} 2 personnes
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"} 2 dates de spectacle
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab3"} Réseaux sociaux
+          
+      .tab-content
+        #activity.tab-pane.active
+          %p I'm in Section 1.
+        #people.tab-pane
+          %p Personnes
+        #tab2.tab-pane
+          %p Dates de spectacle
+        #tab3.tab-pane
+          %p Facebook ++
+      
+      /\|
+      /= link_to 'Back', venues_path
