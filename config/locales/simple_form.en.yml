@@ -32,7 +32,11 @@ en:
         forgot_password : "Forgot your password?"
         choose_password : "Choose a password"
         repeat_password : "Repeat your password"
+        recommnandations_password : "6 digits with 1 number if safer"
         signin: "Sign in"
         signout: "Sign out"
         signup_fun: "Let's go!"
+        firsttime_welcome: "Welcome to Merci Edgar!"
+        firsttime_wording1: "Let's meet:"
+        firsttime_wording2: "Account activation for :"
 
