@@ -30,19 +30,22 @@
         %li
           %span.infolabel Bureau
           %img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
-          %br 2, rue des Haies
-          75020
-          Paris
-        %li
-          %a{:href => "#"}
-            email@provider.com
-          %span.infolabel Bureau
-        %li
-          01 85 23 56 25
-          %span.infolabel Bureau
-        %li
-          %a{:href => "#"}
-            www.lesite.com
+          %br
+            = @venue.contact.street
+          = @venue.contact.postal_code
+          = @venue.contact.city
+        - if @venue.contact.email.present?
+          %li
+            = mail_to @venue.contact.email
+            %span.infolabel Bureau
+        - if @venue.contact.phone.present?
+          %li
+            = @venue.contact.formatted_phone
+            %span.infolabel Bureau
+        - if @venue.contact.website.present?
+          %li
+            = link_to @venue.contact.website, @venue.contact.website
+              
       
       %ul.nav
         %li.nav-header
