@@ -19,6 +19,8 @@ gem 'rolify'
 gem 'simple_form'
 gem 'country_select'
 gem 'activevalidators'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 gem 'thin'
 
