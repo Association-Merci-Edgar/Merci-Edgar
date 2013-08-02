@@ -1,22 +1,56 @@
-%h2 Account Activation
-= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal', :method => 'put'}, :id => 'activation-form' do |f|
-  = devise_error_messages!
-  %fieldset
-    %legend
-      Account Activation
-      - if resource.email
-        for #{resource.email}
-    - if @requires_password
-      %p
-        = f.label :password,'Choose a Password:'
-        = f.password_field :password
-      %p
-        = f.label :password_confirmation, 'Password Confirmation:'
-        = f.password_field :password_confirmation
-      %p
-        = f.simple_fields_for :accounts do |account|
-          = account.input :name
 
-    = hidden_field_tag :confirmation_token, @confirmation_token
-    %p= f.submit "Activate"
-    /
+.container.form-signin
+  .logo
+    /%i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.ed-icon-ed-logo_under.logotype
+    /%i.entypo.edi-logoedgar.logotype
+    %i.entypo.ed-icon-ed-logo.logotype
+      
+  = simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal form-signin', :method => 'put'}, :id => 'activation-form' do |f|
+    = devise_error_messages!
+    
+    %h1 #{t("simple_form.labels.defaults.firsttime_welcome")}
+    %fieldset
+      %legend
+        #{t("simple_form.labels.defaults.firsttime_wording2")}
+        <br>
+        - if resource.email
+          #{resource.email}
+      - if @requires_password
+        
+        .row-fluid
+          .span6
+            
+            %input{:type => "text", :placeholder=>"Prénom", :autofocus => true}
+          .span6
+            %input{:type => "text", :placeholder=>"Nom"}
+            
+        .row-fluid
+          .span12
+            %input{:type => "text", :placeholder=>"Nom de votre association, label, groupe..."}
+            = f.simple_fields_for :accounts do |account|
+              = account.input :name
+            /= f.label :password,"#{t("simple_form.labels.defaults.choose_password")} : "
+            /= f.password_field :password
+            /= f.password_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}"
+            
+        .row-fluid
+          .span6
+            = f.password_field :password, :placeholder => "#{t("simple_form.labels.defaults.choose_password")}"
+          .span6
+            = f.password_field :password_confirmation, :placeholder => "#{t("simple_form.labels.defaults.repeat_password")}"
+          
+          %span.infolabel
+            #{t("simple_form.labels.defaults.recommnandations_password")}        
+        
+        
+
+      = hidden_field_tag :confirmation_token, @confirmation_token
+      
+      /%p= f.submit "Activate"
+      = f.submit "C’est parti !", :class => "btn btn-large btn-primary"
+      /<button class="btn btn-large btn-primary" type="submit"></button>
+      
+      /<br>
+      /<alert>Saisissez votre mot de passe.</alert>
+      /<label class="checkbox">

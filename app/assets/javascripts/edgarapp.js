@@ -1,4 +1,17 @@
+
 $('document').ready(function() {
+	
+	// show/hide the leftpanel
+	window.smallScreens = function() {
+		if ($(window).width() < 767) {
+			$('.leftpanel').addClass( "collapsed");
+			$('.mainpanel').addClass( "goleft");
+		} else {
+			$('.leftpanel').removeClass( "collapsed");
+			$('.mainpanel').removeClass( "goleft");
+		}
+	}
+	
   
   /*$('#nav_toggle').click(function(){
 		$('.leftpanel').animate({scrollTop:0}, 'slow');	
@@ -15,25 +28,18 @@ $('document').ready(function() {
 		$('.mainpanel').toggleClass( "goleft");
 	});
 	//alert ("yo");
-	
-	smallscreens();
+	smallScreens();
 	
 })
+
+
+
+
 $(window).load(function() {
-	smallscreens();
+	smallScreens();
 });
 
 $(window).resize(function() {
 	smallScreens();	
 });
 
-// show/hide the leftpanel
-smallScreens = function() {
-	if ($(window).width() < 767) {
-		$('.leftpanel').addClass( "collapsed");
-		$('.mainpanel').addClass( "goleft");
-	} else {
-		$('.leftpanel').removeClass( "collapsed");
-		$('.mainpanel').removeClass( "goleft");
-	}
-}
