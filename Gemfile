@@ -17,6 +17,7 @@ gem 'haml-rails'
 gem 'rolify'
 
 gem 'simple_form'
+gem 'nested_form'
 gem 'country_select'
 gem 'activevalidators'
 gem 'client_side_validations'
