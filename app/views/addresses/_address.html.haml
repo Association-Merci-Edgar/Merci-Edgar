@@ -1,6 +1,9 @@
 %li
   %span.infolabel= address.kind
-  %img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
+  / %img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
+  / = gmaps4rails(address.to_gmaps4rails)
+  = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => false, :class => "gmaps4rails_map", :container_class => "map_container" },"markers" => { "data" => address.to_gmaps4rails })
+  
   %br
     = address.street
   = address.postal_code

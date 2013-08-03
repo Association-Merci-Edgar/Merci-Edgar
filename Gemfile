@@ -23,11 +23,15 @@ gem 'activevalidators'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
+gem 'gmaps4rails'
+gem 'geocoder'
+
 gem 'thin'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'awesome_print'
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'

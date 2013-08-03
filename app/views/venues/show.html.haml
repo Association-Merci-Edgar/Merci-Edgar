@@ -27,8 +27,10 @@
         %li.nav-header
           %i.entypo.edi-location-2
           Coordonnées
+        
         - @venue.contact_datum.addresses.each do |address|
           = render address
+      
         
         - @venue.contact_datum.emails.each do |email|
           = render email

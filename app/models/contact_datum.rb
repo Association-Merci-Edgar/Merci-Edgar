@@ -1,10 +1,10 @@
 class ContactDatum < ActiveRecord::Base
   attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes
   belongs_to :contactable, :polymorphic => true
-  has_many :emails
-  has_many :phones
-  has_many :addresses
-  has_many :websites
+  has_many :emails, :dependent => :destroy
+  has_many :phones, :dependent => :destroy
+  has_many :addresses, :dependent => :destroy
+  has_many :websites, :dependent => :destroy
 
   accepts_nested_attributes_for :emails, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => :all_blank, :allow_destroy => true

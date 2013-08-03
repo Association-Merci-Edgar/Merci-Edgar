@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803130256) do
+ActiveRecord::Schema.define(:version => 20130803162135) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20130803130256) do
     t.integer  "contact_datum_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "addresses", ["contact_datum_id"], :name => "index_addresses_on_contact_datum_id"
