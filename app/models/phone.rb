@@ -3,6 +3,11 @@ class Phone < ActiveRecord::Base
   attr_accessible :kind, :number
   validates :number, :phone => true , :allow_blank => true
 
+  before_validation :reset_kind, :if => "number.blank?"
+  def reset_kind
+    self.kind = ""
+  end
+
   def internationalize_phone_number(country)
     c = Country.new(country)
     if c
@@ -13,7 +18,7 @@ class Phone < ActiveRecord::Base
   end
 
   def formatted_phone
-    Phony.formatted(self.number,:format => :international)
+    Phony.formatted(self.number,:format => :international) unless self.number.blank?
   end
 
 end
