@@ -15,6 +15,7 @@ class VenuesController < AppController
   # GET /venues/1.json
   def show
     @venue = Venue.find(params[:id])
+    @people = @venue.people
 
     respond_to do |format|
       format.html # show.html.erb

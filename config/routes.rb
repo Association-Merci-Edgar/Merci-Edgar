@@ -1,6 +1,5 @@
 Edgar::Application.routes.draw do
 
-
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
       root :to => 'home#index'
@@ -18,7 +17,13 @@ Edgar::Application.routes.draw do
     resources :users do
       get 'invite', :on => :member
     end
-    resources :venues
+
+    resources :venues do
+      resources :people
+    end
+    resources :people
+
+
 
   end
 

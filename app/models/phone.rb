@@ -9,8 +9,8 @@ class Phone < ActiveRecord::Base
   end
 
   def internationalize_phone_number(country)
-    c = Country.new(country)
-    if c
+    if country
+      c = Country.new(country)
       self.number = Phony.normalize(self.number)
       self.number = "#{c.country_code}#{self.number}" unless self.number.starts_with?(c.country_code)
     end
