@@ -1,17 +1,52 @@
-= simple_form_for(@venue, :validate => true) do |f|
+= simple_nested_form_for(@venue, :validate => true) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
-    = f.simple_fields_for :contact do |c|
-      = c.input :phone
-      = c.input :email
-      = c.input :website
-      = c.input :street
-      = c.input :postal_code
-      = c.input :city
-      = c.input :state
-      = c.input :country, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+    = f.fields_for :capacities do |capacity|
+      .nested-fields
+        = capacity.input :nb, :label => "Capacity"
+        = capacity.input :kind, :label => "Type", :collection => %w(Assis Debout Autre),  :selected => "Assis"
+        = capacity.link_to_remove "Remove this capacity"
+    .links
+      = f.link_to_add 'Add a new capacity', :capacities
+    = f.fields_for :contact_datum do |c|
+      = c.fields_for :emails do |email|
+        .nested-fields
+          = email.input :address, :label => "Email", :validate => true
+          = email.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+          = email.link_to_remove "Remove this email"
+      .links
+        = c.link_to_add 'Add a new email', :emails
+
+      = c.fields_for :phones do |phone|
+        .nested-fields
+          = phone.input :number, :label => "Phone Number", :validate => true
+          = phone.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+          = phone.link_to_remove "Remove this phone"
+      .links
+        = c.link_to_add 'Add a new phone', :phones
+
+      = c.fields_for :addresses do |address|
+        .nested-fields
+          = address.input :street
+          = address.input :city
+          = address.input :postal_code
+          = address.input :state
+          = address.input :country, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+          = address.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+          = address.link_to_remove "Remove this address"
+      .links
+        = c.link_to_add 'Add a new address', :addresses
+
+      = c.fields_for :websites do |website|
+        .nested-fields
+          = website.input :url, :label => "Website"
+          = website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+          = website.link_to_remove "Remove this website"
+      .links
+        = c.link_to_add 'Add a new website', :websites
+
     
   .form-actions
     = f.button :submit

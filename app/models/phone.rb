@@ -1,0 +1,19 @@
+class Phone < ActiveRecord::Base
+  belongs_to :contact_datum
+  attr_accessible :kind, :number
+  validates :number, :phone => true , :allow_blank => true
+
+  def internationalize_phone_number(country)
+    c = Country.new(country)
+    if c
+      self.number = Phony.normalize(self.number)
+      self.number = "#{c.country_code}#{self.number}" unless self.number.starts_with?(c.country_code)
+    end
+    self.number = Phony.normalize(self.number)
+  end
+
+  def formatted_phone
+    Phony.formatted(self.number,:format => :international)
+  end
+
+end

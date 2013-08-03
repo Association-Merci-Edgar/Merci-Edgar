@@ -27,6 +27,9 @@ class VenuesController < AppController
   def new
     @venue = Venue.new
     @venue.build_contact
+    c = @venue.build_contact_datum
+    #c.emails.build
+    c.phones.build
 
     respond_to do |format|
       format.html # new.html.erb

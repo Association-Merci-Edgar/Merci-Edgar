@@ -27,25 +27,18 @@
         %li.nav-header
           %i.entypo.edi-location-2
           Coordonnées
-        %li
-          %span.infolabel Bureau
-          %img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
-          %br
-            = @venue.contact.street
-          = @venue.contact.postal_code
-          = @venue.contact.city
-        - if @venue.contact.email.present?
-          %li
-            = mail_to @venue.contact.email
-            %span.infolabel Bureau
-        - if @venue.contact.phone.present?
-          %li
-            = @venue.contact.formatted_phone
-            %span.infolabel Bureau
-        - if @venue.contact.website.present?
-          %li
-            = link_to @venue.contact.website, @venue.contact.website
-              
+        - @venue.contact_datum.addresses.each do |address|
+          = render address
+        
+        - @venue.contact_datum.emails.each do |email|
+          = render email
+      
+        - @venue.contact_datum.phones.each do |phone|
+          = render phone
+    
+        - @venue.contact_datum.websites.each do |website|
+          = render website
+    
       
       %ul.nav
         %li.nav-header
@@ -68,6 +61,8 @@
       .pic
         %i.entypo.edi-house
       %h3= @venue.name
+      - @venue.capacities.each do |capacity|
+        = render capacity
       %p#notice= notice
     .meta
       %i.entypo.edi-flag

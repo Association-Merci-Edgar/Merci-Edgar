@@ -13,9 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery_nested_form
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require_tree .
+//= require rails.validations.nested_form
+// require_tree .
 $('document').ready(function() {
 
   // display validation errors for the "request invitation" form
