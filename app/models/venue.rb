@@ -1,6 +1,7 @@
 class Venue < ActiveRecord::Base
   attr_accessible :name, :contact_datum_attributes, :capacities_attributes
   has_one :contact_datum, :as => :contactable, :dependent => :destroy
+  has_many :people, :as => :structure
   #has_one :contact, :as => :contactable
   has_many :capacities, :dependent => :destroy
 
@@ -12,5 +13,5 @@ class Venue < ActiveRecord::Base
   #validates :name, :presence => true, :venue_name => true, :on => :create
   validates :name, :presence => true
   # validates_associated :contact_datum
-  validates :contact_datum, :presence => {:message => "Oups ! Bah ca alors ..."}
+  validates :contact_datum, :presence => :true
 end

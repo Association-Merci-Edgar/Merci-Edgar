@@ -77,7 +77,7 @@
         %li.active
           %a{"data-toggle" => "tab", :href => "#activity"} Activité
         %li
-          %a{"data-toggle" => "tab", :href => "#people"} 2 personnes
+          %a{"data-toggle" => "tab", :href => "#people"}= "#{@venue.people.size} personnes"
         %li
           %a{"data-toggle" => "tab", :href => "#tab2"} 2 dates de spectacle
         %li
@@ -87,7 +87,15 @@
         #activity.tab-pane.active
           %p I'm in Section 1.
         #people.tab-pane
-          %p Personnes
+                     
+          - @people.each do |person|
+            %p
+            %tr
+              %td= link_to "#{person.first_name} #{person.last_name}", person
+              %td= link_to 'Edit', edit_venue_person_path(@venue,person)
+              %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %p
+            = link_to 'New Person', new_venue_person_path(@venue)
         #tab2.tab-pane
           %p Dates de spectacle
         #tab3.tab-pane

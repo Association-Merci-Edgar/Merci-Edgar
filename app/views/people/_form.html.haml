@@ -1,0 +1,16 @@
+= simple_nested_form_for([@structure,@person]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    
+    = f.fields_for :contact_datum do |contact|
+      = render :partial => "contact_data/form", :locals => {:c => contact}
+
+    = f.hidden_field :structure_id, :value => @structure.id if @structure
+    = f.hidden_field :structure_type, :value => @structure.class.name if @structure
+    
+
+  .form-actions
+    = f.button :submit
