@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :phone do
-    number "MyString"
-    location "MyString"
-    contact_data nil
+    number "0661746969"
+    kind "Perso"
   end
 end

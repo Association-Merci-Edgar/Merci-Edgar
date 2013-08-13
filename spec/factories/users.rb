@@ -8,5 +8,8 @@ FactoryGirl.define do
     password_confirmation 'changeme'
     # required if the Devise Confirmable module is used
     confirmed_at Time.now
+    after(:create) do |user|
+      user.accounts = [FactoryGirl.create(:account)]
+    end
   end
 end

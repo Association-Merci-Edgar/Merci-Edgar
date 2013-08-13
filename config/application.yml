@@ -20,6 +20,20 @@ development:
   DOMAIN: localhost:3000
   SESSION_DOMAIN: ".lvh.me"
 
+test:
+  MANDRILL_USERNAME: dev@merciedgar.com
+  MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
+  MAILCHIMP_API_KEY: ad5ab5a0c2bf57ea770e60d109b0ea93-us7
+  MAILCHIMP_LIST_ID: 7f00a62716
+  ADMIN_NAME: Christophe Robillard
+  ADMIN_EMAIL: christophe@merciedgar.com
+  ADMIN_PASSWORD: MrcxloP1
+  ROLES: [admin, user]
+  EMAIL_ADDRESS: dev@merciedgar.com
+  DOMAIN: localhost:3000
+  SESSION_DOMAIN: ".lvh.me"
+
+
 staging:
   MANDRILL_USERNAME: staging@merciedgar.com
   MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og

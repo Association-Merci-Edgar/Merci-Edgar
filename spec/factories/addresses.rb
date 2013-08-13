@@ -2,12 +2,9 @@
 
 FactoryGirl.define do
   factory :address do
-    street "MyString"
-    postal_code "MyString"
-    city "MyString"
-    state "MyString"
-    country "MyString"
-    location "MyString"
-    contact_data nil
+    street "Rue du Test"
+    postal_code "75001"
+    city "Paris"
+    country "FR"
   end
 end

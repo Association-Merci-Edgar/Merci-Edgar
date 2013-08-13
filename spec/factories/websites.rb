@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :website do
-    url "MyString"
-    kind "MyString"
-    contact_data nil
+    url "http://www.merciedgar.com"
+    kind "Work"
   end
 end

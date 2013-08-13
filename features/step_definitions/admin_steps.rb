@@ -3,11 +3,12 @@ Given /^I am logged in as an administrator$/ do
   @admin.add_role :admin
   @visitor ||= { :email => "admin@example.com",
     :password => "changeme", :password_confirmation => "changeme" }
+  @user = @admin
   sign_in
 end
 
 When /^I visit the users page$/ do
-  visit users_path
+  visit users_path(:locale => :fr)
 end
 
 When /^I click a link "([^"]*)"$/ do |arg1|

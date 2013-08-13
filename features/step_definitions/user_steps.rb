@@ -19,7 +19,9 @@ end
 def create_user
   create_visitor
   delete_user
-  @user = FactoryGirl.create(:user, email: @visitor[:email])
+  @user = FactoryGirl.build(:user, email: @visitor[:email])
+  @user.stubs(:add_user_to_mailchimp)
+  @user.save
 end
 
 def delete_user
@@ -36,15 +38,20 @@ def sign_up
 end
 
 def sign_in
-  visit '/users/sign_in'
-  fill_in "Email", :with => @visitor[:email]
-  fill_in "Password", :with => @visitor[:password]
-  click_button "Sign in"
+  Capybara.app_host = "http://www.lvh.me"
+  visit new_user_session_path(:locale => :fr)
+  fill_in "user_email", :with => @visitor[:email]
+  fill_in "user_password", :with => @visitor[:password]
+  click_button "Se connecter"
+  Capybara.app_host = "http://#{@user.accounts.first.domain}.lvh.me"
+  Capybara.always_include_port = true
 end
 
 ### GIVEN ###
 Given /^I am not logged in$/ do
-  visit '/users/sign_out'
+  Capybara.app_host = "http://www.lvh.me"
+  Capybara.always_include_port = true
+  visit '/fr/users/sign_out'
 end
 
 Given /^I am logged in$/ do
