@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :email do
-    address "MyString"
-    location "MyString"
-    contact_data nil
+    address "contact@foo.com"
+    kind "Work"
   end
 end

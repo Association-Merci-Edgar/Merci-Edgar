@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :account do
-    name "MyString"
-    domain "MyString"
+    name "Test account"
+    domain "testaccount"
   end
 end

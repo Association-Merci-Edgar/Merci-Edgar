@@ -8,7 +8,7 @@
 
 = c.fields_for :phones do |phone|
   .nested-fields
-    = phone.input :number, :label => "Phone Number", :validate => true
+    = phone.input :national_number, :label => "Phone Number", :validate => true
     = phone.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
     = phone.link_to_remove "Remove this phone"
 .links

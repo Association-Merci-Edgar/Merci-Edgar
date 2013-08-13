@@ -7,10 +7,10 @@ Feature: View Progress
   Scenario: Administrator views list of users
     Given I am not logged in
     When I visit the home page
-    And I follow "Request invite"
+    And I follow the first "Je veux le tester !"
     When I fill in "Email" with "example@example.com"
-    And I click a button "Request Invitation"
-    Then I should see a message "Thank you!"
+    And I click a button "Demande d'invitation"
+    Then I should see a message "Votre demande a bien été enregistrée"
     When I am logged in as an administrator
     And I visit the users page
     Then I should see "example@example.com"

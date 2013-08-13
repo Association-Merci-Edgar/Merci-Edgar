@@ -27,7 +27,10 @@ class VenuesController < AppController
   # GET /venues/new.json
   def new
     @venue = Venue.new
+    @venue.capacities.build
     contact_datum = @venue.build_contact_datum
+    contact_datum.addresses.build
+    contact_datum.emails.build
 
     respond_to do |format|
       format.html # new.html.erb

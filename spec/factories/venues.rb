@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :venue do
-    name "MyString"
+    name "My Venue"
+    contact_datum
   end
 end

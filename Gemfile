@@ -35,15 +35,19 @@ group :development do
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
+  gem 'debugger'
 end
 group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'mocha'
 end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'selenium-webdriver'
+  # gem 'mocha'
   gem 'cucumber-rails', :require=>false
   gem 'database_cleaner'
   gem 'email_spec'

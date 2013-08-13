@@ -11,6 +11,8 @@
     .links
       = f.link_to_add 'Add a new capacity', :capacities
     = f.fields_for :contact_datum do |contact|
+      - @venue.errors[:contact_datum].each do |e|
+        .alert.alert-error= e
       = render :partial => "contact_data/form", :locals => {:c => contact}
 
     

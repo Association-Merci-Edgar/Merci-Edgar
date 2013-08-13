@@ -6,12 +6,12 @@ class ContactDatum < ActiveRecord::Base
   has_many :addresses, :dependent => :destroy
   has_many :websites, :dependent => :destroy
 
-  accepts_nested_attributes_for :emails, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :phones, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :addresses, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :phones, :reject_if => proc { |attributes| attributes[:national_number].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :addresses, :reject_if => proc { |attributes| attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :websites, :reject_if => :all_blank, :allow_destroy => true
 
-  before_validation :format_attributes
+  before_save :format_attributes
   def format_attributes
     country = self.addresses.first.country if self.addresses.any?
     self.phones.each do |phone|
@@ -19,4 +19,7 @@ class ContactDatum < ActiveRecord::Base
     end
   end
 
+  def reject_if_all_blank_except_country
+    attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank?
+  end
 end
