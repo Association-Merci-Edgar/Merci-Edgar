@@ -16,21 +16,16 @@ class Account < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :domain, :message => "Domain must be unique"
   validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
-  before_validation :ensure_domain_uniqueness
+  before_validation :ensure_domain_uniqueness, :on => :create
 
   def ensure_domain_uniqueness
-    if self.domain.blank? || Account.find_by_domain(self.domain).present?
-      if self.domain.blank?
-          new_domain = self.name.downcase.delete(' ')
-      else
-          new_domain = self.domain
-      end
-      num = 2
-      while (Account.find_by_domain(new_domain).present?)
-        new_domain = "#{new_domain}#{num}"
-        num += 1
-      end
-      self.domain = new_domain
+    if self.domain.blank?
+      self.domain = self.name.downcase.delete(' ')
+    end
+    num = 2
+    while (Account.find_by_domain(self.domain).present?)
+      self.domain = "#{self.domain}#{num}"
+      num += 1
     end
   end
 

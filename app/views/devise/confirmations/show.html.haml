@@ -17,10 +17,12 @@
         - if resource.email
           #{resource.email}
       - if @requires_password
-        
         .row-fluid
           .span6
-            = f.input_field :first_name, :autofocus => true
+            = f.input_field :name, :autofocus => true
+        .row-fluid
+          .span6
+            = f.input_field :first_name
           .span6
             = f.input_field :last_name
             
