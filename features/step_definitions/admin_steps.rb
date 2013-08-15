@@ -1,10 +1,8 @@
 Given /^I am logged in as an administrator$/ do
-  @admin = FactoryGirl.create(:user, email: "admin@example.com")
+  @admin = FactoryGirl.create(:confirmed_user, email: "admin@example.com")
+  @admin.save
   @admin.add_role :admin
-  @visitor ||= { :email => "admin@example.com",
-    :password => "changeme", :password_confirmation => "changeme" }
-  @user = @admin
-  sign_in
+  sign_in(@admin)
 end
 
 When /^I visit the users page$/ do

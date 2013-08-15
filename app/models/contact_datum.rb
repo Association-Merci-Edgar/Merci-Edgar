@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: contact_data
+#
+#  id               :integer          not null, primary key
+#  contactable_id   :integer
+#  contactable_type :string(255)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 class ContactDatum < ActiveRecord::Base
   attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes
   belongs_to :contactable, :polymorphic => true

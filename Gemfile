@@ -36,6 +36,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'annotate'
 end
 group :development, :test do
   gem 'sqlite3'
@@ -54,6 +55,6 @@ group :test do
   gem 'launchy'
 end
 
-group :production do
+group :production, :test do
   gem 'pg'
 end

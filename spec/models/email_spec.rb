@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: emails
+#
+#  id               :integer          not null, primary key
+#  address          :string(255)
+#  kind             :string(255)
+#  contact_datum_id :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Email do

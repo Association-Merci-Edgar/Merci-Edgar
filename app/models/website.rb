@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: websites
+#
+#  id               :integer          not null, primary key
+#  url              :string(255)
+#  kind             :string(255)
+#  contact_datum_id :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 class Website < ActiveRecord::Base
   belongs_to :contact_datum
   attr_accessible :kind, :url

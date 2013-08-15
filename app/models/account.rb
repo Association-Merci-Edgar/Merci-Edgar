@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  domain     :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Account < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :venues
@@ -10,14 +21,13 @@ class Account < ActiveRecord::Base
   def ensure_domain_uniqueness
     if self.domain.blank? || Account.find_by_domain(self.domain).present?
       if self.domain.blank?
-          domain_part = self.name.downcase.delete(' ')
+          new_domain = self.name.downcase.delete(' ')
       else
-          domain_part = self.domain
+          new_domain = self.domain
       end
-      new_domain = domain_part.dup
       num = 2
       while (Account.find_by_domain(new_domain).present?)
-        new_domain = "#{domain_part}#{num}"
+        new_domain = "#{new_domain}#{num}"
         num += 1
       end
       self.domain = new_domain
