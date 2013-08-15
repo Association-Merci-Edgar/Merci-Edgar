@@ -1,3 +1,4 @@
+@no-txn
 @javascript
 Feature: Send Invitations
   As the owner of the site

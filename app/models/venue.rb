@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: venues
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  account_id :integer
+#
+
 class Venue < ActiveRecord::Base
   attr_accessible :name, :contact_datum_attributes, :capacities_attributes
   has_one :contact_datum, :as => :contactable, :dependent => :destroy
@@ -31,5 +42,9 @@ class Venue < ActiveRecord::Base
         errors.add(:name,"Une salle existe deja avec ce nom dans la ville de #{contact_datum.addresses.first.city}")
       end
     end
+  end
+  
+  def to_param
+    [id, name.parameterize].join('-')
   end
 end

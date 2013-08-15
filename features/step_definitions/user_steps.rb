@@ -31,19 +31,19 @@ end
 
 def sign_up
   delete_user
-  visit '/users/sign_up'
+  visit '/fr/users/sign_up'
   fill_in "Email", :with => @visitor[:email]
-  click_button "Request Invitation"
+  click_button "Je veux le tester !"
   find_user
 end
 
-def sign_in
+def sign_in(user)
   Capybara.app_host = "http://www.lvh.me"
   visit new_user_session_path(:locale => :fr)
-  fill_in "user_email", :with => @visitor[:email]
-  fill_in "user_password", :with => @visitor[:password]
+  fill_in "user_email", :with => user.email
+  fill_in "user_password", :with => user.password
   click_button "Se connecter"
-  Capybara.app_host = "http://#{@user.accounts.first.domain}.lvh.me"
+  Capybara.app_host = "http://#{user.accounts.first.domain}.lvh.me"
   Capybara.always_include_port = true
 end
 
@@ -136,7 +136,15 @@ When /^I look at the list of users$/ do
   visit '/'
 end
 
+When /^I save the current page/ do
+  save_and_open_page
+end
+
 ### THEN ###
+Then /^I pause for a while$/ do
+  sleep 30
+end
+
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
   page.should_not have_content "Sign up"

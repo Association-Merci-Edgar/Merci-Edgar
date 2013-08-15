@@ -20,25 +20,20 @@
         
         .row-fluid
           .span6
-            
-            %input{:type => "text", :placeholder=>"Prénom", :autofocus => true}
+            = f.input_field :first_name, :autofocus => true
           .span6
-            %input{:type => "text", :placeholder=>"Nom"}
+            = f.input_field :last_name
             
         .row-fluid
           .span12
-            %input{:type => "text", :placeholder=>"Nom de votre association, label, groupe..."}
             = f.simple_fields_for :accounts do |account|
-              = account.input :name
-            /= f.label :password,"#{t("simple_form.labels.defaults.choose_password")} : "
-            /= f.password_field :password
-            /= f.password_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}"
+              = account.input_field :name
             
         .row-fluid
           .span6
-            = f.password_field :password, :placeholder => "#{t("simple_form.labels.defaults.choose_password")}"
+            = f.input_field :password
           .span6
-            = f.password_field :password_confirmation, :placeholder => "#{t("simple_form.labels.defaults.repeat_password")}"
+            = f.input_field :password_confirmation
           
           %span.infolabel
             #{t("simple_form.labels.defaults.recommnandations_password")}        
