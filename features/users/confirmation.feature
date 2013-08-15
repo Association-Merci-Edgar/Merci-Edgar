@@ -22,12 +22,13 @@ Feature: Confirmation
   
     Given I am not logged in
     When I follow "Confirm my account" in the email
-    And I save the current page
+    And I fill in "Nom d'utilisateur" with "krichtof"
     And I fill in "Prénom" with "Christophe"
     And I fill in "Nom" with "Robillard"
     And I fill in "Nom de votre association, label, groupe..." with "Tubercules"
     And I fill in "Choisissez un mot de passe" with "blabla11"
     And I fill in "Répétez votre mot de passe" with "blabla11"
     And I click a button "C’est parti !"
-    Then I should see "Edgar vous dit Bienvenue !"
+    Then the user "krichtof" should belong to account "Tubercules"
+    And "Tubercules" account should have domain "tubercules"
 

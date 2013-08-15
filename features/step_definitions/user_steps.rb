@@ -201,3 +201,12 @@ Then /^I should see my name$/ do
   create_user
   page.should have_content @user[:name]
 end
+
+Then /^the user "([^"]*)" should belong to account "([^"]*)"$/ do |user_name, account_name|
+  User.find_by_name(user_name).accounts.should include(Account.find_by_name(account_name))
+end
+
+Then /^"([^"]*)" account should have domain "([^"]*)"$/ do |account_name, domain|
+  print "#{account_name} #{domain} / #{Account.find_by_name(account_name).name} #{Account.find_by_name(account_name).domain}"
+  Account.find_by_name(account_name).domain.should == domain
+end
