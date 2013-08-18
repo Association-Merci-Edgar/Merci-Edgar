@@ -14,9 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery_nested_form
-//= require rails.validations
-//= require rails.validations.simple_form
-//= require rails.validations.nested_form
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 // require_tree .
