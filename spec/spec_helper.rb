@@ -16,7 +16,7 @@ RSpec.configure do |config|
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
-  # config.mock_with :mocha
+  config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
 
@@ -38,7 +38,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-  
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion
   end

@@ -1,0 +1,13 @@
+- if (the_tasks = tasks.send(due)).any?
+  .tasks
+    %h3= t(due)
+    - the_tasks.send(due).each do |t|
+      .task
+        = link_to t.name, send("edit_#{asset.class.name.downcase}_task_path",asset,t)
+        = t.calendar
+        |
+        Assigné à 
+        = t.assignee.name
+        |
+        = link_to "Effectué", send("complete_#{asset.class.name.downcase}_task_path",asset,t), :method => :put
+        

@@ -1,3 +1,4 @@
+
 class VenuesController < AppController
 
   # GET /venues
@@ -16,6 +17,8 @@ class VenuesController < AppController
   def show
     @venue = Venue.find(params[:id])
     @people = @venue.people
+    @tasks = @venue.tasks
+    @pending_tasks = @tasks.pending
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,0 +1,55 @@
+class TasksController < ApplicationController
+  def new
+    @asset = Venue.find(params[:venue_id]) if params[:venue_id]
+    @asset = Person.find(params[:person_id]) if params[:person_id]
+    @task = Task.new
+    @users = Account.find(Account.current_id).users
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+    @asset = Venue.find(params[:venue_id]) if params[:venue_id]
+    @asset = Person.find(params[:person_id]) if params[:person_id]
+    @users = Account.find(Account.current_id).users
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    @asset = @task.asset
+    if @task.update_attributes(params[:task])
+      redirect_to @asset
+    else
+      render :edit
+    end
+  end
+
+  def complete
+    @task = Task.find(params[:id])
+    @task.complete(current_user)
+    redirect_to @task.asset
+  end
+
+  def create
+    @task = Task.new(params[:task])
+    @asset = @task.asset
+    if @task.save
+      redirect_to @asset
+    else
+      render :new
+    end
+  end
+
+  def index
+    @tasks = Task.tracked_by(current_user)
+    respond_to do |format|
+      format.ics do
+        calendar = Icalendar::Calendar.new
+        calendar.prodid = "MerciEdgar-Calendar"
+        @tasks.each do |t|
+          calendar.add_event(t.to_ics)
+        end
+        render :text => calendar.to_ical
+      end
+    end
+  end
+end

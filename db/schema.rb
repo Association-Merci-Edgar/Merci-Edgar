@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814174443) do
+ActiveRecord::Schema.define(:version => 20130817150803) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -118,6 +118,29 @@ ActiveRecord::Schema.define(:version => 20130814174443) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.integer  "priority"
+    t.string   "category"
+    t.boolean  "specific_time"
+    t.datetime "due_at"
+    t.datetime "completed_at"
+    t.integer  "asset_id"
+    t.string   "asset_type"
+    t.integer  "assigned_to"
+    t.integer  "completed_by"
+    t.integer  "account_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "tasks", ["account_id"], :name => "index_tasks_on_account_id"
+  add_index "tasks", ["asset_id"], :name => "index_tasks_on_asset_id"
+  add_index "tasks", ["assigned_to"], :name => "index_tasks_on_assigned_to"
+  add_index "tasks", ["completed_by"], :name => "index_tasks_on_completed_by"
+  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

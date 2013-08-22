@@ -30,6 +30,9 @@ $('document').ready(function() {
 	//alert ("yo");
 	smallScreens();
 	
+	
+	
+	
 })
 
 
@@ -42,4 +45,3 @@ $(window).load(function() {
 $(window).resize(function() {
 	smallScreens();	
 });
-

@@ -26,6 +26,8 @@ gem 'client_side_validations-simple_form'
 gem 'gmaps4rails'
 gem 'geocoder'
 
+gem 'icalendar'
+
 gem 'thin'
 
 group :development do
@@ -53,6 +55,7 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
+  gem 'faker'
 end
 
 group :production, :test do

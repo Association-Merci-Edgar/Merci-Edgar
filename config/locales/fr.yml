@@ -1,2 +1,11 @@
 fr:
   cancel: Annuler
+  overdue: En retard
+  due_today: Aujourd'hui
+  due_tomorrow: Demain
+  due_this_week: Cette semaine
+  due_next_week: La semaine prochaine
+  due_this_month: Ce mois-ci
+  
+  tasks: Tâches
+  
