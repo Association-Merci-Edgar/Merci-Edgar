@@ -79,7 +79,7 @@
         %li
           %a{"data-toggle" => "tab", :href => "#people"}= "#{@venue.people.size} personnes"
         %li
-          %a{"data-toggle" => "tab", :href => "#tab2"} 2 dates de spectacle
+          %a{"data-toggle" => "tab", :href => "#tasks"}= "#{@pending_tasks.size} #{t(:tasks)}"
         %li
           %a{"data-toggle" => "tab", :href => "#tab3"} Réseaux sociaux
           
@@ -96,8 +96,16 @@
               %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
           %p
             = link_to 'New Person', new_venue_person_path(@venue)
-        #tab2.tab-pane
-          %p Dates de spectacle
+        #tasks.tab-pane
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @venue}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @venue}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @venue}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @venue}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @venue}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @venue}
+          
+          = link_to "Add a task", new_venue_task_path(@venue)
+
         #tab3.tab-pane
           %p Facebook ++
       

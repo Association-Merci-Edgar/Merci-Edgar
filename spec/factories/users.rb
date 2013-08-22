@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :user do
-    email 'example@example.com'
-    factory :confirmed_user do
+    email { Faker::Internet.email}
+    factory :confirmed_user, parent: :user do
       password 'changeme'
       password_confirmation 'changeme'
       # required if the Devise Confirmable module is used

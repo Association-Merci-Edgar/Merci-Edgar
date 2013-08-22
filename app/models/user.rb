@@ -94,6 +94,10 @@ class User < ActiveRecord::Base
   def authorized_for_domain?(domain)
     self.accounts.map{|a| a.domain}.include?(domain)
   end
+  
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   private
 

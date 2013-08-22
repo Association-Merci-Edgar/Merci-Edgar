@@ -20,10 +20,11 @@ Edgar::Application.routes.draw do
 
     resources :venues do
       resources :people
+      resources :tasks do
+        put 'complete', :on => :member
+      end
     end
     resources :people
-
-
 
   end
 

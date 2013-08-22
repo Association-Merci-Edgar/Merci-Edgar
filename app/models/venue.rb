@@ -15,6 +15,7 @@ class Venue < ActiveRecord::Base
   has_many :people, :as => :structure
   #has_one :contact, :as => :contactable
   has_many :capacities, :dependent => :destroy
+  has_many :tasks, :as => :asset
 
   accepts_nested_attributes_for :contact_datum
   accepts_nested_attributes_for :capacities
@@ -43,7 +44,7 @@ class Venue < ActiveRecord::Base
       end
     end
   end
-  
+
   def to_param
     [id, name.parameterize].join('-')
   end
