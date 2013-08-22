@@ -25,16 +25,15 @@ fr:
     #     password: 'No special characters, please.'
     placeholders:
       defaults:
-        name : "Nom d'utilisateur"
         first_name: "Prénom"
         last_name: "Nom"
-        accounname: "Nom de votre association, label, groupe..."
         password: "Saisissez votre mot de passe"
         forgot_password : "Mot de passe oublié ?"
         password : "Choisissez un mot de passe"
         password_confirmation : "Répétez votre mot de passe"
       accounts:
         name: "Nom de votre association, label, groupe..."
+        user: "Nom d'utilisateur"
     labels:
       defaults:
         forgot_password : "Mot de passe oublié ?"
