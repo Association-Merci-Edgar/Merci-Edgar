@@ -40,21 +40,5 @@ group :development do
 end
 group :development, :test do
   gem 'sqlite3'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'mocha'
-end
-group :test do
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'selenium-webdriver'
-  # gem 'mocha'
-  gem 'cucumber-rails', :require=>false
-  gem 'database_cleaner'
-  gem 'email_spec'
-  gem 'launchy'
 end
 
-group :production, :test do
-  gem 'pg'
-end

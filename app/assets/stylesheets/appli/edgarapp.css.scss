@@ -1,0 +1,409 @@
+$dblue: #30303a;
+$dblue90: #45454e;
+$mblue: lighten( $dblue, 40% );
+$beige: #edede8;
+$orange:#ff5a3e;
+$yellow:#EDE232;
+$green:#50bfb2;
+$white:#fff;
+
+@mixin roundcorners {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+@mixin borderbox {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin transition02 {
+  -moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+input, textarea {@include borderbox;}
+
+textarea { resize:vertical;}
+a {color:$dblue;
+  &:hover {color:$green;}
+}
+
+a:focus { outline: none; }
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: .9em;
+	line-height: 1.5em;
+	letter-spacing: 0.02em;
+	margin: 0px;
+	padding: 0px;
+	color: $dblue;
+	background:$beige;
+}
+
+.mainwrapper {}
+
+.maincontent{
+	float: left;
+	width: 100%;
+	
+}
+.maincontentinner {
+	padding: 0 28px;
+	padding-top: 34px;
+}
+
+
+.leftpanel {
+	float: left;
+	width: 240px;
+	background: $dblue;
+/*	background: url(../img/ed-nav-bkg.png) top left repeat;*/
+height:100%;
+	position:absolute;
+	@include transition02;
+}
+
+#notice {
+	background: $yellow;
+	@include roundcorners;
+	padding:10px;
+}
+
+
+
+/*#outer1 {float:left; width:180px; padding:10px; background:#e0d0d0;}
+#outer3 {float:right; width:180px; padding:10px; background:#b0b0b0;}
+#outer2 {background:#e0e0e0; margin:10px 210px;}
+
+#outer1, #outer2, #outer3 {padding-bottom:32767px; margin-bottom:-32767px;}
+#wrapper {overflow:hidden; background:#e0e0e0;} */
+
+
+.leftpanel .entypo:before { font-size:24px;}
+.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
+
+.entypo {
+	margin-right: .1em; display:block; vertical-align: middle; 
+	line-height: 0;
+}
+
+.mainpanel {
+	margin: 0;
+	margin-left: 240px; /*margin-right: 300px;*/
+}
+/*
+.rightpanel {
+	width: 300px;
+	float: right;
+	background: #fff;
+	top:0px;
+	right:0px;
+	position:absolute;
+}
+*/
+
+.leftmenu, .logo { }
+.leftpanel li a i.entypo { margin-bottom:6px; }
+.nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
+
+.leftmenu .badge { float:right; margin-top:5px; margin-right:5px;}
+.rightbt {
+	display : block;
+	float: right;
+	width:25px;
+	margin:0;
+	margin-right:15px;
+}
+
+.leftmenu .nav-list {padding:0;}
+.nav-list > li > a, .nav-list .nav-header {margin:0; text-shadow:none;}
+
+.nav li a.rightbt:hover {background: transparent;}
+li a.rightbt {float:right;/* background-color:#9F0;*/}
+.rightbt i { margin-left:-14px;  padding-top:7px;}
+
+.account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
+
+
+/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
+.rightbt .entypo:before {color: #999;  font-size:16px;}
+.rightbt.entypo:before { font-size:16px;}
+.edi-cog.entypo:before {font-size:13px;}
+.rightbt:hover .entypo:before {color: #000;}
+
+/* NAV BAR ____________________ */
+
+.logo {
+	height:80px;
+	background: $orange;
+	padding-left:20px;
+	padding-top:4px;
+}
+
+.logotype {
+	position:absolute;
+	margin-top:13px;
+	color:#fff;
+}
+
+.leftpanel .entypo.logotype:before { font-size:50px;}
+.leftpanel .entypo { width:30px; display:inline-block;}
+a .logotype { color: $dblue;}
+
+.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
+
+.leftmenu li a {
+	color:#fff; font-size:19px;
+	height: 26px;
+	padding : 13px 0px 11px 24px;
+}
+
+.nav li.comingsoon a, .comingsoon li a{color:#555;}
+
+.leftmenu li {
+	margin:0;
+}
+
+.leftmenu li a:hover {
+	background: $beige;
+	color:$dblue;
+}
+
+i {font-style: normal;}
+
+.recent { margin-top:20px;}
+.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 25px; color:#999;}
+
+/* NAV BAR -- END ____________________ */
+
+h1 {font-size:37px;}
+.page-title {font-size:37px; margin-bottom:30px;}
+.togglemenu {
+	display:none;
+	position:absolute;
+	bottom: 40px;
+	left: 0px;
+}
+/*.togglemenu .entypo { width:20px;}*/
+.togglemenu .entypo:before {font-size:24px;  color:#fff;}
+.togglemenu .btn {
+	background-image: none;
+	background-color:#000;
+	height:40px;
+	padding: 8px 8px;
+	padding-bottom:12px;
+}
+
+.leftpanel.collapsed {margin-left : -240px;}
+.mainpanel.goleft { margin-left:0px;}
+
+/* label-blocks ____________________ */
+.pic {
+	height:30px; width:30px;
+	background-color:#CCC;
+	display:inline-block;
+	text-align:center;
+	margin-right:8px;
+	border: solid 1px lighten( $dblue, 50% );
+	@include roundcorners;
+
+  img {@include roundcorners;}
+  i:before {line-height:30px;}
+}
+
+.nav-tabs {font-size:16px;
+  font-weight:bold;
+}
+  
+.nav-tabs > li > a {
+  padding:0;
+  margin-right:36px;
+   color:lighten( $dblue,40% ) ;
+}
+
+/* ELEMENTS ________________________________________ */
+
+.list-large {
+  list-decoration:none;
+  list-style:none;
+  margin:0;
+  font-size:15px;
+}
+
+.list-large li {
+  padding:20px 0px;
+  border-top: solid 1px lighten( $dblue, 60% );
+  list-decoration:none;
+}
+
+/* label-blocks (Hero-blocks)____________________ */
+.label-blocks .span4 { min-width:220px;}
+.label.label-large {
+  display: inline-block;
+  min-height: 200px;
+  width: 100%;
+  text-align:center;
+  font-weight:normal;
+  background: transparent;
+  color: $dblue;
+  display: block;
+  padding: 5px;
+  @include borderbox;
+}
+
+h4 {font-weight:normal;}
+a.label-large:hover {color:$dblue;}
+a.label-large:hover i {background: $yellow;}
+
+.label-large h4 { font-size:22px;}
+.label-large p { font-size:16px; color: #666;}
+.label-large i:before{ line-height:140px;}
+.label-large i {
+		font-size:70px;
+		display:inline-block;
+		width:140px;
+		height:140px;
+		background:$white;
+		-webkit-border-radius: 200px;
+		-moz-border-radius: 200px;
+		border-radius: 200px;
+		margin-bottom:8px;
+}
+
+
+
+.plusmenu {
+  position: fixed;
+  width:300px;
+  right:-250px;
+  top:100px;
+  color:#fff;
+  //background: $dblue;
+  @include transition02;
+}
+
+.plusmenu-trigger { float:left; margin-left:6px;}
+
+.plusmenu:hover { right:0px;
+  }
+
+.pluslist {
+  font-size:20px;
+  margin-left:50px;
+  padding:24px 30px;
+  list-style: none;
+  background : $green;
+  @include roundcorners;
+  width:250px;
+  
+  
+  .list-header {font-size:20px;}
+  li {line-height:30px;}
+  li a { display: block;}
+  li a:hover{color:$white; text-decoration:none;};
+}
+
+.plusmenu-trigger i {
+  font-size:36px;
+	display:inline-block;
+  width:50px;
+  height:45px;
+  margin-right:-10px;
+  text-align:center;
+  background: $green;
+  @include roundcorners;
+  &:before {line-height:47px;};
+}
+
+
+//.toppage {background:#fff;}
+
+/* Views SHOW ________________________________________ */
+.showitem header {}
+
+header {
+  display:inline-block;
+  margin-bottom:12px;
+  .pic-container {height:100%; width: 70px; float:left;}
+  .pic {
+    height:60px; width:60px; font-size:50px;
+    display:block;
+   i:before {line-height:60px; text-align:center;}
+  }
+  
+  .infos {
+    margin-left:80px;
+    font-size:20px;
+    .infolabel {font-size:15px;}
+    }
+  
+  h3 {
+    font-size:32px;
+    margin-top:-32px;
+    line-height:32px;
+    margin:0px;
+    margin-top:-4px;
+  }
+  .tags {
+    margin: 12px 0px;
+  }
+}
+
+
+.activityfield {
+  height:70px;
+  width:100%;
+  background:$white;
+}
+
+/* Views SHOW Right Menu ________________________________________ */
+
+.rightmenu {padding: 20px;}
+
+.infolabel {
+  font-size:0.8em;
+  color: $mblue;
+}
+/*
+.rightpanel .entypo {display:inline-block;}
+.rightpanel ul {padding-top: 6px; border-top: #CCC solid thin; margin-top:16px;}
+.rightpanel .nav-header {display:inline-block; padding-left:0;}
+.rightpanel ul a { display:inline;}
+*/
+.meta { float:right; font-size:20px;}
+.meta i {display:inline-block;}
+
+
+.nav-tabs > li > a {
+    border: 1px solid transparent;
+    border-radius: 0;
+    line-height: 20px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+	background: none;
+	border:none;
+	border-bottom: 1px solid $dblue;
+	color: #555555;
+	cursor: default;
+}
+
+//.editbtn:hover .hiddentag {display:block;};
+.hiddentag { display:none;}
+
+/* MEDIA SCREEN SIZE ____________________ */
+@media (max-width: 767px) {
+body { padding:0px;}
+.togglemenu {display: inline; margin-left:-20px;}
+}
+

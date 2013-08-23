@@ -6,13 +6,21 @@
     #mainwrapper.mainwrapper
       .togglemenu
         = render 'layouts/togglemenu'
+        
+      .plusmenu
+        = render 'layouts/plus_menu'
+        /= yield(:plus_menu)
+        
       .leftpanel
         = render 'layouts/left_panel'
+        
       .mainpanel
         .maincontent
           .maincontentinner
             = yield
-      .rightpanel
-        = yield(:right_panel)
+            
+      /.rightpanel
+      /  = yield(:right_panel)
+      
     = render 'layouts/javascripts_app'
 
