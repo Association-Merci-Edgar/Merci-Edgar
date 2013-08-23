@@ -1,5 +1,5 @@
 %meta{:content => content_for?(:description) ? yield(:description) : "Edgar", :name => "description"}
-  = javascript_include_tag "application"
+  = javascript_include_tag "onepage"
   = csrf_meta_tags
 %meta{:charset => "utf-8"}/
 %title Merci Edgar | L'assistant virtuel des artistes
@@ -26,13 +26,15 @@
   \!important THIS FILE -= style.css =- ON BOTTOM OF BOOTSTRAP STYLEs  LIST
   This override bootstrap def. style
   \===================================================
-%link{:href => "/assets/css/style.css", :rel => "stylesheet"}/
+
+= stylesheet_link_tag "onepage"
+
 / FontAwesome styles (iconic font)
 %link{:href => "/assets/css/font-awesome.min.css", :rel => "stylesheet"}/
-%link{:href => "/assets/icomoon-edgar/style.css", :rel => "stylesheet"}/
-%link{:charset => "utf-8", :href => "/assets/bitter-ffk/stylesheet.css", :rel => "stylesheet", :type => "text/css"}/
-%link{:href => "/assets/podkova-bold/stylesheet.css", :rel => "stylesheet", :type => "text/css"}/
-%link{:href => "/assets/podkova-fontfacekit/stylesheet.css", :rel => "stylesheet", :type => "text/css"}/
+/%link{:href => "/assets/icomoon-edgar-onepage/style.css", :rel => "stylesheet"}/
+/%link{:charset => "utf-8", :href => "/assets/bitter-ffk/stylesheet.css", :rel => "stylesheet", :type => "text/css"}/
+/%link{:href => "/assets/podkova-bold/stylesheet.css", :rel => "stylesheet", :type => "text/css"}/
+/%link{:href => "/assets/podkova-fontfacekit/stylesheet.css", :rel => "stylesheet", :type => "text/css"}/
 / prettyPhoto styles
 / Gallery inlarge script styles
 %link{:href => "/assets/css/prettyPhoto.css", :rel => "stylesheet", :type => "text/css"}/

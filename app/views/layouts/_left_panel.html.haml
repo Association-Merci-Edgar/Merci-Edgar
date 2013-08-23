@@ -12,8 +12,8 @@
       %li
         %a.user-tab.rightbt{:href => "#"}
           %i.entypo.edi-cog
-        %a.user-tab{:href => "##"}
-          = current_user.email
+        %a.user-tab{:href => "#"}
+          = current_user.name
           /User: #{@user.name}
           
       %li
@@ -22,16 +22,17 @@
           Tableau de bord
           
       %li
-        = link_to new_venue_path, :class => "rightbt" do
-          %i.entypo.edi-plus-3
+        /= link_to new_venue_path, :class => "rightbt" do
+        /  %i.entypo.edi-plus-3
         = link_to venues_path do
           %i.entypo.edi-book
           Contacts
-          %span.infolabel ~15
+          %span.infolabel
+          /~15
           
       %li.comingsoon
-        %a.rightbt{:href => "#"}
-          %i.entypo.edi-plus-3
+        /%a.rightbt{:href => "#"}
+        /  %i.entypo.edi-plus-3
         %a{:href => "#"}
           %i.entypo.edi-check_2
           Tâches
@@ -39,16 +40,14 @@
             1
             
       %li.comingsoon
-        = link_to new_venue_path, :class => "rightbt" do
-          %i.entypo.edi-plus-3
+        /= link_to new_venue_path, :class => "rightbt" do
+        /  %i.entypo.edi-plus-3
         %a{:href => "#"}
           %i.entypo.edi-calendar
           Dates
           
       %li.comingsoon
-        %a.rightbt{:href => "#"}
-          %i.entypo.edi-plus-3
-        = link_to search_index_path do
+        %a{:href => "#"}
           %i.entypo.edi-megaphone
           Campagnes
           
@@ -56,26 +55,33 @@
         = link_to search_index_path do
           %i.entypo.edi-search
           Recherche
-          
-    %ul.nav.nav-list.recent.comingsoon
-      %li.nav-header Récemment consulté
-      %li
-        %a{:href => "#"}
-          .pic
-            %i.entypo.edi-user
-          Albert Untel
-      %li
-        %a{:href => "#"}
-          .pic
-            %i.entypo.edi-github
-          Salle Machin
-      %li
-        %a{:href => "#"}
-          .pic
-            %i.entypo.edi-user
-          Albert Untel
-      %li
-        %a{:href => "#"}
-          .pic
-            %i.entypo.edi-github
-          Salle Machin
+        
+      %li.click-nav.comingsoon
+        .ul.no-js
+          %a.clicker{:href => "#"}
+            %i.entypo.edi-pencil
+            Derniérement
+            %i.entypo.edi-arrow-down-5.rightbt
+     
+          %ul.nav.nav-list.recent.comingsoon
+            /%li.nav-header Récemment consulté
+            %li
+              %a{:href => "#"}
+                .pic
+                  %i.entypo.edi-user
+                Albert Untel
+            %li
+              %a{:href => "#"}
+                .pic
+                  %i.entypo.edi-github
+                Salle Machin
+            %li
+              %a{:href => "#"}
+                .pic
+                  %i.entypo.edi-user
+                Albert Untel
+            %li
+              %a{:href => "#"}
+                .pic
+                  %i.entypo.edi-github
+                Salle Machin
