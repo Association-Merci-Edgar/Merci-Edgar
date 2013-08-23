@@ -1,7 +1,7 @@
 
 $('document').ready(function() {
 	
-	// show/hide the leftpanel
+	// show/hide the leftpanel _________________________________
 	window.smallScreens = function() {
 		if ($(window).width() < 767) {
 			$('.leftpanel').addClass( "collapsed");
@@ -12,13 +12,11 @@ $('document').ready(function() {
 		}
 	}
 	
-  
   /*$('#nav_toggle').click(function(){
 		$('.leftpanel').animate({scrollTop:0}, 'slow');	
 		return false;
 	});
   */
-  
 	$('.leftpanel.collapsed').animate();
 	$('.leftpanel:not(.collapsed)').animate();
 
@@ -30,12 +28,25 @@ $('document').ready(function() {
 	//alert ("yo");
 	smallScreens();
 	
-	
-	
+	// Clickable Dropdown _________________________________
+	//$(function() {
+  			
+  			$('.click-nav > .ul').toggleClass('no-js js');
+  			$('.click-nav .js ul').hide();
+  			$('.click-nav .js').click(function(e) {
+  				$('.click-nav .js ul').slideToggle(200);
+  				$('.clicker').toggleClass('active');
+  				e.stopPropagation();
+  			});
+  			$(document).click(function() {
+  				if ($('.click-nav .js ul').is(':visible')) {
+  					$('.click-nav .js ul', this).slideUp(0);
+  					$('.clicker').removeClass('active');
+  				}
+  			});
+  		//});
 	
 })
-
-
 
 
 $(window).load(function() {
@@ -45,3 +56,4 @@ $(window).load(function() {
 $(window).resize(function() {
 	smallScreens();	
 });
+

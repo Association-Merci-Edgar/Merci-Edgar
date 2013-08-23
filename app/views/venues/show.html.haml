@@ -1,93 +1,135 @@
--content_for :right_panel do
-  .rightmenu
-    .sidebar-nav
-      = link_to 'Éditer cette fiche', edit_venue_path(@venue)
-      %br
-      %span.infolabel modifié le 20/02/2013 par Untel
-      %ul.nav
-        %li.nav-header
-          /%a{:href => "#"}
-          %i.entypo.edi-check_2
-          Tâches
-        %li
-          Relance de paiement pour tel date
-        %li
-          tache 2
-          
-      %ul.nav
-        %li.nav-header
-          %i.entypo.edi-info
-          Information
-        %li
-          Ouverture au public
-        %li
-          Saison
-          
-      %ul.nav
-        %li.nav-header
-          %i.entypo.edi-location-2
-          Coordonnées
-        
-        - @venue.contact_datum.addresses.each do |address|
-          = render address
-      
-        
-        - @venue.contact_datum.emails.each do |email|
-          = render email
-      
-        - @venue.contact_datum.phones.each do |phone|
-          = render phone
-    
-        - @venue.contact_datum.websites.each do |website|
-          = render website
-    
-      
-      %ul.nav
-        %li.nav-header
-          %i.entypo.edi-info
-          Administratif
-        %li
-          adresse
-          %span.infolabel Administratif
-        %li
-          %a{:href => "#"}
-            email@provider.com
-          %span.infolabel Administratif
-          
-/.page-title
-/  Listing venues
+/-content_for :right_panel do
+/  .rightmenu
+/    .sidebar-nav
 
-.row-fluid.showitem
+/-content_for :plus_menu do   
+    
+                  
+
+.row-fluid.toppage.showitem
   .span12
     %header
-      .pic
-        %i.entypo.edi-house
-      %h3= @venue.name
-      - @venue.capacities.each do |capacity|
-        = render capacity
+      .pic-container
+        .pic
+          /%i.entypo.edi-house
+          <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+      .infos
+        %h3= @venue.name
+        .tags
+          %span.label SMAC
+          %span.label Rock
+          %span.label Punk
+          %span.label Jeune public
+          %span.label Co-réalisation
+          %span.label Location
+        %p
+          - @venue.capacities.each do |capacity|
+            = render capacity
+            %span.infolabel.dblue — Paris 20, 
+            %span.infolabel Ile de france
       %p#notice= notice
+      
+      
     .meta
       %i.entypo.edi-flag
       %i.entypo.edi-heart
+      = link_to edit_venue_path(@venue), :class => "shybtn" do
+        %i.entypo.edi-pencil
+        .hiddentag
+          Éditer cette fiche
+          %br
+          %span.infolabel modifié le 20/02/2013 par Untel
       
 .row-fluid
   .span12
     .tabbable
       %ul.nav.nav-tabs
         %li.active
-          %a{"data-toggle" => "tab", :href => "#activity"} Activité
+          %a{"data-toggle" => "tab", :href => "#activity"} Suivi
         %li
-          %a{"data-toggle" => "tab", :href => "#people"}= "#{@venue.people.size} personnes"
+          %a{"data-toggle" => "tab", :href => "#infos"} Infos
         %li
+          %a{"data-toggle" => "tab", :href => "#team"}= "Équipe #{@venue.people.size}"
+        %li
+<<<<<<< HEAD
           %a{"data-toggle" => "tab", :href => "#tasks"}= "#{@pending_tasks.size} #{t(:tasks)}"
+=======
+          %a{"data-toggle" => "tab", :href => "#tasks"} Tâches
+>>>>>>> htmljp
         %li
-          %a{"data-toggle" => "tab", :href => "#tab3"} Réseaux sociaux
+          %a{"data-toggle" => "tab", :href => "#dates"} Dates
+          
           
       .tab-content
+      
         #activity.tab-pane.active
-          %p I'm in Section 1.
-        #people.tab-pane
-                     
+          .row-fluid
+            .span9
+              <textarea id="newnotes" class="activityfield" name="" type="text" placeholder="— écrire une nouvelle note"/>
+              </textarea>
+              /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
+              /"#{t("simple_form.labels.defaults.first_name")}"
+              
+              <input class="btn" type="submit" class="submit" value="Submit" />
+              %ul.list-large
+                %li
+                  %h4 Hier — Utilisateur Untel pour Telprojet
+                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+                %li
+                  %h4 Jeudi 7 mai 2013 — Utilisateur Untel pour Telprojet
+                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porriqdsgiqtur late distrtum sublimius attolluntur. Superatis Tauri moddntis verticibus qui ad solis ospatiis porrigitur late distrtum sublqimius attolluntur. 
+                %li
+                  %h4 8 mai 2013 — Utilisateur Untel pour Telprojet
+                  %p Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                
+            .span3
+              
+              - @venue.contact_datum.emails.each do |email|
+                = render email
+
+              - @venue.contact_datum.phones.each do |phone|
+                = render phone
+                
+        #infos.tab-pane
+          .row-fluid
+            .span6
+              %ul.nav
+                %li.nav-header
+                  %i.entypo.edi-info
+                  Information
+                %li
+                  Ouverture au public
+                %li
+                  Saison
+
+              %ul.nav
+                %li.nav-header
+                  %i.entypo.edi-info
+                  Administratif
+                %li
+                  adresse
+                  %span.infolabel Administratif
+                %li
+                  %a{:href => "#"}
+                    email@provider.com
+                  %span.infolabel Administratif
+              
+            .span6
+              %i.entypo.edi-location-2
+              Coordonnées
+              - @venue.contact_datum.addresses.each do |address|
+                = render address
+
+              - @venue.contact_datum.emails.each do |email|
+                = render email
+
+              - @venue.contact_datum.phones.each do |phone|
+                = render phone
+
+              - @venue.contact_datum.websites.each do |website|
+                = render website
+          
+        #team.tab-pane
           - @people.each do |person|
             %p
             %tr
@@ -96,6 +138,7 @@
               %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
           %p
             = link_to 'New Person', new_venue_person_path(@venue)
+
         #tasks.tab-pane
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @venue}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @venue}
@@ -103,11 +146,18 @@
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @venue}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @venue}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @venue}
-          
-          = link_to "Add a task", new_venue_task_path(@venue)
 
-        #tab3.tab-pane
-          %p Facebook ++
-      
-      /\|
-      /= link_to 'Back', venues_path
+                      
+        #dates.tab-pane
+          %p Dates de spectacle
+          %ul.list-large
+            %li
+              %h4 Concert — Lundi 1 juin 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            %li
+              %h4 Concert — Mardi 12 septembe 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            %li
+              %h4 Concert — Mardi 12 septembe 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              
