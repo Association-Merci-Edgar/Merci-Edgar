@@ -3,13 +3,18 @@
 
   .form-inputs
     = f.input :name
-    = f.fields_for :capacities do |capacity|
-      .nested-fields
-        = capacity.input :nb, :label => "Capacity"
-        = capacity.input :kind, :label => "Type", :collection => %w(Assis Debout Autre),  :selected => "Assis"
-        = capacity.link_to_remove "Remove this capacity"
-    .links
-      = f.link_to_add 'Add a new capacity', :capacities
+    = f.fields_for :venue_info do |v|
+      = v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center]
+      = v.input :depth
+      = v.input :width
+      = v.input :height
+      = v.fields_for :capacities do |capacity|
+        .nested-fields
+          = capacity.input :nb, :label => "Capacity"
+          = capacity.input :kind, :label => "Type", :collection => %w(Assis Debout Autre),  :selected => "Assis"
+          = capacity.link_to_remove "Remove this capacity"
+      .links
+        = v.link_to_add 'Add a new capacity', :capacities
 
     = f.fields_for :emails do |email|
       .nested-fields

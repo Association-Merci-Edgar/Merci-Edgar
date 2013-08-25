@@ -16,14 +16,14 @@
       .infos
         %h3= @venue.name
         .tags
-          %span.label SMAC
+          %span.label= t(@venue.kind)
           %span.label Rock
           %span.label Punk
           %span.label Jeune public
           %span.label Co-réalisation
           %span.label Location
         %p
-          - @venue.capacities.each do |capacity|
+          - @venue.venue_info.capacities.each do |capacity|
             = render capacity
           —
           %span.infolabel.dblue= @venue.addresses.first.city

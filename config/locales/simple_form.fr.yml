@@ -50,6 +50,14 @@ fr:
       defaults:
         password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
     options:
+      venue:
+        venue_info:
+          kind:
+            bar: Bar
+            cultural_center: Centre culturel
+            smac: SMAC
+            private_venue: Salle privée
+            theater: Théâtre
       task:
         bucket:
           overdue: En retard
