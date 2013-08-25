@@ -32,7 +32,6 @@ textarea {@include borderbox;}
 
 
 a {color:$dblue;
-  
   &:hover {color:$green; text-decoration:none;}
 }
 
@@ -123,7 +122,18 @@ height:100%;
 .leftpanel li a i.entypo { margin-bottom:6px; }
 .nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
 
+
+
+.leftmenu .nav-list {padding:0;}
+.nav-list > li > a, .nav-list .nav-header {margin:0; text-shadow:none;}
+
+
 .leftmenu .badge { float:right; margin-top:5px; margin-right:5px;}
+
+
+/* NAV BAR / rightbt _______________________________ */
+
+
 .rightbt {
 	display : block;
 	float: right;
@@ -132,21 +142,22 @@ height:100%;
 	margin-right:15px;
 }
 
-.leftmenu .nav-list {padding:0;}
-.nav-list > li > a, .nav-list .nav-header {margin:0; text-shadow:none;}
-
 .nav li a.rightbt:hover {background: transparent;}
 li a.rightbt {float:right;/* background-color:#9F0;*/}
 .rightbt i { margin-left:-14px;  padding-top:7px;}
 
+.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
 .account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
-
 
 /*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
 .rightbt .entypo:before {color: #999;  font-size:16px;}
 .rightbt.entypo:before { font-size:16px;}
 .edi-cog.entypo:before {font-size:13px;}
 .rightbt:hover .entypo:before {color: #000;}
+
+/*____________ */
+
+
 
 
 
@@ -205,15 +216,17 @@ h1 {font-size:37px;}
 .leftpanel .entypo { width:30px; display:inline-block;}
 a .logotype { color: $dblue;}
 
-.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
 
 .leftmenu li a {
 	color:#fff; font-size:19px;
 	height: 26px;
 	padding : 13px 0px 11px 24px;
+	display:block;
+	&:focus{text-decoration:none;}
 }
 
-.nav li.comingsoon a, .comingsoon li a{color:#555;}
+.click-nav {}
+.nav li.comingsoon a, .comingsoon li a {color:#555;}
 
 .leftmenu li {
 	margin:0;
@@ -226,13 +239,17 @@ a .logotype { color: $dblue;}
 
 i {font-style: normal;}
 
-.recent { margin-top:20px;}
-.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 25px; color:#999;}
+.recent { margin-top:4px;}
+.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 34px; color:#999;}
 
+.recent .pic {font-size:26px;height:20px;width:20px;display:inline;}
 
-
-
-
+.recent .pic i {
+  
+  &:before {
+    line-height: 26px; 
+  }
+}
 /* plusmenu _____________________________________________________ */
 .plusmenu {
   position: fixed;

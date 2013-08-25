@@ -53,7 +53,7 @@
                     = f.input_field :password, :class => "small", :placeholder => "#{t("simple_form.labels.defaults.password")}"
                     /= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
                     = render "devise/shared/links"
-                    = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'login-btn'
+                    = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'login-btn login-submit'
                     /= link_to t("simple_form.labels.defaults.signin"), new_user_session_path
                 /%a{:href => "#", :class => "login-btn login-toggle close-btn"}
                 .login-btn.login-toggle.close-btn
