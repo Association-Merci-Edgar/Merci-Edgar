@@ -6,6 +6,7 @@ jQuery('.login-toggle').click(function(){
     jQuery('#socialfixed').addClass("invisible");
     jQuery('#langswitch').addClass("invisible");
     jQuery('#login-form').removeClass("invisible");
+    jQuery("input:text:visible:first").focus();
   } else {
     jQuery('#login-tab').removeClass("invisible");
     jQuery('#socialfixed').removeClass("invisible");
