@@ -17,7 +17,7 @@
 #
 
 class Address < ActiveRecord::Base
-  belongs_to :contact_datum
+  belongs_to :contact
   attr_accessible :city, :country, :kind, :postal_code, :state, :street
   acts_as_gmappable :process_geocoding => false
   geocoded_by :gmaps4rails_address

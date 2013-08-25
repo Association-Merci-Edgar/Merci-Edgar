@@ -31,9 +31,8 @@ class VenuesController < AppController
   def new
     @venue = Venue.new
     @venue.capacities.build
-    contact_datum = @venue.build_contact_datum
-    contact_datum.addresses.build
-    contact_datum.emails.build
+    @venue.addresses.build
+    @venue.emails.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -56,7 +55,6 @@ class VenuesController < AppController
         format.html { redirect_to @venue, notice: 'Venue was successfully created.' }
         format.json { render json: @venue, status: :created, location: @venue }
       else
-        @venue.build_contact_datum unless @venue.contact_datum
         format.html { render action: "new" }
         format.json { render json: @venue.errors, status: :unprocessable_entity }
       end

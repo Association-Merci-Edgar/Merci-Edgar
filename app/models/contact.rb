@@ -18,39 +18,20 @@
 #
 
 class Contact < ActiveRecord::Base
-  attr_accessible :city, :country, :email, :phone, :postal_code, :street, :state, :website
-  belongs_to :contactable, :polymorphic => true
+  default_scope { where(:account_id => Account.current_id) }
 
-  before_validation :format_attributes
+  attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes
+  has_many :emails, :dependent => :destroy
+  has_many :phones, :dependent => :destroy
+  has_many :addresses, :dependent => :destroy
+  has_many :websites, :dependent => :destroy
 
-  validates :postal_code, :postal_code => { :country => :fr }, :if => "postal_code.present?"
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true, :message => "Not a valid email"
-  validates :phone, :phone => true , :allow_blank => true
-  validates_format_of :website, :allow_blank => true, :with => /(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+  accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :phones, :reject_if => proc { |attributes| attributes[:national_number].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :addresses, :reject_if => proc { |attributes| attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :websites, :reject_if => :all_blank, :allow_destroy => true
 
-  def format_attributes
-    internationalize_phone_number if phone.present? && Phony.plausible?(phone) && country.present?
-    add_url_protocol if website.present?
-  end
-
-
-  def internationalize_phone_number
-    c = Country.new(country)
-    if c
-      self.phone = Phony.normalize(self.phone)
-      self.phone = "#{c.country_code}#{phone}" unless self.phone.starts_with?(c.country_code)
-    end
-    self.phone = Phony.normalize(self.phone)
-  end
-
-  def add_url_protocol
-    u = URI.parse(self.website)
-    if (!u.scheme)
-      self.website = 'http://' + self.website
-    end
-  end
-
-  def formatted_phone
-    Phony.formatted(self.phone,:format => :international)
+  def reject_if_all_blank_except_country
+    attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank?
   end
 end

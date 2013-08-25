@@ -25,8 +25,10 @@ class PeopleController < ApplicationController
   # GET /people/new.json
   def new
     @person = Person.new
-    @person.build_contact_datum
-    @structure = Venue.find(params[:venue_id]) if params[:venue_id]
+    if params[:venue_id]
+      @structure = Venue.find(params[:venue_id]) if params[:venue_id]
+      @person.structures << @structure
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,7 +39,6 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @person.build_contact_datum unless @person.contact_datum
     @structure = Venue.find(params[:venue_id]) if params[:venue_id]
   end
 
@@ -45,10 +46,11 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(params[:person])
+    @structure = Venue.find(params[:venue_id]) if params[:venue_id]
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person.structure, notice: 'Person was successfully created.' }
+        format.html { redirect_to @structure, notice: 'Person was successfully created.' }
         format.json { render json: @person, status: :created, location: @person }
       else
         format.html { render action: "new" }
@@ -61,12 +63,11 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
-    @person.build_contact_datum unless @person.contact_datum
     @structure = Venue.find(params[:venue_id]) if params[:venue_id]
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @structure, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

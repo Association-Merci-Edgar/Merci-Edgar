@@ -12,13 +12,24 @@
 #  updated_at     :datetime         not null
 #
 
-class Person < ActiveRecord::Base
-  belongs_to :account
-  belongs_to :structure, :polymorphic => true
-  has_one :contact_datum, :as => :contactable, :dependent => :destroy
-  attr_accessible :first_name, :last_name, :contact_datum_attributes, :structure_id, :structure_type
+class Person < Contact
+  attr_accessible :first_name, :last_name, :structure_id, :structure_type
+  has_and_belongs_to_many :structures
+  before_validation :add_structure, :on => :create
 
-  accepts_nested_attributes_for :contact_datum
+  def structure_id=(sid)
+    @structure_id = sid
+  end
 
-  default_scope { where(:account_id => Account.current_id) }
+  def structure_type=(stype)
+    @structure_type = stype
+  end
+
+  private
+  def add_structure
+    if @structure_id.present? && @structure_type.present?
+      structure = @structure_type.constantize.find(@structure_id)
+      self.structures << structure
+    end
+  end
 end

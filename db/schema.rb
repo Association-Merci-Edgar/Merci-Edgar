@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130817150803) do
+ActiveRecord::Schema.define(:version => 20130824111704) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(:version => 20130817150803) do
     t.string   "state"
     t.string   "country"
     t.string   "kind"
-    t.integer  "contact_datum_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "contact_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.float    "latitude"
     t.float    "longitude"
   end
 
-  add_index "addresses", ["contact_datum_id"], :name => "index_addresses_on_contact_datum_id"
+  add_index "addresses", ["contact_id"], :name => "index_addresses_on_contact_datum_id"
 
   create_table "capacities", :force => true do |t|
     t.integer  "nb"
@@ -51,62 +51,40 @@ ActiveRecord::Schema.define(:version => 20130817150803) do
 
   add_index "capacities", ["venue_id"], :name => "index_capacities_on_venue_id"
 
-  create_table "contact_data", :force => true do |t|
-    t.integer  "contactable_id"
-    t.string   "contactable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "contact_data", ["contactable_id"], :name => "index_contact_data_on_contactable_id"
-
   create_table "contacts", :force => true do |t|
-    t.string   "phone"
-    t.string   "email"
-    t.string   "website"
-    t.string   "street"
-    t.string   "postal_code"
-    t.string   "state"
-    t.string   "city"
-    t.string   "country"
-    t.integer  "contactable_id"
-    t.string   "contactable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string  "type"
+    t.string  "name"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.integer "account_id"
   end
+
+  add_index "contacts", ["account_id"], :name => "index_contacts_on_account_id"
 
   create_table "emails", :force => true do |t|
     t.string   "address"
     t.string   "kind"
-    t.integer  "contact_datum_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "emails", ["contact_datum_id"], :name => "index_emails_on_contact_datum_id"
+  add_index "emails", ["contact_id"], :name => "index_emails_on_contact_datum_id"
 
-  create_table "people", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "account_id"
-    t.integer  "structure_id"
-    t.string   "structure_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+  create_table "people_structures", :force => true do |t|
+    t.integer "structure_id"
+    t.integer "person_id"
   end
-
-  add_index "people", ["account_id"], :name => "index_people_on_account_id"
-  add_index "people", ["structure_id"], :name => "index_people_on_structure_id"
 
   create_table "phones", :force => true do |t|
     t.string   "number"
     t.string   "kind"
-    t.integer  "contact_datum_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "phones", ["contact_datum_id"], :name => "index_phones_on_contact_datum_id"
+  add_index "phones", ["contact_id"], :name => "index_phones_on_contact_datum_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -174,23 +152,14 @@ ActiveRecord::Schema.define(:version => 20130817150803) do
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
-  create_table "venues", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "account_id"
-  end
-
-  add_index "venues", ["account_id"], :name => "index_venues_on_account_id"
-
   create_table "websites", :force => true do |t|
     t.string   "url"
     t.string   "kind"
-    t.integer  "contact_datum_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "websites", ["contact_datum_id"], :name => "index_websites_on_contact_datum_id"
+  add_index "websites", ["contact_id"], :name => "index_websites_on_contact_datum_id"
 
 end

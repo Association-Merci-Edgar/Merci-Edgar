@@ -11,7 +11,7 @@
 
 class ContactDatum < ActiveRecord::Base
   attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes
-  belongs_to :contactable, :polymorphic => true
+  belongs_to :contact
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
   has_many :addresses, :dependent => :destroy
