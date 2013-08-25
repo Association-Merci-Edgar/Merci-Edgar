@@ -10,12 +10,12 @@
 #
 
 class Venue < Structure
-  attr_accessible :name, :capacities_attributes
-  has_many :capacities, :dependent => :destroy
+  attr_accessible :name, :venue_info_attributes
   has_many :tasks, :as => :asset
+  has_one :venue_info, :dependent => :destroy
+  accepts_nested_attributes_for :venue_info
 
-  accepts_nested_attributes_for :capacities
-
+  delegate :capacities, :kind, :height, :depth, :width, to: :venue_info
   validates :name, :presence => true
   validate :venue_must_have_at_least_one_address
   validate :venue_name_must_be_unique_by_city, :on => :create

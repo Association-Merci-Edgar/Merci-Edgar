@@ -30,7 +30,8 @@ class VenuesController < AppController
   # GET /venues/new.json
   def new
     @venue = Venue.new
-    @venue.capacities.build
+    venue_info = @venue.build_venue_info
+    venue_info.capacities.build
     @venue.addresses.build
     @venue.emails.build
 

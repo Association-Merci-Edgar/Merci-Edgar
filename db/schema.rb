@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130824111704) do
+ActiveRecord::Schema.define(:version => 20130825124441) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(:version => 20130824111704) do
   create_table "capacities", :force => true do |t|
     t.integer  "nb"
     t.string   "kind"
-    t.integer  "venue_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "venue_info_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "capacities", ["venue_id"], :name => "index_capacities_on_venue_id"
+  add_index "capacities", ["venue_info_id"], :name => "index_capacities_on_venue_id"
 
   create_table "contacts", :force => true do |t|
     t.string  "type"
@@ -151,6 +151,18 @@ ActiveRecord::Schema.define(:version => 20130824111704) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "venue_infos", :force => true do |t|
+    t.float    "depth"
+    t.float    "width"
+    t.float    "height"
+    t.string   "kind"
+    t.integer  "venue_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "venue_infos", ["venue_id"], :name => "index_venue_infos_on_venue_id"
 
   create_table "websites", :force => true do |t|
     t.string   "url"
