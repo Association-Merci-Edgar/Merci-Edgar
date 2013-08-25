@@ -25,9 +25,11 @@
         %p
           - @venue.capacities.each do |capacity|
             = render capacity
-            %span.infolabel.dblue — Paris 20, 
-            %span.infolabel Ile de france
-      %p#notice= notice
+          —
+          %span.infolabel.dblue= @venue.addresses.first.city
+          %span.infolabel Ile de france
+      - if notice.present?
+        %p#notice= notice
       
       
     .meta
@@ -80,10 +82,10 @@
                 
             .span3
               
-              - @venue.contact_datum.emails.each do |email|
+              - @venue.emails.each do |email|
                 = render email
 
-              - @venue.contact_datum.phones.each do |phone|
+              - @venue.phones.each do |phone|
                 = render phone
                 
         #infos.tab-pane
@@ -113,16 +115,16 @@
             .span6
               %i.entypo.edi-location-2
               Coordonnées
-              - @venue.contact_datum.addresses.each do |address|
+              - @venue.addresses.each do |address|
                 = render address
 
-              - @venue.contact_datum.emails.each do |email|
+              - @venue.emails.each do |email|
                 = render email
 
-              - @venue.contact_datum.phones.each do |phone|
+              - @venue.phones.each do |phone|
                 = render phone
 
-              - @venue.contact_datum.websites.each do |website|
+              - @venue.websites.each do |website|
                 = render website
           
         #team.tab-pane

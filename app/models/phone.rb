@@ -12,19 +12,20 @@
 
 class Phone < ActiveRecord::Base
   belongs_to :contact_datum
-  attr_accessible :kind, :national_number
+  attr_accessible :kind, :national_number, :country
   # validates :national_number, :phone => true, :allow_blank => true
   validate :check_number
+  before_validation :internationalize_phone_number
+  attr_accessor :country
 
-  attr_writer :national_number
+  def country
+    @country ||= "FR"
+  end
 
-  def internationalize_phone_number(country)
-    if country
-      c = Country.new(country)
-      self.number = Phony.normalize(self.number)
-      self.number = "#{c.country_code}#{self.number}" unless self.number.starts_with?(c.country_code)
-    end
+  def internationalize_phone_number
+    c = Country.new(country)
     self.number = Phony.normalize(self.number)
+    self.number = "#{c.country_code}#{self.number}" unless self.number.starts_with?(c.country_code)
   end
 
   def formatted_phone
@@ -41,7 +42,7 @@ class Phone < ActiveRecord::Base
   end
 
   def check_number
-    if @national_number.present? && !Phony.plausible?(@national_number)
+    if !Phony.plausible?(number)
       errors.add(:national_number, "Wrong phone number")
     end
   end

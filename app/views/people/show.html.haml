@@ -10,22 +10,18 @@
 %p
 Coordonnées
 
-- if @person.contact_datum
-  - @person.contact_datum.addresses.each do |address|
-    = render address
+- @person.addresses.each do |address|
+  = render address
 
-- if @person.contact_datum
-  - @person.contact_datum.emails.each do |email|
-    = render email
+- @person.emails.each do |email|
+  = render email
 
-- if @person.contact_datum
-  - @person.contact_datum.phones.each do |phone|
-    = render phone
+- @person.phones.each do |phone|
+  = render phone
 
-- if @person.contact_datum
-  - @person.contact_datum.websites.each do |website|
-    = render website
+- @person.websites.each do |website|
+  = render website
 
-= link_to 'Edit', edit_person_path(@person)
+= link_to 'Edit', edit_venue_person_path(@person.structures.first,@person)
 \|
-= link_to 'Back', people_path
+= link_to 'Back', @person.structures.first
