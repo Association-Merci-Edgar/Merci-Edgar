@@ -16,14 +16,27 @@ jQuery('.login-toggle').click(function(){
   
 });
 
+
+jQuery("[rel='tooltip']").tooltip();
+
+
+
 jQuery('.login-btn').removeClass("btn");
 
 jQuery('.nav-collapse .nav > li > a').click(function(){
 			
 			jQuery('.collapse.in').removeClass('in').css('height', '0');
 
-		});
+});
+/*
+jQuery('#main-nav a').click(function(){
+  
+  jQuery(this).siblings().removeClass('active');
+  jQuery(this).addClass('active');
 
+});
+*/
+//$(this).removeClass('active').addClass('active').siblings().removeClass('active all');
 
 //  COMMENT 
 //  COMMENT 
