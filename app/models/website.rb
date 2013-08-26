@@ -11,7 +11,7 @@
 #
 
 class Website < ActiveRecord::Base
-  belongs_to :contact_datum
+  belongs_to :contact
   attr_accessible :kind, :url
   validates_format_of :url, :allow_blank => true, :with => /(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
 

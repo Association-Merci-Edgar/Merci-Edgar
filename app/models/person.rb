@@ -14,7 +14,8 @@
 
 class Person < Contact
   attr_accessible :first_name, :last_name, :structure_id, :structure_type
-  has_and_belongs_to_many :structures
+  has_many :structures, through: :people_structures, uniq: :true
+  has_many :people_structures
   before_validation :add_structure, :on => :create
 
   def structure_id=(sid)
