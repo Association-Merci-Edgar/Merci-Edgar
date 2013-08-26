@@ -16,12 +16,12 @@
       .infos
         %h3= @venue.name
         .tags
-          %span.label= t(@venue.kind)
-          %span.label Rock
-          %span.label Punk
-          %span.label Jeune public
-          %span.label Co-réalisation
-          %span.label Location
+          %span.tag.tag-type= t(@venue.kind)
+          %span.tag.tag-style Rock
+          %span.tag.tag-style Punk
+          %span.tag.tag-style Jeune public
+          %span.tag.tag-legal Co-réalisation
+          %span.tag.tag-legal Location
         %p
           - @venue.venue_info.capacities.each do |capacity|
             = render capacity
@@ -52,8 +52,10 @@
           %a{"data-toggle" => "tab", :href => "#infos"} Infos
         %li
           %a{"data-toggle" => "tab", :href => "#team"}= "Équipe #{@venue.people.size}"
+          /%span.label (sur le compteur)
         %li
-          %a{"data-toggle" => "tab", :href => "#tasks"}= "#{@pending_tasks.size} #{t(:tasks)}"
+          %a{"data-toggle" => "tab", :href => "#tasks"}= "#{t(:tasks)} #{@pending_tasks.size}"
+          /%span.label (sur le compteur)
         %li
           %a{"data-toggle" => "tab", :href => "#dates"} Dates
           
@@ -69,6 +71,7 @@
               /"#{t("simple_form.labels.defaults.first_name")}"
               
               <input class="btn" type="submit" class="submit" value="Submit" />
+              
               %ul.list-large
                 %li
                   %h4 Hier — Utilisateur Untel pour Telprojet
@@ -81,61 +84,112 @@
                   %p Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
                 
             .span3
-              
-              - @venue.emails.each do |email|
-                = render email
+              %ul.infos
+                - @venue.emails.each do |email|
+                  = render email
 
-              - @venue.phones.each do |phone|
-                = render phone
-                
+                - @venue.phones.each do |phone|
+                  = render phone
+
         #infos.tab-pane
           .row-fluid
             .span6
-              %ul.nav
-                %li.nav-header
-                  %i.entypo.edi-info
+              %ul.infos
+                /%i.entypo.edi-info
+                %li.infolabel
                   Information
                 %li
                   Ouverture au public
                 %li
                   Saison
 
-              %ul.nav
-                %li.nav-header
-                  %i.entypo.edi-info
+              %ul.infos
+                %li.infolabel
+                  /%i.entypo.edi-info
                   Administratif
                 %li
-                  adresse
-                  %span.infolabel Administratif
+                  2 rue machin — 54089 Lilles
+                  /%span.infolabel Administratif
                 %li
                   %a{:href => "#"}
                     email@provider.com
-                  %span.infolabel Administratif
-              
+                    
+              %ul.infos
+                %li.infolabel
+                  Réseaux sociaux
+                
+                .tabbable
+                  %ul.nav.nav-tabs.sub-tabs
+                    %li.active
+                      %a{"data-toggle" => "tab", :href => "#facebook"}
+                        %i.entypo.edi-facebook
+                    %li
+                      %a{"data-toggle" => "tab", :href => "#twitter"}
+                        %i.entypo.edi-twitter
+                    
+
+                  .tab-content.sub-pane
+
+                    #facebook.tab-pane.active
+                      facebook
+                    #twitter.tab-pane
+                      twitter
+                    
             .span6
-              %i.entypo.edi-location-2
-              Coordonnées
-              - @venue.addresses.each do |address|
-                = render address
+              %ul.infos
+                /%i.entypo.edi-location-2
+                %li.infolabel
+                  Coordonnées
+                
+                - @venue.addresses.each do |address|
+                  = render address
 
-              - @venue.emails.each do |email|
-                = render email
+                - @venue.emails.each do |email|
+                  = render email
 
-              - @venue.phones.each do |phone|
-                = render phone
+                - @venue.phones.each do |phone|
+                  = render phone
 
-              - @venue.websites.each do |website|
-                = render website
-          
+                - @venue.websites.each do |website|
+                  = render website
+
         #team.tab-pane
-          - @people.each do |person|
-            %p
-            %tr
-              %td= link_to "#{person.first_name} #{person.last_name}", person
-              %td= link_to 'Edit', edit_venue_person_path(@venue,person)
-              %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
-          %p
-            = link_to 'New Person', new_venue_person_path(@venue)
+          %ul.list-large.peoples
+            - @people.each do |person|
+            
+              %li
+                .pic-container
+                  .pic
+                    /%i.entypo.edi-house
+                    <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+                .meta
+                  %a{:href => "#"}
+                    %i.entypo.edi-chat
+                  %a{:href => "#"}
+                    %i.entypo.edi-flag
+                  %a{:href => "#"}
+                    %i.entypo.edi-heart
+                  /= link_to 'Edit', edit_venue_path(venue)
+                  = link_to edit_venue_person_path(@venue,person), :class => "shybtn" do
+                    %i.entypo.edi-pencil
+                  /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                  = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+                    %i.entypo.edi-cross
+                %h3= link_to "#{person.first_name} #{person.last_name}", person
+                %span.infos
+                  +33 23 23 74 23 — 
+                  %a{:href => "#"}
+                    email@gmail.com
+                
+                
+                
+            
+            .plus-in-list
+              = link_to new_venue_person_path(@venue) do
+                %i.entypo.edi-plus-3
+                %span
+                  New Person
+            
 
         #tasks.tab-pane
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @venue}
@@ -144,7 +198,13 @@
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @venue}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @venue}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @venue}
-
+          
+          .plus-in-list
+            %a{:href => "#"}
+              /= link_to new_venue_person_path(@venue) do
+              %i.entypo.edi-plus-3
+              %span
+                New Task
                       
         #dates.tab-pane
           %p Dates de spectacle
@@ -158,4 +218,10 @@
             %li
               %h4 Concert — Mardi 12 septembe 2013
               %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              
+          .plus-in-list
+            %a{:href => "#"}
+              %i.entypo.edi-plus-3
+              %span
+                New Date
               

@@ -1,3 +1,6 @@
 - if devise_mapping.recoverable? && controller_name != 'passwords'
-  = link_to t("simple_form.labels.defaults.forgot_password"), new_password_path(resource_name)
-  %br/
+  /= link_to t("simple_form.labels.defaults.forgot_password"), new_password_path(resource_name)
+  = link_to t('?'), new_password_path(resource_name), :class => "login-btn forgot-btn", :rel => "tooltip", :title => "Forgot your password ?"
+  
+  / !!! WRONG TITLE SHOWING. WANTED : , :title => "Forgot your password ?"
+  /%br/login-btn

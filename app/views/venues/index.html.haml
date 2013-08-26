@@ -16,36 +16,107 @@
   Listing venues
 
 .row-fluid
-  .span12
+  .span3.filters
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Types
+      %li
+        %a.active{:href => "#"}
+          %i.entypo.edi-book
+          Tout
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-user
+          Personnes
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-venue
+          Structures
+       
+       
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Listes
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste A
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste B
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste C
+                   
+          
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Statut
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-chat
+          Déjà échangé
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-flag
+          Déjà joué
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-heart
+          Favoris  
+          
+          
+          
+  .span9
     %ul.list-large
+      %li.list-header
+        50 résultats
+        .meta
+          %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+            %i.entypo.edi-list
       - @venues.each do |venue|
         %li
-          = link_to venue do
+          .meta
+          
+            %a{:href => "#"}
+              %i.entypo.edi-chat
+              
+            %a{:href => "#"}
+              %i.entypo.edi-flag
+            %a{:href => "#"}
+              %i.entypo.edi-heart
+            /= link_to 'Edit', edit_venue_path(venue)
+            = link_to edit_venue_path(venue), :class => "shybtn" do
+              %i.entypo.edi-pencil
+            = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+              %i.entypo.edi-cross
+          = link_to venue do 
             
-            = venue.name
+            %h3= venue.name
+            
             /%i.entypo.edi-house
             .pic-container
               .pic
                 /%i.entypo.edi-house
                 <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+          %span
             2, rue machin — 75020 Paris 
+          .tags
+            %span.tag.tag-type SMAC
+            %span.tag.tag-style Rock
+            %span.tag.tag-style Punk
+            %span.tag.tag-style Jeune public
+            %span.tag.tag-legal Co-réalisation
+            %span.tag.tag-legal Location
             
-            /%td= link_to 'Show', venue
-            .meta
-              %a{:href => "#"}
-                %i.entypo.edi-flag
-              %a{:href => "#"}
-                %i.entypo.edi-heart
-              /= link_to 'Edit', edit_venue_path(venue)
-              = link_to edit_venue_path(venue), :class => "shybtn" do
-                %i.entypo.edi-pencil
-              = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
-                %i.entypo.edi-cross
-              /%i.entypo.edi-house
-              /%td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-
+          /%td= link_to 'Show', venue
+          /%i.entypo.edi-house
+          /%td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }
           
-      %li
-        = link_to 'New Venue', new_venue_path
-            
+      .plus-in-list
+        = link_to new_venue_path do
+          %i.entypo.edi-plus-3
+          %span
+            New Venue

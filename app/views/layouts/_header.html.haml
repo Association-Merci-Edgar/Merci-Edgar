@@ -1,6 +1,8 @@
 /
   \######################  START HEADER ######################
   \==============================================================
+
+
 %header#header-section.headertop.needhead
   / START PARALLAX BG
   .innerbg
@@ -26,12 +28,44 @@
                   %i.ed-icon-ed-logo.logotype
               #baseline
                 = t("home.baseline").html_safe
+                
+                    
+             
+          
+              #login-tab
+                - if user_signed_in?
+                  - if current_user.has_role? :admin
+                    = link_to "Administration", users_path
+                  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+                - else
+                  /= link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+                  
+                  /%a{:href => "#", :class => "login-btn login-toggle"}
+                  .login-btn.login-toggle
+                    /=t("simple_form.labels.defaults.signin")
+                    se connecter
+                    
+              #login-form.invisible
+                .form-signin
+                  /%h2 #{t("simple_form.labels.defaults.signin")}
+                  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+                    = f.input_field :email, :autofocus => true, :class => "medium", :placeholder => "#{t("simple_form.labels.defaults.first_name")}"
+                    = f.input_field :password, :class => "small", :placeholder => "#{t("simple_form.labels.defaults.password")}"
+                    /= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+                    = render "devise/shared/links"
+                    = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'login-btn login-submit'
+                    /= link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+                /%a{:href => "#", :class => "login-btn login-toggle close-btn"}
+                .login-btn.login-toggle.close-btn
+                  x
+                  
               #langswitch.noselect
                 = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
                 |
                 = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
-                 
+                
               / LEFT SOCIALS
+              
               #socialfixed
                 %ul.social-left
                   %li
@@ -43,13 +77,8 @@
                   %li
                     %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
                       %i.ed-icon-vimeo
-              #login-menu
-                - if user_signed_in?
-                  - if current_user.has_role? :admin
-                    = link_to "Administration", users_path
-                  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
-                - else
-                  = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+                      
+              
                   
           
               / END LEFT SOCIALS    
