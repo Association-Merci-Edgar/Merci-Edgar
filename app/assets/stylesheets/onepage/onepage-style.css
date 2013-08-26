@@ -137,6 +137,10 @@ ul.social-left {
 		background-position: 0px 0px;
 }
 
+.tooltip.in {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
 
 .invisible {display:none;}
 

@@ -16,14 +16,73 @@
   Listing venues
 
 .row-fluid
-  .span12
+  .span3.filters
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Types
+      %li
+        %a.active{:href => "#"}
+          %i.entypo.edi-book
+          Tout
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-user
+          Personnes
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-venue
+          Structures
+       
+       
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Listes
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste A
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste B
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste C
+                   
+          
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Statut
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-chat
+          Déjà échangé
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-flag
+          Déjà joué
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-heart
+          Favoris  
+          
+          
+          
+  .span9
     %ul.list-large
+      %li.list-header
+        50 résultats
+        .meta
+          %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+            %i.entypo.edi-list
       - @venues.each do |venue|
         %li
           .meta
           
             %a{:href => "#"}
               %i.entypo.edi-chat
+              
             %a{:href => "#"}
               %i.entypo.edi-flag
             %a{:href => "#"}
