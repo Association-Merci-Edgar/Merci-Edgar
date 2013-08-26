@@ -15,7 +15,7 @@ class Venue < Structure
   has_one :venue_info, :dependent => :destroy
   accepts_nested_attributes_for :venue_info
 
-  delegate :capacities, :kind, :height, :depth, :width, to: :venue_info
+  delegate :capacities, :kind, :height, :depth, :width, to: :venue_info, allow_nil: true
   validates :name, :presence => true
   validate :venue_must_have_at_least_one_address
   validate :venue_name_must_be_unique_by_city, :on => :create

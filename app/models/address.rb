@@ -21,7 +21,7 @@ class Address < ActiveRecord::Base
   attr_accessible :city, :country, :kind, :postal_code, :state, :street
   acts_as_gmappable :process_geocoding => false
   geocoded_by :gmaps4rails_address
-  before_save :geocode
+  # before_save :geocode
   validates :city, :presence => :true
   validates :country, :presence => :true
 
