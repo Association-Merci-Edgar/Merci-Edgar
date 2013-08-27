@@ -18,11 +18,12 @@
         
         - @person.people_structures.each do |ps|
           %span.infolabel.dblue
-            ps.title
+            = ps.title
           %span.infolabel  
             à
           %span.infolabel.dblue
-            ps.structure.name
+            = link_to ps.structure.name, ps.structure
+            \/
           
         .tags
           /%span.tag.tag-type= t(@venue.kind)
@@ -96,6 +97,7 @@
                 - @person.emails.each do |email|
                   = render email
                 - @person.phones.each do |phone|
+                  = render phone
         #infos.tab-pane
           .row-fluid
             .span6
