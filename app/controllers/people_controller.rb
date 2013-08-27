@@ -2,11 +2,11 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @contacts = Person.order(:name).page params[:page]
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @people }
+      format.html { render "contacts/index"}
+      format.json { render json: @contacts }
     end
   end
 

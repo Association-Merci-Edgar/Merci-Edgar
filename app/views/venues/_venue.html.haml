@@ -1,0 +1,37 @@
+%li
+  .meta
+  
+    %a{:href => "#"}
+      %i.entypo.edi-chat
+      
+    %a{:href => "#"}
+      %i.entypo.edi-flag
+    %a{:href => "#"}
+      %i.entypo.edi-heart
+    /= link_to 'Edit', edit_venue_path(venue)
+    = link_to edit_venue_path(venue), :class => "shybtn" do
+      %i.entypo.edi-pencil
+    = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+      %i.entypo.edi-cross
+  = link_to venue do 
+    
+    %h3= venue.name
+    
+    /%i.entypo.edi-house
+    .pic-container
+      .pic
+        /%i.entypo.edi-house
+        <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+  %span
+    2, rue machin — 75020 Paris 
+  .tags
+    %span.tag.tag-type SMAC
+    %span.tag.tag-style Rock
+    %span.tag.tag-style Punk
+    %span.tag.tag-style Jeune public
+    %span.tag.tag-legal Co-réalisation
+    %span.tag.tag-legal Location
+    
+  /%td= link_to 'Show', venue
+  /%i.entypo.edi-house
+  /%td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }

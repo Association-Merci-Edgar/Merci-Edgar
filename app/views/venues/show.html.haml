@@ -175,7 +175,7 @@
                   /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
                   = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
                     %i.entypo.edi-cross
-                %h3= link_to "#{person.first_name} #{person.last_name}", person
+                %h3= link_to "#{person.first_name} #{person.name}", person
                 %span.infos
                   +33 23 23 74 23 — 
                   %a{:href => "#"}

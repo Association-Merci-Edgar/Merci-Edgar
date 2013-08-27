@@ -5,7 +5,7 @@ class Structure < Contact
   has_many :people, :through => :people_structures, uniq: :true
 
   def add_person(first_name,last_name,title)
-    p = self.people.find_or_initialize_by_first_name_and_last_name(first_name:first_name,last_name:last_name)
+    p = self.people.find_or_initialize_by_first_name_and_name(first_name:first_name,name:last_name)
     ps = self.people_structures.build
     ps.person = p
     ps.title = title.titleize
