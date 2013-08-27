@@ -290,6 +290,7 @@ i {font-style: normal;}
   color:#fff;
   //background: $dblue;
   @include transition02;
+  z-index:2000;
 }
 
 .plusmenu-trigger {
@@ -375,10 +376,12 @@ i {font-style: normal;}
 
 .list-large li {
   padding:20px 0px;
-  border-top: dotted 2px lighten( $dblue, 60% );
+  border-top: solid 1px lighten( $dblue, 60% );
   list-decoration:none;
   clear:both;
   min-height:60px;
+  &:first-child{border:none;}
+  
   &:hover{background:$white;
     //@include transfX;
     }
@@ -479,7 +482,9 @@ h3 {
 .infolabel {
   font-size:0.9em;
   color: $lblue;
+  
 }
+.dblue{color:$dblue;}
 
 ul.infos {margin-left:0; margin-bottom:24px;
   list-style:none;
@@ -496,6 +501,7 @@ ul.infos {margin-left:0; margin-bottom:24px;
 
 .nav-tabs {font-size:16px;
   font-weight:bold;
+  border-bottom:solid 1px lighten( $dblue, 60% );
 }
   
 .nav-tabs > li > a {
@@ -538,5 +544,7 @@ ul.infos {margin-left:0; margin-bottom:24px;
 @media (max-width: 767px) {
 body { padding:0px;}
 .togglemenu {display: inline; margin-left:-20px;}
+
+.filters-list {float:left; width: 33%;}
 }
 
