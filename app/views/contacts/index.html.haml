@@ -1,0 +1,81 @@
+-content_for :right_panel do
+  .leftmenu
+    .sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header
+          %a{:href => "#"}
+          %i.entypo.edi-gauge
+          Informations
+        %li
+          %a{:href => "#"}
+          %i.entypo.edi-gauge
+          Tableau de bord
+
+
+.page-title
+  = t(params[:controller]).titleize
+
+.row-fluid
+  .span3.filters
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Types
+      %li
+        = nav_link "Tout", contacts_path, "edi-book"
+      %li
+        = nav_link "Personnes", people_path, "edi-user"
+      %li
+        = nav_link "Salles", venues_path, "edi-venue"
+       
+       
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Listes
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste A
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste B
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-bookmarks
+          Liste C
+                   
+          
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Statut
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-chat
+          Déjà échangé
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-flag
+          Déjà joué
+      %li
+        %a{:href => "#"}
+          %i.entypo.edi-heart
+          Favoris  
+          
+          
+          
+  .span9
+    %ul.list-large
+      %li.list-header
+        50 résultats
+        = paginate @contacts
+        .meta
+          %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+            %i.entypo.edi-list
+      
+      = render @contacts
+      
+      .plus-in-list
+        = link_to new_venue_path do
+          %i.entypo.edi-plus-3
+          %span
+            New Venue

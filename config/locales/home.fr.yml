@@ -1,5 +1,8 @@
 --- 
 fr:
+  venues: Salles
+  contacts: Contacts
+  people: Personnes
   baseline: "l’assistant virtuel des artistes" 
   home:
     baseline: "l’assistant virtuel<br>des artistes"

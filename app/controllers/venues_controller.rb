@@ -4,11 +4,11 @@ class VenuesController < AppController
   # GET /venues
   # GET /venues.json
   def index
-    @venues = Venue.all
+    @contacts = Venue.order(:name).page params[:page]
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @venues }
+      format.html { render "contacts/index"}
+      format.json { render json: @contacts }
     end
   end
 

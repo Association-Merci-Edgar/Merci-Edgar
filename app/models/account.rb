@@ -38,7 +38,7 @@ class Account < ActiveRecord::Base
   end
 
   def mystrip(value)
-    if value == "-" || value.length < 3
+    if value.present? && value == "-" || value.length < 3
       value = nil
     end
     value
@@ -110,23 +110,22 @@ class Account < ActiveRecord::Base
 
       if !v.save
         logger.debug "Problem importing #{v.name} venue \n"
+      else
+        add_contact("DIRECTEUR", params, v)
+        add_contact("CODIRECTEUR", params, v)
+        add_contact("DIR ADJOINT", params, v)
+        add_contact("ADMINISTRATEUR", params, v)
+        add_contact("SEC GENERAL", params, v)
+        add_contact("RESP PROG ARTISTIQUE", params, v)
+        add_contact("CO RESP PROG", params, v)
+        add_contact("AUTRE RESP PROG", params, v)
+        add_contact("RESP JEUNE PUBLIC", params, v)
+        add_contact("RESP TECHNIQUE", params, v)
+        add_contact("COMPTABLE", params, v)
+        add_contact("RESP COMMUNICATION", params, v)
+        add_contact("RESP RELATIONS PUBLIQUES", params, v)
+        add_contact("RESP RELATIONS PRESSE", params, v)
       end
-
-      add_contact("DIRECTEUR", params, v)
-      add_contact("CODIRECTEUR", params, v)
-      add_contact("DIR ADJOINT", params, v)
-      add_contact("ADMINISTRATEUR", params, v)
-      add_contact("SEC GENERAL", params, v)
-      add_contact("RESP PROG ARTISTIQUE", params, v)
-      add_contact("CO RESP PROG", params, v)
-      add_contact("AUTRE RESP PROG", params, v)
-      add_contact("RESP JEUNE PUBLIC", params, v)
-      add_contact("RESP TECHNIQUE", params, v)
-      add_contact("COMPTABLE", params, v)
-      add_contact("RESP COMMUNICATION", params, v)
-      add_contact("RESP RELATIONS PUBLIQUES", params, v)
-      add_contact("RESP RELATIONS PRESSE", params, v)
-
     end
   end
 end

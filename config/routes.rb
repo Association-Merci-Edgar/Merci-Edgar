@@ -25,7 +25,7 @@ Edgar::Application.routes.draw do
       end
     end
     resources :people
-
+    resources :contacts
   end
 
 # handles /
