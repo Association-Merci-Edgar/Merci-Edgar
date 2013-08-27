@@ -1,27 +1,194 @@
-%p#notice= notice
+/ _____________________________________  PERSON
+/-content_for :right_panel do
+/  .rightmenu
+/    .sidebar-nav
+/-content_for :plus_menu do   
+            
+.row-fluid.toppage.showitem
+  .span12
+    %header
+      .pic-container
+        .pic
+          /%i.entypo.edi-house
+          <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+      .infos
+        %h3
+          = @person.first_name
+          = @person.name
+        
+        - @person.people_structures.each do |ps|
+          %span.infolabel.dblue
+            ps.title
+          %span.infolabel  
+            à
+          %span.infolabel.dblue
+            ps.structure.name
+          
+        .tags
+          /%span.tag.tag-type= t(@venue.kind)
+          %span.tag.tag-style Rock
+          %span.tag.tag-style Punk
+          %span.tag.tag-style Jeune public
+          %span.tag.tag-legal Co-réalisation
+          %span.tag.tag-legal Location
+          /%p
+          /%span.infolabel.dblue= @person.addresses.first.city
+          /%span.infolabel — Ile de france
+      - if notice.present?
+        %p#notice= notice
+      
+      
+    .meta
+      %i.entypo.edi-flag
+      %i.entypo.edi-heart
+      = link_to edit_venue_person_path(@person.structures.first,@person), :class => "shybtn" do
+        %i.entypo.edi-pencil
+        .hiddentag
+          Éditer cette fiche
+          %br
+          %span.infolabel modifié le 20/02/2013 par Untel
+      
+.row-fluid
+  .span12
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#activity"} Suivi
+        %li
+          %a{"data-toggle" => "tab", :href => "#infos"} Infos
+        %li
+          /%a{"data-toggle" => "tab", :href => "#tasks"}= "#{t(:tasks)} #{@pending_tasks.size}"
+          %a{"data-toggle" => "tab", :href => "#tasks"} Tâches
+          /%span.label (sur le compteur)
+        %li
+          %a{"data-toggle" => "tab", :href => "#dates"} Dates
+          
+          
+      .tab-content
+      
+        #activity.tab-pane.active
+          .row-fluid
+            .span9
+              <textarea id="newnotes" class="activityfield" name="" type="text" placeholder="— écrire une nouvelle note"/>
+              </textarea>
+              /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
+              /"#{t("simple_form.labels.defaults.first_name")}"
+              
+              <input class="btn" type="submit" class="submit" value="Submit" />
+              /.plus-in-list
+              /%a{:href => "#"}
+              /%i.entypo.edi-plus-3
+                 
+                    
+              %ul.list-large
+                %li
+                  %h4 Hier — Utilisateur Untel pour Telprojet
+                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+                %li
+                  %h4 Jeudi 7 mai 2013 — Utilisateur Untel pour Telprojet
+                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porriqdsgiqtur late distrtum sublimius attolluntur. Superatis Tauri moddntis verticibus qui ad solis ospatiis porrigitur late distrtum sublqimius attolluntur. 
+                %li
+                  %h4 8 mai 2013 — Utilisateur Untel pour Telprojet
+                  %p Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                
+            .span3
+              %ul.infos
+                - @person.emails.each do |email|
+                  = render email
+                - @person.phones.each do |phone|
+        #infos.tab-pane
+          .row-fluid
+            .span6
+              %ul.infos
+                /%i.entypo.edi-info
+                %li.infolabel
+                  Information
+                %li
+                  Ouverture au public
+                %li
+                  Saison
 
-%p
-  %b First name:
-  = @person.first_name
-%p
-  %b Last name:
-  = @person.name
+              %ul.infos
+                %li.infolabel
+                  /%i.entypo.edi-info
+                  Administratif
+                %li
+                  2 rue machin — 54089 Lilles
+                  /%span.infolabel Administratif
+                %li
+                  %a{:href => "#"}
+                    email@provider.com
+                    
+              %ul.infos
+                %li.infolabel
+                  Réseaux sociaux
+                
+                .tabbable
+                  %ul.nav.nav-tabs.sub-tabs
+                    %li.active
+                      %a{"data-toggle" => "tab", :href => "#facebook"}
+                        %i.entypo.edi-facebook
+                    %li
+                      %a{"data-toggle" => "tab", :href => "#twitter"}
+                        %i.entypo.edi-twitter
+                    
 
-%p
-Coordonnées
+                  .tab-content.sub-pane
 
-- @person.addresses.each do |address|
-  = render address
+                    #facebook.tab-pane.active
+                      facebook
+                    #twitter.tab-pane
+                      twitter
+                    
+            .span6
+              %ul.infos
+                /%i.entypo.edi-location-2
+                %li.infolabel
+                  Coordonnées
+                
+                - @person.addresses.each do |address|
+                  = render address
 
-- @person.emails.each do |email|
-  = render email
+                - @person.emails.each do |email|
+                  = render email
 
-- @person.phones.each do |phone|
-  = render phone
+                - @person.phones.each do |phone|
+                  = render phone
 
-- @person.websites.each do |website|
-  = render website
+                - @person.websites.each do |website|
+                  = render website
 
-= link_to 'Edit', edit_venue_person_path(@person.structures.first,@person)
-\|
-= link_to 'Back', @person.structures.first
+      
+        #tasks.tab-pane
+          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person}
+          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person}
+          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person}
+          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person}
+          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person}
+          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person}
+          
+          .plus-in-list
+            %a{:href => "#"}
+              /= link_to new_venue_person_path(@venue) do
+              %i.entypo.edi-plus-3
+              %span
+                New Task
+                      
+        #dates.tab-pane
+          
+          %ul.list-large
+            %li
+              %h4 Concert — Lundi 1 juin 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            %li
+              %h4 Concert — Mardi 12 septembe 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            %li
+              %h4 Concert — Mardi 12 septembe 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              
+          .plus-in-list
+            %a{:href => "#"}
+              %i.entypo.edi-plus-3
+              %span
+                New Date
