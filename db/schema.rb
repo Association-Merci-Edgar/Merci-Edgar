@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20130825153131) do
     t.string  "type"
     t.string  "name"
     t.string  "first_name"
-    t.string  "last_name"
     t.integer "account_id"
   end
 
