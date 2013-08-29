@@ -17,11 +17,14 @@
 //= require jquery_nested_form
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
+//= require_tree ./appli
 // require_tree .
 $('document').ready(function() {
 	
+
+  $("html").niceScroll();
+  			
 	$('.datepicker').datetimepicker();
-  
 	// display validation errors for the "request invitation" form
   if ($('.alert-error').length > 0) {
     $("#request-invite").modal('toggle');

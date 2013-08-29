@@ -35,7 +35,14 @@ fr:
         name: "Nom de votre association, label, groupe..."
         user: "Nom d'utilisateur"
       venue:
-        name: Nom de la salle
+        name: "Nom"
+        depth: "Profondeur"
+      emails:
+        address: "Adresse électronique"
+      phones:
+        national_number : "Numéro de téléphone"
+    buttons:
+      add_capacity : Ajouter une jauge    
     labels:
       defaults:
         forgot_password : "Mot de passe oublié ?"
@@ -48,20 +55,23 @@ fr:
         firsttime_welcome: "Bienvenue chez Edgar !"
         firsttime_wording1: "Faisons les présentations:"
         firsttime_wording2: "Activation de compte pour l’adresse :"
+        
     hints:
       defaults:
         password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
-      venue:
-        name: "Un nom unique par ville"
+      #venue:
+      #  name: "Un nom unique par ville"   
     options:
       venue:
         venue_info:
           kind:
+            kind: Type de structure
             bar: Bar
             cultural_center: Centre culturel
             smac: SMAC
             private_venue: Salle privée
             theater: Théâtre
+          
       task:
         bucket:
           overdue: En retard
