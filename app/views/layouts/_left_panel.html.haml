@@ -4,16 +4,19 @@
     %i.entypo.edi-logoedgar.logotype
   .account-tab
     The Beatles
-    %a.rightbt{:href => "#"}
-      %i.entypo.edi-cog
+    /%a.rightbt{:href => "#"}
+    /%i.entypo.edi-cog
 %nav.leftmenu
   .sidebar-nav
     %ul.nav.nav-list
-      %li
-        %a.user-tab.rightbt{:href => "#"}
-          %i.entypo.edi-cog
-        %a.user-tab{:href => "#"}
+      %li.user-tab
+        /%a.user-tab.rightbt{:href => "#"}
+        /%i.entypo.edi-cog
+        /%a.user-tab{:href => "/accounts"}
+        
+        = link_to edit_user_registration_path do
           = current_user.name
+          %i.entypo.edi-cog.righticon
           /User: #{@user.name}
           
       %li
