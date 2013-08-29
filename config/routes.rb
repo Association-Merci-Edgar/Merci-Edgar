@@ -25,6 +25,7 @@ Edgar::Application.routes.draw do
       end
     end
     resources :people
+    get 'tags/:tag', to: 'contacts#index', as: :tag
     resources :contacts
   end
 

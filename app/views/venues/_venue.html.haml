@@ -21,10 +21,12 @@
     .pic-container
       .pic
         /%i.entypo.edi-house
-        <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+        = image_tag venue.avatar_url(:thumb)
   %span
     2, rue machin — 75020 Paris 
   .tags
+    = show_tag(venue.kind,"tag-type")
+    = show_tag("Classic Rock","tag-style")
     %span.tag.tag-type SMAC
     %span.tag.tag-style Rock
     %span.tag.tag-style Punk

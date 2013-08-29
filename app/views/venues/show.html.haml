@@ -9,11 +9,11 @@
       .pic-container
         .pic
           /%i.entypo.edi-house
-          <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+          = image_tag @venue.avatar_url
       .infos
         %h3= @venue.name
         .tags
-          %span.tag.tag-type= t(@venue.kind)
+          %span.tag.tag-type= t(@venue.kind) if @venue.kind.present?
           %span.tag.tag-style Rock
           %span.tag.tag-style Punk
           %span.tag.tag-style Jeune public
@@ -158,7 +158,7 @@
                 .pic-container
                   .pic
                     /%i.entypo.edi-house
-                    <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+                    = image_tag person.avatar_url(:thumb)
                 .meta
                   %a{:href => "#"}
                     %i.entypo.edi-chat

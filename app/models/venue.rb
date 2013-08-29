@@ -20,6 +20,9 @@ class Venue < Structure
   validate :venue_must_have_at_least_one_address
   validate :venue_name_must_be_unique_by_city, :on => :create
 
+  has_many :taggings, as: :asset
+  has_many :styles, through: :taggings, source: :tag, class_name: "Style"
+
 
   def venue_must_have_at_least_one_address
     if self.addresses.blank?
@@ -37,5 +40,15 @@ class Venue < Structure
 
   def to_param
     [id, name.parameterize].join('-')
+  end
+
+  def style_list
+    styles.map(&:name).join(", ")
+  end
+
+  def style_list=(names)
+    self.styles = names.split(",").map do |n|
+      Style.where(name: n.strip).first_or_create!
+    end
   end
 end
