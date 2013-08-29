@@ -6,4 +6,10 @@ module ContactsHelper
       content_tag(:i,"",class:"entypo #{logo}") + link_text
     end
   end
+
+  def show_tag(value,class_name)
+    if value.present?
+      content_tag(:span,value, class:"tag #{class_name}")
+    end
+  end
 end

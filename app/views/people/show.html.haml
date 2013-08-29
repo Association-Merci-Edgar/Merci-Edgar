@@ -10,7 +10,7 @@
       .pic-container
         .pic
           /%i.entypo.edi-house
-          <img src="http://maguette.niang.free.fr/gandi-wene.jpg" />
+          = image_tag @person.avatar_url
       .infos
         %h3
           = @person.first_name

@@ -25,6 +25,10 @@ gem 'client_side_validations-simple_form'
 
 gem 'kaminari'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 gem 'gmaps4rails'
 gem 'geocoder'
 

@@ -1,8 +1,9 @@
-= simple_nested_form_for(@venue) do |f|
+= simple_nested_form_for(@venue, :html => { :class => 'form-horizontal' }) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :name
+    = f.input :name, label:false
+    = f.input :avatar
     = f.fields_for :venue_info do |v|
       = v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center]
       = v.input :depth
@@ -10,17 +11,19 @@
       = v.input :height
       = v.fields_for :capacities do |capacity|
         .nested-fields
-          = capacity.input :nb, :label => "Capacity"
-          = capacity.input :kind, :label => "Type", :collection => %w(Assis Debout Autre),  :selected => "Assis"
-          = capacity.link_to_remove "Remove this capacity"
+          = capacity.input :kind, label:"Capacité" do
+            = capacity.input_field :kind, :label => "Type", :collection => %w(Assis Debout Autre),  :selected => "Assis"
+            = capacity.input_field :nb, :label => "Capacity"
+            = capacity.link_to_remove "Remove this capacity"
       .links
         = v.link_to_add 'Add a new capacity', :capacities
 
     = f.fields_for :emails do |email|
       .nested-fields
-        = email.input :address, :label => "Email", :validate => true
-        = email.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
-        = email.link_to_remove "Remove this email"
+        = email.input :address, label:"Email" do
+          = email.input_field :address, :label => "Email", :validate => true
+          = email.input_field :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+          = email.link_to_remove "Remove this email"
     .links
       = f.link_to_add 'Add a new email', :emails
 
