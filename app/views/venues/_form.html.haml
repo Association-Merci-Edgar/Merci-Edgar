@@ -9,7 +9,7 @@
     %header 
       .pic-container
         .pic
-          = image_to @venue.avatar_url
+          = image_tag @venue.avatar_url
           = f.input :avatar
       = f.input :name, label:false, :class => "span12"
     
