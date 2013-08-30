@@ -37,9 +37,37 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :with_tooltip_in_label, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.wrapper tag: 'div', class: 'control-label' do |ba|
+      ba.use :label_tooltip
+    end
+    b.wrapper :tag => 'div', :class => 'controls' do |ba|
+      ba.use :input
+      ba.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+  
+  config.wrappers :with_tooltip, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |ba|
+      ba.wrapper :tag => 'div', :class => 'input-prepend' do |prepend|
+        prepend.use :input
+      end
+      ba.use :tooltip
+      ba.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+  
+
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
   # Check the Bootstrap docs (http://twitter.github.com/bootstrap)
   # to learn about the different styles for forms and inputs,
   # buttons and other elements.
-  config.default_wrapper = :bootstrap
+  config.default_wrapper = :with_tooltip_in_label
 end

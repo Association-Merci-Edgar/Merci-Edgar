@@ -10,8 +10,9 @@
       .pic-container
         .pic
           = image_tag @venue.avatar_url
-          = f.input :avatar
-      = f.input :name, label:false, :class => "span12"
+    
+    
+    = f.input :name, :class => "span12"
     
     = f.fields_for :venue_info do |v|
       /, :class => "span4"
@@ -24,21 +25,21 @@
         .nested-fields
           = capacity.link_to_remove :title => "Remove this capacity" do
             %i.entypo.edi-minus-2
-          = capacity.input :nb, label:"Capacité", :wrapper => :append do
+          = capacity.input :nb, :wrapper => :append do
             = capacity.input_field :nb, :class => "input-small"
             = capacity.input_field :kind, label:false, :collection => %w(Assis Debout Autre),  :selected => "Assis", :class => "add-on dropdown-toggle"
           .inline-inputs
             %label Dimensions du plateau
             = v.input :depth, :wrapper => :append, :label => false do
-              =f.input_field :depth, :class => "input-mini"
+              =v.input_field :depth, :class => "input-mini"
               =content_tag :span, "P", :class => "add-on"
 
             = v.input :width, :wrapper => :append, :label => false, :input_html => { :class => "inline" } do
-              =f.input_field :width, :class => "input-mini"
+              =v.input_field :width, :class => "input-mini"
               =content_tag :span, "L", :class => "add-on"
 
             = v.input :height, :wrapper => :append, :label => false do
-              =f.input_field :height, :class => "input-mini"
+              =v.input_field :height, :class => "input-mini"
               =content_tag :span, "H", :class => "add-on"
       .links
         = v.link_to_add :capacities, :title => 'Add a new capacity' do
@@ -113,7 +114,7 @@
         /= website.input :url, :label => "Website"
         /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
         
-        = website.input :url, :label => "Website", :wrapper => :append do
+        = website.input :url, :label => "Website", wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
           = website.input_field :url, :class => "input-large"
           = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
         
