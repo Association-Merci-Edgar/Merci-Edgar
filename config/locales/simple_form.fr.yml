@@ -35,8 +35,7 @@ fr:
         name: "Nom de votre association, label, groupe..."
         user: "Nom d'utilisateur"
       venue:
-        name: "Nom"
-        depth: "Profondeur"
+        name: "Nom de la salle"
       emails:
         address: "Adresse électronique"
       phones:
