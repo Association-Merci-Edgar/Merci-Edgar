@@ -12,13 +12,13 @@
           = image_tag @venue.avatar_url
     
     
-    = f.input :name, :class => "span12"
+    = f.input :name, label: false, :class => "span12"
     
     = f.fields_for :venue_info do |v|
       /, :class => "span4"
       /, :input_html => { :class => "span4" }
       .nested-fields
-        = v.input :kind, :collection => [:kind, :smac, :bar, :private_venue, :theater, :cultural_center],  :selected => :kind
+        = v.input :kind, prompt: "Choisissez le type de salle", :collection => [:smac, :bar, :private_venue, :theater, :cultural_center]
         
       /= f.fields_for :venue_info do |v|
       = v.fields_for :capacities do |capacity|
