@@ -58,6 +58,7 @@ fr:
         venue_info:
           capacities:
             nb: Jauge
+          kind: Type de salle
         
     hints:
       defaults:
@@ -66,7 +67,8 @@ fr:
       #  name: "Un nom unique par ville"   
     tooltips:
       venue:
-        name: "Un et un seul nom"
+        venue_info:
+          kind: "SMAC: salle de musique actuelle, blablabla"
     options:
       venue:
         venue_info:
