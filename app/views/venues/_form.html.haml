@@ -18,7 +18,7 @@
       /, :class => "span4"
       /, :input_html => { :class => "span4" }
       .nested-fields
-        = v.input :kind, prompt: "Choisissez le type de salle", :collection => [:smac, :bar, :private_venue, :theater, :cultural_center]
+        = v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
         
       /= f.fields_for :venue_info do |v|
       = v.fields_for :capacities do |capacity|
