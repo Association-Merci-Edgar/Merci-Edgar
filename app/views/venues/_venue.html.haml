@@ -25,15 +25,7 @@
   %span
     2, rue machin — 75020 Paris 
   .tags
-    = show_tag(venue.kind,"tag-type")
-    = show_tag("Classic Rock","tag-style")
-    %span.tag.tag-type SMAC
-    %span.tag.tag-style Rock
-    %span.tag.tag-style Punk
-    %span.tag.tag-style Jeune public
-    %span.tag.tag-legal Co-réalisation
-    %span.tag.tag-legal Location
-    
+    = render partial: "venues/tags", locals: { venue: venue}
   /%td= link_to 'Show', venue
   /%i.entypo.edi-house
   /%td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }

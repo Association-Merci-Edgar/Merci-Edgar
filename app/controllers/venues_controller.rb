@@ -4,8 +4,12 @@ class VenuesController < AppController
   # GET /venues
   # GET /venues.json
   def index
-    @contacts = Venue.order(:name).page params[:page]
-
+    if params[:kind]
+      @filtered_by = "(#{params[:kind]})"
+      @contacts = Venue.order(:name).by_type(params[:kind]).page params[:page]
+    else
+      @contacts = Venue.order(:name).page params[:page]
+    end
     respond_to do |format|
       format.html { render "contacts/index"}
       format.json { render json: @contacts }

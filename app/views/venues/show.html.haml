@@ -13,12 +13,8 @@
       .infos
         %h3= @venue.name
         .tags
-          %span.tag.tag-type= t(@venue.kind) if @venue.kind.present?
-          %span.tag.tag-style Rock
-          %span.tag.tag-style Punk
-          %span.tag.tag-style Jeune public
-          %span.tag.tag-legal Co-réalisation
-          %span.tag.tag-legal Location
+          = render partial: "tags", locals: {venue: @venue}
+ 
         - if @venue.venue_info
           %p
             - @venue.capacities.each do |capacity|

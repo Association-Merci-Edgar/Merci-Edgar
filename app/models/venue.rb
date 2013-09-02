@@ -10,7 +10,7 @@
 #
 
 class Venue < Structure
-  attr_accessible :name, :venue_info_attributes
+  attr_accessible :name, :venue_info_attributes, :style_list
   has_many :tasks, :as => :asset
   has_one :venue_info, :dependent => :destroy
   accepts_nested_attributes_for :venue_info
@@ -24,6 +24,9 @@ class Venue < Structure
   has_many :taggings, as: :asset
   has_many :styles, through: :taggings, source: :tag, class_name: "Style"
 
+  scope :by_type, (lambda do |kind| 
+    joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
+  end)
 
   def venue_must_have_at_least_one_address
     if self.addresses.blank?
