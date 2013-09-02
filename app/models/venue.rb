@@ -10,7 +10,7 @@
 #
 
 class Venue < Structure
-  attr_accessible :name, :venue_info_attributes, :style_list
+  attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids
   has_many :tasks, :as => :asset
   has_one :venue_info, :dependent => :destroy
   accepts_nested_attributes_for :venue_info
@@ -23,8 +23,10 @@ class Venue < Structure
 
   has_many :taggings, as: :asset
   has_many :styles, through: :taggings, source: :tag, class_name: "Style"
+  has_many :networks, through: :taggings, source: :tag, class_name: "Network"
+  has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
 
-  scope :by_type, (lambda do |kind| 
+  scope :by_type, (lambda do |kind|
     joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
   end)
 
@@ -53,6 +55,16 @@ class Venue < Structure
   def style_list=(names)
     self.styles = names.split(",").map do |n|
       Style.where(name: n.strip).first_or_create!
+    end
+  end
+
+  def network_list
+    networks.map(&:name).join(", ")
+  end
+
+  def network_list=(names)
+    self.networks = names.split(",").map do |n|
+      Network.where(name: n.strip).first_or_create!
     end
   end
 end

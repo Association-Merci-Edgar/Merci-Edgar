@@ -1,0 +1,2 @@
+class Network < Tag
+end
