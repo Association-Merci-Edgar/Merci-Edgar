@@ -3,12 +3,14 @@ $dblue90: #45454e;
 $mblue: lighten( $dblue, 20% );
 $lblue: lighten( $dblue, 40% );
 $vlblue: lighten( $dblue, 50% );
-$beige: #edede8;
-$orange:#ff5a3e;
-$yellow:#EDE232;
-$green:#50bfb2;
-$red:rgba(204, 57, 50, 1);
-$white:#fff;
+$beige:   #edede8;
+$orange:  #ff5a3e;
+$yellow:  #EDE232;
+$green:   #50bfb2;
+$green2:  rgba(50, 210, 130, 1);
+$red:     rgba(204, 57, 50, 1);
+$blue:    rgba(80, 180, 210, 1);
+$white:   #fff;
 
 @mixin roundcorners {
 	-webkit-border-radius: 6px;
@@ -28,12 +30,12 @@ $white:#fff;
   box-sizing: content-box;
 }
 
-@mixin transition($speed) {
-  -webkit-transition: all $speed ease-in-out;
-  -moz-transition: all $speed ease-in-out;
-	-ms-transition: all $speed ease-in-out;
-	-o-transition: all $speed ease-in-out;
-	transition: all $speed ease-in-out;
+@mixin transition($prop, $speed) {
+  -webkit-transition: $prop $speed ease-in-out;
+  -moz-transition: $prop $speed ease-in-out;
+	-ms-transition: $prop $speed ease-in-out;
+	-o-transition: $prop $speed ease-in-out;
+	transition: $prop $speed ease-in-out;
 }
 
 @mixin square($px) {
@@ -66,6 +68,10 @@ a {color:$dblue;
 *:focus { outline: none; }
 a:focus { outline: none; }
 
+html, body {
+height: 100%;
+}
+
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
@@ -78,13 +84,13 @@ body {
 	background:$beige;
 }
 
-.mainwrapper {}
+//.mainwrapper, .mainpanel {height:100%;}
 
 .maincontent{
 	float: left;
-	width: 100%;
-	
+	width: 100%;	
 }
+
 .maincontentinner {
 	padding: 34px 64px 34px 34px ;
 }
@@ -94,10 +100,9 @@ body {
 	float: left;
 	width: 240px;
 	background: $dblue;
-/*	background: url(../img/ed-nav-bkg.png) top left repeat;*/
-height:100%;
+	//background: url(../appli/dblue.gif) top left repeat;
 	position:absolute;
-	@include transition(0.2s);
+	//@include transition("all", 0.2s);
 }
 
 #notice {
@@ -176,20 +181,21 @@ height:100%;
 }
 
 @mixin btn {
- 
 }
 
 .btn:hover, btn:focus {
   //transition: background 0.2s;
-  @include transition(0.2s)
+  @include transition("all", 0.2s)
 }
 
 .btn-primary {
   @include roundcorners;
   background:none;
   border:none;
+  text-shadow: none;
   background-color:$green;
   &:hover {background-color:$dblue;};
+  @include transition(background, 0.2s)
 }
 
 
@@ -330,7 +336,7 @@ i {font-style: normal;}
   top:30px;
   color:#fff;
   //background: $dblue;
-  @include transition(0.2s);
+  @include transition(all, 0.2s);
   z-index:2000;
 }
 
@@ -407,6 +413,8 @@ i {font-style: normal;}
 
 
 /* ELEMENTS ________________________________________ */
+.meta { float:right; font-size:20px;}
+.meta i {display:inline-block;}
 
 
 /* List-large ________________________________________ */
@@ -415,6 +423,7 @@ i {font-style: normal;}
   list-style:none;
   margin:0;
   font-size:16px;
+  
 }
 
 .list-large li {
@@ -423,24 +432,64 @@ i {font-style: normal;}
   list-decoration:none;
   clear:both;
   min-height:60px;
+  @include transition("background-color", 0.2s);
+  //@include transition("width", 0.2s);
+  background:$beige;
+  position:relative;
+  
   &:first-child{border:none;}
   
-  &:hover{background:$white;
+  &:hover{
+    background:$white;
+    //width:102%;
     //@include transfX;
     }
+  &:hover .meta .actions { display:block;
+    }
+    
   h3 {
     font-size:24px;
   }
+  .meta { position: absolute; right:0; top:24px;}
 }
+
+.meta .actions {
+  display:none;
+  a {float:right;}
+}
+
 
 .list-large li.list-header { padding:0; min-height: 10px; border:none; margin-bottom:10px;
   &:hover{background:none;
   }
 }
 
+.label-big {
+  @include roundcorners;
+  background:$dblue;
+  color:$white;
+  text-align: center;
+  padding: 8px 14px;
+  margin-bottom:10px;
+}
+.cool {background:$green2;}
+.cold {background:$blue;}
+.hot {background:$red;}
+
+.shybtn{
+  font-size:16px;
+  padding: 4px 12px;
+  text-align: center;
+  border: solid 1px $vlblue;
+  @include roundcorners;
+  &:hover{
+    background:$dblue;
+    color:$white;
+    border-color:transparent;
+  };
+}
 
 
-.shybtn{font-size:16px;}
 .logout-btn {float:right;}
 
 /* Custom-search-form ________________________________________ */
@@ -540,8 +589,8 @@ a.label-large:hover i {background: $yellow;}
   background:$vlblue;
   color:$white;
   text-shadow: none;
-  //@include contentbox;
-  @extend .btn-primary;
+  // @include contentbox;
+  // @extend .btn-primary;
 };
 
 .input-append .add-on { text-align: left;}
@@ -562,7 +611,15 @@ a.label-large:hover i {background: $yellow;}
 
 
 
-.remove_nested_fields, .add_nested_fields {margin-left:180px; font-size:24px; display:block; margin-right:14px;}
+
+.nested-fields, .links {position: relative;}
+
+.remove_nested_fields, .add_nested_fields {margin-left:180px; font-size:24px; display:block;
+  //position:absolute;
+  top:20px;
+  right:20px;
+  
+}
 
 .add_nested_fields i {float:right;
   color:$green;
@@ -573,7 +630,9 @@ a.label-large:hover i {background: $yellow;}
   
 .fields {margin-bottom: 0px;}
 
-.nested-fields, .form-horizontal .links{ padding:16px 0px;
+.nested-fields, .form-horizontal .links {
+  padding:16px 0px;
+  min-height:20px;
   &:hover {background-color:$white;}
 }
 
@@ -695,8 +754,7 @@ ul.infos {margin-left:0; margin-bottom:24px;
 .rightpanel .nav-header {display:inline-block; padding-left:0;}
 .rightpanel ul a { display:inline;}
 */
-.meta { float:right; font-size:20px;}
-.meta i {display:inline-block;}
+
 
 .nav-tabs {font-size:16px;
   font-weight:bold;
@@ -736,8 +794,37 @@ ul.infos {margin-left:0; margin-bottom:24px;
 }
 
 
-//.editbtn:hover .hiddentag {display:block;};
+.editbtn:hover .hiddentag {display:block;};
 .hiddentag { display:none;}
+
+
+
+/* Bootstrap tooltip extension ________________________________________ */
+
+.tooltip.top-left .tooltip-arrow {
+  bottom: -5px;
+  left: 5px;
+  border-width: 5px 5px 0;
+  border-top-color: black;
+}
+.tooltip.top-right .tooltip-arrow {
+  bottom: -5px;
+  right: 5px;
+  border-width: 5px 5px 0;
+  border-top-color: black;
+}
+.tooltip.bottom-left .tooltip-arrow {
+  top: -5px;
+  left: 5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: black;
+}
+.tooltip.bottom-right .tooltip-arrow {
+  top: -5px;
+  right: 5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: black;
+}
 
 
 

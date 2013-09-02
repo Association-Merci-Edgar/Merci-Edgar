@@ -1,5 +1,11 @@
 $('document').ready(function() {
-	
+  
+	$(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
+
+  $('[data-toggle="tooltip"]').tooltip(); 	      // activate tooltips
+  //$(".editbtn").tooltip({html:true});   
+  
+  
 // show/hide the leftpanel _________________________________
   window.smallScreens = function() {
     $('.leftpanel').removeClass( "collapsed");
@@ -10,17 +16,11 @@ $('document').ready(function() {
     if ($(window).width() <= 767) {
 			$('.leftpanel').addClass( "collapsed");
 			$('.mainpanel').addClass( "goleft");
-			
-    
-			
 		} else if ($(window).width() <= 1024) {
   			$('.leftpanel').addClass( "small");
   			$('.mainpanel').addClass( "goleftsmall");
-			
-		} else if ($(window).width() > 1024){
-			
-		}
-		
+		} else if ($(window).width() > 1024) {
+		}	
 		
 	}
 	
@@ -33,7 +33,6 @@ $('document').ready(function() {
 		$('.leftpanel').toggleClass( "collapsed");
 		$('.mainpanel').toggleClass( "goleft");
 	});
-	
 	
 	
 	//alert ("yo");

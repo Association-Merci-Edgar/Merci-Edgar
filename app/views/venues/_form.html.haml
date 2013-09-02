@@ -29,7 +29,7 @@
             = capacity.input_field :nb, :class => "input-small"
             = capacity.input_field :kind, label:false, :collection => %w(Assis Debout Autre),  :selected => "Assis", :class => "add-on dropdown-toggle"
           .inline-inputs
-            %label Dimensions du plateau
+            %label.control-label Dimensions du plateau
             = v.input :depth, :wrapper => :append, :label => false do
               =v.input_field :depth, :class => "input-mini"
               =content_tag :span, "P", :class => "add-on"

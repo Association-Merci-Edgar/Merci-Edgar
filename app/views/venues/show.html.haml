@@ -4,40 +4,36 @@
 /-content_for :plus_menu do   
             
 .row-fluid.toppage.showitem
-  .span12
-    %header
-      .pic-container
-        .pic
-          /%i.entypo.edi-house
-          = image_tag @venue.avatar_url
-      .infos
-        %h3= @venue.name
-        .tags
-          %span.tag.tag-type= t(@venue.kind) if @venue.kind.present?
-          %span.tag.tag-style Rock
-          %span.tag.tag-style Punk
-          %span.tag.tag-style Jeune public
-          %span.tag.tag-legal Co-réalisation
-          %span.tag.tag-legal Location
-        %p
-          - @venue.venue_info.capacities.each do |capacity|
-            = render capacity
-          —
-          %span.infolabel.dblue= @venue.addresses.first.city
-          %span.infolabel Ile de france
-      - if notice.present?
-        %p#notice= notice
-      
-      
-    .meta
-      %i.entypo.edi-flag
-      %i.entypo.edi-heart
-      = link_to edit_venue_path(@venue), :class => "shybtn" do
-        %i.entypo.edi-pencil
-        .hiddentag
-          Éditer cette fiche
-          %br
-          %span.infolabel modifié le 20/02/2013 par Untel
+  %header
+    .pic-container
+      .pic
+        /%i.entypo.edi-house
+        = image_tag @venue.avatar_url
+    .infos
+      %h3= @venue.name
+      .tags
+        %span.tag.tag-type= t(@venue.kind) if @venue.kind.present?
+        %span.tag.tag-style Rock
+        %span.tag.tag-style Punk
+        %span.tag.tag-style Jeune public
+        %span.tag.tag-legal Co-réalisation
+        %span.tag.tag-legal Location
+      %p
+        - @venue.venue_info.capacities.each do |capacity|
+          = render capacity
+        —
+        %span.infolabel.dblue= @venue.addresses.first.city
+        %span.infolabel Ile de france
+    - if notice.present?
+      %p#notice= notice
+    
+    
+  .meta
+    %i.entypo.edi-flag
+    %i.entypo.edi-heart
+    = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le 20/02/2013 par Machin Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
+      %i.entypo.edi-pencil
+    
       
 .row-fluid
   .span12
@@ -67,7 +63,7 @@
               /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
               /"#{t("simple_form.labels.defaults.first_name")}"
               
-              <input class="btn" type="submit" class="submit" value="Submit" />
+              <input class="btn btn-primary submit pull-right" type="submit" value="Submit" />
               
               %ul.list-large
                 %li
@@ -159,25 +155,26 @@
                   .pic
                     /%i.entypo.edi-house
                     = image_tag person.avatar_url(:thumb)
+                %h3= link_to "#{person.first_name} #{person.name}", person
+                %span.infos
+                  +33 23 23 74 23 — 
+                  %a{:href => "#"}
+                    email@gmail.com
                 .meta
+                  %a{:href => "#"}
+                    %i.entypo.edi-heart
                   %a{:href => "#"}
                     %i.entypo.edi-chat
                   %a{:href => "#"}
                     %i.entypo.edi-flag
-                  %a{:href => "#"}
-                    %i.entypo.edi-heart
+                  
                   /= link_to 'Edit', edit_venue_path(venue)
                   = link_to edit_venue_person_path(@venue,person), :class => "shybtn" do
                     %i.entypo.edi-pencil
                   /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
                   = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
                     %i.entypo.edi-cross
-                %h3= link_to "#{person.first_name} #{person.name}", person
-                %span.infos
-                  +33 23 23 74 23 — 
-                  %a{:href => "#"}
-                    email@gmail.com
-                
+          
                 
                 
             
@@ -204,17 +201,67 @@
                 New Task
                       
         #dates.tab-pane
-          %p Dates de spectacle
+          /%p Dates de spectacle
           %ul.list-large
+          
+            %li
+              %h4 Concert — Lundi 1 juin 2013 — Maroquinerie
+              .pic-container
+                .pic
+                  %i.entypo.edi-rocket
+                  /= image_tag person.avatar_url(:thumb)
+              %span.infos
+                %p NomDuProjet — Formule
+                %p Responsabe : Untel
+                  
+              .meta
+                .label-big.cool Validé
+                .actions
+                  /= link_to 'Edit', edit_venue_path(venue)
+                  %a.shybtn{:href => "#"}
+                    %i.entypo.edi-pencil
+                /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                /= link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+                /  %i.entypo.edi-cross
+                    
+                    
+            %li
+              %h4 Concert — Lundi 1 juin 2013 — Duc des Lombars
+              .pic-container
+                .pic
+                  %i.entypo.edi-rocket
+                  /= image_tag person.avatar_url(:thumb)
+              %span.infos
+                %p NomDuProjet — Formule
+                %p Responsabe : Untel
+                  
+              .meta
+                .label-big.cold En option
+                .actions
+                  /= link_to 'Edit', edit_venue_path(venue)
+                  %a.shybtn{:href => "#"}
+                    %i.entypo.edi-pencil
+
+                
+                
             %li
               %h4 Concert — Lundi 1 juin 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-            %li
-              %h4 Concert — Mardi 12 septembe 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-            %li
-              %h4 Concert — Mardi 12 septembe 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              .pic-container
+                .pic
+                  %i.entypo.edi-rocket
+                  /= image_tag person.avatar_url(:thumb)
+              %span.infos
+                %p NomDuProjet — Formule
+                %p Responsabe : Untel
+                  
+              .meta
+                .label-big.hot En attente de payement
+                .actions
+                  /= link_to 'Edit', edit_venue_path(venue)
+                  %a.shybtn{:href => "#"}
+                    %i.entypo.edi-pencil
+                    
+                    
               
           .plus-in-list
             %a{:href => "#"}
