@@ -59,7 +59,10 @@ fr:
           capacities:
             nb: Jauge
           kind: Type de salle
-        
+        addresses:
+          city: Ville
+          postal_code: Code postal
+          country: Pays
     hints:
       defaults:
         password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
@@ -79,7 +82,10 @@ fr:
             smac: SMAC
             private_venue: Salle privée
             theater: Théâtre
-          
+        addresses:
+          kind:
+            main_address: "Adresse principale"
+            admin_address: "Adresse administrative"
       task:
         bucket:
           overdue: En retard
@@ -88,3 +94,8 @@ fr:
           due_this_week: Cette semaine
           due_next_week: La semaine prochaine
           due_this_month: Ce mois ci
+          
+    helpers:
+      submit:
+        venue:
+          
