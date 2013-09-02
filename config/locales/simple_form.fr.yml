@@ -59,10 +59,17 @@ fr:
           capacities:
             nb: Jauge
           kind: Type de salle
+          period: Période de programmation
+          remark: Observations
+        contracts: Contrats
+          
         addresses:
           city: Ville
           postal_code: Code postal
           country: Pays
+          street: Adresse
+        websites:
+          url: Site web
     hints:
       defaults:
         password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
@@ -82,6 +89,11 @@ fr:
             smac: SMAC
             private_venue: Salle privée
             theater: Théâtre
+          period:
+            all_year: "Toute l'année"
+            quaterly: "Par trimestre"
+            per_semester: "Tous les 6 mois"
+          
         addresses:
           kind:
             main_address: "Adresse principale"

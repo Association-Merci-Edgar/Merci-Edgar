@@ -14,13 +14,20 @@
     
     = f.input :name, label: false, :class => "span12"
     = f.input :style_list, label: "Styles programmés (séparés par des virgules)"
-    = f.input :name
+    = f.association :contracts, :collection => Contract.all, :as => :check_boxes, label_method: :name, value_method: :id, item_wrapper_class:"inline"
+
     
     = f.fields_for :venue_info do |v|
       /, :class => "span4"
       /, :input_html => { :class => "span4" }
       .nested-fields
         = v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
+        = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
+        = v.input :bar, label:"Services", wrapper: :append do
+          = v.input_field :bar, inline_label: "Bar"
+          = v.input_field :residency, inline_label: "Residence"
+          = v.input_field :accompaniment, inline_label: "Accompagnement"
+        = v.input :remark
         
       /= f.fields_for :venue_info do |v|
       = v.fields_for :capacities do |capacity|
@@ -116,7 +123,7 @@
         /= website.input :url, :label => "Website"
         /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
         
-        = website.input :url, :label => "Website", wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
+        = website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
           = website.input_field :url, :class => "input-large"
           = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
         
