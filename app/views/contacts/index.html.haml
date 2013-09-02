@@ -14,7 +14,7 @@
 
 .page-title
   = t(params[:controller]).titleize
-
+  = @filtered_by if @filtered_by.present?
 .row-fluid
   .span3.filters
     .search

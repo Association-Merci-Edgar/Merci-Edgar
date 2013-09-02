@@ -13,6 +13,8 @@
     
     
     = f.input :name, label: false, :class => "span12"
+    = f.input :style_list, label: "Styles programmés (séparés par des virgules)"
+    = f.input :name
     
     = f.fields_for :venue_info do |v|
       /, :class => "span4"

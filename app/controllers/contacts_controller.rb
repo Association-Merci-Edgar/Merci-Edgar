@@ -1,6 +1,7 @@
-class ContactsController < ApplicationController
+class ContactsController < AppController
   def index
     if params[:tag]
+      @filtered_by = "(#{params[:tag]})"
       @contacts = Kaminari.paginate_array(Contact.tagged_with(params[:tag])).page params[:page]
     else
       @contacts = Contact.order(:name).page params[:page]
