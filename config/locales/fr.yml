@@ -9,3 +9,33 @@ fr:
   
   tasks: Tâches
   
+  # Kind of addresses
+  main_adress: Travail
+  admin_address: Adresse administrative
+  
+  activerecord:
+    models:
+      venue: Salle
+    errors:
+      models:
+        venue:
+          attributes:
+            name:
+              taken: "Une salle existe déjà avec ce nom à %{city}"
+    notices:
+      models:
+        venue:
+          created: "La salle %{name} a été créée avec succès"
+          updated: "La salle %{name} a été modifiée avec succès"
+  helpers:
+    submit:
+      venue:
+        create: "Créer la salle"
+        create_and_edit: "Ajouter davantage d'infos"
+        update: "Modifier la salle"
+  
+  errors:
+    messages:  
+      blank: "Ne peut pas être vide"
+      # taken: "Déjà pris"
+      

@@ -12,4 +12,7 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def previous
+    @previous = @previous.blank? ? request.env['HTTP_REFERRER'] : @previous
+  end
 end

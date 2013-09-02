@@ -1,8 +1,21 @@
-.page-title
-  New venue
+%h1.page-title Nouvelle salle
 
-.row-fluid
-  .span12
-    = render 'form'
-    or
-    = link_to 'Back', venues_path
+= simple_nested_form_for(@venue, :html => { :class => 'form-horizontal' }) do |f|
+  /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, label: false, :class => "span12"
+
+    = f.fields_for :addresses do |address|
+      .nested-fields
+        = address.input :city
+        = address.input :postal_code
+        = address.input :country, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+        = address.input :kind, :collection => [:main_address, :admin_address],  :selected => :main_address
+        
+  .form-actions
+    = f.submit
+    = f.submit t("helpers.submit.venue.create_and_edit")
+    ou
+    = link_to "Cancel", session[:return_to]

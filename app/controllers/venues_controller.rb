@@ -29,14 +29,12 @@ class VenuesController < AppController
   # GET /venues/new
   # GET /venues/new.json
   def new
+    session[:return_to] ||= request.referer
     @venue = Venue.new
-    venue_info = @venue.build_venue_info
-    venue_info.capacities.build
     @venue.addresses.build
-    @venue.emails.build
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @venue }
     end
   end
@@ -44,6 +42,7 @@ class VenuesController < AppController
   # GET /venues/1/edit
   def edit
     @venue = Venue.find(params[:id])
+    @venue.build_venue_info unless @venue.venue_info.present?
   end
 
   # POST /venues
@@ -53,9 +52,16 @@ class VenuesController < AppController
 
     respond_to do |format|
       if @venue.save
-        format.html { redirect_to @venue, notice: 'Venue was successfully created.' }
+        format.html do
+          if params[:commit] == t("helpers.submit.venue.create")
+            redirect_to @venue, notice: t("activerecord.notices.models.venue.created", name: @venue.name)
+          else
+            redirect_to edit_venue_path(@venue), notice: t("activerecord.notices.models.venue.created", name: @venue.name)
+          end
+        end
         format.json { render json: @venue, status: :created, location: @venue }
       else
+        @venue.addresses.build unless @venue.addresses.any?
         format.html { render action: "new" }
         format.json { render json: @venue.errors, status: :unprocessable_entity }
       end
@@ -69,7 +75,10 @@ class VenuesController < AppController
 
     respond_to do |format|
       if @venue.update_attributes(params[:venue])
-        format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
+        format.html do
+          session.delete(:return_to)
+          redirect_to @venue, notice: t("activerecord.notices.models.venue.updated", name: @venue.name)
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

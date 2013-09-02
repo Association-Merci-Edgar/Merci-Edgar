@@ -14,6 +14,7 @@ class Venue < Structure
   has_many :tasks, :as => :asset
   has_one :venue_info, :dependent => :destroy
   accepts_nested_attributes_for :venue_info
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
 
   delegate :capacities, :kind, :height, :depth, :width, to: :venue_info, allow_nil: true
   validates :name, :presence => true
@@ -31,9 +32,9 @@ class Venue < Structure
   end
 
   def venue_name_must_be_unique_by_city
-    if addresses.first
-      unless Venue.joins(:addresses).where(:addresses => {:city => addresses.first.city}, :contacts => {:name => name}).blank?
-        errors.add(:name,"Une salle existe deja avec ce nom dans la ville de #{addresses.first.city}")
+    if addresses.first.city
+      unless Venue.joins(:addresses).where(:addresses => {:city => addresses.first.city, :country => addresses.first.country}, :contacts => {:name => name}).blank?
+        errors.add(:name, :taken, city: addresses.first.city)
       end
     end
   end

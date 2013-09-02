@@ -19,9 +19,10 @@
           %span.tag.tag-style Jeune public
           %span.tag.tag-legal Co-réalisation
           %span.tag.tag-legal Location
-        %p
-          - @venue.venue_info.capacities.each do |capacity|
-            = render capacity
+        - if @venue.venue_info
+          %p
+            - @venue.capacities.each do |capacity|
+              = render capacity
           —
           %span.infolabel.dblue= @venue.addresses.first.city
           %span.infolabel Ile de france
