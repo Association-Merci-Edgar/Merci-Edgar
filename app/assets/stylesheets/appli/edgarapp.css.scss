@@ -51,6 +51,14 @@ $white:   #fff;
   transform:scaleX(1.1);
 }
 
+@mixin noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 textarea {@include borderbox;}
 
 ::-moz-selection {background: $yellow; /* Firefox */}
@@ -58,7 +66,7 @@ textarea {@include borderbox;}
 ::selection {background: $yellow; /* Safari */}
 
 a {color:$dblue;
-  &:hover {color:$green; text-decoration:none;}
+  &:hover, &:active {color:$green; text-decoration:none;}
 }
 
 .infos a {border-bottom : dotted 1px $green ;
@@ -584,37 +592,48 @@ a.label-large:hover i {background: $yellow;}
 //.controls, .control-group//, .control-group label 
 //{display:inline;}
 .input-append .add-on, .input-prepend .add-on {
-  height:auto;
+  height:30px;
   border:none;
+  background:none;
   background:$vlblue;
   color:$white;
   text-shadow: none;
+  padding: 0 6px;
+  line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
 };
 
+.help-block {
+    margin-top: 5px;
+}
 .input-append .add-on { text-align: left;}
 .input-prepend .add-on { text-align: right;}
 
 
-.form-horizontal .control-group:last-child {
-    margin-bottom:0px;
-} 
+.form-horizontal .control-group:last-child {margin-bottom:0px;} 
 
-.inline-inputs {
-  margin-left:180px;
-  .controls {margin-left:0px;
-  }
-  .control-group {display:inline-block; margin-bottom:0px;
-    &:after {clear: none;};}
+.form-horizontal .controls {
+    margin-left: 220px;
+}
+.form-horizontal .control-label {
+    width: 190px;
+    padding:3px;
 }
 
-
+.inline-inputs {
+  margin-left:220px;
+  .controls {margin-left:0px;
+  }
+  .control-group {display:inline-block; margin-bottom:0px; margin-right:10px;
+  &:after {clear: none;};
+  }
+}
 
 
 .nested-fields, .links {position: relative;}
 
-.remove_nested_fields, .add_nested_fields {margin-left:180px; font-size:24px; display:block;
+.remove_nested_fields, .add_nested_fields {margin-left:220px; font-size:24px; display:block;
   //position:absolute;
   top:20px;
   right:20px;
@@ -631,24 +650,31 @@ a.label-large:hover i {background: $yellow;}
 .fields {margin-bottom: 0px;}
 
 .nested-fields, .form-horizontal .links {
-  padding:16px 0px;
+  padding:20px 0px;
   min-height:20px;
   &:hover {background-color:$white;}
 }
 
 .form-horizontal .links {margin-bottom: 40px;}
+.form-inputs {max-width:900px;}
+
+
+label {
+    font-size: 16px;
+    line-height: 20px;
+}
 
 .form-actions {background:none;}
 
-.control-label.apple {
-  padding-top:0;
+/*
+.control-label.apple { padding-top:0;
   select {width:auto; background:none;  border:none; font-size:18px; font-weight:normal; color:$mblue; text-align:right; width:180px;}
   //select:after{display:none;}
 }
+input.apple  {margin-left:20px;}
+*/
 
 .add-on.dropdown-toggle {padding: 5px 10px 5px 10px;}
-
-input.apple  {margin-left:20px;}
 
 select:focus { outline: none; }
 
@@ -669,16 +695,53 @@ display:inline-block;
 #venue_name {
   @extend h4;
   @extend .big-input;
+  
 //.Xlarge-input;
 }
 
+.venue_name.control-group {margin-bottom:0px;}
+.venue_name.control-group:after {
+    clear: none;
+}
+.venue_name .control-label {display:none;}
 .form-horizontal .pic-container {
-  margin-left:60px;
+  margin-left:90px;
   @include square(100);
   .pic { @include square(100);}
 }
 
 
+
+//.checkbox, .radio {margin-right:20px;}
+.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {
+    margin-left: 20px;
+}
+.venue_venue_info_bar .checkbox { display:inline-block; margin-right: 20px;}
+
+
+.tagsinput { background:$white;
+  width:100%;
+  @include roundcorners;
+  //border: $vlblue solid 1px;
+  border: 1px solid #CCCCCC;
+  padding:10px;
+}
+
+.venue_venue_info_remark {
+  textarea { resize:vertical; width:100%; min-height:80px; height:80px;}
+}
+
+.venue_addresses_city .control-label {display:none;}
+.venue_addresses_postal_code
+
+//input.inputlarger { width:350px !important ;}
+
+
+.venue_addresses_kind { position:absolute; right:50px; top: 10px;}
+
+.form-inputs header .btn {float:left; margin-left:25px;}
+.form-inputs header {margin-bottom:50px;}
+select.select-right {position:absolute; top:20px; left:500px; width:auto; background:$vlblue; color:$white;}
 
 
 /* View SHOW _____________________________________________________ */

@@ -93,7 +93,6 @@ fr:
             all_year: "Toute l'année"
             quaterly: "Par trimestre"
             per_semester: "Tous les 6 mois"
-          
         addresses:
           kind:
             main_address: "Adresse principale"
