@@ -1,164 +1,85 @@
-/%h2 Edit #{resource_name.to_s.humanize}
-  
-.page-title
-  Compte
-  /%a.shybtn.logout-btn{:href => "#"} Déconnexion
-  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete, :class => "shybtn logout-btn"
-  
+- content_for :user_tab do
+  .row-fluid
+    #profile-photo.span12
+      %h4 Photo de votre profil
+      .pic
+        %i.entypo.edi-user
+      %p
+        L’image doit faire au moins 300x300px.
+      %a.btn.btn-primary{:href => "#"}
+        Uploader une photo
       
-#account-page.row-fluid
-  .span12
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-toggle" => "tab", :href => "#account"} Compte
-        %li
-          %a{"data-toggle" => "tab", :href => "#profile"} Votre profil
-        %li
-          %a{"data-toggle" => "tab", :href => "#projects"} Projets artistiques    
-        %li
-          %a{"data-toggle" => "tab", :href => "#extras"} Extras
 
-          
-      .tab-content
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+    = f.error_notification
+    = display_base_errors resource
       
-        #account.tab-pane.active
-          .row-fluid
-            .span12
-              %h4 Forfaits et facturation
-              
-          .row-fluid
-            .span12
-              %h4 Domaine
-              %label Le préfixe de votre nom de domaine :
-              .input-append
-                <input type="text" id="appendedInput" class="span12">
-                %span.add-on .merciedgar.com
-              %p
-                %a.btn.btn-primary{:href => "#"} Mettre à jour
-                /= f.button :submit, 'Update', :class => 'btn-primary'
+    .row-fluid
+  
+      .span6
+        %h4 Informations de base
+        /= f.input :name, :autofocus => true
+        = f.input :first_name, :required => true
+        = f.input :last_name, :required => true
+        = f.input :email, :required => true
+    
+        /%a.btn{:href => "#"} Mettre à jour
+        = f.button :submit, 'Update', :class => 'btn-primary'
+         
+      .span6
+        %h4 Identifiant et mot de passe
+        = f.input :name
+        /= f.input :password, :autocomplete => "off", :required => false, :hint => false
+        /, :hint => "leave it blank if you don't want to change it"
+        /= f.input :password_confirmation, :required => false
+        /= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
 
-          .row-fluid
-            .span12
-              %h4 Utilisateurs
-              %ul.list-large
-                %li
-                  %h3 Nicolas Untel
-                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-                %li
-                  %h3 Aurélie Thuot
-                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.  
-                  
-                .plus-in-list
-                  %a{:href => "#"}
-                    %i.entypo.edi-plus-3
-                    %span New user
-            
+      
+        /%a.btn{:href => "#"} Mettre à jour
+        = f.button :submit, 'Update', :class => 'btn-primary'
+    
+  
+  .row-fluid  
+    .span6
+      %h4 Réglages
+      %label Fuseau horaire
+      .btn-group
+        %select{:name => "select"}
+          %option{:value => ""} (GMT + 01:00) Paris
+          %option{:value => ""} (GMT+02)
+          %option{:value => ""} Selection Two
+          %option{:value => ""} Selection Three
+          %option{:value => ""} Selection Four
 
-        #profile.tab-pane
-          .row-fluid
-            #profile-photo.span12
-              %h4 Photo de votre profil
-              .pic
-                %i.entypo.edi-user
-              %p
-                L’image doit faire au moins 300x300px.
-              %a.btn.btn-primary{:href => "#"}
-                Uploader une photo
-                
-          
-          = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
-            = f.error_notification
-            = display_base_errors resource
-                
-            .row-fluid
-            
-              .span6
-                %h4 Informations de base
-                /= f.input :name, :autofocus => true
-                = f.input :first_name, :required => true
-                = f.input :last_name, :required => true
-                = f.input :email, :required => true
-              
-                /%a.btn{:href => "#"} Mettre à jour
-                = f.button :submit, 'Update', :class => 'btn-primary'
-                   
-              .span6
-                %h4 Identifiant et mot de passe
-                = f.input :name
-                = f.input :password, :autocomplete => "off", :required => false, :hint => false
-                /, :hint => "leave it blank if you don't want to change it"
-                = f.input :password_confirmation, :required => false
-                /= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
-
-                
-                /%a.btn{:href => "#"} Mettre à jour
-                = f.button :submit, 'Update', :class => 'btn-primary'
-              
-            
-          .row-fluid  
-            .span6
-              %h4 Réglages
-              %label Fuseau horaire
-              .btn-group
-                %select{:name => "select"}
-                  %option{:value => ""} (GMT + 01:00) Paris
-                  %option{:value => ""} (GMT+02)
-                  %option{:value => ""} Selection Two
-                  %option{:value => ""} Selection Three
-                  %option{:value => ""} Selection Four
-
-              %label Langue
-              .btn-group
-                %select{:name => "select"}
-                  %option{:value => ""} FR
-                  %option{:value => ""} EN
-                  %option{:value => ""} ES
-                  %option{:value => ""} DE
-                
-              %label Pays par défauls lors de l’ajout
-              .btn-group
-                %select{:name => "select"}
-                  %option{:value => ""} France
-                  %option{:value => ""} England
-                  %option{:value => ""} Etc...
-                  
-              %p
-                %a.btn.btn-primary{:href => "#"} Mettre à jour
-                /= f.button :submit, 'Update', :class => 'btn-primary'
-              
-            .span6
-              %h4 Notifications   
-              %p Fréquence des emails
-                
-          .row-fluid  
-            %h4 Cancel my personal account
-            %p
-              Unhappy?
-            %p
-              #{link_to "Cancel my account", registration_path(resource_name), :class =>"btn btn-primary", :data => { :confirm => "Are you sure?" }, :method => :delete}
-            /= link_to "Back", :back    
-            
-
-        #projects.tab-pane
-          %ul.list-large
-            %li
-              %h4 Concert — Lundi 1 juin 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-            %li
-              %h4 Concert — Mardi 12 septembe 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-            %li
-              %h4 Concert — Mardi 12 septembe 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-              
-          .plus-in-list
-            %a{:href => "#"}
-              %i.entypo.edi-plus-3
-              %span New Project
-            
-                
-
-                      
-        #extras.tab-pane
-          The extras
+      %label Langue
+      .btn-group
+        %select{:name => "select"}
+          %option{:value => ""} FR
+          %option{:value => ""} EN
+          %option{:value => ""} ES
+          %option{:value => ""} DE
+      
+      %label Pays par défauls lors de l’ajout
+      .btn-group
+        %select{:name => "select"}
+          %option{:value => ""} France
+          %option{:value => ""} England
+          %option{:value => ""} Etc...
+        
+      %p
+        %a.btn.btn-primary{:href => "#"} Mettre à jour
+        /= f.button :submit, 'Update', :class => 'btn-primary'
+    
+    .span6
+      %h4 Notifications   
+      %p Fréquence des emails
+      
+  .row-fluid  
+    %h4 Cancel my personal account
+    %p
+      Unhappy?
+    %p
+      #{link_to "Cancel my account", registration_path(resource_name), :class =>"btn btn-primary", :data => { :confirm => "Are you sure?" }, :method => :delete}
+    /= link_to "Back", :back    
+  
+= render 'devise/shared/profile'

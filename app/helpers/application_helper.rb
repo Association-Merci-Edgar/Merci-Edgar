@@ -15,4 +15,10 @@ module ApplicationHelper
   def previous
     @previous = @previous.blank? ? request.env['HTTP_REFERRER'] : @previous
   end
+  
+  def display_errors(object)
+    if object && object.respond_to?(:errors) && object.errors.present?
+      content_tag(:div,"Oups ! Y a des soucis !",class:'alert alert-error')
+    end
+  end
 end
