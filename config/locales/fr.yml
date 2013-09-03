@@ -28,7 +28,10 @@ fr:
           created: "La salle %{name} a été créée avec succès"
           updated: "La salle %{name} a été modifiée avec succès"
   helpers:
+    browse: Parcourir...
     submit:
+      update: "Mettre à jour"
+      create: "Créer"
       venue:
         create: "Créer la salle"
         create_and_edit: "Ajouter davantage d'infos"

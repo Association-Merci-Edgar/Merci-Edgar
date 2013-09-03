@@ -1,0 +1,81 @@
+/%h2 Edit #{resource_name.to_s.humanize}
+  
+.page-title
+  Compte
+  /%a.shybtn.logout-btn{:href => "#"} Déconnexion
+  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete, :class => "shybtn logout-btn"
+  
+      
+#account-page.row-fluid
+  .span12
+    .tabbable
+      %ul.nav.nav-tabs
+        %li
+          = user_tab_link "Compte", edit_user_path(current_user, :anchor => "account"), :accounts
+        %li.active
+          = user_tab_link "Votre profil", edit_user_path(current_user, :anchor => "profile"), :users
+        %li
+          = user_tab_link "Projets artistiques", edit_user_path(current_user, :anchor => "projects"), :projects
+        %li
+          %a{"data-toggle" => "tab", :href => "#extras"} Extras
+        
+          
+      .tab-content
+      
+        #account.tab-pane
+          .row-fluid
+            .span12
+              %h4 Forfaits et facturation
+              
+          .row-fluid
+            .span12
+              %h4 Domaine
+              %label Le préfixe de votre nom de domaine :
+              .input-append
+                <input type="text" id="appendedInput" class="span12">
+                %span.add-on .merciedgar.com
+              %p
+                %a.btn.btn-primary{:href => "#"} Mettre à jour
+                /= f.button :submit, 'Update', :class => 'btn-primary'
+
+          .row-fluid
+            .span12
+              %h4 Utilisateurs
+              %ul.list-large
+                %li
+                  %h3 Nicolas Untel
+                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+                %li
+                  %h3 Aurélie Thuot
+                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.  
+                  
+                .plus-in-list
+                  %a{:href => "#"}
+                    %i.entypo.edi-plus-3
+                    %span New user
+            
+
+        
+        = yield :user_tab
+        #projects.tab-pane
+          %ul.list-large
+            %li
+              %h4 Concert — Lundi 1 juin 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            %li
+              %h4 Concert — Mardi 12 septembe 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            %li
+              %h4 Concert — Mardi 12 septembe 2013
+              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              
+          .plus-in-list
+            %a{:href => "#"}
+              %i.entypo.edi-plus-3
+              %span New Project
+            
+                
+
+                      
+        #extras.tab-pane
+          The extras

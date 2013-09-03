@@ -14,7 +14,7 @@
         /%i.entypo.edi-cog
         /%a.user-tab{:href => "/accounts"}
         
-        = link_to edit_user_registration_path do
+        = link_to edit_user_path(current_user) do
           = current_user.name
           %i.entypo.edi-cog.righticon
           /User: #{@user.name}
