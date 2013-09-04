@@ -36,6 +36,10 @@ class Contact < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order(:name) }
+  scope :with_first_name_and_last_name, lambda { |fn,ln| where('first_name LIKE ? AND name LIKE ?', "%#{fn}%", "%#{ln}%").order(:name)}
+
+
   def reject_if_all_blank_except_country
     attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank?
   end
@@ -52,6 +56,19 @@ class Contact < ActiveRecord::Base
   def tag_list=(names)
     self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip).first_or_create!
+    end
+  end
+
+  def self.search(search)
+    if search.present?
+      a = search.split
+      if a.size > 1
+        Contact.with_first_name_and_last_name(a.shift,a.join(' '))
+      else
+        Contact.with_name_like(search)
+      end
+    else
+      Contact.order(:name)
     end
   end
 end

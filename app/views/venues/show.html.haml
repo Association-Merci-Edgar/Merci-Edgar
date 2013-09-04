@@ -14,8 +14,9 @@
       .tags
         = render partial: "tags", locals: {venue: @venue}
       %p
-        - @venue.venue_info.capacities.each do |capacity|
-          = render capacity
+        -  if @venue.capacities.present?
+          - @venue.capacities.each do |capacity|
+            = render capacity
         —
         %span.infolabel.dblue= @venue.addresses.first.city
         %span.infolabel Ile de france
