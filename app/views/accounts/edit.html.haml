@@ -1,0 +1,35 @@
+- content_for :account_tab do
+  #account.tab-pane.active
+    .row-fluid
+      .span12
+        %h4.comingsoon Forfaits et facturation
+      
+    .row-fluid
+      .span12
+        = simple_form_for(@account, url: account_path) do |f|
+          %h4 Nom du compte
+          = f.input :name
+          %h4 Domaine
+          = f.input :domain, label: "Le préfixe de votre nom de domaine :", wrapper: "append" do
+            = f.input_field :domain
+            %span.add-on .merciedgar.com
+          %p
+          = f.button :submit, class:'btn-primary'
+
+    .row-fluid
+      .span12
+        %h4 Utilisateurs
+        %ul.list-large
+          %li
+            %h3 Nicolas Untel
+            %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+          %li
+            %h3 Aurélie Thuot
+            %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.  
+          
+          .plus-in-list
+            %a{:href => "#"}
+              %i.entypo.edi-plus-3
+              %span New user
+    
+= render 'devise/shared/profile'

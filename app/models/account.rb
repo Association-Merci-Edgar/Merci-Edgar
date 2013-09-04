@@ -14,7 +14,7 @@ class Account < ActiveRecord::Base
   has_many :venues
   attr_accessible :domain, :name
   validates_presence_of :name
-  validates_uniqueness_of :domain, :message => "Domain must be unique"
+  validates_uniqueness_of :domain
   validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
   before_validation :ensure_domain_uniqueness, :on => :create
 
