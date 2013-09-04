@@ -1,5 +1,7 @@
 = venue_kind_link(venue.kind)
+
 - venue.styles.each do |s|
   = tag_link(s.name,"tag-style")
-%span.tag.tag-legal Co-réalisation
-%span.tag.tag-legal Location
+
+- venue.contracts.each do |s|
+  = tag_link(s.name,"tag-legal")
