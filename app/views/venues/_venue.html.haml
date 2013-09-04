@@ -21,7 +21,9 @@
         /%i.entypo.edi-house
         = image_tag venue.avatar_url(:thumb)
   %span
-    2, rue machin — 75020 Paris 
+    - address = venue.addresses.first
+    - if address.present?
+      = address.gmaps4rails_address
   .tags
     = render partial: "venues/tags", locals: { venue: venue}
   /%td= link_to 'Show', venue

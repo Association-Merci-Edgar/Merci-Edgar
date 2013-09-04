@@ -21,7 +21,18 @@
         /%i.entypo.edi-house
         = image_tag person.avatar_url(:thumb)
   %span
-    Programmateur @ Tel Salle 
+    - ps = person.people_structures.first
+    - if ps.present?
+      = ps.title if ps.title.present?
+      = ps.structure.name if ps.structure.present?
+    
+    - email = person.emails.first
+    - if email.present?
+      = email.address
+    
+    - phone = person.phones.first
+    - if phone.present?
+      = phone.national_number
   .tags
     %span.tag.tag-type SMAC
     %span.tag.tag-style Rock
