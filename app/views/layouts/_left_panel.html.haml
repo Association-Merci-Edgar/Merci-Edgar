@@ -3,7 +3,7 @@
   %a{:href => "#"}
     %i.entypo.edi-logoedgar.logotype
   .account-tab
-    The Beatles
+    = Account.find(Account.current_id).name
     /%a.rightbt{:href => "#"}
     /%i.entypo.edi-cog
 %nav.leftmenu

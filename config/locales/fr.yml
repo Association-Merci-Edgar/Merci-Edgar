@@ -40,5 +40,5 @@ fr:
   errors:
     messages:  
       blank: "Ne peut pas être vide"
-      # taken: "Déjà pris"
+      taken: "Déjà pris"
       
