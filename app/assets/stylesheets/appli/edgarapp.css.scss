@@ -51,6 +51,14 @@ $white:   #fff;
   transform:scaleX(1.1);
 }
 
+@mixin noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 textarea {@include borderbox;}
 
 ::-moz-selection {background: $yellow; /* Firefox */}
@@ -58,7 +66,7 @@ textarea {@include borderbox;}
 ::selection {background: $yellow; /* Safari */}
 
 a {color:$dblue;
-  &:hover {color:$green; text-decoration:none;}
+  &:hover, &:active {color:$green; text-decoration:none;}
 }
 
 .infos a {border-bottom : dotted 1px $green ;
@@ -96,6 +104,14 @@ body {
 }
 
 
+#notice {
+	background: $yellow;
+	@include roundcorners;
+	padding:10px;
+}
+
+
+
 .leftpanel {
 	float: left;
 	width: 240px;
@@ -105,13 +121,6 @@ body {
 	//@include transition("all", 0.2s);
 }
 
-#notice {
-	background: $yellow;
-	@include roundcorners;
-	padding:10px;
-}
-
-
 
 /*#outer1 {float:left; width:180px; padding:10px; background:#e0d0d0;}
 #outer3 {float:right; width:180px; padding:10px; background:#b0b0b0;}
@@ -120,9 +129,6 @@ body {
 #outer1, #outer2, #outer3 {padding-bottom:32767px; margin-bottom:-32767px;}
 #wrapper {overflow:hidden; background:#e0e0e0;} */
 
-
-.leftpanel .entypo:before { font-size:24px;}
-.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
 
 .entypo {
 	margin-right: .1em;
@@ -146,39 +152,8 @@ body {
 }
 */
 
-.leftpanel.collapsed {margin-left : -240px;}
-.mainpanel.goleft { margin-left:0px;}
-
-.leftpanel.small {width:78px;}
-.mainpanel.goleftsmall { margin-left:78px;}
-
-.leftpanel.small li a i.entypo { margin-right:20px; }
-
-.leftmenu, .logo { }
 
 
-.leftpanel li a i.entypo { margin-bottom:6px; }
-.nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
-
-.leftpanel { overflow:hidden;}
-
-.leftmenu .nav-list {padding:0;}
-
-.nav-list > li > a, .nav-list .nav-header {margin:0; padding:0; text-shadow:none; }
-
-
-
-//.filters {min-width:194px;}
-
-.filters-list {
-  padding:0;
-  font-size:18px;
-  margin-bottom:24px;
-  & i {float:left; margin-right:10px; margin-top:2px;}
-  & > li { margin-top:4px;}
-  & > li a {padding:5px 10px;  display:inline-block; @include roundcorners;}
-  & > li a.active, & > li a:hover {background-color:$mblue; color:$white;}
-}
 
 @mixin btn {
 }
@@ -197,37 +172,6 @@ body {
   &:hover {background-color:$dblue;};
   @include transition(background, 0.2s)
 }
-
-
-.leftmenu .badge { float:right; margin-top:5px; margin-right:5px;}
-
-
-/* NAV BAR / rightbt _______________________________ */
-
-
-.rightbt {
-	display : block;
-	float: right;
-	width:25px;
-	margin:0;
-	margin-right:15px;
-}
-
-.nav li a.rightbt:hover {background-color: transparent;}
-li a.rightbt {float:right;/* background-color:#9F0;*/}
-.rightbt i { margin-left:-14px;  padding-top:7px;}
-
-.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
-.account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
-
-/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
-.rightbt .entypo:before {color: #999;  font-size:16px;}
-.rightbt.entypo:before { font-size:16px;}
-.edi-cog.entypo:before {font-size:13px;}
-.rightbt:hover .entypo:before {color: #000;}
-
-/*____________ */
-
 
 
 
@@ -268,7 +212,37 @@ h1 {font-size:37px;}
 .tag-legal {//border-color:$yellow;
   }
 
-/* NAV BAR ____________________________________________________________ */
+
+
+
+/* ________________________________________________________ NAV BAR   */
+
+
+/*  ________________________________________________________  leftpanel   */
+.leftpanel.collapsed {margin-left : -240px;}
+.mainpanel.goleft { margin-left:0px;}
+
+.leftpanel.small {width:78px;}
+.mainpanel.goleftsmall { margin-left:78px;}
+
+.leftpanel.small li a i.entypo { margin-right:20px; }
+
+.leftmenu, .logo { }
+
+.leftpanel li a i.entypo { margin-bottom:6px; }
+.nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
+
+.leftpanel { overflow:hidden;}
+
+.leftmenu .nav-list {padding:0;}
+
+.nav-list > li > a, .nav-list .nav-header {margin:0; padding:0; text-shadow:none; }
+
+.leftpanel .entypo:before { font-size:24px;}
+.leftpanel .entypo.edi-check_2 { height:24px;}
+.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
+
+
 
 .logo {
 	height:80px;
@@ -288,6 +262,8 @@ h1 {font-size:37px;}
 a .logotype { color: $dblue;}
 
 
+
+
 .leftmenu li a {
 	color:#fff; font-size:19px;
 	height: 25px;
@@ -295,6 +271,8 @@ a .logotype { color: $dblue;}
 	display:block;
 	&:focus{text-decoration:none;}
 }
+
+.leftmenu a .badge { float:right; margin-top:2px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li, .logo {width:240px;}
 
@@ -319,16 +297,63 @@ i {font-style: normal;}
 
 .recent { margin-top:6px;}
 .recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 34px; color:#999;}
+.recent .entypo {width:20px;}
 
 .recent .pic {font-size:26px;height:20px;width:20px;display:inline;}
 
 .recent .pic i {
-  
   &:before {
     line-height: 26px; 
   }
 }
-/* plusmenu _____________________________________________________ */
+
+
+
+/* NAV BAR / rightbt _______________________________ */
+
+.rightbt {
+	display : block;
+	float: right;
+	width:25px;
+	margin:0;
+	margin-right:15px;
+}
+
+.nav li a.rightbt:hover {background-color: transparent;}
+li a.rightbt {float:right;/* background-color:#9F0;*/}
+.rightbt i { margin-left:-14px;  padding-top:7px;}
+
+.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
+.account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
+
+/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
+.rightbt .entypo:before {color: #999;  font-size:16px;}
+.rightbt.entypo:before { font-size:16px;}
+.edi-cog.entypo:before {font-size:13px;}
+.rightbt:hover .entypo:before {color: #000;}
+
+/*____________ */
+
+
+
+
+
+/*  ________________________________________________________ filters    */
+//.filters {min-width:194px;}
+
+.filters-list {
+  padding:0;
+  font-size:18px;
+  margin-bottom:24px;
+  & i {float:left; margin-right:10px; margin-top:2px;}
+  & > li { margin-top:4px;}
+  & > li a {padding:5px 10px;  display:inline-block; @include roundcorners;}
+  & > li a.active, & > li a:hover {background-color:$mblue; color:$white;}
+}
+
+
+
+/*  ________________________________________________________ plusmenu    */
 .plusmenu {
   position: fixed;
   width:300px;
@@ -583,42 +608,63 @@ a.label-large:hover i {background: $yellow;}
 
 //.controls, .control-group//, .control-group label 
 //{display:inline;}
+
+.form-edit{margin-top:50px;}
 .input-append .add-on, .input-prepend .add-on {
-  height:auto;
+  height:30px;
   border:none;
+  background:none;
   background:$vlblue;
   color:$white;
   text-shadow: none;
+  padding: 0 6px;
+  line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
 };
 
+.help-block {
+    margin-top: 5px;
+}
 .input-append .add-on { text-align: left;}
 .input-prepend .add-on { text-align: right;}
 
 
-.form-horizontal .control-group:last-child {
-    margin-bottom:0px;
-} 
+.form-horizontal .control-group:last-child {margin-bottom:0px;} 
 
-.inline-inputs {
-  margin-left:180px;
-  .controls {margin-left:0px;
-  }
-  .control-group {display:inline-block; margin-bottom:0px;
-    &:after {clear: none;};}
+.form-horizontal .controls {
+    margin-left: 220px;
+}
+.form-horizontal .control-label {
+  width: 190px;
+  padding:0px;
+  
+  
 }
 
+.control-group > .control-label {margin-top:5px; color:$mblue;
+  a {color:$mblue;}
+  }
 
+.inline-inputs {
+  margin-left:220px;
+  .controls {margin-left:0px;
+  }
+  .control-group {display:inline-block; margin-bottom:0px; margin-right:10px;
+  &:after {clear: none;};
+  }
+}
 
 
 .nested-fields, .links {position: relative;}
 
-.remove_nested_fields, .add_nested_fields {margin-left:180px; font-size:24px; display:block;
+.remove_nested_fields, .add_nested_fields {
+  margin-left:220px; font-size:16px; display:block;
   //position:absolute;
   top:20px;
   right:20px;
-  
+  color:$lblue;
+  i {font-size:24px;}
 }
 
 .add_nested_fields i {float:right;
@@ -628,27 +674,45 @@ a.label-large:hover i {background: $yellow;}
   color:$red;
   }
   
-.fields {margin-bottom: 0px;}
+.fields {margin-bottom: 0px;
+  //&:hover {background-color:$white;}
+  }
 
 .nested-fields, .form-horizontal .links {
-  padding:16px 0px;
+  padding:10px 0px;
   min-height:20px;
-  &:hover {background-color:$white;}
+  
 }
 
 .form-horizontal .links {margin-bottom: 40px;}
+.form-inputs {max-width:900px;}
+.form-horizontal .form-actions {
+    padding-left: 220px;
+}
+
+label {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+section { margin-bottom:120px;}
+
+form .section-title { margin-left:220px;
+  //font-weight:300; font-size:40px;
+  margin-bottom:40px;
+}
 
 .form-actions {background:none;}
 
-.control-label.apple {
-  padding-top:0;
+/*
+.control-label.apple { padding-top:0;
   select {width:auto; background:none;  border:none; font-size:18px; font-weight:normal; color:$mblue; text-align:right; width:180px;}
   //select:after{display:none;}
 }
+input.apple  {margin-left:20px;}
+*/
 
 .add-on.dropdown-toggle {padding: 5px 10px 5px 10px;}
-
-input.apple  {margin-left:20px;}
 
 select:focus { outline: none; }
 
@@ -669,16 +733,55 @@ display:inline-block;
 #venue_name {
   @extend h4;
   @extend .big-input;
+  
 //.Xlarge-input;
 }
 
+.venue_name.control-group {margin-bottom:0px;}
+.venue_name.control-group:after {
+    clear: none;
+}
+.venue_name .control-label {display:none;}
 .form-horizontal .pic-container {
-  margin-left:60px;
+  margin-left:90px;
   @include square(100);
   .pic { @include square(100);}
 }
 
 
+
+//.checkbox, .radio {margin-right:20px;}
+.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {
+    margin-left: 20px;
+}
+.venue_venue_info_bar .checkbox { display:inline-block; margin-right: 20px;}
+
+
+.tagsinput { background:$white;
+  width:100%;
+  @include roundcorners;
+  //border: $vlblue solid 1px;
+  border: 1px solid #CCCCCC;
+  padding:10px;
+}
+
+.venue_venue_info_remark {
+  textarea { resize:vertical; width:100%; min-height:80px; height:80px;}
+}
+
+.venue_addresses_city .control-label {display:none;}
+.venue_addresses_postal_code
+
+//input.inputlarger { width:350px !important ;}
+
+
+.venue_addresses_kind { position:absolute; right:50px; top: 10px;}
+
+.form-inputs header .btn {float:left; margin-left:25px;}
+.form-inputs header {margin-bottom:50px;}
+
+.addresses > div:first-child {position:absolute; top:10px; left:270px;}
+select.select-right { width:auto; background:$vlblue; color:$white;}
 
 
 /* View SHOW _____________________________________________________ */
