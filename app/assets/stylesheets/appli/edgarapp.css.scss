@@ -104,6 +104,14 @@ body {
 }
 
 
+#notice {
+	background: $yellow;
+	@include roundcorners;
+	padding:10px;
+}
+
+
+
 .leftpanel {
 	float: left;
 	width: 240px;
@@ -113,13 +121,6 @@ body {
 	//@include transition("all", 0.2s);
 }
 
-#notice {
-	background: $yellow;
-	@include roundcorners;
-	padding:10px;
-}
-
-
 
 /*#outer1 {float:left; width:180px; padding:10px; background:#e0d0d0;}
 #outer3 {float:right; width:180px; padding:10px; background:#b0b0b0;}
@@ -128,9 +129,6 @@ body {
 #outer1, #outer2, #outer3 {padding-bottom:32767px; margin-bottom:-32767px;}
 #wrapper {overflow:hidden; background:#e0e0e0;} */
 
-
-.leftpanel .entypo:before { font-size:24px;}
-.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
 
 .entypo {
 	margin-right: .1em;
@@ -154,39 +152,8 @@ body {
 }
 */
 
-.leftpanel.collapsed {margin-left : -240px;}
-.mainpanel.goleft { margin-left:0px;}
-
-.leftpanel.small {width:78px;}
-.mainpanel.goleftsmall { margin-left:78px;}
-
-.leftpanel.small li a i.entypo { margin-right:20px; }
-
-.leftmenu, .logo { }
 
 
-.leftpanel li a i.entypo { margin-bottom:6px; }
-.nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
-
-.leftpanel { overflow:hidden;}
-
-.leftmenu .nav-list {padding:0;}
-
-.nav-list > li > a, .nav-list .nav-header {margin:0; padding:0; text-shadow:none; }
-
-
-
-//.filters {min-width:194px;}
-
-.filters-list {
-  padding:0;
-  font-size:18px;
-  margin-bottom:24px;
-  & i {float:left; margin-right:10px; margin-top:2px;}
-  & > li { margin-top:4px;}
-  & > li a {padding:5px 10px;  display:inline-block; @include roundcorners;}
-  & > li a.active, & > li a:hover {background-color:$mblue; color:$white;}
-}
 
 @mixin btn {
 }
@@ -205,37 +172,6 @@ body {
   &:hover {background-color:$dblue;};
   @include transition(background, 0.2s)
 }
-
-
-.leftmenu .badge { float:right; margin-top:5px; margin-right:5px;}
-
-
-/* NAV BAR / rightbt _______________________________ */
-
-
-.rightbt {
-	display : block;
-	float: right;
-	width:25px;
-	margin:0;
-	margin-right:15px;
-}
-
-.nav li a.rightbt:hover {background-color: transparent;}
-li a.rightbt {float:right;/* background-color:#9F0;*/}
-.rightbt i { margin-left:-14px;  padding-top:7px;}
-
-.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
-.account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
-
-/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
-.rightbt .entypo:before {color: #999;  font-size:16px;}
-.rightbt.entypo:before { font-size:16px;}
-.edi-cog.entypo:before {font-size:13px;}
-.rightbt:hover .entypo:before {color: #000;}
-
-/*____________ */
-
 
 
 
@@ -276,7 +212,37 @@ h1 {font-size:37px;}
 .tag-legal {//border-color:$yellow;
   }
 
-/* NAV BAR ____________________________________________________________ */
+
+
+
+/* ________________________________________________________ NAV BAR   */
+
+
+/*  ________________________________________________________  leftpanel   */
+.leftpanel.collapsed {margin-left : -240px;}
+.mainpanel.goleft { margin-left:0px;}
+
+.leftpanel.small {width:78px;}
+.mainpanel.goleftsmall { margin-left:78px;}
+
+.leftpanel.small li a i.entypo { margin-right:20px; }
+
+.leftmenu, .logo { }
+
+.leftpanel li a i.entypo { margin-bottom:6px; }
+.nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
+
+.leftpanel { overflow:hidden;}
+
+.leftmenu .nav-list {padding:0;}
+
+.nav-list > li > a, .nav-list .nav-header {margin:0; padding:0; text-shadow:none; }
+
+.leftpanel .entypo:before { font-size:24px;}
+.leftpanel .entypo.edi-check_2 { height:24px;}
+.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
+
+
 
 .logo {
 	height:80px;
@@ -296,6 +262,8 @@ h1 {font-size:37px;}
 a .logotype { color: $dblue;}
 
 
+
+
 .leftmenu li a {
 	color:#fff; font-size:19px;
 	height: 25px;
@@ -303,6 +271,8 @@ a .logotype { color: $dblue;}
 	display:block;
 	&:focus{text-decoration:none;}
 }
+
+.leftmenu a .badge { float:right; margin-top:2px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li, .logo {width:240px;}
 
@@ -327,16 +297,63 @@ i {font-style: normal;}
 
 .recent { margin-top:6px;}
 .recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 34px; color:#999;}
+.recent .entypo {width:20px;}
 
 .recent .pic {font-size:26px;height:20px;width:20px;display:inline;}
 
 .recent .pic i {
-  
   &:before {
     line-height: 26px; 
   }
 }
-/* plusmenu _____________________________________________________ */
+
+
+
+/* NAV BAR / rightbt _______________________________ */
+
+.rightbt {
+	display : block;
+	float: right;
+	width:25px;
+	margin:0;
+	margin-right:15px;
+}
+
+.nav li a.rightbt:hover {background-color: transparent;}
+li a.rightbt {float:right;/* background-color:#9F0;*/}
+.rightbt i { margin-left:-14px;  padding-top:7px;}
+
+.account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
+.account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
+
+/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
+.rightbt .entypo:before {color: #999;  font-size:16px;}
+.rightbt.entypo:before { font-size:16px;}
+.edi-cog.entypo:before {font-size:13px;}
+.rightbt:hover .entypo:before {color: #000;}
+
+/*____________ */
+
+
+
+
+
+/*  ________________________________________________________ filters    */
+//.filters {min-width:194px;}
+
+.filters-list {
+  padding:0;
+  font-size:18px;
+  margin-bottom:24px;
+  & i {float:left; margin-right:10px; margin-top:2px;}
+  & > li { margin-top:4px;}
+  & > li a {padding:5px 10px;  display:inline-block; @include roundcorners;}
+  & > li a.active, & > li a:hover {background-color:$mblue; color:$white;}
+}
+
+
+
+/*  ________________________________________________________ plusmenu    */
 .plusmenu {
   position: fixed;
   width:300px;
@@ -591,6 +608,8 @@ a.label-large:hover i {background: $yellow;}
 
 //.controls, .control-group//, .control-group label 
 //{display:inline;}
+
+.form-edit{margin-top:50px;}
 .input-append .add-on, .input-prepend .add-on {
   height:30px;
   border:none;
@@ -617,9 +636,15 @@ a.label-large:hover i {background: $yellow;}
     margin-left: 220px;
 }
 .form-horizontal .control-label {
-    width: 190px;
-    padding:3px;
+  width: 190px;
+  padding:0px;
+  
+  
 }
+
+.control-group > .control-label {margin-top:5px; color:$mblue;
+  a {color:$mblue;}
+  }
 
 .inline-inputs {
   margin-left:220px;
@@ -633,11 +658,13 @@ a.label-large:hover i {background: $yellow;}
 
 .nested-fields, .links {position: relative;}
 
-.remove_nested_fields, .add_nested_fields {margin-left:220px; font-size:24px; display:block;
+.remove_nested_fields, .add_nested_fields {
+  margin-left:220px; font-size:16px; display:block;
   //position:absolute;
   top:20px;
   right:20px;
-  
+  color:$lblue;
+  i {font-size:24px;}
 }
 
 .add_nested_fields i {float:right;
@@ -647,21 +674,32 @@ a.label-large:hover i {background: $yellow;}
   color:$red;
   }
   
-.fields {margin-bottom: 0px;}
+.fields {margin-bottom: 0px;
+  //&:hover {background-color:$white;}
+  }
 
 .nested-fields, .form-horizontal .links {
-  padding:20px 0px;
+  padding:10px 0px;
   min-height:20px;
-  &:hover {background-color:$white;}
+  
 }
 
 .form-horizontal .links {margin-bottom: 40px;}
 .form-inputs {max-width:900px;}
-
+.form-horizontal .form-actions {
+    padding-left: 220px;
+}
 
 label {
     font-size: 16px;
     line-height: 20px;
+}
+
+section { margin-bottom:120px;}
+
+form .section-title { margin-left:220px;
+  //font-weight:300; font-size:40px;
+  margin-bottom:40px;
 }
 
 .form-actions {background:none;}
@@ -741,7 +779,9 @@ display:inline-block;
 
 .form-inputs header .btn {float:left; margin-left:25px;}
 .form-inputs header {margin-bottom:50px;}
-select.select-right {position:absolute; top:20px; left:500px; width:auto; background:$vlblue; color:$white;}
+
+.addresses > div:first-child {position:absolute; top:10px; left:270px;}
+select.select-right { width:auto; background:$vlblue; color:$white;}
 
 
 /* View SHOW _____________________________________________________ */
