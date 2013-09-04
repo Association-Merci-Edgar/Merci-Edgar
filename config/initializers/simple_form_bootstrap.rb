@@ -40,7 +40,7 @@ SimpleForm.setup do |config|
   config.wrappers :with_tooltip_in_label, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
-    b.wrapper tag: 'div', class: 'control-label' do |ba|
+    b.wrapper tag: 'label', class: 'control-label' do |ba|
       ba.use :label_tooltip
     end
     b.wrapper :tag => 'div', :class => 'controls' do |ba|
