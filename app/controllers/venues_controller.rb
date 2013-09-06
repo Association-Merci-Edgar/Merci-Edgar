@@ -23,11 +23,8 @@ class VenuesController < AppController
     @people = @venue.people
     @tasks = @venue.tasks
     @pending_tasks = @tasks.pending
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @venue }
-    end
+    @reportings = @venue.reportings
+    @reporting = @venue.reportings.build
   end
 
   # GET /venues/new

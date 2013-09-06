@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905155105) do
+ActiveRecord::Schema.define(:version => 20130906201950) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,12 @@ ActiveRecord::Schema.define(:version => 20130905155105) do
 
   add_index "emails", ["contact_id"], :name => "index_emails_on_contact_datum_id"
 
+  create_table "note_reports", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "people_structures", :force => true do |t|
     t.integer "structure_id"
     t.integer "person_id"
@@ -87,6 +93,32 @@ ActiveRecord::Schema.define(:version => 20130905155105) do
   end
 
   add_index "phones", ["contact_id"], :name => "index_phones_on_contact_datum_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "account_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "projects", ["account_id"], :name => "index_projects_on_account_id"
+
+  create_table "reportings", :force => true do |t|
+    t.integer  "report_id"
+    t.string   "report_type"
+    t.integer  "asset_id"
+    t.string   "asset_type"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "reportings", ["asset_id"], :name => "index_reportings_on_asset_id"
+  add_index "reportings", ["project_id"], :name => "index_reportings_on_project_id"
+  add_index "reportings", ["report_id"], :name => "index_reportings_on_report_id"
+  add_index "reportings", ["user_id"], :name => "index_reportings_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
