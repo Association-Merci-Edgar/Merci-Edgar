@@ -47,6 +47,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.tracked_by(current_user)
     respond_to do |format|
+      format.html
       format.ics do
         calendar = Icalendar::Calendar.new
         calendar.prodid = "MerciEdgar-Calendar"

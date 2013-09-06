@@ -1,5 +1,7 @@
 Edgar::Application.routes.draw do
 
+  get "backdoor/index"
+
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
       root :to => 'home#index'
