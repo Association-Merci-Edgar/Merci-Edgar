@@ -6,20 +6,20 @@
       %i.entypo.edi-flag
     %a{:href => "#"}
       %i.entypo.edi-heart
-    /= link_to 'Edit', edit_venue_path(venue)
-    = link_to edit_person_path(person), :class => "shybtn" do
-      %i.entypo.edi-pencil
-    = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
-      %i.entypo.edi-cross
-  = link_to person do 
-    
+      
+    .actions
+      = link_to edit_person_path(person), :class => "shybtn" do
+        %i.entypo.edi-pencil
+      = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+        %i.entypo.edi-cross
+        
+  = link_to person do
     %h3= "#{person.first_name} #{person.name}"
-    
-    /%i.entypo.edi-house
     .pic-container
       .pic
         /%i.entypo.edi-house
         = image_tag person.avatar_url(:thumb)
+        
   %span
     - ps = person.people_structures.first
     - if ps.present?
@@ -33,6 +33,7 @@
     - phone = person.phones.first
     - if phone.present?
       = phone.national_number
+      
   .tags
     %span.tag.tag-type SMAC
     %span.tag.tag-style Rock
@@ -40,7 +41,3 @@
     %span.tag.tag-style Jeune public
     %span.tag.tag-legal Co-réalisation
     %span.tag.tag-legal Location
-    
-  /%td= link_to 'Show', venue
-  /%i.entypo.edi-house
-  /%td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }
