@@ -35,6 +35,7 @@ Edgar::Application.routes.draw do
     get 'tags/:tag', to: 'contacts#index', as: :tag
     resources :contacts
     resource :account
+    resources :reportings
 
   end
 

@@ -30,6 +30,9 @@ class Contact < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   has_many :tasks, :as => :asset
+  
+  has_many :reportings, :as => :asset, :order => 'created_at DESC'
+  has_many :reports, through: :reportings, source: :report, source_type: :report
 
 
   accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true

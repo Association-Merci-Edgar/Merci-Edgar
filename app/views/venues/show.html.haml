@@ -58,16 +58,16 @@
           .row-fluid
             .span8
               #activityfield-outter
-                <textarea id="activityfield" class="" name="" type="text" placeholder="écrire une nouvelle note"/>
-                </textarea>
-                /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
-                /"#{t("simple_form.labels.defaults.first_name")}"
-                %button.btn.btn-secondary.submit
-                  //%i.entypo.edi-plus-3
-                  %i.entypo.edi-arrow-down-5
-                  
-                  
+                = simple_form_for(@reporting) do |f|
+                  = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
+                  = f.hidden_field :asset_id
+                  = f.hidden_field :asset_type
+                  = button_tag(type: 'submit', class: "btn btn-secondary submit") do 
+                    %i.entypo.edi-arrow-down-5
+                                        
+              
               %ul.list-large
+                = render @reportings
                 %li
                   %h4 Hier
                   .infos
