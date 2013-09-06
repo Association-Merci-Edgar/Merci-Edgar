@@ -66,20 +66,18 @@
           
           
       .tab-content
-      
+        / ________________________________________________________ activity
         #activity.tab-pane.active
           .row-fluid
             .span9
-              <textarea id="newnotes" class="activityfield" name="" type="text" placeholder="— écrire une nouvelle note"/>
-              </textarea>
-              /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
-              /"#{t("simple_form.labels.defaults.first_name")}"
-              
-              <input class="btn" type="submit" class="submit" value="Submit" />
-              /.plus-in-list
-              /%a{:href => "#"}
-              /%i.entypo.edi-plus-3
-                 
+              #activityfield-outter
+                <textarea id="activityfield" class="" name="" type="text" placeholder="— écrire une nouvelle note"/>
+                </textarea>
+                /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
+                /"#{t("simple_form.labels.defaults.first_name")}"
+                %button.btn.btn-secondary.submit
+                  %i.entypo.edi-plus-3
+
                     
               %ul.list-large
                 %li
@@ -98,6 +96,11 @@
                   = render email
                 - @person.phones.each do |phone|
                   = render phone
+                  
+                  
+                  
+                  
+        / ________________________________________________________ infos
         #infos.tab-pane
           .row-fluid
             .span6
@@ -160,7 +163,11 @@
                 - @person.websites.each do |website|
                   = render website
 
-      
+
+
+
+
+        / ________________________________________________________ tasks
         #tasks.tab-pane
           /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person}
           /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person}
@@ -169,13 +176,17 @@
           /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person}
           /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person}
           
-          .plus-in-list
+          .btn-in-list
             %a{:href => "#"}
               /= link_to new_venue_person_path(@venue) do
               %i.entypo.edi-plus-3
               %span
                 New Task
-                      
+                
+                
+                
+                
+        / ________________________________________________________ dates             
         #dates.tab-pane
           
           %ul.list-large
@@ -189,7 +200,7 @@
               %h4 Concert — Mardi 12 septembe 2013
               %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
               
-          .plus-in-list
+          .btn-in-list
             %a{:href => "#"}
               %i.entypo.edi-plus-3
               %span
