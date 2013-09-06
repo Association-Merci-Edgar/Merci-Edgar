@@ -59,7 +59,7 @@
           %a{"data-toggle" => "tab", :href => "#infos"} Infos
         %li
           /%a{"data-toggle" => "tab", :href => "#tasks"}= "#{t(:tasks)} #{@pending_tasks.size}"
-          %a{"data-toggle" => "tab", :href => "#tasks"} Tâches
+          %a{"data-toggle" => "tab", :href => "#tasks"}= "#{t(:tasks)} #{@pending_tasks.size}"
           /%span.label (sur le compteur)
         %li
           %a{"data-toggle" => "tab", :href => "#dates"} Dates
@@ -162,12 +162,12 @@
 
       
         #tasks.tab-pane
-          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person}
-          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person}
-          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person}
-          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person}
-          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person}
-          /= render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person}
+          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person}
           
           .plus-in-list
             %a{:href => "#"}

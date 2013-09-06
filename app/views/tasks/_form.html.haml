@@ -4,7 +4,7 @@
   .form-inputs
     = f.hidden_field :user_id, :value => current_user.id
     = f.hidden_field :asset_id, :value => @asset.id if @asset
-    = f.hidden_field :asset_type, :value => @asset.class.name if @asset
+    /= f.hidden_field :asset_type, :value => @asset.class.name if @asset
     
     = f.input :name
     = f.input :bucket, :collection => [:due_today, :due_tomorrow, :due_this_week, :due_next_week, :due_this_month, :overdue]

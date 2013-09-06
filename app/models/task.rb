@@ -46,6 +46,10 @@ class Task < ActiveRecord::Base
   scope :due_this_month, lambda { where('due_at >= ? AND due_at < ?', Time.zone.now.next_week.end_of_week.utc + 1.day, Time.zone.now.end_of_month.utc + 1.day).order('tasks.due_at ASC') }
   scope :due_later,     lambda { where("(due_at IS NULL AND bucket = 'due_later') OR due_at >= ?", Time.zone.now.next_week.end_of_week.utc + 1.day).order('tasks.due_at ASC') }
 
+  def asset_type=(sType)
+    super(sType.to_s.classify.constantize.base_class.to_s)
+  end
+
   def complete(user)
     self.completor = user
     self.completed_at = Time.zone.now

@@ -24,7 +24,12 @@ Edgar::Application.routes.draw do
         put 'complete', :on => :member
       end
     end
-    resources :people
+    resources :people do
+      resources :tasks do
+        put 'complete', :on => :member
+      end
+    end
+    resources :tasks
     get 'tags/:tag', to: 'contacts#index', as: :tag
     resources :contacts
     resource :account

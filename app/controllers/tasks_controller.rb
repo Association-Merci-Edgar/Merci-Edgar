@@ -17,7 +17,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @asset = @task.asset
     if @task.update_attributes(params[:task])
-      redirect_to @asset
+      link = @asset.present? ? @asset : tasks_path
+      redirect_to link
     else
       render :edit
     end
@@ -33,10 +34,14 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @asset = @task.asset
     if @task.save
-      redirect_to @asset
+      link = @asset.present? ? send("#{@asset.class.name.downcase}_path",@asset) : tasks_path
+      render :js => "window.location = '#{link}'"
     else
-      render :new
+      respond_to do |format|
+        format.js
+      end
     end
+    
   end
 
   def index
