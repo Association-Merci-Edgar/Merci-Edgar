@@ -4,13 +4,21 @@
 %ul.pluslist
   %li.list-header
     Ajouter
+
+  - if @venue.present?
+    %li
+      /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
+      = link_to "une tâche", new_venue_task_path(@venue), remote:true
+
+  - if @person.present?
+    %li
+      = link_to "une tâche", new_person_task_path(@person), remote:true
+
+  - unless @person.present? || @venue.present?
+    %li
+      = link_to "une tâche générique", new_task_path, remote:true
+
   %li
-    %a{:href => "#"} une tâche
-  %li
-    %a{:href => "#"} une date spectacle
-  %li
-    %a{:href => "#"} une personne   
+    = link_to "une personne", new_person_path
   %li
     = link_to "une salle",new_venue_path
-  %li
-    %a{:href => "#"} une liste

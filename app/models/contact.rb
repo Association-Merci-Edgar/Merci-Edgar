@@ -29,6 +29,9 @@ class Contact < ActiveRecord::Base
   has_many :taggings, as: :asset
   has_many :tags, through: :taggings
 
+  has_many :tasks, :as => :asset
+
+
   accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => proc { |attributes| attributes[:national_number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :addresses, :reject_if => proc { |attributes| attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank? }, :allow_destroy => true
@@ -71,4 +74,5 @@ class Contact < ActiveRecord::Base
       Contact.order(:name)
     end
   end
+
 end
