@@ -14,8 +14,9 @@
           
 
         = f.input :name, label: false, :class => "input-Xlarge"
-        %a.btn.btn-default
-          modifier l’image
+        .controls
+          %a.btn.btn-default
+            modifier l’image
           
     %section#basic-infos
      
@@ -118,7 +119,8 @@
           
     
     %section#contact-infos
-      %h1.section-title Coordonnées
+      .section-title
+        .title Coordonnées
       / ________________________________________________________ email
       = f.fields_for :emails do |email|
         .nested-fields
@@ -189,7 +191,8 @@
           Add a new website
       
     %section#social-infos
-      %h1.section-title Réseaux sociaux
+      .section-title
+        .title Réseaux sociaux
 
     / ________________________________________________________ actions
     .form-actions

@@ -1,32 +1,191 @@
-.page-title
-  Home
+%header
+  %h1.page-title
+    Tableau de bord
 
-.row-fluid.label-blocks
-  .span12
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        /.label.label-large
-        %i.edi-binoculars
-        %h4
-          Prospecter
-        %p
-          dans la base collective
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        %i.edi-vcard
-        %h4
-          Importer des contacts
-        %p
-          depuis un fichier Excel
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        %i.edi-user-add
-        %h4
-          Créer un contact
-        %p
-          manuellement
-  
+%section#dash-tasks
+  .section-title
+    .title
+      Tâches
+      .badge.badge-medium.badge-shy 25
+    .title-infos
+      dont
+      .badge.badge-small.badge-black 1
+      en retard,
+      .badge.badge-small.badge-red 1
+      pour aujourd’hui  
+
+  %ul.list-medium
+    %li
+      .row-table
+        .righttable.small
+          .badge.badge-black hier
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+              
+        .righttable
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+                = image_tag "squared/pro2.jpg"
+              ProjetXqsd
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+                = image_tag "squared/per2.jpg"
+              Untel X.
+        
+        .maintable
+          %input{:type => "checkbox"}
+          %a{:href => "#"} Relance de payement
+          
+            
+    %li
+      .row-table
+        .righttable.small
+          .badge.badge-red Aujourd'hui
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+              
+        .righttable
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/pro1.jpg"
+              Fatales Picards
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/per1.jpg"
+              François U.
+        
+        .maintable
+          %input{:type => "checkbox"}
+          %a{:href => "#"} Relance de payement Une tache avec un titre trés trés long…
+          
+          
+    %li
+      .row-table
+        .righttable.small
+          .badge ASAP
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+              
+        .righttable
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+              Global
+          .s1of2
+        
+        .maintable
+          %input{:type => "checkbox"}
+          %a{:href => "#"} Aller à Avignon
+          
+          
       
+    %li
+      .row-table
+        .righttable.small
+          .badge.badge-blue Dans 3 jours
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+              
+        .righttable
+          .s1of2
+              
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/per3.jpg"
+              Christophe R.
+        .maintable
+          %input{:type => "checkbox"}
+          %a{:href => "#"} Back to Avigon
+          
+    
+    
+    %li
+      .row-table
+        .righttable.small
+          .badge.badge-green Lun. 2 Sept.
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .righttable
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+              Global
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+              Toute l'équipe
+              
+        .maintable
+          %input{:type => "checkbox"}
+          %a{:href => "#"} Refaire du café
+          
+            
+   
+    .btn-in-list
+      %a.align-right{:href => "#"}
+        %span
+          Voir toutes les tâches
+        %i.entypo.edi-ellipsis
+  
+  
+  
+  
+    
+%section#dash-ednews
+  .section-title
+    .title
+      Nouveautés d’edgar
+      .badge.badge-medium.badge-shy 2
+       
+  %ul.list-medium
+    %li
+      %input{:type => "checkbox"}
+      %a{:href => "#"} Nouvelle fonctionnalité ! Edgar gére maintenant le multi-user !
+      
+    %li
+      %input{:type => "checkbox"}
+      %a{:href => "#"} Import Xcel enfin dispo !
+
+    %li
+      %input{:type => "checkbox"}
+      %a{:href => "#"} Edgar à Avignon ! :)
+
+
+    .btn-in-list
+      %a.align-right{:href => "#"}
+        %span
+          Voir toutes les nouveautés
+        %i.entypo.edi-ellipsis        
+
+
+%section#dash-stats
+  .section-title
+    .title
+      Statistiques
+
+  .row-fluid
+    .span3
+      .numbers-xlarge 219
+      Notes de suivis
+    .span3
+      .numbers-xlarge 146
+      tâches effectuées
+    .span3
+      .numbers-xlarge 24
+      dates créées
+    .span3
+      .numbers-xlarge 53
+      campagnes envoyées
+
+-#   
   - if user_signed_in?
     - if current_user.has_role? :admin
       = link_to "Administration", users_path

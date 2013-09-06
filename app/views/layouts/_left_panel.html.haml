@@ -15,7 +15,8 @@
         /%a.user-tab{:href => "/accounts"}
         
         = link_to edit_user_path(current_user) do
-          = current_user.name
+          %span
+            = current_user.name
           %i.entypo.edi-cog.righticon
           /User: #{@user.name}
           
@@ -40,7 +41,7 @@
           %i.entypo.edi-check_2
           Tâches
           %span.badge
-            1
+            25
             
       %li.comingsoon
         /= link_to new_venue_path, :class => "rightbt" do
@@ -71,21 +72,37 @@
             /%li.nav-header Récemment consulté
             %li
               %a{:href => "#"}
-                .pic
-                  %i.entypo.edi-user
+                .pic.pic-mini
+                  = image_tag "squared/per1.jpg"
                 Albert Untel
             %li
               %a{:href => "#"}
-                .pic
-                  %i.entypo.edi-github
+                .pic.pic-mini
+                  = image_tag "squared/pro4.jpg"
                 Salle Machin
             %li
               %a{:href => "#"}
-                .pic
-                  %i.entypo.edi-user
+                .pic.pic-mini
+                  = image_tag "squared/per4.jpg"
                 Albert Untel
             %li
               %a{:href => "#"}
-                .pic
-                  %i.entypo.edi-github
+                .pic.pic-mini
+                  = image_tag "squared/pro3.jpg"
                 Salle Machin
+.footer
+  = link_to destroy_user_session_path, :method => :delete, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion" do
+    /%a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion"}
+    %i.entypo.edi-moon
+    /%i.entypo.edi-cross-3
+    
+  %a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "<span>Aide</span>"}
+    %i.entypo.edi-light-bulb
+    /%i.entypo.edi-lifebuoy
+    /%i.entypo.edi-compass
+    /%i.entypo.edi-help
+    
+  /%a.pull-right{:href => "#"}
+  /  %i.entypo.edi-arrow-left-5
+      
+    
