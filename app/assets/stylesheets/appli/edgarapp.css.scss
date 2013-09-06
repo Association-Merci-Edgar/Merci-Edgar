@@ -1,16 +1,17 @@
-$dblue: #30303a;
-$dblue90: #45454e;
-$mblue: lighten( $dblue, 20% );
-$lblue: lighten( $dblue, 40% );
-$vlblue: lighten( $dblue, 50% );
+$dblue:   rgba(48, 48, 58, 1); //#30303a;
+$dblue90: rgba(58, 58, 68, 1); //#45454e;
+$mblue:   lighten( $dblue, 20% );
+$lblue:   lighten( $dblue, 40% );
+$vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
 $beige:   #edede8;
 $orange:  #ff5a3e;
 $yellow:  #EDE232;
-$green:   #50bfb2;
-$green2:  rgba(50, 210, 130, 1);
+$green:   rgba(80, 190, 180, 1);//#50bfb2
+$green2:  rgba(50, 210, 100, 1);
 $red:     rgba(204, 57, 50, 1);
 $blue:    rgba(80, 180, 210, 1);
 $white:   #fff;
+
 
 @mixin roundcorners {
 	-webkit-border-radius: 6px;
@@ -18,10 +19,23 @@ $white:   #fff;
 	border-radius: 6px;
 }
 
+@mixin roundcornersFX($value) {
+	-webkit-border-radius: $value;
+	-moz-border-radius: $value;
+	border-radius: $value;
+}
+
 @mixin borderbox {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;
+}
+
+@mixin b-radius-notLR ($lr) {
+  -moz-border-radius-top#{$lr}:  0;
+  -webkit-border-top-#{$lr}-radius: 0;
+  border-top-#{$lr}-radius: 0;
+  -moz-border-radius-bottom#{$lr}:  0;
+  -webkit-border-bottom-#{$lr}-radius: 0;
+  border-bottom-#{$lr}-radius: 0;
 }
 
 @mixin contentbox {
@@ -58,23 +72,31 @@ $white:   #fff;
   -o-user-select: none;
   user-select: none;
 }
+@mixin btn {}
 
-textarea {@include borderbox;}
+
+
 
 ::-moz-selection {background: $yellow; /* Firefox */}
 ::-webkit-selection {background:rgba(237, 226, 50, 0.99); /* Chrome */}
 ::selection {background: $yellow; /* Safari */}
 
+.nav, .leftpanel {@include noselect;}
+
+textarea {@include borderbox;}
+
+
 a {color:$dblue;
   &:hover, &:active {color:$green; text-decoration:none;}
 }
+
+*:focus { outline: none; }
+a:focus { outline: none; }
 
 .infos a {border-bottom : dotted 1px $green ;
   &:hover {color:$green; text-decoration:none; border-color:transparent;}
 }
 
-*:focus { outline: none; }
-a:focus { outline: none; }
 
 html, body {
 height: 100%;
@@ -85,50 +107,30 @@ body {
 	font-weight: 300;
 	font-size: 16px;//.9em;
 	line-height: 1.5em;
-	letter-spacing: 0.02em;
+	letter-spacing: 0.03em;
 	margin: 0px;
 	padding: 0px;
 	color: $dblue;
 	background:$beige;
 }
 
-//.mainwrapper, .mainpanel {height:100%;}
-
 .maincontent{
 	float: left;
-	width: 100%;	
+	width: 100%;
+	margin-bottom:50px;
 }
 
 .maincontentinner {
-	padding: 34px 64px 34px 34px ;
+	padding: 34px 64px 34px 48px;//34px 64px 34px 34px ;
 }
-
-
-#notice {
-	background: $yellow;
-	@include roundcorners;
-	padding:10px;
-}
-
-
 
 .leftpanel {
 	float: left;
 	width: 240px;
-	background: $dblue;
-	//background: url(../appli/dblue.gif) top left repeat;
-	position:absolute;
+	background: $dblue90;   //background: url(../appli/dblue.gif) top left repeat;
+	position:fixed;
 	//@include transition("all", 0.2s);
 }
-
-
-/*#outer1 {float:left; width:180px; padding:10px; background:#e0d0d0;}
-#outer3 {float:right; width:180px; padding:10px; background:#b0b0b0;}
-#outer2 {background:#e0e0e0; margin:10px 210px;}
-
-#outer1, #outer2, #outer3 {padding-bottom:32767px; margin-bottom:-32767px;}
-#wrapper {overflow:hidden; background:#e0e0e0;} */
-
 
 .entypo {
 	margin-right: .1em;
@@ -154,9 +156,13 @@ body {
 
 
 
-
-@mixin btn {
+#notice {
+	background: $yellow;
+	@include roundcorners;
+	padding:10px;
 }
+
+
 
 .btn:hover, btn:focus {
   //transition: background 0.2s;
@@ -174,31 +180,64 @@ body {
 }
 
 
+#activityfield, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    box-shadow: none;
+    transition: none;
+}
 
 
-h1 {font-size:37px;}
-.page-title {font-size:37px; margin-bottom:30px;}
+/* ______________________________________________________________ Headlines   */
+h1, h2, h3, h4 {font-weight:300; display:inline;}
+
+h1 {font-size:37px; color:$orange;}
+h2 {font-size:32px; font-weight:bold;}
+h3 {font-size:28px;}
+h4 {font-size:24px;}
+h5 {font-size:20px;}
+h6 {font-size:17px;}
+
+h2 {
+  line-height:32px;
+  margin:0px;
+  margin-top:-4px;
+  margin-bottom: 11px;
+}
+
+h4 { margin-bottom:18px;}
+
+.list-large h4 {margin-top:5px; margin-bottom: 11px;}
+
+.page-title {
+  @extend h1;
+  margin-bottom:30px;
+  display:block;
+}
+
+
+
+
+/* __________________________________ togglemenu   */
 .togglemenu {
-	display:none;
-	position:absolute;
-	bottom: 40px;
-	left: 0px;
+	display:none; position:fixed;
+	top: 30px; left: 0px;
 }
 /*.togglemenu .entypo { width:20px;}*/
 .togglemenu .entypo:before {font-size:24px;  color:#fff;}
 .togglemenu .btn {
 	background-image: none;
-	background-color:#000;
+	background-color: $dblue;
 	height:40px;
 	padding: 8px 8px;
 	padding-bottom:12px;
 }
 
 
+
+
+/* __________________________________ tags   */
 .tags {
   margin: 11px 0px;
 }
-
 .tag {
   font-size:14px;
   padding:2px 6px;
@@ -206,19 +245,18 @@ h1 {font-size:37px;}
   border:lighten($dblue, 50%) solid 1px;
   @include roundcorners;
 }
-
 .tag-type {border-color:$orange;}
 .tag-style {border-color:$green;}
 .tag-legal {//border-color:$yellow;
-  }
-
+}
 
 
 
 /* ________________________________________________________ NAV BAR   */
 
+/*  _______________________________________________________  leftpanel   */
 
-/*  ________________________________________________________  leftpanel   */
+/* __________________________________ small_goleft  */
 .leftpanel.collapsed {margin-left : -240px;}
 .mainpanel.goleft { margin-left:0px;}
 
@@ -226,35 +264,46 @@ h1 {font-size:37px;}
 .mainpanel.goleftsmall { margin-left:78px;}
 
 .leftpanel.small li a i.entypo { margin-right:20px; }
+.leftpanel.small {
+  .account-tab, .user-tab span {display:none;}
+  .logo {padding-left:13px;}
+  .leftmenu .righticon {
+      display: block;
+      float: none;
+      margin-left: 7px;
+      
+  }
 
-.leftmenu, .logo { }
+}
+/* ____________*/
 
-.leftpanel li a i.entypo { margin-bottom:6px; }
+
+
+
 .nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
-
-.leftpanel { overflow:hidden;}
 
 .leftmenu .nav-list {padding:0;}
 
 .nav-list > li > a, .nav-list .nav-header {margin:0; padding:0; text-shadow:none; }
 
-.leftpanel .entypo:before { font-size:24px;}
-.leftpanel .entypo.edi-check_2 { height:24px;}
+.leftpanel { overflow:hidden;}
+.leftpanel i { font-size:24px;}
+.leftpanel .entypo.edi-check_2 { height:24px;} // tasks icon
 .leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
 
 
 
 .logo {
-	height:80px;
+	height: 80px;
 	background: $orange;
-	padding-left:20px;
-	padding-top:4px;
+	padding-left: 20px;
+	padding-top: 6px;
 }
 
 .logotype {
-	position:absolute;
-	margin-top:13px;
-	color:#fff;
+	position: absolute;
+	margin-top: 13px;
+	color: #fff;
 }
 
 .leftpanel .entypo.logotype:before { font-size:50px;}
@@ -262,22 +311,38 @@ h1 {font-size:37px;}
 a .logotype { color: $dblue;}
 
 
-
+.footer {
+  position:fixed;
+  bottom:0px;
+  padding: 0 24px;
+  margin-bottom:24px;
+  a {color:$mblue;}
+  a:hover{color:$white;};
+  i {font-size:18px;}
+  a.pull-right {float:right;}
+}
 
 .leftmenu li a {
 	color:#fff; font-size:19px;
 	height: 25px;
-	padding : 13px 0px 12px 24px;
+	padding : 14px 0 14px 26px;//13px 0px 12px 24px;
 	display:block;
 	&:focus{text-decoration:none;}
 }
 
-.leftmenu a .badge { float:right; margin-top:2px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
+
+.leftmenu, .logo { }
+
+.leftpanel li a i.entypo { margin-bottom:6px; }
+
+
+
+.leftmenu a .badge { float:right; margin-top:4px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li, .logo {width:240px;}
 
 .click-nav {}
-.nav li.comingsoon a, .comingsoon li a {color:#555;}
+.nav li.comingsoon a, .comingsoon li a {color:$vlblue;}
 
 .leftmenu li {
 	margin:0;
@@ -289,24 +354,27 @@ a .logotype { color: $dblue;}
 	& .righticon {display:block;}
 }
 
-.leftmenu .righticon {float: right; display:none;}
+.entypo.edi-cog   {font-size:13px;}
+.entypo.edi-arrow-down-5 {font-size:17px; margin-top:6px;}
+
+.leftmenu .righticon {float: right; display:none;margin-top:6px;}
 
 .leftmenu .user-tab a {padding-top:32px;}
 
 i {font-style: normal;}
 
-.recent { margin-top:6px;}
-.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 34px; color:#999;}
-.recent .entypo {width:20px;}
+.recent { margin-top:6px;display: none;}
+.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 34px;}
+//.recent .entypo {width:20px;}
 
-.recent .pic {font-size:26px;height:20px;width:20px;display:inline;}
-
+//.recent .pic {font-size:26px;height:20px;width:20px;display:inline;}
+/*
 .recent .pic i {
   &:before {
     line-height: 26px; 
   }
 }
-
+*/
 
 
 /* NAV BAR / rightbt _______________________________ */
@@ -327,10 +395,10 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 .account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
 
 /*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
-.rightbt .entypo:before {color: #999;  font-size:16px;}
-.rightbt.entypo:before { font-size:16px;}
-.edi-cog.entypo:before {font-size:13px;}
-.rightbt:hover .entypo:before {color: #000;}
+//.rightbt .entypo{color: #999;  font-size:16px;}
+//.entypo.rightbt { font-size:16px;}
+
+//.rightbt:hover .entypo:before {color: #000;}
 
 /*____________ */
 
@@ -382,7 +450,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   -webkit-border-radius:  0 0 0 6px;
   -moz-border-radius: 0 0 0 6px;
   border-radius: 0 0 0 6px;
-  
+
   width:255px;
   
   .list-header {font-size:20px;}
@@ -406,88 +474,26 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   &:before {line-height:47px;};
 }
 
-.plus-in-list {
-  margin-top:20px;
-  & a {color:lighten( $dblue, 50% );}
-  & a:hover{color:$green;};
-  & a i {font-size:36px; display:inline;
-    }
-  & a:hover span{display:inline;};
-  & span {display:none;}
-}
 
 
 
 
 /* label-blocks ________________________________________ */
-.pic {
-	height:30px; width:30px;
-	background-color:#CCC;
-	display:inline-block;
-	text-align:center;
-	margin-right:8px;
-	border: solid 1px lighten( $dblue, 50% );
-	@include roundcorners;
-
-  img {@include roundcorners;}
-  i:before {line-height:30px;}
-}
 
 
 
 
 
 /* ELEMENTS ________________________________________ */
+
+
+
+
 .meta { float:right; font-size:20px;}
 .meta i {display:inline-block;}
+.list-large .meta { position: absolute; right:0; top:24px;}
 
 
-/* List-large ________________________________________ */
-.list-large {
-  list-decoration:none;
-  list-style:none;
-  margin:0;
-  font-size:16px;
-  
-}
-
-.list-large li {
-  padding:20px 0px;
-  border-top: solid 1px lighten( $dblue, 60% );
-  list-decoration:none;
-  clear:both;
-  min-height:60px;
-  @include transition("background-color", 0.2s);
-  //@include transition("width", 0.2s);
-  background:$beige;
-  position:relative;
-  
-  &:first-child{border:none;}
-  
-  &:hover{
-    background:$white;
-    //width:102%;
-    //@include transfX;
-    }
-  &:hover .meta .actions { display:block;
-    }
-    
-  h3 {
-    font-size:24px;
-  }
-  .meta { position: absolute; right:0; top:24px;}
-}
-
-.meta .actions {
-  display:none;
-  a {float:right;}
-}
-
-
-.list-large li.list-header { padding:0; min-height: 10px; border:none; margin-bottom:10px;
-  &:hover{background:none;
-  }
-}
 
 .label-big {
   @include roundcorners;
@@ -508,7 +514,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   border: solid 1px $vlblue;
   @include roundcorners;
   &:hover{
-    background:$dblue;
+    background:$green;
     color:$white;
     border-color:transparent;
   };
@@ -575,7 +581,7 @@ input.search-query {width:100%;}
   @include borderbox;
 }
 
-h4 {font-weight:normal;}
+
 a.label-large:hover {color:$dblue;}
 a.label-large:hover i {background: $yellow;}
 
@@ -668,7 +674,7 @@ a.label-large:hover i {background: $yellow;}
 }
 
 .add_nested_fields i {float:right;
-  color:$green;
+  color:$green2;
   } 
 .remove_nested_fields i {float:right;
   color:$red;
@@ -695,7 +701,7 @@ label {
     line-height: 20px;
 }
 
-section { margin-bottom:120px;}
+form section { margin-bottom:120px;}
 
 form .section-title { margin-left:220px;
   //font-weight:300; font-size:40px;
@@ -746,6 +752,7 @@ display:inline-block;
   margin-left:90px;
   @include square(100);
   .pic { @include square(100);}
+  position:absolute;
 }
 
 
@@ -777,14 +784,202 @@ display:inline-block;
 
 .venue_addresses_kind { position:absolute; right:50px; top: 10px;}
 
-.form-inputs header .btn {float:left; margin-left:25px;}
+//.form-inputs header .btn {float:left; margin-left:25px;}
 .form-inputs header {margin-bottom:50px;}
 
 .addresses > div:first-child {position:absolute; top:10px; left:270px;}
 select.select-right { width:auto; background:$vlblue; color:$white;}
 
 
-/* View SHOW _____________________________________________________ */
+header {display:block;}
+
+
+/*  _____________________________________________________ DASHBOARD   */
+
+
+
+.section-title {
+  padding:20px 0;
+  border-bottom: solid 1px $lblue;
+  .title-infos, .title {display: inline-block;}
+  .title {font-size:28px;
+    .badge {font-size:18px; }
+  }
+  .badge {font-size:15px; margin: 0 4px; font-weight:300;}
+}
+
+#dash-stats .section-title {border-bottom: none;}
+#dash-stats .span3 {border-top: solid 1px $lblue;}
+
+.numbers-xlarge {font-size:70px; margin-top:20px; line-height:1.2em;}
+
+section {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+.badge {height:auto; padding: 2px 9px; line-height:1.1em; @include roundcornersFX(30px);
+  font-weight:300;text-shadow:none;
+  //display:inline-block;
+}
+  
+  
+.badge-medium { padding: 3px 10px;}
+
+.badge-black {background:$dblue;}
+.badge-red {background:$red;}
+.badge-orange {background:$orange;}
+.badge-blue {background:$blue;}
+.badge-green {background:$green2;}
+.badge-shy {background:none; border: solid 1px $lblue; color:$dblue; ;}
+
+/*  _____________________________________________________  LISTS   */
+.list-items {
+  list-decoration:none;
+  list-style:none;
+  margin:0;
+  font-size:16px;
+  li {
+    padding:20px 0px;
+    border-bottom: solid 1px lighten( $dblue, 60% );
+
+    position:relative;
+    clear:both;
+    
+    background:$beige;
+    @include transition("background-color", 0.2s);
+    //@include transition("width", 0.2s);
+    &:last-child{border:none;}
+  }
+  li:hover .actions { display:block;}
+  li:hover .badge { display:none;}
+  li:hover{
+    background:$white;
+    //width:102%;
+    //@include transfX;
+  }
+}
+
+.list-large, .list-medium {
+  @extend .list-items;
+}
+
+
+
+
+.actions {
+  display:none;
+  float:right;
+  a {}
+  //position:absolute;
+}
+
+
+
+.row-fluid [class*="span"] { min-height :15px}
+
+
+.btn-in-list {
+  & a {color: $dblue; display:block; font-size:20px;
+    padding-top:20px;}
+  & a:hover{color:$green;};
+  & a i {font-size:36px; display:inline;
+    }
+  & a:hover span{display:inline;};
+  & span {display:none; margin: 0 10px;}
+}
+
+.align-right{text-align:right;}
+
+li {line-height: inherit;}
+
+
+*:visited, *:active {text-decoration:none;}
+
+
+/* __________________________________ List_medium  */
+.list-medium li {
+  a {font-size:17px;}
+  line-height:28px;
+  a {display:block; }
+  min-height:28px;
+  padding:14px 0px;
+  border-bottom: dotted 1px lighten( $dblue, 60% );
+  .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
+  /*.span7 {font-size:17px;
+    a { margin-left:25px; }
+    }
+  .span3 {font-size:15px; color:$lblue;
+    a {color:$lblue;
+    &:hover {color:$green;}
+    }
+    }*/
+
+  input[type="checkbox"] {
+      margin: 6px 14px 0 0 ;
+      float:left;
+  }
+  
+  .shybtn { padding:0px 8px;}
+  .pic img {margin-top:-3px;}
+}
+
+//.row-table{display:inline;}
+.maintable {
+  //background: green;
+  overflow: hidden;
+  
+}
+.righttable {
+  width: 320px;
+  margin-left:20px;
+  float: right;
+  //background: $vlblue;
+  &.small {width:110px;}
+  .s1of2 {display:inline-block; width:150px}
+  a {font-size:15px !important;}
+}
+
+//.s1of2 {display:inline-block; width:40%;}
+
+.list-medium .btn-in-list a i {font-size:30px !important;}
+
+
+.shybtn { padding:2px 8px;}
+
+
+
+/* __________________________________  List_large   */
+
+.list-large {
+  p {font-size:15px;}
+  
+}
+
+#activity .list-large  {
+  h4, .infos {display:inline-block; margin-right:10px;}
+  .pic-mini {float:none;
+    margin: 0 4px;
+    text-decoration:none; width:23px;}
+}
+.infos {color:$mblue;}
+
+
+.list-large li {
+  min-height:60px;
+}
+
+.list-large li.list-header { padding:0; min-height: 10px; border:none; margin-bottom:10px;
+  &:hover{background:none;
+  }
+}
+
+
+
+
+
+/*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
 .showitem header {}
 
@@ -798,39 +993,88 @@ header {
   } 
 }
 
-
-h3 {
-  font-size:32px;
-  line-height:32px;
-  margin:0px;
-  margin-top:-4px;
-  margin-bottom: 11px;
+.btn-secondary {
+  @extend .btn-primary;
+  background:$vlblue;
+  color:$white;
+  &:hover, &:focus, &:active {
+    background:$green;
+    color:$white;
+  }
 }
 
-h4 { font-size:26px;
-  //font-weight:bold;
-  margin-bottom:18px;
-}
+
+.bold {font-weight:bold;}
 
 #account-page .row-fluid { margin-bottom:36px;}
 
-.pic-container { height:auto; width: 70px; float:left; margin-right:8px;}
+.pic-container { height:auto; width: 70px; }
+
 .pic {
+  float:left; 
+  margin-right:18px;
   @include square(60);
-  font-size:50px;
-  display:block;
-  i {text-align:center; width:100%;}
-  i:before {line-height:60px; text-align:center;}
+  display:inline-block;
+	text-align:center;
+	
+  //font-size:50px;
+  //display:block;
+  //i {text-align:center; width:100%;}
+  //i:before {line-height:60px; text-align:center;}
+  
+  img {
+    @include roundcorners;
+    border: solid 1px lighten( $dblue, 50% );
+  }
+  
 }
 
-.activityfield {
+
+.pic-mini {@include square(24);margin-right:12px; margin-top:1px;}
+.pic-small {@include square(44);margin-right:14px; margin-top:0;}
+
+
+/*  ________________________________________ activityfield*/
+#activityfield {
   resize:vertical;
-  height:70px;
-  min-height:70px;
+  height:80px;
+  min-height:80px;
   max-height:300px;
-  width:100%;
   background:$white;
+  float:left;
+  font-size:17px;
+  padding:8px;
+  &:focus{
+    background:$green;
+    color:$white;
+    border:none;
+  };
 }
+
+#activityfield-outter{
+  display:inline-block;
+  width:100%;
+  #activityfield{ width:95%;
+    @include b-radius-notLR ("right")
+    }
+  .btn {
+    width:5%;
+    min-height:80px;
+    font-size:24px;
+    @include b-radius-notLR ("left");
+    margin-left:-1px;
+
+    }
+}
+
+.btn-secondary i {padding-top:4px; margin:0;
+  &:before{ width:15px;overflow:hidden;}
+  }
+
+
+
+
+#team .list-large h4 {display:block;}
 
 /* ACCOUNT ________________________________________ */
 
@@ -838,18 +1082,24 @@ h4 { font-size:26px;
 
 /* Views SHOW Right Menu ________________________________________ */
 
-.rightmenu {padding: 20px;}
+//.rightmenu {padding: 20px;}
+
+ul.list-infos {
+  margin-left:0; margin-bottom:24px;
+  list-style:none;
+  list-decoration:none;
+  li {margin-bottom:3px;}
+  h4 {margin-top:7px; margin-bottom:6px;}
+}
 
 .infolabel {
   font-size:0.9em;
   color: $lblue;
   
 }
-.dblue{color:$dblue;}
 
-ul.infos {margin-left:0; margin-bottom:24px;
-  list-style:none;
-  }
+
+.dblue{color:$dblue;}
 
 /*
 .rightpanel .entypo {display:inline-block;}
@@ -859,10 +1109,13 @@ ul.infos {margin-left:0; margin-bottom:24px;
 */
 
 
-.nav-tabs {font-size:16px;
+.nav-tabs {
+  font-size:17  px;
   font-weight:bold;
   border-bottom:solid 1px lighten( $dblue, 60% );
+  margin-bottom:24px;
 }
+
   
 .nav-tabs > li > a {
   padding:0;
@@ -901,44 +1154,66 @@ ul.infos {margin-left:0; margin-bottom:24px;
 .hiddentag { display:none;}
 
 
+/* ___________________________________________________  Bootstrap tooltip */
 
-/* Bootstrap tooltip extension ________________________________________ */
+$tooltipBKG: $mblue;
+$tooltipTXT: $white;
+.tooltip-inner {background:$mblue; }
+
+.tooltip.top .tooltip-arrow {border-top:5px solid $tooltipBKG;}
+.tooltip.left .tooltip-arrow {border-left:5px solid $tooltipBKG;}
+.tooltip.bottom .tooltip-arrow {border-bottom:5px solid $tooltipBKG;}
+.tooltip.right .tooltip-arrow {border-right:5px solid $tooltipBKG;}
+
+/* ___________________________________________________  Bootstrap tooltip extension  */
 
 .tooltip.top-left .tooltip-arrow {
   bottom: -5px;
   left: 5px;
   border-width: 5px 5px 0;
-  border-top-color: black;
+  border-top-color: $tooltipBKG;
 }
 .tooltip.top-right .tooltip-arrow {
   bottom: -5px;
   right: 5px;
   border-width: 5px 5px 0;
-  border-top-color: black;
+  border-top-color: $tooltipBKG;
 }
 .tooltip.bottom-left .tooltip-arrow {
   top: -5px;
   left: 5px;
   border-width: 0 5px 5px;
-  border-bottom-color: black;
+  border-bottom-color: $tooltipBKG;
 }
 .tooltip.bottom-right .tooltip-arrow {
   top: -5px;
   right: 5px;
   border-width: 0 5px 5px;
-  border-bottom-color: black;
+  border-bottom-color: $tooltipBKG;
 }
 
 
 
 
-
+/*
+@media (max-width: 1024px) {
+  .account-tab, .user-tab span {display:none;}
+  .logo {padding-left:14px;}
+  
+  .leftmenu .righticon {
+      display: block;
+      float: none;
+      margin-left: 7px;
+  }
+  
+}
+*/
 
 /* MEDIA SCREEN SIZE ____________________ */
 @media (max-width: 767px) {
-body { padding:0px;}
-.togglemenu {display: inline; margin-left:-20px;}
+  body { padding:0px;}
+  .togglemenu {display: inline; margin-left:-20px;}
 
-.filters-list {float:left; width: 33%;}
+  .filters-list {float:left; width: 33%;}
 }
 

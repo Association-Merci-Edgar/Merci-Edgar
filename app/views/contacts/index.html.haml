@@ -1,17 +1,3 @@
--content_for :right_panel do
-  .leftmenu
-    .sidebar-nav
-      %ul.nav.nav-list
-        %li.nav-header
-          %a{:href => "#"}
-          %i.entypo.edi-gauge
-          Informations
-        %li
-          %a{:href => "#"}
-          %i.entypo.edi-gauge
-          Tableau de bord
-
-
 .page-title
   = t(params[:controller]).titleize
   = @filtered_by if @filtered_by.present?
@@ -81,7 +67,7 @@
       
       = render @contacts
       
-      .plus-in-list
+      .btn-in-list
         = link_to new_venue_path do
           %i.entypo.edi-plus-3
           %span

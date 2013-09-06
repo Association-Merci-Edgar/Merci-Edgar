@@ -1,7 +1,7 @@
 $('document').ready(function() {
   
-	$(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
-
+	
+  initializer();
   $('[data-toggle="tooltip"]').tooltip(); 	      // activate tooltips
   //$(".editbtn").tooltip({html:true});   
   
@@ -21,9 +21,7 @@ $('document').ready(function() {
   			$('.mainpanel').addClass( "goleftsmall");
 		} else if ($(window).width() > 1024) {
 		}	
-		
 	}
-	
   
 	$('.leftpanel.collapsed').animate();
 	$('.leftpanel:not(.collapsed)').animate();
@@ -46,7 +44,8 @@ $(window).load(function() {
 });
 
 $(window).resize(function() {
-	smallScreens();	
+	smallScreens();
+	initializer();
 });
 
 
@@ -71,4 +70,7 @@ $(function() {
 });
 
 //_______
-		
+
+initializer = function() {
+  $(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
+}
