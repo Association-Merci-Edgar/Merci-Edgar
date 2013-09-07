@@ -1,31 +1,45 @@
 %li
-  .meta
-    %a{:href => "#"}
-      %i.entypo.edi-chat
-    %a{:href => "#"}
-      %i.entypo.edi-flag
-    %a{:href => "#"}
-      %i.entypo.edi-heart
-    /= link_to 'Edit', edit_venue_path(venue)
-    = link_to edit_venue_path(venue), :class => "shybtn" do
-      %i.entypo.edi-pencil
-    = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
-      %i.entypo.edi-cross
-  = link_to venue do 
+  .rightrow
+    .meta
+      %a{:href => "#"}
+        %i.entypo.edi-chat
+      %a{:href => "#"}
+        %i.entypo.edi-flag
+      %a{:href => "#"}
+        %i.entypo.edi-heart
+      /= link_to 'Edit', edit_venue_path(venue)
+      
+    .mini-map= image_tag "appli/mini-map.png"
     
-    %h3= venue.name
-    
-    /%i.entypo.edi-house
-    .pic-container
-      .pic
-        /%i.entypo.edi-house
-        = image_tag venue.avatar_url(:thumb)
-  %span
-    - address = venue.addresses.first
-    - if address.present?
-      = address.gmaps4rails_address
-  .tags
-    = render partial: "venues/tags", locals: { venue: venue}
-  /%td= link_to 'Show', venue
-  /%i.entypo.edi-house
-  /%td= link_to 'Destroy', venue, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .actions
+      = link_to edit_venue_path(venue), :class => "shybtn" do
+        %i.entypo.edi-pencil
+      = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+        %i.entypo.edi-cross
+      
+  
+        
+  .mainrow      
+    = link_to venue do
+      %h3= venue.name
+      .pic= image_tag venue.avatar_url(:thumb)
+    .infos-line
+      %span.jauge
+        %span.number 4600
+        seating
+        
+      %span.jauge
+        %span.number 4600
+        standing
+        
+      %span.location
+        %a.city{:href => "#"} 75020 Paris
+        Ile de france
+        
+        /
+          - address = venue.addresses.first
+          - if address.present?
+            = address.gmaps4rails_address
+      
+    .tags
+      = render partial: "venues/tags", locals: { venue: venue}

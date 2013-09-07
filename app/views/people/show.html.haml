@@ -35,8 +35,7 @@
           /%p
           /%span.infolabel.dblue= @person.addresses.first.city
           /%span.infolabel — Ile de france
-      - if notice.present?
-        %p#notice= notice
+
       
       
     .meta
@@ -48,6 +47,9 @@
           Éditer cette fiche
           %br
           %span.infolabel modifié le 20/02/2013 par Untel
+          
+    - if notice.present?
+      %p#notice= notice
       
 .row-fluid
   .span12
