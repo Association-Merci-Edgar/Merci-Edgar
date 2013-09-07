@@ -8,12 +8,13 @@
       
 #account-page.row-fluid
   .span12
-    .tabbablesd
-      %ul.navi.nav-tabs-ext
+    .tabbables-not
+      %ul.nav.nav-tabs
         %li
           = user_tab_link "Compte", edit_account_path, :account
-        %li.actives
-          = user_tab_link "Votre profil", edit_user_path(current_user, :anchor => "profile"), :users
+        %li.active
+          /= user_tab_link "Votre profil", edit_user_path(current_user, :anchor => "profile"), :users
+          = user_tab_link "Votre profil", edit_user_path(current_user), :users
         %li
           = user_tab_link "Projets artistiques", edit_user_path(current_user, :anchor => "projects"), :projects
         %li
@@ -24,6 +25,7 @@
 
         = yield :account_tab
         = yield :user_tab
+        
         #projects.tab-pane
           %ul.list-large
             %li
@@ -41,8 +43,7 @@
               %i.entypo.edi-plus-3
               %span New Project
             
-                
-
+            
                       
         #extras.tab-pane
           The extras

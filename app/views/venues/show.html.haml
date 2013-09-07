@@ -6,7 +6,7 @@
             
 .row-fluid.toppage.showitem
   %header
-    .pic= image_tag @venue.avatar_url
+    .pic= image_tag @venue.avatar
     %h2= @venue.name
     
     .infos
@@ -29,8 +29,8 @@
     = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le 20/02/2013<br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
       %i.entypo.edi-pencil
       
-    - if notice.present?
-      %p#notice= notice
+  - if notice.present?
+    .notice= notice
     
       
 .row-fluid

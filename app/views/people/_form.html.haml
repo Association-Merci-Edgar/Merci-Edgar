@@ -1,55 +1,126 @@
-= simple_nested_form_for(@person) do |f|
+/%h1.page-title Modifier la fiche de la personne
+= simple_nested_form_for(@person, :html => { :class => 'form-horizontal form-edit' }) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :first_name
-    = f.input :name
-    = f.input :avatar
+    %header
+      .control-group
+        .pic-container
+          .pic= image_tag @person.avatar
+          
+        = f.input :first_name, label: false, :class => "input-Xlarge"
+        = f.input :name, label: false, :class => "input-Xlarge"
+        
+        = simple_form_for(@person, :html => { :method => :put, :class => 'form-horizontal' }) do |f|
+          = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+        
+        
+    %section#basic-infos
+      -#________________________________________________________people_structures
+      .fields-group
+        = f.fields_for :people_structures do |ps|
+          .nested-fields
+            = ps.link_to_remove :title => "Remove this function" do
+              %i.entypo.edi-minus-2
+            = ps.input :title
+            = ps.input :structure_name
+            = ps.input :structure_city
+            = ps.input :structure_country, as: :country
+        
+      .links
+        = f.link_to_add :people_structures do
+          //Add a function
+          Ajouter une fonction
+          %i.entypo.edi-plus-2
+          
+      -# ________________________________________________________ Observations
+      /= f.input :remark
+        
+    %section#contact-infos
+      .section-title
+        .title Coordonnées
+        
+      
+      -#  ________________________________________________________ email
+      = f.fields_for :emails do |email|
+        .nested-fields
+          = email.link_to_remove :title => "Remove this email" do
+            %i.entypo.edi-minus-2
+          = email.input :address, label:"Email", :wrapper => :append do
+            = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
+            = email.input_field :kind, :label => "Type", :collection => %w(Work Home), :selected => "Work", :class => "add-on btn dropdown-toggle"
+        
+      .links
+        = f.link_to_add :emails do
+          /Add a new email
+          Ajouter un email
+          %i.entypo.edi-plus-2
 
-    = f.fields_for :people_structures do |ps|
-      .nested-fields
-        = ps.input :title
-        = ps.input :structure_name
-        = ps.input :structure_city
-        = ps.input :structure_country, as: :country
-        = ps.link_to_remove "Remove this function"
-    .links
-      = f.link_to_add "Add a function", :people_structures
-    = f.fields_for :emails do |email|
-      .nested-fields
-        = email.input :address, :label => "Email", :validate => true
-        = email.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
-        = email.link_to_remove "Remove this email"
-    .links
-      = f.link_to_add 'Add a new email', :emails
+      -# ________________________________________________________ phone
+      = f.fields_for :phones do |phone|
+        .nested-fields
+          = phone.link_to_remove :title => "Remove this phone" do
+            %i.entypo.edi-minus-2
+        
+          = phone.input :national_number, :label => "Phone Number", :wrapper => :append do
+            = phone.input_field :national_number, :class => "input-medium", :validate => true
+            = phone.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+       
+      .links
+        = f.link_to_add :phones do
+          /Add a new phone
+          Ajouter un téléphone
+          %i.entypo.edi-plus-2
+        
+      
+      -# ________________________________________________________ address
+      .fields-group
+        = f.fields_for :addresses do |address|
+          .nested-fields.addresses
+            = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+            = address.link_to_remove :title => "Remove this address" do
+              %i.entypo.edi-minus-2
+      
+            = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+            = address.input :city, :label => false, :placeholder =>"Ville, localité, …", :input_html => { :class => "input-medium inline" }
+            = address.input :postal_code, :label => false, :placeholder =>"Code postal", :input_html => { :class => "input-mini inline" }
+            = address.input :state, :label => false, :placeholder =>"State"
+            = address.input :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+        
+        .links
+          = f.link_to_add :addresses do
+            /Add a new address
+            Ajouter une adresse
+            %i.entypo.edi-plus-2
+        
+        
+      -# ________________________________________________________ website    
+      = f.fields_for :websites do |website|
+        .nested-fields
+          = website.link_to_remove :title => "Remove this website" do
+            %i.entypo.edi-minus-2
+          /= website.input :url, :label => "Website"
+          /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+      
+          /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
+          = website.input :url, wrapper: :append do
+            = website.input_field :url, :class => "input-xlarge"
+            = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+        
+      .links
+        = f.link_to_add :websites do
+          Ajouter un site Internet
+          %i.entypo.edi-plus-2
+          //Add a new website
+        
+    %section#social-infos
+      .section-title
+        .title Réseaux sociaux
+        
 
-    = f.fields_for :phones do |phone|
-      .nested-fields
-        = phone.input :national_number, :label => "Phone Number", :validate => true
-        = phone.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
-        = phone.link_to_remove "Remove this phone"
-    .links
-      = f.link_to_add 'Add a new phone', :phones
-
-    = f.fields_for :addresses do |address|
-      .nested-fields
-        = address.input :street
-        = address.input :city
-        = address.input :postal_code
-        = address.input :state
-        = address.input :country, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
-        = address.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
-        = address.link_to_remove "Remove this address"
-    .links
-      = f.link_to_add 'Add a new address', :addresses
-
-    = f.fields_for :websites do |website|
-      .nested-fields
-        = website.input :url, :label => "Website"
-        = website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
-        = website.link_to_remove "Remove this website"
-    .links
-      = f.link_to_add 'Add a new website', :websites
-
-  .form-actions
-    = f.button :submit
+    / ________________________________________________________ actions
+    .form-actions
+      = f.button :submit, :class => "btn-primary btn-large"
+      ou
+      = link_to t(:cancel), @person
+  

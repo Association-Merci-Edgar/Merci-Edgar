@@ -16,10 +16,9 @@
         %i.entypo.edi-pencil
       = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
         %i.entypo.edi-cross
-      
-  
         
-  .mainrow      
+        
+  .mainrow
     = link_to venue do
       %h3= venue.name
       .pic= image_tag venue.avatar_url(:thumb)
