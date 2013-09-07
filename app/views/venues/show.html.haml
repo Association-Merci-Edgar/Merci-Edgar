@@ -19,16 +19,12 @@
           Ile de france
       .tags
         = render partial: "tags", locals: {venue: @venue}
-
-  
-  
-  
-  
     
     
   .meta
     %i.entypo.edi-flag
-    %i.entypo.edi-heart
+    //%a.ico.dealed{:href => "#"}
+    %a.ico.favorite{:href => "#"}
     = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le 20/02/2013<br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
       %i.entypo.edi-pencil
       
