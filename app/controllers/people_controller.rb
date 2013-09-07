@@ -27,10 +27,8 @@ class PeopleController < ApplicationController
   # GET /people/new.json
   def new
     @person = Person.new
-    if params[:venue_id]
-      @structure = Venue.find(params[:venue_id]) if params[:venue_id]
-      @person.structures << @structure
-    end
+    ps = @person.people_structures.build
+    ps.structure = Venue.find(params[:venue_id]) if params[:venue_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +39,8 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @structure = Venue.find(params[:venue_id]) if params[:venue_id]
+    ps = @person.people_structures.build
+    ps.structure = Venue.find(params[:venue_id]) if params[:venue_id]
   end
 
   # POST /people

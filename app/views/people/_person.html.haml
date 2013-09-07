@@ -19,10 +19,7 @@
         
   = link_to person do
     %h3= "#{person.first_name} #{person.name}"
-    .pic-container
-      .pic
-        /%i.entypo.edi-house
-        = image_tag person.avatar_url(:thumb)
+    .pic= image_tag person.avatar_url(:thumb)
         
   %span
     - ps = person.people_structures.first
@@ -39,9 +36,9 @@
       = phone.national_number
       
   .tags
-    %span.tag.tag-type SMAC
-    %span.tag.tag-style Rock
-    %span.tag.tag-style Punk
-    %span.tag.tag-style Jeune public
-    %span.tag.tag-legal Co-réalisation
-    %span.tag.tag-legal Location
+    %a.tag.tag-type SMAC
+    %a.tag.tag-style Rock
+    %a.tag.tag-style Punk
+    %a.tag.tag-style Jeune public
+    %a.tag.tag-legal Co-réalisation
+    %a.tag.tag-legal Location
