@@ -26,6 +26,6 @@ class PeopleStructure < ActiveRecord::Base
   end
 
   def set_structure
-    s = Structure.find_or_create_by(name: @name, city: @city, country: @country)
+    self.structure = Structure.find_or_create_by(name: @name, city: @city, country: @country)
   end
 end
