@@ -51,6 +51,7 @@ $white:   #fff;
 	-ms-transition: $prop $speed ease-in-out;
 	-o-transition: $prop $speed ease-in-out;
 	transition: $prop $speed ease-in-out;
+	
 }
 
 @mixin square($px) {
@@ -753,6 +754,7 @@ a.label-large:hover i {background: $yellow;}
   
 }
 
+.fields-group .fields:not(:last-child) {margin-bottom:24px;};
 .add_nested_fields i {float:right;
   color:$green2;
   } 
@@ -861,8 +863,7 @@ display:inline-block;
 
 //input.inputlarger { width:350px !important ;}
 
-
-.venue_addresses_kind { position:absolute; right:50px; top: 10px;}
+.addresses select:first-child { position:absolute; right:50px; top: 10px;}
 
 //.form-inputs header .btn {float:left; margin-left:25px;}
 .form-inputs header {margin-bottom:50px;}

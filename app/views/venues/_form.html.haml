@@ -9,22 +9,20 @@
     %header
       .control-group
         .pic-container
-          .pic
-            = image_tag @venue.avatar_url
-          
+          .pic= image_tag @venue.avatar
 
         = f.input :name, label: false, :class => "input-Xlarge"
-        .controls
-          %a.btn.btn-default
-            modifier l’image
-          
+        
+        = simple_form_for(@venue, :html => { :method => :put, :class => 'form-horizontal' }) do |f|
+          = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+
+
     %section#basic-infos
-     
-      / ________________________________________________________ TAGS V1
+      -#  ________________________________________________________ TAGS V1
       = f.input :style_list, label: "Styles programmés (séparés par des virgules)", :input_html => { :class => "span6" }
     
     
-      / ________________________________________________________ TAGS V2
+      -#  ________________________________________________________ TAGS V2
       -#.control-group
       -#
         %label.control-label Styles programmés
@@ -48,7 +46,7 @@
               %input#tags_tag{"data-default" => "add a tag", :style => "width: 80px;", :value => ""}/
               
             .tags_clear
-      / ________________________________________________________ contracts
+      -#  ________________________________________________________ contracts
       = f.association :contracts, :collection => Contract.all, :as => :check_boxes, label_method: :name, value_method: :id, item_wrapper_class:"inline"
 
     
@@ -57,16 +55,16 @@
         -#, :input_html => { :class => "span4" }
         .nested-fields
         
-          / ________________________________________________________ period
+          -#  ________________________________________________________ period
           = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
         
         
-          / ________________________________________________________ kind of venue
+          -#  ________________________________________________________ kind of venue
           /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
           = v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], :as => :radio_buttons, item_wrapper_class: "inline"
         
         
-          / ________________________________________________________ Services
+          -#  ________________________________________________________ Services
           = v.input :bar, label:"Services", item_wrapper_class: "inline" do
             = v.input_field :bar, inline_label: "Bar"
             = v.input_field :residency, inline_label: "Residence"
@@ -76,11 +74,11 @@
           
           
           
-          / ________________________________________________________ Observations
+          -# ________________________________________________________ Observations
           = v.input :remark
   
       
-        / ________________________________________________________ capacity
+        -# ________________________________________________________ capacity
         = v.fields_for :capacities do |capacity|
           .nested-fields
             = capacity.link_to_remove :title => "Remove this capacity" do
@@ -145,30 +143,31 @@
             = phone.input_field :national_number, :class => "input-medium", :validate => true
             = phone.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
       .links
-        = f.link_to_add :phones, :title => 'Add a new phone' do
+        = f.link_to_add :phones, :title => 'Ajouter un téléphone' do
           %i.entypo.edi-plus-2
           Add a new phone
    
     
       
       / ________________________________________________________ address
-      = f.fields_for :addresses do |address|
-        .nested-fields.addresses
-          = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
-          = address.link_to_remove :title => "Remove this address" do
-            %i.entypo.edi-minus-2
+      .fields-group
+        = f.fields_for :addresses do |address|
+          .nested-fields.addresses
+            = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+            = address.link_to_remove :title => "Remove this address" do
+              %i.entypo.edi-minus-2
         
-          = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
-          = address.input :city, :label => false, :placeholder =>"Ville, localité, …", :input_html => { :class => "input-medium inline" }
-          = address.input :postal_code, :label => false, :placeholder =>"Code postal", :input_html => { :class => "input-mini inline" }
-          = address.input :state, :label => false, :placeholder =>"State"
-          = address.input :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+            = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+            = address.input :city, :label => false, :placeholder =>"Ville, localité, …", :input_html => { :class => "input-medium inline" }
+            = address.input :postal_code, :label => false, :placeholder =>"Code postal", :input_html => { :class => "input-mini inline" }
+            = address.input :state, :label => false, :placeholder =>"State"
+            = address.input :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
         
         
-      .links
-        = f.link_to_add :addresses, :title => 'Add a new address' do
-          %i.entypo.edi-plus-2
-          Add a new address
+        .links
+          = f.link_to_add :addresses, :title => 'Add a new address' do
+            %i.entypo.edi-plus-2
+            Add a new address
         
       
         
