@@ -1,3 +1,4 @@
+-# _____________________________________  SHOW VENUE
 /-content_for :right_panel do
 /  .rightmenu
 /    .sidebar-nav
@@ -28,9 +29,9 @@
     = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le 20/02/2013<br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
       %i.entypo.edi-pencil
       
-  - if notice.present?
-    = notice
-      
+    - if notice.present?
+      %p#notice= notice
+    
       
 .row-fluid
   .span12
@@ -75,7 +76,7 @@
                   = button_tag(type: 'submit', class: "btn btn-secondary submit") do 
                     %i.entypo.edi-arrow-down-5
                                         
-              
+              / ____________________________________ list reportings
               %ul.list-large
                 = render @reportings
                 %li
@@ -192,9 +193,21 @@
                   .tab-content.sub-pane
 
                     #facebook.tab-pane.active
-                      facebook
+                      %ul.social-list
+                        %li
+                          %span Aujourd’hui à 12h30
+                          %span Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur.
+                        %li
+                          %span Hier à 12h30
+                          %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                        %li
+                          %span Hier à 12h30
+                          %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                        %a Voir le profil facebook
+                        
                     #twitter.tab-pane
-                      twitter
+                      %ul.social-list
+                        twitter
             / _____________________________________________ right      
             .span6
               %ul.list-infos
@@ -236,8 +249,8 @@
                     = image_tag person.avatar_url(:thumb)
                     
                 .meta
-                  %a{:href => "#"}
-                    %i.entypo.edi-heart
+                  %a.ico.principal{:href => "#"}
+                  %a.ico.favorite{:href => "#"}
                   %a{:href => "#"}
                     %i.entypo.edi-chat
                   %a{:href => "#"}
