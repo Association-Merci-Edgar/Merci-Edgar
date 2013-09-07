@@ -103,7 +103,8 @@ a:focus { outline: none; }
 
 /* ____________________________________ ICO  */
 
-.ico {vertical-align: middle;font-size:20px;}
+.ico {vertical-align: middle;font-size:20px;
+  border-bottom:none !important;}
 .ico:before { font-family: 'Entypo'; line-height: 1;}
 
 .ico.favorite {
@@ -123,6 +124,10 @@ a:focus { outline: none; }
   &:hover:before, &.full:before {content: "\e01f";} //.edi-star
 }
 
+.ico.export:before {
+	content: "\e015";
+}
+
 //\e02f";}//.edi-tools
 
 /* ____________  */
@@ -137,10 +142,11 @@ a {color:$dblue;
 }
 
 
-
-.infos-line a, .infos a { border-bottom : dotted 1px $green ;
+.showlink { border-bottom : dotted 1px $green ;
   &:hover {color:$green; text-decoration:none; border-color:transparent;}
 }
+
+.infos-line a, .infos a {@extend .showlink;}
 
 
 html, body {
@@ -400,9 +406,9 @@ a .logotype { color: $dblue;}
   a {color:$mblue;}
   a:hover{color:$white;};
   i {font-size:18px;}
-  a.pull-right {float:right;}
+  
 }
-
+a.pull-right {float:right;}
 .leftmenu li a {
 	color:#fff; font-size:19px;
 	height: 25px;
@@ -1133,9 +1139,6 @@ li {line-height: inherit;}
 
 
 
-
-
-
 /*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
 .showitem header {}
@@ -1244,6 +1247,7 @@ ul.list-infos {
   list-decoration:none;
   li {margin-bottom:3px;}
   h4 {margin-top:7px; margin-bottom:6px;}
+  a {@extend .showlink;}
 }
 
 .infolabel {
@@ -1253,7 +1257,31 @@ ul.list-infos {
 }
 
 
-.dblue{color:$dblue;}
+
+ul.list-small {
+  font-size:14px;
+  line-height: 1.4em;
+  list-style:none;
+  margin: 11px 0 20px 25px
+  
+}
+
+ul.social-list {
+  list-style:none;
+  margin-left:0;
+  font-size:14px;
+  line-height: 1.4em;
+  color:$vlblue;
+  li {
+    margin-bottom:16px;
+    span:first-child {font-size:12px; color:$vlblue; font-weight:bold;
+      &:after {content:" —";}
+    }
+  }
+}
+
+
+//.dblue{color:$dblue;}
 
 /*
 .rightrowel .entypo {display:inline-block;}
@@ -1287,12 +1315,24 @@ ul.list-infos {
   &:hover, &:focus {background:none; color:$dblue;};
 }
 
-.sub-tabs > li > a {
-  font-size:16px;
-  margin-right:14px;
+.sub-tabs {
+  margin-bottom:0;
+  
+  & > li {margin-bottom:0 !important;
+    font-size:16px;
+    
+      
+  }
 }
 
-.sub-pane { background-color:$white}
+.sub-pane { //background-color:$white;
+  .tab-pane { min-height: 40px; padding: 20px 0;}
+  &:hover {background-color:$white;};
+}
+
+
+
+
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
 	background: none;

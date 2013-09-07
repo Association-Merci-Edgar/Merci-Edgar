@@ -1,68 +1,68 @@
-/ _____________________________________  PERSON
+-# _____________________________________  SHOW PERSON
 /-content_for :right_panel do
 /  .rightmenu
 /    .sidebar-nav
 /-content_for :plus_menu do   
             
 .row-fluid.toppage.showitem
-  .span12
-    %header
-      .pic-container
-        .pic
-          /%i.entypo.edi-house
-          = image_tag @person.avatar_url
-      .infos
-        %h3
-          = @person.first_name
-          = @person.name
-        
-        - @person.people_structures.each do |ps|
-          %span.infolabel.dblue
-            = ps.title
-          %span.infolabel  
-            à
-          %span.infolabel.dblue
-            = link_to ps.structure.name, ps.structure
-            \/
+  %header
+    .pic= image_tag @person.avatar_url
+    %h2
+      = @person.first_name
+      = @person.name
+      
+    .infos
+      .infos-line
+      - @person.people_structures.each do |ps|
+        %span= ps.title
+        %span à
+        %span.infolabel
+          = link_to ps.structure.name, ps.structure
+          \/
+        /%span.infolabel.dblue= @person.addresses.first.city
+        /%span.infolabel — Ile de france
           
-        .tags
-          /%span.tag.tag-type= t(@venue.kind)
-          %span.tag.tag-style Rock
-          %span.tag.tag-style Punk
-          %span.tag.tag-style Jeune public
-          %span.tag.tag-legal Co-réalisation
-          %span.tag.tag-legal Location
-          /%p
-          /%span.infolabel.dblue= @person.addresses.first.city
-          /%span.infolabel — Ile de france
-
+      .tags
+        /%span.tag.tag-type= t(@venue.kind)
+        %a.tag.tag-style Rock
+        %a.tag.tag-style Punk
+        %a.tag.tag-style Jeune public
+        %a.tag.tag-legal Co-réalisation
+        %a.tag.tag-legal Location
       
       
-    .meta
-      %i.entypo.edi-flag
-      %i.entypo.edi-heart
-      = link_to edit_venue_person_path(@person.structures.first,@person), :class => "shybtn" do
-        %i.entypo.edi-pencil
-        .hiddentag
-          Éditer cette fiche
-          %br
-          %span.infolabel modifié le 20/02/2013 par Untel
-          
-    - if notice.present?
-      %p#notice= notice
+  .meta
+    %i.entypo.edi-flag
+    //%a.ico.dealed{:href => "#"}
+    %a.ico.favorite{:href => "#"}
+  
+    /.actions
+    
+    /%a.shybtn.ico.export{:href => "#"}
+    %a.shybtn{:href => "#", :title => "<h5>Exporter cette fiche</h5>", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true"}
+      %i.entypo.edi-export
+      
+    = link_to edit_venue_person_path(@person.structures.first,@person), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le 20/02/2013<br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
+      %i.entypo.edi-pencil
+      
+    
+  - if notice.present?
+    %p#notice= notice
+      
       
 .row-fluid
   .span12
     .tabbable
+      / ________________________________________________________ nav-tabs _________________
       %ul.nav.nav-tabs
         %li.active
           %a{"data-toggle" => "tab", :href => "#activity"} Suivi
         %li
           %a{"data-toggle" => "tab", :href => "#infos"} Infos
         %li
-          /%a{"data-toggle" => "tab", :href => "#tasks"}= "#{t(:tasks)} #{@pending_tasks.size}"
-          %a{"data-toggle" => "tab", :href => "#tasks"}= "#{t(:tasks)} #{@pending_tasks.size}"
-          /%span.label (sur le compteur)
+          %a{"data-toggle" => "tab", :href => "#tasks"}
+            = "#{t(:tasks)}"
+            %span.badge.badge-shy="#{@pending_tasks.size}"
         %li
           %a{"data-toggle" => "tab", :href => "#dates"} Dates
           
@@ -71,90 +71,171 @@
         / ________________________________________________________ activity
         #activity.tab-pane.active
           .row-fluid
-            .span9
+            .span8
+              .btn-group
+                //ici un select :
+                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Selectionner un projet
+                  %span.caret
+                %ul.dropdown-menu
+                  %li projet 1
+                  %li projet 2
+   
               #activityfield-outter
-                <textarea id="activityfield" class="" name="" type="text" placeholder="— écrire une nouvelle note"/>
-                </textarea>
-                /= f.input_field :text, :autofocus => false, :placeholder => "écrire une nouvelle note"
-                /"#{t("simple_form.labels.defaults.first_name")}"
+                <textarea rows="20" placeholder="écrire une nouvelle note" name="reporting[note_report_content]" id="activityfield" cols="40" class="text optional"></textarea>
+                //= button_tag(type: 'submit', class: "btn btn-secondary submit") do
                 %button.btn.btn-secondary.submit
-                  %i.entypo.edi-plus-3
-
-                    
-              %ul.list-large
-                %li
-                  %h4 Hier — Utilisateur Untel pour Telprojet
-                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-                %li
-                  %h4 Jeudi 7 mai 2013 — Utilisateur Untel pour Telprojet
-                  %p Superatis Tauri montis verticibus qui ad solis ospatiis porriqdsgiqtur late distrtum sublimius attolluntur. Superatis Tauri moddntis verticibus qui ad solis ospatiis porrigitur late distrtum sublqimius attolluntur. 
-                %li
-                  %h4 8 mai 2013 — Utilisateur Untel pour Telprojet
-                  %p Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                  %i.entypo.edi-arrow-down-5
                 
-            .span3
-              %ul.infos
+              / ____________________________________ list reportings
+              %ul.list-large
+                //= render @reportings
+                %li
+                  %h4 Hier
+                  .infos
+                    .pic.pic-mini= image_tag "squared/per1.jpg"
+                    %a{:href => "#"} Utilisateur Untel
+                    pour
+                    .pic.pic-mini= image_tag "squared/pro1.jpg"
+                    %a{:href => "#"} Telprojet
+
+                  .content
+                    Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+
+                %li
+                  %h4 Jeudi 7 mai 2013
+                  .infos
+                    .pic.pic-mini= image_tag "squared/per2.jpg"
+                    %a{:href => "#"} Untel X.
+                    pour
+                    .pic.pic-mini= image_tag "squared/pro1.jpg"
+                    %a{:href => "#"} Telprojet
+
+                  .content
+                    Superatis Tauri montis verticibus.
+
+                %li
+                  %h4 8 mai 2013
+                  .infos
+                    .pic.pic-mini
+                      = image_tag "squared/per3.jpg"
+                    %a{:href => "#"} David B.
+                    pour
+                    .pic.pic-mini= image_tag "squared/pro3.jpg"
+                    %a{:href => "#"} Telprojet
+
+                  .content
+                    Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+
+
+            / _____________________ infos-mini  
+            #infos-mini.span4
+              %ul.list-infos
+                %li.infolabel
+                  Fonction principale
+                %li
+                  .pic.pic-small= image_tag "squared/pro3.jpg"
+                  %a{:href => "#"}
+                    %h4 Salle Untel
+                %li
+                  2 rue machin — 54089 
+                  %a{:href => "#"} Lilles
+                %li +33 23 23 74 23 
+                %li
+                  %a{:href => "#"} www.lesite.com
+
+
+                
+
+
+
+              %ul.list-infos
+                %li.infolabel Infos personelles
+                /%li
                 - @person.emails.each do |email|
                   = render email
+
                 - @person.phones.each do |phone|
                   = render phone
                   
+                %li
+                  +33 23 23 74 23 
+                  %span.infolabel mobile
+                %li
+                  %a{:href => "#"} email@provider.com
+                  %span.infolabel perso
+              
                   
                   
                   
-        / ________________________________________________________ infos
+        / ________________________________________________________ informations
         #infos.tab-pane
           .row-fluid
             .span6
-              %ul.infos
-                /%i.entypo.edi-info
-                %li.infolabel
-                  Information
+              /%ul.list-infos
+              / %li.infolabel Infos personnelles
+              
+          
+              %ul.list-infos
+                %li.infolabel Fonction(s)
                 %li
-                  Ouverture au public
+                  %a.ico.principal.full{:href => "#"}
+                  %a Programmateur
+                  à
+                  -#%a La maroquinerie
+                  .principal-company
+                    %ul.list-small
+                      %li
+                        .pic.pic-small= image_tag "squared/pro3.jpg"
+                        %a{:href => "#"}
+                          %h4 Salle Untel
+                      %li
+                        2 rue machin — 54089 
+                        %a{:href => "#"} Lilles
+                      %li +33 23 23 74 23 
+                      %li
+                        %a{:href => "#"} www.lesite.com
+                      
+                      
                 %li
-                  Saison
+                  %a.ico.principal{:href => "#"}
+                  Bloggeur à leson.com
+                %li
+                  %a.ico.principal{:href => "#"}
+                  Papa poule
 
-              %ul.infos
-                %li.infolabel
-                  /%i.entypo.edi-info
-                  Administratif
-                %li
-                  2 rue machin — 54089 Lilles
-                  /%span.infolabel Administratif
-                %li
-                  %a{:href => "#"}
-                    email@provider.com
-                    
-              %ul.infos
-                %li.infolabel
-                  Réseaux sociaux
-                
-                .tabbable
-                  %ul.nav.nav-tabs.sub-tabs
-                    %li.active
-                      %a{"data-toggle" => "tab", :href => "#facebook"}
-                        %i.entypo.edi-facebook
-                    %li
-                      %a{"data-toggle" => "tab", :href => "#twitter"}
-                        %i.entypo.edi-twitter
-                    
+               
+              %ul.list-infos
+                %li.infolabel Observations
+                %li Homines enim eruditos et sobrios ut infaustos et inutiles vitant, eo quoque accedente quod et nomenclatores adsueti haec et talia venditare, mercede accepta lucris quosdam et prandiis inserunt subditicios ignobiles et obscuros.
 
-                  .tab-content.sub-pane
 
-                    #facebook.tab-pane.active
-                      facebook
-                    #twitter.tab-pane
-                      twitter
-                    
+              
+              
+                        
+                        
+                        
+            / _____________________________________________ right      
             .span6
-              %ul.infos
+              %ul.list-infos
                 /%i.entypo.edi-location-2
-                %li.infolabel
-                  Coordonnées
-                
-                - @person.addresses.each do |address|
-                  = render address
+                %li.infolabel Coordonnées
+                %li
+                  +33 1 48 28 40 10
+                  %span.infolabel Work
+                %li
+                  +33 1 48 28 89 89
+                  %span.infolabel Fax
+                %li
+                  %a email@provider.com
+                  %span.infolabel work
+                %li
+                  <a href="http://www.palaisdessports.com">www.leblog.com</a>
+                  %span.infolabel Blog
+                                            
+                                          
+                /- @person.addresses.each do |address|
+                /  = render address
 
                 - @person.emails.each do |email|
                   = render email
@@ -164,7 +245,39 @@
 
                 - @person.websites.each do |website|
                   = render website
+          
 
+              %ul.list-infos
+                %li.infolabel Réseaux sociaux
+
+                .tabbable
+                  %ul.nav.nav-tabs.sub-tabs
+                    %li.active
+                      %a{"data-toggle" => "tab", :href => "#facebook"}
+                        %i.entypo.edi-facebook
+                    %li
+                      %a{"data-toggle" => "tab", :href => "#twitter"}
+                        %i.entypo.edi-twitter
+
+                  .tab-content.sub-pane
+
+                    #facebook.tab-pane.active
+                      %ul.social-list
+                        %li
+                          %span Aujourd’hui à 12h30
+                          %span Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur.
+                        %li
+                          %span Hier à 12h30
+                          %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                        %li
+                          %span Hier à 12h30
+                          %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+                        %a Voir le profil facebook
+
+                    #twitter.tab-pane
+                      %ul.social-list
+                        twitter
+             
 
 
 
@@ -177,31 +290,218 @@
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person}
           = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person}
-          
+
+          #tasks
+            -#.section-title
+            -#
+              /.title
+              /  Tâches
+              /  .badge.badge-medium.badge-shy 25
+              .title-infos
+                /dont
+                .badge.badge-small.badge-black 1
+                en retard,
+                .badge.badge-small.badge-red 1
+                pour aujourd’hui  
+
+            %ul.list-medium
+              %li
+                .rightrow.small
+                  .badge.badge-black hier
+                  .actions
+                    %a.shybtn{:href => "#"}
+                      %i.entypo.edi-pencil
+
+                .rightrow
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini= image_tag "squared/pro2.jpg"
+                      ProjetXqsd
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini= image_tag "squared/per2.jpg"
+                      Untel X.
+
+                .mainrow
+                  %input{:type => "checkbox"}
+                  %a{:href => "#"} Relance de payement
+
+
+              %li
+                .rightrow.small
+                  .badge.badge-red Aujourd'hui
+                  .actions
+                    %a.shybtn{:href => "#"}
+                      %i.entypo.edi-pencil
+
+                .rightrow
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini= image_tag "squared/pro1.jpg"
+                      Fatales Picards
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini= image_tag "squared/per1.jpg"
+                      François U.
+
+                .mainrow
+                  %input{:type => "checkbox"}
+                  %a{:href => "#"} Relance de payement Une tache avec un titre trés trés long…
+
+              %li
+                .rightrow.small
+                  .badge ASAP
+                  .actions
+                    %a.shybtn{:href => "#"}
+                      %i.entypo.edi-pencil
+
+                .rightrow
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini
+                      Global
+                  .s1of2
+
+                .mainrow
+                  %input{:type => "checkbox"}
+                  %a{:href => "#"} Aller à Avignon
+
+
+
+              %li
+                .rightrow.small
+                  .badge.badge-blue Dans 3 jours
+                  .actions
+                    %a.shybtn{:href => "#"}
+                      %i.entypo.edi-pencil
+
+                .rightrow
+                  .s1of2
+
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini= image_tag "squared/per3.jpg"
+                      Christophe R.
+                .mainrow
+                  %input{:type => "checkbox"}
+                  %a{:href => "#"} Back to Avigon
+
+
+
+              %li
+                .rightrow.small
+                  .badge.badge-green Lun. 2 Sept.
+                  .actions
+                    %a.shybtn{:href => "#"}
+                      %i.entypo.edi-pencil
+
+                .rightrow
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini
+                      Global
+                  .s1of2
+                    %a{:href => "#"}
+                      .pic.pic-mini
+                      Toute l'équipe
+
+                .mainrow
+                  %input{:type => "checkbox"}
+                  %a{:href => "#"} Refaire du café
+
+
           .btn-in-list
             %a{:href => "#"}
               /= link_to new_venue_person_path(@venue) do
               %i.entypo.edi-plus-3
               %span
                 New Task
-                
-                
-                
-                
-        / ________________________________________________________ dates             
+
+
+
+
+
+
+
+
+
+
+        / ________________________________________________________ dates              
         #dates.tab-pane
-          
+          /%p Dates de spectacle
           %ul.list-large
             %li
-              %h4 Concert — Lundi 1 juin 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              .meta
+                .badge.badge-red En attente de payement
+              .actions
+                /= link_to 'Edit', edit_venue_path(venue)
+                %a.shybtn{:href => "#"}
+                  %i.entypo.edi-pencil
+
+              %h4
+                %a{:href => "#"}
+                  .pic= image_tag "squared/pro4.jpg"
+                  Lundi 1 juin 2013 — NomDuProjet
+
+              .infos-line
+                /%span NomDuProjet
+                %span Formule
+                —
+                %span Responsable :
+                .pic.pic-mini= image_tag "squared/per3.jpg"
+                %a{:href => "#"} Christophe R.
+
             %li
-              %h4 Concert — Mardi 12 septembe 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+              .meta
+                .badge.badge-green Validé
+              .actions
+                /= link_to 'Edit', edit_venue_path(venue)
+                %a.shybtn{:href => "#"}
+                  %i.entypo.edi-pencil
+
+              %h4
+                %a{:href => "#"}
+                  .pic= image_tag "squared/pro3.jpg"
+                  Samedi 5 Juillet 2013 — AutreProjet
+
+              .infos-line
+                /%span NomDuProjet
+                %span Formule
+                —
+                %span Responsable :
+                .pic.pic-mini= image_tag "squared/per2.jpg"
+                %a{:href => "#"} Christophe R.
+
+
             %li
-              %h4 Concert — Mardi 12 septembe 2013
-              %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-              
+              .meta
+                .badge.badge-blue Option
+              .actions
+                /= link_to 'Edit', edit_venue_path(venue)
+                %a.shybtn{:href => "#"}
+                  %i.entypo.edi-pencil
+
+              %h4
+                %a{:href => "#"}
+                  .pic= image_tag "squared/pro2.jpg"
+                  Lundi 1 juin 2013 — NomDuProjet
+              .infos-line
+                /%span NomDuProjet
+                %span Formule
+                —
+                %span Responsable :
+                .pic.pic-mini= image_tag "squared/per2.jpg"
+                %a{:href => "#"} Christophe R.
+
+
+
+
+
+
+
+
+
+
           .btn-in-list
             %a{:href => "#"}
               %i.entypo.edi-plus-3
