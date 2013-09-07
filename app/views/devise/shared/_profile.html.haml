@@ -8,11 +8,11 @@
       
 #account-page.row-fluid
   .span12
-    .tabbable
-      %ul.nav
+    .tabbablesd
+      %ul.navi.nav-tabs-ext
         %li
           = user_tab_link "Compte", edit_account_path, :account
-        %li.active
+        %li.actives
           = user_tab_link "Votre profil", edit_user_path(current_user, :anchor => "profile"), :users
         %li
           = user_tab_link "Projets artistiques", edit_user_path(current_user, :anchor => "projects"), :projects
@@ -21,7 +21,6 @@
         
           
       .tab-content
-      
 
         = yield :account_tab
         = yield :user_tab

@@ -5,6 +5,10 @@ $('document').ready(function() {
   $('[data-toggle="tooltip"]').tooltip(); 	      // activate tooltips
   //$(".editbtn").tooltip({html:true});   
   
+  $("a.btn-close").click(function(event) {
+    event.preventDefault();
+    $(this).parent('.notice').remove();
+  });
   
 // show/hide the leftpanel _________________________________
   window.smallScreens = function() {
@@ -74,3 +78,5 @@ $(function() {
 initializer = function() {
   $(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
 }
+
+

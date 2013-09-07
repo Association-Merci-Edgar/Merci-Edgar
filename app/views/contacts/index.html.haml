@@ -26,15 +26,15 @@
         Listes
       %li
         %a{:href => "#"}
-          %i.entypo.edi-bookmarks
+          %i.edi-bookmarks
           Liste A
       %li
         %a{:href => "#"}
-          %i.entypo.edi-bookmarks
+          %i.edi-bookmarks
           Liste B
       %li
         %a{:href => "#"}
-          %i.entypo.edi-bookmarks
+          %i.edi-bookmarks
           Liste C
                    
           
@@ -43,15 +43,15 @@
         Statut
       %li
         %a{:href => "#"}
-          %i.entypo.edi-chat
+          %i.edi-chat
           Déjà échangé
       %li
         %a{:href => "#"}
-          %i.entypo.edi-flag
+          %i.edi-flag
           Déjà joué
       %li
         = link_to favorites_path do
-          %i.entypo.edi-heart
+          %i.edi-heart
           Favoris  
           
           
@@ -63,7 +63,7 @@
         = paginate @contacts
         .meta
           %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
-            %i.entypo.edi-list
+            %i.edi-list
       
       = render @contacts
       
