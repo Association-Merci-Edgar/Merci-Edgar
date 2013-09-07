@@ -2,8 +2,7 @@
   .meta
     %a{:href => "#"}
       %i.entypo.edi-chat    
-    %a{:href => "#"}
-      %i.entypo.edi-flag
+    %a.ico.favorite{:href => "#"}
     - if person.favorite?(current_user)
       = link_to remove_to_favorites_contact_path(person), remote: true do
         %i.entypo.edi-flag{id: "fav_contact_#{person.id}"}
