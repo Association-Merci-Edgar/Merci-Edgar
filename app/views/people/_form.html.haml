@@ -5,13 +5,16 @@
     = f.input :first_name
     = f.input :name
     = f.input :avatar
-    
-    = f.fields_for :people_structures do |ps|
-      .nested-field
-        
-        = ps.input :name
-        = ps.input :title
 
+    = f.fields_for :people_structures do |ps|
+      .nested-fields
+        = ps.input :title
+        = ps.input :structure_name
+        = ps.input :structure_city
+        = ps.input :structure_country, as: :country
+        = ps.link_to_remove "Remove this function"
+    .links
+      = f.link_to_add "Add a function", :people_structures
     = f.fields_for :emails do |email|
       .nested-fields
         = email.input :address, :label => "Email", :validate => true
@@ -47,8 +50,6 @@
         = website.link_to_remove "Remove this website"
     .links
       = f.link_to_add 'Add a new website', :websites
-
-        
 
   .form-actions
     = f.button :submit

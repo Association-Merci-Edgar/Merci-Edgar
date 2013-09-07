@@ -13,12 +13,14 @@
 #
 
 class Person < Contact
-  attr_accessible :first_name, :name, :structure_id, :structure_type
+  attr_accessible :first_name, :name, :structure_id, :structure_type, :people_structures_attributes
   has_many :structures, through: :people_structures, uniq: :true, source: :structure, source_type: "Contact"
   has_many :people_structures
   before_validation :add_structure, :on => :create
 
   alias_attribute :last_name, :name
+  
+  accepts_nested_attributes_for :people_structures
 
   def to_s
     [self.first_name, self.last_name].compact.join(' ')
