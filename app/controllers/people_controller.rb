@@ -41,7 +41,6 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @structure = Venue.find(params[:venue_id]) if params[:venue_id]
   end
 
   # POST /people
