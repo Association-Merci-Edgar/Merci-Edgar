@@ -47,6 +47,14 @@ class Contact < ActiveRecord::Base
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order(:name) }
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order(:name)}
 
+  def city
+    @city ||= addresses.first.city
+  end
+
+  def country
+    @country ||= addresses.first.country
+  end
+
 
   def reject_if_all_blank_except_country
     attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank?
