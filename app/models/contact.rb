@@ -30,9 +30,11 @@ class Contact < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   has_many :tasks, :as => :asset
-  
+
   has_many :reportings, :as => :asset, :order => 'created_at DESC'
   has_many :reports, through: :reportings, source: :report, source_type: :report
+
+  has_many :favorite_contacts
 
 
   accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true
@@ -43,7 +45,7 @@ class Contact < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order(:name) }
-  scope :with_first_name_and_last_name, lambda { |fn,ln| where('first_name LIKE ? AND name LIKE ?', "%#{fn}%", "%#{ln}%").order(:name)}
+  scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order(:name)}
 
 
   def reject_if_all_blank_except_country
@@ -69,7 +71,7 @@ class Contact < ActiveRecord::Base
     if search.present?
       a = search.split
       if a.size > 1
-        Contact.with_first_name_and_last_name(a.shift,a.join(' '))
+        Contact.with_first_name_and_last_name(search,a.shift,a.join(' '))
       else
         Contact.with_name_like(search)
       end
@@ -78,4 +80,8 @@ class Contact < ActiveRecord::Base
     end
   end
 
+
+  def favorite?(user)
+    @favorite ||= self.favorite_contacts.where(user_id: user.id).any?
+  end
 end
