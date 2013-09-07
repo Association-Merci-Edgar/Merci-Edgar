@@ -89,7 +89,8 @@ a:focus { outline: none; }
 ::-webkit-selection {background:rgba(237, 226, 50, 0.99); /* Chrome */}
 ::selection {background: $yellow; /* Safari */}
 
-.ico:before { font-family: 'Entypo'; line-height: 1;}
+
+
 
 .nav, .leftpanel {@include noselect;}
 
@@ -97,6 +98,32 @@ a:focus { outline: none; }
     box-shadow: none;
     transition: none;
 }
+
+/* ____________  */
+
+/* ____________________________________ ICO  */
+
+.ico {vertical-align: middle;font-size:20px;}
+.ico:before { font-family: 'Entypo'; line-height: 1;}
+
+.ico.favorite {
+  &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
+  &:hover:before, &.full:before {content: "\e01d";} //.edi-heart
+}
+.ico.contacted {
+  &:before, &.full:hover:before {content: "\e024";}//.edi-quote
+  &:hover:before, &.full:before {content: "\e025";} //.edi-comment
+}
+.ico.dealed {
+  &:before, &.full:hover:before {content: "\e030";}//.edi-trophy
+  &:hover:before, &.full:before {content: "\e02d";} //.edi-flag
+}
+.ico.principal {
+  &:before, &.full:hover:before {content: "\e020";}//.edi-star-2
+  &:hover:before, &.full:before {content: "\e01f";} //.edi-star
+}
+
+//\e02f";}//.edi-tools
 
 /* ____________  */
 
@@ -228,6 +255,8 @@ $lbrown: rgba(209, 209, 197, 1);
 }
 
 /* _______#### notices   */
+
+
 
 
 .section-title {font-size:24px; margin-bottom:24px;}
