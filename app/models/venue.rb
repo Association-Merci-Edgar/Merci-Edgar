@@ -25,7 +25,7 @@ class Venue < Contact
   has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
 
   has_many :people_structures, as: :structure
-  has_many :people, :through => :people_structures, uniq: :true, source: :person, source_type: "Contact"
+  has_many :people, :through => :people_structures, uniq: :true, source: :person
 
   accepts_nested_attributes_for :venue_info
   accepts_nested_attributes_for :addresses, :allow_destroy => true
