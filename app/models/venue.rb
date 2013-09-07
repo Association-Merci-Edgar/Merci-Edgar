@@ -11,10 +11,8 @@
 
 class Venue < Contact
   include StructureHelper
-  attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids
+  attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids, :people_structures_attributes
   has_one :venue_info, :dependent => :destroy
-  accepts_nested_attributes_for :venue_info
-  accepts_nested_attributes_for :addresses, :allow_destroy => true
 
   delegate :capacities, :kind, :height, :depth, :width, to: :venue_info, allow_nil: true
   validates :name, :presence => true
@@ -27,8 +25,11 @@ class Venue < Contact
   has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
 
   has_many :people_structures, as: :structure
-  has_many :people, :through => :people_structures, uniq: :true
+  has_many :people, :through => :people_structures, uniq: :true, source: :person, source_type: "Contact"
 
+  accepts_nested_attributes_for :venue_info
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :people_structures
 
   scope :by_type, (lambda do |kind|
     joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
