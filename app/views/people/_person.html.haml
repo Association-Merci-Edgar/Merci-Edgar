@@ -4,9 +4,13 @@
       %i.entypo.edi-chat    
     %a{:href => "#"}
       %i.entypo.edi-flag
-    %a{:href => "#"}
-      %i.entypo.edi-heart
-      
+    - if person.favorite?(current_user)
+      = link_to remove_to_favorites_contact_path(person), remote: true do
+        %i.entypo.edi-flag{id: "fav_contact_#{person.id}"}
+    - else
+      = link_to add_to_favorites_contact_path(person), remote: true do
+        %i.entypo.edi-heart{id: "fav_contact_#{person.id}"}
+    
     .actions
       = link_to edit_person_path(person), :class => "shybtn" do
         %i.entypo.edi-pencil

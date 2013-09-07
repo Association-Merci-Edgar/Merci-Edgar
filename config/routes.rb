@@ -33,7 +33,11 @@ Edgar::Application.routes.draw do
     end
     resources :tasks
     get 'tags/:tag', to: 'contacts#index', as: :tag
-    resources :contacts
+    get 'favorites', to: 'contacts#favorites'
+    resources :contacts do
+      get 'add_to_favorites', on: :member
+      get 'remove_to_favorites', on: :member
+    end
     resource :account
     resources :reportings
 

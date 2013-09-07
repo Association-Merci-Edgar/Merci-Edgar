@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :accounts_attributes, :avatar
 
+  has_many :favorite_contacts
+  has_many :favorites, through: :favorite_contacts, source: :contact
+
 
   mount_uploader :avatar, AvatarUploader
 
@@ -97,9 +100,19 @@ class User < ActiveRecord::Base
   def authorized_for_domain?(domain)
     self.accounts.map{|a| a.domain}.include?(domain)
   end
-  
+
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+
+  def add_to_favorites(contact)
+    fav = self.favorite_contacts.build
+    fav.contact = contact
+  end
+
+  def remove_to_favorites(contact)
+    self.favorite_contacts.destroy(contact)
   end
 
   private
@@ -132,5 +145,6 @@ class User < ActiveRecord::Base
   rescue Gibbon::MailChimpError => e
     Rails.logger.info("MailChimp unsubscribe failed for #{self.email}: " + e.message)
   end
+
 
 end
