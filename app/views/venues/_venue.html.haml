@@ -1,13 +1,19 @@
 %li
   .rightrow
     .meta
-      %a{:href => "#"}
-        %i.entypo.edi-chat
-      %a{:href => "#"}
-        %i.entypo.edi-flag
-      %a{:href => "#"}
-        %i.entypo.edi-heart
-      /= link_to 'Edit', edit_venue_path(venue)
+      -# _________________________ favorite
+      - if venue.favorite?(current_user)
+        = link_to remove_to_favorites_contact_path(venue), remote: true do
+          %i.ico.favorite.full{id: "fav_contact_#{venue.id}"}
+      - else
+        = link_to add_to_favorites_contact_path(venue), remote: true do
+          %i.ico.favorite{id: "fav_contact_#{venue.id}"}
+
+      -# _________________________ contacted
+      %a.ico.contacted{:href => "#"}
+
+      -# _________________________ dealed
+      %a.ico.dealed{:href => "#"}
       
     .mini-map= image_tag "appli/mini-map.png"
     
