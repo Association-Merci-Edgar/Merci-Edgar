@@ -112,7 +112,8 @@ class User < ActiveRecord::Base
   end
 
   def remove_to_favorites(contact)
-    self.favorite_contacts.destroy(contact)
+    fav = self.favorite_contacts.where(contact_id:contact.id).first
+    self.favorite_contacts.destroy(fav) if fav
   end
 
   private

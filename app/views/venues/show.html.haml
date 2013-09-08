@@ -215,7 +215,7 @@
                 %li.infolabel Coordonnées
                 
                 - @venue.addresses.each do |address|
-                  = render address
+                  = render partial: "address", object: address
 
                 - @venue.emails.each do |email|
                   = render email
