@@ -39,19 +39,16 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    ps = @person.people_structures.build
-    ps.structure = Venue.find(params[:venue_id]) if params[:venue_id]
   end
 
   # POST /people
   # POST /people.json
   def create
     @person = Person.new(params[:person])
-    @structure = Venue.find(params[:venue_id]) if params[:venue_id]
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @structure, notice: 'Person was successfully created.' }
+        format.html { redirect_to @person.structures.first, notice: 'Person was successfully created.' }
         format.json { render json: @person, status: :created, location: @person }
       else
         format.html { render action: "new" }

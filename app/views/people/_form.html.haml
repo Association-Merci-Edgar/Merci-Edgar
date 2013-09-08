@@ -9,7 +9,7 @@
     = f.fields_for :people_structures do |ps|
       .nested-fields
         = ps.input :title
-        = ps.input :structure_name
+        = ps.input :structure_name, input_html: { class: "structure_name", data: {autocomplete_source: structures_path} }
         = ps.input :structure_city
         = ps.input :structure_country, as: :country
         = ps.link_to_remove "Remove this function"

@@ -20,6 +20,7 @@ Edgar::Application.routes.draw do
       get 'invite', :on => :member
     end
 
+    resources :structures
     resources :venues do
       resources :people
       resources :tasks do
