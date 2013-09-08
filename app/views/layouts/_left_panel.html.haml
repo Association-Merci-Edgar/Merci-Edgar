@@ -20,28 +20,9 @@
           %i.entypo.edi-cog.righticon
           /User: #{@user.name}
           
-      %li
-        = link_to root_path do
-          %i.entypo.edi-gauge
-          Tableau de bord
-          
-      %li
-        /= link_to new_venue_path, :class => "rightbt" do
-        /  %i.entypo.edi-plus-3
-        = link_to contacts_path do
-          %i.entypo.edi-book
-          Contacts
-          %span.infolabel
-          /~15
-          
-      %li
-        /%a.rightbt{:href => "#"}
-        /  %i.entypo.edi-plus-3
-        = link_to tasks_path do
-          %i.entypo.edi-check_2
-          Tâches
-          %span.badge
-            25
+      = menu_link("Tableau de bord", root_path, "edi-gauge","home",nil)
+      = menu_link("Contacts", contacts_path, "edi-book","contacts", Contact.count)
+      = menu_link("Tâches", tasks_path, "edi-check_2","tasks", Task.pending.size)
             
       %li.comingsoon
         /= link_to new_venue_path, :class => "rightbt" do
