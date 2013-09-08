@@ -47,12 +47,28 @@ class Contact < ActiveRecord::Base
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order(:name) }
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order(:name)}
 
+  def phone_number
+    @phone_number ||= phones.first.formatted_phone
+  end
+
+  def email_address
+    @email_address ||= emails.first.address
+  end
+
+  def address
+    @address ||= addresses.first
+  end
+
+  def postal_code
+    @postal_code ||= address.postal_code
+  end
+
   def city
-    @city ||= addresses.first.city
+    @city ||= address.city
   end
 
   def country
-    @country ||= addresses.first.country
+    @country ||= address.country
   end
 
 

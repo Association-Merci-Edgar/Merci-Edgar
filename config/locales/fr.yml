@@ -252,6 +252,8 @@ fr:
         venue:
           created: "La salle %{name} a été créée avec succès"
           updated: "La salle %{name} a été modifiée avec succès"
+        person:
+          updated: "La personne %{name} a été modifiée avec succès"
   helpers:
     browse: Parcourir...
     submit:
