@@ -106,7 +106,7 @@ select, input[type="file"] {height: 35px;}
 
     
 
-.add-on.dropdown-toggle {padding: 5px 10px 5px 10px;}
+.add-on.dropdown-toggle {padding: 6px 10px}
 
 //select:focus { outline: none; }
 
@@ -132,12 +132,42 @@ display:inline-block;
 
 /* ____________________________________ ICO  */
 
+.entypo:before { font-family: 'Entypo'; line-height: 1;}
+
 .ico {vertical-align: middle; font-size:22px; margin-left:2px;
   border-bottom:none !important;
   &:before { font-family: 'Entypo'; line-height: 1;}
   &:visited, &:active, &:link {color:$dblue;} 
 }
 
+.ico.favorite {
+  &:before {content: "\e01e";}//.edi-heart-2
+  &.full:before {content: "\e01d";} //.edi-heart
+}
+.ico.contacted {
+  &:before, &.full:hover:before {content: "\e110";}//.edi-comment-2
+  &:hover:before, &.full:before {content: "\e024";} //.edi-comment
+}
+.ico.dealed {
+  &:before, &.full:hover:before {content: "\e111";}//.edi-flag-2
+  &:hover:before, &.full:before {content: "\e02d";} //.edi-flag
+}
+.ico.principal {
+  &:before, &.full:hover:before {content: "\e020";}//.edi-star-2
+  &:hover:before, &.full:before {content: "\e01f";} //.edi-star
+}
+
+.ico.export:before {
+	content: "\e015";
+}
+
+
+/*
+//\e02f";}//.edi-tools
+"\e025";}//.edi-quote
+"\e030";}//.edi-trophy
+*/
+/*
 .ico.favorite {
   &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
   &:hover:before, &.full:before {content: "\e01d";} //.edi-heart
@@ -154,12 +184,8 @@ display:inline-block;
   &:before, &.full:hover:before {content: "\e020";}//.edi-star-2
   &:hover:before, &.full:before {content: "\e01f";} //.edi-star
 }
+*/
 
-.ico.export:before {
-	content: "\e015";
-}
-
-//\e02f";}//.edi-tools
 
 /* ____________  */
 
@@ -337,7 +363,9 @@ h2 {
 
 h4 { margin-bottom:18px;}
 
+%section > h3 {line-height: 32px !important;}
 
+.label-large p {line-height: 18px;}
 
 .page-title {
   @extend h1;
@@ -443,7 +471,7 @@ a.pull-right {float:right;}
 .leftmenu li a {
 	color:$beige; font-size:19px;
 	height: 25px;
-	padding : 14px 0 14px 26px;//13px 0px 12px 24px;
+	padding : 15px 0 15px 26px;// 14px 0 14px 26px; // 13px 0px 12px 24px;
 	display:block;
 	&:focus{text-decoration:none;}
 }
@@ -745,13 +773,13 @@ a.label-large:hover i {background: $yellow;}
 
 .form-edit{margin-top:50px;}
 .input-append .add-on, .input-prepend .add-on {
-  height:30px;
+  height:34px;
   border:none;
   background:none;
   background:$vlblue;
   color:$white;
   text-shadow: none;
-  padding: 0 6px;
+  padding: 8px 11px;//0 6px;
   line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
@@ -1025,7 +1053,7 @@ section {
 //.list-large .meta { position: absolute; right:0; top:24px;}
 
 
-
+.dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px;}
 
 /* __________________________________ tags   */
 
@@ -1047,6 +1075,8 @@ a.tag {
 a.tag-type {border-color:$orange; &:hover {background-color:$orange;} }
 a.tag-style {border-color:$green; &:hover {background-color:$green;} }
 a.tag-legal {border-color:$yellow;  &:hover {background-color:$yellow; color:$dblue;} }
+a.tag-custom {border-color:$lblue; &:hover {background-color:$lblue;} }
+a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
 
 .number {font-size: 20px; color:$dblue;}
 .city:after {content:",";};

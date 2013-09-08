@@ -1,35 +1,38 @@
-.page-title
-  Home
+%header.page-title
+  Bienvenue chez Edgar !
 
-.row-fluid.label-blocks
-  .span4
-    = link_to new_venue_path, :class => "label label-large" do
-      /.label.label-large
-      %i.edi-binoculars
-      %h4
-        Prospecter
-      %p
-        dans la base collective
-  .span4
-    = link_to new_venue_path, :class => "label label-large" do
-      %i.edi-vcard
-      %h4
-        Importer des contacts
-      %p
-        depuis un fichier Excel
-  .span4
-    = link_to new_venue_path, :class => "label label-large" do
-      %i.edi-user-add
-      %h4
-        Créer un contact
-      %p
-        manuellement
+
+%section
+  %h3
+    Ceci est une version béta,<br>
+    de nouvelles fonctionnalités arriveront trés prochainement.<br>
+    En attendant voici ce que vous pouvez faire :
+    
+%section
+  .row-fluid.label-blocks
+    .span4
+      = link_to edit_user_path(current_user), :class => "label label-large" do
+        %i.edi-cog
+        %h4 Paramétrez votre compte
+        %p dans la base collective
+    .span4
+      = link_to contacts_path, :class => "label label-large" do
+        %i.edi-book
+        %h4 Gérez vos contacts
+        %p Importez, créez et<br> organiser vos contacts, <br>ils sont importants !
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i.edi-cone
+        %h4
+          Voir la démo
+        %p
+          Afin de voir ce  <br>qu’Edgar vous prépare
   
-      
-  - if user_signed_in?
-    - if current_user.has_role? :admin
-      = link_to "Administration", users_path
-    = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
-  - else
-    = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+  -#    
+    - if user_signed_in?
+      - if current_user.has_role? :admin
+        = link_to "Administration", users_path
+      = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+    - else
+      = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
     
