@@ -48,7 +48,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person.structures.first, notice: 'Person was successfully created.' }
+        format.html { redirect_to @person, notice: t("activerecord.notices.models.person.created", name: @person) }
         format.json { render json: @person, status: :created, location: @person }
       else
         format.html { render action: "new" }
@@ -61,11 +61,10 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
-    @structure = Venue.find(params[:venue_id]) if params[:venue_id]
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html { redirect_to @structure, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @person, notice: t("activerecord.notices.models.person.updated", name: @person) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

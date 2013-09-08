@@ -139,8 +139,8 @@ display:inline-block;
 }
 
 .ico.favorite {
-  &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
-  &:hover:before, &.full:before {content: "\e01d";} //.edi-heart
+  &:before {content: "\e01e";}//.edi-heart-2
+  &.full:before {content: "\e01d";} //.edi-heart
 }
 .ico.contacted {
   &:before, &.full:hover:before {content: "\e024";}//.edi-quote
