@@ -1,6 +1,4 @@
-/%h2 Edit #{resource_name.to_s.humanize}
-  
-.page-title
+%header.page-title
   = current_user.name
   /%a.shybtn.logout-btn{:href => "#"} Déconnexion
   = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete, :class => "shybtn logout-btn"
