@@ -24,17 +24,72 @@
     .row-fluid
       .span12
         .section-title Utilisateurs
-        %ul.list-large
+        %ul.list-medium
           %li
-            %h3 Nicolas Untel
-            %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
+            .rightrow.small
+              .badge.badge-black hier
+              .actions
+                %a.shybtn{:href => "#"}
+                  %i.entypo.edi-pencil
+
+            .rightrow
+              .s1of2
+                %a{:href => "#"}
+                  .pic.pic-mini= image_tag "squared/pro2.jpg"
+                  ProjetXqsd
+              .s1of2
+                %a{:href => "#"}
+                  .pic.pic-mini= image_tag "squared/per2.jpg"
+                  Untel X.
+
+            .mainrow
+              %input{:type => "checkbox"}
+              %a{:href => "#"} Relance de payement
+
+
           %li
-            %h3 Aurélie Thuot
-            %p Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.  
+            .rightrow.small
+              .badge.badge-red Aujourd'hui
+              .actions
+                %a.shybtn{:href => "#"}
+                  %i.entypo.edi-pencil
+
+            .rightrow
+              .s1of2
+                %a{:href => "#"}
+                  .pic.pic-mini= image_tag "squared/pro1.jpg"
+                  Fatales Picards
+              .s1of2
+                %a{:href => "#"}
+                  .pic.pic-mini= image_tag "squared/per1.jpg"
+                  François U.
+
+            .mainrow
+              %input{:type => "checkbox"}
+              %a{:href => "#"} Relance de payement Une tache avec un titre trés trés long…
+
+          %li
+            .rightrow.small
+              .badge ASAP
+              .actions
+                %a.shybtn{:href => "#"}
+                  %i.entypo.edi-pencil
+
+            .rightrow
+              .s1of2
+                %a{:href => "#"}
+                  .pic.pic-mini
+                  Global
+              .s1of2
+
+            .mainrow
+              %input{:type => "checkbox"}
+              %a{:href => "#"} Aller à Avignon
+
           
-          .plus-in-list
-            %a{:href => "#"}
-              %i.entypo.edi-plus-3
-              %span New user
+        .btn-in-list
+          %a{:href => "#"}
+            %i.entypo.edi-plus-3
+            %span New user
     
 = render 'devise/shared/profile'
