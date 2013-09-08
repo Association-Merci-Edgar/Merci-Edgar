@@ -36,6 +36,7 @@ Edgar::Application.routes.draw do
     get 'tags/:tag', to: 'contacts#index', as: :tag
     get 'favorites', to: 'contacts#favorites'
     resources :contacts do
+      get 'only/:filter', action: :only, on: :collection, as: :only
       get 'add_to_favorites', on: :member
       get 'remove_to_favorites', on: :member
     end

@@ -18,7 +18,7 @@
 #
 
 class Contact < ActiveRecord::Base
-  default_scope { where(:account_id => Account.current_id) }
+  default_scope { where(:account_id => Account.current_id).order(:name) }
 
   attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar
   has_many :emails, :dependent => :destroy
@@ -44,9 +44,9 @@ class Contact < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order(:name) }
-  scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order(:name)}
-
+  scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%")}
+  scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%")}
+  scope :with_reportings, joins: :reportings
   def phone_number
     @phone_number ||= phones.first.formatted_phone
   end
@@ -69,6 +69,10 @@ class Contact < ActiveRecord::Base
 
   def country
     @country ||= address.country
+  end
+
+  def contacted?
+    self.reportings.any?
   end
 
 

@@ -9,8 +9,10 @@
         %i.ico.favorite{id: "fav_contact_#{person.id}"}
         
     -# _________________________ contacted
-    %a.ico.contacted{:href => "#"}
-    
+    - if person.contacted?
+      %a.ico.contacted.full{:href => "#"}
+    - else
+      %a.ico.contacted{:href => "#"}
     -# _________________________ dealed
     %a.ico.dealed{:href => "#"}
     
@@ -31,7 +33,7 @@
     - ps = person.people_structures.first
     - if ps.present?
       = ps.title if ps.title.present?
-      = ps.structure.name if ps.structure.present?
+      = link_to ps.structure.name,ps.structure if ps.structure.present?
     
     - email = person.emails.first
     - if email.present?
