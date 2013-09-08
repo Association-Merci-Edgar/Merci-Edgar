@@ -106,7 +106,7 @@ select, input[type="file"] {height: 35px;}
 
     
 
-.add-on.dropdown-toggle {padding: 6px 10px}
+
 
 //select:focus { outline: none; }
 
@@ -321,10 +321,10 @@ $lbrown: rgba(209, 209, 197, 1);
 
 
 
-
+section > h4 {display:block; margin-bottom:24px;}
 .section-title {font-size:24px; margin-bottom:24px;}
 
-
+.btn {padding: 6px 12px; font-size:16px;}
 
 .btn:hover, btn:focus {
   //transition: background 0.2s;
@@ -460,7 +460,7 @@ a .logotype { color: $dblue;}
 .footer {
   position:fixed;
   bottom:0px;
-  padding: 0 24px;
+  padding: 0 29px;
   margin-bottom:24px;
   a {color:$mblue;}
   a:hover{color:$white;};
@@ -771,6 +771,8 @@ a.label-large:hover i {background: $yellow;}
 //.controls, .control-group//, .control-group label 
 //{display:inline;}
 
+
+.input-append .add-on {padding: 6px 10px}
 .form-edit{margin-top:50px;}
 .input-append .add-on, .input-prepend .add-on {
   height:34px;
@@ -779,12 +781,12 @@ a.label-large:hover i {background: $yellow;}
   background:$vlblue;
   color:$white;
   text-shadow: none;
-  padding: 8px 11px;//0 6px;
-  line-height: 30px;
+  //padding: 6px 11px;//0 6px;
+  //line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
 };
-
+span.add-on {height:22px !important; display:block;}
 .help-block {
     margin-top: 5px;
 }
@@ -1053,8 +1055,8 @@ section {
 //.list-large .meta { position: absolute; right:0; top:24px;}
 
 
-.dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px;}
-
+.dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px; display:none; z-index:3000;}
+.dumshow {display:block;}
 /* __________________________________ tags   */
 
 .tags {
@@ -1228,7 +1230,7 @@ header {
 
 .bold {font-weight:bold;}
 
-#account-page .row-fluid { margin-bottom:36px;}
+//#account-page .row-fluid { margin-bottom:36px;}
 
 .pic-container { height:auto; width: 70px; }
 
@@ -1453,8 +1455,11 @@ $tooltipTXT: $white;
 
 
 
-/*
+
 @media (max-width: 1024px) {
+  .footer {width:30px;}
+}
+/*
   .account-tab, .user-tab span {display:none;}
   .logo {padding-left:14px;}
   
@@ -1473,5 +1478,6 @@ $tooltipTXT: $white;
   .togglemenu {display: inline; margin-left:-20px;}
 
   .filters-list {float:left; width: 33%;}
+  .footer {width:30px;}
 }
 
