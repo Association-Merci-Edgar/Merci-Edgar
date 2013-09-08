@@ -1,6 +1,6 @@
 .modal-header
   %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-  %h3#myModalLabel Création d'une tâche
+  %h3#myModalLabel Créer une tâche
   = "à propos de #{@asset}" if @asset
 
 = simple_form_for([@asset,@task], remote:true) do |f|
@@ -11,11 +11,15 @@
       = f.hidden_field :asset_id, :value => @asset.id if @asset
       = f.hidden_field :asset_type, :value => @asset.class.name if @asset
 
-      = f.input :name
-      = f.input :bucket, :collection => [:due_today, :due_tomorrow, :due_this_week, :due_next_week, :due_this_month, :overdue]
-      = f.input :calendar, :input_html => {"data-date-format" => "dd/mm/yyyy hh:ii", "data-date-language" => "fr", "data-date-autoclose" => true, "data-date-today-btn" => "linked", "data-date-today-highlight" => true, :class => "datepicker"}
-      = f.input :assigned_to, collection: @users, label_method: :name, value_method: :id, selected: current_user.name
+      = f.input :name, label: false, autofocus: true, :input_html => { :class => "big-input" }
+      
+      = f.input :bucket, :collection => [:due_today, :due_tomorrow, :due_this_week, :due_next_week, :due_this_month, :overdue], selected: :due_today, label: "Pour quand ?"
+      
+      = f.input :calendar, :input_html => {"data-date-format" => "dd/mm/yyyy hh:ii", "data-date-language" => "fr", "data-date-autoclose" => true, "data-date-today-btn" => "linked", "data-date-today-highlight" => true, :class => "datepicker"}, label: "Calendrier"
+      
+      = f.input :assigned_to, collection: @users, label_method: :name, value_method: :id, selected: current_user.name, :input_html => { :class => "medium-input" }
 
   .modal-footer
-    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Annuler
-    = f.button :submit, class:"btn btn-primary"
+    %button.btn.btn-link{"aria-hidden" => "true", "data-dismiss" => "modal"} Annuler
+    /.btn.btn-secondary
+    = f.button :submit, class:"btn-primary btn-large"

@@ -84,7 +84,7 @@ $white:   #fff;
 *:focus { outline: none; }
 a:focus { outline: none; }
 
-*:visited, *:active {text-decoration:none;}
+a:visited, a:active, a:link {text-decoration:none;}
 
 ::-moz-selection {background: $yellow; /* Firefox */}
 ::-webkit-selection {background:rgba(237, 226, 50, 0.99); /* Chrome */}
@@ -95,18 +95,48 @@ a:focus { outline: none; }
 
 .nav, .leftpanel {@include noselect;}
 
-#activityfield, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    box-shadow: none;
-    transition: none;
+#activityfield, select, input[type="file"], textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border-color:$vlblue;
+    //transition: none;
+    height:24px;
+    font-size: 16px;
+    &:focus {border-color:$green; box-shadow: none;};
 }
+select, input[type="file"] {height: 35px;}
+
+    
+
+.add-on.dropdown-toggle {padding: 5px 10px 5px 10px;}
+
+//select:focus { outline: none; }
+
+.caret {
+border-color:#ffffff transparent transparent transparent;
+border-width:4px;
+border-style:solid;
+content: "";
+display:inline-block;
+}
+
+.fullwith-input {width:100%;}
+.big-input {
+  display:block;
+  height:50px !important;
+  font-size:20px !important;
+  width:100%;
+  @include borderbox;
+}
+
 
 /* ____________  */
 
 /* ____________________________________ ICO  */
 
-.ico {vertical-align: middle;font-size:20px;
-  border-bottom:none !important;}
-.ico:before { font-family: 'Entypo'; line-height: 1;}
+a.ico {vertical-align: middle; font-size:22px; margin-left:2px;
+  border-bottom:none !important;
+  &:before { font-family: 'Entypo'; line-height: 1;}
+  &:visited, &:active, &:link {color:$dblue;} 
+}
 
 .ico.favorite {
   &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
@@ -138,7 +168,7 @@ a:focus { outline: none; }
 textarea {@include borderbox;}
 
 
-a {color:$dblue;
+a, .btn-link {color:$dblue;
   &:hover, &:active {color:$green; text-decoration:none;}
 }
 
@@ -411,7 +441,7 @@ a .logotype { color: $dblue;}
 }
 a.pull-right {float:right;}
 .leftmenu li a {
-	color:#fff; font-size:19px;
+	color:$beige; font-size:19px;
 	height: 25px;
 	padding : 14px 0 14px 26px;//13px 0px 12px 24px;
 	display:block;
@@ -517,7 +547,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   color:#fff;
   //background: $dblue;
   @include transition(all, 0.2s);
-  z-index:2000;
+  z-index:800;
 }
 
 .plusmenu-trigger {
@@ -680,10 +710,28 @@ a.label-large:hover i {background: $yellow;}
 		margin-bottom:8px;
 }
 
+.modal {
+  form.simple_form {margin:0;}
+  @include roundcorners;
+}
+
+.modal-header, .modal-body, .modal-footer {padding:30px;}
+.modal-body {padding: 0 30px;}
+.modal-header, .modal-body { background-color: $beige;}
+.modal-header h3 {color:$orange;}
+.modal-header {border: none;}
+.modal-footer {
+    padding-top:20px;
+    background-color: $beige;
+    border: none;
+    border-radius: 0 0 3px 3px;
+    box-shadow:none;
+}
+
 
 .nicescroll-rails {}
 .nicescroll-rails div {
-  background-color:$vlblue !important;
+  background-color:$vlblue !important; // dblue90
   border:none !important;
   margin-right:10px;
   z-index:3000;
@@ -799,24 +847,6 @@ form .section-title { margin-left:220px;
 }
 input.apple  {margin-left:20px;}
 */
-
-.add-on.dropdown-toggle {padding: 5px 10px 5px 10px;}
-
-select:focus { outline: none; }
-
-.caret {
-border-color:#ffffff transparent transparent transparent;
-border-width:4px;
-border-style:solid;
-content: "";
-display:inline-block;
-}
-
-.big-input {
-  height:40px;
-  width:100%;
-  @include borderbox;
-}
 
 #venue_name {
   @extend h4;
@@ -979,7 +1009,7 @@ section {
   //background: $vlblue;
   &.small {width:110px;}
   .s1of2 {display:inline-block; width:150px}
-  a {font-size:15px !important;}
+  a:not(.ico) {font-size:15px !important;}
 }
 
 
