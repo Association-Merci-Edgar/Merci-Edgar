@@ -77,6 +77,9 @@ $(function() {
 
 initializer = function() {
   $(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
+  $(".modal").on('shown', function() {
+          $(this).find("[autofocus]:first").focus();
+  });
 }
 
 
