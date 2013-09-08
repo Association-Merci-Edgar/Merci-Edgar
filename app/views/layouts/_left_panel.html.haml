@@ -72,30 +72,24 @@
             /%li.nav-header Récemment consulté
             %li
               %a{:href => "#"}
-                .pic.pic-mini
-                  = image_tag "squared/per1.jpg"
+                .pic.pic-mini= image_tag "squared/per1.jpg"
                 Albert Untel
             %li
               %a{:href => "#"}
-                .pic.pic-mini
-                  = image_tag "squared/pro4.jpg"
+                .pic.pic-mini= image_tag "squared/pro4.jpg"
                 Salle Machin
             %li
               %a{:href => "#"}
-                .pic.pic-mini
-                  = image_tag "squared/per4.jpg"
+                .pic.pic-mini= image_tag "squared/per4.jpg"
                 Albert Untel
             %li
               %a{:href => "#"}
-                .pic.pic-mini
-                  = image_tag "squared/pro3.jpg"
+                .pic.pic-mini= image_tag "squared/pro3.jpg"
                 Salle Machin
+                
+                
+                
 .footer
-  = link_to destroy_user_session_path, :method => :delete, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion" do
-    /%a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion"}
-    %i.entypo.edi-moon
-    /%i.entypo.edi-cross-3
-    
   %a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "<span>Aide</span>"}
     %i.entypo.edi-light-bulb
     /%i.entypo.edi-lifebuoy
@@ -105,4 +99,10 @@
   /%a.pull-right{:href => "#"}
   /  %i.entypo.edi-arrow-left-5
       
+  
+  = link_to destroy_user_session_path, :method => :delete, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion" do
+    /%a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion"}
+    %i.entypo.edi-moon
+    /%i.entypo.edi-cross-3
     
+
