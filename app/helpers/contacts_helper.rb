@@ -9,9 +9,7 @@ module ContactsHelper
 
   def tag_link(value,class_name)
     if value.present?
-      link_to tag_path(value) do
-        content_tag(:span,value, class:"tag #{class_name}")
-      end
+      link_to value,tag_path(value),class:"tag #{class_name}"
     end
   end
 

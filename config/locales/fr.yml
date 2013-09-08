@@ -220,7 +220,13 @@ fr:
       <<: *errors
 
 
-
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: "Dernier &raquo;"
+      previous: "&lsaquo; Précédente"
+      next: "Suivante &rsaquo;"
+      truncate: "..."
 
 
 
@@ -233,6 +239,8 @@ fr:
   due_this_month: Ce mois-ci
   
   tasks: Tâches
+  favorites: favoris
+  contacted: contactés
   
   # Kind of addresses
   main_adress: Travail
@@ -252,6 +260,8 @@ fr:
         venue:
           created: "La salle %{name} a été créée avec succès"
           updated: "La salle %{name} a été modifiée avec succès"
+        person:
+          updated: "La personne %{name} a été modifiée avec succès"
   helpers:
     browse: Parcourir...
     submit:

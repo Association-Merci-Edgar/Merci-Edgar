@@ -42,7 +42,7 @@
       %li.nav-header
         Statut
       %li
-        %a{:href => "#"}
+        = link_to only_contacts_path(filter: "contacted") do
           %i.edi-chat
           Déjà échangé
       %li
@@ -50,7 +50,7 @@
           %i.edi-flag
           Déjà joué
       %li
-        = link_to favorites_path do
+        = link_to only_contacts_path(filter: "favorites") do
           %i.edi-heart
           Favoris  
           
@@ -59,7 +59,8 @@
   .span9
     %ul.list-large
       %li.list-header
-        50 résultats
+        = @contacts.total_count
+        résulats
         = paginate @contacts
         .meta
           %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}

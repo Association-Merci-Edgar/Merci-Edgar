@@ -10,8 +10,10 @@
           %i.ico.favorite{id: "fav_contact_#{venue.id}"}
 
       -# _________________________ contacted
-      %a.ico.contacted{:href => "#"}
-
+      - if venue.contacted?
+        %a.ico.contacted.full{:href => "#"}
+      - else
+        %a.ico.contacted{:href => "#"}
       -# _________________________ dealed
       %a.ico.dealed{:href => "#"}
       
@@ -29,22 +31,8 @@
       %h3= venue.name
       .pic= image_tag venue.avatar_url(:thumb)
     .infos-line
-      %span.jauge
-        %span.number 4600
-        seating
-        
-      %span.jauge
-        %span.number 4600
-        standing
-        
-      %span.location
-        %a.city{:href => "#"} 75020 Paris
-        Ile de france
-        
-        /
-          - address = venue.addresses.first
-          - if address.present?
-            = address.gmaps4rails_address
+      = render venue.capacities
+      = render venue.address
       
     .tags
       = render partial: "venues/tags", locals: { venue: venue}
