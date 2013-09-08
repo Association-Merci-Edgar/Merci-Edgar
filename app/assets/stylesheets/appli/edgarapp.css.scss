@@ -132,7 +132,7 @@ display:inline-block;
 
 /* ____________________________________ ICO  */
 
-a.ico {vertical-align: middle; font-size:22px; margin-left:2px;
+.ico {vertical-align: middle; font-size:22px; margin-left:2px;
   border-bottom:none !important;
   &:before { font-family: 'Entypo'; line-height: 1;}
   &:visited, &:active, &:link {color:$dblue;} 
