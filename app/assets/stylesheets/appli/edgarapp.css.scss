@@ -1211,10 +1211,12 @@ header {
   margin-bottom:24px;
   .infos {
     margin-top: 6px;
-    margin-left:80px;
+    margin-left:100px;
     //font-size:20px;
     //.infolabel {font-size:15px;}
+    
   } 
+  .pic{width:80px;}
 }
 
 .btn-secondary {
@@ -1250,6 +1252,7 @@ header {
 
 .pic-mini {@include square(24);margin-right:12px; margin-top:1px;float:none;}
 .pic-small {@include square(44);margin-right:14px; margin-top:0;}
+.pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 
 
 
