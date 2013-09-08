@@ -2,7 +2,6 @@ class PeopleStructure < ActiveRecord::Base
   attr_accessible :title, :structure_id, :structure_type, :structure_name, :structure_city, :structure_country
   belongs_to :person
   belongs_to :structure, polymorphic:true, class_name: "Contact"
-  # attr_writer :structure_name, :structure_city, :structure_country
 
   before_validation :set_structure
   def structure_type=(sType)
@@ -21,11 +20,26 @@ class PeopleStructure < ActiveRecord::Base
     self.structure.country if self.structure
   end
 
-  def structure_name_with_city_and_country(pattern)
-    name, city, country = pattern.match(/(^.*)#(.*)#(.*)/i).captures
+  def structure_name=(name)
+    @name = name
+  end
+
+  def structure_city=(city)
+    @city = city
+  end
+
+  def structure_country=(country)
+    @country = country
   end
 
   def set_structure
-    self.structure = Structure.find_or_create_by(name: @name, city: @city, country: @country)
+    debugger
+    v = Venue.where(name: @name).joins(:addresses).where(addresses:{city: @city, country: @country}).first_or_initialize
+    if v.new_record?
+      v.addresses.build(city: @city, country: @country)
+      v.save
+      self.structure_id = v.id
+      self.structure_type = "Venue"
+    end
   end
 end
