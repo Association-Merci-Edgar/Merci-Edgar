@@ -7,14 +7,20 @@ class ContactsController < AppController
         @filtered_by = "(#{params[:tag]})"
         @contacts = Kaminari.paginate_array(Contact.tagged_with(params[:tag])).page params[:page]
       else
-        @contacts = Contact.search(params[:search]).order(:name).page params[:page]
+        @contacts = Contact.search(params[:search]).page params[:page]
       end
     end
   end
 
-  def favorites
-    @contacts = current_user.favorites.order(:name).page params[:page]
-    @filtered_by = "Favoris"
+  def only
+    @contacts = case params[:filter]
+      when "favorites" then current_user.favorites.page params[:page]
+      when "contacted" then Contact.with_reportings.page params[:page]
+      else
+        redirect_to contacts_path
+        return
+    end
+    @filtered_by = t(params[:filter])
     render "index"
   end
 

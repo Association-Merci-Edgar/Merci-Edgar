@@ -10,8 +10,10 @@
           %i.ico.favorite{id: "fav_contact_#{venue.id}"}
 
       -# _________________________ contacted
-      %a.ico.contacted{:href => "#"}
-
+      - if venue.contacted?
+        %a.ico.contacted.full{:href => "#"}
+      - else
+        %a.ico.contacted{:href => "#"}
       -# _________________________ dealed
       %a.ico.dealed{:href => "#"}
       
