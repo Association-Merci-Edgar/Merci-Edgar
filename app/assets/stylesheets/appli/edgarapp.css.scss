@@ -468,6 +468,7 @@ a .logotype { color: $dblue;}
   
 }
 a.pull-right {float:right;}
+
 .leftmenu li a {
 	color:$beige; font-size:19px;
 	height: 25px;
@@ -476,6 +477,14 @@ a.pull-right {float:right;}
 	&:focus{text-decoration:none;}
 }
 
+.leftmenu li a:hover, .leftmenu li.active a, .leftmenu li.active a:hover {
+	background: $beige;
+	color:$dblue;
+	& .righticon {display:block;}
+}
+.leftmenu .righticon {float: right; display:none;margin-top:6px; margin-right: 6px;}
+
+.leftmenu li a:hover{	background: $white;}
 
 .leftmenu, .logo { }
 
@@ -494,16 +503,11 @@ a.pull-right {float:right;}
 	margin:0;
 }
 
-.leftmenu li a:hover {
-	background: $beige;
-	color:$dblue;
-	& .righticon {display:block;}
-}
+
 
 .entypo.edi-cog   {font-size:13px;}
 .entypo.edi-arrow-down-5 {font-size:17px; margin-top:6px;}
 
-.leftmenu .righticon {float: right; display:none;margin-top:6px;}
 
 .leftmenu .user-tab a {padding-top:32px;}
 
