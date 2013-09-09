@@ -2,7 +2,7 @@
 
 = simple_nested_form_for(@venue, :html => { :class => 'form-horizontal' }) do |f|
   /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
-  = f.error_notification
+  = display_errors(@venue)
 
   .form-inputs
     = f.input :name, label: false, :class => "span12"

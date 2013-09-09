@@ -1,1 +1,2 @@
-$('#fav_contact_<%= @contact.id %>').removeClass("full")
+$('#fav_contact_<%= @contact.id %>').parent().attr("href","<%= add_to_favorites_contact_path(@contact) %>")
+$('#fav_contact_<%= @contact.id %>').removeClass("full");

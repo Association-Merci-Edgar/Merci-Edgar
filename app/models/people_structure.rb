@@ -33,7 +33,6 @@ class PeopleStructure < ActiveRecord::Base
   end
 
   def set_structure
-    debugger
     v = Venue.where(name: @name).joins(:addresses).where(addresses:{city: @city, country: @country}).first_or_initialize
     if v.new_record?
       v.addresses.build(city: @city, country: @country)

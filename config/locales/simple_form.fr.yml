@@ -27,6 +27,7 @@ fr:
       defaults:
         first_name: "Prénom"
         last_name: "Nom"
+        name: "Nom"
         password: "Saisissez votre mot de passe"
         forgot_password : "Mot de passe oublié ?"
         password : "Choisissez un mot de passe"
@@ -70,6 +71,12 @@ fr:
           street: Adresse
         websites:
           url: Site web
+      person:
+        people_structures:
+          title: Fonction
+          structure_name: Nom de la salle
+          structure_city: Ville
+          structure_country: Pays 
     hints:
       defaults:
         password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
@@ -90,6 +97,7 @@ fr:
             private_venue: Salle privée
             theater: Théâtre
           period:
+            nil: "Non fourni"
             all_year: "Toute l'année"
             quaterly: "Par trimestre"
             per_semester: "Tous les 6 mois"
@@ -109,4 +117,5 @@ fr:
     helpers:
       submit:
         venue:
+          
           

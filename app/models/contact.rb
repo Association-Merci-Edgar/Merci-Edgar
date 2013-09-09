@@ -36,6 +36,8 @@ class Contact < ActiveRecord::Base
 
   has_many :favorite_contacts
 
+  belongs_to :main_contact, class_name: "Contact"
+
 
   accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => proc { |attributes| attributes[:national_number].blank? }, :allow_destroy => true
@@ -48,11 +50,11 @@ class Contact < ActiveRecord::Base
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%")}
   scope :with_reportings, joins: :reportings
   def phone_number
-    @phone_number ||= phones.first.formatted_phone
+    @phone_number ||= phones.first.try(:formatted_phone)
   end
 
   def email_address
-    @email_address ||= emails.first.address
+    @email_address ||= emails.first.try(:address)
   end
 
   def address
@@ -60,15 +62,19 @@ class Contact < ActiveRecord::Base
   end
 
   def postal_code
-    @postal_code ||= address.postal_code
+    @postal_code ||= address.try(:postal_code)
   end
 
   def city
-    @city ||= address.city
+    @city ||= address.try(:city)
   end
 
   def country
-    @country ||= address.country
+    @country ||= address.try(:country)
+  end
+
+  def website_url
+    @website_url ||= websites.first.try(:url)
   end
 
   def contacted?
@@ -107,7 +113,6 @@ class Contact < ActiveRecord::Base
       Contact.order(:name)
     end
   end
-
 
   def favorite?(user)
     @favorite ||= self.favorite_contacts.where(user_id: user.id).any?

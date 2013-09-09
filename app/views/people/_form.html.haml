@@ -1,6 +1,6 @@
 /%h1.page-title Modifier la fiche de la personne
 = simple_nested_form_for(@person, :html => { :class => 'form-horizontal form-edit' }) do |f|
-  = f.error_notification
+  = display_errors(@person)
 
   .form-inputs
     %header
@@ -11,8 +11,7 @@
         = f.input :first_name, label: false, :class => "input-Xlarge"
         = f.input :name, label: false, :class => "input-Xlarge"
         
-        = simple_form_for(@person, :html => { :method => :put, :class => 'form-horizontal' }) do |f|
-          = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
         
         
     %section#basic-infos
@@ -25,7 +24,7 @@
             = ps.input :title
             = ps.input :structure_name, input_html: { class: "structure_name", data: {autocomplete_source: structures_path} }
             = ps.input :structure_city
-            = ps.input :structure_country, as: :country
+            = ps.input :structure_country, as: :country, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
         
       .links
         = f.link_to_add :people_structures do

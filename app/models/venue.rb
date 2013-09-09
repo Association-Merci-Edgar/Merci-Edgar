@@ -14,7 +14,7 @@ class Venue < Contact
   attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids, :people_structures_attributes
   has_one :venue_info, :dependent => :destroy
 
-  delegate :capacities, :kind, :height, :depth, :width, to: :venue_info, allow_nil: true
+  delegate :capacities, :kind, :height, :depth, :width, :period, :stage, :remark, to: :venue_info, allow_nil: true
   validates :name, :presence => true
   validate :venue_must_have_at_least_one_address
   validate :venue_name_must_be_unique_by_city, :on => :create
@@ -54,7 +54,7 @@ class Venue < Contact
   end
 
   def to_param
-    [id, name.parameterize].join('-') if name?
+    [id, name.try(:parameterize)].compact.join('-')
   end
 
   def style_list
@@ -75,5 +75,9 @@ class Venue < Contact
     self.networks = names.split(",").map do |n|
       Network.where(name: n.strip).first_or_create!
     end
+  end
+
+  def relative
+    self.main_contact ||= self.people.first
   end
 end
