@@ -18,6 +18,7 @@ class ModifyContacts < ActiveRecord::Migration
       # t.string  :last_name
 
       t.integer :account_id
+      t.timestamps
     end
 
     add_index :contacts, :account_id
