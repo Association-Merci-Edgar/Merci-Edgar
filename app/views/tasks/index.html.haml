@@ -101,13 +101,22 @@
     .section-title
       .title
         Tâches
-        .badge.badge-medium.badge-shy 25
+        .badge.badge-medium.badge-shy= Task.pending.size
       .title-infos
         dont
-        .badge.badge-small.badge-black 1
+        .badge.badge-small.badge-black= Task.overdue.size
         en retard,
-        .badge.badge-small.badge-red 1
+        .badge.badge-small.badge-red= Task.due_today.size
         pour aujourd’hui  
+
+    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
+    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
+    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
+    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person, :color => "green"}
+    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person, color:"gray"}
+    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person, color:"gray"}
+
+
 
     %ul.list-medium
       %li
@@ -132,87 +141,7 @@
           %a{:href => "#"} Relance de payement
 
 
-      %li
-        .rightrow.small
-          .badge.badge-red Aujourd'hui
-          .actions
-            %a.shybtn{:href => "#"}
-              %i.entypo.edi-pencil
 
-        .rightrow
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag "squared/pro1.jpg"
-              Fatales Picards
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag "squared/per1.jpg"
-              François U.
-
-        .mainrow
-          %input{:type => "checkbox"}
-          %a{:href => "#"} Relance de payement Une tache avec un titre trés trés long…
-
-      %li
-        .rightrow.small
-          .badge ASAP
-          .actions
-            %a.shybtn{:href => "#"}
-              %i.entypo.edi-pencil
-
-        .rightrow
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini
-              Global
-          .s1of2
-
-        .mainrow
-          %input{:type => "checkbox"}
-          %a{:href => "#"} Aller à Avignon
-
-
-
-      %li
-        .rightrow.small
-          .badge.badge-blue Dans 3 jours
-          .actions
-            %a.shybtn{:href => "#"}
-              %i.entypo.edi-pencil
-
-        .rightrow
-          .s1of2
-
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag "squared/per3.jpg"
-              Christophe R.
-        .mainrow
-          %input{:type => "checkbox"}
-          %a{:href => "#"} Back to Avigon
-
-
-
-      %li
-        .rightrow.small
-          .badge.badge-green Lun. 2 Sept.
-          .actions
-            %a.shybtn{:href => "#"}
-              %i.entypo.edi-pencil
-
-        .rightrow
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini
-              Global
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini
-              Toute l'équipe
-
-        .mainrow
-          %input{:type => "checkbox"}
-          %a{:href => "#"} Refaire du café
 
     .btn-in-list
       = link_to new_task_path do

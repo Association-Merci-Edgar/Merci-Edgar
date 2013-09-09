@@ -6,13 +6,18 @@
   .section-title
     .title
       Tâches
-      .badge.badge-medium.badge-shy 25
+      .badge.badge-medium.badge-shy= Task.pending.size
     .title-infos
       dont
-      .badge.badge-small.badge-black 1
+      .badge.badge-small.badge-black= Task.overdue.size
       en retard,
-      .badge.badge-small.badge-red 1
+      .badge.badge-small.badge-red= Task.due_today.size
       pour aujourd’hui  
+
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
+
 
   %ul.list-medium
     %li

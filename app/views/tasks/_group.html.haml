@@ -20,4 +20,7 @@
 
         .mainrow
           %input{:type => "checkbox"}
-          = link_to t.name, send("edit_#{asset.class.name.downcase}_task_path",asset,t)
+          - if asset.present?
+            = link_to t.name, send("edit_#{asset.class.name.downcase}_task_path",asset,t)
+          - else
+            = link_to t.name, edit_task_path(t)
