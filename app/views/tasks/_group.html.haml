@@ -1,13 +1,23 @@
 - if (the_tasks = tasks.send(due)).any?
-  %ul.list-large.tasks
-    %h3= t(due)
+  %ul.list-medium
     - the_tasks.send(due).each do |t|
-      .task
-        %li
+      %li
+        .rightrow.small
+          = show_badge(color, t.specific_time? ? t.calendar : t(due))
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .rightrow
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/pro2.jpg"
+              ProjetXqsd
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag t.assignee.avatar
+              = t.assignee.nickname
+
+        .mainrow
+          %input{:type => "checkbox"}
           = link_to t.name, send("edit_#{asset.class.name.downcase}_task_path",asset,t)
-          = t.calendar
-          –
-          Assigné à 
-          = t.assignee.name
-          –
-          = link_to "Effectué", send("complete_#{asset.class.name.downcase}_task_path",asset,t), :method => :put

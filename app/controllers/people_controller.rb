@@ -16,6 +16,8 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @tasks = @person.tasks
     @pending_tasks = @tasks.pending
+    @reportings = @person.reportings
+    @reporting = @person.reportings.build
 
     respond_to do |format|
       format.html # show.html.erb

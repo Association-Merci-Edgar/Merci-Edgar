@@ -1,9 +1,9 @@
-%h1.page-title Modifier la structure
+%h1.page-title Modifier la salle
 /%h2= @venue.name
 
 = simple_nested_form_for(@venue, :html => { :class => 'form-horizontal form-edit' }) do |f|
   /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
-  = f.error_notification
+  = display_errors(@venue)
 
   .form-inputs
     %header
@@ -126,7 +126,7 @@
             %i.entypo.edi-minus-2
           = email.input :address, label:"Email", :wrapper => :append do
             = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
-            = email.input_field :kind, :label => "Type", :collection => %w(Work Home), :selected => "Work", :class => "add-on btn dropdown-toggle"
+            = email.input_field :kind, :label => "Type", :collection => %w(Administratif Autre), :selected => "Work", :class => "add-on btn dropdown-toggle"
 
       .links
         = f.link_to_add :emails, :title => 'Add a new email' do
@@ -153,7 +153,7 @@
       .fields-group
         = f.fields_for :addresses do |address|
           .nested-fields.addresses
-            = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+            = address.input :kind, :label => false, :collection => %w(Salle Administratif), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
             = address.link_to_remove :title => "Remove this address" do
               %i.entypo.edi-minus-2
         

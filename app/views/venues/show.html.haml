@@ -23,10 +23,25 @@
     
     
   .meta
-    %i.entypo.edi-flag
+    -# _________________________ contacted
+    - if @venue.contacted?
+      %a.ico.contacted.full{:href => "#"}
+    - else
+      %a.ico.contacted{:href => "#"}
     //%a.ico.dealed{:href => "#"}
-    %a.ico.favorite{:href => "#"}
-    = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le 20/02/2013<br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
+
+    / _________________________ favorite
+    - if @venue.favorite?(current_user)
+      = link_to remove_to_favorites_contact_path(@venue), remote: true do
+        %i.ico.favorite.full{id: "fav_contact_#{@venue.id}"}
+    - else
+      = link_to add_to_favorites_contact_path(@venue), remote: true do
+        %i.ico.favorite{id: "fav_contact_#{@venue.id}"}
+
+
+
+
+    = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{@venue.updated_at.present? ? @venue.updated_at.to_date : '22/01/2013'} <br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
       %i.entypo.edi-pencil
       
   - if notice.present?
@@ -119,24 +134,22 @@
              
             / _____________________ infos-mini  
             #infos-mini.span4
-              %ul.list-infos
-                %li.infolabel
-                  Contact principal
-                %li
-                  .pic.pic-small= image_tag "squared/per3.jpg"
-                  %a{:href => "#"}
-                    %h4 Albert Untel
-                %li
-                  %a{:href => "#"} Programmateur
-                %li +33 23 23 74 23 
-                %li
-                  %a{:href => "#"} email@gmail.com
+              - if @venue.relative
+                %ul.list-infos
+                  %li.infolabel
+                    Contact principal
+                  %li
+                    .pic.pic-small= image_tag @venue.relative.avatar
+                    = link_to @venue.relative do
+                      %h4= @venue.relative
+                  %li= @venue.relative.title(@venue)
+                  %li= @venue.relative.phone_number
+                  %li= @venue.relative.email_address
             
               %ul.list-infos
-                %li.infolabel Bureau
-                %li 2 rue machin — 54089 Lilles
-                %li
-                  %a{:href => "#"} email@provider.com
+                %li.infolabel= t(@venue.address.kind, scope: "simple_form.options.venue.addresses.kind")
+                %li= @venue.address.full_address
+                %li= @venue.email_address
                 
               %ul.list-infos
                 %li.infolabel Autres
@@ -163,20 +176,19 @@
                 /%i.entypo.edi-info
                 %li.infolabel Période de programmation
                 %li Toute l’année
+                %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
                 
               %ul.list-infos
                 %li.infolabel Ouverture au public
                 %li Lundi / Mardi et Week-ends
               
               %ul.list-infos
-                %li.infolabel Dimensions plateau(x) (Profondeur / Largeur / Hauteur)
-                %li Plateau 1 : 3 x 2 x 4
-                %li Plateau 2 : 16 x 23 x 10
+                %li.infolabel Dimensions plateau (Profondeur / Largeur / Hauteur)
+                %li= @venue.stage
               
               %ul.list-infos
                 %li.infolabel Observations
-                %li Homines enim eruditos et sobrios ut infaustos et inutiles vitant, eo quoque accedente quod et nomenclatores adsueti haec et talia venditare, mercede accepta lucris quosdam et prandiis inserunt subditicios ignobiles et obscuros.
-
+                %li= @venue.remark
                     
               %ul.list-infos
                 %li.infolabel Réseaux sociaux
@@ -228,7 +240,7 @@
                   
               %ul.list-infos
                 %li.infolabel Administratif
-                %li 2 rue machin — 54089 Lilles
+                %li 2 rue machin — 54089 Lille
                 %li
                   %a{:href => "#"} email@provider.com
                 %li SIRET : 1566 2255 66655 4555
@@ -250,11 +262,20 @@
                     
                 .meta
                   %a.ico.principal{:href => "#"}
-                  %a.ico.favorite{:href => "#"}
-                  %a{:href => "#"}
-                    %i.entypo.edi-chat
-                  %a{:href => "#"}
-                    %i.entypo.edi-flag
+                  
+                  -# _________________________ favorite
+                  - if person.favorite?(current_user)
+                    = link_to remove_to_favorites_contact_path(person), remote: true do
+                      %i.ico.favorite.full{id: "fav_contact_#{person.id}"}
+                  - else
+                    = link_to add_to_favorites_contact_path(person), remote: true do
+                      %i.ico.favorite{id: "fav_contact_#{person.id}"}
+
+                  -# _________________________ contacted
+                  - if person.contacted?
+                    %a.ico.contacted.full{:href => "#"}
+                  - else
+                    %a.ico.contacted{:href => "#"}                    
                 .actions 
                   /= link_to 'Edit', edit_venue_path(venue)
                   = link_to edit_venue_person_path(@venue,person), :class => "shybtn" do
@@ -265,11 +286,7 @@
                         
                 %h4= link_to "#{person.first_name} #{person.name}", person
                 .infos-line
-                  Fonction dans cette structure —
-                  +33 23 23 74 23 — 
-                  %a{:href => "#"}
-                    email@gmail.com
-
+                  = person.info_contact(@venue)
                 
                 
             
@@ -284,130 +301,23 @@
             
         / ________________________________________________________ tasks
         #tasks.tab-pane
-          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @venue}
-          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @venue}
-          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @venue}
-          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @venue}
-          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @venue}
-          = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @venue}
-          
           #tasks
-            -#.section-title
-            -#
-              /.title
-              /  Tâches
-              /  .badge.badge-medium.badge-shy 25
+            - if @pending_tasks.any?
               .title-infos
                 /dont
-                .badge.badge-small.badge-black 1
-                en retard,
-                .badge.badge-small.badge-red 1
-                pour aujourd’hui  
+                - if @pending_tasks.overdue.any?
+                  .badge.badge-small.badge-black= @pending_tasks.overdue.size
+                  en retard,
+                - if @pending_tasks.due_today.any?
+                  .badge.badge-small.badge-red= @pending_tasks.due_today.size
+                  pour aujourd’hui  
 
-            %ul.list-medium
-              %li
-                .rightrow.small
-                  .badge.badge-black hier
-                  .actions
-                    %a.shybtn{:href => "#"}
-                      %i.entypo.edi-pencil
-
-                .rightrow
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini= image_tag "squared/pro2.jpg"
-                      ProjetXqsd
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini= image_tag "squared/per2.jpg"
-                      Untel X.
-
-                .mainrow
-                  %input{:type => "checkbox"}
-                  %a{:href => "#"} Relance de payement
-
-
-              %li
-                .rightrow.small
-                  .badge.badge-red Aujourd'hui
-                  .actions
-                    %a.shybtn{:href => "#"}
-                      %i.entypo.edi-pencil
-
-                .rightrow
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini= image_tag "squared/pro1.jpg"
-                      Fatales Picards
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini= image_tag "squared/per1.jpg"
-                      François U.
-
-                .mainrow
-                  %input{:type => "checkbox"}
-                  %a{:href => "#"} Relance de payement Une tache avec un titre trés trés long…
-
-              %li
-                .rightrow.small
-                  .badge ASAP
-                  .actions
-                    %a.shybtn{:href => "#"}
-                      %i.entypo.edi-pencil
-
-                .rightrow
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini
-                      Global
-                  .s1of2
-
-                .mainrow
-                  %input{:type => "checkbox"}
-                  %a{:href => "#"} Aller à Avignon
-
-
-
-              %li
-                .rightrow.small
-                  .badge.badge-blue Dans 3 jours
-                  .actions
-                    %a.shybtn{:href => "#"}
-                      %i.entypo.edi-pencil
-
-                .rightrow
-                  .s1of2
-
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini= image_tag "squared/per3.jpg"
-                      Christophe R.
-                .mainrow
-                  %input{:type => "checkbox"}
-                  %a{:href => "#"} Back to Avigon
-
-
-
-              %li
-                .rightrow.small
-                  .badge.badge-green Lun. 2 Sept.
-                  .actions
-                    %a.shybtn{:href => "#"}
-                      %i.entypo.edi-pencil
-
-                .rightrow
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini
-                      Global
-                  .s1of2
-                    %a{:href => "#"}
-                      .pic.pic-mini
-                      Toute l'équipe
-
-                .mainrow
-                  %input{:type => "checkbox"}
-                  %a{:href => "#"} Refaire du café
+              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @venue, :color => "black"}
+              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @venue, :color => "red"}
+              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @venue, :color => "blue"}
+              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @venue, :color => "green"}
+              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @venue, color:"gray"}
+              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @venue, color:"gray"}
 
 
           .btn-in-list

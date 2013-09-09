@@ -116,6 +116,10 @@ class User < ActiveRecord::Base
     self.favorite_contacts.destroy(fav) if fav
   end
 
+  def nickname
+    [self.first_name,self.last_name].compact.join.truncate(8, omission:".")
+  end
+
   private
 
   def add_user_to_mailchimp

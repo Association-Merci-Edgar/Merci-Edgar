@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
 
   def display_base_errors resource
@@ -18,7 +19,12 @@ module ApplicationHelper
 
   def display_errors(object)
     if object && object.respond_to?(:errors) && object.errors.present?
-      content_tag(:div,"Oups ! Y a des soucis !",class:'alert alert-error')
+      notice = content_tag(:span, "Oups ! Quelques erreurs se sont glissées !", class:'noticetitle')
+      object.errors.full_messages.each do |m|
+        notice += content_tag(:span, m + ' / ')
+      end
+      
+      content_tag(:div, notice, class:'notice error')
     end
   end
 
@@ -30,6 +36,9 @@ module ApplicationHelper
     end
     content_tag(:li,link_tag,class: class_name)
   end
+
+  def show_badge(color, text)
+    badge_color = "badge-#{color}" if color
+    content_tag(:div,text,class:"badge #{badge_color}")
+  end
 end
-
-

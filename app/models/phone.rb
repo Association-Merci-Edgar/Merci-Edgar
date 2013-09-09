@@ -11,7 +11,7 @@
 #
 
 class Phone < ActiveRecord::Base
-  belongs_to :contact
+  belongs_to :contact, touch:true
   attr_accessible :kind, :national_number, :country
   # validates :national_number, :phone => true, :allow_blank => true
   validate :check_number
