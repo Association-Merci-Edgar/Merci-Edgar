@@ -25,7 +25,7 @@ class Task < ActiveRecord::Base
   belongs_to :asset, polymorphic: true
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to
   belongs_to :completor, class_name: "User", foreign_key: :completed_by
-  default_scope { where(:account_id => Account.current_id) }
+  default_scope { where(:account_id => Account.current_id).order('tasks.due_at ASC') }
   
   attr_accessor :calendar
   
