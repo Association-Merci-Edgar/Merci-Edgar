@@ -26,9 +26,6 @@ Edgar::Application.configure do
   # Precompile additional assets
   config.assets.precompile += %w( .svg .eot .woff .ttf )
   
-  # For Heroku
-  config.assets.initialize_on_precompile = false
-
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
