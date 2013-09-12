@@ -1,0 +1,4 @@
+= f.input :title
+= f.fields_for :structure do |s|
+  = s.input :name
+= link_to_remove_association "remove", f

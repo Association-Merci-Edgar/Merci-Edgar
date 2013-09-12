@@ -15,7 +15,7 @@
 
 class Person < Contact
   attr_accessible :first_name, :name, :people_structures_attributes
-  has_many :structures, through: :people_structures, uniq: :true, source: :structure, source_type: "Contact"
+  has_many :structures, through: :people_structures, uniq:true, source: :structure
   has_many :people_structures
   validates_presence_of :first_name
   validates_presence_of :last_name

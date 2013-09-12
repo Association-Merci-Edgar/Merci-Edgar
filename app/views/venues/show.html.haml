@@ -15,9 +15,10 @@
           - @venue.capacities.each do |capacity|
             %span.jauge= render capacity
             
-        %span.location
-          %span.city= @venue.addresses.first.city
-          Ile de france
+        - if @venue.city
+          %span.location
+            %span.city= @venue.city
+            Ile de france
       .tags
         = render partial: "tags", locals: {venue: @venue}
     
@@ -147,8 +148,9 @@
                   %li= @venue.relative.email_address
             
               %ul.list-infos
-                %li.infolabel= t(@venue.address.kind, scope: "simple_form.options.venue.addresses.kind")
-                %li= @venue.address.full_address
+                - if @venue.address
+                  %li.infolabel= t(@venue.address.kind, scope: "simple_form.options.venue.addresses.kind")
+                  %li= @venue.address.full_address
                 %li= @venue.email_address
                 
               %ul.list-infos
