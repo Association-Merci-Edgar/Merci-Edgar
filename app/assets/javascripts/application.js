@@ -20,8 +20,9 @@
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 
-// require contacts
-// require nested_form
+//= require contacts
+//= require nested_form
+//= edgarapp
 //= require_tree ./appli
 // require_tree .
 $('document').ready(function() {
