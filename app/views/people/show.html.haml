@@ -145,7 +145,7 @@
                   .pic.pic-small= image_tag @person.relative.avatar
                   = link_to @person.relative do
                     %h4= @person.relative.name
-                %li= @person.relative.address.full_address
+                %li= @person.relative.address.full_address if @person.relative.address
                 %li= @person.relative.phone_number
                 %li= link_to @person.relative.website_url, @person.relative.website_url if @person.relative.website_url
 

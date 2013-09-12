@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require_tree ./datetimepicker
 //= require jquery_nested_form
+// require cocoon
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 

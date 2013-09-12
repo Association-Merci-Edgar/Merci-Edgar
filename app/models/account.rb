@@ -38,7 +38,7 @@ class Account < ActiveRecord::Base
   end
 
   def mystrip(value)
-    if value.present? && value == "-" || value.length < 3
+    if value.present? && (value == "-" || value.length < 3)
       value = nil
     end
     value
@@ -69,10 +69,10 @@ class Account < ActiveRecord::Base
     logger.debug "Beggining scanning #{csv_file}\n"
     lines = File.new(csv_file).readlines
     header = lines.shift.strip
-    keys = header.split("\t")
+    keys = header.split("#")
     lines.each do |line|
       params = {}
-      values = line.strip.split("\t")
+      values = line.strip.split("#")
       keys.each_with_index do |key,i|
         params[key] = values[i].strip if !values[i].nil?
       end
