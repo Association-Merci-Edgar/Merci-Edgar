@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-// require jquery.ui.all
+//= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree ./datetimepicker
@@ -22,7 +22,7 @@
 
 //= require contacts
 //= require nested_form
-//= edgarapp
+//= require edgarapp
 //= require_tree ./appli
 // require_tree .
 $('document').ready(function() {
