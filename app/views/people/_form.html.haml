@@ -22,8 +22,8 @@
             = ps.link_to_remove :title => "Remove this function" do
               %i.entypo.edi-minus-2
             = ps.input :title
-            = ps.input :structure_name, input_html: { class: "structure_name", data: {autocomplete_source: structures_path} }
-        
+            /= ps.input :structure_name, input_html: { class: "structure_name", data: {autocomplete_source: structures_path} }
+            = ps.input :structure_name, input_html: {autocomplete:"off", class: "typeah"}
       .links
         = f.link_to_add :people_structures do
           //Add a function
