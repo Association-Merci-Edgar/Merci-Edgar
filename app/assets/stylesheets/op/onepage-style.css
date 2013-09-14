@@ -468,7 +468,7 @@ bottom:0px;}
  .navbar .nav > li > a:hover{
 	background:none;
 	color:#e53c21;
-	border-bottom:2px solid #transparent;
+	border-bottom:2px solid transparent;
  }
  .navbar .nav .active > a, .navbar .nav .active > a:hover, .navbar .nav  .active > a:focus {
 	background: none;
@@ -2510,7 +2510,7 @@ input[type="text"].subscribe-input{
 		-webkit-box-shadow: none;
 		-moz-box-shadow: none;
 		box-shadow: none;
-		border-bottom: 6px solid #transparent;
+		border-bottom: 6px solid transparent;
 }
 
 	.collapse.in {
