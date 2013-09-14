@@ -43,7 +43,7 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'label', class: 'control-label' do |ba|
       ba.use :label_tooltip
     end
-    b.wrapper :tag => 'div', :class => 'controls ui-front' do |ba|
+    b.wrapper :tag => 'div', :class => 'controls ui-widget' do |ba|
       ba.use :input
       ba.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
       ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }

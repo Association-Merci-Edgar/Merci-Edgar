@@ -14,6 +14,7 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap
+// require bootstrap-typeahead
 //= require_tree ./datetimepicker
 //= require jquery_nested_form
 // require cocoon

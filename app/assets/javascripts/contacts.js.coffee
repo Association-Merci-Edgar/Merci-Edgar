@@ -6,22 +6,32 @@ jQuery ->
   $('.structure_name').autocomplete
     source: $('#person_people_structures_attributes_0_structure_name').data('autocomplete-source')
     delay: 1000
-    select: ( event, ui ) ->
-            $(this).val( ui.item.name );
-            cityInput = $(this).parentsUntil("control-group").next().first().find("input")
-            cityInput.val( ui.item.city );
-            countrySelect = cityInput.parentsUntil("control-group").next().find("select")
-            countrySelect.val( ui.item.country );
-            return false;
-    focus: ( event, ui ) ->
-            $(this).val( ui.item.name );
-            return false;      
-            
 
-  $.ui.autocomplete.prototype._renderItem = ( ul, item ) ->
-    return $( "<li>" )
-      .data( "item.autocomplete", item )
-      .append( "<a><b>" + item.name + "</b> (" + item.city + ", " + item.country+ ")</a>" )
-      .appendTo( ul );
-      
+  $('.typeah').typeahead
+    source: (query, process) ->
+      $.ajax(
+        url= "/fr/structures?term=" + query
+        success: (data) =>
+          process(data)
+      )
+    minLength: 3
+    
+  
+  $(document).on "nested:fieldAdded", (event) ->
+
+    # this field was just inserted into your form
+    field = event.field
+
+    # it's a jQuery object already! Now you can find date input
+    typeaheadField = field.find(".typeah")
+
+    # and activate datepicker on it
+    typeaheadField.typeahead
+      source: (query, process) ->
+        $.ajax(
+          url= "/fr/structures?term=" + query
+          success: (data) =>
+            process(data)
+        )
+      minLength: 3
   
