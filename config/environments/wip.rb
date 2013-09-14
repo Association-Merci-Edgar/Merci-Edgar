@@ -24,8 +24,8 @@ Edgar::Application.configure do
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
   # Precompile additional assets
-  config.assets.precompile += %w( onepage.js onepage.css .svg .eot .woff .ttf )
-  
+  config.assets.precompile += %w( onepage.js onepage.css.scss .svg .eot .woff .ttf )
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
