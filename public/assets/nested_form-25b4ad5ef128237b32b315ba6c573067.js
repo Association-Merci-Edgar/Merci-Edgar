@@ -1,1 +1,0 @@
-$(document).on("nested:fieldAdded",function(){$.ui.autocomplete.prototype._renderItem=function(e,t){return $("<li></li>").data("item.autocomplete",t).append("<a><b>"+t.name+"</b> ("+t.city+", "+t.country+")</a>").appendTo(e)}});
