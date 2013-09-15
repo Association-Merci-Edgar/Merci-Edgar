@@ -1,0 +1,1 @@
+ClientSideValidations.formBuilders["NestedForm::SimpleBuilder"]=ClientSideValidations.formBuilders["SimpleForm::FormBuilder"],$("form").on("nested:fieldAdded",function(i){$(i.target).find(":input").enableClientSideValidations()});
