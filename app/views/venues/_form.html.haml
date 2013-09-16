@@ -153,11 +153,12 @@
       .fields-group
         = f.fields_for :addresses do |address|
           .nested-fields.addresses
-            = address.input :kind, :label => false, :collection => %w(Salle Administratif), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+
             = address.link_to_remove :title => "Remove this address" do
               %i.entypo.edi-minus-2
         
             = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+            = address.input :kind, :label => false, :collection => %w(Salle Administratif), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
             = address.input :city, :label => false, :placeholder =>"Ville, localité, …", :input_html => { :class => "input-medium inline" }
             = address.input :postal_code, :label => false, :placeholder =>"Code postal", :input_html => { :class => "input-mini inline" }
             = address.input :state, :label => false, :placeholder =>"State"
