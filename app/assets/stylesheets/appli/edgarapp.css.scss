@@ -637,6 +637,12 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 
 
+#map img { 
+  max-width: none;
+}
+#map label { 
+  width: auto; display:inline; 
+} 
 
 
 
@@ -657,6 +663,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   padding: 4px 12px;
   text-align: center;
   border: solid 1px $vlblue;
+  display: innline-block;
   @include roundcorners;
   &:hover{
     background:$green;
@@ -865,6 +872,16 @@ label {
     line-height: 20px;
 }
 
+
+.venue_addresses_kind {
+  width:120px;
+  position:absolute;
+  top:9px;
+  margin-left: 503px;
+  //display:inline-block;
+  label {display:none;}
+  select {display:block; position:absolute; left:0;}
+}
 form section { margin-bottom:120px;}
 
 form .section-title { margin-left:220px;
