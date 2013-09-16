@@ -2,13 +2,26 @@ $('document').ready(function() {
   
 	
   initializer();
+  
   $('[data-toggle="tooltip"]').tooltip(); 	      // activate tooltips
   //$(".editbtn").tooltip({html:true});   
   
-  $("a.btn-close").click(function(event) {
+  $("a.btn-close").click(function(event) { 	      // hide Notices
     event.preventDefault();
     $(this).parent('.notice').remove();
   });
+  
+  /*
+  Gmaps.map.callback = function() {
+  google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
+  //Map fully loaded here
+  $('#map').height($(".map_container").height());
+  $('#map').width($(".map_container").width());
+  google.maps.event.trigger($('#map'), 'resize');
+  
+  }
+  )};
+  */
   
 // show/hide the leftpanel _________________________________
   window.smallScreens = function() {
@@ -58,8 +71,8 @@ $(window).load(function() {
 $(window).resize(function() {
 	smallScreens();
 	initializer();
-});
 
+});
 
 
 // Clickable Dropdown _________________________________
@@ -88,6 +101,10 @@ initializer = function() {
   $(".modal").on('shown', function() {
           $(this).find("[autofocus]:first").focus();
   });
+  
+
+  
+  
 }
 
 

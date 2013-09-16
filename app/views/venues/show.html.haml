@@ -229,7 +229,24 @@
                 
                 - @venue.addresses.each do |address|
                   = render partial: "address", object: address
-
+                  
+                -#  
+                  -content_for :script do
+                    <script type="text/javascript">
+                
+                    Gmaps.map.callback = function() {
+                    google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
+                    //Map fully loaded here
+                    $('#map').height($(".map_container").height());
+                    $('#map').width($(".map_container").width());
+                    google.maps.event.trigger($('#map'), 'resize');
+                
+                    }
+                    )};
+                
+                  </script>
+                  
+                  
                 - @venue.emails.each do |email|
                   = render email
 
