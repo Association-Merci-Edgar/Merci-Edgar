@@ -237,6 +237,7 @@ body {
 	width: 240px;
 	background: $dblue90;   //background: url(../appli/dblue.gif) top left repeat;
 	position:fixed;
+	height:100%;
 	//@include transition("all", 0.2s);
 }
 
@@ -573,25 +574,24 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 /*  ________________________________________________________ plusmenu    */
 .plusmenu {
   position: fixed;
-  width:300px;
-  right:-255px;
-  top:30px;
+  width:45px;
+  top:29px;
   color:#fff;
-  //background: $dblue;
-  @include transition(all, 0.2s);
   z-index:800;
 }
 
-.plusmenu-trigger {
-  float:left;
-  
-}
-.plusmenu:hover { right:0px;}
+
+
 
 .pluslist {
+  display:inline-block;
+  position:fixed;
+  top:30px;
+  float:right;
+  right:-315px;// - 315 -255px;
   font-size:20px;
   margin-left:45px;
-  padding:24px 30px;
+  padding:20px 30px;
   list-style: none;
   background : $green;
   
@@ -601,26 +601,37 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   border-radius: 0 0 0 6px;
 
   width:255px;
+  @include transition(all, 0.2s);
   
   .list-header {font-size:20px;}
-  li {line-height:30px;}
+  li {line-height:34px;}
   li a { display: block;}
   li a:hover{color:$white;};
 }
 
-.plusmenu-trigger i {
-  font-size:36px;
-	display:inline-block;
-  width:45px;
-  height:45px;
-  margin-right:-10px;
-  text-align:center;
-  background: $green;
-  //@include roundcorners;
-  -webkit-border-radius: 6px 0 0 6px;
-  -moz-border-radius: 6px 0 0 6px;
-  border-radius: 6px 0 0 6px;
-  &:before {line-height:47px;};
+.plusmenu:hover .plusmenu-trigger { right:320px; }
+.plusmenu:hover .pluslist{ right:0px; }
+
+.plusmenu-trigger {
+  @include transition(all, 0.2s);
+  //display:inline-block;
+  position: fixed;
+  //float:left;
+  right:10px;
+  
+  i {
+    font-size:36px;
+  	width:45px;
+    height:45px;
+    padding: 4px 6px 4px 6px;
+    margin-right:-10px;
+    text-align:center;
+    background: $green;
+    -webkit-border-radius: 6px 0 0 6px;
+    -moz-border-radius: 6px 0 0 6px;
+    border-radius: 6px 0 0 6px;
+    &:before {line-height:47px;};
+  }
 }
 
 
@@ -1176,7 +1187,7 @@ li {line-height: inherit;}
 .list-medium .btn-in-list a i {font-size:30px !important;}
 
 .infos {color:$mblue;} 
-.shybtn { padding:2px 8px; margin-left:4px;}
+.shybtn { padding:2px 8px; margin-left:4px; display:inline-block;}
 
 
 
