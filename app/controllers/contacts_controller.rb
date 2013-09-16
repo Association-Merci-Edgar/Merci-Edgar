@@ -12,6 +12,20 @@ class ContactsController < AppController
     end
   end
 
+  def show_map
+    @contacts_json = Address.all.to_gmaps4rails do |address, marker|
+      marker.infowindow render_to_string(:partial => "addresses/infowindow", :locals => { :address => address})
+      marker.picture({
+                      :picture => "http://www.blankdots.com/img/github-32x32.png",
+                      :width   => 32,
+                      :height  => 32
+                     })
+      marker.title   "the title"
+      marker.sidebar "the sidebar"
+      # marker.json({ :id => address.id, :foo => "bar" })
+    end
+  end
+
   def only
     @contacts = case params[:filter]
       when "favorites" then current_user.favorites.page params[:page]

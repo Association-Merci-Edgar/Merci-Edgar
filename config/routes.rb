@@ -39,6 +39,7 @@ Edgar::Application.routes.draw do
       get 'only/:filter', action: :only, on: :collection, as: :only
       get 'add_to_favorites', on: :member
       get 'remove_to_favorites', on: :member
+      get 'show_map', on: :collection
     end
     resource :account
     resources :reportings
