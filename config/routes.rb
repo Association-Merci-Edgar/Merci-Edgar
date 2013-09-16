@@ -1,5 +1,6 @@
 Edgar::Application.routes.draw do
 
+
   get "backdoor/index"
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
@@ -43,6 +44,10 @@ Edgar::Application.routes.draw do
     end
     resource :account
     resources :reportings
+
+    resources :campaigns
+    resources :opportunities
+
 
   end
 
