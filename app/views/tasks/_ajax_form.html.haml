@@ -13,7 +13,7 @@
 
       = f.input :name, label: false, autofocus: true, :input_html => { :class => "big-input" }
       
-      = f.input :bucket, :collection => [:due_today, :due_tomorrow, :due_this_week, :due_next_week, :due_this_month, :overdue], selected: :due_today, label: "Pour quand ?"
+      = f.input :bucket, :collection => [:due_today, :due_tomorrow, :due_this_week, :due_next_week, :due_this_month, :overdue, :specific], selected: :due_today, label: "Pour quand ?"
       
       = f.input :calendar, :input_html => {"data-date-format" => "dd/mm/yyyy hh:ii", "data-date-language" => "fr", "data-date-autoclose" => true, "data-date-today-btn" => "linked", "data-date-today-highlight" => true, :class => "datepicker"}, label: "Calendrier"
       

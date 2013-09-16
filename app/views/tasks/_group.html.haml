@@ -3,7 +3,7 @@
     - the_tasks.send(due).each do |t|
       %li
         .rightrow.small
-          = show_badge(color, t.specific_time? ? t.calendar : t(due))
+          = show_badge(color, t.specific_time? ? t.friendly_date : t(due))
           .actions
             %a.shybtn{:href => "#"}
               %i.entypo.edi-pencil
