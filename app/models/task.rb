@@ -116,6 +116,23 @@ class Task < ActiveRecord::Base
     self.due_at.in_time_zone.strftime("%d/%m/%Y %H:%M") if self.due_at && specific_time
   end
 
+  def friendly_date
+    case
+    when self.due_at < Time.zone.now
+      "overdue"
+    when self.due_at >= Time.zone.now.midnight && self.due_at < Time.zone.now.midnight.tomorrow
+      self.due_at.in_time_zone.strftime("Aujourd'hui %H:%M")
+    when self.due_at >= Time.zone.now.midnight.tomorrow && self.due_at < Time.zone.now.midnight.tomorrow + 1.day
+      "due_tomorrow"
+    when self.due_at >= (Time.zone.now.midnight.tomorrow + 1.day) && self.due_at < Time.zone.now.next_week
+      self.due_at.strftime("%A")
+    when self.due_at >= Time.zone.now.next_week && self.due_at < (Time.zone.now.next_week.end_of_week + 1.day)
+      "due_next_week"
+    else
+      "due_later"
+    end
+  end
+
   def to_ics
     event = Icalendar::Event.new
     event.start = self.due_at.strftime("%Y%m%dT%H%M%S")

@@ -1,2 +1,9 @@
 $('#myModalContent').replaceWith('<%= j render("ajax_form") %>');
+$('.datepicker').datetimepicker();
+$('.datepicker').change(function() {
+  $('#task_bucket').val("specific");
+});
+$('#task_bucket').change(function() {
+  $('.datepicker').val("");
+});
 $('#myModal').modal('toggle')

@@ -25,7 +25,7 @@
 //= require nested_form
 //= require edgarapp
 //= require_tree ./appli
-// require_tree .
+//= require_self
 $('document').ready(function() {
 	
 
