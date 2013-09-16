@@ -27,13 +27,12 @@
       %li.comingsoon
         /= link_to new_venue_path, :class => "rightbt" do
         /  %i.entypo.edi-plus-3
-        %a{:href => "#"}
-          /%i.entypo.edi-calendar
+        = link_to opportunities_path do
           %i.entypo.edi-dates
           Dates
           
       %li.comingsoon
-        %a{:href => "#"}
+        = link_to campaigns_path do
           %i.entypo.edi-megaphone
           Campagnes
           
