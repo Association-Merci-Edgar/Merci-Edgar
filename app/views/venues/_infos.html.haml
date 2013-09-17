@@ -11,9 +11,18 @@
       %li.infolabel 
       %li Lundi / Mardi et Week-ends
     
-    %ul.list-infos
-      %li.infolabel Dimensions plateau (Profondeur / Largeur / Hauteur)
-      %li= @venue.stage
+    - if @venue.rooms.any?
+      - @venue.rooms.each do |room|
+        %ul.list-infos
+          %li.infolabel
+            Dimensions plateau (Profondeur / Largeur / Hauteur)
+            = " de #{room.name}" if @venue.rooms.size > 1
+          %li= room.stage
+          -  if room.capacities.any?
+            %li.infolabel Jauge(s)
+            - room.capacities.each do |capacity|
+              %span.jauge= render capacity
+          
     
     %ul.list-infos
       %li.infolabel Observations

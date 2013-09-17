@@ -11,7 +11,7 @@
 #
 
 class Capacity < ActiveRecord::Base
-  belongs_to :venue, touch:true
+  belongs_to :room, touch:true
   attr_accessible :kind, :nb
   before_validation :reset_kind, :if => "nb.blank?"
 

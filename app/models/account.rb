@@ -81,9 +81,18 @@ class Account < ActiveRecord::Base
       v.name   = params["NOM"].titleize if params["NOM"].present?
       vi = v.build_venue_info
       vi.kind   = params["TYPE DE LIEU"] if params["TYPE DE LIEU"].present?
-      vi.width  = params["OUVERTURE PLATEAU"]
-      vi.depth  = params["PROFONDEUR PLATEAU"]
-      vi.height = params["HAUTEUR PLATEAU"]
+      
+      room = v.rooms.build
+      room.name = v.name
+      room.width  = params["OUVERTURE PLATEAU"]
+      room.depth  = params["PROFONDEUR PLATEAU"]
+      room.height = params["HAUTEUR PLATEAU"]
+
+      seating = params["PLACES ASSISES"].to_i
+      room.capacities.build(nb:seating,kind: "seating") if seating && seating > 0
+      standing = params["PLACES DEBOUT"].to_i
+      room.capacities.build(nb:seating,kind: "standing") if standing && standing > 0
+
 
       address1 = mystrip(params["ADRESSE 1"])
       address1.titleize if !address1.nil?
@@ -95,6 +104,7 @@ class Account < ActiveRecord::Base
       a.postal_code = params["CODE POSTAL"]
       a.city = params["VILLE"].titleize if !params["VILLE"].nil?
       a.country = "FR"
+      a.kind = "main_address"
 
       v.phones.build(national_number:params["TELEPHONE"], kind:"Work") if mystrip(params["TELEPHONE"]).present?
       v.phones.build(national_number:params["TELECOPIE"], kind:"Fax") if mystrip(params["TELECOPIE"]).present?
@@ -103,10 +113,6 @@ class Account < ActiveRecord::Base
 
       v.websites.build(url:params["WEB"], kind:"Work") if mystrip(params["WEB"]).present?
 
-      seating = params["PLACES ASSISES"].to_i
-      v.capacities.build(nb:seating,kind: "seating") if seating && seating > 0
-      standing = params["PLACES DEBOUT"].to_i
-      v.capacities.build(nb:seating,kind: "standing") if standing && standing > 0
 
       if !v.save
         logger.debug "Problem importing #{v.name} venue \n"

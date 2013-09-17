@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130917114715) do
+ActiveRecord::Schema.define(:version => 20130917132546) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -51,12 +51,12 @@ ActiveRecord::Schema.define(:version => 20130917114715) do
   create_table "capacities", :force => true do |t|
     t.integer  "nb"
     t.string   "kind"
-    t.integer  "venue_info_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "room_id"
   end
 
-  add_index "capacities", ["venue_info_id"], :name => "index_capacities_on_venue_id"
+  add_index "capacities", ["room_id"], :name => "index_capacities_on_room_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "type"
@@ -156,6 +156,19 @@ ActiveRecord::Schema.define(:version => 20130917114715) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
+  create_table "rooms", :force => true do |t|
+    t.string   "name"
+    t.float    "depth"
+    t.float    "width"
+    t.float    "height"
+    t.boolean  "bar"
+    t.integer  "venue_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "asset_id"
@@ -231,14 +244,10 @@ ActiveRecord::Schema.define(:version => 20130917114715) do
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
   create_table "venue_infos", :force => true do |t|
-    t.float    "depth"
-    t.float    "width"
-    t.float    "height"
     t.string   "kind"
     t.integer  "venue_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.boolean  "bar"
     t.string   "period"
     t.boolean  "accompaniment"
     t.boolean  "residency"
