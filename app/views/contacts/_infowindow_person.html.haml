@@ -1,0 +1,15 @@
+%h4= link_to contact.name, contact
+<br>
+%span
+  - ps = contact.people_structures.first
+  - if ps.present?
+    = ps.title if ps.title.present?
+    = link_to ps.structure.name,ps.structure if ps.structure.present?
+  
+  - email = contact.emails.first
+  - if email.present?
+    = email.address
+  
+  - phone = contact.phones.first
+  - if phone.present?
+    = phone.national_number
