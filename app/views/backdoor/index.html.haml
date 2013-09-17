@@ -1,5 +1,65 @@
 %h1.page-title Playground / Canvas
 
+
+
+/ ________________________________________________________ checkbox & radio
+%section
+  .section-title checkbox & radio
+  .row-fluid
+    %li#fo143li2.notranslate.span6
+      %fieldset
+        <!--[if !IE | (gte IE 8)]-->
+        <legend id="title2" class="desc">
+        Check All That Apply
+        </legend>
+        <!--[endif]-->
+        <!--[if lt IE 8]>
+        <label id="title2" class="desc">
+        Check All That Apply
+        </label>
+        <![endif]-->
+      
+        %div
+          %span
+            %input#Field2.field.checkbox{name: "Field2", onchange: "handleInput(this);", tabindex: "4", type: "checkbox", value: "First Choice"}/
+            %label.choice{for: "Field2"} First Choice
+          
+          %span
+            %input#Field3.field.checkbox{name: "Field3", onchange: "handleInput(this);", tabindex: "5", type: "checkbox", value: "Second Choice"}/
+            %label.choice{for: "Field3"} Second Choice
+          
+          %span
+            %input#Field4.field.checkbox{name: "Field4", onchange: "handleInput(this);", tabindex: "6", type: "checkbox", value: "Third Choice"}/
+            %label.choice{for: "Field4"} Third Choice
+          
+          
+          
+    %li#fo143li1.notranslate.focused.span6
+      %fieldset
+        / [if !IE | (gte IE 8)]
+        %legend#title1.desc Select a Choice
+        / [endif]
+        /[if lt IE 8]
+          %label#title1.desc Select a Choice
+        %div
+          %input#radioDefault_1{name: "Field1", type: "hidden", value: ""}/
+          %span
+            %input#Field1_0.field.radio{name: "Field1", onchange: "handleInput(this);", onmouseup: "handleInput(this);", tabindex: "1", type: "radio", value: "First Choice"}/
+            %label.choice{for: "Field1_0"}
+              First Choice
+          %span
+            %input#Field1_1.field.radio{checked: "checked", name: "Field1", onchange: "handleInput(this);", onmouseup: "handleInput(this);", tabindex: "2", type: "radio", value: "Second Choice"}/
+            %label.choice{for: "Field1_1"}
+              Second Choice
+          %span
+            %input#Field1_2.field.radio{name: "Field1", onchange: "handleInput(this);", onmouseup: "handleInput(this);", tabindex: "3", type: "radio", value: "Third Choice"}/
+            %label.choice{for: "Field1_2"}
+              Third Choice
+
+
+
+
+
 / ________________________________________________________ Notices
 %section
   .section-title Notices
@@ -246,7 +306,6 @@
     = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
   - else
     = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
-
 
 
 
