@@ -11,9 +11,9 @@
     
     .infos
       .infos-line
-        -  if @venue.capacities.present?
-          - @venue.capacities.each do |capacity|
-            %span.jauge= render capacity
+        /-  if @venue.try(:capacities)
+        /  - @venue.capacities.each do |capacity|
+        /    %span.jauge= render capacity
             
         - if @venue.city
           %span.location
@@ -54,9 +54,9 @@
     .tabbable
       / ________________________________________________________ nav-tabs _________________
       %ul.nav.nav-tabs
-        %li
-          %a{"data-toggle" => "tab", :href => "#activity"} Suivi
         %li.active
+          %a{"data-toggle" => "tab", :href => "#activity"} Suivi
+        %li
           %a{"data-toggle" => "tab", :href => "#infos"} Infos
         %li
           %a{"data-toggle" => "tab", :href => "#team"}
@@ -72,7 +72,7 @@
           
       .tab-content
         / ________________________________________________________ activity
-        #activity.tab-pane
+        #activity.tab-pane.active
           = render partial:'activity'
                   
                   
@@ -84,7 +84,7 @@
                   
                   
         / ________________________________________________________ infos
-        #infos.tab-pane.active
+        #infos.tab-pane
           = render partial:'infos'
         / ________________________________________________________ team
         #team.tab-pane

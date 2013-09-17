@@ -31,7 +31,7 @@
       %h3= venue.name
       .pic= image_tag venue.avatar_url(:thumb)
     .infos-line
-      = render venue.capacities if venue.capacities
+      / = render venue.capacities if venue.capacities
       = render venue.address if venue.address
       
     .tags

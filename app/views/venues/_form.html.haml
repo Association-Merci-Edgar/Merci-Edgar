@@ -67,8 +67,7 @@
         
         
           -#  ________________________________________________________ Services
-          = v.input :bar, label:"Services", item_wrapper_class: "inline" do
-            = v.input_field :bar, inline_label: "Bar"
+          = v.input :residency, label:"Services", item_wrapper_class: "inline" do
             = v.input_field :residency, inline_label: "Residence"
             = v.input_field :accompaniment, inline_label: "Accompagnement"
           
@@ -78,43 +77,52 @@
           
           -# ________________________________________________________ Observations
           = v.input :remark
-  
-      
-        -# ________________________________________________________ capacity
-        = v.fields_for :capacities do |capacity|
+    
+      -# ________________________________________________________ capacity
+      = f.fields_for :rooms do |room|
+        = room.link_to_remove :title => "Supprimer cette salle" do
+          %i.entypo.edi-minus-2
+
+        = room.input :name
+        = room.fields_for :capacities do |capacity|
           .nested-fields
             = capacity.link_to_remove :title => "Remove this capacity" do
               %i.entypo.edi-minus-2
             = capacity.input :nb, :wrapper => :append do
               = capacity.input_field :nb, :class => "input-small"
-              = capacity.input_field :kind, label:false, :collection => %w(Assis Debout Autre),  :selected => "Assis", :class => "add-on dropdown-toggle"
+              = capacity.input_field :kind, label:false, :collection => [:seating, :standing], :class => "add-on dropdown-toggle"
 
         .links
-          = v.link_to_add :capacities, :title => 'Add a new capacity' do
+          = room.link_to_add :capacities, :title => 'Add a new capacity' do
             %i.entypo.edi-plus-2
             #{t("simple_form.buttons.add_capacity")}
-
-
+        = room.input :bar
 
         / ________________________________________________________ Dimensions     
+        
         .nested-fields
           .control-group
             %label.control-label
               <a title="" href="#" data-toggle="tooltip" data-original-title="Profondeur / Largeur / Hauteur"><i class="entypo edi-help"></i></a>
               Dimensions du plateau
             .inline-inputs
-              = v.input :depth, :wrapper => :append, :label => false do
-                =v.input_field :depth, :class => "input-mini"
-                =content_tag :span, "P", :class => "add-on"
+              = room.input :depth, :wrapper => :append, :label => false do
+                = room.input_field :depth, :class => "input-mini"
+                = content_tag :span, "P", :class => "add-on"
 
-              = v.input :width, :wrapper => :append, :label => false, :input_html => { :class => "inline" } do
-                =v.input_field :width, :class => "input-mini"
-                =content_tag :span, "L", :class => "add-on"
+              = room.input :width, :wrapper => :append, :label => false, :input_html => { :class => "inline" } do
+                = room.input_field :width, :class => "input-mini"
+                = content_tag :span, "L", :class => "add-on"
 
-              = v.input :height, :wrapper => :append, :label => false do
-                =v.input_field :height, :class => "input-mini"
-                =content_tag :span, "H", :class => "add-on"
+              = room.input :height, :wrapper => :append, :label => false do
+                = room.input_field :height, :class => "input-mini"
+                = content_tag :span, "H", :class => "add-on"
               /%p.help-block (Profondeur / Largeur / Hauteur)
+      .links
+        = f.link_to_add :rooms, :title => 'Ajouter une salle' do
+          %i.entypo.edi-plus-2
+          #{t("simple_form.buttons.add_room")}
+
          
           
     

@@ -10,10 +10,11 @@
 #
 
 class Venue < Structure
-  attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids, :people_structures_attributes
+  attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids, :people_structures_attributes, :rooms_attributes
   has_one :venue_info, :dependent => :destroy
+  has_many :rooms, :dependent => :destroy
 
-  delegate :capacities, :kind, :height, :depth, :width, :period, :stage, :remark, :start_scheduling, :end_scheduling, to: :venue_info, allow_nil: true
+  delegate :kind, :period, :remark, :start_scheduling, :end_scheduling, to: :venue_info, allow_nil: true
   validates :name, :presence => true, uniqueness: { scope: :account_id}
 #  validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
@@ -24,7 +25,8 @@ class Venue < Structure
   has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
 
   accepts_nested_attributes_for :venue_info
-  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :rooms, :reject_if => proc { |attributes| attributes[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :rooms, :allow_destroy => true
 
   scope :by_type, (lambda do |kind|
     joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
@@ -76,4 +78,5 @@ class Venue < Structure
   def relative
     self.main_contact ||= self.people.first
   end
+
 end

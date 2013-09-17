@@ -59,13 +59,13 @@ fr:
         firsttime_wording2: "Activation de compte pour l’adresse :"
       venue:
         venue_info:
-          capacities:
-            nb: Jauge
           kind: Type de salle
           period: Période de programmation
           remark: Observations
         contracts: Contrats
-          
+        rooms:
+          capacities:
+            nb: Jauge
         addresses:
           city: Ville
           postal_code: Code postal
@@ -107,6 +107,11 @@ fr:
           kind:
             main_address: "Adresse du lieu"
             admin_address: "Adresse administrative"
+        rooms:
+          capacities:
+            kind:
+              seating: "Assis"
+              standing: "Debout"
       task:
         bucket:
           overdue: En retard

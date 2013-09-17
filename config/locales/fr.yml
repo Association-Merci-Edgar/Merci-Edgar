@@ -250,7 +250,13 @@ fr:
   
   activerecord:
     models:
-      venue: Salle
+      venue: Lieu
+    attributes:
+      venue/rooms:
+        name: Nom de la salle
+        depth: Profondeur
+        height: Hauteur
+        width: Largeur
     errors:
       models:
         venue:
@@ -278,4 +284,5 @@ fr:
     messages:  
       blank: "Ne peut pas être vide"
       taken: "Déjà pris"
+      not_a_number: "N'est pas un nombre"
       
