@@ -1,6 +1,23 @@
+.page-title Contacts carte
+
+
+%form.inline-form
+  .control-group
+    %label Afficher des salles à proximité de
+    %input{type:"text", placeholder:"Localité..."}
+  .control-group
+    %label rayon:
+    %select#kms.select.dropdown-toggle{label: "Type", name: "", selected: "10km"}
+      %option{value: "10"} 10km
+      %option{value: "20"} 20km
+      %option{value: "30"} 30km
+
+  %button.btn.btn-primary{type:"submit"}
+    %i.entypo.edi-search
+    
+    
+    
 / = gmaps4rails(@contacts_json)
-/ = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => true, :class => "gmaps_big", :container_class => "map_container" },"markers" => { "data" => @contacts_json })
-
-
-= gmaps("markers" => {"data" => @contacts_json, "options" => {"list_container" => "markers_list" } })
-%ul#markers_list.list-large
+#gmaps_index
+  = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => true, :container_class => "map_container" },"markers" => { "data" => @contacts_json }, "options" => {"list_container" => "markers_list" })
+//, :class => "gmaps_big"
