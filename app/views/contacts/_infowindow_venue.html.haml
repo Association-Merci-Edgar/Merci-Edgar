@@ -1,0 +1,10 @@
+%h4= link_to contact.name, contact
+<br>
+
+- contact.rooms.each do |r|
+  - r.capacities.each do |capacity|
+    = render capacity
+
+= render contact.address if contact.address
+.tags
+  = render partial: "venues/tags", locals: { venue: contact}
