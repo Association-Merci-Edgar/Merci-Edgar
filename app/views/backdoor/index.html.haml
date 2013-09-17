@@ -1,6 +1,21 @@
 %h1.page-title Playground / Canvas
 
-
+/ ________________________________________________________ closeto
+%section
+  .section-title closeto
+  %form.inline-form
+    .control-group
+      %label Afficher des salles à proximité de
+      %input{type:"text", placeholder:"Localité..."}
+    .control-group
+      %label rayon:
+      %select#kms.select.dropdown-toggle{label: "Type", name: "", selected: "10km"}
+        %option{value: "10"} 10km
+        %option{value: "20"} 20km
+        %option{value: "30"} 30km
+  
+    %button.btn.btn-primary{type:"submit"}
+      %i.entypo.edi-search
 
 / ________________________________________________________ checkbox & radio
 %section
