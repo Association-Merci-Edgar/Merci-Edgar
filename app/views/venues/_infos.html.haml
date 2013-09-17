@@ -5,9 +5,10 @@
       /%i.entypo.edi-info
       %li.infolabel Période de programmation
       %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
-      
+      %li= "Début de programmation : #{@venue.start_scheduling.titleize}" if @venue.start_scheduling
+      %li= "Fin de programmation :  #{@venue.end_scheduling.titleize}" if @venue.end_scheduling
     %ul.list-infos
-      %li.infolabel Ouverture au public
+      %li.infolabel 
       %li Lundi / Mardi et Week-ends
     
     %ul.list-infos

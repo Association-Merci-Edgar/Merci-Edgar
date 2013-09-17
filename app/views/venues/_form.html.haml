@@ -57,6 +57,8 @@
         
           -#  ________________________________________________________ period
           = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
+          = v.input :start_scheduling, :collection => t("date.month_names")
+          = v.input :end_scheduling, :collection => t("date.month_names")
         
         
           -#  ________________________________________________________ kind of venue

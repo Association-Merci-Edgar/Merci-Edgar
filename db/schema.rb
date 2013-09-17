@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916112459) do
+ActiveRecord::Schema.define(:version => 20130917114715) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -236,13 +236,15 @@ ActiveRecord::Schema.define(:version => 20130916112459) do
     t.float    "height"
     t.string   "kind"
     t.integer  "venue_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.boolean  "bar"
     t.string   "period"
     t.boolean  "accompaniment"
     t.boolean  "residency"
     t.text     "remark"
+    t.string   "start_scheduling"
+    t.string   "end_scheduling"
   end
 
   add_index "venue_infos", ["venue_id"], :name => "index_venue_infos_on_venue_id"
