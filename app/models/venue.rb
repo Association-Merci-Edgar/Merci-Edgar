@@ -13,7 +13,7 @@ class Venue < Structure
   attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids, :people_structures_attributes
   has_one :venue_info, :dependent => :destroy
 
-  delegate :capacities, :kind, :height, :depth, :width, :period, :stage, :remark, to: :venue_info, allow_nil: true
+  delegate :capacities, :kind, :height, :depth, :width, :period, :stage, :remark, :start_scheduling, :end_scheduling, to: :venue_info, allow_nil: true
   validates :name, :presence => true, uniqueness: { scope: :account_id}
 #  validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create

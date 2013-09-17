@@ -19,6 +19,9 @@
       = link_to "une tâche générique", new_task_path, remote:true
 
   %li
-    = link_to "une personne", new_person_path
+    - if @venue.present?
+      = link_to "une personne", new_venue_person_path(@venue)
+    - else
+      = link_to "une personne", new_person_path
   %li
     = link_to "une salle",new_venue_path
