@@ -364,7 +364,7 @@ h2 {
 
 h4 { margin-bottom:18px;}
 
-%section > h3 {line-height: 32px !important;}
+h3.message {line-height: 36px;}
 
 .label-large p {line-height: 18px;}
 
@@ -378,13 +378,18 @@ header {display:block;}
 
 
 //  __________________________________________________________________ Gmap Fix
-/*
-.ui-tabs .ui-tabs-hide {
+
+.tab-pane {
     position: absolute !important;
     left: -10000px !important;
     display:block !important;
 }
-*/
+
+.tab-pane.active {
+  left: 0px !important;
+    position: static !important;
+}
+
 
 
 

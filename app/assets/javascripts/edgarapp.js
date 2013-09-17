@@ -108,7 +108,7 @@ initializer = function() {
   
   
   //  __________________________________________________________________ Gmap Fix
-  
+   /*
 
   $('a[href="#infos"]').on('shown', function (e) {
     //e.target // activated tab
@@ -120,17 +120,18 @@ initializer = function() {
 
     //map.fitBounds(bounds);
     //map.setCenter(map_center);
-    /*
+    
     
     
     resizeMap();
   })
-  
+ 
   google.maps.event.addListenerOnce(map, 'idle', function() {
       google.maps.event.trigger(map, 'resize');
       map.setCenter(point); // be sure to reset the map center as well
+  
   });
-  */
+
   google.maps.event.trigger(map, 'resize');
   map.setCenter(center);   // Important to add this!
   
@@ -138,6 +139,7 @@ initializer = function() {
   
   //  __________________________________________________________________ Show specific tab
   //$('a[href="#tasks"]').tab('show');
+  */
   
 }
 
