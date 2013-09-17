@@ -1185,7 +1185,8 @@
 				In jquery 1.7.2+ everything works fine.
 			*/
 			//this.picker.find('>div').hide().filter('.datetimepicker-'+DPGlobal.modes[this.viewMode].clsName).show();
-			this.picker.find('>div').hide().filter('.datetimepicker-'+DPGlobal.modes[this.viewMode].clsName).css('display', 'block');
+			//this.picker.find('>div').hide().filter('.datetimepicker-'+DPGlobal.modes[this.viewMode].clsName).css('display', 'block');
+			this.picker.find('>div').hide().filter('.datetimepicker-'+DPGlobal.modes[this.viewMode].clsName).css('display', 'inline-block');
 			this.updateNavArrows();
 		},
 		
@@ -1222,7 +1223,7 @@
 			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			meridiem: ["am", "pm"],
 			suffix: ["st", "nd", "rd", "th"],
-			today: "Today"
+			//today: "Today"
 		}
 	};
 
