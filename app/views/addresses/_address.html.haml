@@ -1,5 +1,8 @@
 %span.location
-  %a.city{:href => "#"}
-    = address.postal_code
-    = address.city
-  /Ile de france
+  = address.postal_code
+  = address.city
+  (
+  = link_to address.department_name, only_contacts_path(filter:"dept",no:address.department_code)
+  ,
+  = address.region_name
+  )

@@ -1,6 +1,6 @@
 / = gmaps4rails(@contacts_json)
 / = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => true, :class => "gmaps_big", :container_class => "map_container" },"markers" => { "data" => @contacts_json })
 
-/ = gmaps("markers" => { "data" => @contacts_json })
-= @contacts_json
-= gmaps("markers" => { "data" => @contacts_json })
+
+= gmaps("markers" => {"data" => @contacts_json, "options" => {"list_container" => "markers_list" } })
+%ul#markers_list

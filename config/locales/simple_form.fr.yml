@@ -105,7 +105,7 @@ fr:
             per_semester: "Tous les 6 mois"
         addresses:
           kind:
-            main_address: "Adresse principale"
+            main_address: "Adresse du lieu"
             admin_address: "Adresse administrative"
       task:
         bucket:

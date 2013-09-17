@@ -17,7 +17,7 @@
       -# _________________________ dealed
       %a.ico.dealed{:href => "#"}
       
-    .mini-map= image_tag "appli/mini-map.png"
+    = content_tag("div",nil, class:"mini-map france reg-#{venue.address.region_code}")
     
     .actions
       = link_to edit_venue_path(venue), :class => "shybtn" do

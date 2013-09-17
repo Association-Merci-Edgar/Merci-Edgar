@@ -121,15 +121,13 @@ class Task < ActiveRecord::Base
     when self.due_at < Time.zone.now
       "overdue"
     when self.due_at >= Time.zone.now.midnight && self.due_at < Time.zone.now.midnight.tomorrow
-      self.due_at.in_time_zone.strftime("Aujourd'hui %H:%M")
+      I18n.localize(self.due_at.in_time_zone, format: :friendly_day, day:I18n.t(:due_today))
     when self.due_at >= Time.zone.now.midnight.tomorrow && self.due_at < Time.zone.now.midnight.tomorrow + 1.day
-      "due_tomorrow"
+      I18n.localize(self.due_at.in_time_zone, format: :friendly_day, day:I18n.t(:due_tomorrow))
     when self.due_at >= (Time.zone.now.midnight.tomorrow + 1.day) && self.due_at < Time.zone.now.next_week
-      self.due_at.strftime("%A")
-    when self.due_at >= Time.zone.now.next_week && self.due_at < (Time.zone.now.next_week.end_of_week + 1.day)
-      "due_next_week"
+      I18n.localize(self.due_at.in_time_zone, format: :friendly)
     else
-      "due_later"
+      I18n.localize(self.due_at.in_time_zone, format: :short)
     end
   end
 
