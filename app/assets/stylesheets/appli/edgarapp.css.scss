@@ -455,7 +455,7 @@ header {display:block;}
 
 .leftpanel .entypo.logotype:before { font-size:50px;}
 .leftpanel .entypo { width:30px; display:inline-block;}
-a .logotype { color: $dblue;}
+a .logotype, .edi-logoedgar { color: $dblue;}
 
 
 .footer {
@@ -553,6 +553,79 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 /*____________ */
 
+/*  ________________________________________ signin   */
+
+.form-signin .small {width:100px;}
+.form-signin .medium {width:240px;}
+.form-signin {
+  width:400px;
+  margin: 0 auto;
+  margin-top:40px;
+  display: block;
+  .logotype {
+    text-align: center;
+    }
+  .logo {
+    font-size:100px;
+    width:100%;
+    height:200px;
+    text-align: center;
+    background:none;
+    padding:0;
+    
+    }
+    //input:not([type="checkbox"]), :not(.btn){width:100%;};
+    input[type="password"], input[type="text"] {width:100%;};
+    
+}
+#new_task {
+  .task_calendar {display:none;}
+  .task_calendar, .task_bucket {display:inline-block;// !important;
+  
+  select:first-child{margin-right:6px;};
+  input, select { width: 237px !important;}
+  #task_calendar {margin-top:-1px;}
+  }
+  select#task_assigned_to { width: 237px !important;}
+}
+/*  ________________________________________ checkbox & radio */
+
+/* 
+	Hide the original radios and checkboxes (but still accessible)
+	:not(#foo) > is a rule filter to block browsers that don't support that selector from applying rules they shouldn't
+*/
+:not(#foo) > span > input[type='radio'], 
+:not(#foo) > span > input[type='checkbox'] {
+	opacity: 0; /* Hide the input, but have it still be clickable */
+	float: left;
+	width: 18px;
+}
+
+:not(#foo) input[type='radio'] + label,
+:not(#foo) input[type='checkbox'] + label,
+:not(#foo) label.radio > input[type='radio'],
+:not(#foo) label.checkbox > input[type='checkbox']  {
+	//margin: 0;
+	clear: none;
+	/* Left padding makes room for image */
+	padding: 5px 0 4px 24px;
+	/* Make look clickable because they are */
+	cursor: pointer;
+	
+	background: url(../appli/check-radio/off.png) left center no-repeat;	
+}
+
+/* Change from unchecked to checked graphic */
+:not(#foo) input[type='radio']:checked + label,
+ {
+	background-image: url(../appli/check-radio/radio.png);
+}
+:not(#foo) input[type='checkbox']:checked + label {
+	background-image: url(../appli/check-radio/check.png);
+}
+
+
+
 
 
 
@@ -639,7 +712,6 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 
 /* label-blocks ________________________________________ */
-
 
 
 
@@ -778,6 +850,10 @@ a.label-large:hover i {background: $yellow;}
     box-shadow:none;
 }
 
+.close { //btn
+    color: $dblue;
+  }
+
 
 .nicescroll-rails {}
 .nicescroll-rails div {
@@ -790,7 +866,7 @@ a.label-large:hover i {background: $yellow;}
 /* View EDIT _____________________________________________________ */
 
 
-//.controls, .control-group//, .control-group label 
+//.controls, .control-group//, .control-group label
 //{display:inline;}
 
 
@@ -881,6 +957,7 @@ span.add-on {height:22px !important; display:block;}
 label {
     font-size: 16px;
     line-height: 20px;
+     margin-bottom: 7px;
 }
 
 
@@ -1124,7 +1201,35 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
   position:absolute; right:0;
 }
 
-.mini-map { position:absolute; right:0; top:54px; z-index:2;}
+.mini-map { position:absolute; right:0; top:54px; z-index:2; height:80px; width:120px;
+  &.france {background: url(../appli/sprites/france-minimap-sprite.png) no-repeat top left;}
+}
+
+.mini-map.france.reg-1 {background-position: -5px -5px;}
+.mini-map.france.reg-10 {background-position: -135px -5px;}
+.mini-map.france.reg-11 {background-position: -265px -5px;}
+.mini-map.france.reg-12 {background-position: -395px -5px;}
+.mini-map.france.reg-13 {background-position: -5px -95px;}
+.mini-map.france.reg-14 {background-position: -135px -95px;}
+.mini-map.france.reg-15 {background-position: -265px -95px;}
+.mini-map.france.reg-16 {background-position: -395px -95px;}
+.mini-map.france.reg-17 {background-position: -5px -185px;}
+.mini-map.france.reg-18 {background-position: -135px -185px;}
+.mini-map.france.reg-19 {background-position: -265px -185px;}
+.mini-map.france.reg-2 {background-position: -395px -185px;}
+.mini-map.france.reg-20 {background-position: -5px -275px;}
+.mini-map.france.reg-21 {background-position: -135px -275px;}
+.mini-map.france.reg-22 {background-position: -265px -275px;}
+.mini-map.france.reg-23 {background-position: -395px -275px;}
+.mini-map.france.reg-24 {background-position: -5px -365px;}
+.mini-map.france.reg-3 {background-position: -135px -365px;}
+.mini-map.france.reg-4 {background-position: -265px -365px;}
+.mini-map.france.reg-5 {background-position: -395px -365px;}
+.mini-map.france.reg-6 {background-position: -525px -5px;}
+.mini-map.france.reg-7 {background-position: -525px -95px;}
+.mini-map.france.reg-8 {background-position: -525px -185px;}
+.mini-map.france.reg-9 {background-position: -525px -275px;}
+
 
 
 .row-fluid [class*="span"] { min-height :15px}
