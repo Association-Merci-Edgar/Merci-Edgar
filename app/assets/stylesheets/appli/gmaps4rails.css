@@ -48,4 +48,4 @@
   width: auto; display:inline; 
 }
 
-#map a {border:none;}
+#map a:not(.tag) {border:none;}

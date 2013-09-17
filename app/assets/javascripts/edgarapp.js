@@ -102,8 +102,42 @@ initializer = function() {
           $(this).find("[autofocus]:first").focus();
   });
   
+  $("#gmaps_index").width( $("#markers_list").width() )
+  $("#markers_list").height( $(document).height() - 210 - $("#gmaps_index").height() )
 
   
+  
+  //  __________________________________________________________________ Gmap Fix
+  
+
+  $('a[href="#infos"]').on('shown', function (e) {
+    //e.target // activated tab
+    //$(this).tab('show');
+    //$('#infos').addClass("active")
+    //e.relatedTarget // previous tab
+    
+    //alert("re")
+
+    //map.fitBounds(bounds);
+    //map.setCenter(map_center);
+    /*
+    
+    
+    resizeMap();
+  })
+  
+  google.maps.event.addListenerOnce(map, 'idle', function() {
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(point); // be sure to reset the map center as well
+  });
+  */
+  google.maps.event.trigger(map, 'resize');
+  map.setCenter(center);   // Important to add this!
+  
+  
+  
+  //  __________________________________________________________________ Show specific tab
+  //$('a[href="#tasks"]').tab('show');
   
 }
 

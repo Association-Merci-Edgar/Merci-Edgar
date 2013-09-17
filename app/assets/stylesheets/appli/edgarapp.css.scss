@@ -225,7 +225,7 @@ body {
 .maincontent{
 	float: left;
 	width: 100%;
-	margin-bottom:50px;
+	margin-bottom:30px;
 }
 
 .maincontentinner {
@@ -377,6 +377,16 @@ h4 { margin-bottom:18px;}
 header {display:block;}
 
 
+//  __________________________________________________________________ Gmap Fix
+/*
+.ui-tabs .ui-tabs-hide {
+    position: absolute !important;
+    left: -10000px !important;
+    display:block !important;
+}
+*/
+
+
 
 /* __________________________________ togglemenu   */
 .togglemenu {
@@ -393,11 +403,42 @@ header {display:block;}
 	padding-bottom:12px;
 }
 
+/* ________________________________________________________ INDEX MAP SHOW_MAP   */
+.maincontentinner { position:relative;}
 
 
+/*
+#gmaps_index{
+  position:fixed;
+  top:90px;
+  //width:100%;
+  //height:40%;
+  }
+#markers_list{
+  margin-top: 360px;
+  height:100%;
+  height:500px;
+ // height:40%;
+  overflow-y: auto;
+  overflow : -moz-scrollbars-vertical;
+  }
+.map_container{}
+*/
+
+#gmaps_index {
+  height:600px;
+  .gmaps4rails_map, .map_container {
+    height:600px;
+  }
+}
 
 
-
+.inline-form {
+  label, input, .control-group {display:inline;}
+  input, select {margin-bottom:4px;}
+  .control-group { margin-right:6px;}
+  select#kms {width:90px;}
+}
 
 /* ________________________________________________________ NAV BAR   */
 
@@ -1302,7 +1343,7 @@ li {line-height: inherit;}
   .actions {top:56px;}
   .content {font-size:15px;color:$dblue;}
   li {
-    padding : 24px 0; padding-top:22px;
+    padding : 24px 0; padding-top:20px;
     min-height:60px;
     
     &.list-header { padding:0; min-height: 10px; border:none;
@@ -1310,7 +1351,7 @@ li {line-height: inherit;}
       &:hover{background:none;}}
   }
 }
-
+.list-large + li {padding:0;}
 
 
 .list-large {
