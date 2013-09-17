@@ -15,13 +15,8 @@ class ContactsController < AppController
   def show_map
     @contacts_json = Address.all.to_gmaps4rails do |address, marker|
       marker.infowindow render_to_string(:partial => "addresses/infowindow", :locals => { :address => address})
-      marker.picture({
-                      :picture => "http://www.blankdots.com/img/github-32x32.png",
-                      :width   => 32,
-                      :height  => 32
-                     })
-      marker.title   "the title"
-      marker.sidebar "the sidebar"
+      marker.title   address.contact.name
+      marker.sidebar render_to_string(address.contact)
       # marker.json({ :id => address.id, :foo => "bar" })
     end
   end
@@ -30,6 +25,7 @@ class ContactsController < AppController
     @contacts = case params[:filter]
       when "favorites" then current_user.favorites.page params[:page]
       when "contacted" then Contact.with_reportings.page params[:page]
+      when "dept" then Contact.by_department(params[:no]).page params[:page]
       else
         redirect_to contacts_path
         return

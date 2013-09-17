@@ -18,7 +18,7 @@
         - if @venue.city
           %span.location
             %span.city= @venue.city
-            Ile de france
+            = link_to @venue.address.department_name, only_contacts_path(filter:"dept",no:@venue.address.department_code)
       .tags
         = render partial: "tags", locals: {venue: @venue}
     
@@ -73,93 +73,7 @@
       .tab-content
         / ________________________________________________________ activity
         #activity.tab-pane
-          .row-fluid
-            .span8
-              .btn-group
-                //ici un select :
-                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Selectionner un projet
-                  %span.caret
-                %ul.dropdown-menu
-                  %li projet 1
-                  %li projet 2
-   
-              #activityfield-outter
-                = simple_form_for(@reporting) do |f|
-                  = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
-                  = f.hidden_field :asset_id
-                  = f.hidden_field :asset_type
-                  = button_tag(type: 'submit', class: "btn btn-secondary submit") do 
-                    %i.entypo.edi-arrow-down-5
-                                        
-              / ____________________________________ list reportings
-              %ul.list-large
-                = render @reportings
-                %li
-                  %h4 Hier
-                  .infos
-                    .pic.pic-mini= image_tag "squared/per1.jpg"
-                    %a{:href => "#"} Utilisateur Untel
-                    pour
-                    .pic.pic-mini= image_tag "squared/pro1.jpg"
-                    %a{:href => "#"} Telprojet
-        
-                  .content
-                    Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur. Superatis Tauri montis vertidqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis vertiqscibus qui ad solis ospatiis porrigitur late distrtum sublimius attollqsuntur.
-                  
-                %li
-                  %h4 Jeudi 7 mai 2013
-                  .infos
-                    .pic.pic-mini= image_tag "squared/per2.jpg"
-                    %a{:href => "#"} Untel X.
-                    pour
-                    .pic.pic-mini= image_tag "squared/pro1.jpg"
-                    %a{:href => "#"} Telprojet
-                    
-                  .content
-                    Superatis Tauri montis verticibus.
-                  
-                %li
-                  %h4 8 mai 2013
-                  .infos
-                    .pic.pic-mini
-                      = image_tag "squared/per3.jpg"
-                    %a{:href => "#"} David B.
-                    pour
-                    .pic.pic-mini= image_tag "squared/pro3.jpg"
-                    %a{:href => "#"} Telprojet
-                    
-                  .content
-                    Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
-             
-             
-            / _____________________ infos-mini  
-            #infos-mini.span4
-              - if @venue.relative
-                %ul.list-infos
-                  %li.infolabel
-                    Contact principal
-                  %li
-                    .pic.pic-small= image_tag @venue.relative.avatar
-                    = link_to @venue.relative do
-                      %h4= @venue.relative
-                  %li= @venue.relative.title(@venue)
-                  %li= @venue.relative.phone_number
-                  %li= @venue.relative.email_address
-            
-              %ul.list-infos
-                - if @venue.address
-                  %li.infolabel= t(@venue.address.kind, scope: "simple_form.options.venue.addresses.kind")
-                  %li= @venue.address.full_address
-                %li= @venue.email_address
-                
-              %ul.list-infos
-                %li.infolabel Autres
-                - @venue.emails.each do |email|
-                  = render email
-
-                - @venue.phones.each do |phone|
-                  = render phone
+          = render partial:'activity'
                   
                   
 
@@ -171,182 +85,20 @@
                   
         / ________________________________________________________ infos
         #infos.tab-pane.active
-          .row-fluid
-            / _____________________________________________ left
-            .span6
-              %ul.list-infos
-                /%i.entypo.edi-info
-                %li.infolabel Période de programmation
-                %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
-                
-              %ul.list-infos
-                %li.infolabel Ouverture au public
-                %li Lundi / Mardi et Week-ends
-              
-              %ul.list-infos
-                %li.infolabel Dimensions plateau (Profondeur / Largeur / Hauteur)
-                %li= @venue.stage
-              
-              %ul.list-infos
-                %li.infolabel Observations
-                %li= @venue.remark
-                    
-              %ul.list-infos
-                %li.infolabel Réseaux sociaux
-                
-                .tabbable
-                  %ul.nav.nav-tabs.sub-tabs
-                    %li.active
-                      %a{"data-toggle" => "tab", :href => "#facebook"}
-                        %i.entypo.edi-facebook
-                    %li
-                      %a{"data-toggle" => "tab", :href => "#twitter"}
-                        %i.entypo.edi-twitter
-
-                  .tab-content.sub-pane
-
-                    #facebook.tab-pane.active
-                      %ul.social-list
-                        %li
-                          %span Aujourd’hui à 12h30
-                          %span Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur.
-                        %li
-                          %span Hier à 12h30
-                          %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
-                        %li
-                          %span Hier à 12h30
-                          %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
-                        %a Voir le profil facebook
-                        
-                    #twitter.tab-pane
-                      %ul.social-list
-                        twitter
-            / _____________________________________________ right      
-            .span6
-              %ul.list-infos
-                /%i.entypo.edi-location-2
-                %li.infolabel Coordonnées
-                
-                - @venue.addresses.each do |address|
-                  = render partial: "address", object: address
-                  
-                -#  
-                  -content_for :script do
-                    <script type="text/javascript">
-                
-                    Gmaps.map.callback = function() {
-                    google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
-                    //Map fully loaded here
-                    $('#map').height($(".map_container").height());
-                    $('#map').width($(".map_container").width());
-                    google.maps.event.trigger($('#map'), 'resize');
-                
-                    }
-                    )};
-                
-                  </script>
-                  
-                  
-                - @venue.emails.each do |email|
-                  = render email
-
-                - @venue.phones.each do |phone|
-                  = render phone
-
-                - @venue.websites.each do |website|
-                  = render website
-                  
-              %ul.list-infos
-                %li.infolabel Administratif
-                %li 2 rue machin — 54089 Lille
-                %li
-                  %a{:href => "#"} email@provider.com
-                %li SIRET : 1566 2255 66655 4555
-                  
-                  
-                  
-                  
+          = render partial:'infos'
         / ________________________________________________________ team
         #team.tab-pane
-          %ul.list-large
-            - @people.each do |person|
-            
-              %li
-              
-                .pic-container
-                  .pic
-                    /%i.entypo.edi-house
-                    = image_tag person.avatar_url(:thumb)
-                    
-                .meta
-                  %a.ico.principal{:href => "#"}
-                  
-                  -# _________________________ favorite
-                  - if person.favorite?(current_user)
-                    = link_to remove_to_favorites_contact_path(person), remote: true do
-                      %i.ico.favorite.full{id: "fav_contact_#{person.id}"}
-                  - else
-                    = link_to add_to_favorites_contact_path(person), remote: true do
-                      %i.ico.favorite{id: "fav_contact_#{person.id}"}
-
-                  -# _________________________ contacted
-                  - if person.contacted?
-                    %a.ico.contacted.full{:href => "#"}
-                  - else
-                    %a.ico.contacted{:href => "#"}                    
-                .actions 
-                  /= link_to 'Edit', edit_venue_path(venue)
-                  = link_to edit_venue_person_path(@venue,person), :class => "shybtn" do
-                    %i.entypo.edi-pencil
-                  /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
-                  = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
-                    %i.entypo.edi-cross
-                        
-                %h4= link_to "#{person.first_name} #{person.name}", person
-                .infos-line
-                  = person.info_contact(@venue)
-                
-                
-            
-            .btn-in-list
-              = link_to new_venue_person_path(@venue) do
-                %i.entypo.edi-plus-3
-                %span
-                  New Person
-            
-            
-            
+          - if @people.any?
+            = render partial:'team'
+          - else
+            = render partial:'empty_team'
             
         / ________________________________________________________ tasks
         #tasks.tab-pane
-          #tasks
-            - if @pending_tasks.any?
-              .title-infos
-                /dont
-                - if @pending_tasks.overdue.any?
-                  .badge.badge-small.badge-black= @pending_tasks.overdue.size
-                  en retard,
-                - if @pending_tasks.due_today.any?
-                  .badge.badge-small.badge-red= @pending_tasks.due_today.size
-                  pour aujourd’hui  
-
-              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @venue, :color => "black"}
-              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @venue, :color => "red"}
-              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @venue, :color => "blue"}
-              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @venue, :color => "green"}
-              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @venue, color:"gray"}
-              = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @venue, color:"gray"}
-
-
-          .btn-in-list
-            %a{:href => "#"}
-              /= link_to new_venue_person_path(@venue) do
-              %i.entypo.edi-plus-3
-              %span
-                New Task
-      
-      
-
+          - if @pending_tasks.any?
+            = render partial:'tasks'
+          - else
+            = render partial:'empty_tasks'
             
          
          

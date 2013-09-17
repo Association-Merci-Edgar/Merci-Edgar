@@ -210,6 +210,8 @@ fr:
       long: "%A %d %B %Y %H:%M"
       short: "%d %b %H:%M"
       abbrev: "%a %d %B %Y (%H:%M)"
+      friendly: "%A %H:%M"
+      friendly_day: "%{day} %H:%M"
     pm: 'pm'
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -240,9 +242,10 @@ fr:
   tasks: Tâches
   favorites: favoris
   contacted: contactés
+  dept: "par département"
   
   # Kind of addresses
-  main_adress: Travail
+  main_address: Adresse principale
   admin_address: Adresse administrative
   
   activerecord:

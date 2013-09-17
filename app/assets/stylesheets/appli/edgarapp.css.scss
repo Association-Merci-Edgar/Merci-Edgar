@@ -1124,8 +1124,32 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
   position:absolute; right:0;
 }
 
-.mini-map { position:absolute; right:0; top:54px; z-index:2;}
-
+.mini-map { position:absolute; right:0; top:54px; z-index:2; height:80px; width:120px;
+  &.france {background: url(../appli/sprites/france-minimap-sprite.png) no-repeat top left;}
+}
+.mini-map.france.reg-1{ background-position: 0 0;  } 
+.mini-map.france.reg-10{ background-position: 0 -130px;  } 
+.mini-map.france.reg-11{ background-position: 0 -260px;  } 
+.mini-map.france.reg-12{ background-position: 0 -390px;  } 
+.mini-map.france.reg-13{ background-position: 0 -520px;  } 
+.mini-map.france.reg-14{ background-position: 0 -650px;  } 
+.mini-map.france.reg-15{ background-position: 0 -780px;  } 
+.mini-map.france.reg-17{ background-position: 0 -910px;  } 
+.mini-map.france.reg-18{ background-position: 0 -1040px;  } 
+.mini-map.france.reg-19{ background-position: 0 -1170px;  } 
+.mini-map.france.reg-2{ background-position: 0 -1300px;  } 
+.mini-map.france.reg-20{ background-position: 0 -1430px;  } 
+.mini-map.france.reg-21{ background-position: 0 -1560px;  } 
+.mini-map.france.reg-22{ background-position: 0 -1690px;  } 
+.mini-map.france.reg-23{ background-position: 0 -1820px;  } 
+.mini-map.france.reg-24{ background-position: -170px 0;  } 
+.mini-map.france.reg-3{ background-position: -170px -130px;  } 
+.mini-map.france.reg-4{ background-position: -170px -260px;  } 
+.mini-map.france.reg-5{ background-position: -170px -390px;  } 
+.mini-map.france.reg-6{ background-position: -170px -520px;  } 
+.mini-map.france.reg-7{ background-position: -170px -650px;  } 
+.mini-map.france.reg-8{ background-position: -170px -780px;  } 
+.mini-map.france.reg-9{ background-position: -170px -910px;  }
 
 .row-fluid [class*="span"] { min-height :15px}
 
