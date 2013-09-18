@@ -1,17 +1,23 @@
-%h1 Listing opportunities
 
-%table
-  %tr
-    %th
-    %th
-    %th
 
-  - @opportunities.each do |opportunity|
+.dummy= image_tag "dummies/dummy-dates1.jpg"
+.dummy= image_tag "dummies/dummy-dates2.jpg"
+
+
+-#
+  %h1 Listing opportunities
+  %table
     %tr
-      %td= link_to 'Show', opportunity
-      %td= link_to 'Edit', edit_opportunity_path(opportunity)
-      %td= link_to 'Destroy', opportunity, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th
+      %th
+      %th
 
-%br
+    - @opportunities.each do |opportunity|
+      %tr
+        %td= link_to 'Show', opportunity
+        %td= link_to 'Edit', edit_opportunity_path(opportunity)
+        %td= link_to 'Destroy', opportunity, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Opportunity', new_opportunity_path
+  %br
+
+  = link_to 'New Opportunity', new_opportunity_path
