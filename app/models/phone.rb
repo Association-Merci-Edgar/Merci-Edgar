@@ -12,11 +12,34 @@
 
 class Phone < ActiveRecord::Base
   belongs_to :contact, touch:true
-  attr_accessible :kind, :national_number, :country
+  attr_accessible :kind, :national_number, :country, :specific_kind, :classic_kind
   # validates :national_number, :phone => true, :allow_blank => true
   validate :check_number
   before_validation :internationalize_phone_number
   attr_accessor :country
+  VENUE_KIND = [:reception, :administrative, :ticket, :other]
+  def specific_kind
+    self.kind unless VENUE_KIND.include?(self.kind.try(:to_sym))
+  end
+
+  def specific_kind=(special)
+    @specific_kind = special if special.present?
+  end
+
+  def classic_kind
+    case
+    when self.kind.blank?
+      VENUE_KIND[0]
+    when VENUE_KIND.include?(self.kind.to_sym)
+      self.kind
+    else
+      :other
+    end
+  end
+
+  def classic_kind=(classic)
+    self.kind = classic unless classic == "other"
+  end
 
   def country
     @country ||= "FR"
@@ -28,6 +51,7 @@ class Phone < ActiveRecord::Base
       self.number = Phony.normalize(self.number)
       self.number = "#{c.country_code}#{self.number}" unless self.number.starts_with?(c.country_code)
     end
+    self.kind = @specific_kind if @specific_kind.present?
   end
 
   def formatted_phone

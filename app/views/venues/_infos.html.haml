@@ -5,11 +5,8 @@
       /%i.entypo.edi-info
       %li.infolabel Période de programmation
       %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
-      %li= "Début de programmation : #{@venue.start_scheduling.titleize}" if @venue.start_scheduling
-      %li= "Fin de programmation :  #{@venue.end_scheduling.titleize}" if @venue.end_scheduling
-    %ul.list-infos
-      %li.infolabel 
-      %li Lundi / Mardi et Week-ends
+      %li= "Début de programmation : #{@venue.start_scheduling.titleize}" if @venue.start_scheduling.present?
+      %li= "Fin de programmation :  #{@venue.end_scheduling.titleize}" if @venue.end_scheduling.present?
     
     - if @venue.rooms.any?
       - @venue.rooms.each do |room|
@@ -77,6 +74,7 @@
             = address.street
           = address.postal_code
           = address.city
+          = address.more_info
       -#  
         -content_for :script do
           <script type="text/javascript">

@@ -19,7 +19,7 @@
 
 class Address < ActiveRecord::Base
   belongs_to :contact, touch:true
-  attr_accessible :city, :country, :kind, :postal_code, :state, :street
+  attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info
   acts_as_gmappable :process_geocoding => false, address: :full_address
   geocoded_by :full_address
   after_validation :geocode
