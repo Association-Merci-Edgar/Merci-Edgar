@@ -16,9 +16,9 @@ class Venue < Structure
 
   delegate :kind, :period, :remark, :start_scheduling, :end_scheduling, to: :venue_info, allow_nil: true
   validates :name, :presence => true, uniqueness: { scope: :account_id}
-#  validate :venue_must_have_at_least_one_address
+  # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
-
+  validates_presence_of :addresses
   has_many :taggings, as: :asset
   has_many :styles, through: :taggings, source: :tag, class_name: "Style"
   has_many :networks, through: :taggings, source: :tag, class_name: "Network"

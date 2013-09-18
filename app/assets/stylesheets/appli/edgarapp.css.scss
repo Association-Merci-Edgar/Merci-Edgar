@@ -325,7 +325,7 @@ $lbrown: rgba(209, 209, 197, 1);
 section > h4 {display:block; margin-bottom:24px;}
 .section-title {font-size:24px; margin-bottom:24px;}
 
-.btn {padding: 6px 12px; font-size:16px;}
+.btn {padding: 6px 12px; font-size:16px; text-shadow:none;}
 
 .btn:hover, btn:focus {
   //transition: background 0.2s;
@@ -364,7 +364,7 @@ h2 {
 
 h4 { margin-bottom:18px;}
 
-%section > h3 {line-height: 32px !important;}
+h3.message {line-height: 36px;}
 
 .label-large p {line-height: 18px;}
 
@@ -378,13 +378,18 @@ header {display:block;}
 
 
 //  __________________________________________________________________ Gmap Fix
-/*
-.ui-tabs .ui-tabs-hide {
+
+.tab-pane {
     position: absolute !important;
     left: -10000px !important;
     display:block !important;
 }
-*/
+
+.tab-pane.active {
+  left: 0px !important;
+    position: static !important;
+}
+
 
 
 
@@ -785,9 +790,12 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 .shybtn{
   font-size:16px;
   padding: 4px 12px;
+  padding:2px 8px;
+  margin-left:4px;
   text-align: center;
   border: solid 1px $vlblue;
-  display: innline-block;
+  display: inline-block;
+  background:$beige;
   @include roundcorners;
   &:hover{
     background:$green;
@@ -795,6 +803,13 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
     border-color:transparent;
   };
 }
+
+
+.btn-shy {
+  @extend .shybtn;
+}
+
+//.shybtn { }
 
 .logout-btn {float:right;}
 
@@ -911,7 +926,7 @@ a.label-large:hover i {background: $yellow;}
 //{display:inline;}
 
 
-.input-append .add-on {padding: 6px 10px}
+.input-append .add-on, .input-prepend .add-on {padding: 6px 10px}
 .form-edit{margin-top:50px;}
 .input-append .add-on, .input-prepend .add-on {
   height:34px;
@@ -974,10 +989,19 @@ span.add-on {height:22px !important; display:block;}
 .fields-group .fields:not(:last-child) {margin-bottom:24px;};
 .add_nested_fields i {float:right;
   color:$green2;
-  } 
+} 
+
+
+.fields-group { padding:20px 0;
+  &:hover {background-color:$white;}
+  
+  
+  
+  }
+
 .remove_nested_fields i {float:right;
   color:$red;
-  }
+}
   
 .fields {margin-bottom: 0px;
   //&:hover {background-color:$white;}
@@ -1002,7 +1026,7 @@ label {
 }
 
 
-.venue_addresses_kind {
+.venue_addresses_kind, .person_addresses_kind {
   width:120px;
   position:absolute;
   top:9px;
@@ -1011,6 +1035,7 @@ label {
   label {display:none;}
   select {display:block; position:absolute; left:0;}
 }
+
 form section { margin-bottom:120px;}
 
 form .section-title { margin-left:220px;
@@ -1078,7 +1103,7 @@ input.apple  {margin-left:20px;}
 //.form-inputs header .btn {float:left; margin-left:25px;}
 .form-inputs header {margin-bottom:50px;}
 
-.addresses > div:first-child {position:absolute; top:10px; left:270px;}
+//.addresses > div:first-child {position:absolute; top:10px; left:270px;}
 select.select-right { width:auto; background:$vlblue; color:$white;}
 
 
@@ -1312,13 +1337,12 @@ li {line-height: inherit;}
     &:hover {color:$green;}
     }
     }*/
-    
   input[type="checkbox"] {
       margin: 6px 14px 0 0 ;
       float:left;
   }
   &:hover .badge { display:none;}
-  .shybtn { padding:0px 8px;}
+  .shybtn { padding:0px 8px; line-height:21px; height:24px;}
   .pic img {margin-top:-3px;}
   .actions {position:relative;}
 }
@@ -1331,7 +1355,7 @@ li {line-height: inherit;}
 .list-medium .btn-in-list a i {font-size:30px !important;}
 
 .infos {color:$mblue;} 
-.shybtn { padding:2px 8px; margin-left:4px; display:inline-block;}
+
 
 
 

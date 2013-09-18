@@ -1,1 +1,15 @@
-AUCUNE PERSONNE NE TRAVAILLE DANS CETTE SALLE
+%section
+  %h3.message
+    Aucune personne relative à 
+    <br>
+    = @venue.name
+    <br>
+    Voulez vous en ajouter ?
+
+%section
+  .row-fluid.label-blocks
+    .span4
+      = link_to new_venue_person_path(@venue), :class => "label label-large", remote:true do
+        %i.edi-check_2
+        %h4 Ajouter une personne 
+        %p à cette structure
