@@ -26,8 +26,9 @@ class Address < ActiveRecord::Base
   # before_save :geocode
   validates :city, :presence => :true
   validates :country, :presence => :true
-  default_scope { where(:account_id => Account.current_id) }
-  
+
+  scope :with_contact, lambda { |account_id| includes(:contact).where("contacts.account_id = ?", account_id) }
+
   DEPARTEMENTS = {
     "01" => { name: "Ain", region_code: 22 },
     "02" => { name: "Aisne", region_code: 19 },

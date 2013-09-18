@@ -9,8 +9,10 @@ class PeopleStructure < ActiveRecord::Base
   def structure_name
     self.structure.name if self.structure
   end
-  
+
   def structure_name=(name)
     self.structure = Venue.where(name:name).first_or_initialize
   end
+
+
 end

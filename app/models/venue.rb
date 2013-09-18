@@ -32,6 +32,18 @@ class Venue < Structure
     joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
   end)
 
+  amoeba do
+    enable
+    set :account_id => Account.current_id
+    include_field :emails
+    include_field :phones
+    include_field :addresses
+    include_field :websites
+    include_field :venue_info
+    include_field :rooms
+    include_field :taggings
+  end
+
   def to_s
     name
   end
@@ -77,6 +89,25 @@ class Venue < Structure
 
   def relative
     self.main_contact ||= self.people.first
+  end
+
+  def my_dup
+    Contact.unscoped do
+      dup = self.amoeba_dup
+      self.people_structures.each do |ps|
+        dup_ps = dup.people_structures.build
+        dup_ps.title = ps.title
+        p = Person.find_by_first_name_and_name_and_account_id(ps.person.first_name,ps.person.name,Account.current_id)
+        if p.present?
+          dup_ps.person = p
+        else
+          dup_ps.person = ps.person.my_dup
+          dup_ps.person.save
+        end
+        # 
+      end
+      return dup
+    end
   end
 
 end

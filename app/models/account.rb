@@ -134,4 +134,12 @@ class Account < ActiveRecord::Base
       end
     end
   end
+  
+  def duplicate_community
+    community = Account.find(1)
+    community.venues.each do |v|
+      my_venue = v.my_dup
+      my_venue.save
+    end
+  end
 end
