@@ -20,7 +20,7 @@ user.skip_confirmation!
 user.save!
 
 ### All contracts ###
-Contract.find_or_create_by_name("Co-location")
+Contract.find_or_create_by_name("Co-realisation")
 Contract.find_or_create_by_name("Co-production")
 Contract.find_or_create_by_name("Location")
 Contract.find_or_create_by_name("Cession")
