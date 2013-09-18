@@ -39,4 +39,20 @@ class Person < Contact
     self.main_contact ||= self.structures.first
   end
 
+  amoeba do
+    enable
+    set :account_id => Account.current_id
+    include_field :emails
+    include_field :phones
+    include_field :addresses
+    include_field :websites
+    include_field :taggings
+  end
+
+  def my_dup
+    Contact.unscoped do
+      self.amoeba_dup
+    end
+  end
+
 end

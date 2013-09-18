@@ -13,7 +13,7 @@ class ContactsController < AppController
   end
 
   def show_map
-    @contacts_json = Address.all.to_gmaps4rails do |address, marker|
+    @contacts_json = Address.with_contact(Account.current_id).to_gmaps4rails do |address, marker|
       marker.infowindow render_to_string(:partial => "contacts/infowindow_#{address.contact.type.downcase}", :locals => { :contact => address.contact})
       marker.title   address.contact.name
       # marker.sidebar render_to_string(address.contact)

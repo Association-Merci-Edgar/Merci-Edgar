@@ -13,5 +13,4 @@ class Structure < Contact
     ps.title = title.titleize
     ps.save
   end
-
 end
