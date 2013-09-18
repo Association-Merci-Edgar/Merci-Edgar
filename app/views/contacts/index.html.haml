@@ -1,6 +1,13 @@
 .page-title
   = t(params[:controller]).titleize
   = @filtered_by if @filtered_by.present?
+  
+  .subpage-nav
+    = link_to contacts_path, :class =>"active" do
+      Liste
+    = link_to show_map_contacts_path do
+      Carte
+      
 .row-fluid
   .span3.filters
     .search

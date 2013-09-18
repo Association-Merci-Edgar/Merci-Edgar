@@ -55,7 +55,6 @@ fr:
         start: "Début"
         end: "Fin"
         password: "Mot de passe"
-        
         forgot_password : "Mot de passe oublié ?"
         choose_password : "Choisissez un mot de passe"
         repeat_password : "Répéter votre mot de passe"
@@ -68,13 +67,12 @@ fr:
         firsttime_wording2: "Activation de compte pour l’adresse :"
       venue:
         venue_info:
-          kind: Type de lieu
+          kind: Type de salle
           period: Période de programmation
           remark: Observations
           scheduling: Programmation
         contracts: Contrats
         rooms:
-          name: Nom de la salle
           capacities:
             nb: Jauge
             modular: Modulable

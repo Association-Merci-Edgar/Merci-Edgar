@@ -21,7 +21,7 @@
 %section
   .section-title checkbox & radio
   .row-fluid
-    %li#fo143li2.notranslate.span6
+    %li#fo143li2.notranslate.span4
       %fieldset
         <!--[if !IE | (gte IE 8)]-->
         <legend id="title2" class="desc">
@@ -49,7 +49,7 @@
           
           
           
-    %li#fo143li1.notranslate.focused.span6
+    %li#fo143li1.notranslate.focused.span4
       %fieldset
         / [if !IE | (gte IE 8)]
         %legend#title1.desc Select a Choice
@@ -70,6 +70,11 @@
             %input#Field1_2.field.radio{name: "Field1", onchange: "handleInput(this);", onmouseup: "handleInput(this);", tabindex: "3", type: "radio", value: "Third Choice"}/
             %label.choice{for: "Field1_2"}
               Third Choice
+              
+              
+    .custom.span4
+      %legend#title1.desc Custom V2
+      %input.styled{:type => "checkbox"} blabla
 
 
 
