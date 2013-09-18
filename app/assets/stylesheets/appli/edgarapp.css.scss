@@ -376,6 +376,15 @@ h3.message {line-height: 36px;}
 
 header {display:block;}
 
+.subpage-nav {
+  display:inline-block;
+  font-size:18px;
+  margin-left:10px;
+  a:not(.active) {color:$lblue;
+    &:hover{color:$green;};}
+  a{margin-left:10px;}
+  .active:hover{cursor:default; color:$dblue;}
+}
 
 //  __________________________________________________________________ Gmap Fix
 
@@ -634,15 +643,17 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   }
   select#task_assigned_to { width: 237px !important;}
 }
-/*  ________________________________________ checkbox & radio */
 
-/* 
-	Hide the original radios and checkboxes (but still accessible)
-	:not(#foo) > is a rule filter to block browsers that don't support that selector from applying rules they shouldn't
-*/
+
+
+/*  ________________________________________ CUSTOM checkbox & radio */
+
+//Hide the original radios and checkboxes (but still accessible)
+//	:not(#foo) > is a rule filter to block browsers that don't support that selector from applying rules they shouldn't
+/*
 :not(#foo) > span > input[type='radio'], 
 :not(#foo) > span > input[type='checkbox'] {
-	opacity: 0; /* Hide the input, but have it still be clickable */
+	opacity: 0; // Hide the input, but have it still be clickable 
 	float: left;
 	width: 18px;
 }
@@ -653,15 +664,15 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 :not(#foo) label.checkbox > input[type='checkbox']  {
 	//margin: 0;
 	clear: none;
-	/* Left padding makes room for image */
+// Left padding makes room for image 
 	padding: 5px 0 4px 24px;
-	/* Make look clickable because they are */
+// Make look clickable because they are 
 	cursor: pointer;
 	
 	background: url(../appli/check-radio/off.png) left center no-repeat;	
 }
 
-/* Change from unchecked to checked graphic */
+// Change from unchecked to checked graphic 
 :not(#foo) input[type='radio']:checked + label,
  {
 	background-image: url(../appli/check-radio/radio.png);
@@ -670,7 +681,35 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 	background-image: url(../appli/check-radio/check.png);
 }
 
+*/
 
+
+/*  ________________________________________ CUSTOM checkbox & radio V2 __  use with custom-form-elements.js  */
+
+.checkbox, .radio {
+	width: 19px;
+	height: 25px;
+	padding: 0 5px 0 0;
+	background: url(../appli/check-radio/btncheckbox.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+.radio {
+	background: url(../appli/check-radio/btnradio.png) no-repeat;
+}
+/*
+.select {
+	position: absolute;
+	width: 158px; // With the padding included, the width is 190 pixels: the actual width of the image. 
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url(../appli/select.png) no-repeat;
+	overflow: hidden;
+}
+*/
 
 
 
@@ -1297,6 +1336,9 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
 
 
 .row-fluid [class*="span"] { min-height :15px}
+
+
+
 
 /*  _____________________________________________________  LISTS   */
 
