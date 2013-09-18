@@ -29,6 +29,8 @@ namespace :edgar do
     end
     krichtof = User.find_by_email("christophe.robillard@gmail.com")
     krichtof.accounts << adone_account
+    dream_account = Account.find_by_domain("community")
+    aline.accounts << dream_account
   end
 
   task :populate => :environment do
