@@ -33,6 +33,7 @@ class VenuesController < AppController
     session[:return_to] ||= request.referer
     @venue = Venue.new
     @venue.addresses.build
+    @venue.rooms.build
 
     respond_to do |format|
       format.html
@@ -44,6 +45,7 @@ class VenuesController < AppController
   def edit
     @venue = Venue.find(params[:id])
     @venue.build_venue_info unless @venue.venue_info.present?
+    # @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
   end
 
   # POST /venues

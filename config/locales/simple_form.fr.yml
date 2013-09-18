@@ -61,11 +61,12 @@ fr:
         firsttime_wording2: "Activation de compte pour l’adresse :"
       venue:
         venue_info:
-          kind: Type de salle
+          kind: Type de lieu
           period: Période de programmation
           remark: Observations
         contracts: Contrats
         rooms:
+          name: Nom de la salle
           capacities:
             nb: Jauge
         addresses:
