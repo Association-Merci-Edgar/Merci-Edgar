@@ -44,7 +44,8 @@ fr:
       task:
         name: "Tâche"
     buttons:
-      add_capacity : Ajouter une jauge    
+      add_capacity : Ajouter une jauge à cette salle
+      add_room : Ajouter une salle à ce lieux
     labels:
       defaults:
         password: "Mot de passe"
@@ -115,6 +116,12 @@ fr:
             kind:
               seating: "Assis"
               standing: "Debout"
+              mixed: "Mixte"
+              flexible: "Modulable"
+        scheduling:
+          scheduling: Saison
+          start_scheduling: Début
+          end_scheduling: Fin
       task:
         bucket:
           overdue: En retard

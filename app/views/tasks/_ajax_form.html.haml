@@ -1,7 +1,8 @@
 .modal-header
   %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
   %h3#myModalLabel Créer une tâche
-  = "à propos de #{@asset}" if @asset
+  <br>
+  = "relative à #{@asset}" if @asset
 
 = simple_form_for([@asset,@task], remote:true) do |f|
   .modal-body

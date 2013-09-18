@@ -252,6 +252,9 @@ fr:
     models:
       venue: Lieu
     attributes:
+      venue/addresses:
+        postal_code: Code postal
+        city: Ville
       venue/rooms:
         name: Nom de la salle
         depth: Profondeur
@@ -262,7 +265,8 @@ fr:
         venue:
           attributes:
             name:
-              taken: "Une salle existe déjà avec ce nom à %{city}"
+              taken: "Une salle existe déjà avec ce nom"
+              
     notices:
       models:
         venue:

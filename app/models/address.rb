@@ -24,6 +24,7 @@ class Address < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
   # before_save :geocode
+  validates :postal_code, presence: true
   validates :city, :presence => :true
   validates :country, :presence => :true
 

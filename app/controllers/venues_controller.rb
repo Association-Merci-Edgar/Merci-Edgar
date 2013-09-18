@@ -45,7 +45,7 @@ class VenuesController < AppController
   def edit
     @venue = Venue.find(params[:id])
     @venue.build_venue_info unless @venue.venue_info.present?
-    # @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
+    @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
   end
 
   # POST /venues
