@@ -1,17 +1,149 @@
-%h1 Listing campaigns
+.dummy= image_tag "dummies/dummy-campaign1.jpg"
+.dummy= image_tag "dummies/dummy-campaign2.jpg"
+/.dummy= image_tag "dummies/dummy-campaign3.jpg"
 
-%table
-  %tr
-    %th
-    %th
-    %th
+-#
+  %h1.page-title Campagnes
 
-  - @campaigns.each do |campaign|
+
+  %section
+    .btn-group
+      %button.btn.btn-shy{:type => "button"} oui
+      %button.btn.btn-shy{:type => "button"} non
+   
+    .btn-group
+      %button.btn.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Projets
+        %i.entypo.edi-arrow-down-5
+      %ul.dropdown-menu{role: "menu"}
+        %li
+          %a{href: "#"} Projet 1
+        %li
+          %a{href: "#"} Projet 2
+        %li
+          %a{href: "#"} Something else here
+
+    %ul.list-medium
+      %li
+        .rightrow.small
+          .badge.badge-black hier
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .rightrow
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/pro2.jpg"
+              ProjetXqsd
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/per2.jpg"
+              Untel X.
+
+        .mainrow
+          /%input{:type => "checkbox"}
+          %a{:href => "#"} Campagne de Lancement
+
+
+      %li
+        .rightrow.small
+          .badge.badge-red Aujourd'hui
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .rightrow
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/pro1.jpg"
+              Fatales Picards
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/per1.jpg"
+              François U.
+
+        .mainrow
+          /%input{:type => "checkbox"}
+          %a{:href => "#"} Une campagne avec un titre trés trés long…
+
+      %li
+        .rightrow.small
+          .badge ASAP
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .rightrow
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+              Global
+          .s1of2
+
+        .mainrow
+          /%input{:type => "checkbox"}
+          %a{:href => "#"} Aller à Avignon
+
+
+      %li
+        .rightrow.small
+          .badge.badge-blue Dans 3 jours
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .rightrow
+          .s1of2
+
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag "squared/per3.jpg"
+              Christophe R.
+        .mainrow
+          /%input{:type => "checkbox"}
+          %a{:href => "#"} Back to Avigon
+
+
+
+      %li
+        .rightrow.small
+          .badge.badge-green Lun. 2 Sept.
+          .actions
+            %a.shybtn{:href => "#"}
+              %i.entypo.edi-pencil
+
+        .rightrow
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+              Global
+          .s1of2
+            %a{:href => "#"}
+              .pic.pic-mini
+              Toute l'équipe
+
+        .mainrow
+          /%input{:type => "checkbox"}
+          %a{:href => "#"} Refaire du café
+
+
+
+    .btn-in-list
+      = link_to new_campaign_path do
+        %i.entypo.edi-plus-3
+        %span Créer une campagne
+      
+      
+-#
+  %table
     %tr
-      %td= link_to 'Show', campaign
-      %td= link_to 'Edit', edit_campaign_path(campaign)
-      %td= link_to 'Destroy', campaign, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th
+      %th
+      %th
 
-%br
-
-= link_to 'New Campaign', new_campaign_path
+    - @campaigns.each do |campaign|
+      %tr
+        %td= link_to 'Show', campaign
+        %td= link_to 'Edit', edit_campaign_path(campaign)
+        %td= link_to 'Destroy', campaign, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -6,8 +6,12 @@
           = show_badge(color, t.specific_time? ? t.friendly_date : t(due))
           .actions
             -#%a.shybtn{:href => "#"}
-            = link_to send("edit_#{asset.class.name.downcase}_task_path",asset,t), :class => "shybtn" do
-              %i.entypo.edi-pencil
+            - if asset.present?
+              = link_to send("edit_#{asset.class.name.downcase}_task_path",asset,t), :class => "shybtn" do
+                %i.entypo.edi-pencil
+            - else
+              = link_to edit_task_path(t), :class => "shybtn" do
+                %i.entypo.edi-pencil
 
         .rightrow
           .s1of2
