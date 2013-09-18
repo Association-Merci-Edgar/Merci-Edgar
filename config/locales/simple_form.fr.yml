@@ -35,6 +35,10 @@ fr:
       accounts:
         name: "Nom de votre association, label, groupe..."
         user: "Nom d'utilisateur"
+      addresses:
+        city: Ville, localité
+        postal_code: Code postal
+        more_info: Infos supplémentaires (Boite Postale, Digicode, ...)
       venue:
         name: "Nom de la salle"
       emails:
@@ -48,6 +52,8 @@ fr:
       add_room : Ajouter une salle à ce lieux
     labels:
       defaults:
+        start: "Début"
+        end: "Fin"
         password: "Mot de passe"
         
         forgot_password : "Mot de passe oublié ?"
@@ -65,11 +71,14 @@ fr:
           kind: Type de lieu
           period: Période de programmation
           remark: Observations
+          scheduling: Programmation
         contracts: Contrats
         rooms:
           name: Nom de la salle
           capacities:
             nb: Jauge
+            modular: Modulable
+          bar: Bar attenant
         addresses:
           city: Ville
           postal_code: Code postal
@@ -77,6 +86,8 @@ fr:
           street: Adresse
         websites:
           url: Site web
+        phones:
+          national_number: N°Téléphone
       person:
         people_structures:
           title: Fonction
@@ -93,6 +104,12 @@ fr:
         venue_info:
           kind: "SMAC: salle de musique actuelle, blablabla"
     options:
+      phones: &phones
+        classic_kind:
+          reception: Standard
+          administrative: Administration
+          ticket: Billeterie
+          other: Autre
       venue:
         venue_info:
           kind:
@@ -111,6 +128,8 @@ fr:
           kind:
             main_address: "Adresse du lieu"
             admin_address: "Adresse administrative"
+        phones: 
+          <<: *phones
         rooms:
           capacities:
             kind:

@@ -58,25 +58,17 @@
           -#  ________________________________________________________ period
           = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
           
-          -#________________________________________________________ scheduling WRONG
-            = v.input :start_scheduling, :collection => t("date.month_names")
-            = v.input :end_scheduling, :collection => t("date.month_names")
-          
-            = v.input :scheduling, label:"scheduling", item_wrapper_class: "inline" do
-              = v.input_field :start_scheduling, label: "start", :collection => t("date.month_names")
-              = v.input_field :end_scheduling, label: "end", :collection => t("date.month_names")
-              
               
           -#________________________________________________________ scheduling OK   
           .control-group  
-            %label.control-label #{t("simple_form.scheduling")}
+            %label.control-label #{t("simple_form.labels.venue.venue_info.scheduling")}
             .inline-inputs
               = v.input :scheduling, :wrapper => :prepend, :label => false do
-                = content_tag :span, "Début", :class => "add-on"
+                = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
                 = v.input_field :start_scheduling, :collection => t("date.month_names")
                 
               = v.input :scheduling, :wrapper => :prepend, :label => false do
-                = content_tag :span, "Fin", :class => "add-on"
+                = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
                 = v.input_field :end_scheduling, :collection => t("date.month_names")
                 
         
@@ -117,6 +109,7 @@
                 = capacity.input :nb, :wrapper => :append do
                   = capacity.input_field :nb, :class => "input-small"
                   = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed, :flexible], :class => "add-on dropdown-toggle"
+                  = capacity.input_field :modular, inline_label:"Modulable"
 
             .links
               = room.link_to_add :capacities, :title => t("simple_form.buttons.add_capacity") do
@@ -146,7 +139,7 @@
                     = content_tag :span, "H", :class => "add-on"
                   %p.help-block (Profondeur / Largeur / Hauteur)
                 
-              = room.input :bar, label:"Bar attenant"
+              = room.input :bar
                 
 
          
@@ -175,9 +168,10 @@
         .nested-fields
           = phone.link_to_remove :title => "Remove this phone" do
             %i.entypo.edi-minus-2
-          = phone.input :national_number, :label => "Phone Number", :wrapper => :append do
+          = phone.input :national_number, :wrapper => :append do
             = phone.input_field :national_number, :class => "input-medium", :validate => true
-            = phone.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+            = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+            = phone.input_field :specific_kind
       .links
         = f.link_to_add :phones, :title => 'Ajouter un téléphone' do
           %i.entypo.edi-plus-2
@@ -195,9 +189,10 @@
         
             = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
             = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
-            = address.input :city, :label => false, :placeholder =>"Ville, localité, …", :input_html => { :class => "input-medium inline" }
-            = address.input :postal_code, :label => false, :placeholder =>"Code postal", :input_html => { :class => "input-mini inline" }
+            = address.input :city, :label => false, :input_html => { :class => "input-medium inline" }
+            = address.input :postal_code, :label => false, :input_html => { :class => "input-mini inline" }
             = address.input :state, :label => false, :placeholder =>"State"
+            = address.input :more_info, label:false
             = address.input :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
         
         

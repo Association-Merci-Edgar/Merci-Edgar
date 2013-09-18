@@ -12,10 +12,5 @@
 
 class Capacity < ActiveRecord::Base
   belongs_to :room, touch:true
-  attr_accessible :kind, :nb
-  before_validation :reset_kind, :if => "nb.blank?"
-
-  def reset_kind
-    self.kind = ""
-  end
+  attr_accessible :kind, :nb, :modular
 end
