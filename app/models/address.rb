@@ -192,5 +192,4 @@ REGIONS = {
     self.contact.name
   end
 
-
 end
