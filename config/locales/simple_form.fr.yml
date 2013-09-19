@@ -105,8 +105,23 @@ fr:
       phones: &phones
         classic_kind:
           reception: Standard
+          scheduling: Programmation
           administrative: Administration
+          fax: Fax
           ticket: Billeterie
+          other: Autre
+          work: Ligne directe
+          mobile: Mobile
+          perso: Perso
+      emails:
+        classic_kind:
+          reception: Accueil
+          scheduling: Programmation
+          administrative: Administration
+          technical: Technique
+          ticket: Billeterie
+          work: Travail
+          perso: Perso
           other: Autre
       venue:
         venue_info:

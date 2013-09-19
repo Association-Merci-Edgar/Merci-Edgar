@@ -5,3 +5,6 @@
 
 - venue.contracts.each do |c|
   = tag_link(c.name,"tag-legal")
+
+- venue.cap_ranges.each do |cr|
+  = tag_link(cr.name,'tag-custom')

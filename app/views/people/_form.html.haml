@@ -45,7 +45,8 @@
             %i.entypo.edi-minus-2
           = email.input :address, label:"Email", :wrapper => :append do
             = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
-            = email.input_field :kind, :label => "Type", :collection => %w(Work Home), :selected => "Work", :class => "add-on btn dropdown-toggle"
+            = email.input_field :classic_kind, :label => "Type", :collection => Email::PERSON_KIND, selected: Email::PERSON_KIND[0], :class => "add-on btn dropdown-toggle"
+            = email.input_field :specific_kind
         
       .links
         = f.link_to_add :emails do
@@ -61,7 +62,8 @@
         
           = phone.input :national_number, :label => "Phone Number", :wrapper => :append do
             = phone.input_field :national_number, :class => "input-medium", :validate => true
-            = phone.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+            = phone.input_field :classic_kind, label:false, :collection => Phone::PERSON_KIND, :class => "add-on btn dropdown-toggle"
+            = phone.input_field :specific_kind
        
       .links
         = f.link_to_add :phones do
