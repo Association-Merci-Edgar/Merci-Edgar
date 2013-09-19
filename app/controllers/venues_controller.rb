@@ -104,9 +104,8 @@ class VenuesController < AppController
 
   def set_main_contact
     @venue = Venue.find(params[:venue_id])
-    @old_contact = @venue.main_contact
+    @old_contact = @venue.relative
     @contact = Person.find(params[:id])
-    ap @old_contact.id
     @venue.main_contact = @contact
     @venue.save
   end
