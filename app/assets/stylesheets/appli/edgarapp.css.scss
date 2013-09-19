@@ -105,7 +105,7 @@ a:visited, a:active, a:link {text-decoration:none;}
 select, input[type="file"] {height: 35px;}
 
     
-
+.venue_addresses_more_info textarea { height:80px; width:100%;}
 
 
 //select:focus { outline: none; }
@@ -684,7 +684,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 */
 
 
-/*  ________________________________________ CUSTOM checkbox & radio V2 __  use with custom-form-elements.js  */
+/*  ________________________________________ CUSTOM checkbox & radio V2 __  use with custom-form-elements.js  
 
 .checkbox, .radio {
 	width: 19px;
@@ -698,6 +698,8 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 .radio {
 	background: url(../appli/check-radio/btnradio.png) no-repeat;
 }
+*/
+
 /*
 .select {
 	position: absolute;
