@@ -96,9 +96,6 @@
       .fields-group
         = f.fields_for :rooms do |room|
           .nested-fields
-            = room.link_to_remove :title => "Supprimer cette salle" do
-              %i.entypo.edi-minus-2
-
             = room.hidden_field :name
             / ________________________________________________ capacity 
             = room.fields_for :capacities do |capacity|
