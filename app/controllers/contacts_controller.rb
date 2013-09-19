@@ -24,7 +24,7 @@ class ContactsController < AppController
       marker.title   address.contact.name
       # marker.sidebar render_to_string(address.contact)
       # marker.json({ :id => address.id, :foo => "bar" })
-    end
+    end if contacts.present?
   end
 
   def only

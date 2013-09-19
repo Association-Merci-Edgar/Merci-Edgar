@@ -21,6 +21,9 @@
     %i.entypo.edi-search
     
 / = gmaps4rails(@contacts_json)
-#gmaps_index
-  = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 7, "auto_adjust" => true, "auto_zoom" => true, :container_class => "map_container" },"markers" => { "data" => @contacts_json }, "options" => {"list_container" => "markers_list" })
-//, :class => "gmaps_big"
+- if @contacts_json.present?
+  #gmaps_index
+    = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 7, "auto_adjust" => true, "auto_zoom" => true, :container_class => "map_container" },"markers" => { "data" => @contacts_json }, "options" => {"list_container" => "markers_list" })
+  //, :class => "gmaps_big"
+- else
+  Aucun lieu trouvé

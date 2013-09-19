@@ -24,6 +24,7 @@ Edgar::Application.routes.draw do
     resources :structures
     resources :venues do
       resources :people
+      put 'people/:id/set_main_contact', action: :set_main_contact, as: :set_main_contact
       resources :tasks do
         put 'complete', :on => :member
       end

@@ -3,12 +3,13 @@
     %h4= l reporting.created_at, format: :abbrev
       
     .infos
-      .pic.pic-mini= image_tag "squared/per1.jpg"
-      %a{:href => "#"} Utilisateur Untel
+      .pic.pic-mini= image_tag reporting.user.avatar
+      = reporting.user.nickname
       pour
       .pic.pic-mini= image_tag "squared/pro1.jpg"
       %a{:href => "#"} Telprojet
     
     
-    %p 
+    .content 
       = render reporting.report
+      

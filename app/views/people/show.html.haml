@@ -177,36 +177,31 @@
               %ul.list-infos
                 %li.infolabel Fonction(s)
                 %li
+                  - ps = @person.main_people_structure
                   %a.ico.principal.full{:href => "#"}
-                  %a Programmateur
+                  = ps.title
                   à
-                  -#%a La maroquinerie
+                  
                   .principal-company
                     %ul.list-small
                       %li
-                        .pic.pic-small= image_tag "squared/pro3.jpg"
-                        %a{:href => "#"}
-                          %h4 Salle Untel
+                        .pic.pic-small= image_tag ps.structure.avatar
+                        = link_to ps.structure do
+                          %h4= ps.structure
                       %li
-                        2 rue machin — 54089 
-                        %a{:href => "#"} Lilles
-                      %li +33 23 23 74 23 
-                      %li
-                        %a{:href => "#"} www.lesite.com
+                        = render ps.structure.address
+                      %li= ps.structure.phone_number
+                      %li= link_to ps.structure.website_url
                       
                       
-                %li
-                  %a.ico.principal{:href => "#"}
-                  Bloggeur à leson.com
-                %li
-                  %a.ico.principal{:href => "#"}
-                  Papa poule
+                - @person.other_people_structures.each do |ps|
+                  %li
+                    = raw([ps.title, link_to(ps.structure.name, ps.structure)].compact.join(" à "))
 
                
               %ul.list-infos
                 %li.infolabel Observations
-                %li Homines enim eruditos et sobrios ut infaustos et inutiles vitant, eo quoque accedente quod et nomenclatores adsueti haec et talia venditare, mercede accepta lucris quosdam et prandiis inserunt subditicios ignobiles et obscuros.
-
+                %li Non renseigné
 
                         
                         
@@ -216,22 +211,9 @@
               %ul.list-infos
                 /%i.entypo.edi-location-2
                 %li.infolabel Coordonnées
-                %li
-                  +33 1 48 28 40 10
-                  %span.infolabel Work
-                %li
-                  +33 1 48 28 89 89
-                  %span.infolabel Fax
-                %li
-                  %a email@provider.com
-                  %span.infolabel work
-                %li
-                  <a href="http://www.palaisdessports.com">www.leblog.com</a>
-                  %span.infolabel Blog
-                                            
                                           
-                /- @person.addresses.each do |address|
-                /  = render address
+                - @person.addresses.each do |address|
+                  = render address
 
                 - @person.emails.each do |email|
                   = render email

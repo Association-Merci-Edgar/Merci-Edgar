@@ -23,6 +23,14 @@ class Person < Contact
 
   accepts_nested_attributes_for :people_structures
 
+  def other_people_structures
+    self.people_structures.where("structure_id != ?", self.relative.id)
+  end
+
+  def main_people_structure
+    self.people_structures.where(structure_id: self.relative.id).first
+  end
+
   def to_s
     [self.first_name, self.last_name].compact.join(' ')
   end
@@ -37,6 +45,10 @@ class Person < Contact
 
   def relative
     self.main_contact ||= self.structures.first
+  end
+
+  def main_contact?(structure)
+    structure.main_contact == self
   end
 
   amoeba do
