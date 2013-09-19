@@ -9,7 +9,13 @@
           = image_tag person.avatar_url(:thumb)
           
       .meta
-        %a.ico.principal{:href => "#"}
+        - if person.main_contact?(@venue)
+          %a{href: "#"}
+            %i.ico.principal.full{id: "main_contact_#{person.id}"}
+        - else
+          = link_to venue_set_main_contact_path(@venue,person), method: :put, remote: true do
+            %i.ico.principal{id: "main_contact_#{person.id}"}
+          
         
         -# _________________________ favorite
         - if person.favorite?(current_user)

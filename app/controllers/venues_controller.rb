@@ -101,4 +101,13 @@ class VenuesController < AppController
       format.json { head :no_content }
     end
   end
+
+  def set_main_contact
+    @venue = Venue.find(params[:venue_id])
+    @old_contact = @venue.main_contact
+    @contact = Person.find(params[:id])
+    ap @old_contact.id
+    @venue.main_contact = @contact
+    @venue.save
+  end
 end
