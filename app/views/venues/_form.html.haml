@@ -96,8 +96,8 @@
       .fields-group
         = f.fields_for :rooms do |room|
           .nested-fields
-            = room.link_to_remove :title => "Supprimer cette salle" do
-              %i.entypo.edi-minus-2
+            //= room.link_to_remove :title => "Supprimer cette salle" do
+            //  %i.entypo.edi-minus-2
 
             = room.hidden_field :name
             / ________________________________________________ capacity 
@@ -171,7 +171,7 @@
           = phone.input :national_number, :wrapper => :append do
             = phone.input_field :national_number, :class => "input-medium", :validate => true
             = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
-            = phone.input_field :specific_kind
+            = phone.input_field :specific_kind, :class => "other"
       .links
         = f.link_to_add :phones, :title => 'Ajouter un téléphone' do
           %i.entypo.edi-plus-2

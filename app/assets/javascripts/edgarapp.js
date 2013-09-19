@@ -66,6 +66,10 @@ $('document').ready(function() {
 
 $(window).load(function() {
 	smallScreens();
+	
+	
+  
+  
 });
 
 $(window).resize(function() {
@@ -96,6 +100,41 @@ $(function() {
 
 //_______
 
+
+
+specificKind = function(obj) { 
+  var $thefield= obj.find(".other");
+  var $thesel= obj.find("select");
+  //$thefield.css("background-color", "green");
+  //$thesel.css("background-color", "red");
+  
+  var $othersOption = $thesel.find('option:selected');
+  //alert($othersOption.val())
+  if ($othersOption.val() != "other"){
+      $thefield.hide(); //initially hide the textbox
+  }
+  
+  $thesel.change(function() {
+    if ($(this).find('option:selected').val() == "other"){
+      $thefield.show();
+    } else {
+      $thefield.val("");
+      $thefield.hide();
+      
+    }
+  });
+  
+  /*$thefield.keyup(function(ev){
+        var $othersOption = $thesel.find('option:selected');
+        if ($othersOption.val() == "other"){
+          ev.preventDefault();
+          //change the selected drop down text
+          $(othersOption).html($thefield.val());
+        }
+  });*/
+  
+}
+
 initializer = function() {
   $(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
   $(".modal").on('shown', function() {
@@ -105,7 +144,22 @@ initializer = function() {
   $("#gmaps_index").width( $("#markers_list").width() )
   $("#markers_list").height( $(document).height() - 210 - $("#gmaps_index").height() )
 
+  //______________ phone 
+  $.each($('.venue_phones_national_number .input-append'), function() {
+      specificKind($(this));
+  });
+  $.each($('.venue_emails_address .input-append'), function() {
+      specificKind($(this));
+  });
   
 }
+
+
+$(document).on('nested:fieldAdded', function(event){
+  // this field was just inserted into your form
+  var field = event.field;
+  var spe = field.find(".venue_phones_national_number");
+  specificKind(spe);
+});
 
 
