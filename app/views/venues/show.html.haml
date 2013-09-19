@@ -1,9 +1,7 @@
 -# _____________________________________  SHOW VENUE
-/-content_for :right_panel do
-/  .rightmenu
-/    .sidebar-nav
-/-content_for :plus_menu do   
-            
+- content_for :scripts do
+  = render 'select_tab'
+
 .row-fluid.toppage.showitem
   %header
     .pic= image_tag @venue.avatar

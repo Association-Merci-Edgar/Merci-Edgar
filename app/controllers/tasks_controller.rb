@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     @asset = @task.asset
     if @task.save
       link = @asset.present? ? send("#{@asset.class.name.downcase}_path",@asset) : tasks_path
-      render :js => "window.location = '#{link}'"
+      render :js => "window.location = '#{link}?tab=tasks'"
     else
       respond_to do |format|
         format.js
