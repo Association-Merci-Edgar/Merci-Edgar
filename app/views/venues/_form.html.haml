@@ -108,7 +108,7 @@
                   %i.entypo.edi-minus-2
                 = capacity.input :nb, :wrapper => :append do
                   = capacity.input_field :nb, :class => "input-small"
-                  = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed, :flexible], :class => "add-on dropdown-toggle"
+                  = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed, :flexible], selected: :seating, :class => "add-on dropdown-toggle"
                   = capacity.input_field :modular, inline_label:"Modulable"
 
             .links
@@ -155,8 +155,8 @@
             %i.entypo.edi-minus-2
           = email.input :address, label:"Email", :wrapper => :append do
             = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
-            = email.input_field :kind, :label => "Type", :collection => %w(Administratif Autre), :selected => "Work", :class => "add-on btn dropdown-toggle"
-
+            = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+            = email.input_field :specific_kind
       .links
         = f.link_to_add :emails, :title => 'Add a new email' do
           %i.entypo.edi-plus-2

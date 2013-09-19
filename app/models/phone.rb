@@ -17,20 +17,27 @@ class Phone < ActiveRecord::Base
   validate :check_number
   before_validation :internationalize_phone_number
   attr_accessor :country
-  VENUE_KIND = [:reception, :administrative, :ticket, :other]
+  VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :fax, :other]
+  PERSON_KIND = [:work, :mobile, :perso, :fax, :other]
+  PHONE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :fax, :work, :mobile, :perso]
+
   def specific_kind
-    self.kind unless VENUE_KIND.include?(self.kind.try(:to_sym))
+    self.kind unless kind_list.include?(self.kind.try(:to_sym))
   end
 
   def specific_kind=(special)
     @specific_kind = special if special.present?
   end
 
+  def kind_list
+    PHONE_KIND
+  end
+
   def classic_kind
     case
     when self.kind.blank?
-      VENUE_KIND[0]
-    when VENUE_KIND.include?(self.kind.to_sym)
+      kind_list[0]
+    when kind_list.include?(self.kind.to_sym)
       self.kind
     else
       :other
