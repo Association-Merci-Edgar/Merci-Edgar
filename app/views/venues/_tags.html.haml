@@ -1,3 +1,6 @@
+- venue.cap_ranges.each do |cr|
+  = tag_link(cr.name,'tag-custom')
+  
 = venue_kind_link(venue.kind)
 
 - venue.styles.each do |s|
@@ -6,5 +9,3 @@
 - venue.contracts.each do |c|
   = tag_link(c.name,"tag-legal")
 
-- venue.cap_ranges.each do |cr|
-  = tag_link(cr.name,'tag-custom')
