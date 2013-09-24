@@ -92,6 +92,12 @@ fr:
           structure_name: Nom de la salle
           structure_city: Ville
           structure_country: Pays 
+      task:
+        assigned_to: Assigné à 
+      user:
+        first_name: Prénom
+        last_name: Nom
+        password_confirmation: Confirmation du mot de passe
     hints:
       defaults:
         password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
