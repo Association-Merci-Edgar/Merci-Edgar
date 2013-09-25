@@ -70,13 +70,14 @@ fr:
           kind: Type de salle
           period: Période de programmation
           remark: Observations
-          scheduling: Programmation
+          scheduling: Programmateur en recherche active de spectacles
+          season: Saison
         contracts: Contrats
         rooms:
           capacities:
             nb: Jauge
             modular: Modulable
-          bar: Bar attenant
+          bar: Bar dans la salle
         addresses:
           city: Ville
           postal_code: Code postal
@@ -136,8 +137,11 @@ fr:
             bar: Bar
             cultural_center: Centre culturel
             smac: SMAC
-            private_venue: Salle privée
+            music_venue: Salle de concerts
             theater: Théâtre
+            mjc: MJC
+            theater_cafe: Café-Théâtre
+            other: Autre
           period:
             nil: "Non fourni"
             all_year: "Toute l'année"
@@ -160,6 +164,8 @@ fr:
           scheduling: Saison
           start_scheduling: Début
           end_scheduling: Fin
+        season:
+          season: Saison
       task:
         bucket:
           overdue: En retard
