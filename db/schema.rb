@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918185952) do
+ActiveRecord::Schema.define(:version => 20130925105559) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20130918185952) do
 
   add_index "capacities", ["room_id"], :name => "index_capacities_on_room_id"
 
+  create_table "contact_data", :force => true do |t|
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "contact_data", ["contactable_id"], :name => "index_contact_data_on_contactable_id"
+
   create_table "contacts", :force => true do |t|
     t.string   "type"
     t.string   "name"
@@ -102,6 +111,19 @@ ActiveRecord::Schema.define(:version => 20130918185952) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "account_id"
+    t.integer  "structure_id"
+    t.string   "structure_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "people", ["account_id"], :name => "index_people_on_account_id"
+  add_index "people", ["structure_id"], :name => "index_people_on_structure_id"
 
   create_table "people_structures", :force => true do |t|
     t.integer "person_id"
@@ -252,11 +274,22 @@ ActiveRecord::Schema.define(:version => 20130918185952) do
     t.boolean  "accompaniment"
     t.boolean  "residency"
     t.text     "remark"
-    t.string   "start_scheduling"
-    t.string   "end_scheduling"
+    t.integer  "start_season"
+    t.integer  "end_season"
+    t.integer  "start_scheduling"
+    t.integer  "end_scheduling"
   end
 
   add_index "venue_infos", ["venue_id"], :name => "index_venue_infos_on_venue_id"
+
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "account_id"
+  end
+
+  add_index "venues", ["account_id"], :name => "index_venues_on_account_id"
 
   create_table "websites", :force => true do |t|
     t.string   "url"
