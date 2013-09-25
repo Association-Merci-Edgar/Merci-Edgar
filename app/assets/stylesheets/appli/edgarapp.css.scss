@@ -533,7 +533,7 @@ a.pull-right {float:right;}
 	&:focus{text-decoration:none;}
 }
 
-.leftmenu li a:hover, .leftmenu li.active a, .leftmenu li.active a:hover {
+.leftmenu li a:hover, .leftmenu li.active a, .leftmenu li.active a:hover, .leftmenu li.tour-step-backdrop a  {
 	background: $beige;
 	color:$dblue;
 	& .righticon {display:block;}
@@ -558,7 +558,6 @@ a.pull-right {float:right;}
 .leftmenu li {
 	margin:0;
 }
-
 
 
 .entypo.edi-cog   {font-size:13px;}
