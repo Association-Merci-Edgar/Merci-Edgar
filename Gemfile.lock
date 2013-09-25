@@ -71,7 +71,6 @@ GEM
     client_side_validations-simple_form (2.1.0)
       client_side_validations (~> 3.2.5)
       simple_form (~> 2.1.0)
-    cocoon (1.2.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -305,7 +304,6 @@ DEPENDENCIES
   carrierwave
   client_side_validations
   client_side_validations-simple_form
-  cocoon
   coffee-rails (~> 3.2.1)
   country_select
   cucumber-rails
