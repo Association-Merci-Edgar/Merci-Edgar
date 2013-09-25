@@ -19,7 +19,7 @@ gem 'rolify'
 
 gem 'simple_form'
 gem 'nested_form'
-gem 'cocoon'
+# gem 'cocoon'
 gem 'country_select'
 gem 'activevalidators'
 gem 'client_side_validations'
