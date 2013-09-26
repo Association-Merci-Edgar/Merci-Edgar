@@ -36,7 +36,7 @@ jQuery ->
       minLength: 3
   
 $ ->
-  $start = $("#start")
+  $start = $("#start_tour")
 
   tour = new Tour(
     onStart: -> $start.addClass "disabled", true
@@ -70,6 +70,12 @@ $ ->
       content: "Easy is better, right? Easy like Bootstrap."
       fixed: true
     ,
+      element: "#start_tour"
+      placement: "top"
+      title: "Les Stats"
+      content: "Easy is better, right? Easy like Bootstrap."
+      fixed: true
+    ,
       title: "And support for orphan steps"
       content: "If you activate the orphan property, the step(s) are shown centered " +
       "in the page, and you can forget to specify element and placement!"
@@ -85,7 +91,7 @@ $ ->
       title: "Les Stats"
       content: "Easy is better, right? Easy like Bootstrap." 
     ,
-      path: "fr/contacts/"
+      path: "/fr/contacts/"
       element: ".page-title"
       placement: "bottom"
       title: "See, you are not restricted to only one page"

@@ -10,14 +10,14 @@
 = form_tag show_map_contacts_path, method: :get, class: "inline-form" do
   .control-group
     = label_tag :address,"Afficher des lieux à proximité de"
-    = text_field_tag :address, params[:address], placeholder:"Localité, Adresse, ..."
+    = text_field_tag :address, params[:address], placeholder:"Localité, Adresse, ...", :class =>"input-xlarge"
 
   .control-group
     = label_tag :radius,"Rayon"
-    .input-append
-      = text_field_tag :radius, params[:radius], placeholder:"50"
+    .input-append.inline
+      = text_field_tag :radius, params[:radius], placeholder:"50", :class =>"input-mini"
       .add-on km
-  %button.btn.btn-primary{type:"submit"}
+  %button.btn.btn-primary.inline{type:"submit"}
     %i.entypo.edi-search
     
 / = gmaps4rails(@contacts_json)

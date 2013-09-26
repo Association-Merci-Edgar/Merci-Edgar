@@ -27,7 +27,7 @@
           = email.input :address, label:"Email", :wrapper => :append do
             = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
             = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
-            = email.input_field :specific_kind
+            = email.input_field :specific_kind, :class => "other"
       .links
         = f.link_to_add :emails, :title => 'Add a new email' do
           %i.entypo.edi-plus-2
@@ -42,7 +42,7 @@
           = phone.input :national_number, :wrapper => :append do
             = phone.input_field :national_number, :class => "input-medium", :validate => true
             = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
-            = phone.input_field :specific_kind
+            = phone.input_field :specific_kind, :class => "other"
       .links
         = f.link_to_add :phones, :title => 'Ajouter un téléphone' do
           %i.entypo.edi-plus-2
@@ -139,9 +139,14 @@
                 = capacity.link_to_remove :title => "Supprimer cette jauge" do
                   /Remove this capacity
                   %i.entypo.edi-minus-2
-                = capacity.input :nb, :wrapper => :append do
-                  = capacity.input_field :nb, :class => "input-small"
-                  = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed], selected: :seating, :class => "add-on dropdown-toggle"
+                  
+                  
+                %label.control-label
+                  Jauge
+                .inline-inputs  
+                  = capacity.input :nb, :wrapper => :append, :label => false do
+                    = capacity.input_field :nb, :class => "input-small"
+                    = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed], selected: :seating, :class => "add-on dropdown-toggle"
                   = capacity.input_field :modular, inline_label:"Modulable"
 
             .links

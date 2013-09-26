@@ -5,6 +5,8 @@ $mblue:   lighten( $dblue, 20% );
 $lblue:   lighten( $dblue, 40% );
 $vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
 $beige:   #edede8;
+$dbeige:  rgba(194, 194, 177, 1);
+$dbeige2:  rgba(209, 209, 197, 1);
 $orange:  #ff5a3e;
 $yellow:  #EDE232;
 $green:   rgba(80, 190, 180, 1);//#50bfb2
@@ -82,7 +84,7 @@ $white:   #fff;
 /* ______________________________________________________________ INIT + FLATIZER   */
 
 *:focus { outline: none; }
-a:focus { outline: none; }
+a:focus, .btn:focus, select:focus { outline: none; }
 
 a:visited, a:active, a:link {text-decoration:none;}
 
@@ -96,10 +98,12 @@ a:visited, a:active, a:link {text-decoration:none;}
 .nav, .leftpanel {@include noselect;}
 
 #activityfield, select, input[type="file"], textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    border-color:$vlblue;
+    border-color:$dbeige2;//$vlblue;
     //transition: none;
-    height:24px;
+    //height:24px;
     font-size: 16px;
+    
+    padding: 6px 10px;
     &:focus {border-color:$green; box-shadow: none;};
 }
 select, input[type="file"] {height: 35px;}
@@ -516,12 +520,19 @@ a .logotype, .edi-logoedgar { color: $dblue;}
 .footer {
   position:fixed;
   bottom:0px;
-  padding: 0 29px;
-  margin-bottom:24px;
-  a {color:$mblue;}
+  padding: 5px 25px;
+  margin-bottom:12px;
+  a {color:$mblue; }
   a:hover{color:$white;};
-  i {font-size:18px;}
-  
+  i {
+    font-size:18px;
+    line-height: 30px;
+    padding: 2px;
+    }
+  #uservoice-nav {color:$orange;
+    &:hover{color:$white;}
+    }
+  .entypo{width:auto; min-width:10px;}
 }
 a.pull-right {float:right;}
 
@@ -966,20 +977,28 @@ a.label-large:hover i {background: $yellow;}
 //{display:inline;}
 
 
-.input-append .add-on, .input-prepend .add-on {padding: 6px 10px}
 .form-edit{margin-top:50px;}
+
+.add-on{background:$dbeige;}
+
 .input-append .add-on, .input-prepend .add-on {
-  height:34px;
+  height:auto;
   border:none;
+  padding: 7px 10px;
   background:none;
-  background:$vlblue;
-  color:$white;
+  background:$dbeige2;
+  color:$dblue;
   text-shadow: none;
+  
   //padding: 6px 11px;//0 6px;
   //line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
 };
+
+select.add-on{height:34px;}
+
+.inline {display:inline;}
 span.add-on {height:22px !important; display:block;}
 .help-block {
     margin-top: 5px;
@@ -996,9 +1015,10 @@ span.add-on {height:22px !important; display:block;}
 .form-horizontal .control-label {
   width: 190px;
   padding:0px;
+  color:$mblue;
 }
 
-.control-group > .control-label {margin-top:5px; color:$mblue;
+.control-group > .control-label {margin-top:5px; 
   a {color:$mblue;}
   }
 
@@ -1006,7 +1026,7 @@ span.add-on {height:22px !important; display:block;}
   margin-left:220px;
   .controls {margin-left:0px;
   }
-  .control-group {display:inline-block; margin-bottom:0px; margin-right:10px;
+  .control-group, label {display:inline-block; margin-bottom:0px; margin-right:10px;
   &:after {clear: none;};
   }
 }
@@ -1115,9 +1135,9 @@ input.apple  {margin-left:20px;}
 
 
 //.checkbox, .radio {margin-right:20px;}
-.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {
-    margin-left: 20px;
-}
+.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {margin-left: 0px;} //BS overide
+.radio.inline, .checkbox.inline {margin-right: 22px;}
+
 .venue_venue_info_bar .checkbox { display:inline-block; margin-right: 20px;}
 
 
@@ -1144,7 +1164,7 @@ input.apple  {margin-left:20px;}
 .form-inputs header {margin-bottom:50px;}
 
 //.addresses > div:first-child {position:absolute; top:10px; left:270px;}
-select.select-right { width:auto; background:$vlblue; color:$white;}
+select.select-right { width:auto; background:$dbeige2;}
 
 
 
