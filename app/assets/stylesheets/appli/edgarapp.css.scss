@@ -979,11 +979,12 @@ a.label-large:hover i {background: $yellow;}
 
 .form-edit{margin-top:50px;}
 
-.add-on{background:$dbeige;}
+.add-on{background:$dbeige; height:34px;}
 
 .input-append .add-on, .input-prepend .add-on {
-  height:auto;
+  //height:auto;
   border:none;
+  height:34px;
   padding: 7px 10px;
   background:none;
   background:$dbeige2;
@@ -996,7 +997,7 @@ a.label-large:hover i {background: $yellow;}
   // @extend .btn-primary;
 };
 
-select.add-on{height:34px;}
+select.add-on {height:34px;}
 
 .inline {display:inline;}
 span.add-on {height:22px !important; display:block;}
