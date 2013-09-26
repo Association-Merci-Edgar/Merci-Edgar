@@ -158,7 +158,13 @@ initializer = function() {
 $(document).on('nested:fieldAdded', function(event){
   // this field was just inserted into your form
   var field = event.field;
-  var spe = field.find(".venue_phones_national_number");
+  
+  var spep = field.find(".venue_phones_national_number .input-append");
+  var spem = field.find(".venue_emails_address .input-append");
+  //alert (spem.width());
+  if (spep.width() != null){spe=spep};
+  if (spem.width() != null){spe=spem};
+  
   specificKind(spe);
 });
 
