@@ -33,6 +33,15 @@ namespace :edgar do
     aline.accounts << dream_account
   end
 
+  task :krakatoa_team => :environment do
+    krakatoa_account = Account.create(name:"Compte Krakatoa Test",domain:"krakatoatest")
+    guillaume = krakatoa_account.users.build(name:"Guillaume Mangier",email:"pepiniere@krakatoa.org",first_name:"Guillaume",last_name:"Mangier",password:"changeme",password_confirmation:"changeme")
+    guillaume.confirmed_at = Time.now
+    if !krakatoa_account.save
+      logger.info "Error while creating staff users : #{dream_account.errors}"
+    end
+  end
+
   task :populate => :environment do
     dream_account = Account.find_by_domain("community")
     Account.current_id = dream_account.id
