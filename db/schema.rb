@@ -58,23 +58,14 @@ ActiveRecord::Schema.define(:version => 20130925105559) do
 
   add_index "capacities", ["room_id"], :name => "index_capacities_on_room_id"
 
-  create_table "contact_data", :force => true do |t|
-    t.integer  "contactable_id"
-    t.string   "contactable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "contact_data", ["contactable_id"], :name => "index_contact_data_on_contactable_id"
-
   create_table "contacts", :force => true do |t|
     t.string   "type"
     t.string   "name"
     t.string   "first_name"
     t.integer  "account_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "avatar"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "main_contact_id"
   end
 
@@ -111,19 +102,6 @@ ActiveRecord::Schema.define(:version => 20130925105559) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "people", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "account_id"
-    t.integer  "structure_id"
-    t.string   "structure_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "people", ["account_id"], :name => "index_people_on_account_id"
-  add_index "people", ["structure_id"], :name => "index_people_on_structure_id"
 
   create_table "people_structures", :force => true do |t|
     t.integer "person_id"
@@ -281,15 +259,6 @@ ActiveRecord::Schema.define(:version => 20130925105559) do
   end
 
   add_index "venue_infos", ["venue_id"], :name => "index_venue_infos_on_venue_id"
-
-  create_table "venues", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "account_id"
-  end
-
-  add_index "venues", ["account_id"], :name => "index_venues_on_account_id"
 
   create_table "websites", :force => true do |t|
     t.string   "url"

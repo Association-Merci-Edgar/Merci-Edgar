@@ -1,6 +1,6 @@
 class Structure < Contact
   attr_accessible :name
-  has_many :people_structures
+  has_many :people_structures, dependent: :destroy
   has_many :people, :through => :people_structures, uniq:true, source: :person
 
   accepts_nested_attributes_for :people_structures
