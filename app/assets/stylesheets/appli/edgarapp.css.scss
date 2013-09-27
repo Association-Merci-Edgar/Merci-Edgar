@@ -53,7 +53,6 @@ $white:   #fff;
 	-ms-transition: $prop $speed ease-in-out;
 	-o-transition: $prop $speed ease-in-out;
 	transition: $prop $speed ease-in-out;
-	
 }
 
 @mixin square($px) {
@@ -534,12 +533,16 @@ a .logotype, .edi-logoedgar { color: $dblue;}
     }
   .entypo{width:auto; min-width:10px;}
 }
+
 a.pull-right {float:right;}
+
+
+
 
 .leftmenu li a {
 	color:$beige; font-size:19px;
 	height: 25px;
-	padding : 15px 0 15px 26px;// 14px 0 14px 26px; // 13px 0px 12px 24px;
+	padding : 13px 0 14px 26px;// 15px 0 15px 26px; // 13px 0px 12px 24px;
 	display:block;
 	&:focus{text-decoration:none;}
 }
@@ -557,8 +560,6 @@ a.pull-right {float:right;}
 
 .leftpanel li a i.entypo { margin-bottom:6px; }
 
-
-
 .leftmenu a .badge { float:right; margin-top:4px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li, .logo {width:240px;}
@@ -570,20 +571,21 @@ a.pull-right {float:right;}
 	margin:0;
 }
 
-
-.entypo.edi-cog   {font-size:13px;}
-.entypo.edi-arrow-down-5 {font-size:17px; margin-top:6px;}
+.leftmenu li.user-tab a {padding-top:30px;}
 
 
-.leftmenu .user-tab a {padding-top:32px;}
+.leftpanel .edi-cog   {font-size:13px;}
+.leftpanel .edi-arrow-down-5 {font-size:17px; margin-top:6px;}
+
+
 
 i {font-style: normal;}
 
-.recent { margin-top:6px;display: none;}
-.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 34px;}
+.recent { //margin-top:6px;
+  display: none;}
+.recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 44px;}
 //.recent .entypo {width:20px;}
-
-//.recent .pic {font-size:26px;height:20px;width:20px;display:inline;}
+.recent .pic { margin-top:2px;}
 /*
 .recent .pic i {
   &:before {
@@ -609,6 +611,18 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 .account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
 .account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
+
+.clicker .rightbt {
+  margin-right: 22px;
+  width: 16px;
+  @include transition(transform, .2s)
+}
+
+.clicker.active .rightbt {
+  -moz-transform:rotate(180deg); //firefox
+  -webkit-transform:rotate(180deg); //Chrome, Safari
+  -o-transform:rotate(180deg); //Opera
+}
 
 /*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
 //.rightbt .entypo{color: #999;  font-size:16px;}
@@ -648,7 +662,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   .task_calendar, .task_bucket {display:inline-block;// !important;
   
   select:first-child{margin-right:6px;};
-  input, select { width: 237px !important;}
+  input, select { width: 233px !important;}
   #task_calendar {margin-top:-1px;}
   }
   select#task_assigned_to { width: 237px !important;}
@@ -742,7 +756,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 
 /*  ________________________________________________________ plusmenu    */
-.plusmenu {
+#plusmenu {
   position: fixed;
   width:45px;
   top:29px;
@@ -779,10 +793,10 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   li a:hover{color:$white;};
 }
 
-.plusmenu:hover .plusmenu-trigger { right:320px; }
-.plusmenu:hover .pluslist{ right:0px; }
+#plusmenu:hover #plusmenu-trigger { right:320px; }
+#plusmenu:hover .pluslist{ right:0px; }
 
-.plusmenu-trigger {
+#plusmenu-trigger {
   @include transition(all, 0.2s);
   //display:inline-block;
   position: fixed;
@@ -1301,12 +1315,14 @@ section {
 }
 a.tag {
   font-size:14px;
-  padding:2px 6px;
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 0 8px;
   background-color:lighten ($beige, 80%);
   border:lighten($dblue, 50%) solid 1px;
   @include roundcorners;
   text-decoration:none;
-  text-transform:lowercase;
+  //text-transform:lowercase;
   &:hover {text-decoration:none; color:$white;}
 }
 
@@ -1514,7 +1530,7 @@ header {
 }
 
 
-.pic-mini {@include square(24);margin-right:12px; margin-top:1px;float:none;}
+.pic-mini {width:24px;margin-right:12px; margin-top:1px;float:none;}
 .pic-small {@include square(44);margin-right:14px; margin-top:0;}
 .pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 

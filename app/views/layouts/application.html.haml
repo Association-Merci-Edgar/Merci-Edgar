@@ -7,7 +7,7 @@
       .togglemenu
         = render 'layouts/togglemenu'
         
-      .plusmenu
+      #plusmenu
         = render 'layouts/plus_menu' unless params[:action] == "new" or params[:action] == "edit"
         /= yield(:plus_menu)
         

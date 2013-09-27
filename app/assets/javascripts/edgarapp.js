@@ -1,6 +1,5 @@
 $('document').ready(function() {
   
-	
   initializer();
   
   $('[data-toggle="tooltip"]').tooltip(); 	      // activate tooltips
@@ -49,15 +48,6 @@ $('document').ready(function() {
 		$('.mainpanel').toggleClass( "goleft");
 	});
 	
-	
-	$(".dummy:first-child").addClass("dumshow");
-  
-	$(".dummy").click(function() {
-      var $selected = $(".dumshow").removeClass("dumshow");
-      var divs = $selected.parent().children();
-      divs.eq((divs.index($selected) + 1) % divs.length).addClass("dumshow");
-  });
-	
 	//alert ("yo");
 	smallScreens();
 })
@@ -79,37 +69,53 @@ $(window).resize(function() {
 });
 
 
-// Clickable Dropdown _________________________________
+//  _________________________________ Clickable Dropdown
+clickerShow = function(e) {
+  $('.click-nav .js ul').slideToggle(200);
+	$('.clicker').toggleClass('active');
+	e.stopPropagation();
+}
+
+clickerHide = function() {
+}
+
 $(function() {
       $('.clicker').click(function(event) { event.preventDefault();});
 			$('.click-nav > .ul').toggleClass('no-js js');
 			$('.click-nav .js ul').hide();
+			
 			$('.click-nav .js').click(function(e) {
-				$('.click-nav .js ul').slideToggle(200);
-				$('.clicker').toggleClass('active');
-				e.stopPropagation();
+				clickerShow(e);
 			});
 			
 			$(document).click(function() {
-				if ($('.click-nav .js ul').is(':visible')) {
-					$('.click-nav .js ul', this).slideUp(0);
-					$('.clicker').removeClass('active');
-				}
+			  //clickerHide();
+			  if ($('.click-nav .js ul').is(':visible')) {
+      		$('.click-nav .js ul', this).slideUp(0);
+      		$('.clicker').removeClass('active');
+      	}	
 			});
 });
 
-//_______
+
+
+//  _________________________________ Hide Notices 
+$(function() {
+  $div = $('.notice:not(.error)')
+  if ($div.get(0)) {    // check if the div exists
+    setTimeout(function(){$div.fadeOut();}, 7000);
+  }
+});
 
 
 
+//  _________________________________ specificKind Fields 
 specificKind = function(obj) { 
   var $thefield= obj.find(".other");
   var $thesel= obj.find("select");
   //$thefield.css("background-color", "green");
-  //$thesel.css("background-color", "red");
-  
+    
   var $othersOption = $thesel.find('option:selected');
-  //alert($othersOption.val())
   if ($othersOption.val() != "other"){
       $thefield.hide(); //initially hide the textbox
   }
@@ -135,8 +141,10 @@ specificKind = function(obj) {
   
 }
 
+
+
 initializer = function() {
-  $(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
+  //$(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
   $(".modal").on('shown', function() {
           $(this).find("[autofocus]:first").focus();
   });
