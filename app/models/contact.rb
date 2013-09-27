@@ -46,6 +46,7 @@ class Contact < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  scope :tagged_with, lambda { |tag_name| joins(:tags).where('tags.name = ?', tag_name) }
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%")}
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%")}
   scope :with_reportings, joins: :reportings
@@ -88,11 +89,6 @@ class Contact < ActiveRecord::Base
   def reject_if_all_blank_except_country
     attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank?
   end
-
-  def self.tagged_with(name)
-    Tag.find_by_name!(name).assets
-  end
-
 
   def tag_list
     tags.map(&:name).join(", ")
