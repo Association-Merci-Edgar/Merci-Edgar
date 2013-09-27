@@ -20,7 +20,7 @@ class Venue < Structure
   # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   validates_presence_of :addresses
-  has_many :taggings, as: :asset
+  has_many :taggings, as: :asset, :dependent => :destroy
   has_many :styles, through: :taggings, source: :tag, class_name: "Style"
   has_many :networks, through: :taggings, source: :tag, class_name: "Network"
   has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
@@ -33,7 +33,18 @@ class Venue < Structure
     joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
   end)
 
-  before_validation :sync_cap_ranges
+  scope :capacities_less_than, (lambda do |nb|
+    joins(:rooms => :capacities).where("capacities.nb <= ?", nb).uniq
+  end)
+
+  scope :capacities_more_than, (lambda do |nb|
+    joins(:rooms => :capacities).where("capacities.nb >= ?", nb).uniq
+  end)
+
+  scope :capacities_between, (lambda do |nb1,nb2|
+    joins(:rooms => :capacities).where("capacities.nb BETWEEN ? AND ? ", nb1,nb2).uniq
+  end)
+
 
   amoeba do
     enable
@@ -49,43 +60,6 @@ class Venue < Structure
 
   def to_s
     name
-  end
-
-  def sync_cap_ranges
-    # self.cap_ranges = []
-    to_delete = []
-    self.cap_ranges.each do |cap_range|
-      case
-      when cap_range.name == "< 100"
-        if (self.capacities.map(&:nb).any? {|n| n < 100}) == false
-          to_delete << cap_range
-        end
-      when cap_range.name == "< 500"
-        if (self.capacities.map(&:nb).any? {|n| n < 500 && n > 100}) == false
-          to_delete << cap_range
-        end
-      when cap_range.name == "> 500"
-        if (self.capacities.map(&:nb).any? {|n| n > 500}) == false
-          to_delete << cap_range
-        end
-      end
-    end
-    puts "todelete:"
-    puts to_delete
-    to_delete.each { |cap_range| self.cap_ranges.destroy cap_range }
-    capacities.each do |c|
-      tag_name = case
-      when c.nb <  100
-        "< 100"
-      when c.nb < 500
-        "100-500"
-      else
-        "> 500"
-      end
-      if self.cap_ranges.where(name: tag_name).blank?
-        self.cap_ranges << CapRange.where(name: tag_name).first_or_create!
-      end
-    end
   end
 
   def venue_must_have_at_least_one_address
@@ -155,7 +129,24 @@ class Venue < Structure
     self.rooms.each{|r| cap << r.capacities}
     cap.flatten
   end
-  
+
+  def capacity_tags
+    tags = []
+    self.capacities.each do |c|
+      case
+      when c.nb < 100
+        tags << "< 100" unless tags.include?("< 100")
+      when c.nb <= 400
+        tags << "100-400" unless tags.include?("100-400")
+      when c.nb <= 1200
+        tags << "400-1200" unless tags.include?("400-1200")
+      when c.nb > 1200
+        tags << "> 1200" unless tags.include?("> 1200")
+      end
+    end
+    tags
+  end
+
   def format_strings
     self.name = self.name.titleize if self.name
   end

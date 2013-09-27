@@ -1,5 +1,5 @@
-- venue.cap_ranges.each do |cr|
-  = tag_link(cr.name,'tag-custom')
+- venue.capacity_tags.each do |c|
+  = venue_capacity_link(c)
   
 = venue_kind_link(venue.kind)
 

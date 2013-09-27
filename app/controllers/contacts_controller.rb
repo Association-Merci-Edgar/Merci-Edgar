@@ -32,6 +32,9 @@ class ContactsController < AppController
       when "favorites" then current_user.favorites.page params[:page]
       when "contacted" then Contact.with_reportings.page params[:page]
       when "dept" then Contact.by_department(params[:no]).page params[:page]
+      when "capacities_less_than" then Venue.capacities_less_than(params[:nb]).page params[:page]
+      when "capacities_more_than" then Venue.capacities_more_than(params[:nb]).page params[:page]
+      when "capacities_between" then Venue.capacities_between(params[:nb1],params[:nb2]).page params[:page]
       else
         redirect_to contacts_path
         return
