@@ -16,10 +16,10 @@
         %p dans la base collective
       
     .span4
-      = link_to new_venue_path, :class => "label label-large" do
+      = link_to duplicate_community_account_path, method: :put, :class => "label label-large" do
         %i.edi-vcard
         %h4 Importer des contacts
-        %p depuis un fichier Excel
+        %p (52 contacts pour tester)
       
     .span4
       = link_to new_person_path, :class => "label label-large" do

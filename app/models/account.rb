@@ -30,11 +30,11 @@ class Account < ActiveRecord::Base
   end
 
   def self.current_id=(id)
-    Thread.current[:account_id] = id
+    @@current_id = id
   end
 
   def self.current_id
-    Thread.current[:account_id]
+    @@current_id
   end
 
   def mystrip(value)

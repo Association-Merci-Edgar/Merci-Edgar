@@ -48,7 +48,6 @@ class Venue < Structure
 
   amoeba do
     enable
-    set :account_id => Account.current_id
     include_field :emails
     include_field :phones
     include_field :addresses
@@ -105,18 +104,20 @@ class Venue < Structure
     self.main_contact ||= self.people.first
   end
 
-  def my_dup
+  def my_dup(account_id)
     Contact.unscoped do
       dup = self.amoeba_dup
+      dup.account_id = account_id
       self.people_structures.each do |ps|
         dup_ps = dup.people_structures.build
         dup_ps.title = ps.title
-        p = Person.find_by_first_name_and_name_and_account_id(ps.person.first_name,ps.person.name,Account.current_id)
+        p = Person.find_by_first_name_and_name_and_account_id(ps.person.first_name,ps.person.name,account_id)
         if p.present?
           dup_ps.person = p
         else
           dup_ps.person = ps.person.my_dup
-          dup_ps.person.save
+          dup_ps.person.account_id = account_id
+          dup_ps.person.save(validation: false)
         end
         # 
       end

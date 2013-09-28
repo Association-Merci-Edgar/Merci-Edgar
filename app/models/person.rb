@@ -53,7 +53,6 @@ class Person < Contact
 
   amoeba do
     enable
-    set :account_id => Account.current_id
     include_field :emails
     include_field :phones
     include_field :addresses
