@@ -11,7 +11,7 @@ class ImportWorker
       my_venue = v.my_dup(account_id)
       my_venue.save(validation: false)
       i += 1
-      at (i/total).round(2)*100, 100, "En cours"
+      # at (i/total).round(2)*100, 100, "En cours"
     end
   end
 end
