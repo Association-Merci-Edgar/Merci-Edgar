@@ -41,6 +41,9 @@ gem 'icalendar'
 
 # gem 'thin'
 gem 'unicorn'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development do
   gem 'better_errors'

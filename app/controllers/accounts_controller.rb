@@ -13,4 +13,13 @@ class AccountsController < ApplicationController
       render :edit
     end
   end
+
+  def duplicate_community
+    if Contact.count < 1
+      @job_id = ImportWorker.perform_async(3)
+      redirect_to contacts_path, notice: "Import initie"
+    else
+      redirect_to contacts_path, notice: "Pas d'import possible"
+    end
+  end
 end

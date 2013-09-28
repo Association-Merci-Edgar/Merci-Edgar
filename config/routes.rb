@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Edgar::Application.routes.draw do
 
 
@@ -43,11 +45,15 @@ Edgar::Application.routes.draw do
       get 'remove_to_favorites', on: :member
       get 'show_map', on: :collection
     end
-    resource :account
+    resource :account do
+      put 'duplicate_community', action: :duplicate_community, as: :duplicate_community
+    end
     resources :reportings
 
     resources :campaigns
     resources :opportunities
+
+    mount Sidekiq::Web, at: "/sidekiq"
 
 
   end
