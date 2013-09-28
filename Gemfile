@@ -39,7 +39,8 @@ gem 'geocoder'
 
 gem 'icalendar'
 
-gem 'thin'
+# gem 'thin'
+gem 'unicorn'
 
 group :development do
   gem 'better_errors'
