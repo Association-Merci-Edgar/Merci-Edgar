@@ -16,7 +16,7 @@ class ContactsController < AppController
       radius = params[:radius] || 100
       contacts = Address.near(params[:address], radius, units: :km)
     else
-      contacts = Address.with_contact(Account.current_id)
+      contacts = Address.all
     end
     @contacts_json = contacts.to_gmaps4rails do |address, marker|
       marker.infowindow render_to_string(:partial => "contacts/infowindow_#{address.contact.type.downcase}", :locals => { :contact => address.contact})

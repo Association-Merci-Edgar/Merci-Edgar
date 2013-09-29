@@ -28,7 +28,9 @@ class Address < ActiveRecord::Base
   validates :city, :presence => :true
   validates :country, :presence => :true
 
-  scope :with_contact, lambda { |account_id| includes(:contact).where("contacts.account_id = ?", account_id) }
+  default_scope { where(:account_id => Account.current_id) }
+
+#  scope :with_contact, lambda { |account_id| includes(:contact).where("contacts.account_id = ?", account_id) }
 
   DEPARTEMENTS = {
     "01" => { name: "Ain", region_code: 22 },
