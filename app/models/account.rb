@@ -34,7 +34,7 @@ class Account < ActiveRecord::Base
   end
 
   def self.current_id
-    @@current_id
+    @@current_id ||= 0
   end
 
   def mystrip(value)
