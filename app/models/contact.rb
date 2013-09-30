@@ -141,7 +141,7 @@ class Contact < ActiveRecord::Base
   end
 
   def custom_list
-    networks.map(&:name).join(", ")
+    customs.map(&:name).join(", ")
   end
 
   def custom_list=(names)
