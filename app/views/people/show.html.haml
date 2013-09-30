@@ -155,7 +155,7 @@
                       %li
                         = render ps.structure.address
                       %li= ps.structure.phone_number
-                      %li= link_to ps.structure.website_url
+                      %li= link_to ps.structure.website_url if ps.structure.website_url.present?
                       
                       
                 - @person.other_people_structures.each do |ps|
