@@ -240,9 +240,11 @@ fr:
   due_this_month: Ce mois-ci
   
   tasks: Tâches
-  favorites: favoris
-  contacted: contactés
-  dept: "par département"
+  filters:
+    favorites: favoris
+    contacted: contactés
+    dept: "par département"
+    tagged_with: "Filtre"
   
   # Kind of addresses
   main_address: Adresse principale

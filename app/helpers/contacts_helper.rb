@@ -9,7 +9,7 @@ module ContactsHelper
 
   def tag_link(value,class_name)
     if value.present?
-      link_to value,tag_path(value),class:"tag #{class_name}"
+      link_to value,only_contacts_path(filter:"tagged_with",name:value),class:"tag #{class_name}"
     end
   end
 

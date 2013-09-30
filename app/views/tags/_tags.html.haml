@@ -1,0 +1,19 @@
+- if asset.class.name == "Venue"
+  - asset.capacity_tags.each do |c|
+    = venue_capacity_link(c)
+  
+  = venue_kind_link(asset.kind)
+
+  - asset.contracts.each do |c|
+    = tag_link(c.name,"tag-legal")
+
+- asset.styles.each do |s|
+  = tag_link(s.name,"tag-style")
+
+- asset.networks.each do |s|
+  = tag_link(s.name,"tag-style")
+
+
+- asset.customs.each do |c|
+  = tag_link(c.name,"tag-legal")
+

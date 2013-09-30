@@ -112,9 +112,14 @@
           %i.entypo.edi-plus-2
           //Add a new website
         
-    %section#social-infos
-      .section-title
-        .title Réseaux sociaux
+    -#  ________________________________________________________ TAGS V1
+    = f.input :style_list, label: "Styles (séparés par des virgules)", :input_html => { :class => "span6" }
+
+    -#  ________________________________________________________ TAGS V1
+    = f.input :network_list, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6" }
+
+    -#  ________________________________________________________ TAGS V1
+    = f.input :custom_list, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6" }
         
     / ________________________________________________________ actions
     .form-actions

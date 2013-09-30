@@ -10,7 +10,7 @@
 #
 
 class Venue < Structure
-  attr_accessible :name, :venue_info_attributes, :style_list, :network_list, :contract_ids, :people_structures_attributes, :rooms_attributes
+  attr_accessible :name, :venue_info_attributes, :contract_ids, :people_structures_attributes, :rooms_attributes
   has_one :venue_info, :dependent => :destroy
   has_many :rooms, :dependent => :destroy
   before_save :format_strings
@@ -21,8 +21,6 @@ class Venue < Structure
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   validates_presence_of :addresses
   has_many :taggings, as: :asset, :dependent => :destroy
-  has_many :styles, through: :taggings, source: :tag, class_name: "Style"
-  has_many :networks, through: :taggings, source: :tag, class_name: "Network"
   has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
   has_many :cap_ranges, through: :taggings, source: :tag, class_name: "CapRange"
   accepts_nested_attributes_for :venue_info
@@ -78,26 +76,6 @@ class Venue < Structure
 
   def to_param
     [id, name.try(:parameterize)].compact.join('-')
-  end
-
-  def style_list
-    styles.map(&:name).join(", ")
-  end
-
-  def style_list=(names)
-    self.styles = names.split(",").map do |n|
-      Style.where(name: n.strip).first_or_create!
-    end
-  end
-
-  def network_list
-    networks.map(&:name).join(", ")
-  end
-
-  def network_list=(names)
-    self.networks = names.split(",").map do |n|
-      Network.where(name: n.strip).first_or_create!
-    end
   end
 
   def relative

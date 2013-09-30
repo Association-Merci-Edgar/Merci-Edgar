@@ -1,6 +1,6 @@
 .page-title
   = t(params[:controller]).titleize
-  = @filtered_by if @filtered_by.present?
+  = [@filtered_by, @param_filter].compact.join(" : ") if @filtered_by.present?
   
   .subpage-nav
     = link_to contacts_path, :class =>"active" do

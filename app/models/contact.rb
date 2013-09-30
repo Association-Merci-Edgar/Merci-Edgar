@@ -20,7 +20,7 @@
 class Contact < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id).order(:name) }
 
-  attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar
+  attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_list, :network_list, :custom_list
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
   has_many :addresses, :dependent => :destroy
@@ -28,6 +28,9 @@ class Contact < ActiveRecord::Base
 
   has_many :taggings, as: :asset
   has_many :tags, through: :taggings
+  has_many :styles, through: :taggings, source: :tag, class_name: "Style"
+  has_many :networks, through: :taggings, source: :tag, class_name: "Network"
+  has_many :customs, through: :taggings, source: :tag, class_name: "CustomTag"
 
   has_many :tasks, :as => :asset
 
@@ -116,4 +119,35 @@ class Contact < ActiveRecord::Base
   def favorite?(user)
     @favorite ||= self.favorite_contacts.where(user_id: user.id).any?
   end
+
+  def style_list
+    styles.map(&:name).join(", ")
+  end
+
+  def style_list=(names)
+    self.styles = names.split(",").map do |n|
+      Style.where(name: n.strip).first_or_create!
+    end
+  end
+
+  def network_list
+    networks.map(&:name).join(", ")
+  end
+
+  def network_list=(names)
+    self.networks = names.split(",").map do |n|
+      Network.where(name: n.strip).first_or_create!
+    end
+  end
+
+  def custom_list
+    networks.map(&:name).join(", ")
+  end
+
+  def custom_list=(names)
+    self.customs = names.split(",").map do |n|
+      CustomTag.where(name: n.strip, account_id: Account.current_id).first_or_create!
+    end
+  end
+
 end
