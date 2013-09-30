@@ -23,10 +23,7 @@
         /%span.infolabel — Ile de france
           
       .tags
-        /%span.tag.tag-type= t(@venue.kind)
-        %a.tag.tag-style Rock
-        %a.tag.tag-style Punk
-        %a.tag.tag-style Jeune public      
+        = render partial: "tags/tags", locals: { asset: @person}
       
   .meta
     -# _________________________ contacted

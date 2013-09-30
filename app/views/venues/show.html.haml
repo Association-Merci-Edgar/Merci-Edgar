@@ -18,7 +18,7 @@
             %span.city= @venue.city
             = link_to @venue.address.department_name, only_contacts_path(filter:"dept",no:@venue.address.department_code)
       .tags
-        = render partial: "tags", locals: {venue: @venue}
+        = render partial: "tags/tags", locals: {asset: @venue}
     
     
   .meta

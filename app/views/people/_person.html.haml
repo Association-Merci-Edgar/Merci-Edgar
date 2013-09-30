@@ -43,7 +43,5 @@
       = phone.national_number
       
   .tags
-    %a.tag.tag-custom Rock
-    %a.tag.tag-style Jazz
-    %a.tag.tag-style Jeune public
+    = render partial: "tags/tags", locals: { asset: person}
     
