@@ -4,6 +4,7 @@ Edgar::Application.routes.draw do
 
 
   get "backdoor/index"
+  get "tags/index"
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
@@ -37,8 +38,6 @@ Edgar::Application.routes.draw do
       end
     end
     resources :tasks
-    get 'tags/:tag', to: 'contacts#index', as: :tag
-    get 'favorites', to: 'contacts#favorites'
     resources :contacts do
       get 'only/:filter', action: :only, on: :collection, as: :only
       get 'add_to_favorites', on: :member

@@ -1,3 +1,6 @@
+- content_for :scripts do
+  = javascript_include_tag "tag"
+  
 /%h1.page-title Modifier la fiche de la personne
 = simple_nested_form_for(@person, :html => { :class => 'form-horizontal form-edit' }) do |f|
   = display_errors(@person)
@@ -119,7 +122,7 @@
     = f.input :network_list, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6" }
 
     -#  ________________________________________________________ TAGS V1
-    = f.input :custom_list, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6" }
+    = f.input :custom_list, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6 autocomplete_tags" }
         
     / ________________________________________________________ actions
     .form-actions
