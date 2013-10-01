@@ -33,7 +33,8 @@
           orphan: false,
           fixed: false,
           basePath: "",
-          template: "<div class='popover'>          <div class='arrow'></div>          <h3 class='popover-title'></h3>          <div class='popover-content'></div>          <nav class='popover-navigation'>                       <button class='btn btn-sm btn-link' data-role='end'>End tour</button>    <div class='btn-group'>              <button class='btn btn-sm btn-secondary' data-role='prev'>&laquo; Prev</button>              <button class='btn btn-sm btn-secondary' data-role='next'>Next &raquo;</button>            </div>       </nav>        </div>",
+          template: "<div class='popover'>          <div class='arrow'></div>          <h3 class='popover-title'></h3>          <div class='popover-content'></div>          <nav class='popover-navigation'>                          <div class='btn-group'>              <button class='btn btn-sm btn-secondary ico' data-role='prev'></button>              <button class='btn btn-sm btn-secondary ico' data-role='next'></button>            </div>   <a class='entypo' data-role='end' title='Quitter le tour'></a>     </nav>        </div>",
+          //&laquo; Prev Next &raquo;
           afterSetState: function(key, value) {},
           afterGetState: function(key, value) {},
           afterRemoveState: function(key) {},
@@ -359,19 +360,21 @@
         $navigation = $template.find(".popover-navigation");
         isOrphan = this._isOrphan(step);
         //isFixed = this._isFixed(step);
-        isFixed = step.fixed; 
+        isFixed = step.fixed;
         if (isOrphan) {
           step.element = "body";
           step.placement = "top";
           $template = $template.addClass("orphan");
         }
         $element = $(step.element);
-        
+        $sbkg = $(".tour-step-background")
         if (isFixed) {
           $template = $template.addClass("popover-fixed");
-        }
+          //$element.addClass("tourelement-fixed");
+          $sbkg.addClass("hidden");
+        } else {$sbkg.removeClass("hidden");}
         
-        $element = $(step.element);
+        //$element = $(step.element);
         $template.addClass("tour-" + this._options.name);
         if (step.options) {
           $.extend(options, step.options);
