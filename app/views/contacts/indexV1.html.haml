@@ -1,0 +1,75 @@
+.page-title
+  = t(params[:controller]).titleize
+  = @filtered_by if @filtered_by.present?
+  
+  .subpage-nav
+    = link_to contacts_path, :class =>"active" do
+      Liste
+    = link_to show_map_contacts_path do
+      Carte
+      
+.row-fluid
+  .span12.filters  
+    %select
+      %option
+        Types
+      %option
+        = nav_link "Tout", contacts_path, "edi-book"
+      %option
+        = nav_link "Personnes", people_path, "edi-user"
+      %option
+        = nav_link "Salles", venues_path, "edi-venue"
+       
+       
+    %select.nav.nav-list.filters-list
+      %option.nav-header
+        Listes
+      %option
+        %a{:href => "#"}
+          %i.edi-bookmarks
+          Liste A
+      %option
+        %a{:href => "#"}
+          %i.edi-bookmarks
+          Liste B
+      %option
+        %a{:href => "#"}
+          %i.edi-bookmarks
+          Liste C
+                   
+          
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Statut
+      %li
+        = link_to only_contacts_path(filter: "contacted") do
+          %i.edi-chat
+          Déjà échangé
+      %li
+        %a{:href => "#"}
+          %i.edi-flag
+          Déjà joué
+      %li
+        = link_to only_contacts_path(filter: "favorites") do
+          %i.edi-heart
+          Favoris  
+          
+          
+          
+  .span9
+    %ul.list-large
+      %li.list-header
+        = @contacts.total_count
+        résulats
+        = paginate @contacts
+        .meta
+          %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+            %i.edi-list
+      
+      = render @contacts
+      
+      .btn-in-list
+        = link_to new_venue_path do
+          %i.entypo.edi-plus-3
+          %span
+            New Venue
