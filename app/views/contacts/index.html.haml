@@ -1,3 +1,6 @@
+-content_for :scripts do
+  = javascript_include_tag "contacts_index"
+
 .page-title
   = t(params[:controller]).titleize
   = @filtered_by if @filtered_by.present?
@@ -9,74 +12,229 @@
       Carte
       
 .row-fluid
-  .span3.filters
-    .search
-      = form_tag contacts_path, method: "get", class: "form-search form-horizontal", id:"custom-search-form" do
-        .input-append
-          = text_field_tag :search, params[:search], class:"search-query", placeholder:"—"
-          %button.btn{type:"submit"}
-            %i.icon-search
-      
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Types
-      %li
-        = nav_link "Tout", contacts_path, "edi-book"
-      %li
-        = nav_link "Personnes", people_path, "edi-user"
-      %li
-        = nav_link "Salles", venues_path, "edi-venue"
-       
-       
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Listes
-      %li
-        %a{:href => "#"}
+  .sorters
+    /______________________________________________________ VIEWS
+    -#
+      %select.btn-tertiary
+        %option
+          Types
+        %option
+          = nav_link "Tout", contacts_path, "edi-book"
+        %option
+          = nav_link "Personnes", people_path, "edi-user"
+        %option
+          = nav_link "Salles", venues_path, "edi-venue"
+
+    .dropdown
+      / Link or button to toggle dropdown
+      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Tous les Contacts
+        %i.entypo.caret-ed
+
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        %li{role: "presentation"}
+          = link_to contacts_path, role: "menuitem", tabindex: "-1" do
+            Tous les Contacts
+        %li{role: "presentation"}
+          = link_to people_path, role: "menuitem", tabindex: "-1" do
+            Toutes les personnes
+        %li{role: "presentation"}
+          = link_to venues_path, role: "menuitem", tabindex: "-1" do
+            Toutes les structures
+        %li.divider{role: "presentation"}
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment consulté
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment crée
+        %li.divider{role: "presentation"}
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans mot-clés
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans activité depuis 30 jours
+    
+    
+    /______________________________________________________ LISTS
+    -#
+      %select.btn-tertiary
+        %option
+          Listes
+        %option
           %i.edi-bookmarks
           Liste A
-      %li
-        %a{:href => "#"}
+        %option
           %i.edi-bookmarks
           Liste B
-      %li
-        %a{:href => "#"}
+        %option
           %i.edi-bookmarks
           Liste C
+    
+    
+    
+    .dropdown
+      / Link or button to toggle dropdown
+      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Listes
+        %i.entypo.caret-ed
+        
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            %i.edi-bookmarks
+            Liste A
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            %i.edi-bookmarks
+            Liste B
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            %i.edi-bookmarks
+            Liste C
+        %li.divider{role: "presentation"}
+        %li{role: "presentation"}
+          %button.btn-primary Créer une liste
+    
+    %button.filters-trigger.btn.btn-tertiary
+      Filtres
+      %i.entypo.caret-ed
+      
+    .status
+      .dropdown
+        / Link or button to toggle dropdown
+        %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+          .status-ico.fav-all
+
+        %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              Tout
+              .status-ico.fav-all
+          %li{role: "presentation"}
+            //%a{href: "#", role: "menuitem", tabindex: "-1"}
+            = link_to only_contacts_path(filter: "favorites"), role: "menuitem", tabindex: "-1" do
+              Favoris
+              .status-ico.fav-on
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              Non Favoris
+              .status-ico.fav-off
+              
+              
+      .dropdown
+        / Link or button to toggle dropdown
+        %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+          .status-ico.con-all
+
+        %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              Tout
+              .status-ico.con-all
+          %li{role: "presentation"}
+            //%a{href: "#", role: "menuitem", tabindex: "-1"}
+            = link_to only_contacts_path(filter: "contacted"), role: "menuitem", tabindex: "-1" do
+              Contactés
+              .status-ico.con-on
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              Non Contactés
+              .status-ico.con-off
+              
+      .dropdown
+        / Link or button to toggle dropdown
+        %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+          .status-ico.dea-all
+
+        %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              Tout
+              .status-ico.dea-all
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}             
+              Déjà joué
+              .status-ico.dea-on
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              Jamais joué
+              .status-ico.dea-off
+        
+
+  .filters-outercontainer
+    .filters-container
+      .filters-pool
+        %a#f_name.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<input id='f_type_input' class='input-large' autofocus='autofocus' type='text' placeholder='Nom…' name='name'> <button class='btn btn-primary inline' type='submit'>ok</button>"}
+          Nom
+        -#
+          .inline-inputs 
+            %input.input-mini{type:"number", :placeholder=>"0"}
+            %span.inline <
+            %input.input-mini{type:"number", :placeholder=>"∞"}
+          
+        %a#f_capacities.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='inline-inputs'><input class='input-mini' autofocus='autofocus' type='number' placeholder='0' name='cap_min'><span class='add-middle'><</span><input class='input-mini' type='number' placeholder='∞'></div> <button class='btn btn-primary inline' type='submit'>ok</button></div>"}
+          Jauge
+          
+        %a.tag.tag-custom2{:href => "#"} Fonction
+        %a.tag.tag-custom2{:href => "#"} Addresse
+        
+        <br>
+        %a#f_type.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div><input id='f_type_input' class='input-large' autofocus='autofocus' type='text' placeholder='SMAC, Zenith...' name='type'> <button class='btn btn-primary inline' type='submit'>ok</button></div>"}
+          type de structure
+        
+        
+        %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<input id='f_type_input' class='input-large' autofocus='autofocus' type='text' placeholder='Pop, Rock...' name='style'> <button class='btn btn-primary inline' type='submit'>ok</button>"}
+          Ésthétique
+        %a#f_custom.tag.tag-legal{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<input id='f_type_input' class='input-large' autofocus='autofocus' type='text' placeholder='Co-realisation, Location, etc…' name='legal'> <button class='btn btn-primary inline' type='submit'>ok</button>"}
+          Type de contrats
+        
+        %a#f_custom.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<input id='f_type_input' class='input-large' autofocus='autofocus' type='text' placeholder='Un de vos mot-clés personnel…' name='custom'> <button class='btn btn-primary inline' type='submit'>ok</button>"}
+          Autre mot-clés
+        
+        
+        
+      
+
+      .filters-stage
+        -#
+          %a.tag.tag-actor{:href => "#"}
+            %span.close x
+            theFiltervalue
+        %a.shybtn{:href => "#", "data-role"=>"close"}
+          Réinitialiser
+        
                    
+    -#
+      %ul.nav.nav-list.filters-list
+        %li.nav-header
+          Statut
+        %li
+          = link_to only_contacts_path(filter: "contacted") do
+            %i.edi-chat
+            Déjà échangé
+        %li
+          %a{:href => "#"}
+            %i.edi-flag
+            Déjà joué
+        %li
+          = link_to only_contacts_path(filter: "favorites") do
+            %i.edi-heart
+            Favoris  
           
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Statut
-      %li
-        = link_to only_contacts_path(filter: "contacted") do
-          %i.edi-chat
-          Déjà échangé
-      %li
-        %a{:href => "#"}
-          %i.edi-flag
-          Déjà joué
-      %li
-        = link_to only_contacts_path(filter: "favorites") do
-          %i.edi-heart
-          Favoris  
           
           
-          
-  .span9
-    %ul.list-large
-      %li.list-header
-        = @contacts.total_count
-        résulats
-        = paginate @contacts
-        .meta
-          %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
-            %i.edi-list
-      
-      = render @contacts
-      
-      .btn-in-list
-        = link_to new_venue_path do
-          %i.entypo.edi-plus-3
-          %span
-            New Venue
+.row-fluid
+  %ul.list-large
+    %li.list-header
+      = @contacts.total_count
+      résulats
+      = paginate @contacts
+      .meta
+        %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+          %i.edi-list
+    
+    = render @contacts
+    
+    .btn-in-list
+      = link_to new_venue_path do
+        %i.entypo.edi-plus-3
+        %span
+          New Venue

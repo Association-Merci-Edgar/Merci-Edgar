@@ -624,6 +624,20 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   -o-transform:rotate(180deg); //Opera
 }
 
+.caret-ed {
+  &:before {content: "\e0d1";} //.edi-arrow-down-5
+  width: 16px;
+  display : inline-block;
+  @include transition(transform, .2s)
+}
+
+*:active .caret-ed, *:focus .caret-ed, .active .caret-ed {
+  -moz-transform:rotate(180deg); //firefox
+  -webkit-transform:rotate(180deg); //Chrome, Safari
+  -o-transform:rotate(180deg); //Opera
+}
+	
+	
 /*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
 //.rightbt .entypo{color: #999;  font-size:16px;}
 //.entypo.rightbt { font-size:16px;}
@@ -741,7 +755,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 
 
-/*  ________________________________________________________ filters    */
+/*  ________________________________________________________ filters  V1  */
 //.filters {min-width:194px;}
 
 .filters-list {
@@ -754,6 +768,49 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   & > li a.active, & > li a:hover {background-color:$mblue; color:$white;}
 }
 
+
+/*  ________________________________________________________ filters  V2  */
+
+.sorters {margin-bottom:10px;
+  .dropdown {display:inline-block;}
+  }
+
+.filters-outercontainer {
+  background:$white;
+  //height:auto;
+  height:0px;
+  overflow: hidden;
+  margin-bottom:10px;
+  &.open{height:auto;}
+  
+  
+  .filters-container {padding:20px;}
+  @include transition(all, .3s)
+  
+}
+
+.filters-pool {
+    //.tag
+    border-bottom : solid 1px $dbeige;
+    min-height:20px;
+}
+
+.filters-stage {
+  padding-top:10px;
+  a.tag-actor { background:$dbeige;
+    .close{}
+  }
+}
+.btn.active {background:$white; color:$dblue; box-shadow:none;} 	
+.popover {
+    max-width: 320px;
+    input{margin-bottom:0;}
+    .inline-inputs {margin-left:0; display: inline-block;}
+    input[name="cap_min"]{text-align:right;}
+}
+.add-middle { padding:5px; background:$dbeige; display: inline;
+    padding: 7px;
+    vertical-align: middle;}
 
 /*  ________________________________________________________ plusmenu    */
 #plusmenu {
@@ -1315,7 +1372,7 @@ section {
 }
 a.tag {
   font-size:14px;
-  display: inline-block;
+  display: inline-table;
   margin-bottom: 10px;
   padding: 0 8px;
   background-color:lighten ($beige, 80%);
@@ -1375,12 +1432,26 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
 
 .row-fluid [class*="span"] { min-height :15px}
 
+.status{float:right;}
+.status-ico { height:24px; width:24px; background: url(../appli/sprites/status-icons.png) no-repeat top left;
+  &.fav-all {background-position: 0px 2px;}
+  &.fav-off {background-position: 0px -22px;}
+  &.fav-on  {background-position: 0px -46px;}
+  &.con-all {background-position: -24px 0px;}
+  &.con-off {background-position: -24px -24px;}
+  &.con-on  {background-position: -24px -48px;}
+  &.dea-all {background-position: -48px 0px;}
+  &.dea-off {background-position: -48px -24px;}
+  &.dea-on  {background-position: -48px -48px;}
+}
 
-
-
+.dropdown-menu.pull-right {
+  .status-ico { display:inline-block;}
+  li a {text-align:right; padding: 3px 8px;}
+}
 /*  _____________________________________________________  LISTS   */
 
-
+.filters-stage [data-role=close]{float:right;}
 
 .btn-in-list {
   & a {color: $dblue; display:block; font-size:20px;
@@ -1447,8 +1518,8 @@ li {line-height: inherit;}
   .actions {top:56px;}
   .content {font-size:15px;color:$dblue;}
   li {
-    padding : 24px 0; padding-top:20px;
-    min-height:60px;
+    min-height: 111px;
+    padding: 20px 0 16px;
     
     &.list-header { padding:0; min-height: 10px; border:none;
       margin-bottom:10px;
@@ -1509,6 +1580,15 @@ header {
   }
 }
 
+.btn-tertiary {
+  @extend .btn-primary;
+  background:$dbeige;
+  color:$mblue;
+  &:hover, &:focus, &:active {
+    background:$green;
+    color:$white;
+  }
+}
 
 .bold {font-weight:bold;}
 

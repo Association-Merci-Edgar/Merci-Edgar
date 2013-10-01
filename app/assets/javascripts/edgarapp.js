@@ -47,8 +47,10 @@ $('document').ready(function() {
 		$('.leftpanel').toggleClass( "collapsed");
 		$('.mainpanel').toggleClass( "goleft");
 	});
-	
-	//alert ("yo");
+
+
+
+
 	smallScreens();
 })
 
@@ -103,7 +105,9 @@ $(function() {
 $(function() {
   $div = $('.notice:not(.error)')
   if ($div.get(0)) {    // check if the div exists
-    setTimeout(function(){$div.fadeOut();}, 7000);
+    setTimeout(function(){ //$div.animate({height: "0px"}, 400);
+        $div.fadeOut();
+      }, 7000);
   }
 });
 
