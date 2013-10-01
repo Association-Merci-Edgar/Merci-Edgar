@@ -58,8 +58,6 @@ $('document').ready(function() {
 
 $(window).load(function() {
 	smallScreens();
-	
-	
   
   
 });
@@ -70,7 +68,20 @@ $(window).resize(function() {
 
 });
 
+$('#search-nav a').click(function() {
+  //event.preventDefault();
+  $('.searchahead').typeahead();
+  $('#thesearch').show();
+  $('#search-nav').addClass("active");
+  $('#thesearch').find("[autofocus]:first").focus();
+});
 
+$('.search-backdrop').click(function() {
+  $('#search-nav').removeClass("active");
+  $('#thesearch').hide();
+});
+  
+  
 //  _________________________________ Clickable Dropdown
 clickerShow = function(e) {
   $('.click-nav .js ul').slideToggle(200);
@@ -100,7 +111,6 @@ $(function() {
 });
 
 
-
 //  _________________________________ Hide Notices 
 $(function() {
   $div = $('.notice:not(.error)')
@@ -112,72 +122,15 @@ $(function() {
 });
 
 
-
-//  _________________________________ specificKind Fields 
-specificKind = function(obj) { 
-  var $thefield= obj.find(".other");
-  var $thesel= obj.find("select");
-  //$thefield.css("background-color", "green");
-    
-  var $othersOption = $thesel.find('option:selected');
-  if ($othersOption.val() != "other"){
-      $thefield.hide(); //initially hide the textbox
-  }
-  
-  $thesel.change(function() {
-    if ($(this).find('option:selected').val() == "other"){
-      $thefield.show();
-    } else {
-      $thefield.val("");
-      $thefield.hide();
-      
-    }
-  });
-  
-  /*$thefield.keyup(function(ev){
-        var $othersOption = $thesel.find('option:selected');
-        if ($othersOption.val() == "other"){
-          ev.preventDefault();
-          //change the selected drop down text
-          $(othersOption).html($thefield.val());
-        }
-  });*/
-  
-}
-
-
-
 initializer = function() {
   //$(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
   $(".modal").on('shown', function() {
-          $(this).find("[autofocus]:first").focus();
+      $(this).find("[autofocus]:first").focus();
   });
   
   $("#gmaps_index").width( $("#markers_list").width() )
   $("#markers_list").height( $(document).height() - 210 - $("#gmaps_index").height() )
 
-  //______________ phone 
-  $.each($('.venue_phones_national_number .input-append'), function() {
-      specificKind($(this));
-  });
-  $.each($('.venue_emails_address .input-append'), function() {
-      specificKind($(this));
-  });
-  
+ 
 }
-
-
-$(document).on('nested:fieldAdded', function(event){
-  // this field was just inserted into your form
-  var field = event.field;
-  
-  var spep = field.find(".venue_phones_national_number .input-append");
-  var spem = field.find(".venue_emails_address .input-append");
-  //alert (spem.width());
-  if (spep.width() != null){spe=spep};
-  if (spem.width() != null){spe=spem};
-  
-  specificKind(spe);
-});
-
 

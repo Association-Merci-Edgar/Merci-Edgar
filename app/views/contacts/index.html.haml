@@ -97,65 +97,77 @@
       %i.entypo.caret-ed
       
     .status
-      .dropdown
-        / Link or button to toggle dropdown
-        %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-          .status-ico.fav-all
+      = link_to only_contacts_path(filter: "favorites"), :class=>"shybtn", :title =>"Favoris" do
+        %i.ico.edi-heart
+        
+      = link_to only_contacts_path(filter: "contacted"), :class=>"shybtn", :title =>"Déjà échangé" do
+        %i.ico.edi-comment
+   
+      %a{:href => "#", :class=>"shybtn", :title =>"Déjà joué"}
+        %i.ico.edi-flag
+    
+      
+        
+      -#
+        .dropdown
+          / Link or button to toggle dropdown
+          %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+            .status-ico.fav-all
 
-        %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}
-              Tout
-              .status-ico.fav-all
-          %li{role: "presentation"}
-            //%a{href: "#", role: "menuitem", tabindex: "-1"}
-            = link_to only_contacts_path(filter: "favorites"), role: "menuitem", tabindex: "-1" do
-              Favoris
-              .status-ico.fav-on
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}
-              Non Favoris
-              .status-ico.fav-off
+          %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}
+                Tout
+                .status-ico.fav-all
+            %li{role: "presentation"}
+              //%a{href: "#", role: "menuitem", tabindex: "-1"}
+              = link_to only_contacts_path(filter: "favorites"), role: "menuitem", tabindex: "-1" do
+                Favoris
+                .status-ico.fav-on
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}
+                Non Favoris
+                .status-ico.fav-off
               
               
-      .dropdown
-        / Link or button to toggle dropdown
-        %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-          .status-ico.con-all
+        .dropdown
+          / Link or button to toggle dropdown
+          %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+            .status-ico.con-all
 
-        %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}
-              Tout
-              .status-ico.con-all
-          %li{role: "presentation"}
-            //%a{href: "#", role: "menuitem", tabindex: "-1"}
-            = link_to only_contacts_path(filter: "contacted"), role: "menuitem", tabindex: "-1" do
-              Contactés
-              .status-ico.con-on
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}
-              Non Contactés
-              .status-ico.con-off
+          %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}
+                Tout
+                .status-ico.con-all
+            %li{role: "presentation"}
+              //%a{href: "#", role: "menuitem", tabindex: "-1"}
+              = link_to only_contacts_path(filter: "contacted"), role: "menuitem", tabindex: "-1" do
+                Contactés
+                .status-ico.con-on
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}
+                Non Contactés
+                .status-ico.con-off
               
-      .dropdown
-        / Link or button to toggle dropdown
-        %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-          .status-ico.dea-all
+        .dropdown
+          / Link or button to toggle dropdown
+          %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+            .status-ico.dea-all
 
-        %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}
-              Tout
-              .status-ico.dea-all
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}             
-              Déjà joué
-              .status-ico.dea-on
-          %li{role: "presentation"}
-            %a{href: "#", role: "menuitem", tabindex: "-1"}
-              Jamais joué
-              .status-ico.dea-off
+          %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}
+                Tout
+                .status-ico.dea-all
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}             
+                Déjà joué
+                .status-ico.dea-on
+            %li{role: "presentation"}
+              %a{href: "#", role: "menuitem", tabindex: "-1"}
+                Jamais joué
+                .status-ico.dea-off
         
 
   .filters-outercontainer
@@ -199,24 +211,6 @@
             theFiltervalue
         %a.shybtn{:href => "#", "data-role"=>"close"}
           Réinitialiser
-        
-                   
-    -#
-      %ul.nav.nav-list.filters-list
-        %li.nav-header
-          Statut
-        %li
-          = link_to only_contacts_path(filter: "contacted") do
-            %i.edi-chat
-            Déjà échangé
-        %li
-          %a{:href => "#"}
-            %i.edi-flag
-            Déjà joué
-        %li
-          = link_to only_contacts_path(filter: "favorites") do
-            %i.edi-heart
-            Favoris  
           
           
           
