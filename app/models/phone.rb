@@ -15,7 +15,7 @@ class Phone < ActiveRecord::Base
   attr_accessible :kind, :national_number, :country, :specific_kind, :classic_kind
   # validates :national_number, :phone => true, :allow_blank => true
   validate :check_number
-  before_validation :internationalize_phone_number
+  before_validation :set_kind
   attr_accessor :country
   VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :fax, :other]
   PERSON_KIND = [:work, :mobile, :perso, :fax, :other]
@@ -52,12 +52,14 @@ class Phone < ActiveRecord::Base
     @country ||= "FR"
   end
 
-  def internationalize_phone_number
-    if Phony.plausible?(self.number)
+  def self.internat(phone_number,country)
+    unless phone_number.starts_with?('+')
       c = Country.new(country)
-      self.number = Phony.normalize(self.number)
-      self.number = "#{c.country_code}#{self.number}" unless self.number.starts_with?(c.country_code)
+      phone_number = "#{c.country_code}#{phone_number}" unless phone_number.starts_with?(c.country_code)
     end
+    Phony.normalize(phone_number) if Phony.plausible?(phone_number)
+  end
+  def set_kind
     self.kind = @specific_kind if @specific_kind.present?
   end
 
@@ -75,7 +77,8 @@ class Phone < ActiveRecord::Base
   end
 
   def check_number
-    if !Phony.plausible?(number)
+    self.number = Phone.internat(self.number,country)
+    if !Phony.plausible?(self.number)
       errors.add(:national_number, "Wrong phone number")
     end
   end
