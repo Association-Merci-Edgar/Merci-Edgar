@@ -15,12 +15,14 @@
         = render 'layouts/left_panel'
         
       .mainpanel
+        = render 'layouts/search_modal'
         .maincontent
           .maincontentinner
             = yield
             
       /.rightpanel
       /  = yield(:right_panel)
+    
     = render 'layouts/modal'
       
     = render 'layouts/javascripts_app'
