@@ -1,8 +1,10 @@
 $dblue:   rgba(48, 48, 58, 1); //#30303a;
 //$dblue2:  ;
 $dblue90: rgba(58, 58, 68, 1); //#45454e;
+$dblue60:   lighten( $dblue, 60% );
 $mblue:   lighten( $dblue, 20% );
 $lblue:   lighten( $dblue, 40% );
+
 $vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
 $beige:   #edede8;
 $dbeige:  rgba(194, 194, 177, 1);
@@ -144,8 +146,8 @@ display:inline-block;
 }
 
 .ico.favorite {
-  &:before {content: "\e01e";}//.edi-heart-2
-  &.full:before {content: "\e01d";} //.edi-heart
+  &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
+  &.full:before, &.full:before {content: "\e01d";} //.edi-heart
 }
 .ico.contacted {
   &:before, &.full:hover:before {content: "\e110";}//.edi-comment-2
@@ -209,9 +211,7 @@ a, .btn-link {color:$dblue;
 .infos-line a, .infos a {@extend .showlink;}
 
 
-html, body {
-height: 100%;
-}
+//html, body {height: 100%;}
 
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -241,6 +241,7 @@ body {
 	background: $dblue90;   //background: url(../appli/dblue.gif) top left repeat;
 	position:fixed;
 	height:100%;
+	z-index:2000;
 	//@include transition("all", 0.2s);
 }
 
@@ -554,7 +555,7 @@ a.pull-right {float:right;}
 }
 .leftmenu .righticon {float: right; display:none;margin-top:6px; margin-right: 6px;}
 
-.leftmenu li a:hover{	background: $white;}
+.leftmenu li a:hover{	background: $dbeige2;}
 
 .leftmenu, .logo { }
 
@@ -797,8 +798,10 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 .filters-stage {
   padding-top:10px;
-  a.tag-actor { background:$dbeige;
-    .close{}
+  a.tag-actor { background:$dbeige; padding:2px 9px; font-size:16px;
+    .close{ font-size: 0.9em;
+        margin-left: 3px;
+        margin-top: 2px; }
   }
 }
 .btn.active {background:$white; color:$dblue; box-shadow:none;} 	
@@ -1240,6 +1243,42 @@ select.select-right { width:auto; background:$dbeige2;}
 
 
 
+.ui-menu-item {height:24px; width:100%;}
+.ui-corner-all{position:absolute;}
+
+ul.ui-autocomplete { list-style:none;position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; }
+
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
+
+/*  _____________________________________________________ thesearch   */
+#thesearch {
+  position:fixed;
+  display:none;
+  .searchbkg{z-index:1998;}
+  width:100%;
+  input {
+    padding:6px 20px;
+    border:none;
+    z-index:1999;
+    position:absolute;
+    top:415px;
+    height:52px;
+    width:100%;
+    background:$green;
+    color:$white;
+    font-size:22px;
+    @include roundcornersFX(0);
+    @include borderbox;
+    //@include box-shadow(inset 5px 1px 1px rgba(0, 0, 0, 0.075));
+    @include box-shadow(0px, 0px, 15px, rgba(0, 0, 0, 0.7), "");
+    &:focus{background:$green;};
+    }
+}
 
 
 /*  _____________________________________________________ DASHBOARD   */
@@ -1433,6 +1472,8 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
 .row-fluid [class*="span"] { min-height :15px}
 
 .status{float:right;}
+.status .ico {font-size:16px; line-height: 9px;}
+/*
 .status-ico { height:24px; width:24px; background: url(../appli/sprites/status-icons.png) no-repeat top left;
   &.fav-all {background-position: 0px 2px;}
   &.fav-off {background-position: 0px -22px;}
@@ -1449,6 +1490,9 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
   .status-ico { display:inline-block;}
   li a {text-align:right; padding: 3px 8px;}
 }
+*/
+
+
 /*  _____________________________________________________  LISTS   */
 
 .filters-stage [data-role=close]{float:right;}
@@ -1689,7 +1733,6 @@ ul.list-small {
   line-height: 1.4em;
   list-style:none;
   margin: 11px 0 20px 25px
-  
 }
 
 ul.social-list {
