@@ -80,7 +80,12 @@ $white:   #fff;
 
 @mixin btn {}
 
-
+@mixin plholder($col) { 
+  &::-webkit-input-placeholder {color: $col;}
+  &:-moz-placeholder {color: $col;} /* Firefox 18- */
+  &::-moz-placeholder {color: $col;}  /* Firefox 19+ */
+  &:-ms-input-placeholder {color: $col;}
+}
 
 /* ______________________________________________________________ INIT + FLATIZER   */
 
@@ -1248,6 +1253,7 @@ select.select-right { width:auto; background:$dbeige2;}
 
 ul.ui-autocomplete { list-style:none;position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; }
 
+.popover{z-index: 2010;}
 
 @mixin box-shadow($top, $left, $blur, $color, $inset:"") {
   -webkit-box-shadow:$top $left $blur $color #{$inset};
@@ -1277,10 +1283,15 @@ ul.ui-autocomplete { list-style:none;position:absolute; background:$white; @incl
     //@include box-shadow(inset 5px 1px 1px rgba(0, 0, 0, 0.075));
     @include box-shadow(0px, 0px, 15px, rgba(0, 0, 0, 0.7), "");
     &:focus{background:$green;};
+    @include plholder ($white);
     }
 }
 
-
+.typeahead .dropdown-menu {
+bottom: 100%;
+   margin-bottom: 1px;
+   top: auto;
+}
 /*  _____________________________________________________ DASHBOARD   */
 
 
