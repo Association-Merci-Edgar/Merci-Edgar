@@ -1,8 +1,9 @@
 #thesearch
-  <input type="text" data-provide="typeahead" autocomplete="off" class="searchahead" autofocus="autofocus" placeholder="Accéder rapidement à un contacts, une tâches, une dates...">
-  -#
-    :javascript
-      $('.searchahead').typeahead();
+  <input type="text" data-provide="typeahead" autocomplete="off" class="#typea" autofocus="autofocus" placeholder="Accéder rapidement à un contacts, une tâches, une dates..." data-provide="typeahead" data-items="4" data-source= "['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Dakota','North Carolina','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']">
+  
+  
+  :javascript
+    $('#typea').typeahead();
 
   <div class="tour-backdrop search-backdrop"></div>
   -#
