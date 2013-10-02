@@ -139,7 +139,7 @@ class Contact < ActiveRecord::Base
       custom_fields = fields.join(" OR ")
 
       fields = [style_fields, contract_fields, custom_fields].reject(&:empty?).join(" AND ")
-      debugger
+      
       @contacts = @contacts.joins(:tags).where([fields] + values)
 
     end
