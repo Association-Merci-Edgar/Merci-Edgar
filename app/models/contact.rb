@@ -103,6 +103,49 @@ class Contact < ActiveRecord::Base
     end
   end
 
+
+  def self.advanced_search(params)
+    if params[:capacity_lt].present? || params[:capacity_gt].present? || params[:venue_kind].present?
+      @contacts = Venue.order(:name)
+      @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
+      @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
+      @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
+    else
+      @contacts = Contact.order(:name)
+    end
+
+    @contacts = @contacts.by_department(params[:dept]) if params[:dept].present?
+    if params[:style_list].present? || params[:contract_list].present? || params[:custom_list].present?
+      fields = []
+      values = []
+      params[:style_list].split(',').each do |t|
+        fields << "tags.name = ? AND tags.type = 'Style'"
+        values << t.strip
+      end
+      style_fields = fields.join(" OR ")
+
+      fields = []
+      params[:contract_list].split(',').each do |t|
+        fields << "tags.name = ? AND tags.type = 'Contract'"
+        values << t.strip
+      end
+      contract_fields = fields.join(" OR ")
+
+      fields = []
+      params[:custom_list].split(',').each do |t|
+        fields << "tags.name = ? AND tags.type = 'CustomTag'"
+        values << t.strip
+      end
+      custom_fields = fields.join(" OR ")
+
+      fields = [style_fields, contract_fields, custom_fields].reject(&:empty?).join(" AND ")
+      debugger
+      @contacts = @contacts.joins(:tags).where([fields] + values)
+
+    end
+    @contacts
+  end
+
   def self.search(search)
     if search.present?
       a = search.split

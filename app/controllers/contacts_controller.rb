@@ -1,11 +1,6 @@
 class ContactsController < AppController
   def index
-    if params[:tag]
-      @filtered_by = "(#{params[:tag]})"
-      @contacts = Contact.tagged_with(params[:tag]).page params[:page]
-    else
-      @contacts = Contact.search(params[:search]).page params[:page]
-    end
+    @contacts = Contact.advanced_search(params).page params[:page]
     if @contacts.size < 1
       render 'empty'
     end

@@ -212,7 +212,17 @@
         %a.shybtn{:href => "#", "data-role"=>"close"}
           Réinitialiser
           
-          
+.row-fluid
+  My Form
+  = form_tag contacts_path, method: :get do
+    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]])
+    = text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
+    = text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
+    = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)"
+    = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats"
+    = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso"
+    = text_field_tag :dept, params[:dept], placeholder:  "N°Departement"
+    = button_tag "Search", name: nil
           
 .row-fluid
   %ul.list-large
