@@ -28,7 +28,7 @@ specificKind = function(obj) {
   });*/
   
 }
-//$(".ui-autocomplete").addClass("dropdown-menu");
+$(".ui-autocomplete").addClass("dropdown-menu");
 
 
 //______________ phone 

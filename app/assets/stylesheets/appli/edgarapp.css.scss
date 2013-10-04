@@ -347,7 +347,7 @@ section > h4 {display:block; margin-bottom:24px;}
   border:none;
   text-shadow: none;
   background-color:$green;
-  &:hover {background-color:$dblue;};
+  &:hover, &:focus {background-color:$dblue;};
   @include transition(background, 0.2s)
 }
 
@@ -637,7 +637,8 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   @include transition(transform, .2s)
 }
 
-*:active .caret-ed, *:focus .caret-ed, .active .caret-ed {
+.dropdown-toggle:active .caret-ed, .dropdown-toggle:focus .caret-ed,
+.filters-trigger.active .caret-ed {
   -moz-transform:rotate(180deg); //firefox
   -webkit-transform:rotate(180deg); //Chrome, Safari
   -o-transform:rotate(180deg); //Opera
@@ -778,7 +779,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 /*  ________________________________________________________ filters  V2  */
 
 .sorters {margin-bottom:10px;
-  .dropdown {display:inline-block;}
+  .dropdown {display:inline-block; margin-right:6px;}
   }
 
 .filters-outercontainer {
@@ -803,22 +804,31 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 .filters-stage {
   padding-top:10px;
-  a.tag-actor { background:$dbeige; padding:2px 9px; font-size:16px;
-    .close{ font-size: 0.9em;
+  a.tag-actor { background:$dbeige; padding:2px 9px; font-size:16px; margin-right: 4px;
+    cursor:pointer;
+    &:hover{background:$dblue60;};
+    .close { font-size: 0.9em;
         margin-left: 3px;
         margin-top: 2px; }
   }
 }
-.btn.active {background:$white; color:$dblue; box-shadow:none;} 	
+
+
+.btn.active {background:$white; color:$dblue; box-shadow:none;}
+
 .popover {
     max-width: 320px;
-    input{margin-bottom:0;}
+    input, form, select {margin-bottom:0;}
+    .hint{color:$mblue; font-size:14px; margin-top:10px; display:block;}
     .inline-inputs {margin-left:0; display: inline-block;}
-    input[name="cap_min"]{text-align:right;}
+    input[name="capacity_lt"]{text-align:right;}
+    input[type="submit"]{margin-left:5px;}
 }
 .add-middle { padding:5px; background:$dbeige; display: inline;
     padding: 7px;
     vertical-align: middle;}
+
+
 
 /*  ________________________________________________________ plusmenu    */
 #plusmenu {
@@ -1430,14 +1440,14 @@ a.tag {
   @include roundcorners;
   text-decoration:none;
   //text-transform:lowercase;
-  &:hover {text-decoration:none; color:$white;}
+  &:hover, &:active, &.active {text-decoration:none; color:$white;}
 }
 
-a.tag-type {border-color:$orange; &:hover {background-color:$orange;} }
-a.tag-style {border-color:$green; &:hover {background-color:$green;} }
-a.tag-legal {border-color:$yellow;  &:hover {background-color:$yellow; color:$dblue;} }
-a.tag-custom {border-color:$lblue; &:hover {background-color:$lblue;} }
-a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
+a.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
+a.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
+a.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
+a.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
+a.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
 
 .number {font-size: 20px; color:$dblue;}
 .city:after {content:",";};
@@ -1506,7 +1516,7 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
 
 /*  _____________________________________________________  LISTS   */
 
-.filters-stage [data-role=close]{float:right;}
+
 
 .btn-in-list {
   & a {color: $dblue; display:block; font-size:20px;
@@ -1528,12 +1538,20 @@ li {line-height: inherit;}
 
 /* __________________________________ List_medium  */
 .list-medium li {
-  a {font-size:17px;}
-  line-height:28px;
-  a {display:block; }
+  .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
+  .infos-line{
+    
+    .pic-mini {width:20px; margin-right: 6px;}
+    a {font-size:17px; }
+    .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
+    }
+  }
+  //line-height:28px;
+  //a {display:block; }
   min-height:28px;
-  padding:14px 0px;
+  padding:18px 0px;
   border-bottom: dotted 1px lighten( $dblue, 60% );
+  
   .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
   /*.span7 {font-size:17px;
     a { margin-left:25px; }

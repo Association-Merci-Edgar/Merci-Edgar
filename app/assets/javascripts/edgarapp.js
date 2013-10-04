@@ -48,9 +48,6 @@ $('document').ready(function() {
 		$('.mainpanel').toggleClass( "goleft");
 	});
 
-
-
-
 	smallScreens();
 })
 
@@ -58,15 +55,16 @@ $('document').ready(function() {
 
 $(window).load(function() {
 	smallScreens();
-  
-  
 });
+
+
 
 $(window).resize(function() {
 	smallScreens();
 	initializer();
-
 });
+
+
 
 $('#search-nav a').click(function() {
   //event.preventDefault();

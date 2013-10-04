@@ -3,150 +3,135 @@
   = t(params[:controller]).titleize
   = @filtered_by if @filtered_by.present?
   
-.row-fluid
-  %section.span3.filters
-    .search
-      = form_tag contacts_path, method: "get", class: "form-search form-horizontal", id:"custom-search-form" do
-        .input-append
-          = text_field_tag :search, params[:search], class:"search-query", placeholder:"—"
-          %button.btn{type:"submit"}
-            %i.icon-search
-    -#
-      %ul.nav.nav-list.filters-list
-        %li.nav-header
-          Types
-        %li
-          = nav_link "Tout", contacts_path, "edi-book"
-        %li
-          = nav_link "Personnes", people_path, "edi-user"
-        %li
-          = nav_link "Salles", venues_path, "edi-venue"
+#dash-tasks.row-fluid
+  .section-title
+    .title
+      .badge.badge-medium.badge-shy= Task.pending.size
+      /tâches
+    .title-infos
+      dont
+      .badge.badge-small.badge-black= Task.overdue.size
+      en retard,
+      .badge.badge-small.badge-red= Task.due_today.size
+      pour aujourd’hui
+  /_____________________________________________________________________________ FILTERS
+  .sorters
+    /______________________________________________________ USERS
+    .dropdown
+      / Link or button to toggle dropdown
+      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Tous les utilisateurs
+        %i.entypo.caret-ed
       
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Filtres
-      %li
-        = nav_link "Tout", tasks_path, "edi-check_2"
-              
-              
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Projets
-      %li
-        %a{:href => "#"}
-          .pic.pic-mini= image_tag "squared/pro1.jpg"
-          Projet A
-      %li
-        %a{:href => "#"}
-          .pic.pic-mini= image_tag "squared/pro2.jpg"
-          Projet B
-      %li
-        %a{:href => "#"}
-          .pic.pic-mini= image_tag "squared/pro3.jpg"
-          /%i.edi-rocket
-          Projet C
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/per1.jpg"
+            Utilisateurs A
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/per2.jpg"
+            Utilisateurs B
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/per3.jpg"
+            Utilisateurs C
+      -#
+        %li.divider{role: "presentation"}
+        %li{role: "presentation"}
+          %button.btn-primary Créer une liste
           
+    /______________________________________________________ PROJECTS
+    .dropdown
+      / Link or button to toggle dropdown
+      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Tous les projets
+        %i.entypo.caret-ed
+
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/pro1.jpg"
+            Projets A
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/pro2.jpg"
+            Projets B
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/pro3.jpg"
+            Projets C
+      -#
+        %li.divider{role: "presentation"}
+        %li{role: "presentation"}
+          %button.btn-primary Créer une liste
           
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Utilisateurs
-      %li
-        %a{:href => "#"}
-          .pic.pic-mini= image_tag "squared/per1.jpg"
-          Untel X.
-      %li
-        %a{:href => "#"}
-          .pic.pic-mini= image_tag "squared/per2.jpg"
-          Sarah B.
-      %li
-        %a{:href => "#"}
-          .pic.pic-mini= image_tag "squared/per3.jpg"
-          /%i.edi-rocket
-          Simon C.
-        
+    /______________________________________________________ PROJECTS
+    .dropdown
+      / Link or button to toggle dropdown
+      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Tous les sujets
+        %i.entypo.caret-ed
 
-  /
-    %ul.nav.nav-list.filters-list
-      %li.nav-header
-        Statut
-      %li
-        %a{:href => "#"}
-          %i.edi-chat
-          Déjà échangé
-      %li
-        %a{:href => "#"}
-          %i.edi-flag
-          Déjà joué
-      %li
-        = link_to favorites_path do
-          %i.edi-heart
-          Favoris  
-
-
-  -#
-    .span9
-      %ul.list-large
-        %li.list-header
-          50 résultats
-          = paginate @tasks
-          .meta
-            %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
-              %i.edi-list
-
-        = render @tasks
-
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/pro1.jpg"
+            Personne Untel
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini= image_tag "squared/pro2.jpg"
+            Lieux X
+        %li{role: "presentation"}
+          %a{href: "#", role: "menuitem", tabindex: "-1"}
+            .pic.pic-mini
+            Général
+      -#
+        %li.divider{role: "presentation"}
+        %li{role: "presentation"}
+          %button.btn-primary Créer une liste
 
   
-  %section#dash-tasks.span9
-    .section-title
-      .title
-        Tâches
-        .badge.badge-medium.badge-shy= Task.pending.size
-      .title-infos
-        dont
-        .badge.badge-small.badge-black= Task.overdue.size
-        en retard,
-        .badge.badge-small.badge-red= Task.due_today.size
-        pour aujourd’hui  
-
-    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
-    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
-    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
-    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person, :color => "green"}
-    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person, color:"gray"}
-    = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person, color:"gray"}
+  
+%section
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_week, :asset => @person, :color => "green"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_next_week, :asset => @person, color:"gray"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_this_month, :asset => @person, color:"gray"}
 
 
 
-    %ul.list-medium
-      %li
-        .rightrow.small
-          .badge.badge-black hier
-          .actions
-            %a.shybtn{:href => "#"}
-              %i.entypo.edi-pencil
+  %ul.list-medium
+    %li
+      .rightrow.small
+        .badge.badge-black hier
+        .actions
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
 
-        .rightrow
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag "squared/pro2.jpg"
-              ProjetXqsd
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag "squared/per2.jpg"
-              Untel X.
+      .rightrow
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/pro2.jpg"
+            ProjetXqsd
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/per2.jpg"
+            Untel X.
 
-        .mainrow
-          %input{:type => "checkbox"}
-          %a{:href => "#"} Relance de payement
+      .mainrow
+        %input{:type => "checkbox"}
+        %a{:href => "#"} Relance de payement
 
 
 
 
-    .btn-in-list
-      = link_to new_task_path do
-        %i.entypo.edi-plus-3
-        %span
-          Nouvelle tâche
+  .btn-in-list
+    = link_to new_task_path do
+      %i.entypo.edi-plus-3
+      %span
+        Nouvelle tâche
           
           
