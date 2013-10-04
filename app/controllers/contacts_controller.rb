@@ -1,9 +1,11 @@
 class ContactsController < AppController
   def index
-    @contacts = Contact.advanced_search(params).page params[:page]
-    if @contacts.size < 1
-      render 'empty'
-    end
+    @contacts = Contact.advanced_search(params)
+    
+    @contacts = @contacts.page params[:page]
+    # if @contacts.present? == false
+      # render 'empty'
+    # end
   end
 
   def show_map
