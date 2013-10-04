@@ -18,7 +18,7 @@
 #
 
 class Contact < ActiveRecord::Base
-  default_scope { where(:account_id => Account.current_id).order(:name) }
+  default_scope { where(:account_id => Account.current_id).order("contacts.name") }
 
   attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_list, :network_list, :custom_list
   has_many :emails, :dependent => :destroy
@@ -49,7 +49,21 @@ class Contact < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  scope :searchy, lambda { |names|
+    joins(:tags).where(tags: {name: names}).group('contacts.id').having(['COUNT(*) >= ?', names.length])
+  }
+  scope :tagged_by, lambda { |names|
+    all(:conditions => {:tags => {:name => names}},
+          :joins      => :taggings,
+          :joins      => :tags,
+          :group      => 'contacts.id',
+          :having     => ['COUNT(*) >= ?', names.length]
+        )
+  }
   scope :tagged_with, lambda { |tag_name| joins(:tags).where('tags.name = ?', tag_name) }
+  scope :by_style, lambda { |tag_name| joins(:tags).where("tags.name = ? AND tags.type = 'Style'", tag_name) }
+  scope :by_network, lambda { |tag_name| joins(:tags).where("tags.name = ? AND tags.type = 'Network'", tag_name) }
+  scope :by_contract, lambda { |tag_name| joins(:tags).where("tags.name = ? AND tags.type = 'Contract'", tag_name) }
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%")}
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%")}
   scope :with_reportings, joins: :reportings
@@ -106,43 +120,21 @@ class Contact < ActiveRecord::Base
 
   def self.advanced_search(params)
     if params[:capacity_lt].present? || params[:capacity_gt].present? || params[:venue_kind].present?
-      @contacts = Venue.order(:name)
-      @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
-      @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
-      @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
+      @contacts = Venue.order("contacts.name")
     else
-      @contacts = Contact.order(:name)
+      @contacts = Contact.order("contacts.name")
     end
 
     @contacts = @contacts.by_department(params[:dept]) if params[:dept].present?
-    if params[:style_list].present? || params[:contract_list].present? || params[:custom_list].present?
-      fields = []
-      values = []
-      params[:style_list].split(',').each do |t|
-        fields << "tags.name = ? AND tags.type = 'Style'"
-        values << t.strip
-      end
-      style_fields = fields.join(" OR ")
-
-      fields = []
-      params[:contract_list].split(',').each do |t|
-        fields << "tags.name = ? AND tags.type = 'Contract'"
-        values << t.strip
-      end
-      contract_fields = fields.join(" OR ")
-
-      fields = []
-      params[:custom_list].split(',').each do |t|
-        fields << "tags.name = ? AND tags.type = 'CustomTag'"
-        values << t.strip
-      end
-      custom_fields = fields.join(" OR ")
-
-      fields = [style_fields, contract_fields, custom_fields].reject(&:empty?).join(" AND ")
-      
-      @contacts = @contacts.joins(:tags).where([fields] + values)
-
+    search_tags = []
+    [params[:style_list], params[:contract_list], params[:custom_list] ].each do |p|
+      search_tags += p.split(",").map(&:strip) if p.present?
     end
+    
+    @contacts = @contacts.searchy(search_tags) if search_tags.present?
+    @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
+    @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
+    @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
     @contacts
   end
 

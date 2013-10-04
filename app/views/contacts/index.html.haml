@@ -215,7 +215,7 @@
 .row-fluid
   My Form
   = form_tag contacts_path, method: :get do
-    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]], params[:venue_kind])
+    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]], params[:venue_kind]), prompt: "Type de lieu ..."
     = text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
     = text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
     = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)"
