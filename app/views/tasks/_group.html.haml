@@ -2,6 +2,7 @@
   %ul.list-medium
     - the_tasks.send(due).each do |t|
       %li
+        %input{:type => "checkbox"}
         .rightrow.small
           = show_badge(color, t.specific_time? ? t.friendly_date : t(due))
           .actions
@@ -12,20 +13,25 @@
             - else
               = link_to edit_task_path(t), :class => "shybtn" do
                 %i.entypo.edi-pencil
-
-        .rightrow
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag "squared/pro2.jpg"
-              ProjetXqsd
-          .s1of2
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag t.assignee.avatar
-              = t.assignee.nickname
-
+                
         .mainrow
-          %input{:type => "checkbox"}
-          - if asset.present?
-            = link_to t.name, send("edit_#{asset.class.name.downcase}_task_path",asset,t)
-          - else
-            = link_to t.name, edit_task_path(t)
+          .title
+            - if asset.present?
+              = link_to t.name, send("edit_#{asset.class.name.downcase}_task_path",asset,t)
+            - else
+              = link_to t.name, edit_task_path(t)
+          
+          .infos-line
+            .infos-part
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag "squared/pro1.jpg"
+                Salle Untel
+            .infos-part  
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag "squared/pro2.jpg"
+                Projet X.
+            .infos-part
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag t.assignee.avatar
+                = t.assignee.nickname
+        
