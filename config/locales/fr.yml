@@ -245,6 +245,8 @@ fr:
     contacted: contactés
     dept: "par département"
     tagged_with: "Filtre"
+    capacities_between: Jauge comprise entre
+    capacities_less_than: "Jauge inferieure à "
   
   # Kind of addresses
   main_address: Adresse principale
