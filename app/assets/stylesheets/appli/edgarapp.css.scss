@@ -108,7 +108,7 @@ a:visited, a:active, a:link {text-decoration:none;}
     //transition: none;
     //height:24px;
     font-size: 16px;
-    
+    background:#fff;
     padding: 6px 10px;
     &:focus {border-color:$green; box-shadow: none;};
 }
@@ -847,7 +847,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   position:fixed;
   top:30px;
   float:right;
-  right:-315px;// - 315 -255px;
+  right:-295px;// - 315 -255px;
   font-size:20px;
   margin-left:45px;
   padding:20px 30px;
@@ -859,7 +859,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   -moz-border-radius: 0 0 0 6px;
   border-radius: 0 0 0 6px;
 
-  width:255px;
+  width:235px;
   @include transition(all, 0.2s);
   
   .list-header {font-size:20px;}
@@ -868,7 +868,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   li a:hover{color:$white;};
 }
 
-#plusmenu:hover #plusmenu-trigger { right:320px; }
+#plusmenu:hover #plusmenu-trigger { right:300px; }
 #plusmenu:hover .pluslist{ right:0px; }
 
 #plusmenu-trigger {
@@ -1059,8 +1059,11 @@ a.label-large:hover i {background: $yellow;}
   z-index:3000;
 }
 
-/* View EDIT _____________________________________________________ */
 
+
+
+
+/*  _____________________________________________________ View EDIT */
 
 //.controls, .control-group//, .control-group label
 //{display:inline;}
@@ -1079,12 +1082,11 @@ a.label-large:hover i {background: $yellow;}
   background:$dbeige2;
   color:$dblue;
   text-shadow: none;
-  
   //padding: 6px 11px;//0 6px;
   //line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
-};
+}
 
 select.add-on {height:34px;}
 
@@ -1136,7 +1138,7 @@ span.add-on {height:22px !important; display:block;}
   
 }
 
-.fields-group .fields:not(:last-child) {margin-bottom:24px;};
+.fields-group .fields:not(:last-child) {margin-bottom:10px;};
 .add_nested_fields i {float:right;
   color:$green2;
 } 
@@ -1144,10 +1146,7 @@ span.add-on {height:22px !important; display:block;}
 
 .fields-group { padding:20px 0;
   &:hover {background-color:$white;}
-  
-  
-  
-  }
+}
 
 .remove_nested_fields i {float:right;
   color:$red;
@@ -1163,7 +1162,7 @@ span.add-on {height:22px !important; display:block;}
   
 }
 
-.form-horizontal .links {margin-bottom: 40px;}
+.form-horizontal .links {margin-bottom: 20px;}
 .form-inputs {max-width:900px;}
 .form-horizontal .form-actions {
     padding-left: 220px;
@@ -1186,12 +1185,11 @@ label {
   select {display:block; position:absolute; left:0;}
 }
 
-form section { margin-bottom:120px;}
-
+form section { margin-bottom:60px;}
 form .section-title { margin-left:220px;
-  //font-weight:300; font-size:40px;
   margin-bottom:40px;
 }
+.form-inputs header {margin-bottom:30px;}
 
 .form-actions {background:none;}
 
@@ -1251,7 +1249,6 @@ input.apple  {margin-left:20px;}
 .addresses select:first-child { position:absolute; right:50px; top: 10px;}
 
 //.form-inputs header .btn {float:left; margin-left:25px;}
-.form-inputs header {margin-bottom:50px;}
 
 //.addresses > div:first-child {position:absolute; top:10px; left:270px;}
 select.select-right { width:auto; background:$dbeige2;}
