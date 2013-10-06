@@ -49,7 +49,7 @@
                 .form-signin
                   /%h2 #{t("simple_form.labels.defaults.signin")}
                   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-                    = f.input_field :email, :autofocus => true, :class => "medium", :placeholder => "#{t("simple_form.labels.defaults.first_name")}"
+                    = f.input_field :email, :autofocus => true, :class => "medium", placeholder:"#{t("simple_form.labels.defaults.email")}"
                     = f.input_field :password, :class => "small", :placeholder => "#{t("simple_form.labels.defaults.password")}"
                     /= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
                     = render "devise/shared/links"

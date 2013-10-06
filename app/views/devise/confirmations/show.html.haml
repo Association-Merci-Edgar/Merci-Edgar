@@ -19,17 +19,9 @@
       - if @requires_password
         .row-fluid
           .span6
-            = f.input_field :name, :autofocus => true
-        .row-fluid
-          .span6
             = f.input_field :first_name
           .span6
-            = f.input_field :last_name
-            
-        .row-fluid
-          .span12
-            = f.simple_fields_for :accounts do |account|
-              = account.input_field :name
+            = f.input_field :last_name, autocomplete: "off"
             
         .row-fluid
           .span6
@@ -40,6 +32,11 @@
           %span.infolabel
             #{t("simple_form.labels.defaults.recommnandations_password")}        
         
+        .row-fluid
+          .span12
+            = f.simple_fields_for :accounts do |account|
+              = account.input_field :name, placeholder: "Nom de votre label, association, groupe, compagnie ..."
+
         
 
       = hidden_field_tag :confirmation_token, @confirmation_token

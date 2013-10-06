@@ -59,7 +59,7 @@ Edgar::Application.routes.draw do
 
 # handles /
   root to: redirect("/#{I18n.default_locale}")
-  match '*path', :to => 'errors#routing'
+  # match '*path', :to => 'errors#routing'
 end
 #== Route Map
 # Generated on 14 Aug 2013 18:50
