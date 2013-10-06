@@ -203,10 +203,16 @@ squared/pro5.jpg: squared/pro5-dad3018dde8e1cb4a5f8b4f00d956b9e.jpg
 squared/pro5/index.jpg: squared/pro5-dad3018dde8e1cb4a5f8b4f00d956b9e.jpg
 application.js: application-1f5b2dc96293b8a0164981fbdc77fac9.js
 application/index.js: application-1f5b2dc96293b8a0164981fbdc77fac9.js
+contacts.js: contacts-4c78b92308d5b1a4176a84731a44c2d5.js
+contacts/index.js: contacts-4c78b92308d5b1a4176a84731a44c2d5.js
+contacts_form.js: contacts_form-6b853a283ebfad5d666581fad20b4dda.js
+contacts_form/index.js: contacts_form-6b853a283ebfad5d666581fad20b4dda.js
 contacts_index.js: contacts_index-15bdfae8b0e9021ece80e556206eafeb.js
 contacts_index/index.js: contacts_index-15bdfae8b0e9021ece80e556206eafeb.js
 onepage/application.js: onepage/application-91975525110f0f8022ddfcbf6290ee32.js
 onepage/application/index.js: onepage/application-91975525110f0f8022ddfcbf6290ee32.js
+tag.js: tag-3feba4d0cc685f1885bf7d57d0745fb5.js
+tag/index.js: tag-3feba4d0cc685f1885bf7d57d0745fb5.js
 application.css: application-d1bd424270256f6be769ffc047471979.css
 application/index.css: application-d1bd424270256f6be769ffc047471979.css
 onepage.css: onepage-adfab23d11e2a1953d001b20909d9bcd.css
