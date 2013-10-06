@@ -19,16 +19,17 @@
 
 class Address < ActiveRecord::Base
   belongs_to :contact, touch:true
+  belongs_to :account
   attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info
   acts_as_gmappable :process_geocoding => false, address: :full_address
   geocoded_by :full_address
   after_validation :geocode
-  # before_save :geocode
+  before_save :set_account
   validates :postal_code, presence: true
   validates :city, :presence => :true
   validates :country, :presence => :true
 
-  default_scope { where(:account_id => Account.current_id) }
+  # default_scope { where(:account_id => Account.current_id) }
 
 #  scope :with_contact, lambda { |account_id| includes(:contact).where("contacts.account_id = ?", account_id) }
 
@@ -163,6 +164,9 @@ REGIONS = {
   24 => { name: "Basse-Normandie" }
 }
 
+  def set_account
+    self.account_id = self.contact.account_id
+  end
 
   def full_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki

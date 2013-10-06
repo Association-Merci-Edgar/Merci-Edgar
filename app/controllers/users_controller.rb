@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  # layout "application", only: [:edit]
   before_filter :authenticate_user!
 
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
+    render layout: "simple"
   end
 
   def show

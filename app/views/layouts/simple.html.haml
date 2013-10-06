@@ -2,6 +2,9 @@
 %html
   %head
     = render 'layouts/head_app'
+    
   %body
     = yield
-
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'jquery_ujs'
+    

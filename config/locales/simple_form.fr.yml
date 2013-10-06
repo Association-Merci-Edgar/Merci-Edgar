@@ -54,6 +54,7 @@ fr:
       defaults:
         start: "Début"
         end: "Fin"
+        email: "Votre email"
         password: "Mot de passe"
         forgot_password : "Mot de passe oublié ?"
         choose_password : "Choisissez un mot de passe"
