@@ -203,6 +203,8 @@ squared/pro5.jpg: squared/pro5-dad3018dde8e1cb4a5f8b4f00d956b9e.jpg
 squared/pro5/index.jpg: squared/pro5-dad3018dde8e1cb4a5f8b4f00d956b9e.jpg
 application.js: application-1f5b2dc96293b8a0164981fbdc77fac9.js
 application/index.js: application-1f5b2dc96293b8a0164981fbdc77fac9.js
+contacts_index.js: contacts_index-15bdfae8b0e9021ece80e556206eafeb.js
+contacts_index/index.js: contacts_index-15bdfae8b0e9021ece80e556206eafeb.js
 onepage/application.js: onepage/application-91975525110f0f8022ddfcbf6290ee32.js
 onepage/application/index.js: onepage/application-91975525110f0f8022ddfcbf6290ee32.js
 application.css: application-d1bd424270256f6be769ffc047471979.css
