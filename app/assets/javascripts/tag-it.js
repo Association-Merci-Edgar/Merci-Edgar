@@ -29,7 +29,7 @@
     $.widget('ui.tagit', {
         options: {
             allowDuplicates   : false,
-            caseSensitive     : true,
+            caseSensitive     : false,
             fieldName         : 'tags',
             placeholderText   : null,   // Sets `placeholder` attr on input field.
             readOnly          : false,  // Disables editing.

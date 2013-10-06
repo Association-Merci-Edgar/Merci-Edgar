@@ -108,7 +108,7 @@ a:visited, a:active, a:link {text-decoration:none;}
     //transition: none;
     //height:24px;
     font-size: 16px;
-    
+    background:#fff;
     padding: 6px 10px;
     &:focus {border-color:$green; box-shadow: none;};
 }
@@ -347,7 +347,7 @@ section > h4 {display:block; margin-bottom:24px;}
   border:none;
   text-shadow: none;
   background-color:$green;
-  &:hover {background-color:$dblue;};
+  &:hover, &:focus {background-color:$dblue;};
   @include transition(background, 0.2s)
 }
 
@@ -637,7 +637,8 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   @include transition(transform, .2s)
 }
 
-*:active .caret-ed, *:focus .caret-ed, .active .caret-ed {
+.dropdown-toggle:active .caret-ed, .dropdown-toggle:focus .caret-ed,
+.filters-trigger.active .caret-ed {
   -moz-transform:rotate(180deg); //firefox
   -webkit-transform:rotate(180deg); //Chrome, Safari
   -o-transform:rotate(180deg); //Opera
@@ -778,7 +779,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 /*  ________________________________________________________ filters  V2  */
 
 .sorters {margin-bottom:10px;
-  .dropdown {display:inline-block;}
+  .dropdown {display:inline-block; margin-right:6px;}
   }
 
 .filters-outercontainer {
@@ -803,22 +804,31 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 .filters-stage {
   padding-top:10px;
-  a.tag-actor { background:$dbeige; padding:2px 9px; font-size:16px;
-    .close{ font-size: 0.9em;
+  a.tag-actor { background:$dbeige; padding:2px 9px; font-size:16px; margin-right: 4px;
+    cursor:pointer;
+    &:hover{background:$dblue60;};
+    .close { font-size: 0.9em;
         margin-left: 3px;
         margin-top: 2px; }
   }
 }
-.btn.active {background:$white; color:$dblue; box-shadow:none;} 	
+
+
+.btn.active {background:$white; color:$dblue; box-shadow:none;}
+
 .popover {
     max-width: 320px;
-    input{margin-bottom:0;}
+    input, form, select {margin-bottom:0;}
+    .hint{color:$mblue; font-size:14px; margin-top:10px; display:block;}
     .inline-inputs {margin-left:0; display: inline-block;}
-    input[name="cap_min"]{text-align:right;}
+    input[name="capacity_lt"]{text-align:right;}
+    input[type="submit"]{margin-left:5px;}
 }
 .add-middle { padding:5px; background:$dbeige; display: inline;
     padding: 7px;
     vertical-align: middle;}
+
+
 
 /*  ________________________________________________________ plusmenu    */
 #plusmenu {
@@ -837,7 +847,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   position:fixed;
   top:30px;
   float:right;
-  right:-315px;// - 315 -255px;
+  right:-295px;// - 315 -255px;
   font-size:20px;
   margin-left:45px;
   padding:20px 30px;
@@ -849,7 +859,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   -moz-border-radius: 0 0 0 6px;
   border-radius: 0 0 0 6px;
 
-  width:255px;
+  width:235px;
   @include transition(all, 0.2s);
   
   .list-header {font-size:20px;}
@@ -858,7 +868,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   li a:hover{color:$white;};
 }
 
-#plusmenu:hover #plusmenu-trigger { right:320px; }
+#plusmenu:hover #plusmenu-trigger { right:300px; }
 #plusmenu:hover .pluslist{ right:0px; }
 
 #plusmenu-trigger {
@@ -1049,8 +1059,11 @@ a.label-large:hover i {background: $yellow;}
   z-index:3000;
 }
 
-/* View EDIT _____________________________________________________ */
 
+
+
+
+/*  _____________________________________________________ View EDIT */
 
 //.controls, .control-group//, .control-group label
 //{display:inline;}
@@ -1069,12 +1082,11 @@ a.label-large:hover i {background: $yellow;}
   background:$dbeige2;
   color:$dblue;
   text-shadow: none;
-  
   //padding: 6px 11px;//0 6px;
   //line-height: 30px;
   // @include contentbox;
   // @extend .btn-primary;
-};
+}
 
 select.add-on {height:34px;}
 
@@ -1126,7 +1138,7 @@ span.add-on {height:22px !important; display:block;}
   
 }
 
-.fields-group .fields:not(:last-child) {margin-bottom:24px;};
+.fields-group .fields:not(:last-child) {margin-bottom:10px;};
 .add_nested_fields i {float:right;
   color:$green2;
 } 
@@ -1134,10 +1146,7 @@ span.add-on {height:22px !important; display:block;}
 
 .fields-group { padding:20px 0;
   &:hover {background-color:$white;}
-  
-  
-  
-  }
+}
 
 .remove_nested_fields i {float:right;
   color:$red;
@@ -1153,7 +1162,7 @@ span.add-on {height:22px !important; display:block;}
   
 }
 
-.form-horizontal .links {margin-bottom: 40px;}
+.form-horizontal .links {margin-bottom: 20px;}
 .form-inputs {max-width:900px;}
 .form-horizontal .form-actions {
     padding-left: 220px;
@@ -1176,12 +1185,11 @@ label {
   select {display:block; position:absolute; left:0;}
 }
 
-form section { margin-bottom:120px;}
-
+form section { margin-bottom:60px;}
 form .section-title { margin-left:220px;
-  //font-weight:300; font-size:40px;
   margin-bottom:40px;
 }
+.form-inputs header {margin-bottom:30px;}
 
 .form-actions {background:none;}
 
@@ -1241,7 +1249,6 @@ input.apple  {margin-left:20px;}
 .addresses select:first-child { position:absolute; right:50px; top: 10px;}
 
 //.form-inputs header .btn {float:left; margin-left:25px;}
-.form-inputs header {margin-bottom:50px;}
 
 //.addresses > div:first-child {position:absolute; top:10px; left:270px;}
 select.select-right { width:auto; background:$dbeige2;}
@@ -1430,14 +1437,14 @@ a.tag {
   @include roundcorners;
   text-decoration:none;
   //text-transform:lowercase;
-  &:hover {text-decoration:none; color:$white;}
+  &:hover, &:active, &.active {text-decoration:none; color:$white;}
 }
 
-a.tag-type {border-color:$orange; &:hover {background-color:$orange;} }
-a.tag-style {border-color:$green; &:hover {background-color:$green;} }
-a.tag-legal {border-color:$yellow;  &:hover {background-color:$yellow; color:$dblue;} }
-a.tag-custom {border-color:$lblue; &:hover {background-color:$lblue;} }
-a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
+a.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
+a.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
+a.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
+a.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
+a.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
 
 .number {font-size: 20px; color:$dblue;}
 .city:after {content:",";};
@@ -1506,7 +1513,7 @@ a.tag-custom2 {border-color:$dblue; &:hover {background-color:$dblue;} }
 
 /*  _____________________________________________________  LISTS   */
 
-.filters-stage [data-role=close]{float:right;}
+
 
 .btn-in-list {
   & a {color: $dblue; display:block; font-size:20px;
@@ -1528,12 +1535,20 @@ li {line-height: inherit;}
 
 /* __________________________________ List_medium  */
 .list-medium li {
-  a {font-size:17px;}
-  line-height:28px;
-  a {display:block; }
+  .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
+  .infos-line{
+    
+    .pic-mini {width:20px; margin-right: 6px;}
+    a {font-size:17px; }
+    .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
+    }
+  }
+  //line-height:28px;
+  //a {display:block; }
   min-height:28px;
-  padding:14px 0px;
+  padding:18px 0px;
   border-bottom: dotted 1px lighten( $dblue, 60% );
+  
   .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
   /*.span7 {font-size:17px;
     a { margin-left:25px; }
