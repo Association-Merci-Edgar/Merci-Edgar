@@ -29,24 +29,24 @@
     .dropdown
       / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Tous les Contacts
+        Tous les contacts
         %i.entypo.caret-ed
 
       %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
         %li{role: "presentation"}
           = link_to contacts_path, role: "menuitem", tabindex: "-1" do
-            Tous les Contacts
+            Tous les contacts
         %li{role: "presentation"}
           = link_to people_path, role: "menuitem", tabindex: "-1" do
             Toutes les personnes
         %li{role: "presentation"}
           = link_to venues_path, role: "menuitem", tabindex: "-1" do
-            Toutes les structures
+            Tous les lieux
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment consulté
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment consultés
         %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment crée
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment créés
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
           %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans mot-clés
@@ -126,16 +126,16 @@
         
         %a#f_type.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_sel(this); return false' method='post' action='#'><select name='f_venue_kind' id='theselect'><option value=''></option><option value='bar'>Bar</option><option value='theater_cafe'>Cafe Theatre</option><option value='cultural_center'>Centre culturel</option></select><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           //<input type='text' name='thefield' id='f_venue_kind' class='input-large' autofocus='autofocus' placeholder='SMAC, Zenith…'>
-          Type de lieux
+          Type de lieu
         
         %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large' autofocus='autofocus' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
-          Ésthétique
+          Esthétique
           
         %a#f_custom.tag.tag-legal{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_contract_list' class='input-large' autofocus='autofocus' placeholder='Co-realisation, Location…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
-          Type de contrats
+          Type de contrat
         
         %a#f_custom.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_custom_list' class='input-large' autofocus='autofocus' placeholder='Autre mot-clés…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
-          Autre mot-clés
+          Autres mot-clés
         
 
 
@@ -151,7 +151,7 @@
           %a#final_submit.btn.btn-primary{:href => "#"}
             Rechercher
           
-.filters-hiddenform
+.filters-hiddenform.hidden
   //.hidden
   = form_tag contacts_path, method: :get do
     = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]], params[:venue_kind]), prompt: "Type de lieu ..."
