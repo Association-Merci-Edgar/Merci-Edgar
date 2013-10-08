@@ -8,7 +8,7 @@ $lblue:   lighten( $dblue, 40% );
 $vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
 $beige:   #edede8;
 $dbeige:  rgba(194, 194, 177, 1);
-$dbeige2:  rgba(209, 209, 197, 1);
+$dbeige2: rgba(209, 209, 197, 1);
 $orange:  #ff5a3e;
 $yellow:  #EDE232;
 $green:   rgba(80, 190, 180, 1);//#50bfb2
@@ -78,6 +78,17 @@ $white:   #fff;
   user-select: none;
 }
 
+@mixin rotate( $degrees ) {
+  -webkit-transform: rotate(#{$degrees}deg); //Chrome, Safari
+  -moz-transform: rotate(#{$degrees}deg); //firefox
+  -ms-transform: rotate(#{$degrees}deg);
+  -o-transform: rotate(#{$degrees}deg); //Opera
+  transform: rotate(#{$degrees}deg);
+  filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)});
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
+  zoom: 1;
+}
+
 @mixin btn {}
 
 @mixin plholder($col) { 
@@ -105,6 +116,7 @@ a:visited, a:active, a:link {text-decoration:none;}
 
 #activityfield, select, input[type="file"], textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
     border-color:$dbeige2;//$vlblue;
+    border-width: 2px;
     //transition: none;
     //height:24px;
     font-size: 16px;
@@ -121,7 +133,7 @@ select, input[type="file"] {height: 35px;}
 //select:focus { outline: none; }
 
 .caret {
-border-color:#ffffff transparent transparent transparent;
+border-color:$dblue transparent transparent transparent;
 border-width:4px;
 border-style:solid;
 content: "";
@@ -230,6 +242,8 @@ body {
 	background:$beige;
 }
 
+.progress .bar { background-image: none; box-shadow: none;  background-color:$green; }
+
 .maincontent{
 	float: left;
 	width: 100%;
@@ -237,13 +251,13 @@ body {
 }
 
 .maincontentinner {
-	padding: 34px 64px 34px 48px;//34px 64px 34px 34px ;
+	padding: 48px 64px 34px 48px;//34px 64px 34px 34px ;
 }
 
 .leftpanel {
 	float: left;
 	width: 240px;
-	background: $dblue90;   //background: url(../appli/dblue.gif) top left repeat;
+	background: $dblue90; //$dbeige2;  //background: url(../appli/dblue.gif) top left repeat;
 	position:fixed;
 	height:100%;
 	z-index:2000;
@@ -352,6 +366,63 @@ section > h4 {display:block; margin-bottom:24px;}
 }
 
 
+.btn-secondary {
+  @extend .btn-primary;
+  background:$vlblue;
+  color:$white;
+  &:hover, &:focus, &:active {
+    background:$green;
+    color:$white;
+  }
+}
+
+.btn-tertiary {
+  @extend .btn-primary;
+  background:$dbeige;
+  color:$mblue;
+  &:hover, &:focus, &:active {
+    background:$green;
+    color:$white;
+  }
+}
+
+
+.btn-alert {
+  @extend .btn-primary;
+  background:$orange;
+  color:$white;
+  &:hover, &:focus, &:active {
+    background:$green;
+    color:$white;
+  }
+}
+
+.bold {font-weight:bold;}
+
+
+.btn-large {
+    font-size: 20px;
+    padding: 11px 19px;
+    letter-spacing: 0.02em;
+}
+
+#menu-vertical {
+  position: fixed;
+  right: -100px;
+  top: 153px;//112px;
+  @include rotate( 270 );
+  .btn {
+    padding-bottom: 20px;
+   // height: 20px;
+   -webkit-border-radius: 6px 6px 0 0 ;
+   -moz-border-radius: 6px 6px 0 0 ;
+   border-radius: 6px 6px 0 0 ;
+    }
+  span {
+    display: inline-block;
+    margin-bottom: 48px;
+  }
+}
 
 
 /* ______________________________________________________________ Headlines   */
@@ -386,7 +457,7 @@ h3.message {line-height: 36px;}
 header {display:block;}
 
 .subpage-nav {
-  display:inline-block;
+  display:inline;
   font-size:18px;
   margin-left:10px;
   a:not(.active) {color:$lblue;
@@ -454,6 +525,7 @@ header {display:block;}
     height:600px;
   }
 }
+
 
 
 .inline-form {
@@ -625,9 +697,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 }
 
 .clicker.active .rightbt {
-  -moz-transform:rotate(180deg); //firefox
-  -webkit-transform:rotate(180deg); //Chrome, Safari
-  -o-transform:rotate(180deg); //Opera
+  @include rotate( 180 );
 }
 
 .caret-ed {
@@ -654,30 +724,52 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 /*____________ */
 
 /*  ________________________________________ signin   */
-
+/*
 .form-signin .small {width:100px;}
 .form-signin .medium {width:240px;}
-.form-signin {
-  width:400px;
+*/
+
+.form-only {
+  width:490px;
   margin: 0 auto;
   margin-top:40px;
   display: block;
+  form{margin-bottom:30px;}
   .logotype {
     text-align: center;
     }
   .logo {
-    font-size:100px;
-    width:100%;
-    height:200px;
-    text-align: center;
+    font-size:110px;
+    width: 120px;
+    height:160px;
     background:none;
     padding:0;
+    display:block;
+    margin: 0 auto;
     
     }
     //input:not([type="checkbox"]), :not(.btn){width:100%;};
-    input[type="password"], input[type="text"] {width:100%;};
+    //input[type="password"], input[type="text"] {width:100%;};
+    label.checkbox {display:inline-block;}
     
+    *[class*="span"] {
+        min-height: 40px;}
 }
+
+
+.help-block {font-size:14px;}
+
+.form-signin {
+  width:440px;
+}
+
+legend {font-size: 20px;
+   line-height: 30px;
+   margin-bottom: 15px;
+   border:none;
+}
+.hidden{display:none !important;}
+
 #new_task {
   .task_calendar {display:none;}
   .task_calendar, .task_bucket {display:inline-block;// !important;
@@ -695,38 +787,52 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 
 //Hide the original radios and checkboxes (but still accessible)
 //	:not(#foo) > is a rule filter to block browsers that don't support that selector from applying rules they shouldn't
-/*
+
 :not(#foo) > span > input[type='radio'], 
 :not(#foo) > span > input[type='checkbox'] {
 	opacity: 0; // Hide the input, but have it still be clickable 
 	float: left;
-	width: 18px;
+	width: 24px;
 }
 
-:not(#foo) input[type='radio'] + label,
-:not(#foo) input[type='checkbox'] + label,
-:not(#foo) label.radio > input[type='radio'],
-:not(#foo) label.checkbox > input[type='checkbox']  {
-	//margin: 0;
-	clear: none;
+:not(#foo) > span > input[type='radio'] + label,
+:not(#foo) > span > label.radio > input[type='radio'],
+:not(#foo) > span > input[type='checkbox'] + label,
+:not(#foo) > span > label.checkbox > input[type='checkbox'] {
+  margin: 0;
+  margin-bottom: 12px;
+  clear: none;
 // Left padding makes room for image 
-	padding: 5px 0 4px 24px;
+  padding: 2px 0 4px 32px;
 // Make look clickable because they are 
-	cursor: pointer;
-	
-	background: url(../appli/check-radio/off.png) left center no-repeat;	
+  cursor: pointer;
+  height: 18px;
+	background: url(../appli/sprites/check_radio-sprite.png) 0 -24px no-repeat;	
+}
+
+:not(#foo) > span > input[type='radio'] + label,
+:not(#foo) > span > label.radio > input[type='radio'] {
+  background-position: 0 -144px ;
 }
 
 // Change from unchecked to checked graphic 
-:not(#foo) input[type='radio']:checked + label,
- {
-	background-image: url(../appli/check-radio/radio.png);
+:not(#foo) > span > input[type='radio']:checked + label {
+	background-position: 0 -192px;//url(../appli/check-radio/radio.png);
 }
-:not(#foo) input[type='checkbox']:checked + label {
-	background-image: url(../appli/check-radio/check.png);
+:not(#foo) > span > input[type='checkbox']:checked + label {
+  background-position: 0 -72px; //background-image: url(../appli/check-radio/check.png);
 }
 
-*/
+// and the focuses
+:not(#foo) > span > input[type='radio']:focus:not(:checked) + label,
+:not(#foo) > span > input[type='radio']:active + label {
+	background-position: 0 -216px;//url(../appli/check-radio/radio.png);
+}
+:not(#foo) > span > input[type='checkbox']:focus:not(:checked) + label,
+:not(#foo) > span > input[type='checkbox']:active + label {
+  background-position: 0 -96px; //background-image: url(../appli/check-radio/check.png);
+}
+
 
 
 /*  ________________________________________ CUSTOM checkbox & radio V2 __  use with custom-form-elements.js  
@@ -820,7 +926,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
     max-width: 320px;
     input, form, select {margin-bottom:0;}
     .hint{color:$mblue; font-size:14px; margin-top:10px; display:block;}
-    .inline-inputs {margin-left:0; display: inline-block;}
+    .inline-inputs {margin-left:0; display: inline-block; margin-bottom:0px;}
     input[name="capacity_lt"]{text-align:right;}
     input[type="submit"]{margin-left:5px;}
 }
@@ -834,18 +940,16 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 #plusmenu {
   position: fixed;
   width:45px;
-  top:29px;
+  top:46px;
   color:#fff;
   z-index:800;
 }
 
 
-
-
 .pluslist {
   display:inline-block;
   position:fixed;
-  top:30px;
+  top:46px;
   float:right;
   right:-295px;// - 315 -255px;
   font-size:20px;
@@ -880,16 +984,16 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   
   i {
     font-size:36px;
-  	width:45px;
+    width:45px;
     height:45px;
-    padding: 4px 6px 4px 6px;
+    padding: 5px 6px 4px 6px;
     margin-right:-10px;
     text-align:center;
     background: $green;
     -webkit-border-radius: 6px 0 0 6px;
     -moz-border-radius: 6px 0 0 6px;
     border-radius: 6px 0 0 6px;
-    &:before {line-height:47px;};
+    &:before {line-height:46px;};
   }
 }
 
@@ -1006,6 +1110,7 @@ input.search-query {width:100%;}
   color: $dblue;
   display: block;
   padding: 5px;
+  margin-bottom:30px;
   @include borderbox;
 }
 
@@ -1060,7 +1165,9 @@ a.label-large:hover i {background: $yellow;}
 }
 
 
-
+.form-horizontal .control-group {
+    margin-bottom: 16px;
+}
 
 
 /*  _____________________________________________________ View EDIT */
@@ -1115,7 +1222,7 @@ span.add-on {height:22px !important; display:block;}
   }
 
 .inline-inputs {
-  margin-left:220px;
+  margin-left:220px; margin-bottom:10px;
   .controls {margin-left:0px;
   }
   .control-group, label {display:inline-block; margin-bottom:0px; margin-right:10px;
@@ -1126,31 +1233,41 @@ span.add-on {height:22px !important; display:block;}
 
 .nested-fields, .links {position: relative;
   &:hover {background-color:$white;}
-  }
+}
 
 .remove_nested_fields, .add_nested_fields {
-  margin-left:220px; font-size:20px; display:block;
+  margin-left:220px; font-size:18px; display:block;
   //position:absolute;
   //top:20px;
   //right:20px;
   color:$lblue;
-  i {font-size:24px;}
-  
+  i {font-size:24px; float:right;}
 }
 
-.fields-group .fields:not(:last-child) {margin-bottom:10px;};
-.add_nested_fields i {float:right;
-  color:$green2;
+.add_nested_fields:hover i {color: $green2;}
+//.remove_nested_fields:hover i {color: $red;}
+.nested-fields:hover .remove_nested_fields i {color: $red;}
+
+.add_nested_fields i {
+  color: $dbeige; //$green2;
 } 
+.remove_nested_fields i {
+  color: $dblue60; //$red;
+}
+
+input.other { margin-left:-2px;}
+
+.fields-group .fields:not(:last-child) {margin-bottom:10px;};
 
 
-.fields-group { padding:20px 0;
+
+label .help-block { margin:0; font-size:13px;}
+
+.fields-group { padding: 0;
   &:hover {background-color:$white;}
 }
 
-.remove_nested_fields i {float:right;
-  color:$red;
-}
+
   
 .fields {margin-bottom: 0px;
   //&:hover {background-color:$white;}
@@ -1158,7 +1275,7 @@ span.add-on {height:22px !important; display:block;}
 
 .nested-fields, .form-horizontal .links {
   padding:10px 0px;
-  min-height:20px;
+  min-height:10px;
   
 }
 
@@ -1179,7 +1296,7 @@ label {
   width:120px;
   position:absolute;
   top:9px;
-  margin-left: 503px;
+  margin-left: 512px;
   //display:inline-block;
   label {display:none;}
   select {display:block; position:absolute; left:0;}
@@ -1189,6 +1306,9 @@ form section { margin-bottom:60px;}
 form .section-title { margin-left:220px;
   margin-bottom:40px;
 }
+
+.control-group.nolabel {margin-left:220px;}
+
 .form-inputs header {margin-bottom:30px;}
 
 .form-actions {background:none;}
@@ -1224,7 +1344,8 @@ input.apple  {margin-left:20px;}
 
 //.checkbox, .radio {margin-right:20px;}
 .radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {margin-left: 0px;} //BS overide
-.radio.inline, .checkbox.inline {margin-right: 22px;}
+.radio.inline, .checkbox.inline {margin-right: 26px;}
+.radio, .checkbox { padding-left: 0px;} //overide BS
 
 .venue_venue_info_bar .checkbox { display:inline-block; margin-right: 20px;}
 
@@ -1251,7 +1372,12 @@ input.apple  {margin-left:20px;}
 //.form-inputs header .btn {float:left; margin-left:25px;}
 
 //.addresses > div:first-child {position:absolute; top:10px; left:270px;}
-select.select-right { width:auto; background:$dbeige2;}
+select.select-right { width:auto; background:$dbeige2;
+  font-size: 14px;
+  margin-left: -2px;
+  margin-top: 2px;
+  text-align: left;
+}
 
 
 
@@ -1458,7 +1584,7 @@ a.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-colo
   position:absolute; right:0;
 }
 
-.mini-map { position:absolute; right:0; top:54px; z-index:2; height:80px; width:120px;
+.mini-map { position:absolute; right:0; top:52px; z-index:2; height:80px; width:120px;
   &.france {background: url(../appli/sprites/france-minimap-sprite.png) no-repeat top left;}
 }
 .mini-map.france.reg-1 {background-position: -5px -5px;}
@@ -1487,7 +1613,6 @@ a.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-colo
 .mini-map.france.reg-9 {background-position: -525px -275px;}
 
 
-.row-fluid [class*="span"] { min-height :15px}
 
 .status{float:right;}
 .status .ico {font-size:16px; line-height: 9px;}
@@ -1523,6 +1648,18 @@ a.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-colo
     }
   & a:hover span{display:inline;};
   & span {display:none; margin: 0 10px;}
+}
+
+.btns-in-list {
+  & a {color: $dblue; display:block; font-size:20px;
+    padding-top:20px;}
+  & span a:hover, &:hover i{color:$green;};
+  & i {font-size:36px; display:inline;
+    }
+  &:hover span {display:inline;};
+   
+  & span a {display:inline;};
+  & span {display:none; margin: 0 ;}
 }
 
 .align-right{text-align:right;}
@@ -1582,15 +1719,13 @@ li {line-height: inherit;}
 
 /* __________________________________  List_large   */
 
-
+#contact-list.list-large li:not(.list-header) {min-height: 111px;}
 
 .list-large {
   .actions {top:56px;}
   .content {font-size:15px;color:$dblue;}
   li {
-    min-height: 111px;
     padding: 20px 0 16px;
-    
     &.list-header { padding:0; min-height: 10px; border:none;
       margin-bottom:10px;
       &:hover{background:none;}}
@@ -1598,6 +1733,8 @@ li {line-height: inherit;}
 }
 .list-large + li {padding:0;}
 
+
+nav.pagination{ display: inline-block;}
 
 .list-large {
   color:$vlblue;
@@ -1621,7 +1758,7 @@ li {line-height: inherit;}
     text-decoration:none; width:23px;}
 }
 
-
+form#contact_us .uvFieldTextarea { height:150px; };
 
 /*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
@@ -1639,28 +1776,6 @@ header {
   } 
   .pic{width:80px;}
 }
-
-.btn-secondary {
-  @extend .btn-primary;
-  background:$vlblue;
-  color:$white;
-  &:hover, &:focus, &:active {
-    background:$green;
-    color:$white;
-  }
-}
-
-.btn-tertiary {
-  @extend .btn-primary;
-  background:$dbeige;
-  color:$mblue;
-  &:hover, &:focus, &:active {
-    background:$green;
-    color:$white;
-  }
-}
-
-.bold {font-weight:bold;}
 
 //#account-page .row-fluid { margin-bottom:36px;}
 
@@ -1711,7 +1826,7 @@ header {
   #activityfield{ width:95%;
     @include b-radius-notLR ("right")
     }
-  .btn {
+  button {
     width:5%;
     min-height:80px;
     font-size:24px;
@@ -1850,7 +1965,7 @@ ul.social-list {
 
 $tooltipBKG: $mblue;
 $tooltipTXT: $white;
-.tooltip-inner {background:$mblue; }
+.tooltip-inner {background:$tooltipBKG; font-size:14px;}
 
 .tooltip.top .tooltip-arrow {border-top:5px solid $tooltipBKG;}
 .tooltip.left .tooltip-arrow {border-left:5px solid $tooltipBKG;}
@@ -1884,8 +1999,10 @@ $tooltipTXT: $white;
   border-bottom-color: $tooltipBKG;
 }
 
-
-
+/* ___________________________________________________  Bootstrap dropdown-menu  */
+.dropdown-menu > li > a {
+  &:hover, &:focus { background:$green; }
+}
 
 
 @media (max-width: 1024px) {
