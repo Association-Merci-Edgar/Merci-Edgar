@@ -10,7 +10,7 @@
       /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
       = link_to "une tâche", new_venue_task_path(@venue), remote:true
 
-  - if @person.present?
+  - if @person.present? && @person.id.present?
     %li
       = link_to "une tâche", new_person_task_path(@person), remote:true
 

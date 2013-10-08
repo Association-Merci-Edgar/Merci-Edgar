@@ -19,7 +19,7 @@ class Venue < Structure
   validates :name, :presence => true, uniqueness: { scope: :account_id}
   # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
-  validates_presence_of :addresses
+  # validates_presence_of :addresses
   has_many :taggings, as: :asset, :dependent => :destroy
   has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
   has_many :cap_ranges, through: :taggings, source: :tag, class_name: "CapRange"
