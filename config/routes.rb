@@ -2,12 +2,14 @@ require 'sidekiq/web'
 
 Edgar::Application.routes.draw do
 
-  get "backdoor/index"
+  get "backdoor/play1"
+  get "backdoor/play2"
+  get "backdoor/play3"
   get "tags/index"
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
-      root :to => 'welcome#index'
+      root :to => 'home#index'
       get "search/index"
     end
 
