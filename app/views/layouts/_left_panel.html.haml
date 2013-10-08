@@ -20,7 +20,8 @@
           %i.entypo.edi-cog.righticon
           /User: #{@user.name}
           
-      = menu_link("Tableau de bord", root_path, "edi-gauge","home",nil)
+      = menu_link("Bienvenue", welcome_index_path, "edi-gauge","welcome",nil)    
+      = menu_link("Tableau de bord", home_index_path, "edi-gauge","home",nil)
       = menu_link("Contacts", contacts_path, "edi-book","contacts", Contact.count)
       = menu_link("Tâches", tasks_path, "edi-check_2","tasks", Task.pending.size)
             
