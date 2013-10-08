@@ -21,14 +21,14 @@ class Person < Contact
   validates_presence_of :last_name
   alias_attribute :last_name, :name
 
-  accepts_nested_attributes_for :people_structures
+  accepts_nested_attributes_for :people_structures, :reject_if => :all_blank
 
   def other_people_structures
     self.people_structures.where("structure_id != ?", self.relative.id)
   end
 
   def main_people_structure
-    self.people_structures.where(structure_id: self.relative.id).first
+    self.people_structures.where(structure_id: self.relative.id).first if self.people_structures.present?
   end
 
   def to_s
@@ -36,7 +36,7 @@ class Person < Contact
   end
 
   def title(structure)
-    structure.people_structures.where(person_id:self.id).first.title
+    structure.people_structures.where(person_id:self.id).first.title if structure.present?
   end
 
   def info_contact(structure)
