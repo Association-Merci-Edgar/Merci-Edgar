@@ -21,7 +21,7 @@
 //= require gmaps4rails/gmaps4rails.googlemaps
 //= require uservoice
 
-// require contacts
+//= require contacts
 //= require nested_form
 //= require edgarapp
 //= require_tree ./appli
