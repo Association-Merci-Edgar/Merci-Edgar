@@ -1,0 +1,1 @@
+function goTask(e){$theItem=$(e).parent().parent(),$theItem.slideUp(200)}
