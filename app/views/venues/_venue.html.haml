@@ -17,7 +17,7 @@
       -# _________________________ dealed
       %a.ico.dealed{:href => "#"}
       
-    = content_tag("div",nil, class:"mini-map france reg-#{venue.address.region_code}")
+    = content_tag("div",nil, class:"mini-map france reg-#{venue.address.region_code}") if venue.address.present?
     
     .actions
       = link_to edit_venue_path(venue), :class => "shybtn" do

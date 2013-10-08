@@ -150,7 +150,7 @@
                         = link_to ps.structure do
                           %h4= ps.structure
                       %li
-                        = render ps.structure.address
+                        = render ps.structure.address if ps.structure.address.present?
                       %li= ps.structure.phone_number
                       %li= link_to ps.structure.website_url if ps.structure.website_url.present?
                       
