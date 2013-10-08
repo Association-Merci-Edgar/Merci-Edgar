@@ -2,7 +2,7 @@
   #account.tab-pane.active
     .row-fluid
       .span6
-        .section-title Nom et domaine
+        %h4 Nom et domaine
         = simple_form_for(@account, url: account_path) do |f|
           = f.input :name
           = f.input :domain, label: "Le préfixe de votre nom de domaine :", wrapper: "append" do
@@ -12,11 +12,13 @@
           = f.button :submit, class:'btn-primary'
           
       .span6.comingsoon
-        .section-title Forfaits et facturation
+        %h4 Forfaits et facturation
         %p
           Forfait Beta Testeur
           .badge.inline GRATUIT
           jusqu'au 31/12/2013
+          <br>
+          Plus que 28 jours !
         <input class="btn btn-primary" type="submit" value="Changer de forfait" name="commit">
 
 

@@ -1,30 +1,31 @@
-#page-content.container
-  .form-signin.medium
-    .logo
-      %i.entypo.edi-logoedgar_under.logotype
-      %i.entypo.edi-logoedgar.logotype
-      
-    %h1.page-title Bienvenue !
-    %h2 #{t("simple_form.labels.defaults.signin")}
-    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical', id: "toto" }) do |f|
-      = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}"
-      = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}"
-      
-      = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+.container.form-only.form-signin
+  .logo
+    %i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.edi-logoedgar.logotype
+  
+  %h1.page-title Bienvenue !
+  %legend #{t("simple_form.labels.defaults.signin")}
+  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical', id: "toto" }) do |f|
+    .row-fluid.control-group
+      = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}", :class=>"span6 inline"
+      = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}", :class=>"span6 inline"
+  
+    -# = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+    .control-group.boolean.optional.user_remember_me
       -#
-        .control-group.boolean.optional.user_remember_me
-          .controls.ui-widget
-            %input{name: "user[remember_me]", type: "hidden", value: "0"}/
-            %label.checkbox
-            %label.control-label
-              %label.boolean.optional.control-label{for: "user_remember_me"} Remember me
-          
-          
-        %input.btn.btn-primary{name: "commit", type: "submit", value: "Se connecter"}/
-      
-      
-      = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'btn-primary'
-    = render "devise/shared/links"
-    = link_to "Aller sur www.merciedgar.com", "http://www.merciedgar.com"
+        /%label.checkbox.hidden
+          /%input{name: "user[remember_me]", type: "hidden", value: "0"}/
+      %span
+        %input.optional{id: "user_remember_me", type: "checkbox", value: "0"} 
+        %label{for: "user_remember_me"} Se souvenir de moi
 
-
+          
+      -#/%input.btn-primary.btn-large{name: "commit", type: "submit", value: "Se connecter"}/
+  
+    <br>
+    = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'btn-primary btn-large'
+    .link
+      <br>
+      = render "devise/shared/links"
+      .pull-right
+        = link_to "www.merciedgar.com", "http://www.merciedgar.com"

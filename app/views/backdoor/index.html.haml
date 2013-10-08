@@ -51,6 +51,18 @@
             %input#Field4.field.checkbox{name: "Field4", onchange: "handleInput(this);", tabindex: "6", type: "checkbox", value: "Third Choice"}/
             %label.choice{for: "Field4"} Third Choice
           
+          .dropdown
+            //ici un select :
+            %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", type: "button"}
+              Selectionner un projet
+              %span.caret-ed
+            %ul.dropdown-menu
+              %li{role: "presentation"}
+                %a{href: "#", role: "menuitem", tabindex: "-1"}
+                  projet 1
+              %li{role: "presentation"}
+                %a{href: "#", role: "menuitem", tabindex: "-1"}
+                  projet 2
           
           
     %li#fo143li1.notranslate.focused.span4

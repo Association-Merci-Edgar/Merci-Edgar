@@ -1,0 +1,266 @@
+- content_for :scripts do
+  = javascript_include_tag "contacts"
+  = javascript_include_tag "tag"
+  = javascript_include_tag "contacts_form"
+
+
+#menu-vertical
+  %span
+    = link_to t(:cancel), @venue
+    ou
+  .btn.btn-alert.btn-large.btn-submit{:href => "#"}
+    Enregistrer    
+
+
+%h1.page-title Modifier la salle
+/%h2= @venue.name
+
+= simple_nested_form_for(@venue, :html => { :class => 'form-horizontal form-edit' }) do |f|
+  /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
+  = display_errors(@venue)
+
+  .form-inputs
+    %header
+      .control-group
+        .pic-container
+          .pic= image_tag @venue.avatar
+
+        = f.input :name, label: false, :class => "input-Xlarge"
+        
+        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+
+
+    %section#contact-infos
+      .section-title
+        .title Coordonnées
+      / ________________________________________________________ email
+      = f.fields_for :emails do |email|
+        .nested-fields
+          = email.link_to_remove :title => "Remove this email" do
+            %i.entypo.edi-minus-2
+          = email.input :address, label:"Email", :wrapper => :append do
+            = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
+            = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+            = email.input_field :specific_kind, :class => "other input-medium"
+      .links
+        = f.link_to_add :emails, :title => 'Add a new email' do
+          %i.entypo.edi-plus-2
+          Add a new email
+
+
+      / ________________________________________________________ phone
+      = f.fields_for :phones do |phone|
+        .nested-fields
+          = phone.link_to_remove :title => "Remove this phone" do
+            %i.entypo.edi-minus-2
+          = phone.input :national_number, :wrapper => :append do
+            = phone.input_field :national_number, :class => "input-medium", :validate => true
+            = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+            = phone.input_field :specific_kind, :class => "other input-medium"
+      .links
+        = f.link_to_add :phones, :title => 'Ajouter un téléphone' do
+          %i.entypo.edi-plus-2
+          Add a new phone
+
+
+
+      / ________________________________________________________ address
+      .fields-group
+        = f.fields_for :addresses do |address|
+          .nested-fields.addresses
+            = address.link_to_remove :title => "Remove this address" do
+              %i.entypo.edi-minus-2
+
+            = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+            = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+            .control-group.nolabel
+              = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
+              = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
+            .control-group.nolabel
+              = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
+              = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
+            = address.input :more_info, label:false
+
+        .links
+          = f.link_to_add :addresses, :title => 'Add a new address' do
+            %i.entypo.edi-plus-2
+            Add a new address
+
+
+
+      / ________________________________________________________ website
+      = f.fields_for :websites do |website|
+        .nested-fields
+          = website.link_to_remove :title => "Remove this website" do
+            %i.entypo.edi-minus-2
+          /= website.input :url, :label => "Website"
+          /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+
+          /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
+          = website.input :url, wrapper: :append do
+            = website.input_field :url, :class => "input-xlarge"
+            = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+
+      .links
+        = f.link_to_add :websites, :title => 'Add a new website' do
+          %i.entypo.edi-plus-2
+          Add a new website
+
+
+    %section#basic-infos
+      .section-title
+        .title Infos lieu
+    
+      -#  ________________________________________________________ TAGS V1
+      = f.input :style_list, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"Rock, humour…" }
+
+      -#  ________________________________________________________ TAGS V1
+      = f.input :network_list, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"…" }
+
+      -#  ________________________________________________________ TAGS V1
+      = f.input :custom_list, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"…" }
+    
+    
+      -#  ________________________________________________________ TAGS V2
+      -#.control-group
+      -#
+        %label.control-label Styles programmés
+        .controls
+          %input#tags.input-large{:name => "tags", :style => "display: none;", :value => "foo,bar,baz"}/
+          #tags_tagsinput.tagsinput
+            /{:style => "width: 300px; height: 100px;"}
+            %span.tag.tag-type
+              %span foo
+              %a{:href => "#", :title => "Removing tag"}
+                %i.entypo.edi-cross
+            %span.tag.tag-type
+              %span bar
+              %a{:href => "#", :title => "Removing tag"}
+                %i.entypo.edi-cross
+            %span.tag.tag-type
+              %span baz
+              %a{:href => "#", :title => "Removing tag"}
+                %i.entypo.edi-cross
+            #tags_addTag.tag-type
+              %input#tags_tag{"data-default" => "add a tag", :style => "width: 80px;", :value => ""}/
+              
+            .tags_clear
+      -#  ________________________________________________________ contracts
+      = f.association :contracts, :collection => Contract.all, :as => :check_boxes, label_method: :name, value_method: :id, item_wrapper_class:"inline"
+    
+      = f.fields_for :venue_info do |v|
+        -#, :class => "span4"
+        -#, :input_html => { :class => "span4" }
+        .nested-fields
+        
+          -#  ________________________________________________________ period
+          -# = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
+          
+
+          -#  ________________________________________________________ kind of venue
+          /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
+          = v.input :kind, :collection => [:bar, :theater_cafe, :mjc, :music_venue, :smac, :theater, :cultural_center, :other], :as => :radio_buttons, item_wrapper_class: "inline"
+        
+        
+          -#  ________________________________________________________ Services
+          = v.input :residency, label:"Services", item_wrapper_class: "inline" do
+            = v.input_field :residency, inline_label: "Residence"
+            = v.input_field :accompaniment, inline_label: "Accompagnement"
+          
+          /= v.input :bar, label:"Services", :collection => ["Bar", "Residence", "Accompagnement"], label_method: :name, value_method: :id, item_wrapper_class:"inline", :as => :check_boxes,
+          
+
+
+              
+          -#________________________________________________________ scheduling OK   
+          .control-group  
+            %label.control-label #{t("simple_form.labels.venue.venue_info.scheduling")}
+            .inline-inputs
+              = v.input :scheduling, :wrapper => :prepend, :label => false do
+                = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
+                = v.input_field :start_scheduling, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+                
+              = v.input :scheduling, :wrapper => :prepend, :label => false do
+                = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
+                = v.input_field :end_scheduling, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+                
+          -#________________________________________________________ scheduling OK   
+          .control-group  
+            %label.control-label #{t("simple_form.labels.venue.venue_info.season")}
+            .inline-inputs
+              = v.input :season, :wrapper => :prepend, :label => false do
+                = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
+                = v.input_field :start_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+
+              = v.input :season, :wrapper => :prepend, :label => false do
+                = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
+                = v.input_field :end_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+
+          
+          -# ________________________________________________________ Observations
+          = v.input :remark
+    
+    
+    
+    
+    
+    %section#basic-infos
+      .section-title
+        .title Infos salle(s) du lieu
+      -# __________________________________________________________________________________________________________________ ROOMS
+      .fields-group
+        = f.fields_for :rooms do |room|
+          .nested-fields
+            = room.hidden_field :name
+            / ________________________________________________ capacity 
+            = room.fields_for :capacities do |capacity|
+              .nested-fields.fields_for_capacities
+                = capacity.link_to_remove :title => "Supprimer cette jauge" do
+                  /Remove this capacity
+                  %i.entypo.edi-minus-2
+
+
+                %label.control-label
+                  Jauge
+                .inline-inputs  
+                  = capacity.input :nb, :wrapper => :append, :label => false do
+                    = capacity.input_field :nb, :class => "input-small"
+                    = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed], selected: :seating, :class => "add-on dropdown-toggle"
+                  = capacity.input_field :modular, inline_label:"Modulable"
+
+            .links
+              = room.link_to_add :capacities, :title => t("simple_form.buttons.add_capacity") do
+                %i.entypo.edi-plus-2
+                #{t("simple_form.buttons.add_capacity")}
+
+
+            / ____________________________ Dimensions     
+
+            .nested-fields
+              .control-group
+                %label.control-label
+                  //<a title="" href="#" data-toggle="tooltip" data-original-title="Profondeur / Largeur / Hauteur"><i class="entypo edi-help"></i></a>
+                  Dimensions plateau
+                .inline-inputs
+                  = room.input :depth, :wrapper => :append, :label => false do
+                    = room.input_field :depth, :class => "input-mini"
+                    = content_tag :span, "P", :class => "add-on"
+                  = room.input :width, :wrapper => :append, :label => false, :input_html => { :class => "inline" } do
+                    = room.input_field :width, :class => "input-mini"
+                    = content_tag :span, "L", :class => "add-on"
+                  = room.input :height, :wrapper => :append, :label => false do
+                    = room.input_field :height, :class => "input-mini"
+                    = content_tag :span, "H", :class => "add-on"
+                  %p.help-block (Profondeur / Largeur / Hauteur)
+
+              = room.input :bar
+              
+              
+
+                
+
+    / ________________________________________________________ actions
+    .form-actions
+      = f.button :submit, :class => "btn-primary btn-large btn-alert"
+      ou
+      = link_to t(:cancel), @venue

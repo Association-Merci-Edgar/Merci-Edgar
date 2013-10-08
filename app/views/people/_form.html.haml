@@ -11,9 +11,9 @@
       .control-group
         .pic-container
           .pic= image_tag @person.avatar
-          
-        = f.input :first_name, label: false, :class => "input-Xlarge"
-        = f.input :name, label: false, :class => "input-Xlarge"
+        .inline-inputs  
+          = f.input :first_name, label: false, :class => "input-Xlarge"
+          = f.input :name, label: false, :class => "input-Xlarge"
         
         = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
         
@@ -37,11 +37,12 @@
       -# ________________________________________________________ Observations
       /= f.input :remark
         
+        
+        
     %section#contact-infos
       .section-title
         .title Coordonnées
         
-      
       -#  ________________________________________________________ email
       = f.fields_for :emails do |email|
         .nested-fields
@@ -80,22 +81,26 @@
       .fields-group
         = f.fields_for :addresses do |address|
           .nested-fields.addresses
-            = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
             = address.link_to_remove :title => "Remove this address" do
               %i.entypo.edi-minus-2
       
             = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
-            = address.input :city, :label => false, :placeholder =>"Ville, localité, …", :input_html => { :class => "input-medium inline" }
-            = address.input :postal_code, :label => false, :placeholder =>"Code postal", :input_html => { :class => "input-mini inline" }
-            = address.input :state, :label => false, :placeholder =>"State"
-            = address.input :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+            = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+            .control-group.nolabel
+              /= address.input :city, :label => false do
+              = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => "inline"
+              = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-small inline"
+            .control-group.nolabel
+              = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
+              = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
+            -#= address.input :more_info, label:false
+            // dans le modéle ??
         
         .links
           = f.link_to_add :addresses do
             /Add a new address
             Ajouter une adresse
             %i.entypo.edi-plus-2
-        
         
       -# ________________________________________________________ website    
       = f.fields_for :websites do |website|
@@ -115,15 +120,20 @@
           Ajouter un site Internet
           %i.entypo.edi-plus-2
           //Add a new website
+          
+          
+    %section#basic-infos
+      .section-title
+        .title Infos sur la personne
         
-    -#  ________________________________________________________ TAGS V1
-    = f.input :style_list, label: "Styles (séparés par des virgules)", :input_html => { :class => "span6" }
+      -#  ________________________________________________________ TAGS V1
+      = f.input :style_list, label: "Styles (séparés par des virgules)", :input_html => { :class => "span6" }
 
-    -#  ________________________________________________________ TAGS V1
-    = f.input :network_list, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6" }
+      -#  ________________________________________________________ TAGS V1
+      = f.input :network_list, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6" }
 
-    -#  ________________________________________________________ TAGS V1
-    = f.input :custom_list, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6 autocomplete_tags" }
+      -#  ________________________________________________________ TAGS V1
+      = f.input :custom_list, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6 autocomplete_tags" }
         
     / ________________________________________________________ actions
     .form-actions
