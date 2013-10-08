@@ -7,7 +7,7 @@ module SimpleForm
 
         button = template.content_tag(:div, class: 'input-append') do 
           template.tag(:input, id: "pbox_#{idf}", class: 'string input-medium', :style => "display:none", type: 'text') +
-          template.content_tag(:a, I18n.t('helpers.browse'), class: 'btn', onclick: "$('input[id=#{idf}]').click();")
+          template.content_tag(:a, I18n.t('helpers.browse'), class: 'btn btn-secondary', onclick: "$('input[id=#{idf}]').click();")
         end
 
         script = template.content_tag(:script, type: 'text/javascript') do

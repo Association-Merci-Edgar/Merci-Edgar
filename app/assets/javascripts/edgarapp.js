@@ -76,7 +76,9 @@ $('#search-nav a').click(function() {
 
 $('.search-backdrop').click(function() {
   $('#search-nav').removeClass("active");
+  $('#thesearch input').val("");
   $('#thesearch').hide();
+  
 });
   
   
@@ -107,14 +109,22 @@ $(function() {
       	}	
 			});
 });
-
+/*
+$.fn.fadeUp = function() {
+  
+  $(this).animate({ height: 0, padding: 0, opacity: 0, min-height:0 }, 500);
+}
+*/
 
 //  _________________________________ Hide Notices 
 $(function() {
   $div = $('.notice:not(.error)')
   if ($div.get(0)) {    // check if the div exists
     setTimeout(function(){ //$div.animate({height: "0px"}, 400);
-        $div.fadeOut();
+        //$div.fadeOut();
+        $div.slideUp(500);
+        //$div.animate({ height: 0, padding: 0, opacity: 0, min-height:0 }, 500);
+        //$div.fadeUp();
       }, 7000);
   }
 });

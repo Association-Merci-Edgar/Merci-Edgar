@@ -1,0 +1,192 @@
+-content_for :scripts do
+  = javascript_include_tag "tour/home-tour-fr"
+  
+%header
+  %h1.page-title
+    Tableau de bord
+
+%section#dash-tasks
+  .section-title
+    .title
+      Tâches
+      .badge.badge-medium.badge-shy= Task.pending.size
+    .title-infos
+      dont
+      .badge.badge-small.badge-black= Task.overdue.size
+      en retard,
+      .badge.badge-small.badge-red= Task.due_today.size
+      pour aujourd’hui  
+
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
+
+
+  %ul.list-medium
+    %li
+      .rightrow.small
+        .badge.badge-black hier
+        .actions
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+      .rightrow
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/pro2.jpg"
+            ProjetXqsd
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/per2.jpg"
+            Untel X.
+      
+      .mainrow
+        %input{:type => "checkbox"}
+        %a{:href => "#"} Relance de payement
+          
+            
+    %li
+      .rightrow.small
+        .badge.badge-red Aujourd'hui
+        .actions
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+      .rightrow
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/pro1.jpg"
+            Fatales Picards
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/per1.jpg"
+            François U.
+      
+      .mainrow
+        %input{:type => "checkbox"}
+        %a{:href => "#"} Relance de payement Une tache avec un titre trés trés long…
+          
+    %li
+      .rightrow.small
+        .badge ASAP
+        .actions
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+      .rightrow
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini
+            Global
+        .s1of2
+      
+      .mainrow
+        %input{:type => "checkbox"}
+        %a{:href => "#"} Aller à Avignon
+
+          
+      
+    %li
+      .rightrow.small
+        .badge.badge-blue Dans 3 jours
+        .actions
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+      .rightrow
+        .s1of2
+            
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag "squared/per3.jpg"
+            Christophe R.
+      .mainrow
+        %input{:type => "checkbox"}
+        %a{:href => "#"} Back to Avigon
+        
+    
+    
+    %li
+      .rightrow.small
+        .badge.badge-green Lun. 2 Sept.
+        .actions
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+
+      .rightrow
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini
+            Global
+        .s1of2
+          %a{:href => "#"}
+            .pic.pic-mini
+            Toute l'équipe
+            
+      .mainrow
+        %input{:type => "checkbox"}
+        %a{:href => "#"} Refaire du café
+        
+          
+ 
+  .btn-in-list
+    %a.align-right{:href => "#"}
+      %span
+        Voir toutes les tâches
+      %i.entypo.edi-ellipsis
+  
+  
+  
+  
+    
+%section#dash-ednews
+  .section-title
+    .title
+      Nouveautés d’edgar
+      .badge.badge-medium.badge-shy 2
+       
+  %ul.list-medium
+    %li
+      %a{:href => "#"} En cours de developpement : Recherche multi-critères
+    %li
+      %a{:href => "#"} En cours de developpement : Multi-utilisateurs
+      
+    %li
+      %a{:href => "#"} En cours de developpement : Multi-projets
+
+
+
+
+    .btn-in-list
+      %a.align-right{:href => "#"}
+        %span
+          Voir toutes les nouveautés
+        %i.entypo.edi-ellipsis        
+
+
+%section#dash-stats
+  .section-title
+    .title
+      Statistiques
+
+  .row-fluid
+    .span3
+      .numbers-xlarge 219
+      Notes de suivis
+    .span3
+      .numbers-xlarge 146
+      tâches effectuées
+    .span3
+      .numbers-xlarge 24
+      dates créées
+    .span3
+      .numbers-xlarge 53
+      campagnes envoyées
+
+-#   
+  - if user_signed_in?
+    - if current_user.has_role? :admin
+      = link_to "Administration", users_path
+    = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+  - else
+    = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
