@@ -3,6 +3,15 @@
   = t(params[:controller]).titleize
   = @filtered_by if @filtered_by.present?
   
+  .subpage-nav
+    -#
+      = link_to tasks_path, :class =>"active" do
+        à faire
+    %a{href: "#"}
+      Tâches effectuées
+      /achevé, consommé, fini, passé, réalisé, terminé
+      /Voir les tâches récemment effectués
+  
 #dash-tasks.row-fluid
   .section-title
     .title
@@ -14,6 +23,7 @@
       en retard,
       .badge.badge-small.badge-red= Task.due_today.size
       pour aujourd’hui
+      
   /_____________________________________________________________________________ FILTERS
   .sorters
     /______________________________________________________ USERS
@@ -36,10 +46,7 @@
           %a{href: "#", role: "menuitem", tabindex: "-1"}
             .pic.pic-mini= image_tag "squared/per3.jpg"
             Utilisateurs C
-      -#
-        %li.divider{role: "presentation"}
-        %li{role: "presentation"}
-          %button.btn-primary Créer une liste
+            
           
     /______________________________________________________ PROJECTS
     .dropdown
@@ -66,7 +73,7 @@
         %li{role: "presentation"}
           %button.btn-primary Créer une liste
           
-    /______________________________________________________ PROJECTS
+    /______________________________________________________ SUBJECTS
     .dropdown
       / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
@@ -86,12 +93,7 @@
           %a{href: "#", role: "menuitem", tabindex: "-1"}
             .pic.pic-mini
             Général
-      -#
-        %li.divider{role: "presentation"}
-        %li{role: "presentation"}
-          %button.btn-primary Créer une liste
 
-  
   
 %section
   = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
@@ -129,7 +131,7 @@
 
 
   .btn-in-list
-    = link_to new_task_path do
+    = link_to new_task_path, remote:true do
       %i.entypo.edi-plus-3
       %span
         Nouvelle tâche

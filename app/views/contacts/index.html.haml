@@ -1,7 +1,7 @@
 -content_for :scripts do
   = javascript_include_tag "contacts_index"
 
-.page-title
+%header.page-title
   = t(params[:controller]).titleize
   = [@filtered_by, @param_filter].compact.join(" : ") if @filtered_by.present?
   
@@ -29,24 +29,25 @@
     .dropdown
       / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Tous les Contacts
+        Tous les contacts
         %i.entypo.caret-ed
 
       %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
         %li{role: "presentation"}
           = link_to contacts_path, role: "menuitem", tabindex: "-1" do
-            Tous les Contacts
+            Tous les contacts
         %li{role: "presentation"}
           = link_to people_path, role: "menuitem", tabindex: "-1" do
             Toutes les personnes
         %li{role: "presentation"}
           = link_to venues_path, role: "menuitem", tabindex: "-1" do
             Toutes les structures
+            
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
           %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment consulté
         %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment crée
+          %a{href: "#", role: "menuitem", tabindex: "-1"} Récemment créé
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
           %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans mot-clés
@@ -54,51 +55,52 @@
           %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans activité depuis 30 jours
     
     
-    
-    /______________________________________________________ SHORTLISTS
-    .dropdown
-      / Link or button to toggle dropdown
-      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Listes
-        %i.entypo.caret-ed
+    -#
+      /______________________________________________________ SHORTLISTS
+      .dropdown
+        / Link or button to toggle dropdown
+        %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+          Listes
+          %i.entypo.caret-ed
         
-      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            %i.edi-bookmarks
-            Liste A
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            %i.edi-bookmarks
-            Liste B
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            %i.edi-bookmarks
-            Liste C
-        %li.divider{role: "presentation"}
-        %li{role: "presentation"}
-          %button.btn-primary Créer une liste
-    
-    %button.filters-trigger.btn.btn-tertiary
-      Filtres
-      %i.entypo.caret-ed
-      
+        %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu2", role: "menu"}
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              %i.edi-bookmarks
+              Liste A
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              %i.edi-bookmarks
+              Liste B
+          %li{role: "presentation"}
+            %a{href: "#", role: "menuitem", tabindex: "-1"}
+              %i.edi-bookmarks
+              Liste C
+          %li.divider{role: "presentation"}
+          %li{role: "presentation"}
+            %button.btn-primary Créer une liste
+            
+    -#        
+      /______________________________________________________ filters-trigger
+      %button.filters-trigger.btn.btn-tertiary
+        Filtres
+        %i.entypo.caret-ed
       
       
     /______________________________________________________ STATUS  
     .status
-      = link_to only_contacts_path(filter: "favorites"), :class=>"shybtn", :title =>"Favoris" do
+      = link_to only_contacts_path(filter: "favorites"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> favoris", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.ico.edi-heart
         
-      = link_to only_contacts_path(filter: "contacted"), :class=>"shybtn", :title =>"Déjà échangé" do
+      = link_to only_contacts_path(filter: "contacted"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà échangé", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.ico.edi-comment
    
-      %a{:href => "#", :class=>"shybtn", :title =>"Déjà joué"}
+      %a{:href => "#", :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà joué", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
         %i.ico.edi-flag
     
       
         
-
+-#
   .filters-outercontainer
     .filters-container
       .filters-pool
@@ -150,35 +152,41 @@
             Réinitialiser
           %a#final_submit.btn.btn-primary{:href => "#"}
             Rechercher
-          
-.filters-hiddenform
-  //.hidden
-  = form_tag contacts_path, method: :get do
-    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]], params[:venue_kind]), prompt: "Type de lieu ..."
-    = text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
-    = text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
-    = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)"
-    = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats"
-    = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso"
-    = text_field_tag :dept, params[:dept], placeholder:  "N°Departement"
-    = button_tag "Search", name: nil
+-#          
+  .filters-hiddenform
+    //.hidden
+    = form_tag contacts_path, method: :get do
+      = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]], params[:venue_kind]), prompt: "Type de lieu ..."
+      = text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
+      = text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
+      = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)"
+      = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats"
+      = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso"
+      = text_field_tag :dept, params[:dept], placeholder:  "N°Departement"
+      = button_tag "Search", name: nil
    
    
 /______________________________________________________ LISTS       
 .row-fluid
-  %ul.list-large
+  %ul#contact-list.list-large
     %li.list-header
       = @contacts.total_count
-      résulats
+      résulats — Page 
       = paginate @contacts
+    -#  
       .meta
-        %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+        %a.shybtn{:href => "#",:title => "bulk / Traitement par lot", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
           %i.edi-list
     
     = render @contacts
     
-    .btn-in-list
-      = link_to new_venue_path do
-        %i.entypo.edi-plus-3
-        %span
-          New Venue
+    %li.list-header
+      = paginate @contacts
+    
+    .btns-in-list
+      %i.entypo.edi-plus-3
+      %span
+        = link_to "Ajouter un lieu", new_venue_path 
+        |
+        = link_to new_person_path do
+          Ajouter une personne

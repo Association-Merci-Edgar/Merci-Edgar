@@ -30,6 +30,9 @@ specificKind = function(obj) {
 }
 $(".ui-autocomplete").addClass("dropdown-menu");
 
+$("#menu-vertical .btn-submit").click(function() {
+  $( ".form-edit" ).submit();
+});
 
 //______________ phone 
 $.each($('.person_phones_national_number .input-append'), function() {      specificKind($(this)); });

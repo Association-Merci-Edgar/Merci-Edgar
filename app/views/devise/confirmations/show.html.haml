@@ -1,15 +1,12 @@
-
-.container.form-signin
+.container.form-only
   .logo
-    /%i.entypo.edi-logoedgar_under.logotype
-    %i.entypo.ed-icon-ed-logo_under.logotype
-    /%i.entypo.edi-logoedgar.logotype
-    %i.entypo.ed-icon-ed-logo.logotype
+    %i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.edi-logoedgar.logotype
       
-  = simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal form-signin', :method => 'put'}, :id => 'activation-form' do |f|
+  = simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal', :method => 'put'}, :id => 'activation-form' do |f|
     = devise_error_messages!
     
-    %h1 #{t("simple_form.labels.defaults.firsttime_welcome")}
+    %h1.page-title #{t("simple_form.labels.defaults.firsttime_welcome")}
     %fieldset
       %legend
         #{t("simple_form.labels.defaults.firsttime_wording2")}
@@ -17,32 +14,30 @@
         - if resource.email
           #{resource.email}
       - if @requires_password
-        .row-fluid
-          .span6
-            = f.input_field :first_name
-          .span6
-            = f.input_field :last_name, autocomplete: "off"
+        .row-fluid.control-group
+          = f.input_field :first_name, :class=>"span6 inline"
+          = f.input_field :last_name, autocomplete: "off", :class=>"span6 inline"
             
-        .row-fluid
-          .span6
-            = f.input_field :password
-          .span6
-            = f.input_field :password_confirmation
+        .row-fluid.control-group
           
-          %span.infolabel
+          = f.input_field :password, :class=>"span6 inline"
+          
+          = f.input_field :password_confirmation, :class=>"span6 inline"
+          
+          %span.help-block
             #{t("simple_form.labels.defaults.recommnandations_password")}        
         
-        .row-fluid
-          .span12
-            = f.simple_fields_for :accounts do |account|
-              = account.input_field :name, placeholder: "Nom de votre label, association, groupe, compagnie ..."
+        .row-fluid.control-group
+          
+          = f.simple_fields_for :accounts do |account|
+            = account.input_field :name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
 
         
 
       = hidden_field_tag :confirmation_token, @confirmation_token
       
       /%p= f.submit "Activate"
-      = f.submit "C’est parti !", :class => "btn btn-large btn-primary"
+      = f.submit "C’est parti !", :class => "btn-primary btn-large"
       /<button class="btn btn-large btn-primary" type="submit"></button>
       
       /<br>

@@ -1,8 +1,13 @@
+- content_for :scripts do
+  = javascript_include_tag "tasks_group"
+  
 - if (the_tasks = tasks.send(due)).any?
   %ul.list-medium
     - the_tasks.send(due).each do |t|
       %li
-        %input{:type => "checkbox"}
+        %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true"}
+          %input{:type => "checkbox", :class=>"checkbox", :onclick=>"goTask(this)"}
+          %label
         .rightrow.small
           = show_badge(color, t.specific_time? ? t.friendly_date : t(due))
           .actions
