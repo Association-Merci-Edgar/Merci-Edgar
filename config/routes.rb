@@ -56,6 +56,9 @@ Edgar::Application.routes.draw do
     resources :campaigns
     resources :opportunities
 
+    resources :projects
+
+
     mount Sidekiq::Web, at: "/sidekiq"
 
 
