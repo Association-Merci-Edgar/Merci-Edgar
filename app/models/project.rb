@@ -1,4 +1,4 @@
 class Project < ActiveRecord::Base
-  belongs_to :account
   attr_accessible :description, :name
+  default_scope { where(:account_id => Account.current_id) }
 end
