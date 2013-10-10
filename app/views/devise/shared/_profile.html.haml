@@ -10,7 +10,7 @@
       %ul.nav.nav-tabs
         = user_tab_link "Compte", edit_account_path, "accounts"
         = user_tab_link "Votre profil", edit_user_path(current_user), "users"
-        = user_tab_link "Projets artistiques", edit_user_path(current_user, :anchor => "projects"), "projects"
+        = user_tab_link "Projets artistiques", projects_path, "projects"
         %li
           %a{"data-toggle" => "tab", :href => "#extras"} Extras
         
