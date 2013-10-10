@@ -1,11 +1,19 @@
 - content_for :scripts do
   = javascript_include_tag "tag"
   = javascript_include_tag "contacts_form"
+    
+
+#menu-vertical
+  %span
+    = link_to t(:cancel), @venue
+    ou
+  .btn.btn-alert.btn-large.btn-submit{:href => "#"}
+    Enregistrer
   
 /%h1.page-title Modifier la fiche de la personne
 = simple_nested_form_for(@person, :html => { :class => 'form-horizontal form-edit' }) do |f|
   = display_errors(@person)
-
+  
   .form-inputs
     %header
       .control-group
@@ -122,7 +130,7 @@
           //Add a new website
           
           
-    %section#basic-infos
+    %section#quali-infos
       .section-title
         .title Infos sur la personne
         
@@ -137,7 +145,7 @@
         
     / ________________________________________________________ actions
     .form-actions
-      = f.button :submit, :class => "btn-primary btn-large"
+      = f.button :submit, :class => "btn-primary btn-large btn-alert"
       ou
       = link_to t(:cancel), @person
   
