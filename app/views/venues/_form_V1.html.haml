@@ -163,9 +163,9 @@
         
         
           -#  ________________________________________________________ Services
-          = v.input :residency, label:"Services", item_wrapper_class: "inline" do
-            = v.input_field :residency, inline_label: "Residence"
-            = v.input_field :accompaniment, inline_label: "Accompagnement"
+          %label.control-label Services
+          = v.input :residency, wrapper: :edgar_checkbox
+          = v.input :accompaniment, wrapper: :edgar_checkbox
           
           /= v.input :bar, label:"Services", :collection => ["Bar", "Residence", "Accompagnement"], label_method: :name, value_method: :id, item_wrapper_class:"inline", :as => :check_boxes,
           
@@ -253,7 +253,8 @@
                     = content_tag :span, "H", :class => "add-on"
                   %p.help-block (Profondeur / Largeur / Hauteur)
 
-              = room.input :bar
+              %label.control-label
+              = room.input :bar, wrapper: :edgar_checkbox
               
               
 

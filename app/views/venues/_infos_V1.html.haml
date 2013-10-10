@@ -2,56 +2,6 @@
   / _____________________________________________ left
   .span6
     %ul.list-infos
-      /%i.entypo.edi-location-2
-      %li.infolabel Coordonnées
-      
-      - map_displayed = false
-      - @venue.addresses.each do |address|
-        %li
-          %span.infolabel= t(address.kind, scope:"simple_form.options.venue.addresses.kind")
-          /%img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
-          / = gmaps4rails(address.to_gmaps4rails)
-          
-          - if address.kind == "main_address" and !map_displayed
-            = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => false, :class => "gmaps4rails_map", :container_class => "map_container" },"markers" => { "data" => address.to_gmaps4rails })
-            - map_displayed = true
-          %br
-            = address.street
-          = address.postal_code
-          = address.city
-          = address.more_info
-      -#  
-        -content_for :script do
-          <script type="text/javascript">
-      
-          Gmaps.map.callback = function() {
-          google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
-          //Map fully loaded here
-          $('#map').height($(".map_container").height());
-          $('#map').width($(".map_container").width());
-          google.maps.event.trigger($('#map'), 'resize');
-      
-          }
-          )};
-      
-        </script>
-        
-        
-      - @venue.emails.each do |email|
-        = render email
-
-      - @venue.phones.each do |phone|
-        = render phone
-
-      - @venue.websites.each do |website|
-        = render website
-        
-        
-        
-
-  / _____________________________________________ right
-  .span6
-    %ul.list-infos
       /%i.entypo.edi-info
       %li.infolabel Période de programmation
       %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
@@ -105,4 +55,52 @@
           #twitter.tab-pane
             %ul.social-list
               twitter
+  / _____________________________________________ right      
+  .span6
+    %ul.list-infos
+      /%i.entypo.edi-location-2
+      %li.infolabel Coordonnées
+      
+      - map_displayed = false
+      - @venue.addresses.each do |address|
+        %li
+          %span.infolabel= t(address.kind, scope:"simple_form.options.venue.addresses.kind")
+          / %img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
+          / = gmaps4rails(address.to_gmaps4rails)
+          - if address.kind == "main_address" and !map_displayed
+            = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => false, :class => "gmaps4rails_map", :container_class => "map_container" },"markers" => { "data" => address.to_gmaps4rails })
+            - map_displayed = true
+          %br
+            = address.street
+          = address.postal_code
+          = address.city
+          = address.more_info
+      -#  
+        -content_for :script do
+          <script type="text/javascript">
+      
+          Gmaps.map.callback = function() {
+          google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
+          //Map fully loaded here
+          $('#map').height($(".map_container").height());
+          $('#map').width($(".map_container").width());
+          google.maps.event.trigger($('#map'), 'resize');
+      
+          }
+          )};
+      
+        </script>
+        
+        
+      - @venue.emails.each do |email|
+        = render email
 
+      - @venue.phones.each do |phone|
+        = render phone
+
+      - @venue.websites.each do |website|
+        = render website
+        
+        
+        
+        
