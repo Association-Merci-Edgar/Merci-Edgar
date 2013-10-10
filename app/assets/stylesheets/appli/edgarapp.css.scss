@@ -462,10 +462,32 @@ header {display:block;}
   margin-left:10px;
   a:not(.active) {color:$lblue;
     &:hover{color:$green;};}
-  a{margin-left:10px;}
+  a{margin-right:10px;}
   .active:hover{cursor:default; color:$dblue;}
 }
 
+ul.subpage-nav {
+  background:$beige;
+  z-index:700;
+  list-style : none;
+  margin-left: 0px;
+  display:block;
+  padding-top:30px;
+  padding-bottom:20px;
+  width:100%;
+  border-bottom: solid 1px $lblue;
+  
+  li {display:inline-block;
+    a{ margin-left: 0px; padding: 4px 10px;
+      @include roundcorners;
+    }
+    
+    a:hover, &.active a { background: $dbeige2; color:$white;}
+  }
+}
+
+.affix { top:0; }
+.affix-top { top:150px; }
 //  __________________________________________________________________ Gmap Fix
 
 .tab-pane {
@@ -815,6 +837,33 @@ legend {font-size: 20px;
   background-position: 0 -144px ;
 }
 
+
+
+.swipeable:not(#foo) > span {
+  display: inline-block; margin-right:-2px;
+  @include noselect;
+}
+.swipeable:not(#foo) > span > input[type='checkbox'] + label {
+  padding: 2px 4px 4px 32px;
+  //background-image:none;
+  background-color: $beige;
+  border : solid 2px $dbeige2;
+  
+}
+
+.swipeable:not(#foo) > span > input[type='checkbox']:checked + label {
+  background-color: $dbeige;
+  
+  
+}
+
+:not(#foo) > span > input[type='radio'] + label,
+:not(#foo) > span > label.radio > input[type='radio'] {
+  background-position: 0 -144px ;
+}
+
+
+
 // Change from unchecked to checked graphic 
 :not(#foo) > span > input[type='radio']:checked + label {
 	background-position: 0 -192px;//url(../appli/check-radio/radio.png);
@@ -903,7 +952,7 @@ legend {font-size: 20px;
 }
 
 .filters-pool {
-    //.tag
+    
     border-bottom : solid 1px $dbeige;
     min-height:20px;
 }
@@ -1211,11 +1260,14 @@ span.add-on {height:22px !important; display:block;}
 .form-horizontal .controls {
     margin-left: 220px;
 }
-.form-horizontal .control-label {
+.form-horizontal label.control-label {
   width: 190px;
   padding:0px;
   color:$mblue;
 }
+
+.form-horizontal span > .control-label { width:auto;}
+span.boolean{display:inline-block;}
 
 .control-group > .control-label {margin-top:5px; 
   a {color:$mblue;}
