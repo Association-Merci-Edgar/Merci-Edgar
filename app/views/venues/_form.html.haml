@@ -90,8 +90,8 @@
                       = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
                       = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
                       = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
-                    .control-group.nolabel
-                      = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline hidden"
+                    .control-group.nolabel.state.hidden
+                      = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
                       
                     = address.input :more_info, label:false
 
@@ -178,7 +178,7 @@
         
         
                   -#  ________________________________________________________ Services
-                  %label Services
+                  %label.control-label Services
                   = v.input :residency, wrapper: :edgar_checkbox
                   = v.input :accompaniment, wrapper: :edgar_checkbox
           
@@ -244,7 +244,12 @@
                           = capacity.input :nb, :wrapper => :append, :label => false do
                             = capacity.input_field :nb, :class => "input-small"
                             = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed], selected: :seating, :class => "add-on dropdown-toggle"
-                          = capacity.input_field :modular, inline_label:"Modulable"
+                          %span
+                            = capacity.input_field :modular
+                            /, inline_label:"Modulable"
+                            %label Modulable
+                            
+                          //= capacity.input_field :modular, wrapper: :edgar_checkbox
 
                     .links
                       = room.link_to_add :capacities, :title => t("simple_form.buttons.add_capacity") do
@@ -270,8 +275,11 @@
                             = room.input_field :height, :class => "input-mini"
                             = content_tag :span, "H", :class => "add-on"
                           %p.help-block (Profondeur / Largeur / Hauteur)
-
-                      = room.input :bar
+                          
+                          
+                      %label.control-label
+                      = room.input :bar, wrapper: :edgar_checkbox
+                      //
               
               
 

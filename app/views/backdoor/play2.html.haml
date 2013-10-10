@@ -1,0 +1,72 @@
+%h1.page-title Play2
+
+%section
+  .swipeable
+    %span
+      %input{:id => "m1", :type => "checkbox"}
+      %label{:for=> "m1"} Janvier
+
+    %span
+      %input{:id => "m2", :type => "checkbox"}
+      %label{:for=> "m2"} Février
+
+    %span
+      %input{:id => "m3", :type => "checkbox"}
+      %label{:for=> "m3"} Mars
+
+    %span
+      %input{:id => "m4", :type => "checkbox"}
+      %label{:for=> "m4"} Avril
+
+    %span
+      %input{:id => "m5", :type => "checkbox"}
+      %label{:for=> "m53"} Mai
+
+    %span
+      %input{:id => "m6", :type => "checkbox"}
+      %label{:for=> "m6"} Juin
+      
+    %span
+      %input{:id => "m7", :type => "checkbox"}
+      %label{:for=> "m7"} Juillet 
+  
+    %span
+      %input{:id => "m8", :type => "checkbox"}
+      %label{:for=> "m8"} Aout
+-#      
+  %ul#mylist
+    %li
+      This is an element in a list and has a checkbox
+      %input{type: "checkbox", value: "1", :class=>"hidden"}/
+    %li
+      This is an element in a list and has a checkbox
+      %input{type: "checkbox", value: "1"}/
+    %li
+      This is an element in a list and has a checkbox
+      %input{type: "checkbox", value: "1"}/
+    %li.nono
+      This is an element in a list that has a checkbox but is nono
+      %input{type: "checkbox", value: "1"}/
+    %li
+      This is an element in a list and has a checkbox
+      %input{type: "checkbox", value: "1"}/
+    %li
+      %input{type: "checkbox", value: "1"}/
+      This is an element in a list and has a checkbox
+      
+    %li
+      %input{type: "checkbox", value: "1"}/
+      This is an element in a list and has a checkbox
+      
+    %li This is an element in a list
+      
+-#    
+  %form.multicheck
+    %input{:type => "checkbox"}
+    %input{:type => "checkbox"}
+    %input{:type => "checkbox"}
+    %input{:type => "checkbox"}
+    %input{:type => "checkbox"}
+      
+- content_for :scripts do
+  = javascript_include_tag "contacts_form"
