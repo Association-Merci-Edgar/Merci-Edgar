@@ -11,6 +11,7 @@
 
     #activityfield-outter
       = simple_form_for(@reporting) do |f|
+        = f.input :project_id, collection: Project.all, label_method: :name, value_method: :id, prompt: "Selectionnez un projet"
         = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
         = f.hidden_field :asset_id
         = f.hidden_field :asset_type
