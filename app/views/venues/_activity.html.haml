@@ -1,17 +1,18 @@
 .row-fluid
   .span8
-    .btn-group
-      //ici un select :
-      %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        Selectionner un projet
-        %span.caret
-      %ul.dropdown-menu
-        %li projet 1
-        %li projet 2
+    -#
+      .btn-group
+        //ici un select :
+        %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          Selectionner un projet
+          %span.caret
+        %ul.dropdown-menu
+          %li projet 1
+          %li projet 2
 
     #activityfield-outter
       = simple_form_for(@reporting) do |f|
-        = f.input :project_id, collection: Project.all, label_method: :name, value_method: :id, prompt: "Selectionnez un projet"
+        = f.input :project_id, collection: Project.all, label: false, value_method: :id, prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
         = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
         = f.hidden_field :asset_id
         = f.hidden_field :asset_type
