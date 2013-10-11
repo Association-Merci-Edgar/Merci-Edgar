@@ -217,7 +217,7 @@ textarea {@include borderbox;}
 
 
 a, .btn-link {color:$dblue;
-  &:hover, &:active {color:$green; text-decoration:none;}
+  &:hover, &:active, &:focus {color:$green; text-decoration:none;}
 }
 
 
@@ -245,7 +245,7 @@ body {
 .progress .bar { background-image: none; box-shadow: none;  background-color:$green; }
 
 .maincontent{
-	float: left;
+	//float: left;
 	width: 100%;
 	margin-bottom:30px;
 }
@@ -423,6 +423,25 @@ section > h4 {display:block; margin-bottom:24px;}
     margin-bottom: 48px;
   }
 }
+/*
+#menu-vertical {
+  position: fixed;
+  right: -100px;
+  top: 153px;//112px;
+  @include rotate( 90 );
+  .btn {
+    padding-top: 20px;
+   // height: 20px;
+   -webkit-border-radius:0 0 6px 6px  ;
+   -moz-border-radius:0 0 6px 6px ;
+   border-radius:0 0 6px 6px  ;
+    }
+  span {
+    display: inline-block;
+    margin-top: 48px;
+  }
+}
+*/
 
 
 /* ______________________________________________________________ Headlines   */
@@ -460,31 +479,38 @@ header {display:block;}
   display:inline;
   font-size:18px;
   margin-left:10px;
-  a:not(.active) {color:$lblue;
-    &:hover{color:$green;};}
+  //a:not(.active) {color:$lblue;
+   // &:hover{color:$green;};}
   a{margin-right:10px;}
   .active:hover{cursor:default; color:$dblue;}
 }
 
-ul.subpage-nav {
+#subnav {
   background:$beige;
   z-index:700;
-  list-style : none;
-  margin-left: 0px;
+  padding-top: 14px;
+  padding-bottom: 10px;
   display:block;
-  padding-top:30px;
-  padding-bottom:20px;
+  
   width:100%;
   border-bottom: solid 1px $lblue;
+ul.subpage-nav {
+  
+  list-style : none;
+  margin-left: 0px;
+  
   
   li {display:inline-block;
-    a{ margin-left: 0px; padding: 4px 10px;
+    a { margin-left: 0px; padding: 4px 10px;
       @include roundcorners;
     }
     
-    a:hover, &.active a { background: $dbeige2; color:$white;}
+    a:hover, a:focus, &.active a { background: $dbeige2; color:$dblue;}
   }
 }
+}
+
+form section .section-title {padding-top:80px;}
 
 .affix { top:0; }
 .affix-top { top:150px; }
@@ -1354,7 +1380,7 @@ label {
   select {display:block; position:absolute; left:0;}
 }
 
-form section { margin-bottom:60px;}
+
 form .section-title { margin-left:220px;
   margin-bottom:40px;
 }
@@ -1580,6 +1606,7 @@ section {
   float: right;
   //background: $vlblue;
   &.small {width:110px;}
+  &.mini {width:70px;}
   .s1of2 {display:inline-block; width:150px}
   a:not(.ico) {font-size:15px !important;}
 }
@@ -1605,7 +1632,7 @@ section {
   margin-top: 9px;
   margin-bottom: 2px;
 }
-a.tag {
+.tag {
   font-size:14px;
   display: inline-table;
   margin-bottom: 10px;
@@ -1618,11 +1645,11 @@ a.tag {
   &:hover, &:active, &.active {text-decoration:none; color:$white;}
 }
 
-a.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
-a.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
-a.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
-a.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
-a.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
+.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
+.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
+.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
+.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
+.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
 
 .number {font-size: 20px; color:$dblue;}
 .city:after {content:",";};
@@ -1753,7 +1780,7 @@ li {line-height: inherit;}
   }
   &:hover .badge { display:none;}
   .shybtn { padding:0px 8px; line-height:21px; height:24px;}
-  .pic img {margin-top:-3px;}
+  //.pic img {margin-top:-3px;}
   .actions {position:relative;}
 }
 
@@ -1771,7 +1798,8 @@ li {line-height: inherit;}
 
 /* __________________________________  List_large   */
 
-#contact-list.list-large li:not(.list-header) {min-height: 111px;}
+//#contact-list
+.list-large li:not(.list-header) {min-height: 111px;}
 
 .list-large {
   .actions {top:56px;}

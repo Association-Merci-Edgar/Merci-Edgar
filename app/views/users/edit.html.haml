@@ -44,29 +44,27 @@
     .row-fluid  
       %section.span6
         %h4 Réglages
+        
         %label Fuseau horaire
-        .btn-group
-          %select{:name => "select"}
-            %option{:value => ""} (GMT + 01:00) Paris
-            %option{:value => ""} (GMT+02)
-            %option{:value => ""} Selection Two
-            %option{:value => ""} Selection Three
-            %option{:value => ""} Selection Four
+        %select{:name => "select"}
+          %option{:value => ""} (GMT + 01:00) Paris
+          %option{:value => ""} (GMT+02)
+          %option{:value => ""} Selection Two
+          %option{:value => ""} Selection Three
+          %option{:value => ""} Selection Four
 
         %label Langue
-        .btn-group
-          %select{:name => "select"}
-            %option{:value => ""} FR
-            %option{:value => ""} EN
-            %option{:value => ""} ES
-            %option{:value => ""} DE
+        %select{:name => "select"}
+          %option{:value => ""} FR
+          %option{:value => ""} EN
+          %option{:value => ""} ES
+          %option{:value => ""} DE
       
         %label Pays par défauls lors de l’ajout
-        .btn-group
-          %select{:name => "select"}
-            %option{:value => ""} France
-            %option{:value => ""} England
-            %option{:value => ""} Etc...
+        %select{:name => "select"}
+          %option{:value => ""} France
+          %option{:value => ""} England
+          %option{:value => ""} Etc...
         
         %p
           %a.btn.btn-primary{:href => "#"} Mettre à jour

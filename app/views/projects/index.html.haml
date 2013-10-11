@@ -1,29 +1,76 @@
 - content_for :projects_tab do
   #projects.tab-pane.active
     .row-fluid
-      .span6
-        %h4 Listing projects
+      %ul.list-large
+        -#_____________________________________________________ DEMO ELEMENTS
+        %li.demo
+          .meta
+            .actions
+              %a.shybtn{href: "/fr/people/41/edit"}
+                %i.entypo.edi-pencil
+              %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                %i.entypo.edi-cross
+          %a{href: "/fr/people/41"}
+            %h3 Fatals Picards
+            .pic
+              = image_tag "squared/pro2.jpg"
+          %span
+            Paris
+            
+          .tags
+            .tag.tag-style Rock
+            .tag.tag-style Punk
+            .tag.tag-style Fusion
+            .tag.tag-legal Co-réalisation
+            .tag.tag-legal Cession
+            
+        %li.demo
+          .meta
+            .actions
+              %a.shybtn{href: "/fr/people/41/edit"}
+                %i.entypo.edi-pencil
+              %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                %i.entypo.edi-cross
+          %a{href: "/fr/people/41"}
+            %h3 The Beatles
+            .pic
+              = image_tag "squared/pro1.jpg"
+          %span
+            Londres
+            
+          .tags
+            .tag.tag-style Pop
+            .tag.tag-style Brit-pop
+            .tag.tag-legal Cession
+            .tag.tag-legal Co-réalisation
 
-        %table
-          %tr
-            %th
-            %th
-            %th
 
-          - @projects.each do |project|
-            %tr
-              %td= project.name
-              %td= project.description
-              %td= link_to 'Show', project
-              %td= link_to 'Edit', edit_project_path(project)
-              %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        -#_____________________________________________________ GROUP
+        - @projects.each do |project|
+          %li
+            .meta
+              .actions
+                =link_to edit_project_path(project), :class => "shybtn" do
+                  %i.entypo.edi-pencil
+                = link_to project, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "shybtn" do
+                  %i.entypo.edi-cross
+            = link_to 'Show', project do
+              %h3= project.name
+              .pic= image_tag "squared/pro1.jpg"
+            %span= project.description
+            %span
+              Londres
 
-        %br
-
-        = link_to 'New Project', new_project_path
-
+            .tags
+              .tag.tag-style Pop
 
 
+        -#_____________________________________________________ ADD NEW
+        .btn-in-list
+          = link_to new_project_path, remote:true do
+            %i.entypo.edi-plus-3
+            %span
+              Ajouter un projet artistique
+        
     
 = render 'devise/shared/profile'
-

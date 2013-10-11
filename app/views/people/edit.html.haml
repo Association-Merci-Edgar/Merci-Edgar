@@ -1,13 +1,15 @@
 %header.page-title
   Édition d’une personne
   /Editing person
-%ul.nav.subpage-nav
-  %li
-    %a{:href => "#top"} Top
-  %li
-    %a{:href => "#contact-infos"} Coordonnées
-  %li
-    %a{:href => "#quali-infos"} Infos sur la personne
+#subnav
+  //{"data-scrollspy"=>"scrollspy"}
+  %ul.nav.subpage-nav
+    %li
+      %a{:href => "#top"} Top
+    %li
+      %a{:href => "#contact-infos"} Coordonnées
+    %li
+      %a{:href => "#quali-infos"} Infos sur la personne
   
 = render 'form'
 -#

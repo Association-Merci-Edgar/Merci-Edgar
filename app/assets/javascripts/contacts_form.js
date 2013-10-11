@@ -1,3 +1,30 @@
+
+//_________________________________ Others Things
+
+$(".ui-autocomplete").addClass("dropdown-menu");
+
+$("#menu-vertical .btn-submit").click(function() {
+  $( ".form-edit" ).submit();
+});
+
+
+$('html').smoothScroll(1000);
+
+//$('#subnav').affix({ offset: 60});
+$('#subnav').affix();
+//$('.subpage-nav').affix( offset: { y: 200 } );
+
+$('body').scrollspy({ target: '#subnav' }, { offset: 100} );
+// overlap workaround :
+offsetValue = 80;
+$('body').data().scrollspy.options.offset = offsetValue;
+// force scrollspy to recalculate the offsets to your targets
+$('body').data().scrollspy.process();
+
+
+
+
+
 //  _________________________________ specificKind Fields 
 $.fn.specificKind = function() { 
   var $thefield= $(this).find(".other");
@@ -33,16 +60,35 @@ $.fn.specificKind = function() {
   */
 
 }
-$('.maincontentinner').scrollspy({ target: '.subpage-nav' });
-$('.subpage-nav').affix();
-//$('.subpage-nav').scrollspy();
-//$('.subpage-nav').affix( offset: { y: 200 } );
+
 
 //______________ phone & emails
 $.each($('.venue_phones_national_number .input-append'), function() { $(this).specificKind();  });
 $.each($('.venue_emails_address .input-append'), function() {    $(this).specificKind();  });
 $.each($('.person_phones_national_number .input-append'), function() {      $(this).specificKind(); });
 $.each($('.person_emails_address .input-append'), function() {      $(this).specificKind(); });
+
+
+/*
+$(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+        || location.hostname == this.hostname) {
+
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+*/
+
+
 
 
 //  _________________________________ specificKind Fields
@@ -77,23 +123,6 @@ $(document).on('nested:fieldAdded', function(event){
   if (spe.width() != null){spe.specificKind();};
 
 });
-
-
-
-
-
-
-
-
-//_________________________________ Others Things
-
-$(".ui-autocomplete").addClass("dropdown-menu");
-
-$("#menu-vertical .btn-submit").click(function() {
-  $( ".form-edit" ).submit();
-});
-
-
 
 
 

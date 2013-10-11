@@ -1,7 +1,8 @@
 - content_for :account_tab do
   #account.tab-pane.active
     .row-fluid
-      .span6
+      -#_____________________________________________________ Nom et domaine
+      %section.span6
         %h4 Nom et domaine
         = simple_form_for(@account, url: account_path) do |f|
           = f.input :name
@@ -11,7 +12,7 @@
           %p
           = f.button :submit, class:'btn-primary'
           
-      .span6.comingsoon
+      %section.span6.comingsoon
         %h4 Forfaits et facturation
         %p
           Forfait Beta Testeur
@@ -22,6 +23,61 @@
         <input class="btn btn-primary" type="submit" value="Changer de forfait" name="commit">
 
 
+    -#_____________________________________________________ USERS
+    .row-fluid
+      %section.span6
+        %h4 Utilisateurs
+        %ul.list-large
+          %li
+            .meta
+              .badge.badge-red Admin
+            .actions
+              %a.shybtn{href: "/fr/people/41/edit"}
+                %i.entypo.edi-pencil
+              -#
+                %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                  %i.entypo.edi-cross
+            
+            %a{href: "/fr/people/41"}
+              %h3 Christophe Robillard
+              .pic
+                = image_tag "squared/pro2.jpg"
+            %span.infos-line
+              Co Resp Prog
+              <br>
+              +33 1 46 27 18 23 —
+              %a christophe@merciedgar.com
+              
+              
+              
+          %li
+            .meta
+              
+            .actions
+              %a.shybtn{href: "/fr/people/41/edit"}
+                %i.entypo.edi-pencil
+              -#
+                %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                  %i.entypo.edi-cross
+            
+              
+            %a{href: "/fr/people/41"}
+              %h3 Aurélie Thuot
+              .pic
+                = image_tag "squared/pro3.jpg"
+            %span.infos-line
+              Co Resp Prog
+              <br>
+              +33 1 46 27 18 23 —
+              %a christophe@merciedgar.com
+
+          -#_____________________________________________________ ADD NEW
+          .btn-in-list
+            %a
+              %i.entypo.edi-plus-3
+              %span
+                Ajouter un utilisateur
+          
 
     
 = render 'devise/shared/profile'
