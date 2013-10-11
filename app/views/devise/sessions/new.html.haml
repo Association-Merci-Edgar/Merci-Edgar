@@ -1,4 +1,4 @@
-.container.form-only.form-signin
+.container.simple-page.signin-form
   .logo
     %i.entypo.edi-logoedgar_under.logotype
     %i.entypo.edi-logoedgar.logotype
@@ -22,10 +22,12 @@
           
       -#/%input.btn-primary.btn-large{name: "commit", type: "submit", value: "Se connecter"}/
   
-    <br>
-    = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'btn-primary btn-large'
+    .form-actions
+      = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'btn-primary btn-large'
     .link
-      <br>
+      
       = render "devise/shared/links"
       .pull-right
         = link_to "www.merciedgar.com", "http://www.merciedgar.com"
+  #footer
+    © Merci Edgar 2013

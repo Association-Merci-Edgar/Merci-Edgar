@@ -1,8 +1,18 @@
-%h2 Forgot your password?
-= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, :required => true, :autofocus => true
-  .form-actions
-    = f.button :submit, "Send me reset password instructions"
-= render "devise/shared/links"
+.container.simple-page
+  .logo
+    %i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.edi-logoedgar.logotype
+    
+  %h1.page-title Mot de passe oublié ?
+  %legend Réglons ça en quelques clics :
+  //Forgot your password?
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+    = f.error_notification
+    //.form-inputs
+    .row-fluid.control-group
+      = f.input :email, :required => true, :autofocus => true, :input_html => { :class => "span12" }
+    .form-actions
+      = f.button :submit, "Renouveller mon mot de passe", :class => 'btn-primary btn-large'
+  = render "devise/shared/links"
+  #footer
+    © Merci Edgar 2013

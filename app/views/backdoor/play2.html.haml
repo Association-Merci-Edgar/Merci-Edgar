@@ -70,3 +70,60 @@
       
 - content_for :scripts do
   = javascript_include_tag "contacts_form"
+  
+  
+%section
+  .row-fluid
+    %section.span6
+      %h4 Utilisateurs V1
+      %ul.list-large
+        %li
+          .meta
+            .badge.badge-red Admin
+          .actions
+            %a.shybtn{href: "/fr/people/41/edit"}
+              %i.entypo.edi-pencil
+            -#
+              %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                %i.entypo.edi-cross
+          
+          %a{href: "/fr/people/41"}
+            %h3 Christophe Robillard
+            .pic
+              = image_tag "squared/pro2.jpg"
+          %span.infos-line
+            Co Resp Prog
+            <br>
+            +33 1 46 27 18 23 —
+            %a christophe@merciedgar.com
+            
+            
+            
+        %li
+          .meta
+            
+          .actions
+            %a.shybtn{href: "/fr/people/41/edit"}
+              %i.entypo.edi-pencil
+            -#
+              %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                %i.entypo.edi-cross
+          
+            
+          %a{href: "/fr/people/41"}
+            %h3 Aurélie Thuot
+            .pic
+              = image_tag "squared/pro3.jpg"
+          %span.infos-line
+            Co Resp Prog
+            <br>
+            +33 1 46 27 18 23 —
+            %a christophe@merciedgar.com
+
+        -#_____________________________________________________ ADD NEW
+        .btn-in-list
+          %a
+            %i.entypo.edi-plus-3
+            %span
+              Ajouter un utilisateur
+  

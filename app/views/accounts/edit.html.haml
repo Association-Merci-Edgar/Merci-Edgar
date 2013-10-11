@@ -27,7 +27,7 @@
     .row-fluid
       %section.span6
         %h4 Utilisateurs
-        %ul.list-large
+        %ul.list-small
           %li
             .meta
               .badge.badge-red Admin
@@ -40,19 +40,13 @@
             
             %a{href: "/fr/people/41"}
               %h3 Christophe Robillard
-              .pic
-                = image_tag "squared/pro2.jpg"
+              .pic= image_tag "squared/pro2.jpg"
             %span.infos-line
-              Co Resp Prog
-              <br>
-              +33 1 46 27 18 23 —
               %a christophe@merciedgar.com
-              
               
               
           %li
             .meta
-              
             .actions
               %a.shybtn{href: "/fr/people/41/edit"}
                 %i.entypo.edi-pencil
@@ -60,15 +54,10 @@
                 %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
                   %i.entypo.edi-cross
             
-              
             %a{href: "/fr/people/41"}
               %h3 Aurélie Thuot
-              .pic
-                = image_tag "squared/pro3.jpg"
+              .pic= image_tag "squared/pro3.jpg"
             %span.infos-line
-              Co Resp Prog
-              <br>
-              +33 1 46 27 18 23 —
               %a christophe@merciedgar.com
 
           -#_____________________________________________________ ADD NEW

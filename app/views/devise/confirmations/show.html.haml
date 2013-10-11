@@ -1,4 +1,4 @@
-.container.form-only
+.container.simple-page
   .logo
     %i.entypo.edi-logoedgar_under.logotype
     %i.entypo.edi-logoedgar.logotype
@@ -19,27 +19,21 @@
           = f.input_field :last_name, autocomplete: "off", :class=>"span6 inline"
             
         .row-fluid.control-group
-          
           = f.input_field :password, :class=>"span6 inline"
-          
           = f.input_field :password_confirmation, :class=>"span6 inline"
           
           %span.help-block
             #{t("simple_form.labels.defaults.recommnandations_password")}        
         
         .row-fluid.control-group
-          
           = f.simple_fields_for :accounts do |account|
             = account.input_field :name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
-
-        
 
       = hidden_field_tag :confirmation_token, @confirmation_token
       
       /%p= f.submit "Activate"
       = f.submit "C’est parti !", :class => "btn-primary btn-large"
       /<button class="btn btn-large btn-primary" type="submit"></button>
-      
-      /<br>
-      /<alert>Saisissez votre mot de passe.</alert>
-      /<label class="checkbox">
+
+  #footer
+    © Merci Edgar 2013
