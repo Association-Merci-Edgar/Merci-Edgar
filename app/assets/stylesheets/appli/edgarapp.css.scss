@@ -800,7 +800,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
     //input[type="password"], input[type="text"] {width:100%;};
     label.checkbox {display:inline-block;}
     
-    *[class*="span"] {min-height: 40px;}
+    //*[class*="span"] {min-height: 40px;}
     #footer {
       font-size:15px;
       color:$mblue;
@@ -1641,7 +1641,9 @@ section {
   margin-top: 9px;
   margin-bottom: 2px;
 }
-.tag {
+*, a {
+&.tag {
+  color:$dblue;
   font-size:14px;
   display: inline-table;
   margin-bottom: 10px;
@@ -1654,11 +1656,12 @@ section {
   &:hover, &:active, &.active {text-decoration:none; color:$white;}
 }
 
-.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
-.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
-.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
-.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
-.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
+&.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
+&.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
+&.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
+&.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
+&.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
+}
 
 .number {font-size: 20px; color:$dblue;}
 .city:after {content:",";};
@@ -1762,14 +1765,15 @@ li {line-height: inherit;}
 
 /* _______________________________________________________  List_large   */
 
-//#contact-list
-.list-large li:not(.list-header) {min-height: 111px;}
+#contact-list.list-large li:not(.list-header) {min-height: 111px;}
 
 .list-large {
   .actions {top:56px;}
   .content {font-size:15px;color:$dblue;}
   li {
     padding: 20px 0 16px;
+    min-height:66px;
+    
     &.list-header { padding:0; min-height: 10px; border:none;
       margin-bottom:10px;
       &:hover{background:none;}}
@@ -1791,6 +1795,7 @@ nav.pagination{ display: inline-block;}
 #team .list-large h4 {display:block;}
 
 #activity .list-large  {
+  
   h4, .infos {display:inline-block; margin-right:10px;}
   .pic-mini {
     margin: 0 4px;
@@ -1915,8 +1920,8 @@ header {
   padding:8px;
   &:focus{
     background:$green;
+    border-color:$green;
     color:$white;
-    border:none;
   };
 }
 
@@ -1941,7 +1946,11 @@ header {
   }
 
 
-
+//#activity select.ed-select, 
+.reporting_project_id {
+  label{display:none;}
+  select{background-color:$dbeige2;}
+}
 
 
 /* ACCOUNT ________________________________________ */
