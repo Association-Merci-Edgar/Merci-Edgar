@@ -777,7 +777,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 .form-signin .medium {width:240px;}
 */
 
-.form-only {
+.simple-page {
   width:490px;
   margin: 0 auto;
   margin-top:40px;
@@ -800,15 +800,23 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
     //input[type="password"], input[type="text"] {width:100%;};
     label.checkbox {display:inline-block;}
     
-    *[class*="span"] {
-        min-height: 40px;}
+    *[class*="span"] {min-height: 40px;}
+    #footer {
+      font-size:15px;
+      color:$mblue;
+      }
 }
 
 
 .help-block {font-size:14px;}
 
-.form-signin {
+.signin-form {
   width:440px;
+}
+
+.form-actions {
+  padding: 20px 0;
+  border: none;
 }
 
 legend {font-size: 20px;
@@ -1591,6 +1599,7 @@ section {
     display: inline-block;
     margin-right: 10px;
 }
+
 /*  _____________________________________________________  ROWS   */
 
 //.row-table{display:inline;}
@@ -1715,8 +1724,9 @@ section {
 */
 
 
-/*  _____________________________________________________  LISTS   */
 
+
+/*  _____________________________________________________  LISTS   */
 
 
 .btn-in-list {
@@ -1749,7 +1759,46 @@ li {line-height: inherit;}
 
 
 
-/* __________________________________ List_medium  */
+
+/* _______________________________________________________  List_large   */
+
+//#contact-list
+.list-large li:not(.list-header) {min-height: 111px;}
+
+.list-large {
+  .actions {top:56px;}
+  .content {font-size:15px;color:$dblue;}
+  li {
+    padding: 20px 0 16px;
+    &.list-header { padding:0; min-height: 10px; border:none;
+      margin-bottom:10px;
+      &:hover{background:none;}}
+  }
+}
+.list-large + li {padding:0;}
+
+nav.pagination{ display: inline-block;}
+
+.list-large {
+  color:$vlblue;
+  .rightrow {width:90px;}
+  //.meta {margin-bottom: 10px;}
+  h3{ display:block; margin-top:0px; margin-bottom: 16px;}
+  //&.cards {min-height: 60px;}
+}
+
+.list-large h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
+#team .list-large h4 {display:block;}
+
+#activity .list-large  {
+  h4, .infos {display:inline-block; margin-right:10px;}
+  .pic-mini {
+    margin: 0 4px;
+    text-decoration:none; width:23px;}
+}
+
+
+/* ____________________________________________________________ List_medium  */
 .list-medium li {
   .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
   .infos-line{
@@ -1784,9 +1833,6 @@ li {line-height: inherit;}
   .actions {position:relative;}
 }
 
-
-
-
 //.s1of2 {display:inline-block; width:40%;}
 
 .list-medium .btn-in-list a i {font-size:30px !important;}
@@ -1796,49 +1842,23 @@ li {line-height: inherit;}
 
 
 
-/* __________________________________  List_large   */
 
-//#contact-list
-.list-large li:not(.list-header) {min-height: 111px;}
-
-.list-large {
-  .actions {top:56px;}
-  .content {font-size:15px;color:$dblue;}
-  li {
-    padding: 20px 0 16px;
-    &.list-header { padding:0; min-height: 10px; border:none;
-      margin-bottom:10px;
-      &:hover{background:none;}}
+/*  _____________________________________________________ list-small // USERS */
+.list-small { @extend .list-medium; }
+.list-small {
+  font-size:16px;
+  line-height: 1.4em;
+  list-style:none;
+  li {min-height:62px;}
+  h3 { font-size:22px;}
+  .infos-line{margin-top:5px;
+    a {font-size:15px;}
   }
-}
-.list-large + li {padding:0;}
-
-
-nav.pagination{ display: inline-block;}
-
-.list-large {
-  color:$vlblue;
-  .rightrow {width:90px;}
-  //.meta {margin-bottom: 10px;}
-  h3{ display:block; margin-top:0px; margin-bottom: 16px;}
-  //&.cards {min-height: 60px;}
-}
-
-
-
-
-
-.list-large h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
-#team .list-large h4 {display:block;}
-
-#activity .list-large  {
-  h4, .infos {display:inline-block; margin-right:10px;}
-  .pic-mini {
-    margin: 0 4px;
-    text-decoration:none; width:23px;}
 }
 
 form#contact_us .uvFieldTextarea { height:150px; };
+
+
 
 /*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
@@ -1949,12 +1969,7 @@ ul.list-infos {
 
 
 
-ul.list-small {
-  font-size:14px;
-  line-height: 1.4em;
-  list-style:none;
-  margin: 11px 0 20px 25px
-}
+
 
 ul.social-list {
   list-style:none;
