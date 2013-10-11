@@ -1,0 +1,18 @@
+%li.demo
+  .meta
+    .actions
+      = link_to edit_project_path(project), class: "shybtn" do
+        %i.entypo.edi-pencil
+      = link_to project, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "shybtn" do
+        %i.entypo.edi-cross
+  = link_to project do
+    %h3= project.name
+    .pic
+      = image_tag project.avatar
+  %span
+    Paris
+    
+  .tags
+    .tag.tag-style Rock
+    .tag.tag-style Chanson
+    

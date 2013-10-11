@@ -66,6 +66,8 @@ fr:
         firsttime_welcome: "Bienvenue chez Edgar !"
         firsttime_wording1: "Faisons les présentations:"
         firsttime_wording2: "Activation de compte pour l’adresse :"
+      project:
+        name: Projet artistique
       venue:
         venue_info:
           kind: Type de salle
