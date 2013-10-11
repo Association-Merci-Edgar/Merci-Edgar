@@ -5,9 +5,9 @@
     .infos
       .pic.pic-mini= image_tag reporting.user.avatar
       = reporting.user.nickname
-      pour
-      .pic.pic-mini= image_tag "squared/pro1.jpg"
-      %a{:href => "#"} Telprojet
+      - if reporting.project.present?
+        .pic.pic-mini= image_tag reporting.project.avatar
+        = reporting.project.name
     
     
     .content 

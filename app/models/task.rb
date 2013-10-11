@@ -20,11 +20,12 @@
 #
 
 class Task < ActiveRecord::Base
-  attr_accessible :bucket, :assigned_to, :user_id, :name, :asset_id, :asset_type, :calendar, :specific_time
+  attr_accessible :bucket, :assigned_to, :user_id, :name, :asset_id, :asset_type, :calendar, :specific_time, :project_id
   belongs_to :user
   belongs_to :asset, polymorphic: true
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to
   belongs_to :completor, class_name: "User", foreign_key: :completed_by
+  belongs_to :project
   default_scope { where(:account_id => Account.current_id).order('tasks.due_at ASC') }
   
   attr_accessor :calendar
