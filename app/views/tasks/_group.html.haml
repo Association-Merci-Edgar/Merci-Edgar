@@ -5,8 +5,9 @@
   %ul.list-medium
     - the_tasks.send(due).each do |t|
       %li
-        %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true"}
-          %input{:type => "checkbox", :class=>"checkbox", :onclick=>"goTask(this)"}
+        - complete_link = asset.present? ? send("complete_#{asset.class.name.downcase}_task_path",asset,t) : complete_task_path(t)
+        %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-link" => complete_link}
+          %input{:type => "checkbox", :class=>"checkbox", :onclick =>"goTask(this)"}
           %label
         .rightrow.small
           = show_badge(color, t.specific_time? ? t.friendly_date : t(due))

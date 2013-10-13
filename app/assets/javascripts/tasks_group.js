@@ -1,8 +1,15 @@
-
-function goTask(theBT) {
-  $theItem = $(theBT).parent().parent();
-	//thevalue = $theItem.find(".title").text();
-	//alert (thevalue);
+function goTask(input) {
+	var link = $(input).parent().attr("data-link")
+	$theItem = $(input).parent().parent();
+	$theItem.slideUp(200);
+  $.ajax({
+    type: "PUT",
+    url: link,
+    success: function(data) {
+			// 
+    }
+  });
+  return false;
 	
 	//$theItem.animate({height:0},200);
 	$theItem.slideUp(200);//.fadeOut();

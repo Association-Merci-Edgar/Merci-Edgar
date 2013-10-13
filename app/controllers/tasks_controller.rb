@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
     @task.complete(current_user)
-    redirect_to @task.asset
+    # redirect_to @task.asset
   end
 
   def create
