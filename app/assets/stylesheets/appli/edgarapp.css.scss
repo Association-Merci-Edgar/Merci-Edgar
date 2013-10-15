@@ -111,7 +111,6 @@ a:visited, a:active, a:link {text-decoration:none;}
 
 
 
-
 .nav, .leftpanel {@include noselect;}
 
 #activityfield, select, input[type="file"], textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
@@ -736,6 +735,25 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 .rightbt i { margin-left:-14px;  padding-top:7px;}
 
 .account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
+/*.account-tab { background: url('../appli/nav-logo-anim.gif') top left no-repeat;
+  margin-left:0; 
+  margin-top: 12px;
+  padding:15px 0;
+  padding-left: 55px;
+  }
+*/
+.account-tab{margin-left:0; display:inline-block;}
+#logo-nav {
+  display: inline-block;
+  margin-top: 12px;
+  vertical-align: top;
+  margin-right: 8px;
+  height:52px;
+  width:40px;
+  background: url('../appli/nav-logo-anim.gif') top left no-repeat;
+}
+
+
 .account-tab a.rightbt { margin-right:0; margin-top:-3px;} /* ok */
 
 .clicker .rightbt {
@@ -1566,7 +1584,7 @@ section {
   font-size:16px;
   li {
     padding:20px 0px;
-    border-bottom: solid 1px lighten( $dblue, 60% );
+    border-bottom: dotted 2px lighten( $dblue, 60% );
 
     position:relative;
     clear:both;
@@ -1770,6 +1788,7 @@ li {line-height: inherit;}
 .list-large {
   .actions {top:56px;}
   .content {font-size:15px;color:$dblue;}
+  h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
   li {
     padding: 20px 0 16px;
     min-height:66px;
@@ -1783,6 +1802,7 @@ li {line-height: inherit;}
 
 nav.pagination{ display: inline-block;}
 
+
 .list-large {
   color:$vlblue;
   .rightrow {width:90px;}
@@ -1791,12 +1811,11 @@ nav.pagination{ display: inline-block;}
   //&.cards {min-height: 60px;}
 }
 
-.list-large h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
+
 #team .list-large h4 {display:block;}
 
 #activity .list-large  {
-  
-  h4, .infos {display:inline-block; margin-right:10px;}
+  h4, .infos {display:inline-block; margin-right:10px; font-size:22px;}
   .pic-mini {
     margin: 0 4px;
     text-decoration:none; width:23px;}
@@ -1817,7 +1836,7 @@ nav.pagination{ display: inline-block;}
   //a {display:block; }
   min-height:28px;
   padding:18px 0px;
-  border-bottom: dotted 1px lighten( $dblue, 60% );
+  //border-bottom: dotted 1px lighten( $dblue, 60% );
   
   .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
   /*.span7 {font-size:17px;
@@ -2012,9 +2031,8 @@ ul.social-list {
   border-bottom:solid 1px lighten( $dblue, 60% );
   margin-bottom:24px;
   & > li{margin-bottom: -2px;}
-
 }
-
+.nav-tabs li.w_badge {margin-bottom: -1px;}
 
 .nav-tabs > li > a {
   padding:0;
@@ -2031,11 +2049,8 @@ ul.social-list {
 
 .sub-tabs {
   margin-bottom:0;
-  
   & > li {margin-bottom:0 !important;
-    font-size:16px;
-    
-      
+    font-size:16px;  
   }
 }
 
