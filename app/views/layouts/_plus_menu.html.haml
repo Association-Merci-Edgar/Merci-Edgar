@@ -12,16 +12,37 @@
 
   - if @person.present? && @person.id.present?
     %li
-      = link_to "une tâche", new_person_task_path(@person), remote:true
+      = link_to new_person_task_path(@person), remote:true do
+        %i.entypo.edi-check_2
+        une tâche
 
   - unless @person.present? || @venue.present?
     %li
-      = link_to "une tâche générique", new_task_path, remote:true
-
+      = link_to new_task_path, remote:true do
+        %i.entypo.edi-check_2
+        une tâche générique
   %li
     - if @venue.present?
-      = link_to "une personne", new_venue_person_path(@venue)
+      = link_to new_venue_person_path(@venue) do
+        %i.entypo.edi-user
+        une personne à ce lieu
     - else
-      = link_to "une personne", new_person_path
+      = link_to new_person_path do
+        %i.entypo.edi-user
+        une personne
   %li
-    = link_to "une salle",new_venue_path
+    = link_to new_venue_path do
+      %i.entypo.edi-venue
+      un lieu
+  
+-#
+  %li
+    /= link_to new_oportunitie do
+    %a{:href=>"#"}
+      %i.entypo.edi-dates
+      une date
+  %li
+    /= link_to new_oportunitie do
+    %a{:href=>"#"}
+      %i.entypo.edi-megaphone
+      une campagne

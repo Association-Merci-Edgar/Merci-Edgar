@@ -56,11 +56,11 @@
           %a{"data-toggle" => "tab", :href => "#activity"} Suivi
         %li
           %a{"data-toggle" => "tab", :href => "#infos"} Infos
-        %li
+        %li.w_badge
           %a{"data-toggle" => "tab", :href => "#team"}
             = "Équipe"
             %span.badge.badge-shy="#{@venue.people.size}"
-        %li
+        %li.w_badge
           %a{"data-toggle" => "tab", :href => "#tasks"}
             = "#{t(:tasks)}"
             %span.badge.badge-shy="#{@pending_tasks.size}"
