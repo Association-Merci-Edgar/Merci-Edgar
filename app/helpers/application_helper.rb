@@ -41,4 +41,5 @@ module ApplicationHelper
     badge_color = "badge-#{color}" if color
     content_tag(:div,text,class:"badge #{badge_color}")
   end
+
 end

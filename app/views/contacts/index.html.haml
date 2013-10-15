@@ -151,12 +151,13 @@
             Réinitialiser
           %a#final_submit.btn.btn-primary{:href => "#"}
             Rechercher
-.filters-hiddenform.hidden
+.filters-hiddenform
   //.hidden
   = form_tag contacts_path, method: :get do
-    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center]], params[:venue_kind]), prompt: "Type de lieu ..."
+    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
     = text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
     = text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
+    = select_tag :capacity_range, options_for_select(Venue::CAPACITY_RANGE_OPTIONS,params[:capacity_range]), prompt:"Jauge..."
     = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)"
     = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats"
     = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso"

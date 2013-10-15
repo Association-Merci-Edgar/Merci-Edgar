@@ -18,19 +18,14 @@
 #
 
 class Contact < ActiveRecord::Base
+  extend ContactsHelper
   default_scope { where(:account_id => Account.current_id).order("contacts.name") }
 
-  attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_list, :network_list, :custom_list
+  attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_list, :network_list, :custom_list, :style_tags, :network_tags, :custom_tags
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
   has_many :addresses, :dependent => :destroy
   has_many :websites, :dependent => :destroy
-
-  has_many :taggings, as: :asset
-  has_many :tags, through: :taggings
-  has_many :styles, through: :taggings, source: :tag, class_name: "Style"
-  has_many :networks, through: :taggings, source: :tag, class_name: "Network"
-  has_many :customs, through: :taggings, source: :tag, class_name: "CustomTag"
 
   has_many :tasks, :as => :asset
 
@@ -60,10 +55,10 @@ class Contact < ActiveRecord::Base
           :having     => ['COUNT(*) >= ?', names.length]
         )
   }
-  scope :tagged_with, lambda { |tag_name| joins(:tags).where('tags.name = ?', tag_name) }
-  scope :by_style, lambda { |tag_name| joins(:tags).where("tags.name = ? AND tags.type = 'Style'", tag_name) }
-  scope :by_network, lambda { |tag_name| joins(:tags).where("tags.name = ? AND tags.type = 'Network'", tag_name) }
-  scope :by_contract, lambda { |tag_name| joins(:tags).where("tags.name = ? AND tags.type = 'Contract'", tag_name) }
+  scope :tagged_with, lambda { |tag_type,tag_name| where('? = ?', tag_type, tag_name) }
+  scope :by_style, lambda { |tag_name| where("style_tags LIKE ?", "%#{tag_name}%") }
+  scope :by_network, lambda { |tag_name| where("network_tags LIKE ?", "%#{tag_name}%") }
+  scope :by_custom, lambda { |tag_name| where("custom_tags LIKE ?", "%#{tag_name}%") }
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%")}
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%")}
   scope :with_reportings, joins: :reportings
@@ -117,21 +112,35 @@ class Contact < ActiveRecord::Base
     end
   end
 
+  def self.with_tags(contacts, type, tags)
+    Contact.tags_to_array(tags).each do |tag|
+      contacts = contacts.send("by_#{type}", tag)
+    end
+    contacts
+  end
 
   def self.advanced_search(params)
-    if params[:capacity_lt].present? || params[:capacity_gt].present? || params[:venue_kind].present?
+    if params[:capacity_range].present? || params[:capacity_lt].present? || params[:capacity_gt].present? || params[:venue_kind].present? || params[:contract_list]
       @contacts = Venue.order("contacts.name")
     else
       @contacts = Contact.order("contacts.name")
     end
+    if params[:capacity_range].present?
+      case
+      when params[:capacity_range] =~ /< (\d+)/
+        @contacts = @contacts.capacities_less_than($1) if $1.present?
+      when params[:capacity_range] =~ /> (\d+)/
+        @contacts = @contacts.capacities_more_than($1) if $1.present?
+      when params[:capacity_range] =~ /(\d+)-(\d+)/
+        @contacts = @contacts.capacities_between($1,$2) if $1.present? && $2.present?
+      end
+    end
 
     @contacts = @contacts.by_department(params[:dept]) if params[:dept].present?
-    search_tags = []
-    [params[:style_list], params[:contract_list], params[:custom_list] ].each do |p|
-      search_tags += p.split(",").map(&:strip) if p.present?
-    end
-    
-    @contacts = @contacts.searchy(search_tags) if search_tags.present?
+    @contacts = with_tags(@contacts, "style", params[:style_list]) if params[:style_list]
+    @contacts = with_tags(@contacts, "network", params[:network_list]) if params[:network_list]
+    @contacts = with_tags(@contacts, "custom", params[:custom_list]) if params[:custom_list]
+    @contacts = with_tags(@contacts, "contract", params[:contract_list]) if params[:contract_list]
     @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
     @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
     @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
@@ -183,6 +192,23 @@ class Contact < ActiveRecord::Base
     self.customs = names.split(",").map do |n|
       CustomTag.where(name: n.strip, account_id: Account.current_id).first_or_create!
     end
+  end
+
+
+  def styles
+    Contact.tags_to_array(style_tags)
+  end
+
+  def networks
+    Contact.tags_to_array(network_tags)
+  end
+
+  def customs
+    Contact.tags_to_array(custom_tags) 
+  end
+
+  def self.tags_to_array(tags)
+    tags.present? ? tags.split(',').map(&:strip) : []
   end
 
 end

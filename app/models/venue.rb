@@ -15,14 +15,11 @@ class Venue < Structure
   has_many :rooms, :dependent => :destroy
   before_save :format_strings
 
-  delegate :kind, :period, :remark, :start_scheduling, :end_scheduling, to: :venue_info, allow_nil: true
+  delegate :kind, :period, :remark, :start_scheduling, :end_scheduling, :contract_tags, to: :venue_info, allow_nil: true
   validates :name, :presence => true, uniqueness: { scope: :account_id}
   # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   # validates_presence_of :addresses
-  has_many :taggings, as: :asset, :dependent => :destroy
-  has_many :contracts, through: :taggings, source: :tag, class_name: "Contract"
-  has_many :cap_ranges, through: :taggings, source: :tag, class_name: "CapRange"
   accepts_nested_attributes_for :venue_info
   accepts_nested_attributes_for :rooms, :reject_if => proc { |attributes| attributes[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :rooms, :allow_destroy => true
@@ -43,6 +40,9 @@ class Venue < Structure
     joins(:rooms => :capacities).where("capacities.nb BETWEEN ? AND ? ", nb1,nb2).uniq
   end)
 
+  scope :by_contract, lambda { |tag_name| joins(:venue_info).where("venue_infos.contract_tags LIKE ?", "%#{tag_name}%") }
+
+
 
   amoeba do
     enable
@@ -54,6 +54,8 @@ class Venue < Structure
     include_field :rooms
     include_field :taggings
   end
+  
+  CAPACITY_RANGE_OPTIONS = ["< 100", "100-400","400-1200","> 1200"]
 
   def to_s
     name
@@ -124,6 +126,10 @@ class Venue < Structure
       end
     end
     tags
+  end
+
+  def contracts
+    Contact.tags_to_array(contract_tags)
   end
 
   def format_strings

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011150609) do
+ActiveRecord::Schema.define(:version => 20131014140648) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(:version => 20131011150609) do
     t.datetime "updated_at",      :null => false
     t.string   "avatar"
     t.integer  "main_contact_id"
+    t.string   "style_tags"
+    t.string   "network_tags"
+    t.string   "custom_tags"
   end
 
   add_index "contacts", ["account_id"], :name => "index_contacts_on_account_id"
@@ -172,27 +175,6 @@ ActiveRecord::Schema.define(:version => 20131011150609) do
 
   add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"
 
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "asset_id"
-    t.string   "asset_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "taggings", ["asset_id"], :name => "index_taggings_on_asset_id"
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-
-  create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "account_id"
-  end
-
-  add_index "tags", ["account_id"], :name => "index_tags_on_account_id"
-
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.integer  "priority"
@@ -264,6 +246,7 @@ ActiveRecord::Schema.define(:version => 20131011150609) do
     t.integer  "end_season"
     t.integer  "start_scheduling"
     t.integer  "end_scheduling"
+    t.string   "contract_tags"
   end
 
   add_index "venue_infos", ["venue_id"], :name => "index_venue_infos_on_venue_id"

@@ -165,7 +165,7 @@ REGIONS = {
 }
 
   def set_account
-    self.account_id = self.contact.account_id
+    self.account_id = self.contact.account_id if self.contact.present?
   end
 
   def full_address
