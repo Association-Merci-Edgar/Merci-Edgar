@@ -5,15 +5,15 @@
   = venue_kind_link(asset.kind)
 
   - asset.contracts.each do |c|
-    = tag_link(c.name,"tag-legal")
+    = tag_link("contract",c,"tag-legal")
 
 - asset.styles.each do |s|
-  = tag_link(s.name,"tag-style")
+  = tag_link("style",s,"tag-style")
 
 - asset.networks.each do |s|
-  = tag_link(s.name,"tag-style")
+  = tag_link("network",s,"tag-style")
 
 
 - asset.customs.each do |c|
-  = tag_link(c.name,"tag-legal")
+  = tag_link("custom",c,"tag-legal")
 

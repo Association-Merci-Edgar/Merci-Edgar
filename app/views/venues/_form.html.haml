@@ -127,13 +127,13 @@
               /.title Infos lieu
     
               -#  ________________________________________________________ TAGS V1
-              = f.input :style_list, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"Rock, humour…" }
+              = f.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"Rock, humour…" }
 
               -#  ________________________________________________________ TAGS V1
-              = f.input :network_list, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"…" }
+              = f.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"…" }
 
               -#  ________________________________________________________ TAGS V1
-              = f.input :custom_list, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"…" }
+              = f.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6", :placeholder =>"…" }
     
     
               -#  ________________________________________________________ TAGS V2
@@ -161,13 +161,13 @@
               
                     .tags_clear
               -#  ________________________________________________________ contracts
-              = f.association :contracts, :collection => Contract.all, :as => :check_boxes, label_method: :name, value_method: :id, item_wrapper_class:"inline"
     
               = f.fields_for :venue_info do |v|
                 -#, :class => "span4"
                 -#, :input_html => { :class => "span4" }
                 .nested-fields
-        
+                  = v.input :contract_list, :collection => ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"], :as => :check_boxes, item_wrapper_class:"inline"
+            
                   -#  ________________________________________________________ period
                   -# = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
           

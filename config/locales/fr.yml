@@ -243,6 +243,10 @@ fr:
   filters:
     favorites: favoris
     contacted: contactés
+    style: Style
+    contract: Contrat
+    network: Réseau
+    custom: Tag personnalisé
     dept: "par département"
     tagged_with: "Filtre"
     capacities_between: Jauge comprise entre

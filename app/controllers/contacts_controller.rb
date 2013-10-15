@@ -27,9 +27,18 @@ class ContactsController < AppController
     @contacts = case params[:filter]
       when "favorites" then current_user.favorites.page params[:page]
       when "contacted" then Contact.with_reportings.page params[:page]
-      when 'tagged_with' then 
+      when 'style' then 
         @param_filter = params[:name]
-        Contact.tagged_with(params[:name]).page params[:page]
+        Contact.by_style(params[:name]).page params[:page]
+      when 'network' then 
+        @param_filter = params[:name]
+        Contact.by_network(params[:name]).page params[:page]
+      when 'custom' then 
+        @param_filter = params[:name]
+        Contact.by_custom(params[:name]).page params[:page]
+      when 'contract' then 
+        @param_filter = params[:name]
+        Venue.by_contract(params[:name]).page params[:page]
       when "dept" then 
         @param_filter = params[:no]
         Contact.by_department(params[:no]).page params[:page]
