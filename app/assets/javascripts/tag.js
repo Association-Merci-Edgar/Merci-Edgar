@@ -1,6 +1,4 @@
-//= require tag-it
-//= require_self
-
+/*
 $.ajax({
     type: 'get',
     url: '/tags/index?type=CustomTag',
@@ -16,3 +14,12 @@ $.ajax({
         });
     }
 })
+*/
+
+$(document).ready(function() {
+    $(".autocomplete_tags").tagit({
+			singleField: true,
+			allowSpaces: true,
+			availableTags: ['c++', 'java', 'jacour']
+		});
+});
