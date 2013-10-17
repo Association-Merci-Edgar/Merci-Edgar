@@ -80,15 +80,15 @@
               %button.btn-primary Créer une liste
             
             
-      /______________________________________________________ filters-trigger
-      %button.filters-trigger.btn.btn-tertiary
-        Filtres
-        %i.entypo.caret-ed
+    /______________________________________________________ filters-trigger
+    %button.filters-trigger.btn.btn-tertiary
+      Filtres
+      %i.entypo.caret-ed
       
       
     /______________________________________________________ STATUS  
     .status
-      = link_to only_contacts_path(filter: "favorites"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> favoris", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      = link_to only_contacts_path(filter: "favorites"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Favoris", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.ico.edi-heart
         
       = link_to only_contacts_path(filter: "contacted"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà échangé", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
@@ -103,44 +103,53 @@
   .filters-outercontainer
     .filters-container
       .filters-pool
-        -#
-          %a#f_name.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='name' class='input-large' autofocus='autofocus' placeholder='Nom…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
         
-            //<input id='f_type_input' class='input-large' autofocus='autofocus' type='text' placeholder='Nom…' name='name'> <button class='btn btn-primary inline' type='submit'>ok</button>"}
-            Nom
-        -#
-          .inline-inputs 
-            %input.input-mini{type:"number", :placeholder=>"0"}
-            %span.inline <
-            %input.input-mini{type:"number", :placeholder=>"∞"}
+        -#/%a#f_name.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='name' class='input-large' autofocus='autofocus' placeholder='Nom…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"} Nom
           
-        %a#f_capacities.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_cap(this); return false' method='post' action='#'><input class='input-mini' autofocus='autofocus' type='number' placeholder='0' name='capacity_lt'><span class='add-middle'><</span><input class='input-mini' type='number' placeholder='∞' name='capacity_gt'> <input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form><span class='hint'>Entrez une ou deux valeurs</span>"}
+          
+        -#/%a#f_capacities.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_cap(this); return false' method='post' action='#'><input class='input-mini' autofocus='autofocus' type='number' placeholder='0' name='capacity_lt'><span class='add-middle'><</span><input class='input-mini' type='number' placeholder='∞' name='capacity_gt'> <input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form><span class='hint'>Entrez une ou deux valeurs</span>"} Jauge
+          
+        %a#f_capacities.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='tag-list' id='f_capacity_range'><a class='tag tag-custom' data-content='&lt; 100' href='#'>0 &lt; 100</a><a class='tag tag-custom' data-content='&lt; 101-400' href='#'>101 &lt; 400</a><a class='tag tag-custom' data-content='&lt; 401-1200' href='#'>401 &lt; 1200</a><a class='tag tag-custom' data-content='&gt; 1201' href='#'>1201 &lt; ∞</a></div>"}
           Jauge
-        -#  
-          %a.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_function_list' class='input-large' autofocus='autofocus' placeholder='Programmateur…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
-            Fonction
+          /∞
+          
+        -#/%a.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_function_list' class='input-large' autofocus='autofocus' placeholder='Programmateur…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"} Fonction
         
-        %a.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_dept' class='input-large' autofocus='autofocus' placeholder='Localité, code postal…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        %a.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post'><input type='text' name='thefield' id='f_dept' class='input-large' autofocus='autofocus' placeholder='Localité, code postal…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Addresse
         
-        <br>
+        /<br>
         
-        %a#f_type.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_sel(this); return false' method='post' action='#'><select name='f_venue_kind' id='theselect'><option value=''></option><option value='bar'>Bar</option><option value='theater_cafe'>Cafe Theatre</option><option value='cultural_center'>Centre culturel</option></select><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
-          //<input type='text' name='thefield' id='f_venue_kind' class='input-large' autofocus='autofocus' placeholder='SMAC, Zenith…'>
+        -#/= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
+        
+        %a#f_kind.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='tag-list' id='f_venue_kind'><a class='tag tag-type' data-content='bar' href='#'>"+t("bar", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='theater_cafe' href='#'>"+t("theater_cafe", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='cultural_center' href='#'>"+t("cultural_center", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='mjc' href='#'>"+t("mjc", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='smac' href='#'>"+t("smac", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='music_venue' href='#'>"+t("music_venue", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='other' href='#'>"+t("other", scope:"simple_form.options.venue.venue_info.kind")+"</a></div>"}
           Type de lieu
         
-        %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large' autofocus='autofocus' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        -#/%a#f_type.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_sel(this); return false' method='post' action='#'><select name='f_venue_kind' id='theselect'><option value=''></option><option value='bar'>Bar</option><option value='theater_cafe'>Cafe Theatre</option><option value='cultural_center'>Centre culturel</option></select><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}Type de lieu
+        
+        %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large' autofocus='autofocus' data-class='tag-style' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Esthétique
-          
-        %a#f_custom.tag.tag-legal{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_contract_list' class='input-large' autofocus='autofocus' placeholder='Co-realisation, Location…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        
+        /action='#'  
+        %a#f_custom.tag.tag-legal{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' ><input type='text' name='thefield' id='f_contract_list' class='input-large' autofocus='autofocus' placeholder='Co-realisation, Location…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Type de contrat
         
-        %a#f_custom.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_custom_list' class='input-large' autofocus='autofocus' placeholder='Autre mot-clés…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        %a#f_custom.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' ><input type='text' name='thefield' id='f_custom_list' class='input-large' autofocus='autofocus' placeholder='Autre mot-clés…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Autres mot-clés
         
 
 
       .filters-stage
+        -#
+          .tag-list
+            %a.tag.tag-custom2{:href=>"#", "data-content"=>"< 100"}
+              0 < 100
+            %a.tag.tag-custom2{:href=>"#", "data-content"=>"< 100-400"}
+              101 > 400
+            %a.tag.tag-custom2{:href=>"#", "data-content"=>"< 400-1200"}
+              401 > 1200
+            %a.tag.tag-custom2{:href=>"#", "data-content"=>"> 1200"}
+              1201 < ∞
         -#
           %a.tag.tag-actor{:href => "#"}
             %span.close x
@@ -151,25 +160,32 @@
             Réinitialiser
           %a#final_submit.btn.btn-primary{:href => "#"}
             Rechercher
-.filters-hiddenform
-  //.hidden
-  = form_tag contacts_path, method: :get do
-    = select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
-    = text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
-    = text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
-    = select_tag :capacity_range, options_for_select(Venue::CAPACITY_RANGE_OPTIONS,params[:capacity_range]), prompt:"Jauge..."
-    = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)"
-    = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats"
-    = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso"
-    = text_field_tag :dept, params[:dept], placeholder:  "N°Departement"
-    = button_tag "Search", name: nil
+
+
+= form_tag contacts_path, method: :get, :id=>"filters-hiddenform" do
+  /, :class=>"hidden"
+
+  /= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
+  = text_field_tag :venue_kind, params[:venue_kind], placeholder: "Type de sale", :class=>"tag-type"
+  
+  /= text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
+  /= text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"
+  /= select_tag :capacity_range, options_for_select(Venue::CAPACITY_RANGE_OPTIONS,params[:capacity_range]), prompt:"Jauge..."
+  /CAPACITY_RANGE_OPTIONS = ["< 100", "100-400","400-1200","> 1200"]
+  = text_field_tag :capacity_range, params[:capacity_range], placeholder: "Jauge...", :class=>"tag-custom"
+  
+  = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)", :class=>"tag-style"
+  = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats", :class=>"tag-legal"
+  = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso", :class=>"tag-custom"
+  = text_field_tag :dept, params[:dept], placeholder:  "N°Departement", :class=>"tag-custom2"
+  = button_tag "Search", name: nil
    
 /______________________________________________________ LISTS       
 .row-fluid
   %ul#contact-list.list-large
     %li.list-header
       = @contacts.total_count
-      résulats — Page 
+      résultats — Page 
       = paginate @contacts
     -#  
       .meta
@@ -184,7 +200,7 @@
     .btns-in-list
       %i.entypo.edi-plus-3
       %span
-        = link_to "Ajouter un lieu", new_venue_path 
+        = link_to "Ajouter un lieu", new_venue_path
         |
         = link_to new_person_path do
           Ajouter une personne

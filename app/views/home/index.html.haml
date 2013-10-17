@@ -21,19 +21,12 @@
   = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
   = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
 
-
-        
-          
- 
   .btn-in-list
-    %a.align-right{:href => "#"}
+    =link_to tasks_path, :class=>"align-right" do
       %span
         Voir toutes les tâches
       %i.entypo.edi-ellipsis
-  
-  
-  
-  
+    
     
 %section#dash-ednews
   .section-title
@@ -49,9 +42,6 @@
       
     %li
       %a{:href => "#"} En cours de developpement : Multi-projets
-
-
-
 
     .btn-in-list
       %a.align-right{:href => "#"}
@@ -78,6 +68,7 @@
     .span3
       .numbers-xlarge 53
       campagnes envoyées
+
 
 -#   
   - if user_signed_in?
