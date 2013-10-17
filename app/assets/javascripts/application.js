@@ -13,6 +13,8 @@
 // require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require tag-it
+//= require tag
 //= require bootstrap
 // require bootstrap-typeahead
 //= require_tree ./datetimepicker
@@ -26,6 +28,8 @@
 //= require edgarapp
 //= require_tree ./appli
 //= require_self
+
+/*
 $('document').ready(function() {
 	
 
@@ -83,3 +87,4 @@ function loadSocial() {
       $.getScript('https://apis.google.com/js/plusone.js');
     }
 }
+*/
