@@ -135,14 +135,14 @@
         .title Infos sur la personne
         
       -#  ________________________________________________________ TAGS V1
-      = f.input :style_tags
-      = f.input :style_list, label: "Styles (séparés par des virgules)", :input_html => { :class => "span6" }
+      = f.input :style_tags, label: "Styles (séparés par des virgules)",  :input_html => { :class => "span6 style_tags_input", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
+      -# = f.input :style_list, label: "Styles (séparés par des virgules)", :input_html => { :class => "span6" }
 
       -#  ________________________________________________________ TAGS V1
-      = f.input :network_list, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6" }
+      = f.input :network_tags, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6 network_tags_input", data: {available_tags: ["Fedelima","Cry","RIF"]} }
 
       -#  ________________________________________________________ TAGS V1
-      = f.input :custom_list, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6 autocomplete_tags" }
+      = f.input :custom_tags, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6 custom_tags_input", data: {available_tags: ["Chouette"]} }
         
     / ________________________________________________________ actions
     .form-actions

@@ -17,9 +17,25 @@ $.ajax({
 */
 
 $(document).ready(function() {
-    $(".autocomplete_tags").tagit({
-			singleField: true,
-			allowSpaces: true,
-			availableTags: ['c++', 'java', 'jacour']
-		});
+	var availableStyleTags = $(".style_tags_input").data('available-tags')
+  $(".style_tags_input").tagit({
+		singleField: true,
+		allowSpaces: true,
+		availableTags: availableStyleTags	
+	});
+
+	var availableNetworkTags = $(".network_tags_input").data('available-tags')
+  $(".network_tags_input").tagit({
+		singleField: true,
+		allowSpaces: true,
+		availableTags: availableNetworkTags	
+	});
+
+	var availableCustomTags = $(".custom_tags_input").data('available-tags')
+  $(".custom_tags_input").tagit({
+		singleField: true,
+		allowSpaces: true,
+		availableTags: availableCustomTags	
+	});
+
 });
