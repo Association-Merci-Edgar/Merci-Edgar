@@ -64,6 +64,7 @@ class Contact < ActiveRecord::Base
   scope :with_reportings, joins: :reportings
   scope :by_department, lambda { |code_dept| joins(:addresses).where('addresses.postal_code LIKE ?', "#{code_dept}%")}
 
+  AVAILABLE_STYLE_TAGS = ["Rock","Chanson","Electro","Jazz"]
 
   def phone_number
     @phone_number ||= phones.first.try(:formatted_phone)
