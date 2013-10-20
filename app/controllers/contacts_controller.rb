@@ -24,9 +24,16 @@ class ContactsController < AppController
   end
 
   def only
+    @no_paging = false
     @contacts = case params[:filter]
       when "favorites" then current_user.favorites.page params[:page]
       when "contacted" then Contact.with_reportings.page params[:page]
+      when "recently_created" then 
+        @no_paging = true
+        Contact.recently_created
+      when "recently_updated" then 
+        @no_paging = true
+        Contact.recently_updated
       when 'style' then 
         @param_filter = params[:name]
         Contact.by_style(params[:name]).page params[:page]

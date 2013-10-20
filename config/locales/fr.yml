@@ -243,6 +243,8 @@ fr:
   filters:
     favorites: favoris
     contacted: contactés
+    recently_created: récemment créés
+    recently_updated: récemment modifiés
     style: Style
     contract: Contrat
     network: Réseau

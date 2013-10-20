@@ -1,4 +1,3 @@
-
 $( "#final_submit" ).click(function() {
   $('.filters-hiddenform form').submit();
 });
@@ -186,6 +185,8 @@ function filtergo(theform) {
 		return true;
 	else
 		return false;*/
+		
+		
 }
 
 

@@ -12,10 +12,10 @@ class VenueInfo < ActiveRecord::Base
   end
 
   def contract_list
-    self.contract_tags.split(',')
+    self.contract_tags.split(',') if self.contract_tags.present?
   end
 
   def contract_list=(contracts)
-    self.contract_tags = contracts.join(',')
+    self.contract_tags = contracts.join(',') if contracts.present?
   end
 end
