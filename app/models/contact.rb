@@ -19,7 +19,7 @@
 
 class Contact < ActiveRecord::Base
   extend ContactsHelper
-  default_scope { where(:account_id => Account.current_id).order("contacts.name") }
+  default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_list, :network_list, :custom_list, :style_tags, :network_tags, :custom_tags
   has_many :emails, :dependent => :destroy
@@ -55,14 +55,17 @@ class Contact < ActiveRecord::Base
           :having     => ['COUNT(*) >= ?', names.length]
         )
   }
-  scope :tagged_with, lambda { |tag_type,tag_name| where('? = ?', tag_type, tag_name) }
-  scope :by_style, lambda { |tag_name| where("style_tags LIKE ?", "%#{tag_name}%") }
-  scope :by_network, lambda { |tag_name| where("network_tags LIKE ?", "%#{tag_name}%") }
-  scope :by_custom, lambda { |tag_name| where("custom_tags LIKE ?", "%#{tag_name}%") }
-  scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%")}
-  scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%")}
+  scope :tagged_with, lambda { |tag_type,tag_name| where('? = ?', tag_type, tag_name).order("contacts.name") }
+  scope :by_style, lambda { |tag_name| where("style_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
+  scope :by_network, lambda { |tag_name| where("network_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
+  scope :by_custom, lambda { |tag_name| where("custom_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
+  scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order("contacts.name")}
+  scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order("contacts.name")}
   scope :with_reportings, joins: :reportings
-  scope :by_department, lambda { |code_dept| joins(:addresses).where('addresses.postal_code LIKE ?', "#{code_dept}%")}
+  scope :by_department, lambda { |code_dept| joins(:addresses).where('addresses.postal_code LIKE ?', "#{code_dept}%").order("contacts.name")}
+  
+  scope :recently_created, order("created_at desc").limit(10)
+  scope :recently_updated, order("updated_at desc").limit(10)
 
   AVAILABLE_STYLE_TAGS = ["Rock","Chanson","Electro","Jazz"]
 
