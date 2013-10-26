@@ -23,6 +23,7 @@ class VenuesController < AppController
     @people = @venue.people
     @tasks = @venue.tasks
     @pending_tasks = @tasks.pending
+    @completed_tasks = @tasks.completed
     @reportings = @venue.reportings
     @reporting = @venue.reportings.build
   end
@@ -93,12 +94,13 @@ class VenuesController < AppController
   # DELETE /venues/1
   # DELETE /venues/1.json
   def destroy
-    @venue = Venue.find(params[:id])
+    @venue_id = params[:id]
+    @venue = Venue.find(@venue_id)
     @venue.destroy
 
     respond_to do |format|
       format.html { redirect_to venues_url }
-      format.json { head :no_content }
+      format.js { render "destroy" }
     end
   end
 

@@ -16,6 +16,7 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @tasks = @person.tasks
     @pending_tasks = @tasks.pending
+    @completed_tasks = @tasks.completed
     @reportings = @person.reportings
     @reporting = @person.reportings.build
 
@@ -78,12 +79,13 @@ class PeopleController < ApplicationController
   # DELETE /people/1
   # DELETE /people/1.json
   def destroy
+    @person_id = params[:id]
     @person = Person.find(params[:id])
     @person.destroy
 
     respond_to do |format|
       format.html { redirect_to people_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 end

@@ -1,0 +1,20 @@
+li_task = $('#task_<%= @task.id %>');
+li_task.wrap("<strike></strike>");
+setTimeout("complete(li_task)",5000);
+
+function complete(li_task) {
+	checkbox = li_task.find("input")
+	if (checkbox.is(':checked')) {
+		li_task.fadeOut(1500, function() { clean_and_refresh_completed_tasks(li_task)  })
+
+	}
+}
+
+function clean_and_refresh_completed_tasks(li_task) {
+	li_task.remove();
+	completed_tasks = $('#completed_tasks');
+	if (completed_tasks.length > 0) {
+		completed_tasks.replaceWith("<%= j render(partial:'completed_tasks', locals: {tasks: @task.asset.tasks.completed}) %>")
+	}
+	
+}

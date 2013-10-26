@@ -1,4 +1,4 @@
-%li
+%li{id: "person_#{person.to_param}"}
   .meta
     -# _________________________ favorite
     - if person.favorite?(current_user)
@@ -21,7 +21,7 @@
     .actions
       = link_to edit_person_path(person), :class => "shybtn" do
         %i.entypo.edi-pencil
-      = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+      = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' }, remote: true do
         %i.entypo.edi-cross
         
   = link_to person do

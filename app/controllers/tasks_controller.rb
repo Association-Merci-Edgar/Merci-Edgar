@@ -27,7 +27,18 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
     @task.complete(current_user)
-    # redirect_to @task.asset
+    if @task.save
+      # head :no_content
+      render "complete"
+    end
+  end
+
+  def uncomplete
+    @task = Task.find(params[:id])
+    @task.uncomplete
+    if @task.save
+      render "uncomplete"
+    end
   end
 
   def create

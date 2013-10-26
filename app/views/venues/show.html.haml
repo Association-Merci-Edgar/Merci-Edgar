@@ -86,9 +86,9 @@
         / ________________________________________________________ tasks
         #tasks.tab-pane
           - if @pending_tasks.any?
-            = render partial:'tasks'
+            = render partial:'tasks/tasks'
           - else
-            = render partial:'empty_tasks'
+            = render partial:'tasks/empty_tasks'
             
 
          

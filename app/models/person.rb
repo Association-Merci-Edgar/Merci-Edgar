@@ -21,7 +21,7 @@ class Person < Contact
   validates_presence_of :last_name
   alias_attribute :last_name, :name
 
-  accepts_nested_attributes_for :people_structures, :reject_if => :all_blank
+  accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
 
   def other_people_structures
     self.people_structures.where("structure_id != ?", self.relative.id)
@@ -33,6 +33,10 @@ class Person < Contact
 
   def to_s
     [self.first_name, self.last_name].compact.join(' ')
+  end
+
+  def to_param
+    [id, to_s.try(:parameterize)].compact.join('-')
   end
 
   def title(structure)

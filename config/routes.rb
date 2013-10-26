@@ -34,15 +34,18 @@ Edgar::Application.routes.draw do
       put 'people/:id/set_main_contact', action: :set_main_contact, as: :set_main_contact
       resources :tasks do
         put 'complete', :on => :member
+        put 'uncomplete', :on => :member
       end
     end
     resources :people do
       resources :tasks do
         put 'complete', :on => :member
+        put 'uncomplete', :on => :member
       end
     end
     resources :tasks do
       put 'complete', :on => :member
+      put 'uncomplete', :on => :member
     end
     resources :contacts do
       get 'only/:filter', action: :only, on: :collection, as: :only

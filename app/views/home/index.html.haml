@@ -17,9 +17,7 @@
       .badge.badge-small.badge-red= Task.due_today.size
       pour aujourd’hui  
 
-  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :overdue, :asset => @person, :color => "black"}
-  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_today, :asset => @person, :color => "red"}
-  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks, :due => :due_tomorrow, :asset => @person, :color => "blue"}
+  = render :partial => "tasks/group", :locals => {:tasks => @pending_tasks}
 
 
         
