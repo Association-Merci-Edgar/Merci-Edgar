@@ -1,3 +1,41 @@
-.task
-  = task.name
-
+%li{id: "task_#{task.id}"}
+  - complete_link = task.asset.present? ? send("complete_#{task.asset.class.name.downcase}_task_path",task.asset,t) : complete_task_path(task)
+  - uncomplete_link = task.asset.present? ? send("uncomplete_#{task.asset.class.name.downcase}_task_path",task.asset,t) : uncomplete_task_path(task)
+  
+  %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-complete-link" => complete_link, "data-uncomplete-link" => uncomplete_link}
+    %input{:type => "checkbox", :class=>"checkbox", :onclick =>"toggleUncompletedTask(this)"}
+    %label
+  .rightrow.small
+    - color,date = task.friendly_date
+    = show_badge(color, date)
+    .actions
+      -#%a.shybtn{:href => "#"}
+      - if task.asset.present?
+        = link_to send("edit_#{task.asset.class.name.downcase}_task_path",task.asset,task), :class => "shybtn", remote:true do
+          %i.entypo.edi-pencil
+      - else
+        = link_to edit_task_path(task), :class => "shybtn" do
+          %i.entypo.edi-pencil
+          
+  .mainrow
+    .title
+      - if task.asset.present?
+        = link_to task.name, send("edit_#{task.asset.class.name.downcase}_task_path",task.asset,task), remote:true
+      - else
+        = link_to task.name, edit_task_path(task), remote:true
+    
+    .infos-line
+      .infos-part
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag task.assignee.avatar
+          = task.assignee.nickname
+      - if task.asset.present?
+        .infos-part
+          = link_to task.asset do
+            .pic.pic-mini= image_tag task.asset.avatar
+            = task.asset.name
+      - if task.project.present?
+        .infos-part
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag task.project.avatar
+            = task.project.name
