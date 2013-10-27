@@ -48,10 +48,10 @@ fr:
       more: "Plus de videos sur le blog de Merci Edgar"
     thankyou:
       title: "Merci !"
-      info: "Votre demande a bien été enregistrée. Profitez de votre été. Nous, de notre côté, nous construisons votre futur assistant virtuel..."
-      contact: "On reprend contact avec vous dès le mois de septembre !"
+      info: "Votre demande a bien été enregistrée."
+      contact: "De notre côté, nous construisons votre futur assistant virtuel...Et l'on reprend contact avec vous juste avant la sortie de Merci Edgar !"
       share: "Faites-en profiter vos ami-e-s artistes ! Partagez la nouvelle sur Facebook, Twitter ou Google Plus !"
-      social_message: "Je me suis inscrit pour faire partie des premiers à tester Merci Edgar ! Et vous ?"
+      social_message: "Je viens de decouvrir Merci Edgar ! Cela peut vous interesser ..."
     events:
       title: "Evénements"
       description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d'Edgar"
