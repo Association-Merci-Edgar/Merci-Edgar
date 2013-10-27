@@ -14,7 +14,7 @@ fr:
       management: gestion
       of: de
       time: "Vous passez plus de temps à gérer l’administratif qu’à créer ?"
-    i_want_it: "Je veux le tester !"
+    i_want_it: "Je m'inscris !"
     features:
       find: Trouvez rapidement les lieux
       find_what: "compatibles avec votre style, selon leur emplacement, selon leur jauge, ..."
@@ -42,7 +42,7 @@ fr:
       evolutive_details: "Nous allons construire l'outil avec vous ! Il évoluera en fonction de vos besoins."
     request:
       invitation: "Demande d'invitation"
-      explanation: "Nous travaillons tout l'été pour développer les premières briques de Merci Edgar. Si vous voulez faire partie des quelques privilégiés qui pourront tester le logiciel dès le mois de septembre, laissez votre mail dès maintenant. Attention, seuls les premiers seront servis !"
+      explanation: "Merci Edgar est en cours de construction. Laissez votre mail dès maintenant pour être averti lors de sa sortie !"
     tv:
       description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
       more: "Plus de videos sur le blog de Merci Edgar"
