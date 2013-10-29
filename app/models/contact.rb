@@ -27,12 +27,12 @@ class Contact < ActiveRecord::Base
   has_many :addresses, :dependent => :destroy
   has_many :websites, :dependent => :destroy
 
-  has_many :tasks, :as => :asset
+  has_many :tasks, :as => :asset, dependent: :destroy
 
-  has_many :reportings, :as => :asset, :order => 'created_at DESC'
+  has_many :reportings, :as => :asset, :order => 'created_at DESC', dependent: :destroy
   has_many :reports, through: :reportings, source: :report, source_type: :report
 
-  has_many :favorite_contacts
+  has_many :favorite_contacts, dependent: :destroy
 
   belongs_to :main_contact, class_name: "Contact"
 

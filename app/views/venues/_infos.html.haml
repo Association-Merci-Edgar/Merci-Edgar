@@ -53,11 +53,11 @@
   .span6
     %ul.list-infos
       /%i.entypo.edi-info
-      %li.infolabel Période de programmation
+      %li.infolabel Programmation
       %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
-      %li= "Début de programmation : #{t("date.month_names")[@venue.start_scheduling].titleize}" if @venue.start_scheduling.present?
-      %li= "Fin de programmation :  #{t("date.month_names")[@venue.end_scheduling].titleize}" if @venue.end_scheduling.present?
-    
+      %li= "Saison : #{@venue.season}" if @venue.season.present?
+      - @venue.schedulings.each do |s|
+        %li= "Programmateur en recherche active : #{s}"
     - if @venue.rooms.any?
       - @venue.rooms.each do |room|
         %ul.list-infos

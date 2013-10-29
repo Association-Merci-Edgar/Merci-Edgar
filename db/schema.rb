@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014140648) do
+ActiveRecord::Schema.define(:version => 20131028123913) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -174,6 +174,16 @@ ActiveRecord::Schema.define(:version => 20131014140648) do
   end
 
   add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"
+
+  create_table "schedulings", :force => true do |t|
+    t.integer  "start_month"
+    t.integer  "end_month"
+    t.integer  "venue_info_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "schedulings", ["venue_info_id"], :name => "index_schedulings_on_venue_info_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
