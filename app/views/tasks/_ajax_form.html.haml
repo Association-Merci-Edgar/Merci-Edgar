@@ -1,5 +1,5 @@
 .modal-header
-  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+  %a.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
   %h3#myModalLabel Créer une tâche
   <br>
   = "relative à #{@asset}" if @asset
@@ -23,6 +23,6 @@
       = f.input :project_id, collection: Project.all, label_method: :name, value_method: :id, prompt: "Selectionnez un projet", label: t("simple_form.labels.project.name")
 
   .modal-footer
-    %button.btn.btn-link{"aria-hidden" => "true", "data-dismiss" => "modal"} Annuler
     /.btn.btn-secondary
-    = f.button :submit, class:"btn-primary btn-large"
+    = f.button :submit, class:"btn-primary btn-large pull-right"
+    %button.btn.btn-link{"aria-hidden" => "true", "data-dismiss" => "modal"} Annuler

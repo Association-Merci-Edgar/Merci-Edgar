@@ -160,9 +160,10 @@
                       %input#tags_tag{"data-default" => "add a tag", :style => "width: 80px;", :value => ""}/
               
                     .tags_clear
+                    
+                    
               -#  ________________________________________________________ contracts
 
-    
               = f.fields_for :venue_info do |v|
                 -#, :class => "span4"
                 -#, :input_html => { :class => "span4" }
@@ -188,31 +189,33 @@
                   = v.input :period, :collection => [:all_year, :quaterly, :per_semester], as: :radio_buttons, item_wrapper_class: "inline"
 
               
+              
                   -#________________________________________________________ scheduling OK
-
                   = v.fields_for :schedulings do |s|
                     .nested-fields
                       = s.link_to_remove :title => "Supprimer cette periode de programmation" do
                         %i.entypo.edi-minus-2
 
-                    .control-group  
-                      %label.control-label #{t("simple_form.labels.venue.venue_info.scheduling")}
+                      .control-group  
+                        %label.control-label #{t("simple_form.labels.venue.venue_info.scheduling")}
 
-                      .inline-inputs
-                        = v.input :scheduling, :wrapper => :prepend, :label => false do
-                          = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
-                          = s.input_field :start_month, :label => "Debut Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+                        .inline-inputs
+                          = v.input :scheduling, :wrapper => :prepend, :label => false do
+                            = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
+                            = s.input_field :start_month, :label => "Debut Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
 
-                        = v.input :scheduling, :wrapper => :prepend, :label => false do
-                          = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
-                          = s.input_field :end_month, :label => "Fin Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+                          = v.input :scheduling, :wrapper => :prepend, :label => false do
+                            = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
+                            = s.input_field :end_month, :label => "Fin Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+                            
                   .links
                     = v.link_to_add :schedulings, :title => 'Ajouter une periode de programmation' do
                       %i.entypo.edi-plus-2
                       Ajouter une periode de programmation
 
+
                                   
-                  -#________________________________________________________ scheduling OK   
+                  -#________________________________________________________ season 
                   .control-group  
                     %label.control-label #{t("simple_form.labels.venue.venue_info.season")}
                     .inline-inputs
