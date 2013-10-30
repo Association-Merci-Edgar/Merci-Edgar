@@ -25,27 +25,26 @@ $('document').ready(function() {
 // show/hide the leftpanel _________________________________
   window.smallScreens = function() {
     $('.leftpanel').removeClass( "collapsed");
-		$('.mainpanel').removeClass( "goleft");
+    $('.mainpanel').removeClass( "goleft");
     $('.leftpanel').removeClass( "small");
-		$('.mainpanel').removeClass( "goleftsmall");
-		
+    $('.mainpanel').removeClass( "goleftsmall");
+    
     if ($(window).width() <= 767) {
-			$('.leftpanel').addClass( "collapsed");
-			$('.mainpanel').addClass( "goleft");
-		} else if ($(window).width() <= 1024) {
-  			$('.leftpanel').addClass( "small");
-  			$('.mainpanel').addClass( "goleftsmall");
-		} else if ($(window).width() > 1024) {
-		}	
-	}
+      $('.leftpanel').addClass( "collapsed");
+      $('.mainpanel').addClass( "goleft");
+    } else if ($(window).width() <= 1024) {
+      $('.leftpanel').addClass( "small");
+      $('.mainpanel').addClass( "goleftsmall");
+    } else if ($(window).width() > 1024) {
+    }	
+  }
   
 	$('.leftpanel.collapsed').animate();
 	$('.leftpanel:not(.collapsed)').animate();
 
 	$("#nav_toggle").click(function () {
-    /*$(".leftpanel").toggle("slow");*/
-		$('.leftpanel').toggleClass( "collapsed");
-		$('.mainpanel').toggleClass( "goleft");
+	navToggle();
+	
 	});
 
 	smallScreens();
@@ -66,20 +65,18 @@ $(window).resize(function() {
 
 
 
-$('#search-nav a').click(function() {
-  //event.preventDefault();
-  $('.searchahead').typeahead();
-  $('#thesearch').show();
-  $('#search-nav').addClass("active");
-  $('#thesearch').find("[autofocus]:first").focus();
-});
+function navTogMini() {
+  $('.leftpanel').toggleClass( "small");
+	$('.mainpanel').toggleClass( "goleftsmall");
+}
 
-$('.search-backdrop').click(function() {
-  $('#search-nav').removeClass("active");
-  $('#thesearch input').val("");
-  $('#thesearch').hide();
-  
-});
+
+function navToggle() {
+  /*$(".leftpanel").toggle("slow");*/
+  $('.leftpanel').toggleClass( "collapsed");
+	$('.mainpanel').toggleClass( "goleft");
+}
+
   
   
 //  _________________________________ Clickable Dropdown
@@ -130,6 +127,32 @@ $(function() {
 });
 
 
+
+toggleSearch = function(){
+  if ($('#search-nav').hasClass("active")) {
+    // HIDE
+    $('#search-nav').removeClass("active");
+    $('#thesearch input').val("");
+    $('#thesearch').hide();
+  } else {
+    // SHOW
+  $('.searchahead').typeahead();
+  $('#thesearch').show();
+  $('#search-nav').addClass("active");
+  $('#thesearch').find("[autofocus]:first").focus();
+  }
+}
+$('#search-nav a').click(function(event) {
+  event.preventDefault();
+  toggleSearch()
+});
+$('.search-backdrop').click(function(event) {
+  event.preventDefault();
+  toggleSearch();
+});
+
+
+
 initializer = function() {
   //$(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
   $(".modal").on('shown', function() {
@@ -138,7 +161,13 @@ initializer = function() {
   
   $("#gmaps_index").width( $("#markers_list").width() )
   $("#markers_list").height( $(document).height() - 210 - $("#gmaps_index").height() )
+  
+  // MouseTrap __ http://craig.is/killing/mice
+  Mousetrap.bind('+', function() { $("#plusmenu").toggleClass('active'); $("#plusmenu").find("a:first").focus(); });
+  Mousetrap.bind('s', function() {toggleSearch(); }, 'keyup');
+  Mousetrap.bind('*', function() {toggleSearch(); }, 'keyup');
+  Mousetrap.bind('@', function() {navTogMini(); });
 
- 
 }
+
 
