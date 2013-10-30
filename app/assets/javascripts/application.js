@@ -25,8 +25,8 @@
 
 //= require contacts
 //= require nested_form
-//= require edgarapp
 //= require_tree ./appli
+//= require edgarapp
 //= require_self
 
 /*

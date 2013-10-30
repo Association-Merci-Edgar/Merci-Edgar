@@ -89,7 +89,7 @@ $white:   #fff;
   zoom: 1;
 }
 
-@mixin btn {}
+//@mixin btn {}
 
 @mixin plholder($col) { 
   &::-webkit-input-placeholder {color: $col;}
@@ -109,35 +109,37 @@ a:visited, a:active, a:link {text-decoration:none;}
 ::-webkit-selection {background:rgba(237, 226, 50, 0.99); /* Chrome */}
 ::selection {background: $yellow; /* Safari */}
 
+//html, body {height: 100%;}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: 16px;//.9em;
+	line-height: 1.5em;
+	letter-spacing: 0.03em;
+	margin: 0px;
+	padding: 0px;
+	color: $dblue;
+	background:$beige;
+}
 
 
 .nav, .leftpanel {@include noselect;}
 
-#activityfield, select, input[type="file"], textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    border-color:$dbeige2;//$vlblue;
-    border-width: 2px;
-    //transition: none;
-    //height:24px;
-    font-size: 16px;
-    background:#fff;
-    padding: 6px 10px;
-    &:focus {border-color:$green; box-shadow: none;};
+#activityfield, select, input[type="file"], textarea, input[type="text"], input[type="password"], input[type="datetime"],
+input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  border-color:$dbeige2;//$vlblue;
+  border-width: 2px;
+  //transition: none;
+  //height:24px;
+  font-size: 16px;
+  background:#fff;
+  padding: 6px 10px;
+  &:focus {border-color:$green; box-shadow: none;};
 }
 select, input[type="file"] {height: 35px;}
-
-    
-.venue_addresses_more_info textarea { height:80px; width:100%;}
-
-
 //select:focus { outline: none; }
-
-.caret {
-border-color:$dblue transparent transparent transparent;
-border-width:4px;
-border-style:solid;
-content: "";
-display:inline-block;
-}
 
 .fullwith-input {width:100%;}
 .big-input {
@@ -148,10 +150,34 @@ display:inline-block;
   @include borderbox;
 }
 
+textarea {@include borderbox;}
+
+.venue_addresses_more_info textarea { height:80px; width:100%;}
+
+
+.inline-form {
+  label, input, .control-group {display:inline;}
+  input, select {margin-bottom:4px;}
+  .control-group { margin-right:6px;}
+  select#kms {width:90px;}
+}
+
+
+
+
+.caret {
+  border-color:$dblue transparent transparent transparent;
+  border-width:4px;
+  border-style:solid;
+  content: "";
+  display:inline-block;
+}
+
+
 
 /* ____________  */
 
-/* ____________________________________ ICO  */
+/* ________________________________________________________________________ ICO  */
 
 .entypo:before { font-family: 'Entypo'; line-height: 1;}
 
@@ -212,9 +238,6 @@ display:inline-block;
 
 
 
-textarea {@include borderbox;}
-
-
 a, .btn-link {color:$dblue;
   &:hover, &:active, &:focus {color:$green; text-decoration:none;}
 }
@@ -226,21 +249,6 @@ a, .btn-link {color:$dblue;
 
 .infos-line a, .infos a {@extend .showlink;}
 
-
-//html, body {height: 100%;}
-
-body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: 300;
-	font-size: 16px;//.9em;
-	line-height: 1.5em;
-	letter-spacing: 0.03em;
-	margin: 0px;
-	padding: 0px;
-	color: $dblue;
-	background:$beige;
-}
-
 .progress .bar { background-image: none; box-shadow: none;  background-color:$green; }
 
 .maincontent{
@@ -251,6 +259,7 @@ body {
 
 .maincontentinner {
 	padding: 48px 64px 34px 48px;//34px 64px 34px 34px ;
+  position:relative;
 }
 
 .leftpanel {
@@ -344,8 +353,7 @@ $lbrown: rgba(209, 209, 197, 1);
 
 
 
-section > h4 {display:block; margin-bottom:24px;}
-.section-title {font-size:24px; margin-bottom:24px;}
+/* ______________________________________________________________ BTNs   */
 
 .btn {padding: 6px 12px; font-size:16px; text-shadow:none;}
 
@@ -395,9 +403,6 @@ section > h4 {display:block; margin-bottom:24px;}
     color:$white;
   }
 }
-
-.bold {font-weight:bold;}
-
 
 .btn-large {
     font-size: 20px;
@@ -449,7 +454,7 @@ h1, h2, h3, h4 {font-weight:300; display:inline; line-height:inherit;}
 h1 {font-size:37px; color:$orange;}
 h2 {font-size:32px; font-weight:bold;}
 h3 {font-size:28px;}
-h4 {font-size:24px;}
+h4 {font-size:24px; margin-bottom:18px;}
 h5 {font-size:20px;}
 h6 {font-size:17px;}
 
@@ -460,9 +465,14 @@ h2 {
   margin-bottom: 11px;
 }
 
-h4 { margin-bottom:18px;}
-
 h3.message {line-height: 36px;}
+
+section > h4 {display:block; margin-bottom:24px;}
+.section-title {font-size:24px; margin-bottom:24px;}
+
+.bold {font-weight:bold;}
+
+
 
 .label-large p {line-height: 18px;}
 
@@ -490,23 +500,17 @@ header {display:block;}
   padding-top: 14px;
   padding-bottom: 10px;
   display:block;
-  
   width:100%;
   border-bottom: solid 1px $lblue;
-ul.subpage-nav {
   
-  list-style : none;
-  margin-left: 0px;
-  
-  
-  li {display:inline-block;
-    a { margin-left: 0px; padding: 4px 10px;
-      @include roundcorners;
+  ul.subpage-nav {
+    list-style : none;
+    margin-left: 0px;
+    li {display:inline-block;
+      a { margin-left: 0px; padding: 4px 10px; @include roundcorners;}
+      a:hover, a:focus, &.active a { background: $dbeige2; color:$dblue;}
     }
-    
-    a:hover, a:focus, &.active a { background: $dbeige2; color:$dblue;}
   }
-}
 }
 
 form section .section-title {padding-top:80px;}
@@ -516,14 +520,14 @@ form section .section-title {padding-top:80px;}
 //  __________________________________________________________________ Gmap Fix
 
 .tab-pane {
-    position: absolute !important;
-    left: -10000px !important;
-    display:block !important;
+  position: absolute !important;
+  left: -10000px !important;
+  display:block !important;
 }
 
 .tab-pane.active {
   left: 0px !important;
-    position: static !important;
+  position: static !important;
 }
 
 
@@ -545,7 +549,7 @@ form section .section-title {padding-top:80px;}
 }
 
 /* ________________________________________________________ INDEX MAP SHOW_MAP   */
-.maincontentinner { position:relative;}
+
 
 
 /*
@@ -575,39 +579,33 @@ form section .section-title {padding-top:80px;}
 
 
 
-.inline-form {
-  label, input, .control-group {display:inline;}
-  input, select {margin-bottom:4px;}
-  .control-group { margin-right:6px;}
-  select#kms {width:90px;}
-}
-
 /* ________________________________________________________ NAV BAR   */
 
 /*  _______________________________________________________  leftpanel   */
 
 /* __________________________________ small_goleft  */
-.leftpanel.collapsed {margin-left : -240px;}
-.mainpanel.goleft { margin-left:0px;}
 
-.leftpanel.small {width:78px;}
+.mainpanel.goleft { margin-left:0px;}
 .mainpanel.goleftsmall { margin-left:78px;}
 
-.leftpanel.small li a i.entypo { margin-right:20px; }
+.leftpanel.collapsed {margin-left : -240px;}
+
 .leftpanel.small {
-  .account-tab, .user-tab span {display:none;}
+  width:78px;
+  #logo-nav{margin-left: 4px;}
   .logo {padding-left:13px;}
-  .leftmenu .righticon {
-      display: block;
-      float: none;
-      margin-left: 7px;
-      
+  .account-tab, .user-tab span {display:none;}
+  .user-tab .righticon {margin-left: 3px; font-size: 18px;}
+  li a i.entypo { margin-right:20px; }
+  .footer {width:30px;}
+  .righticon {
+    display: block;
+    float: none;
+    margin-left: 7px;
   }
-
 }
+
 /* ____________*/
-
-
 
 
 .nav li a.user-tab { padding-top: 24px; padding-bottom:8px; font-size:16px;}
@@ -620,7 +618,6 @@ form section .section-title {padding-top:80px;}
 .leftpanel i { font-size:24px;}
 .leftpanel .entypo.edi-check_2 { height:24px;} // tasks icon
 .leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
-
 
 
 .logo {
@@ -636,8 +633,10 @@ form section .section-title {padding-top:80px;}
 	color: #fff;
 }
 
-.leftpanel .entypo.logotype:before { font-size:50px;}
+
 .leftpanel .entypo { width:30px; display:inline-block;}
+
+//.leftpanel .entypo.logotype:before { font-size:50px;}
 a .logotype, .edi-logoedgar { color: $dblue;}
 
 
@@ -661,40 +660,35 @@ a .logotype, .edi-logoedgar { color: $dblue;}
 
 a.pull-right {float:right;}
 
-
-
-
+.leftmenu li { margin:0;}
 .leftmenu li a {
 	color:$beige; font-size:19px;
 	height: 25px;
 	padding : 13px 0 14px 26px;// 15px 0 15px 26px; // 13px 0px 12px 24px;
 	display:block;
-	&:focus{text-decoration:none;}
+	&:focus { text-decoration:none;}
+	i.entypo { margin-bottom:6px; }
 }
 
-.leftmenu li a:hover, .leftmenu li.active a, .leftmenu li.active a:hover, .leftmenu li.tour-step-backdrop a  {
-	background: $beige;
-	color:$dblue;
-	& .righticon {display:block;}
+.leftmenu li a:hover, .leftmenu li a:focus, .leftmenu li.active a, .leftmenu li.active a:hover, .leftmenu li.active a:focus, .leftmenu li.tour-step-backdrop a  {
+  background: $beige;
+  color:$dblue;
+  & .righticon {display:block;}
 }
+.leftmenu li a:hover { background: $dbeige2;} // don't move
+
 .leftmenu .righticon {float: right; display:none;margin-top:6px; margin-right: 6px;}
 
-.leftmenu li a:hover{	background: $dbeige2;}
-
-.leftmenu, .logo { }
-
-.leftpanel li a i.entypo { margin-bottom:6px; }
+//.leftmenu, .logo { }
 
 .leftmenu a .badge { float:right; margin-top:4px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li, .logo {width:240px;}
 
-.click-nav {}
+//.click-nav {}
 .nav li.comingsoon a, .comingsoon li a {color:$vlblue;}
 
-.leftmenu li {
-	margin:0;
-}
+
 
 .leftmenu li.user-tab a {padding-top:30px;}
 
@@ -743,6 +737,13 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   }
 */
 .account-tab{margin-left:0; display:inline-block;}
+
+a .logo:hover, a .logo:focus {
+  background-color: $dbeige2;
+  color:$dblue;
+  #logo-nav {background-position: bottom left ;}
+};
+
 #logo-nav {
   display: inline-block;
   margin-top: 12px;
@@ -750,7 +751,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   margin-right: 8px;
   height:52px;
   width:40px;
-  background: url('../appli/nav-logo-anim.gif') top left no-repeat;
+  background: url('../appli/nav-logo-anim2.gif') top left no-repeat;
 }
 
 
@@ -985,32 +986,52 @@ legend {font-size: 20px;
 
 /*  ________________________________________________________ filters  V2  */
 
-.sorters {margin-bottom:10px;
+.sorters {//margin-bottom:10px;
   .dropdown {display:inline-block; margin-right:6px;}
-  }
+}
+
+@mixin gradient-vertical ($firstColor: #FFF, $secondColor: #DDD) {
+	background	: $firstColor; /* Fallback solid color for old browsers */
+	background	: linear-gradient(to bottom, $firstColor 0%, $secondColor 100%); /* W3C */
+	background	: -moz-linear-gradient(top, $firstColor 0%, $secondColor 100%); /* FF 3.6+ */
+	background	: -ms-linear-gradient(top, $firstColor 0%, $secondColor 100%); /* IE 10+ */
+	background	: -o-linear-gradient(top, $firstColor 0%, $secondColor 100%); /* Opera 11.10+ */
+	background	: -webkit-linear-gradient(top, $firstColor 0%,$secondColor 100%); /* Chrome 10+, Safari 5.1+ */
+	background	: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$firstColor), color-stop(100%,$secondColor)); /* Chrome, Safari 4+ */
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr= '#{$firstColor}', endColorstr= '#{$secondColor}', GradientType=0); /* IE 6-9 */
+}
 
 .filters-outercontainer {
   background:$white;
   //height:auto;
   height:0px;
   overflow: hidden;
-  margin-bottom:10px;
+  //margin-bottom:10px;
   &.open{height:auto;}
-  
-  
   .filters-container {padding:20px;}
-  @include transition(all, .3s)
-  
+  @include transition(all, .3s);
+  @include gradient-vertical($white,$beige);
+  -webkit-border-radius:  6px 6px 0 0 ;
+  -moz-border-radius: 6px 6px 0 0 ;
+  border-radius: 6px 6px 0 0 ;
+}
+
+.filters-trigger.active {
+  padding-bottom: 20px;
+  vertical-align: top;
+  -webkit-border-radius:  6px 6px 0 0 ;
+  -moz-border-radius: 6px 6px 0 0 ;
+  border-radius: 6px 6px 0 0 ;
 }
 
 .filters-pool {
-    
     border-bottom : solid 1px $dbeige;
     min-height:20px;
+    padding-bottom: 10px;
 }
 
 .filters-stage {
-  padding-top:10px;
+  padding-top:20px;
   a.tag-actor { background:$dbeige; padding:2px 9px; font-size:16px; margin-right: 4px;
     cursor:pointer;
     &:hover{background:$dblue60;};
@@ -1024,7 +1045,7 @@ legend {font-size: 20px;
 .btn.active {background:$white; color:$dblue; box-shadow:none;}
 
 .popover {
-    max-width: 320px;
+    max-width: 360px;//320px;
     input, form, select {margin-bottom:0;}
     .hint{color:$mblue; font-size:14px; margin-top:10px; display:block;}
     .inline-inputs {margin-left:0; display: inline-block; margin-bottom:0px;}
@@ -1034,6 +1055,8 @@ legend {font-size: 20px;
 .add-middle { padding:5px; background:$dbeige; display: inline;
     padding: 7px;
     vertical-align: middle;}
+
+
 
 
 
@@ -1068,13 +1091,19 @@ legend {font-size: 20px;
   @include transition(all, 0.2s);
   
   .list-header {font-size:20px;}
-  li {line-height:34px;}
-  li a { display: block;}
-  li a:hover{color:$white;};
+  li {line-height:34px;
+    a { display: block;
+      &:hover, &:focus, &:active{color:$white;};
+      }
+    }
 }
 
-#plusmenu:hover #plusmenu-trigger { right:300px; }
-#plusmenu:hover .pluslist{ right:0px; }
+
+
+#plusmenu:hover, #plusmenu.active {
+  #plusmenu-trigger { right:300px; }
+  .pluslist{ right:0px; }
+}
 
 #plusmenu-trigger {
   @include transition(all, 0.2s);
@@ -1216,22 +1245,28 @@ input.search-query {width:100%;}
 }
 
 
-a.label-large:hover {color:$dblue;}
-a.label-large:hover i {background: $yellow;}
+a.label-large {
+  &:hover, &:focus{
+    color:$dblue;
+    i {background: $yellow;}
+  }
+}
 
-.label-large h4 { font-size:22px; display:block;}
-.label-large p { font-size:16px; color:$mblue;}
-.label-large i:before{ line-height:140px;}
-.label-large i {
-		font-size:70px;
-		display:inline-block;
-		width:140px;
-		height:140px;
-		background:$white;
-		-webkit-border-radius: 200px;
-		-moz-border-radius: 200px;
-		border-radius: 200px;
-		margin-bottom:8px;
+.label-large {
+  h4 { font-size:22px; display:block;}
+  p { font-size:16px; color:$mblue;}
+  i:before{ line-height:140px;}
+  i {
+    font-size:70px;
+    display:inline-block;
+    width:140px;
+    height:140px;
+    background:$white;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    border-radius: 200px;
+    margin-bottom:8px;
+  }
 }
 
 .modal {
@@ -1656,21 +1691,23 @@ section {
 /* __________________________________ tags   */
 
 .tags {
-  margin-top: 9px;
+  margin-top: 5px;
   margin-bottom: 2px;
 }
 *, a {
 &.tag {
   color:$dblue;
   font-size:14px;
-  display: inline-table;
-  margin-bottom: 10px;
+  display: inline-block;
+  margin: 5px 0;
+  margin-right:5px;
   padding: 0 8px;
   background-color:lighten ($beige, 80%);
   border:lighten($dblue, 50%) solid 1px;
   @include roundcorners;
   text-decoration:none;
   //text-transform:lowercase;
+  &:last-child {margin-right: 0;};
   &:hover, &:active, &.active {text-decoration:none; color:$white;}
 }
 
@@ -1783,6 +1820,7 @@ li {line-height: inherit;}
 
 /* _______________________________________________________  List_large   */
 
+#contact-list {margin-top:20px;}
 #contact-list.list-large li:not(.list-header) {min-height: 111px;}
 
 .list-large {

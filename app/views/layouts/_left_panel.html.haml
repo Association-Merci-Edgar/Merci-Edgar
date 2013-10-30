@@ -1,15 +1,17 @@
-.logo
-  #logo-nav
-    
-  -#
-    %i.entypo.edi-logoedgar_under.logotype
-    %a{:href => "#"}
-      %i.entypo.edi-logoedgar.logotype
+= link_to home_index_path do
+  .logo
+    #logo-nav
+  
+    -#
+      %i.entypo.edi-logoedgar_under.logotype
+      %a{:href => "#"}
+        %i.entypo.edi-logoedgar.logotype
       
-  .account-tab
-    = Account.find(Account.current_id).name
-    /%a.rightbt{:href => "#"}
-    /%i.entypo.edi-cog
+    .account-tab
+      = Account.find(Account.current_id).name
+      /%a.rightbt{:href => "#"}
+      /%i.entypo.edi-cog
+    
 %nav.leftmenu
   .sidebar-nav
     %ul.nav.nav-list
