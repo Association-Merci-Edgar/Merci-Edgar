@@ -242,6 +242,7 @@ a, .btn-link {color:$dblue;
   &:hover, &:active, &:focus {color:$green; text-decoration:none;}
 }
 
+.btn.btn-link {color:$dblue; padding: 11px 19px;}
 
 .showlink { border-bottom : dotted 1px $green ;
   &:hover {color:$green; text-decoration:none; border-color:transparent;}
@@ -265,7 +266,7 @@ a, .btn-link {color:$dblue;
 .leftpanel {
 	float: left;
 	width: 240px;
-	background: $dblue90; //$dbeige2;  //background: url(../appli/dblue.gif) top left repeat;
+	background: $dblue90; //$dbeige2;  //background: url(appli/dblue.gif) top left repeat;
 	position:fixed;
 	height:100%;
 	z-index:2000;
@@ -308,7 +309,7 @@ $lbrown: rgba(209, 209, 197, 1);
 #notice {
 	@include roundcorners;
 	padding: 16px 24px 16px 90px;
-	background-image: url('../appli/sprites/sprites-notices.png'); background-repeat : no-repeat;
+	background-image: url('appli/sprites/sprites-notices.png'); background-repeat : no-repeat;
 	//width: 41px; height: 36px;
 	background-position: 16px -48px;  background-color: $lblue2;
 	&.warning { background-position: -2px -4px;   background-color: $lyellow;}
@@ -328,7 +329,7 @@ $lbrown: rgba(209, 209, 197, 1);
 	//width: 40px;
 	min-height: 25px;
 	position:relative;
-	background-image: url('../appli/sprites/notices-info.png');  background-color: $lblue2;
+	background-image: url('appli/sprites/notices-info.png');  background-color: $lblue2;
 	.noticetitle {font-weight:bold; clear:right;
 	  &:after{content:" — ";};
 	  } //display:block;
@@ -342,11 +343,11 @@ $lbrown: rgba(209, 209, 197, 1);
   &:hover .btn-close{display:block;};
 	&:hover {background-color:$white !important;}
 	
-	&.warning { background-image: url('../appli/sprites/notices-warning.png');  background-color: $lyellow;}
-  &.info    { background-image: url('../appli/sprites/notices-info.png');  background-color: $lblue2;}
-  &.success { background-image: url('../appli/sprites/notices-success.png');  background-color: $lgreen;}
-  &.error   { background-image: url('../appli/sprites/notices-error.png');    background-color: $lred;}
-  &.info2   { background-image: url('../appli/sprites/notices-info.png');  background-color: $lbrown;} 
+	&.warning { background-image: url('appli/sprites/notices-warning.png');  background-color: $lyellow;}
+  &.info    { background-image: url('appli/sprites/notices-info.png');  background-color: $lblue2;}
+  &.success { background-image: url('appli/sprites/notices-success.png');  background-color: $lgreen;}
+  &.error   { background-image: url('appli/sprites/notices-error.png');    background-color: $lred;}
+  &.info2   { background-image: url('appli/sprites/notices-info.png');  background-color: $lbrown;} 
 }
 
 /* _______#### notices   */
@@ -729,7 +730,7 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
 .rightbt i { margin-left:-14px;  padding-top:7px;}
 
 .account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
-/*.account-tab { background: url('../appli/nav-logo-anim.gif') top left no-repeat;
+/*.account-tab { background: url('appli/nav-logo-anim.gif') top left no-repeat;
   margin-left:0; 
   margin-top: 12px;
   padding:15px 0;
@@ -751,7 +752,7 @@ a .logo:hover, a .logo:focus {
   margin-right: 8px;
   height:52px;
   width:40px;
-  background: url('../appli/nav-logo-anim2.gif') top left no-repeat;
+  background: url('appli/nav-logo-anim2.gif') top left no-repeat;
 }
 
 
@@ -882,7 +883,7 @@ legend {font-size: 20px;
 // Make look clickable because they are 
   cursor: pointer;
   height: 18px;
-	background: url(../appli/sprites/check_radio-sprite.png) 0 -24px no-repeat;	
+	background: url(appli/sprites/check_radio-sprite.png) 0 -24px no-repeat;	
 }
 
 :not(#foo) > span > input[type='radio'] + label,
@@ -919,20 +920,20 @@ legend {font-size: 20px;
 
 // Change from unchecked to checked graphic 
 :not(#foo) > span > input[type='radio']:checked + label {
-	background-position: 0 -192px;//url(../appli/check-radio/radio.png);
+	background-position: 0 -192px;//url(appli/check-radio/radio.png);
 }
 :not(#foo) > span > input[type='checkbox']:checked + label {
-  background-position: 0 -72px; //background-image: url(../appli/check-radio/check.png);
+  background-position: 0 -72px; //background-image: url(appli/check-radio/check.png);
 }
 
 // and the focuses
 :not(#foo) > span > input[type='radio']:focus:not(:checked) + label,
 :not(#foo) > span > input[type='radio']:active + label {
-	background-position: 0 -216px;//url(../appli/check-radio/radio.png);
+	background-position: 0 -216px;//url(appli/check-radio/radio.png);
 }
 :not(#foo) > span > input[type='checkbox']:focus:not(:checked) + label,
 :not(#foo) > span > input[type='checkbox']:active + label {
-  background-position: 0 -96px; //background-image: url(../appli/check-radio/check.png);
+  background-position: 0 -96px; //background-image: url(appli/check-radio/check.png);
 }
 
 
@@ -943,13 +944,13 @@ legend {font-size: 20px;
 	width: 19px;
 	height: 25px;
 	padding: 0 5px 0 0;
-	background: url(../appli/check-radio/btncheckbox.png) no-repeat;
+	background: url(appli/check-radio/btncheckbox.png) no-repeat;
 	display: block;
 	clear: left;
 	float: left;
 }
 .radio {
-	background: url(../appli/check-radio/btnradio.png) no-repeat;
+	background: url(appli/check-radio/btnradio.png) no-repeat;
 }
 */
 
@@ -961,7 +962,7 @@ legend {font-size: 20px;
 	padding: 0 24px 0 8px;
 	color: #fff;
 	font: 12px/21px arial,sans-serif;
-	background: url(../appli/select.png) no-repeat;
+	background: url(appli/select.png) no-repeat;
 	overflow: hidden;
 }
 */
@@ -1519,11 +1520,30 @@ select.select-right { width:auto; background:$dbeige2;
 }
 
 
+/*  _____________________________________________________ JQUERY UI   */
 
-.ui-menu-item {height:24px; width:100%;}
-.ui-corner-all{position:absolute;}
+//.ui-menu-item {height:24px; width:100%;}
+//.ui-corner-all{position:absolute;}
 
-ul.ui-autocomplete { list-style:none;position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; }
+
+ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; }
+
+.ui-menu .ui-menu-item a {
+	display: inline-block;
+}
+
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	background:$green; border-color:$green;
+	margin:0;
+}
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
 
 .popover{z-index: 2010;}
 
@@ -1695,28 +1715,61 @@ section {
   margin-bottom: 2px;
 }
 *, a {
-&.tag {
-  color:$dblue;
-  font-size:14px;
-  display: inline-block;
-  margin: 5px 0;
-  margin-right:5px;
-  padding: 0 8px;
-  background-color:lighten ($beige, 80%);
-  border:lighten($dblue, 50%) solid 1px;
-  @include roundcorners;
-  text-decoration:none;
-  //text-transform:lowercase;
-  &:last-child {margin-right: 0;};
-  &:hover, &:active, &.active {text-decoration:none; color:$white;}
+  &.tag {
+    color:$dblue;
+    font-size:14px;
+    display: inline-block;
+    margin: 5px 0;
+    margin-right:5px;
+    padding: 0 8px;
+    background-color:lighten ($beige, 80%);
+    border:lighten($dblue, 50%) solid 1px;
+    @include roundcorners;
+    text-decoration:none;
+    //text-transform:lowercase;
+    &:last-child {margin-right: 0;};
+    &:hover, &:active, &.active {text-decoration:none; color:$white;}
+  }
+
+  &.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
+  &.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
+  &.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
+  &.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
+  &.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
 }
 
-&.tag-type {border-color:$orange; &:hover, &:active, &.active {background-color:$orange;} }
-&.tag-style {border-color:$green; &:hover, &:active, &.active {background-color:$green;} }
-&.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
-&.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
-&.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
+
+/*  _____________________________________________________ UI TAGS  */
+
+ul.tagit li.tagit-choice .tagit-label:not(a) { color:$white; }
+
+.tagit > li.tagit-choice {
+@extend .tag;
 }
+ul.tagit li.tagit-choice:hover {
+  background-color:$dbeige;
+  border-color:$dbeige;
+}
+
+.style_tags_input + .tagit > li.tagit-choice {
+  @extend .tag-style.active;
+}
+.network_tags_input + .tagit > li.tagit-choice {
+  @extend .tag-type.active;
+}
+
+.custom_tags_input + .tagit > li.tagit-choice {
+  @extend .tag-custom.active;
+}
+
+ul.tagit li.tagit-choice-editable {
+  padding: .2em 22px .2em 11px;
+}
+
+
+/*  ___________ UI TAGS  */
+
+
 
 .number {font-size: 20px; color:$dblue;}
 .city:after {content:",";};
@@ -1731,7 +1784,7 @@ section {
 }
 
 .mini-map { position:absolute; right:0; top:52px; z-index:2; height:80px; width:120px;
-  &.france {background: url(../appli/sprites/france-minimap-sprite.png) no-repeat top left;}
+  &.france {background: url(appli/sprites/france-minimap-sprite.png) no-repeat top left;}
 }
 .mini-map.france.reg-1 {background-position: -5px -5px;}
 .mini-map.france.reg-10 {background-position: -135px -5px;}
@@ -1763,7 +1816,7 @@ section {
 .status{float:right;}
 .status .ico {font-size:16px; line-height: 9px;}
 /*
-.status-ico { height:24px; width:24px; background: url(../appli/sprites/status-icons.png) no-repeat top left;
+.status-ico { height:24px; width:24px; background: url(appli/sprites/status-icons.png) no-repeat top left;
   &.fav-all {background-position: 0px 2px;}
   &.fav-off {background-position: 0px -22px;}
   &.fav-on  {background-position: 0px -46px;}
@@ -1791,7 +1844,7 @@ section {
   & a {color: $dblue; display:block; font-size:20px;
     padding-top:20px;}
   & a:hover{color:$green;};
-  & a i {font-size:36px; display:inline;
+  & a i {font-size:36px; display:inline; margin-left: -5px;
     }
   & a:hover span{display:inline;};
   & span {display:none; margin: 0 10px;}
@@ -1901,9 +1954,15 @@ nav.pagination{ display: inline-block;}
 
 .infos {color:$mblue;} 
 
+/*
+.list-tasks li:not(:first-child) {
+  @extend .list-medium li;
+};
+*/
 
-
-
+#pending_tasks_wrapper {
+margin-bottom: 50px;
+}
 
 /*  _____________________________________________________ list-small // USERS */
 .list-small { @extend .list-medium; }
