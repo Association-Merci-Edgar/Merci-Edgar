@@ -1,0 +1,14 @@
+%section
+  %h3.message
+    Aucune tâche relative à 
+    <br>
+    = @person
+
+%section
+  .row-fluid.label-blocks
+    .span4
+      = link_to new_person_task_path(@person), :class => "label label-large", remote:true do
+        /= link_to new_venue_path, :class => "label label-large" do
+        %i.edi-check_2
+        %h4 Créer une tâche
+        %p pour cette personne
