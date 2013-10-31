@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   def new
-    @asset = Venue.find(params[:venue_id]) if params[:venue_id]
-    @asset = Person.find(params[:person_id]) if params[:person_id]
+    #@asset = Venue.find(params[:venue_id]) if params[:venue_id]
+    #@asset = Person.find(params[:person_id]) if params[:person_id]
+    @asset = Contact.find(params[:contact_id]) if params[:contact_id]
     @task = Task.new
     @users = Account.find(Account.current_id).users
   end
@@ -17,7 +18,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @asset = @task.asset
     if @task.update_attributes(params[:task])
-      link = @asset.present? ? send("#{@asset.class.name.downcase}_path",@asset) : tasks_path
+      link = @asset.present? ? send("#{@asset.class.name.underscore}_path",@asset) : tasks_path
       render :js => "window.location = '#{link}?tab=tasks'"
     else
       render :edit
@@ -45,7 +46,7 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @asset = @task.asset
     if @task.save
-      link = @asset.present? ? send("#{@asset.class.name.downcase}_path",@asset) : tasks_path
+      link = @asset.present? ? send("#{@asset.class.name.underscore}_path",@asset) : tasks_path
       render :js => "window.location = '#{link}?tab=tasks'"
     else
       respond_to do |format|

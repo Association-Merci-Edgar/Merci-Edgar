@@ -4,7 +4,7 @@
   <br>
   = "relative à #{@asset}" if @asset
 
-= simple_form_for([@asset,@task], remote:true) do |f|
+= simple_form_for([@task], remote:true) do |f|
   .modal-body
     .errors    
     .form-inputs

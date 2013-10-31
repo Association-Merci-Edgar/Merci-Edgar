@@ -1,8 +1,8 @@
 %ul.list-medium.collapse#completed_tasks
   - tasks.each do |t|
     %li{id: "task_#{t.id}", data: {task_id: t.id}}
-      - complete_link = t.asset.present? ? send("complete_#{t.asset.class.name.downcase}_task_path",t.asset,t) : complete_task_path(t)
-      - uncomplete_link = t.asset.present? ? send("uncomplete_#{t.asset.class.name.downcase}_task_path",t.asset,t) : uncomplete_task_path(t)
+      - complete_link = t.asset.present? ? complete_contact_task_path(t.asset,t) : complete_task_path(t)
+      - uncomplete_link = t.asset.present? ? uncomplete_contact_task_path(t.asset,t) : uncomplete_task_path(t)
       
       %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-complete-link" => complete_link, "data-uncomplete-link" => uncomplete_link}
         %input{:type => "checkbox", :class=>"checkbox", :onclick =>"toggleCompletedTask(this)", checked:true}
@@ -13,7 +13,7 @@
         .actions
           -#%a.shybtn{:href => "#"}
           - if t.asset.present?
-            = link_to send("edit_#{t.asset.class.name.downcase}_task_path",t.asset,t), :class => "shybtn" do
+            = link_to edit_contact_task_path(t.asset,t), :class => "shybtn", remote:true do
               %i.entypo.edi-pencil
           - else
             = link_to edit_task_path(t), :class => "shybtn" do
@@ -22,7 +22,7 @@
       .mainrow
         .title
           - if t.asset.present?
-            = link_to t.name, send("edit_#{t.asset.class.name.downcase}_task_path",t.asset,t), remote:true
+            = link_to t.name, edit_contact_task_path(t.asset,t), remote:true
           - else
             = link_to t.name, edit_task_path(t)
           

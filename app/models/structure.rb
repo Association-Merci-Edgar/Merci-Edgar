@@ -13,4 +13,9 @@ class Structure < Contact
     ps.title = title.titleize
     ps.save
   end
+
+  def relative
+    self.main_contact ||= self.people.first
+  end
+
 end

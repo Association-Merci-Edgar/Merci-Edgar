@@ -1,0 +1,94 @@
+-# _____________________________________  SHOW VENUE
+- content_for :scripts do
+  = render 'select_tab'
+  
+.row-fluid.toppage.showitem
+  %header
+    .pic= image_tag @structure.avatar
+    %h2= @structure.name
+    
+    .infos
+      .infos-line
+        /-  if @structure.try(:capacities)
+        /  - @structure.capacities.each do |capacity|
+        /    %span.jauge= render capacity
+            
+        - if @structure.city
+          %span.location
+            %span.city= @structure.city
+            = link_to @structure.address.department_name, only_contacts_path(filter:"dept",no:@structure.address.department_code)
+      .tags
+        = render partial: "tags/tags", locals: {asset: @structure}
+    
+    
+  .meta
+    -# _________________________ contacted
+    - if @structure.contacted?
+      %a.ico.contacted.full{:href => "#"}
+    - else
+      %a.ico.contacted{:href => "#"}
+    //%a.ico.dealed{:href => "#"}
+
+    / _________________________ favorite
+    - if @structure.favorite?(current_user)
+      = link_to remove_to_favorites_contact_path(@structure), remote: true do
+        %i.ico.favorite.full{id: "fav_contact_#{@structure.id}"}
+    - else
+      = link_to add_to_favorites_contact_path(@structure), remote: true do
+        %i.ico.favorite{id: "fav_contact_#{@structure.id}"}
+
+
+
+
+    = link_to edit_venue_path(@structure), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{@structure.updated_at.present? ? @structure.updated_at.to_date : '22/01/2013'} <br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
+      %i.entypo.edi-pencil
+      
+  - if notice.present?
+    .notice= notice
+    
+      
+.row-fluid
+  .span12
+    .tabbable
+      / ________________________________________________________ nav-tabs _________________
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#activity"} Suivi
+        %li
+          %a{"data-toggle" => "tab", :href => "#infos"} Infos
+        %li.w_badge
+          %a{"data-toggle" => "tab", :href => "#team"}
+            = "Équipe"
+            %span.badge.badge-shy="#{@structure.people.size}"
+        %li.w_badge
+          %a{"data-toggle" => "tab", :href => "#tasks"}
+            = "#{t(:tasks)}"
+            %span.badge.badge-shy="#{@pending_tasks.size}"
+          
+          
+      .tab-content
+        / ________________________________________________________ activity
+        #activity.tab-pane.active
+          = render partial:'activity'
+                  
+        / ________________________________________________________ infos
+        #infos.tab-pane
+          = render partial:'infos'
+        / ________________________________________________________ team
+        #team.tab-pane
+          - if @people.any?
+            = render partial:'team'
+          - else
+            = render partial:'empty_team'
+            
+        / ________________________________________________________ tasks
+        #tasks.tab-pane
+          - if @pending_tasks.any?
+            - contact = @structure
+            = render partial:'tasks/tasks', locals: {asset: @structure}
+          - else
+            = render partial:'empty_tasks'
+            
+
+
+              

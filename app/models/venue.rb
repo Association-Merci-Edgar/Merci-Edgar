@@ -80,10 +80,6 @@ class Venue < Structure
     [id, name.try(:parameterize)].compact.join('-')
   end
 
-  def relative
-    self.main_contact ||= self.people.first
-  end
-
   def my_dup(account_id)
     Contact.unscoped do
       dup = self.amoeba_dup

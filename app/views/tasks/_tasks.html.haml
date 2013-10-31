@@ -16,8 +16,7 @@
   = render :partial => "tasks/completed_tasks", :locals => {:tasks => @completed_tasks}
 
 .btn-in-list
-  - link_path = @venue.present? ? new_venue_task_path(@venue) : new_person_task_path(@person)
-  = link_to link_path , remote:true do
+  = link_to new_contact_task_path(asset), remote:true do
     %i.entypo.edi-plus-3
     %span
       Créer une nouvelle tâche

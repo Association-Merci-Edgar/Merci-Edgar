@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class PeopleController < AppController
   # GET /people
   # GET /people.json
   def index
@@ -29,9 +29,11 @@ class PeopleController < ApplicationController
   # GET /people/new
   # GET /people/new.json
   def new
+    session[:return_to] = request.referer
     @person = Person.new
     ps = @person.people_structures.build
-    ps.structure = Venue.find(params[:venue_id]) if params[:venue_id]
+    ps.structure = Contact.find(params[:structure_id]) if params[:structure_id]
+    ps.structure = nil if !ps.structure.is_a? Structure
 
     respond_to do |format|
       format.html # new.html.erb

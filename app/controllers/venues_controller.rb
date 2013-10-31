@@ -31,7 +31,7 @@ class VenuesController < AppController
   # GET /venues/new
   # GET /venues/new.json
   def new
-    session[:return_to] ||= request.referer
+    session[:return_to] = request.referer
     @venue = Venue.new
     @venue.addresses.build
     @venue.rooms.build

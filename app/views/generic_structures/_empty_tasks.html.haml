@@ -1,0 +1,14 @@
+%section
+  %h3.message
+    Aucune tâche relative à 
+    <br>
+    = @structure.name
+
+%section
+  .row-fluid.label-blocks
+    .span4
+      = link_to new_contact_task_path(@structure), :class => "label label-large", remote:true do
+        /= link_to new_venue_path, :class => "label label-large" do
+        %i.edi-check_2
+        %h4 Créer une tâche
+        %p pour cette structure

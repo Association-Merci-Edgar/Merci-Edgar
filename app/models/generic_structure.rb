@@ -1,0 +1,2 @@
+class GenericStructure < Structure
+end

@@ -227,7 +227,7 @@
 
         / ________________________________________________________ tasks
         - if @tasks.any?
-          = render partial:'tasks/tasks'
+          = render partial:'tasks/tasks', locals: {asset: @person}
         - else
           = render partial:'empty_tasks'
 

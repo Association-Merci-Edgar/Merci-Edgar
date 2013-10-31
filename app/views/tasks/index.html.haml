@@ -15,13 +15,13 @@
 #dash-tasks.row-fluid
   .section-title
     .title
-      .badge.badge-medium.badge-shy= Task.pending.size
+      .badge.badge-medium.badge-shy= @pending_tasks.size
       /tâches
     .title-infos
       dont
-      .badge.badge-small.badge-black= Task.overdue.size
+      .badge.badge-small.badge-black= @pending_tasks.overdue.size
       en retard,
-      .badge.badge-small.badge-red= Task.due_today.size
+      .badge.badge-small.badge-red= @pending_tasks.due_today.size
       pour aujourd’hui
       
   /_____________________________________________________________________________ FILTERS

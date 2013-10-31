@@ -148,5 +148,5 @@
     .form-actions
       = f.button :submit, :class => "btn-primary btn-large btn-alert"
       ou
-      = link_to t(:cancel), @person
+      = link_to t(:cancel), session[:return_to]
   
