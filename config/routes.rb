@@ -28,7 +28,10 @@ Edgar::Application.routes.draw do
     get "welcome/index"
     get "home/index"
 
-    resources :structures
+    resources :structures do
+      resources :people
+    end
+    resources :generic_structures
     resources :venues do
       resources :people
       put 'people/:id/set_main_contact', action: :set_main_contact, as: :set_main_contact
@@ -48,6 +51,11 @@ Edgar::Application.routes.draw do
       put 'uncomplete', :on => :member
     end
     resources :contacts do
+      resources :tasks do
+        put 'complete', :on => :member
+        put 'uncomplete', :on => :member
+      end
+
       get 'only/:filter', action: :only, on: :collection, as: :only
       get 'add_to_favorites', on: :member
       get 'remove_to_favorites', on: :member

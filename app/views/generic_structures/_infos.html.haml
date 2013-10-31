@@ -6,7 +6,7 @@
       %li.infolabel Coordonnées
       
       - map_displayed = false
-      - @venue.addresses.each do |address|
+      - @structure.addresses.each do |address|
         %li
           %span.infolabel= t(address.kind, scope:"simple_form.options.venue.addresses.kind")
           /%img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
@@ -37,13 +37,13 @@
         </script>
         
         
-      - @venue.emails.each do |email|
+      - @structure.emails.each do |email|
         = render email
 
-      - @venue.phones.each do |phone|
+      - @structure.phones.each do |phone|
         = render phone
 
-      - @venue.websites.each do |website|
+      - @structure.websites.each do |website|
         = render website
         
         
@@ -51,30 +51,10 @@
 
   / _____________________________________________ right
   .span6
-    %ul.list-infos
-      /%i.entypo.edi-info
-      %li.infolabel Programmation
-      %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
-      %li= "Saison : #{@venue.season}" if @venue.season.present?
-      - if @venue.schedulings.present?
-        - @venue.schedulings.each do |s|
-          %li= "Programmateur en recherche active : #{s}"
-    - if @venue.rooms.any?
-      - @venue.rooms.each do |room|
-        %ul.list-infos
-          %li.infolabel
-            Dimensions plateau (Profondeur / Largeur / Hauteur)
-            = " de #{room.name}" if @venue.rooms.size > 1
-          %li= room.stage
-          -  if room.capacities.any?
-            %li.infolabel Jauge(s)
-            - room.capacities.each do |capacity|
-              %span.jauge= render capacity
-          
     
     %ul.list-infos
       %li.infolabel Observations
-      %li= @venue.remark
+      -#%li= @structure.remark
           
     %ul.list-infos
       %li.infolabel Réseaux sociaux

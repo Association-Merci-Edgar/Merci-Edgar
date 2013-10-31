@@ -1,0 +1,4 @@
+.nested-fields
+  = f.input :address, :label => "Email", :validate => true
+  = f.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+  = f.link_to_remove "Remove this email"

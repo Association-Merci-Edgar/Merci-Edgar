@@ -39,3 +39,12 @@ $(document).ready(function() {
 	});
 
 });
+
+$('.tag').on('show', function (e) {
+	availableStyleTags = $(".style_tags_input").data('available-tags')
+  $(".style_tags_input").tagit({
+		singleField: true,
+		allowSpaces: true,
+		availableTags: availableStyleTags	
+	});
+});
