@@ -4,19 +4,26 @@ if (li_task.parent().is("strike")) {
 }
 else {
 	li_task.wrap("<strike></strike>");
-	setTimeout("uncomplete(li_task)",5000);
+	setTimeout("uncomplete(li_task)",1000);
 }
 
 
 function uncomplete(li_task) {
 	checkbox = li_task.find("input");
 	if (checkbox.is(':checked') == false) {
-		li_task.fadeOut(1500, function() { clean_and_refresh_uncompleted_tasks(li_task)  });
+		li_task.fadeOut(500, function() { clean_and_refresh_uncompleted_tasks(li_task)  });
 	}
 }
 
 function clean_and_refresh_uncompleted_tasks(li_task) {
 	li_task.remove();
+  
+  var $counter = $("#pending_tasks_wrapper .title-infos .badge");
+  $counter.text( Number($counter.text())+1 );
+  
+  var $counter2 = $("#completed_tasks_wrapper .title-infos .badge");
+  $counter2.text( Number($counter2.text())-1 );
+  
 	pending_tasks = $('#pending_tasks');
 	if (pending_tasks.length > 0) {
 		pending_tasks.replaceWith("<%= j render(partial:'pending', locals: {tasks: @task.asset.tasks.pending}) %>")

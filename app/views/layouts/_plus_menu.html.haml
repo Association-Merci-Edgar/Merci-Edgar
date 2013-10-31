@@ -8,7 +8,9 @@
   - if @venue.present?
     %li
       /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
-      = link_to "une tâche", new_contact_task_path(@venue), remote:true
+      = link_to new_contact_task_path(@venue), remote:true do
+        %i.entypo.edi-check_2
+        une tâche
 
   - if @person.present? && @person.id.present?
     %li
