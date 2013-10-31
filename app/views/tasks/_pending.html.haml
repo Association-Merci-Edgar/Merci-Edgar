@@ -2,7 +2,13 @@
   = javascript_include_tag "tasks_group"
   
 - if tasks.any?
+
+
   %ul.list-medium#pending_tasks
+  
+   
+      
+      
     - tasks.each do |t|
       %li{id: "task_#{t.id}"}
         - complete_link = t.asset.present? ? complete_contact_task_path(t.asset,t) : complete_task_path(t)

@@ -8,7 +8,8 @@ $("#menu-vertical .btn-submit").click(function() {
 });
 
 
-$('html').smoothScroll(1000);
+
+//$('html').smoothScroll(1000);
 
 //$('#subnav').affix({ offset: 60});
 $('#subnav').affix();
