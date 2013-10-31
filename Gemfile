@@ -58,7 +58,7 @@ group :development do
   gem 'annotate'
 end
 group :development, :test do
-  gem 'sqlite3'
+  gem 'pg'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'mocha'
