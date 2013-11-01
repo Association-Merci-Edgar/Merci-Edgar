@@ -691,7 +691,7 @@ a.pull-right {float:right;}
 
 
 
-.leftmenu li.user-tab a {padding-top:30px;}
+.leftmenu li#accounts-tab a {padding-top:30px;}
 
 
 .leftpanel .edi-cog   {font-size:13px;}
@@ -2038,7 +2038,33 @@ header {
     background:$green;
     border-color:$green;
     color:$white;
+    @include plholder ($white);
   };
+  
+}
+#activity .list-large form { margin:0;}
+#activity .list-large textarea {
+  resize:vertical;
+  height:auto; width:100%;
+  margin: 10px 0 18px;
+  
+  &:focus{
+    background:$green;
+    border-color:$green;
+    color:$white;
+  };
+  
+}
+#activity .list-large > li .actions { top: inherit;}
+#activity .list-large > li:hover .actions{
+  display: inline-block;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block; 
+  height: 0; 
+  clear: both;
 }
 
 #activityfield-outter{
@@ -2057,6 +2083,8 @@ header {
     }
 }
 
+
+
 .btn-secondary i {padding-top:4px; margin:0;
   &:before{ width:15px;overflow:hidden;}
   }
@@ -2067,6 +2095,7 @@ header {
   label{display:none;}
   select{background-color:$dbeige2;}
 }
+
 
 
 /* ACCOUNT ________________________________________ */
@@ -2225,7 +2254,7 @@ $tooltipTXT: $white;
   .footer {width:30px;}
 }
 /*
-  .account-tab, .user-tab span {display:none;}
+  .account-tab, #accounts-tab span {display:none;}
   .logo {padding-left:14px;}
   
   .leftmenu .righticon {
