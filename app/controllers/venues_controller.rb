@@ -1,5 +1,6 @@
 
 class VenuesController < AppController
+  include ApplicationHelper
 
   # GET /venues
   # GET /venues.json
@@ -20,6 +21,7 @@ class VenuesController < AppController
   # GET /venues/1.json
   def show
     @venue = Venue.find(params[:id])
+    add_asset(@venue)
     @people = @venue.people
     @tasks = @venue.tasks
     @pending_tasks = @tasks.pending
@@ -45,6 +47,7 @@ class VenuesController < AppController
   # GET /venues/1/edit
   def edit
     @venue = Venue.find(params[:id])
+    add_asset(@venue)
     @venue.build_venue_info unless @venue.venue_info.present?
     @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
   end
@@ -53,6 +56,7 @@ class VenuesController < AppController
   # POST /venues.json
   def create
     @venue = Venue.new(params[:venue])
+    add_asset(@venue)
 
     respond_to do |format|
       if @venue.save
