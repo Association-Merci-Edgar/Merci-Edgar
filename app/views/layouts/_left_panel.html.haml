@@ -8,7 +8,7 @@
 %nav.leftmenu
   .sidebar-nav
     %ul.nav.nav-list
-      = menu_link(current_user.name, edit_user_path(current_user),"edi-cog righticon",["accounts","users","projects"],nil)
+      -#= menu_link(current_user.name, edit_user_path(current_user),"edi-cog righticon",["accounts","users","projects"],nil)
       %li#account-nav.user-tab
         /%a.user-tab.rightbt{:href => "#"}
         /%i.entypo.edi-cog
