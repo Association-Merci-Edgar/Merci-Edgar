@@ -85,7 +85,7 @@
         #tasks.tab-pane
           - if @pending_tasks.any?
             - contact = @structure
-            = render partial:'tasks/tasks', locals: {asset: @structure}
+            = render partial:'tasks/tasks', locals: {asset: @structure, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
           - else
             = render partial:'empty_tasks'
             

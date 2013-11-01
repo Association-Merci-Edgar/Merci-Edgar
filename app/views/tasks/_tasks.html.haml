@@ -1,16 +1,16 @@
 #tasks
-  - if @pending_tasks.any?
+  - if pending_tasks.any?
     #pending_tasks_wrapper
       .title-infos
         /dont
-        - if @pending_tasks.overdue.any?
-          .badge.badge-small.badge-black= @pending_tasks.overdue.size
+        - if pending_tasks.overdue.any?
+          .badge.badge-small.badge-black= pending_tasks.overdue.size
           tâches en retard,
-        - if @pending_tasks.due_today.any?
-          .badge.badge-small.badge-red= @pending_tasks.due_today.size
+        - if pending_tasks.due_today.any?
+          .badge.badge-small.badge-red= pending_tasks.due_today.size
           tâches pour aujourd’hui  
 
-      = render :partial => "tasks/pending", :locals => {:tasks => @pending_tasks}
+      = render :partial => "tasks/pending", :locals => {:tasks => pending_tasks}
 
   
 
@@ -26,4 +26,4 @@
       = link_to "#", data: {toggle: "collapse", target: "#completed_tasks"} do
         
         Tâches effectuées
-    = render :partial => "tasks/completed_tasks", :locals => {:tasks => @completed_tasks}
+    = render :partial => "tasks/completed_tasks", :locals => {:tasks => completed_tasks}

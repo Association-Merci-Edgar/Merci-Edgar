@@ -86,9 +86,9 @@
         / ________________________________________________________ tasks
         #tasks.tab-pane
           - if @tasks.any?
-            = render partial:'tasks/tasks', locals: {asset: @venue}
+            = render partial:'tasks/tasks', locals: {asset: @venue, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
           - else
-            = render partial:'empty_tasks'
+            = render partial:'tasks/empty_tasks', locals: {asset: @venue}
             
 
          

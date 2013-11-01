@@ -46,11 +46,12 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @asset = @task.asset
     if @task.save
-      link = @asset.present? ? send("#{@asset.class.name.underscore}_path",@asset) : tasks_path
-      render :js => "window.location = '#{link}?tab=tasks'"
+      @pending_tasks = @task.asset.tasks.pending
+      @completed_tasks = @task.asset.tasks.completed
+      render "create"
     else
       respond_to do |format|
-        format.js
+        render "errors"
       end
     end
     

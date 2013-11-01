@@ -226,10 +226,11 @@
 
 
         / ________________________________________________________ tasks
-        - if @tasks.any?
-          = render partial:'tasks/tasks', locals: {asset: @person}
-        - else
-          = render partial:'empty_tasks'
+        #tasks.tab-pane
+          - if @tasks.any?
+            = render partial:'tasks/tasks', locals: {asset: @person, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
+          - else
+            = render partial:'tasks/empty_tasks', locals: {asset: @person}
 
 
 

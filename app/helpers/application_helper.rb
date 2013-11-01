@@ -23,23 +23,30 @@ module ApplicationHelper
       object.errors.full_messages.each do |m|
         notice += content_tag(:span, m + ' / ')
       end
-      
+
       content_tag(:div, notice, class:'notice error')
     end
   end
 
   def menu_link(link_text, link, icon, controller, badge)
-    class_name = controller_name == controller ? "active" : ""
+    class_name = controller.include?(controller_name) ? "active" : ""
     badge_tag = content_tag(:span,badge, class:"badge")
     link_tag = link_to link do
       content_tag(:i,nil,class:"entypo #{icon}") + " " + link_text + badge_tag
     end
-    content_tag(:li,link_tag,class: class_name)
+    content_tag(:li,link_tag, id: "#{controller[0]}-tab", class: class_name)
   end
 
   def show_badge(color, text)
     badge_color = "badge-#{color}" if color
     content_tag(:div,text,class:"badge #{badge_color}")
+  end
+
+  def add_asset(asset)
+    session[:history] ||= []
+    session[:history].delete(asset.id)
+    session[:history] << asset.id
+    session[:history].shift if session[:history].length > 4
   end
 
 end
