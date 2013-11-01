@@ -27,6 +27,7 @@
 //= require nested_form
 //= require_tree ./appli
 //= require edgarapp
+//= require jquery.autosize.min
 //= require_self
 
 /*
