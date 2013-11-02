@@ -52,11 +52,12 @@
      
           %ul.nav.nav-list.recent.comingsoon
             /%li.nav-header Récemment consulté
-            - session[:history].reverse.map{|i| Contact.find(i)}.each do |c|
-              %li
-                = link_to c do
-                  .pic.pic-mini= image_tag c.avatar
-                  = c
+            - if session[:history].present?
+              - session[:history].reverse.map{|i| Contact.find(i)}.each do |c|
+                %li
+                  = link_to c do
+                    .pic.pic-mini= image_tag c.avatar
+                    = c
                 
       %li
         
