@@ -27,6 +27,7 @@
 //= require nested_form
 //= require_tree ./appli
 //= require edgarapp
+//= require tasks_group
 //= require_self
 
 /*
