@@ -160,7 +160,7 @@
             Rechercher
 
 
-= form_tag contacts_path, method: :get, :id=>"filters-hiddenform" do
+= form_tag contacts_path, method: :get, :id=>"filters-hiddenform", :class=>"hidden" do
   /, :class=>"hidden"
 
   /= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
