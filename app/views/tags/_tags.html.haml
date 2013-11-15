@@ -4,16 +4,16 @@
   
   = venue_kind_link(asset.kind)
 
-  - asset.contracts.each do |c|
+  - asset.contract_list.try(:each) do |c|
     = tag_link("contract",c,"tag-legal")
 
-- asset.styles.each do |s|
+- asset.style_list.try(:each) do |s|
   = tag_link("style",s,"tag-style")
 
-- asset.networks.each do |s|
+- asset.network_list.try(:each) do |s|
   = tag_link("network",s,"tag-style")
 
 
-- asset.customs.each do |c|
+- asset.custom_list.try(:each) do |c|
   = tag_link("custom",c,"tag-custom")
 

@@ -52,13 +52,22 @@
   / _____________________________________________ right
   .span6
     %ul.list-infos
+      %li.infolabel Info Lieu
+      %li
+        Ouverture salle :
+        = @venue.season
+        
+    %ul.list-infos
       /%i.entypo.edi-info
       %li.infolabel Programmation
-      %li= t(@venue.period, scope: 'simple_form.options.venue.venue_info.period') if @venue.period.present?
+      %li= t(@venue.scheduling.period, scope: 'simple_form.options.venue.scheduling.period') if @venue.scheduling.period.present?
       %li= "Saison : #{@venue.season}" if @venue.season.present?
-      - if @venue.schedulings.present?
-        - @venue.schedulings.each do |s|
+      - if @venue.scheduling.prospectings.present?
+        - @venue.scheduling.prospectings.each do |s|
           %li= "Programmateur en recherche active : #{s}"
+
+
+
     - if @venue.rooms.any?
       - @venue.rooms.each do |room|
         %ul.list-infos

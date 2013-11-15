@@ -21,7 +21,7 @@
           .pic= image_tag @person.avatar
         .inline-inputs  
           = f.input :first_name, label: false, :class => "input-Xlarge"
-          = f.input :name, label: false, :class => "input-Xlarge"
+          = f.input :last_name, label: false, :class => "input-Xlarge"
         
         = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
         
@@ -52,97 +52,97 @@
         .title Coordonnées
         
       -#  ________________________________________________________ email
-      = f.fields_for :emails do |email|
-        .nested-fields
-          = email.link_to_remove :title => "Remove this email" do
-            %i.entypo.edi-minus-2
-          = email.input :address, label:"Email", :wrapper => :append do
-            = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
-            = email.input_field :classic_kind, :label => "Type", :collection => Email::PERSON_KIND, selected: Email::PERSON_KIND[0], :class => "add-on btn dropdown-toggle"
-            = email.input_field :specific_kind, :class => "other input-medium"
-        
-      .links
-        = f.link_to_add :emails do
-          /Add a new email
-          Ajouter un email
-          %i.entypo.edi-plus-2
+      = f.fields_for :contact do |c|
 
-      -# ________________________________________________________ phone
-      = f.fields_for :phones do |phone|
-        .nested-fields
-          = phone.link_to_remove :title => "Remove this phone" do
-            %i.entypo.edi-minus-2
-        
-          = phone.input :national_number, :label => "Phone Number", :wrapper => :append do
-            = phone.input_field :national_number, :class => "input-medium", :validate => true
-            = phone.input_field :classic_kind, label:false, :collection => Phone::PERSON_KIND, :class => "add-on btn dropdown-toggle"
-            = phone.input_field :specific_kind, :class => "other input-medium"
-       
-      .links
-        = f.link_to_add :phones do
-          /Add a new phone
-          Ajouter un téléphone
-          %i.entypo.edi-plus-2
-        
-      
-      -# ________________________________________________________ address
-      .fields-group
-        = f.fields_for :addresses do |address|
-          .nested-fields.addresses
-            = address.link_to_remove :title => "Remove this address" do
+        = c.fields_for :emails do |email|
+          .nested-fields
+            = email.link_to_remove :title => "Remove this email" do
               %i.entypo.edi-minus-2
-      
-            = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
-            = address.input :kind, :label => false, :collection => %w(Work Home), :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
-            .control-group.nolabel
-              /= address.input :city, :label => false do
-              = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => "inline"
-              = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-small inline"
-            .control-group.nolabel
-              = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
-              = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
-            -#= address.input :more_info, label:false
-            // dans le modéle ??
-        
+            = email.input :address, label:"Email", :wrapper => :append do
+              = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
+              = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+              = email.input_field :specific_kind, :class => "other input-medium"
         .links
-          = f.link_to_add :addresses do
-            /Add a new address
-            Ajouter une adresse
+          = c.link_to_add :emails, :title => 'Add a new email' do
             %i.entypo.edi-plus-2
-        
-      -# ________________________________________________________ website    
-      = f.fields_for :websites do |website|
-        .nested-fields
-          = website.link_to_remove :title => "Remove this website" do
-            %i.entypo.edi-minus-2
-          /= website.input :url, :label => "Website"
-          /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
-      
-          /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
-          = website.input :url, wrapper: :append do
-            = website.input_field :url, :class => "input-xlarge"
-            = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
-        
-      .links
-        = f.link_to_add :websites do
-          Ajouter un site Internet
-          %i.entypo.edi-plus-2
-          //Add a new website
-          
+            Add a new email
+
+
+        / ________________________________________________________ phone
+        = c.fields_for :phones do |phone|
+          .nested-fields
+            = phone.link_to_remove :title => "Remove this phone" do
+              %i.entypo.edi-minus-2
+            = phone.input :national_number, :wrapper => :append do
+              = phone.input_field :national_number, :class => "input-medium", :validate => true
+              = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+              = phone.input_field :specific_kind, :class => "other input-medium"
+        .links
+          = c.link_to_add :phones, :title => 'Ajouter un téléphone' do
+            %i.entypo.edi-plus-2
+            Add a new phone
+
+
+
+        / ________________________________________________________ address
+        .fields-group
+          = c.fields_for :addresses do |address|
+            .nested-fields.addresses
+              = address.link_to_remove :title => "Remove this address" do
+                %i.entypo.edi-minus-2
+
+              = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+              = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+              .control-group.nolabel
+                = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
+                = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
+                = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
+              .control-group.nolabel.state.hidden
+                = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
+            
+              = address.input :more_info, label:false
+
+          .links
+            = c.link_to_add :addresses, :title => 'Add a new address' do
+              %i.entypo.edi-plus-2
+              Add a new address
+
+
+
+        / ________________________________________________________ website
+        = c.fields_for :websites do |website|
+          .nested-fields
+            = website.link_to_remove :title => "Remove this website" do
+              %i.entypo.edi-minus-2
+            /= website.input :url, :label => "Website"
+            /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+
+            /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
+            = website.input :url, wrapper: :append do
+              = website.input_field :url, :class => "input-xlarge"
+              = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+
+        .links
+          = c.link_to_add :websites, :title => 'Add a new website' do
+            %i.entypo.edi-plus-2
+            Add a new website          
           
     %section#quali-infos
       .section-title
         .title Infos sur la personne
         
-      -#  ________________________________________________________ TAGS V1
-      = f.input :style_tags, label: "Styles (séparés par des virgules)",  :input_html => { :class => "span6 style_tags_input", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
-      -# = f.input :style_list, label: "Styles (séparés par des virgules)", :input_html => { :class => "span6" }
 
-      -#  ________________________________________________________ TAGS V1
-      = f.input :network_tags, label: "Réseaux (séparés par des virgules)", :input_html => { :class => "span6 network_tags_input", data: {available_tags: ["Fedelima","Cry","RIF"]} }
+      = f.fields_for :contact do |c|
 
-      -#  ________________________________________________________ TAGS V1
-      = f.input :custom_tags, label: "Tags personnalisés (séparés par des virgules)", :input_html => { :class => "span6 custom_tags_input", data: {available_tags: ["Chouette"]} }
+        -#  ________________________________________________________ TAGS V1
+        = c.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
+
+        = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
+
+        -#  ________________________________________________________ TAGS V1
+        = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {available_tags: ["Chouette"]} }
+
+
         
     / ________________________________________________________ actions
     .form-actions
