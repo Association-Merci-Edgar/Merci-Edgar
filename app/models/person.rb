@@ -13,15 +13,21 @@
 #  updated_at     :datetime         not null
 #
 
-class Person < Contact
-  attr_accessible :first_name, :name, :people_structures_attributes
-  has_many :structures, through: :people_structures, uniq:true, source: :structure
+class Person < ActiveRecord::Base
+  default_scope { where(:account_id => Account.current_id) }
+  attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar
+  has_one :contact, as: :contactable, dependent: :destroy
+  has_many :structures, through: :people_structures, uniq:true
   has_many :people_structures, dependent: :destroy
   validates_presence_of :first_name
   validates_presence_of :last_name
-  alias_attribute :last_name, :name
 
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
+
+  delegate :tasks, :reportings,:style_list, :network_list, :custom_list, :favorite?,:addresses, :emails, :phones, :websites, to: :contact
+
+  mount_uploader :avatar, AvatarUploader
 
   def other_people_structures
     self.people_structures.where("structure_id != ?", self.relative.id)
@@ -48,7 +54,8 @@ class Person < Contact
   end
 
   def relative
-    self.main_contact ||= self.structures.first
+    # self.main_contact ||= self.structures.first
+    self.structures.first
   end
 
   def main_contact?(structure)

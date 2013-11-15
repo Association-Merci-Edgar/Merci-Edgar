@@ -9,23 +9,38 @@
 #  account_id :integer
 #
 
-class Venue < Structure
-  attr_accessible :name, :venue_info_attributes, :contract_ids, :people_structures_attributes, :rooms_attributes
-  has_one :venue_info, :dependent => :destroy
-  has_many :rooms, :dependent => :destroy
-  before_save :format_strings
+class Venue < ActiveRecord::Base
+  default_scope { where(:account_id => Account.current_id) }
 
-  delegate :kind, :period, :remark, :start_season, :end_season, :season, :schedulings, :contract_tags, to: :venue_info, allow_nil: true
-  validates :name, :presence => true, uniqueness: { scope: :account_id}
+  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :scheduling_attributes, :rooms_attributes, :network_tags
+
+  attr_accessible :structure_attributes
+
+  has_one :structure, as: :structurable
+  accepts_nested_attributes_for :structure
+
+  has_one :scheduling, as: :show_host, dependent: :destroy
+  has_one :show_buyer, through: :scheduling
+  accepts_nested_attributes_for :scheduling
+
+
+  has_many :rooms, :dependent => :destroy
+  accepts_nested_attributes_for :rooms, :allow_destroy => true
+
+  validates :start_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
+  validates :end_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
+
+
+  delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :style_list, :network_list, :custom_list, :contacted?, :favorite?, to: :structure
+  delegate :contract_list, to: :scheduling
   # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   # validates_presence_of :addresses
-  accepts_nested_attributes_for :venue_info
-  accepts_nested_attributes_for :rooms, :reject_if => proc { |attributes| attributes[:name].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :rooms, :allow_destroy => true
+
+  mount_uploader :avatar, AvatarUploader
 
   scope :by_type, (lambda do |kind|
-    joins(:venue_info).where('venue_infos.kind = ?', kind) if kind.present?
+    where(kind: kind) if kind.present?
   end)
 
   scope :capacities_less_than, (lambda do |nb|
@@ -40,21 +55,10 @@ class Venue < Structure
     joins(:rooms => :capacities).where("capacities.nb BETWEEN ? AND ? ", nb1,nb2).uniq
   end)
 
-  scope :by_contract, lambda { |tag_name| joins(:venue_info).where("venue_infos.contract_tags LIKE ?", "%#{tag_name}%") }
+  scope :by_contract, lambda { |tag_name| joins(:scheduling).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
 
-  scope :making_scheduling, lambda { |month| joins(:venue_info => :schedulings).where("schedulings.start_month <= ? AND schedulings.end_month >= ?",month,month) }
+  scope :making_prospecting, lambda { |month| joins(:schedulings => :prospectings).where("prospectings.start_month <= ? AND prospectings.end_month >= ?",month,month) }
 
-  amoeba do
-    enable
-    include_field :emails
-    include_field :phones
-    include_field :addresses
-    include_field :websites
-    include_field :venue_info
-    include_field :rooms
-    include_field :taggings
-  end
-  
   CAPACITY_RANGE_OPTIONS = ["< 100", "100-400","400-1200","> 1200"]
 
   def to_s
@@ -80,27 +84,6 @@ class Venue < Structure
     [id, name.try(:parameterize)].compact.join('-')
   end
 
-  def my_dup(account_id)
-    Contact.unscoped do
-      dup = self.amoeba_dup
-      dup.account_id = account_id
-      self.people_structures.each do |ps|
-        dup_ps = dup.people_structures.build
-        dup_ps.title = ps.title
-        p = Person.find_by_first_name_and_name_and_account_id(ps.person.first_name,ps.person.name,account_id)
-        if p.present?
-          dup_ps.person = p
-        else
-          dup_ps.person = ps.person.my_dup
-          dup_ps.person.account_id = account_id
-          dup_ps.person.save(validation: false)
-        end
-        # 
-      end
-      return dup
-    end
-  end
-
   def capacities
     cap = []
     self.rooms.each{|r| cap << r.capacities}
@@ -124,12 +107,16 @@ class Venue < Structure
     tags
   end
 
-  def contracts
-    Contact.tags_to_array(contract_tags)
+
+  def season
+    [start_season, end_season].map {|m| I18n.t("date.month_names")[m].titleize if m.present? }.compact.join(' - ')
   end
 
-  def format_strings
-    self.name = self.name.titleize if self.name
+  def styles
+    self.scheduling.style_tags.split(',')
   end
-
+  
+  def networks
+    self.network_tags.split(',')
+  end
 end

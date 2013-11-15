@@ -28,7 +28,7 @@
 
   / _____________________ infos-mini  
   #infos-mini.span4
-    - if @venue.relative
+    - if false && @venue.try(:relative)
       %ul.list-infos
         %li.infolabel
           Contact principal
@@ -44,7 +44,6 @@
       - if @venue.address
         %li.infolabel= t(@venue.address.kind, scope: "simple_form.options.venue.addresses.kind")
         %li= @venue.address.full_address
-      %li= @venue.email_address
       
     %ul.list-infos
       %li.infolabel Autres

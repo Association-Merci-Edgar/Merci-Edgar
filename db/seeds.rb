@@ -18,11 +18,3 @@ puts 'user: ' << user.name
 user.add_role :admin
 user.skip_confirmation!
 user.save!
-
-### All contracts ###
-Contract.find_or_create_by_name("Co-realisation")
-Contract.find_or_create_by_name("Co-production")
-Contract.find_or_create_by_name("Location")
-Contract.find_or_create_by_name("Cession")
-Contract.find_or_create_by_name("Engagement")
-Contract.find_or_create_by_name("Autre")
