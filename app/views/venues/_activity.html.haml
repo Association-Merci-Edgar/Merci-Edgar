@@ -11,7 +11,7 @@
           %li projet 2
 
     #activityfield-outter
-      = simple_form_for(@reporting) do |f|
+      = simple_form_for(@reporting, remote: true) do |f|
         = f.input :project_id, collection: Project.all, label: false, value_method: :id, prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
         = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
         = f.hidden_field :asset_id
@@ -20,7 +20,7 @@
           %i.entypo.edi-arrow-down-5
                               
     / ____________________________________ list reportings
-    %ul.list-large
+    %ul.list-large#reportings
       = render @reportings
    
 
@@ -28,23 +28,21 @@
 
   / _____________________ infos-mini  
   #infos-mini.span4
-    - if @venue.relative
-      %ul.list-infos
-        %li.infolabel
-          Contact principal
-        %li
-          .pic.pic-small= image_tag @venue.relative.avatar
-          = link_to @venue.relative do
-            %h4= @venue.relative
-        %li= @venue.relative.title(@venue)
-        %li= @venue.relative.phone_number
-        %li= @venue.relative.email_address
+    %ul.list-infos
+      %li.infolabel
+        Contact principal
+      %li
+        .pic.pic-small= image_tag @main_person.avatar
+        = link_to @main_person do
+          %h4= @main_person
+      %li= @main_person.title(@venue.structure)
+      %li= @main_person.phone_number
+      %li= @main_person.email_address
   
     %ul.list-infos
       - if @venue.address
         %li.infolabel= t(@venue.address.kind, scope: "simple_form.options.venue.addresses.kind")
         %li= @venue.address.full_address
-      %li= @venue.email_address
       
     %ul.list-infos
       %li.infolabel Autres

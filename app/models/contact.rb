@@ -21,7 +21,10 @@ class Contact < ActiveRecord::Base
   extend ContactsHelper
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_list, :network_list, :custom_list, :style_tags, :network_tags, :custom_tags
+  attr_accessible :name, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_tags, :network_tags, :custom_tags, :remark
+
+  belongs_to :contactable, polymorphic: true
+
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
   has_many :addresses, :dependent => :destroy
@@ -34,15 +37,17 @@ class Contact < ActiveRecord::Base
 
   has_many :favorite_contacts, dependent: :destroy
 
-  belongs_to :main_contact, class_name: "Contact"
-
 
   accepts_nested_attributes_for :emails, :reject_if => proc { |attributes| attributes[:address].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => proc { |attributes| attributes[:national_number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :addresses, :reject_if => proc { |attributes| attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :websites, :reject_if => :all_blank, :allow_destroy => true
 
-  mount_uploader :avatar, AvatarUploader
+  # mount_uploader :avatar, AvatarUploader
+
+  before_save :titleize_name
+
+  delegate :avatar, to: :contactable
 
   scope :searchy, lambda { |names|
     joins(:tags).where(tags: {name: names}).group('contacts.id').having(['COUNT(*) >= ?', names.length])
@@ -63,11 +68,15 @@ class Contact < ActiveRecord::Base
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order("contacts.name")}
   scope :with_reportings, joins: :reportings
   scope :by_department, lambda { |code_dept| joins(:addresses).where('addresses.postal_code LIKE ?', "#{code_dept}%").order("contacts.name")}
-  
+
   scope :recently_created, order("created_at desc").limit(10)
   scope :recently_updated, order("updated_at desc").limit(10)
 
   AVAILABLE_STYLE_TAGS = ["Rock","Chanson","Electro","Jazz"]
+
+  def titleize_name
+    self.name = self.name.titleize if self.name
+  end
 
   def phone_number
     @phone_number ||= phones.first.try(:formatted_phone)
@@ -104,16 +113,6 @@ class Contact < ActiveRecord::Base
 
   def reject_if_all_blank_except_country
     attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank?
-  end
-
-  def tag_list
-    tags.map(&:name).join(", ")
-  end
-
-  def tag_list=(names)
-    self.tags = names.split(",").map do |n|
-      Tag.where(name: n.strip).first_or_create!
-    end
   end
 
   def self.with_tags(contacts, type, tags)
@@ -168,51 +167,29 @@ class Contact < ActiveRecord::Base
     @favorite ||= self.favorite_contacts.where(user_id: user.id).any?
   end
 
-  def style_list
-    styles.map(&:name).join(", ")
+
+  def custom_list
+    self.custom_tags.split(',') if self.custom_tags.present?
   end
 
-  def style_list=(names)
-    self.styles = names.split(",").map do |n|
-      Style.where(name: n.strip).first_or_create!
-    end
+  def custom_list=(customs)
+    self.custom_tags = customs.join(',') if customs.present?
   end
 
   def network_list
-    networks.map(&:name).join(", ")
+    self.network_tags.split(',') if self.network_tags.present?
   end
 
-  def network_list=(names)
-    self.networks = names.split(",").map do |n|
-      Network.where(name: n.strip).first_or_create!
-    end
+  def network_list=(networks)
+    self.network_tags = networks.join(',') if networks.present?
   end
 
-  def custom_list
-    customs.map(&:name).join(", ")
+  def to_s
+    name
   end
-
-  def custom_list=(names)
-    self.customs = names.split(",").map do |n|
-      CustomTag.where(name: n.strip, account_id: Account.current_id).first_or_create!
-    end
-  end
-
-
-  def styles
-    Contact.tags_to_array(style_tags)
-  end
-
-  def networks
-    Contact.tags_to_array(network_tags)
-  end
-
-  def customs
-    Contact.tags_to_array(custom_tags) 
-  end
-
-  def self.tags_to_array(tags)
-    tags.present? ? tags.split(',').map(&:strip) : []
+  
+  def url_for
+    contactable.url_for
   end
 
 end

@@ -33,8 +33,9 @@ class PeopleController < AppController
   def new
     session[:return_to] = request.referer
     @person = Person.new
+    @person.build_contact
     ps = @person.people_structures.build
-    ps.structure = Contact.find(params[:structure_id]) if params[:structure_id]
+    ps.structure = Structure.find(params[:structure_id]) if params[:structure_id]
     ps.structure = nil if !ps.structure.is_a? Structure
 
     respond_to do |format|
