@@ -76,7 +76,7 @@ fr:
         residency: Résidence
         accompaniment: Accompagnement
         
-        scheduling:
+        schedulings:
           period: Cycle de programmation
           prospecting: Programmateur en recherche active de spectacles
           contract_list: Types de contrats
@@ -149,7 +149,7 @@ fr:
           mjc: MJC
           theater_cafe: Café-Théâtre
           other: Autre
-        scheduling:
+        schedulings:
           period: 
             nil: "Non fourni"
             all_year: "Toute l'année"

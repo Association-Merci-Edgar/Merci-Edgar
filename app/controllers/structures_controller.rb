@@ -1,4 +1,4 @@
-class StructuresController < ApplicationController
+class StructuresController < AppController
 
   def index
     @structures = Venue.order(:name).where("lower(name) LIKE ?", "%#{params[:term].downcase}%")
@@ -32,5 +32,12 @@ class StructuresController < ApplicationController
     @reporting = @structure.reportings.build
   end
 
+  def set_main_person
+    @structure = Structure.find(params[:structure_id])
+    @old_contact = @structure.main_person(current_user)
+    @person = Person.find(params[:id])
+    @structure.set_main_person(current_user,@person)
+    @structure.save
+  end
 
 end

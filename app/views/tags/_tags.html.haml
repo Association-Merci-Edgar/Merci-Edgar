@@ -7,8 +7,8 @@
   - asset.contract_list.try(:each) do |c|
     = tag_link("contract",c,"tag-legal")
 
-- asset.style_list.try(:each) do |s|
-  = tag_link("style",s,"tag-style")
+  - asset.style_list.try(:each) do |s|
+    = tag_link("style",s,"tag-style")
 
 - asset.network_list.try(:each) do |s|
   = tag_link("network",s,"tag-style")

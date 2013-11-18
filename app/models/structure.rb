@@ -3,15 +3,17 @@ class Structure < ActiveRecord::Base
 
   attr_accessible :contact_attributes
 
-  has_one :contact, as: :contactable
+  has_one :contact, as: :contactable, dependent: :destroy
   accepts_nested_attributes_for :contact
 
   belongs_to :structurable, polymorphic: true
 
-  has_many :people_structures
-  has_many :people, through: :people_structures, uniq:true
+  has_many :relatives, dependent: :destroy
 
-  delegate :name, :tasks, :reportings, :addresses, :remark, :emails, :phones, :websites, :city, :address, :phone_number, :website, :website_url, :style_list, :network_list, :custom_list, :contacted?, :favorite?, to: :contact
+  has_many :people_structures
+  has_many :people, through: :people_structures, uniq:true, dependent: :destroy
+
+  delegate :name, :tasks, :reportings, :addresses, :remark, :emails, :phones, :websites, :city, :address, :phone_number, :website, :website_url, :network_list, :custom_list, :contacted?, :favorite?, to: :contact
   delegate :avatar, to: :structurable
 
   def add_person(first_name,last_name,title)
@@ -27,4 +29,24 @@ class Structure < ActiveRecord::Base
     self.main_contact ||= self.people.first
   end
 =end
+
+  def main_person(user)
+    if self.people.any?
+      self.relative(user).present? ? self.relative(user).person : self.people.first
+    end
+  end
+
+  def set_main_person(user,person)
+    rel = self.relatives.build(user: user) unless relative(user).present?
+    rel.person = person
+  end
+
+
+  def main_person?(user,person)
+    person == self.main_person(user)
+  end
+
+  def relative(user)
+    relative = self.relatives.where(user_id: user.id).first
+  end
 end

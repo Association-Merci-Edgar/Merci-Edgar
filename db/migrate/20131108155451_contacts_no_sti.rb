@@ -8,7 +8,6 @@ class ContactsNoSti < ActiveRecord::Migration
     create_table :contacts do |t|
       t.belongs_to  :contactable, polymorphic: true
       t.string      :name
-      t.string      :style_tags
       t.string      :network_tags
       t.string      :custom_tags
       t.text        :remark

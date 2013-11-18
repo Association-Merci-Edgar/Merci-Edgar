@@ -12,16 +12,16 @@
 class Venue < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :scheduling_attributes, :rooms_attributes, :network_tags
+  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags
 
   attr_accessible :structure_attributes
 
   has_one :structure, as: :structurable
   accepts_nested_attributes_for :structure
 
-  has_one :scheduling, as: :show_host, dependent: :destroy
+  has_many :schedulings, as: :show_host, dependent: :destroy
   has_one :show_buyer, through: :scheduling
-  accepts_nested_attributes_for :scheduling
+  accepts_nested_attributes_for :schedulings
 
 
   has_many :rooms, :dependent => :destroy
@@ -31,8 +31,7 @@ class Venue < ActiveRecord::Base
   validates :end_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
 
 
-  delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :style_list, :network_list, :custom_list, :contacted?, :favorite?, to: :structure
-  delegate :contract_list, to: :scheduling
+  delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
   # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   # validates_presence_of :addresses
@@ -112,11 +111,23 @@ class Venue < ActiveRecord::Base
     [start_season, end_season].map {|m| I18n.t("date.month_names")[m].titleize if m.present? }.compact.join(' - ')
   end
 
-  def styles
-    self.scheduling.style_tags.split(',')
+  def contract_list
+    cl = []
+    self.schedulings.each do |s|
+      s.contract_list.each do |c|
+        cl.push(c) unless cl.include?(c)
+      end
+    end
+    cl
   end
-  
-  def networks
-    self.network_tags.split(',')
+
+  def style_list
+    sl = []
+    self.schedulings.each do |s|
+      s.style_list.each do |style|
+        sl.push(style) unless sl.include?(style)
+      end
+    end
+    sl
   end
 end

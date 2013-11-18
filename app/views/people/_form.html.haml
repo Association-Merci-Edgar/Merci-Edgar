@@ -135,8 +135,6 @@
       = f.fields_for :contact do |c|
 
         -#  ________________________________________________________ TAGS V1
-        = c.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
-
         = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
 
         -#  ________________________________________________________ TAGS V1

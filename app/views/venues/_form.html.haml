@@ -146,7 +146,6 @@
                 = s.fields_for :contact do |c|
 
                   -#  ________________________________________________________ TAGS V1
-                  = c.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
     
                   = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
 
@@ -157,14 +156,18 @@
                     
               -#  ________________________________________________________ contracts
 
-              = f.fields_for :scheduling do |v|
+              = f.fields_for :schedulings do |v|
                 -#, :class => "span4"
                 -#, :input_html => { :class => "span4" }
-                = v.input :scheduler, @show_buyer.structure.people, label_method: :name, value_method: :id if @show_buyer.try(:structure).try(:people).try(:any?)
                 .nested-fields
+                  = v.link_to_remove :title => "Supprimer cette programmation" do
+                    %i.entypo.edi-minus-2
+                  
+                  = v.input :scheduler, @show_buyer.structure.people, label_method: :name, value_method: :id if @show_buyer.try(:structure).try(:people).try(:any?)
                   = v.input :contract_list, :collection => ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"], :as => :check_boxes, item_wrapper_class:"inline"
           
 
+                  = v.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
 
 
           
@@ -198,6 +201,10 @@
                       %i.entypo.edi-plus-2
                       Ajouter une periode de prospection
 
+              .links
+                = f.link_to_add :schedulings, :title => 'Ajouter une periode de programmation' do
+                  %i.entypo.edi-plus-2
+                  Ajouter une periode de programmation
 
                                   
               -#________________________________________________________ season 

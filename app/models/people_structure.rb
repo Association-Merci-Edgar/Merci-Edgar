@@ -12,6 +12,7 @@ class PeopleStructure < ActiveRecord::Base
 
   def structure_name=(name)
     self.structure = Structure.joins(:contact).where(contacts: {name:name}).first_or_initialize
+    self.structure.build_contact(name: name) unless self.structure.contact.present?
   end
 
   def to_s

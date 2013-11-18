@@ -29,12 +29,12 @@ Edgar::Application.routes.draw do
     get "home/index"
 
     resources :structures do
+      put 'people/:id/set_main_person', action: :set_main_person, as: :set_main_person
       resources :people
     end
     resources :generic_structures
     resources :venues do
       resources :people
-      put 'people/:id/set_main_contact', action: :set_main_contact, as: :set_main_contact
       resources :tasks do
         put 'complete', :on => :member
         put 'uncomplete', :on => :member

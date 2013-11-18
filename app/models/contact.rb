@@ -47,6 +47,8 @@ class Contact < ActiveRecord::Base
 
   before_save :titleize_name
 
+  delegate :avatar, to: :contactable
+
   scope :searchy, lambda { |names|
     joins(:tags).where(tags: {name: names}).group('contacts.id').having(['COUNT(*) >= ?', names.length])
   }
@@ -165,14 +167,6 @@ class Contact < ActiveRecord::Base
     @favorite ||= self.favorite_contacts.where(user_id: user.id).any?
   end
 
-  def style_list
-    self.style_tags.split(',') if self.style_tags.present?
-  end
-
-  def style_list=(styles)
-    self.style_tags = styles.join(',') if styles.present?
-  end
-
 
   def custom_list
     self.custom_tags.split(',') if self.custom_tags.present?
@@ -190,5 +184,12 @@ class Contact < ActiveRecord::Base
     self.network_tags = networks.join(',') if networks.present?
   end
 
+  def to_s
+    name
+  end
+  
+  def url_for
+    contactable.url_for
+  end
 
 end
