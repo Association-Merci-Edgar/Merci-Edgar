@@ -2,8 +2,10 @@
 
 FactoryGirl.define do
   factory :scheduling do
-    start_month 1
-    end_month 1
-    venue_info nil
+    scheduler nil
+    show_host nil
+    show_buyer nil
+    period "MyString"
+    style_tags "MyString"
   end
 end

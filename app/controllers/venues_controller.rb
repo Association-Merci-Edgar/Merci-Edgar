@@ -7,9 +7,9 @@ class VenuesController < AppController
   def index
     if params[:kind]
       @filtered_by = "(#{params[:kind]})"
-      @contacts = Venue.order(:name).by_type(params[:kind]).page params[:page]
+      @contacts = Venue.joins(:structure => :contact).order(:name).by_type(params[:kind]).page params[:page]
     else
-      @contacts = Venue.order(:name).page params[:page]
+      @contacts = Venue.page params[:page]
     end
     respond_to do |format|
       format.html { render "contacts/index"}
@@ -22,6 +22,7 @@ class VenuesController < AppController
   def show
     @venue = Venue.find(params[:id])
     add_asset(@venue)
+    @main_person = @venue.main_person(current_user)
     @people = @venue.people
     @tasks = @venue.tasks
     @pending_tasks = @tasks.pending
@@ -35,6 +36,8 @@ class VenuesController < AppController
   def new
     session[:return_to] = request.referer
     @venue = Venue.new
+    @venue.build_structure
+    @venue.structure.build_contact
     @venue.addresses.build
     @venue.rooms.build
 
@@ -48,7 +51,7 @@ class VenuesController < AppController
   def edit
     @venue = Venue.find(params[:id])
     add_asset(@venue)
-    @venue.build_venue_info unless @venue.venue_info.present?
+    @venue.schedulings.build unless @venue.schedulings.any?
     @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
   end
 
@@ -108,11 +111,4 @@ class VenuesController < AppController
     end
   end
 
-  def set_main_contact
-    @venue = Venue.find(params[:venue_id])
-    @old_contact = @venue.relative
-    @contact = Person.find(params[:id])
-    @venue.main_contact = @contact
-    @venue.save
-  end
 end

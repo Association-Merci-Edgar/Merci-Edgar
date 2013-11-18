@@ -23,9 +23,9 @@
       .control-group
         .pic-container
           .pic= image_tag @venue.avatar
-
-        = f.input :name, label: false, :class => "input-Xlarge"
-        
+        = f.fields_for :structure do |s|
+          = s.fields_for :contact do |c|
+            = c.input :name, label: false, :class => "input-Xlarge"
         = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
   
     .row-fluid
@@ -47,78 +47,81 @@
               /.section-title
               /.title Coordonnées
               / ________________________________________________________ email
-              = f.fields_for :emails do |email|
-                .nested-fields
-                  = email.link_to_remove :title => "Remove this email" do
-                    %i.entypo.edi-minus-2
-                  = email.input :address, label:"Email", :wrapper => :append do
-                    = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
-                    = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
-                    = email.input_field :specific_kind, :class => "other input-medium"
-              .links
-                = f.link_to_add :emails, :title => 'Add a new email' do
-                  %i.entypo.edi-plus-2
-                  Add a new email
+              = f.fields_for :structure do |s|
+                = s.fields_for :contact do |c|
+
+                  = c.fields_for :emails do |email|
+                    .nested-fields
+                      = email.link_to_remove :title => "Remove this email" do
+                        %i.entypo.edi-minus-2
+                      = email.input :address, label:"Email", :wrapper => :append do
+                        = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
+                        = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+                        = email.input_field :specific_kind, :class => "other input-medium"
+                  .links
+                    = c.link_to_add :emails, :title => 'Add a new email' do
+                      %i.entypo.edi-plus-2
+                      Add a new email
 
 
-              / ________________________________________________________ phone
-              = f.fields_for :phones do |phone|
-                .nested-fields
-                  = phone.link_to_remove :title => "Remove this phone" do
-                    %i.entypo.edi-minus-2
-                  = phone.input :national_number, :wrapper => :append do
-                    = phone.input_field :national_number, :class => "input-medium", :validate => true
-                    = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
-                    = phone.input_field :specific_kind, :class => "other input-medium"
-              .links
-                = f.link_to_add :phones, :title => 'Ajouter un téléphone' do
-                  %i.entypo.edi-plus-2
-                  Add a new phone
+                  / ________________________________________________________ phone
+                  = c.fields_for :phones do |phone|
+                    .nested-fields
+                      = phone.link_to_remove :title => "Remove this phone" do
+                        %i.entypo.edi-minus-2
+                      = phone.input :national_number, :wrapper => :append do
+                        = phone.input_field :national_number, :class => "input-medium", :validate => true
+                        = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+                        = phone.input_field :specific_kind, :class => "other input-medium"
+                  .links
+                    = c.link_to_add :phones, :title => 'Ajouter un téléphone' do
+                      %i.entypo.edi-plus-2
+                      Add a new phone
 
 
 
-              / ________________________________________________________ address
-              .fields-group
-                = f.fields_for :addresses do |address|
-                  .nested-fields.addresses
-                    = address.link_to_remove :title => "Remove this address" do
-                      %i.entypo.edi-minus-2
+                  / ________________________________________________________ address
+                  .fields-group
+                    = c.fields_for :addresses do |address|
+                      .nested-fields.addresses
+                        = address.link_to_remove :title => "Remove this address" do
+                          %i.entypo.edi-minus-2
 
-                    = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
-                    = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
-                    .control-group.nolabel
-                      = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
-                      = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
-                      = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
-                    .control-group.nolabel.state.hidden
-                      = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
+                        = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+                        = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+                        .control-group.nolabel
+                          = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
+                          = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
+                          = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
+                        .control-group.nolabel.state.hidden
+                          = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
                       
-                    = address.input :more_info, label:false
+                        = address.input :more_info, label:false
 
-                .links
-                  = f.link_to_add :addresses, :title => 'Add a new address' do
-                    %i.entypo.edi-plus-2
-                    Add a new address
+                    .links
+                      = c.link_to_add :addresses, :title => 'Add a new address' do
+                        %i.entypo.edi-plus-2
+                        Add a new address
 
 
 
-              / ________________________________________________________ website
-              = f.fields_for :websites do |website|
-                .nested-fields
-                  = website.link_to_remove :title => "Remove this website" do
-                    %i.entypo.edi-minus-2
-                  /= website.input :url, :label => "Website"
-                  /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+                  / ________________________________________________________ website
+                  = c.fields_for :websites do |website|
+                    .nested-fields
+                      = website.link_to_remove :title => "Remove this website" do
+                        %i.entypo.edi-minus-2
+                      /= website.input :url, :label => "Website"
+                      /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
 
-                  /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
-                  = website.input :url, wrapper: :append do
-                    = website.input_field :url, :class => "input-xlarge"
-                    = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+                      /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
+                      = website.input :url, wrapper: :append do
+                        = website.input_field :url, :class => "input-xlarge"
+                        = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
 
-              .links
-                = f.link_to_add :websites, :title => 'Add a new website' do
-                  %i.entypo.edi-plus-2
-                  Add a new website
+                  .links
+                    = c.link_to_add :websites, :title => 'Add a new website' do
+                      %i.entypo.edi-plus-2
+                      Add a new website
 
             / ________________________________________________________________________________________________________________ contact-infos
             #basic-infos.tab-pane
@@ -126,62 +129,47 @@
               /.section-title
               /.title Infos lieu
     
-              -#  ________________________________________________________ TAGS V1
-              = f.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
-
-              -#  ________________________________________________________ TAGS V1
-              = f.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
-
-              -#  ________________________________________________________ TAGS V1
-              = f.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {available_tags: ["Chouette"]} }
+              -#  ________________________________________________________ kind of venue
+              /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
+              = f.input :kind, :collection => [:bar, :theater_cafe, :mjc, :music_venue, :smac, :theater, :cultural_center, :other], :as => :radio_buttons, item_wrapper_class: "inline"
     
     
-              -#  ________________________________________________________ TAGS V2
-              -#.control-group
-              -#
-                %label.control-label Styles programmés
-                .controls
-                  %input#tags.input-large{:name => "tags", :style => "display: none;", :value => "foo,bar,baz"}/
-                  #tags_tagsinput.tagsinput
-                    /{:style => "width: 300px; height: 100px;"}
-                    %span.tag.tag-type
-                      %span foo
-                      %a{:href => "#", :title => "Removing tag"}
-                        %i.entypo.edi-cross
-                    %span.tag.tag-type
-                      %span bar
-                      %a{:href => "#", :title => "Removing tag"}
-                        %i.entypo.edi-cross
-                    %span.tag.tag-type
-                      %span baz
-                      %a{:href => "#", :title => "Removing tag"}
-                        %i.entypo.edi-cross
-                    #tags_addTag.tag-type
-                      %input#tags_tag{"data-default" => "add a tag", :style => "width: 80px;", :value => ""}/
-              
-                    .tags_clear
-                    
+              -#  ________________________________________________________ Services
+              %label.control-label Services
+              = f.input :residency, wrapper: :edgar_checkbox
+              = f.input :accompaniment, wrapper: :edgar_checkbox
+      
+              /= v.input :bar, label:"Services", :collection => ["Bar", "Residence", "Accompagnement"], label_method: :name, value_method: :id, item_wrapper_class:"inline", :as => :check_boxes,
+
+
+              = f.fields_for :structure do |s|
+                = s.fields_for :contact do |c|
+
+                  -#  ________________________________________________________ TAGS V1
+    
+                  = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
+
+                  -#  ________________________________________________________ TAGS V1
+                  = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {available_tags: ["Chouette"]} }
+    
+
                     
               -#  ________________________________________________________ contracts
 
-              = f.fields_for :venue_info do |v|
+              = f.fields_for :schedulings do |v|
                 -#, :class => "span4"
                 -#, :input_html => { :class => "span4" }
                 .nested-fields
+                  = v.link_to_remove :title => "Supprimer cette programmation" do
+                    %i.entypo.edi-minus-2
+                  
+                  = v.input :scheduler, @show_buyer.structure.people, label_method: :name, value_method: :id if @show_buyer.try(:structure).try(:people).try(:any?)
                   = v.input :contract_list, :collection => ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"], :as => :check_boxes, item_wrapper_class:"inline"
           
 
-                  -#  ________________________________________________________ kind of venue
-                  /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
-                  = v.input :kind, :collection => [:bar, :theater_cafe, :mjc, :music_venue, :smac, :theater, :cultural_center, :other], :as => :radio_buttons, item_wrapper_class: "inline"
-        
-        
-                  -#  ________________________________________________________ Services
-                  %label.control-label Services
-                  = v.input :residency, wrapper: :edgar_checkbox
-                  = v.input :accompaniment, wrapper: :edgar_checkbox
-          
-                  /= v.input :bar, label:"Services", :collection => ["Bar", "Residence", "Accompagnement"], label_method: :name, value_method: :id, item_wrapper_class:"inline", :as => :check_boxes,
+                  = v.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {available_tags: Contact::AVAILABLE_STYLE_TAGS} }
+
+
           
 
       
@@ -191,47 +179,53 @@
               
               
                   -#________________________________________________________ scheduling OK
-                  = v.fields_for :schedulings do |s|
+                  = v.fields_for :prospectings do |s|
                     .nested-fields
-                      = s.link_to_remove :title => "Supprimer cette periode de programmation" do
+                      = s.link_to_remove :title => "Supprimer cette periode de prospection" do
                         %i.entypo.edi-minus-2
 
                       .control-group  
-                        %label.control-label #{t("simple_form.labels.venue.venue_info.scheduling")}
+                        %label.control-label #{t("simple_form.labels.venue.scheduling.prospecting")}
 
                         .inline-inputs
-                          = v.input :scheduling, :wrapper => :prepend, :label => false do
+                          = s.input :prospecting, :wrapper => :prepend, :label => false do
                             = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
                             = s.input_field :start_month, :label => "Debut Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
 
-                          = v.input :scheduling, :wrapper => :prepend, :label => false do
+                          = s.input :prospecting, :wrapper => :prepend, :label => false do
                             = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
                             = s.input_field :end_month, :label => "Fin Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
                             
                   .links
-                    = v.link_to_add :schedulings, :title => 'Ajouter une periode de programmation' do
+                    = v.link_to_add :prospectings, :title => 'Ajouter une periode de prospection' do
                       %i.entypo.edi-plus-2
-                      Ajouter une periode de programmation
+                      Ajouter une periode de prospection
 
+              .links
+                = f.link_to_add :schedulings, :title => 'Ajouter une periode de programmation' do
+                  %i.entypo.edi-plus-2
+                  Ajouter une periode de programmation
 
                                   
-                  -#________________________________________________________ season 
-                  .control-group  
-                    %label.control-label #{t("simple_form.labels.venue.venue_info.season")}
-                    .inline-inputs
-                      = v.input :season, :wrapper => :prepend, :label => false do
-                        = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
-                        = v.input_field :start_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+              -#________________________________________________________ season 
+              .control-group  
+                %label.control-label #{t("simple_form.labels.venue.season")}
+                .inline-inputs
+                  = f.input :season, :wrapper => :prepend, :label => false do
+                    = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
+                    = f.input_field :start_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
 
-                      = v.input :season, :wrapper => :prepend, :label => false do
-                        = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
-                        = v.input_field :end_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+                  = f.input :season, :wrapper => :prepend, :label => false do
+                    = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
+                    = f.input_field :end_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
 
 
 
           
                   -# ________________________________________________________ Observations
-                  = v.input :remark
+                  = f.fields_for :structure do |s|
+                    = s.fields_for :contact do |c|
+                      = c.input :remark
     
     
     

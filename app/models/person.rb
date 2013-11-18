@@ -13,22 +13,37 @@
 #  updated_at     :datetime         not null
 #
 
-class Person < Contact
-  attr_accessible :first_name, :name, :people_structures_attributes
-  has_many :structures, through: :people_structures, uniq:true, source: :structure
+class Person < ActiveRecord::Base
+  default_scope { where(:account_id => Account.current_id) }
+  attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar
+  has_one :contact, as: :contactable, dependent: :destroy
+  has_many :structures, through: :people_structures, uniq:true
   has_many :people_structures, dependent: :destroy
+  has_many :relatives, dependent: :destroy
   validates_presence_of :first_name
   validates_presence_of :last_name
-  alias_attribute :last_name, :name
 
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
 
-  def other_people_structures
-    self.people_structures.where("structure_id != ?", self.relative.id)
+  delegate :name, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
+
+  mount_uploader :avatar, AvatarUploader
+
+  before_save :set_name
+
+  def set_name
+    self.build_contact unless contact.present?
+    contact.name = "#{last_name} #{first_name}" if self.changed.include?("first_name") || self.changed.include?("last_name")
   end
 
-  def main_people_structure
-    self.people_structures.where(structure_id: self.relative.id).first if self.people_structures.present?
+
+  def other_people_structures(user)
+    self.people_structures.where("structure_id != ?", self.main_structure(user).id)
+  end
+
+  def main_people_structure(user)
+    self.people_structures.where(structure_id: self.main_structure(user).id).first if self.people_structures.present?
   end
 
   def to_s
@@ -47,12 +62,24 @@ class Person < Contact
     [self.title(structure), self.phone_number, self.email_address].compact.join(' — ')
   end
 
-  def relative
-    self.main_contact ||= self.structures.first
+  def main_structure(user)
+    if self.structures.any?
+      self.relative(user).present? ? self.relative(user).structure : self.structures.first
+    end
   end
 
-  def main_contact?(structure)
-    structure.main_contact == self
+  def set_main_structure(user,structure)
+    rel = self.relatives.build(user: user) unless relative(user).present?
+    rel.structure = structure
+  end
+
+
+  def main_structure?(user,structure)
+    structure == self.main_structure(user)
+  end
+
+  def relative(user)
+    relative = self.relatives.where(user_id: user.id).first
   end
 
   amoeba do

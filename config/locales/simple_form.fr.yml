@@ -68,13 +68,18 @@ fr:
         firsttime_wording2: "Activation de compte pour l’adresse :"
       project:
         name: Projet artistique
+      contact:
+        remark: Observations
+
       venue:
-        venue_info:
-          kind: Type de salle
-          period: Période de programmation
-          remark: Observations
-          scheduling: Programmateur en recherche active de spectacles
-          season: Saison
+        kind: Type de salle
+        residency: Résidence
+        accompaniment: Accompagnement
+        
+        schedulings:
+          period: Cycle de programmation
+          prospecting: Programmateur en recherche active de spectacles
+          contract_list: Types de contrats
         contracts: Contrats
         rooms:
           capacities:
@@ -134,22 +139,23 @@ fr:
           perso: Perso
           other: Autre
       venue:
-        venue_info:
-          kind:
-            kind: Type de structure
-            bar: Bar
-            cultural_center: Centre culturel
-            smac: SMAC
-            music_venue: Salle de concerts
-            theater: Théâtre
-            mjc: MJC
-            theater_cafe: Café-Théâtre
-            other: Autre
-          period:
+        kind:
+          kind: Type de structure
+          bar: Bar
+          cultural_center: Centre culturel
+          smac: SMAC
+          music_venue: Salle de concerts
+          theater: Théâtre
+          mjc: MJC
+          theater_cafe: Café-Théâtre
+          other: Autre
+        schedulings:
+          period: 
             nil: "Non fourni"
             all_year: "Toute l'année"
             quaterly: "Par trimestre"
             per_semester: "Tous les 6 mois"
+            
         addresses:
           kind:
             main_address: "Adresse du lieu"
@@ -163,10 +169,9 @@ fr:
               standing: "Debout"
               mixed: "Mixte"
               flexible: "Modulable"
-        scheduling:
-          scheduling: Saison
-          start_scheduling: Début
-          end_scheduling: Fin
+        prospecting:
+          start_prospecting: Début
+          end_prospecting: Fin
         season:
           season: Saison
       task:

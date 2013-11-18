@@ -9,11 +9,11 @@
           = image_tag person.avatar_url(:thumb)
           
       .meta
-        - if person.main_contact?(@venue)
+        - if @venue.structure.main_person?(current_user,person)
           %a{href: "#"}
             %i.ico.principal.full{id: "main_contact_#{person.id}"}
         - else
-          = link_to venue_set_main_contact_path(@venue,person), method: :put, remote: true do
+          = link_to structure_set_main_person_path(@venue.structure,person), method: :put do
             %i.ico.principal{id: "main_contact_#{person.id}"}
           
         
@@ -38,9 +38,9 @@
         = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
           %i.entypo.edi-cross
               
-      %h4= link_to "#{person.first_name} #{person.name}", person
+      %h4= link_to "#{person.name}", person
       .infos-line
-        = person.info_contact(@venue)
+        = person.info_contact(@venue.structure)
       
       
   
