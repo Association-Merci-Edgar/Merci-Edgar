@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109102054) do
+ActiveRecord::Schema.define(:version => 20131116150901) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20131109102054) do
     t.integer  "contactable_id"
     t.string   "contactable_type"
     t.string   "name"
-    t.string   "style_tags"
     t.string   "network_tags"
     t.string   "custom_tags"
     t.text     "remark"
@@ -155,6 +154,18 @@ ActiveRecord::Schema.define(:version => 20131109102054) do
 
   add_index "prospectings", ["scheduling_id"], :name => "index_prospectings_on_scheduling_id"
 
+  create_table "relatives", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "person_id"
+    t.integer  "structure_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "relatives", ["person_id"], :name => "index_relatives_on_person_id"
+  add_index "relatives", ["structure_id"], :name => "index_relatives_on_structure_id"
+  add_index "relatives", ["user_id"], :name => "index_relatives_on_user_id"
+
   create_table "reportings", :force => true do |t|
     t.integer  "report_id"
     t.string   "report_type"
@@ -199,12 +210,15 @@ ActiveRecord::Schema.define(:version => 20131109102054) do
     t.integer  "show_host_id"
     t.string   "show_host_type"
     t.integer  "show_buyer_id"
+    t.integer  "scheduler_id"
     t.string   "period"
     t.string   "contract_tags"
+    t.string   "style_tags"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "schedulings", ["scheduler_id"], :name => "index_schedulings_on_scheduler_id"
   add_index "schedulings", ["show_buyer_id"], :name => "index_schedulings_on_show_buyer_id"
   add_index "schedulings", ["show_host_id"], :name => "index_schedulings_on_show_host_id"
 

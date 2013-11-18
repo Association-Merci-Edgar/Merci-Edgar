@@ -2,9 +2,10 @@ class Scheduling < ActiveRecord::Base
   belongs_to :scheduler
   belongs_to :show_host, polymorphic: true
   belongs_to :show_buyer
+  belongs_to :scheduler, class_name: "Person"
   has_many :prospectings, dependent: :destroy
 
-  attr_accessible :period, :contract_list, :prospectings_attributes
+  attr_accessible :period, :contract_list, :style_tags, :prospectings_attributes
 
 
   accepts_nested_attributes_for :prospectings, :reject_if => :all_blank, :allow_destroy => true
@@ -33,6 +34,14 @@ class Scheduling < ActiveRecord::Base
 
   def contract_list=(contracts)
     self.contract_tags = contracts.join(',') if contracts.present?
+  end
+
+  def style_list
+    self.style_tags.split(',') if self.style_tags.present?
+  end
+
+  def style_list=(styles)
+    self.style_tags = styles.join(',') if styles.present?
   end
 
 

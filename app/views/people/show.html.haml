@@ -17,7 +17,7 @@
         %span= ps.title
         %span à
         %span.infolabel
-          = link_to ps.structure.name, ps.structure
+          = link_to ps.structure.name, ps.structure.structurable
           \/
         /%span.infolabel.dblue= @person.addresses.first.city
         /%span.infolabel — Ile de france
@@ -102,16 +102,16 @@
 
             / _____________________ infos-mini  
             #infos-mini.span4
-              - if @person.relative.present?
+              - if @person.main_structure(current_user).present?
                 %ul.list-infos
-                  %li.infolabel= @person.title(@person.relative)
+                  %li.infolabel= @person.title(@person.main_structure(current_user))
                   %li
-                    .pic.pic-small= image_tag @person.relative.avatar
-                    = link_to @person.relative do
-                      %h4= @person.relative.name
-                  %li= @person.relative.address.full_address if @person.relative.address
-                  %li= @person.relative.phone_number
-                  %li= link_to @person.relative.website_url, @person.relative.website_url if @person.relative.website_url
+                    .pic.pic-small= image_tag @person.main_structure(current_user).avatar
+                    = link_to @person.main_structure(current_user).structurable do
+                      %h4= @person.main_structure(current_user).name
+                  %li= @person.main_structure(current_user).address.full_address if @person.main_structure(current_user).address
+                  %li= @person.main_structure(current_user).phone_number
+                  %li= link_to @person.main_structure(current_user).website_url, @person.main_structure(current_user).website_url if @person.main_structure(current_user).website_url
 
 
                 
@@ -142,7 +142,7 @@
                 - if @person.people_structures.present?
                   %li.infolabel Fonction(s)
                   %li
-                    - ps = @person.main_people_structure
+                    - ps = @person.main_people_structure(current_user)
                     %a.ico.principal.full{:href => "#"}
                     = ps.title
                     à
@@ -151,15 +151,15 @@
                       %ul.list-small
                         %li
                           .pic.pic-small= image_tag ps.structure.avatar
-                          = link_to ps.structure do
-                            %h4= ps.structure
+                          = link_to ps.structure.structurable do
+                            %h4= ps.structure.structurable
                         %li
                           = render ps.structure.address if ps.structure.address.present?
                         %li= ps.structure.phone_number
                         %li= link_to ps.structure.website_url if ps.structure.website_url.present?
                       
                       
-                  - @person.other_people_structures.each do |ps|
+                  - @person.other_people_structures(current_user).each do |ps|
                     %li
                       = raw([ps.title, link_to(ps.structure.name, ps.structure)].compact.join(" à "))
 
@@ -228,9 +228,9 @@
         / ________________________________________________________ tasks
         #tasks.tab-pane
           - if @tasks.any?
-            = render partial:'tasks/tasks', locals: {asset: @person, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
+            = render partial:'tasks/tasks', locals: {asset: @person.contact, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
           - else
-            = render partial:'tasks/empty_tasks', locals: {asset: @person}
+            = render partial:'tasks/empty_tasks', locals: {asset: @person.contact}
 
 
 

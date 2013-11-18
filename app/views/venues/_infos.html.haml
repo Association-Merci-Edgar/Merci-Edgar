@@ -59,12 +59,13 @@
         
     %ul.list-infos
       /%i.entypo.edi-info
-      %li.infolabel Programmation
-      %li= t(@venue.scheduling.period, scope: 'simple_form.options.venue.scheduling.period') if @venue.scheduling.period.present?
-      %li= "Saison : #{@venue.season}" if @venue.season.present?
-      - if @venue.scheduling.prospectings.present?
-        - @venue.scheduling.prospectings.each do |s|
-          %li= "Programmateur en recherche active : #{s}"
+      
+      - @venue.schedulings.each do |scheduling|
+        %li.infolabel Programmation
+        %li= t(scheduling.period, scope: 'simple_form.options.venue.schedulings.period') if scheduling.period.present?
+        - if scheduling.prospectings.any?
+          - scheduling.prospectings.each do |s|
+            %li= "Programmateur en recherche active : #{s}"
 
 
 
