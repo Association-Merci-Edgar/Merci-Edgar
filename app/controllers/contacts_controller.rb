@@ -16,7 +16,8 @@ class ContactsController < AppController
       contacts = Address.where(account_id: Account.current_id)
     end
     @contacts_json = contacts.to_gmaps4rails do |address, marker|
-      marker.infowindow render_to_string(:partial => "contacts/infowindow_#{address.contact.type.downcase}", :locals => { :contact => address.contact})
+      model = address.contact.fine_model
+      marker.infowindow render_to_string(:partial => "contacts/infowindow_#{model.class.name.downcase}", :locals => { :model => model})
       marker.title   address.contact.name
       # marker.sidebar render_to_string(address.contact)
       # marker.json({ :id => address.id, :foo => "bar" })
@@ -36,7 +37,7 @@ class ContactsController < AppController
         Contact.recently_updated
       when 'style' then 
         @param_filter = params[:name]
-        Contact.by_style(params[:name]).page params[:page]
+        Kaminari.paginate_array(Contact.by_style(params[:name])).page params[:page]
       when 'network' then 
         @param_filter = params[:name]
         Contact.by_network(params[:name]).page params[:page]
@@ -45,7 +46,7 @@ class ContactsController < AppController
         Contact.by_custom(params[:name]).page params[:page]
       when 'contract' then 
         @param_filter = params[:name]
-        Venue.by_contract(params[:name]).page params[:page]
+        Kaminari.paginate_array(Contact.by_contract(params[:name])).page params[:page]
       when "dept" then 
         @param_filter = params[:no]
         Contact.by_department(params[:no]).page params[:page]

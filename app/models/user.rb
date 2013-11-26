@@ -22,6 +22,7 @@
 #  unconfirmed_email      :string(255)
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  avatar                 :string(255)
 #
 
 class User < ActiveRecord::Base

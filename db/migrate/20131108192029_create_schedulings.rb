@@ -1,6 +1,7 @@
 class CreateSchedulings < ActiveRecord::Migration
   def change
     create_table :schedulings do |t|
+      t.string        :name
       t.belongs_to  :show_host, polymorphic: true
       t.belongs_to  :show_buyer
       t.belongs_to  :scheduler

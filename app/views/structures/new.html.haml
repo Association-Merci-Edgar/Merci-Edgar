@@ -1,0 +1,24 @@
+%h1.page-title Nouvelle structure
+
+= simple_nested_form_for(@structure, :html => { :class => 'form-horizontal' }) do |f|
+  /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
+  = display_errors(@structure)
+
+  .form-inputs
+    = f.input :kind, collection: [:venue, :festival, :show_buyer, :structure], as: :radio_buttons, item_wrapper_class: "inline"
+    = f.fields_for :contact do |c|
+      = c.input :name, label: false, :class => "span12"
+
+      = c.fields_for :addresses do |address|
+        .nested-fields
+          = address.input :city, :placeholder => "Ville"
+          = address.input :postal_code
+          = address.input :country, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ]
+          = address.input :kind, :collection => [:main_address, :admin_address],  :selected => :main_address
+        
+  .form-actions
+    = f.submit :class => "btn-primary btn-large"
+    = f.submit t("helpers.submit.venue.create_and_edit"), :class => "btn-primary btn-large"
+    //= f.button :submit, :class => "btn-primary btn-large"
+    ou
+    = link_to "Annuler", session[:return_to], :class => "shybtn btn-large"

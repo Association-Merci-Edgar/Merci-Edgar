@@ -1,31 +1,7 @@
 %li{id: "venue_#{venue.to_param}"}
-  .rightrow
-    .meta
-      -# _________________________ favorite
-      - if venue.favorite?(current_user)
-        = link_to remove_to_favorites_contact_path(venue), remote: true do
-          %i.ico.favorite.full{id: "fav_contact_#{venue.id}"}
-      - else
-        = link_to add_to_favorites_contact_path(venue), remote: true do
-          %i.ico.favorite{id: "fav_contact_#{venue.id}"}
+  = render partial: "contacts/contact_elem", locals: {contact: venue.structure.contact, edit_link_path:edit_venue_path(venue) }
+  
 
-      -# _________________________ contacted
-      - if venue.contacted?
-        %a.ico.contacted.full{:href => "#"}
-      - else
-        %a.ico.contacted{:href => "#"}
-      -# _________________________ dealed
-      %a.ico.dealed{:href => "#"}
-      
-    = content_tag("div",nil, class:"mini-map france reg-#{venue.address.region_code}") if venue.address.present?
-    
-    .actions
-      = link_to edit_venue_path(venue), :class => "shybtn" do
-        %i.entypo.edi-pencil
-      = link_to venue, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' }, remote: true do
-        %i.entypo.edi-cross
-        
-        
   .mainrow
     = link_to venue do
       %h3= venue.name
@@ -36,3 +12,7 @@
       
     .tags
       = render partial: "tags/tags", locals: { asset: venue}
+
+
+
+

@@ -3,12 +3,21 @@ class PeopleController < AppController
   # GET /people
   # GET /people.json
   def index
-    @contacts = Person.order(:name).page params[:page]
+    if params[:term].present?
+      @contacts = Person.joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%")
+    else
+      @contacts = Person.order(:name).page params[:page]
+    end
 
     respond_to do |format|
       format.html { render "contacts/index"}
-      format.json { render json: @contacts }
+      format.json { 
+        json=[]
+        @contacts.each { |c| json.push({id:c.id, name:c.name}) }          
+        render json: @contacts.map(&:name)
+      }
     end
+    
   end
 
   # GET /people/1

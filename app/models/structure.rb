@@ -1,7 +1,20 @@
+# == Schema Information
+#
+# Table name: structures
+#
+#  id                :integer          not null, primary key
+#  structurable_id   :integer
+#  structurable_type :string(255)
+#  avatar            :string(255)
+#  account_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class Structure < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :contact_attributes
+  attr_accessible :contact_attributes, :avatar, :kind
 
   has_one :contact, as: :contactable, dependent: :destroy
   accepts_nested_attributes_for :contact
@@ -13,8 +26,37 @@ class Structure < ActiveRecord::Base
   has_many :people_structures
   has_many :people, through: :people_structures, uniq:true, dependent: :destroy
 
-  delegate :name, :tasks, :reportings, :addresses, :remark, :emails, :phones, :websites, :city, :address, :phone_number, :website, :website_url, :network_list, :custom_list, :contacted?, :favorite?, to: :contact
-  delegate :avatar, to: :structurable
+  delegate :name, :tasks, :reportings, :addresses, :remark, :emails, :phones, :websites, :city, :country,  :address, :phone_number, :website, :website_url, :network_list, :custom_list, :contacted?, :favorite?, to: :contact
+  # delegate :avatar, to: :structurable
+
+  mount_uploader :avatar, AvatarUploader
+
+
+  def kind
+    fm = self.fine_model
+    if fm.present?
+      fm.class.name.downcase
+    end
+  end
+  
+  def kind=(k)
+    debugger
+    unless structurable.present?
+      case k
+      when "venue"
+        self.structurable = Venue.new
+        debugger
+      when "festival"
+        self.structurable = Festival.new
+      when "show_buyer"
+        self.structurable = ShowBuyer.new
+      end
+    end 
+  end
+
+  def fine_model
+    self.structurable.present? ? self.structurable.fine_model : self
+  end
 
   def add_person(first_name,last_name,title)
     p = Person.find_or_initialize_by_first_name_and_name(first_name:first_name,name:last_name)
@@ -23,12 +65,6 @@ class Structure < ActiveRecord::Base
     ps.title = title.titleize
     ps.save
   end
-
-=begin
-  def relative
-    self.main_contact ||= self.people.first
-  end
-=end
 
   def main_person(user)
     if self.people.any?

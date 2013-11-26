@@ -3,14 +3,13 @@
 #
 # Table name: people
 #
-#  id             :integer          not null, primary key
-#  first_name     :string(255)
-#  last_name      :string(255)
-#  account_id     :integer
-#  structure_id   :integer
-#  structure_type :string(255)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id         :integer          not null, primary key
+#  first_name :string(255)
+#  last_name  :string(255)
+#  avatar     :string(255)
+#  account_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Person < ActiveRecord::Base
@@ -28,9 +27,13 @@ class Person < ActiveRecord::Base
 
   delegate :name, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
 
-  mount_uploader :avatar, AvatarUploader
-
   before_save :set_name
+  
+  mount_uploader :avatar, AvatarUploader
+  
+  def fine_model
+    self
+  end
 
   def set_name
     self.build_contact unless contact.present?

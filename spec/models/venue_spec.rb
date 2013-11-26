@@ -2,11 +2,16 @@
 #
 # Table name: venues
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :integer
+#  id            :integer          not null, primary key
+#  kind          :string(255)
+#  start_season  :integer
+#  end_season    :integer
+#  residency     :boolean
+#  accompaniment :boolean
+#  avatar        :string(255)
+#  account_id    :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 require 'spec_helper'

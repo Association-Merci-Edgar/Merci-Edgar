@@ -279,9 +279,9 @@ fr:
               
     notices:
       models:
-        venue:
-          created: "La salle %{name} a été créée avec succès"
-          updated: "La salle %{name} a été modifiée avec succès"
+        structure:
+          created: "La structure %{name} a été créée avec succès"
+          updated: "La structure %{name} a été modifiée avec succès"
         person:
           created: "La personne %{name} a été créée avec succès"
           updated: "La personne %{name} a été modifiée avec succès"

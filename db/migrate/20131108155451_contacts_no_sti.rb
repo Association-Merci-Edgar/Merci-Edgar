@@ -22,6 +22,7 @@ class ContactsNoSti < ActiveRecord::Migration
 
     create_table :structures do |t|
       t.belongs_to :structurable, polymorphic:true
+      t.string  :avatar
       t.integer :account_id
 
       t.timestamps
@@ -29,9 +30,9 @@ class ContactsNoSti < ActiveRecord::Migration
     add_index :structures, :structurable_id
 
     create_table :people do |t|
-      t.string :first_name
-      t.string :last_name
-      t.string :avatar
+      t.string  :first_name
+      t.string  :last_name
+      t.string  :avatar
       t.integer :account_id
 
       t.timestamps

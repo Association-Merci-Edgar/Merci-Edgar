@@ -98,7 +98,7 @@ fr:
       person:
         people_structures:
           title: Fonction
-          structure_name: Nom de la salle
+          structure_name: Nom de la structure
           structure_city: Ville
           structure_country: Pays 
       task:
@@ -117,6 +117,14 @@ fr:
         venue_info:
           kind: "SMAC: salle de musique actuelle, blablabla"
     options:
+      structure:
+        #kind: "Type de structure"
+        kind:
+          kind: "Type de structure"
+          venue: "Lieu"
+          festival: "Festival"
+          show_buyer: "Autre organisateur de spectacles"
+          structure: "Structure générique"
       phones: &phones
         classic_kind:
           reception: Standard

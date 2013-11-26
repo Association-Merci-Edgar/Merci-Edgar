@@ -1,0 +1,6 @@
+%h4= link_to model.name, model
+<br>
+
+= render model.address if model.address
+.tags
+  = render partial: "tags/tags", locals: { asset: model}

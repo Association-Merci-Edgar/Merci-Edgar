@@ -9,11 +9,11 @@
           = image_tag person.avatar_url(:thumb)
           
       .meta
-        - if @venue.structure.main_person?(current_user,person)
+        - if @structure.main_person?(current_user,person)
           %a{href: "#"}
             %i.ico.principal.full{id: "main_contact_#{person.id}"}
         - else
-          = link_to structure_set_main_person_path(@venue.structure,person), method: :put do
+          = link_to structure_set_main_person_path(@structure,person), method: :put do
             %i.ico.principal{id: "main_contact_#{person.id}"}
           
         
@@ -32,7 +32,7 @@
           %a.ico.contacted{:href => "#"}                    
       .actions 
         /= link_to 'Edit', edit_venue_path(venue)
-        = link_to edit_venue_person_path(@venue,person), :class => "shybtn" do
+        = link_to edit_structure_person_path(@structure,person), :class => "shybtn" do
           %i.entypo.edi-pencil
         /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
         = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
@@ -40,12 +40,12 @@
               
       %h4= link_to "#{person.name}", person
       .infos-line
-        = person.info_contact(@venue.structure)
+        = person.info_contact(@structure)
       
       
   
   .btn-in-list
-    = link_to new_structure_person_path(@venue) do
+    = link_to new_structure_person_path(@structure) do
       %i.entypo.edi-plus-3
       %span
         Ajouter une personne

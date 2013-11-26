@@ -1,0 +1,2 @@
+module FestivalsHelper
+end

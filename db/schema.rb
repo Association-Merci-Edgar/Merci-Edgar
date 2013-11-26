@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131116150901) do
+ActiveRecord::Schema.define(:version => 20131122210109) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(:version => 20131116150901) do
 
   add_index "favorite_contacts", ["contact_id"], :name => "index_favorite_contacts_on_contact_id"
   add_index "favorite_contacts", ["user_id"], :name => "index_favorite_contacts_on_user_id"
+
+  create_table "festivals", :force => true do |t|
+    t.integer  "nb_edition"
+    t.integer  "last_year"
+    t.string   "artists_kind"
+    t.string   "avatar"
+    t.integer  "account_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "festivals", ["account_id"], :name => "index_festivals_on_account_id"
 
   create_table "note_reports", :force => true do |t|
     t.text     "content"
@@ -207,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20131116150901) do
   add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"
 
   create_table "schedulings", :force => true do |t|
+    t.string   "name"
     t.integer  "show_host_id"
     t.string   "show_host_type"
     t.integer  "show_buyer_id"
@@ -224,6 +237,7 @@ ActiveRecord::Schema.define(:version => 20131116150901) do
 
   create_table "show_buyers", :force => true do |t|
     t.string   "licence"
+    t.string   "avatar"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -231,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20131116150901) do
   create_table "structures", :force => true do |t|
     t.integer  "structurable_id"
     t.string   "structurable_type"
+    t.string   "avatar"
     t.integer  "account_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false

@@ -31,9 +31,10 @@
           = task.assignee.nickname
       - if task.asset.present?
         .infos-part
-          = link_to task.asset do
+          = link_to task.asset.fine_model do
             .pic.pic-mini= image_tag task.asset.avatar
             = task.asset.name
+
       - if task.project.present?
         .infos-part
           %a{:href => "#"}

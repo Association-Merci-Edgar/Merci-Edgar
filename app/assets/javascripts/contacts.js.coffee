@@ -3,10 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('.structure_name').autocomplete
-    source: $('#person_people_structures_attributes_0_structure_name').data('autocomplete-source')
+  $('.jq_autocomplete').autocomplete
+    source: $('.jq_autocomplete').data('autocomplete-source')
     delay: 1000
-
+      
+  ###
   $('.typeah').typeahead
     source: (query, process) ->
       $.ajax(
@@ -15,16 +16,26 @@ jQuery ->
           process(data)
       )
     minLength: 3
-    
+  ###    
   
+
   $(document).on "nested:fieldAdded", (event) ->
 
     # this field was just inserted into your form
     field = event.field
 
-    # it's a jQuery object already! Now you can find date input
-    typeaheadField = field.find(".typeah")
+    field.find(".jq_autocomplete").each (index,element) =>
+    
+      # it's a jQuery object already! Now you can find date input
+      typeaheadField = $(element)
+      console.debug("field:" + typeaheadField.attr("name"))
 
+
+      typeaheadField.autocomplete
+        source: typeaheadField.data('autocomplete-source')
+        delay: 1000
+
+  ###
     # and activate datepicker on it
     typeaheadField.typeahead
       source: (query, process) ->
@@ -34,3 +45,4 @@ jQuery ->
             process(data)
         )
       minLength: 3
+  ###

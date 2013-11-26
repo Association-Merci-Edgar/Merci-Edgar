@@ -11,7 +11,7 @@
     Enregistrer
   
 
-%h1.page-title Modifier la salle
+%h1.page-title Modifier le lieu
 /%h2= @venue.name
 
 = simple_nested_form_for(@venue, :html => { :class => 'form-horizontal form-edit' }) do |f|
@@ -22,7 +22,7 @@
     %header
       .control-group
         .pic-container
-          .pic= image_tag @venue.avatar
+          .pic= image_tag @venue.avatar_url
         = f.fields_for :structure do |s|
           = s.fields_for :contact do |c|
             = c.input :name, label: false, :class => "input-Xlarge"
@@ -36,7 +36,9 @@
             %li.active
               %a{"data-toggle" => "tab", :href => "#contact-infos"} Coordonnées
             %li
-              %a{"data-toggle" => "tab", :href => "#basic-infos"} Infos lieu
+              %a{"data-toggle" => "tab", :href => "#basic-infos"} Infos
+            %li
+              %a{"data-toggle" => "tab", :href => "#schedulings"} Programmation(s)
             %li
               %a{"data-toggle" => "tab", :href => "#rooms-infos"} Salle(s) du lieu
           
@@ -153,8 +155,33 @@
                   = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {available_tags: ["Chouette"]} }
     
 
+              -#________________________________________________________ season 
+              .control-group  
+                %label.control-label #{t("simple_form.labels.venue.season")}
+                .inline-inputs
+                  = f.input :season, :wrapper => :prepend, :label => false do
+                    = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
+                    = f.input_field :start_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+
+                  = f.input :season, :wrapper => :prepend, :label => false do
+                    = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
+                    = f.input_field :end_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
+
+
+
+
+                  -# ________________________________________________________ Observations
+                  = f.fields_for :structure do |s|
+                    = s.fields_for :contact do |c|
+                      = c.input :remark
+
+
+
                     
-              -#  ________________________________________________________ contracts
+            -#  ________________________________________________________ contracts
+
+            / ________________________________________________________________________________________________________________ contact-infos
+            #schedulings.tab-pane
 
               = f.fields_for :schedulings do |v|
                 -#, :class => "span4"
@@ -162,8 +189,13 @@
                 .nested-fields
                   = v.link_to_remove :title => "Supprimer cette programmation" do
                     %i.entypo.edi-minus-2
+                  = v.input :name
                   
-                  = v.input :scheduler, @show_buyer.structure.people, label_method: :name, value_method: :id if @show_buyer.try(:structure).try(:people).try(:any?)
+                  = v.input :external_show_buyer, collection: ["Cette structure", "Un autre organisateur de spectacles"], as: :radio_buttons, item_wrapper_class: "inline"  
+                  = v.input :show_buyer_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: structures_path(type: "ShowBuyer")} }
+                  
+                  = v.input :scheduler_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
+                  -# = v.input :scheduler, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
                   = v.input :contract_list, :collection => ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"], :as => :check_boxes, item_wrapper_class:"inline"
           
 
@@ -204,28 +236,9 @@
               .links
                 = f.link_to_add :schedulings, :title => 'Ajouter une periode de programmation' do
                   %i.entypo.edi-plus-2
-                  Ajouter une periode de programmation
+                  Ajouter une programmation
 
                                   
-              -#________________________________________________________ season 
-              .control-group  
-                %label.control-label #{t("simple_form.labels.venue.season")}
-                .inline-inputs
-                  = f.input :season, :wrapper => :prepend, :label => false do
-                    = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
-                    = f.input_field :start_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
-
-                  = f.input :season, :wrapper => :prepend, :label => false do
-                    = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
-                    = f.input_field :end_season, :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
-
-
-
-          
-                  -# ________________________________________________________ Observations
-                  = f.fields_for :structure do |s|
-                    = s.fields_for :contact do |c|
-                      = c.input :remark
     
     
     

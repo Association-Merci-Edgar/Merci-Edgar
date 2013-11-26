@@ -2,30 +2,33 @@
 #
 # Table name: venues
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :integer
+#  id            :integer          not null, primary key
+#  kind          :string(255)
+#  start_season  :integer
+#  end_season    :integer
+#  residency     :boolean
+#  accompaniment :boolean
+#  avatar        :string(255)
+#  account_id    :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Venue < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags
+  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar
 
-  attr_accessible :structure_attributes
-
-  has_one :structure, as: :structurable
+  has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 
   has_many :schedulings, as: :show_host, dependent: :destroy
-  has_one :show_buyer, through: :scheduling
-  accepts_nested_attributes_for :schedulings
+  has_many :show_buyers, through: :schedulings, uniq: true
+  accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
 
   has_many :rooms, :dependent => :destroy
-  accepts_nested_attributes_for :rooms, :allow_destroy => true
+  accepts_nested_attributes_for :rooms, :reject_if => :all_blank, :allow_destroy => true
 
   validates :start_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
   validates :end_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
@@ -35,8 +38,12 @@ class Venue < ActiveRecord::Base
   # validate :venue_must_have_at_least_one_address
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   # validates_presence_of :addresses
-
+  
   mount_uploader :avatar, AvatarUploader
+  
+  def fine_model
+    self
+  end
 
   scope :by_type, (lambda do |kind|
     where(kind: kind) if kind.present?
@@ -54,7 +61,8 @@ class Venue < ActiveRecord::Base
     joins(:rooms => :capacities).where("capacities.nb BETWEEN ? AND ? ", nb1,nb2).uniq
   end)
 
-  scope :by_contract, lambda { |tag_name| joins(:scheduling).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
+  scope :by_contract, lambda { |tag_name| joins(:schedulings).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
+  scope :by_style, lambda { |tag_name| joins(:schedulings).where("schedulings.style_tags LIKE ?", "%#{tag_name}%") }
 
   scope :making_prospecting, lambda { |month| joins(:schedulings => :prospectings).where("prospectings.start_month <= ? AND prospectings.end_month >= ?",month,month) }
 
@@ -126,7 +134,7 @@ class Venue < ActiveRecord::Base
     self.schedulings.each do |s|
       s.style_list.each do |style|
         sl.push(style) unless sl.include?(style)
-      end
+      end if s.style_list.present?
     end
     sl
   end
