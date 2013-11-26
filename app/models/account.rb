@@ -10,7 +10,7 @@
 #
 
 class Account < ActiveRecord::Base
-  has_many :users, through: :abilitations
+  has_many :users, through: :abilitations, uniq: true
   has_many :abilitations, dependent: :destroy
   # has_and_belongs_to_many :users
   
@@ -144,5 +144,13 @@ class Account < ActiveRecord::Base
       my_venue = v.my_dup
       my_venue.save
     end
+  end
+  
+  def member?(user)
+    self.abilitations.where(user: user).first.member?
+  end
+  
+  def manager?(user)
+    self.abilitations.where(user: user).first.manager?
   end
 end
