@@ -10,7 +10,10 @@
 #
 
 class Account < ActiveRecord::Base
-  has_and_belongs_to_many :users
+  has_many :users, through: :abilitations
+  has_many :abilitations, dependent: :destroy
+  # has_and_belongs_to_many :users
+  
   has_many :venues
   attr_accessible :domain, :name
   validates_presence_of :name
