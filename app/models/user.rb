@@ -27,7 +27,10 @@
 
 class User < ActiveRecord::Base
   rolify
-  has_and_belongs_to_many :accounts
+  # has_and_belongs_to_many :accounts
+  has_many :accounts, through: :abilitations
+  has_many :abilitations, dependent: :destroy
+  
   accepts_nested_attributes_for :accounts
   validates_associated :accounts
   # Include default devise modules. Others available are:
