@@ -65,6 +65,7 @@ Edgar::Application.routes.draw do
     end
     resource :account do
       put 'duplicate_community', action: :duplicate_community, as: :duplicate_community
+      resources :abilitations, only: [:create, :update, :destroy, :index]
     end
     resources :reportings
 

@@ -58,8 +58,13 @@ class ConfirmationsController < Devise::PasswordsController
   def do_show
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
-    @confirmable.accounts.destroy_all
-    @account = @confirmable.accounts.build
+    # @confirmable.accounts.destroy_all
+    @current_account = Account.find(Account.find_by_domain(request.subdomain))
+    if @confirmable.accounts.include?(@current_account)
+      @account = @current_account
+    else
+      @account = @confirmable.accounts.build unless @confirmable.accounts.any?
+    end
     render 'devise/confirmations/show'
   end
 

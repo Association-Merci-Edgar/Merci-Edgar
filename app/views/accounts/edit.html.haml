@@ -28,38 +28,32 @@
       %section.span6
         %h4 Utilisateurs
         %ul.list-small
-          %li
-            .meta
-              .badge.badge-red Admin
-            .actions
-              %a.shybtn{href: "/fr/people/41/edit"}
-                %i.entypo.edi-pencil
-              -#
-                %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
-                  %i.entypo.edi-cross
+          - @account.users.each do |user|
+            %li
+              .meta
+                .badge.badge-red= user.current_abilitation.kind
+              .actions
+                %a.shybtn{href: "/fr/people/41/edit"}
+                  %i.entypo.edi-pencil
+                -#
+                  %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
+                    %i.entypo.edi-cross
             
-            %a{href: "/fr/people/41"}
-              %h3 Christophe Robillard
-              .pic= image_tag "squared/pro2.jpg"
-            %span.infos-line
-              %a christophe@merciedgar.com
-              
-              
-          %li
-            .meta
-            .actions
-              %a.shybtn{href: "/fr/people/41/edit"}
-                %i.entypo.edi-pencil
-              -#
-                %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
-                  %i.entypo.edi-cross
-            
-            %a{href: "/fr/people/41"}
-              %h3 Aurélie Thuot
-              .pic= image_tag "squared/pro3.jpg"
-            %span.infos-line
-              %a christophe@merciedgar.com
+              %a{href: "/fr/people/41"}
+                %h3= user.name
+                .pic= image_tag "squared/pro2.jpg"
+              %span.infos-line
+                %a= user.email
 
+
+          %li
+            - abilitation = Abilitation.new
+            - abilitation.build_user
+            = simple_form_for(abilitation, url: account_abilitations_path) do |f|
+              = f.fields_for :user do |u|
+                = u.input :email
+              = f.submit
+            
           -#_____________________________________________________ ADD NEW
           .btn-in-list
             %a

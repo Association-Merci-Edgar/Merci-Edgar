@@ -84,10 +84,11 @@ class User < ActiveRecord::Base
     p = {}
     p[:password] = params[:password]
     p[:password_confirmation] = params[:password_confirmation]
-    p[:accounts_attributes] = params[:accounts_attributes]
+    p[:accounts_attributes] = params[:accounts_attributes] if params[:accounts_attributes].present?
     p[:name] = params[:name]
     p[:first_name] = params[:first_name]
     p[:last_name] = params[:last_name]
+    
     update_attributes(p)
   end
 
@@ -124,6 +125,17 @@ class User < ActiveRecord::Base
     [self.first_name,self.last_name].compact.join.truncate(8, omission:".")
   end
 
+  def current_abilitation
+    self.abilitations.where(account_id: Account.current_id).first
+  end
+
+  def send_abilitation_instructions(account,manager)
+    self.generate_confirmation_token!
+    UserMailer.abilitation_instructions(account,manager,self).deliver
+  end
+
+
+
   private
 
   def add_user_to_mailchimp
@@ -154,6 +166,5 @@ class User < ActiveRecord::Base
   rescue Gibbon::MailChimpError => e
     Rails.logger.info("MailChimp unsubscribe failed for #{self.email}: " + e.message)
   end
-
 
 end
