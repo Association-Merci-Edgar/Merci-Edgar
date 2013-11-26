@@ -22,6 +22,7 @@ class VenuesController < AppController
   def show
     @venue = Venue.find(params[:id])
     add_asset(@venue)
+    @structure = @venue.structure
     @main_person = @venue.main_person(current_user)
     @people = @venue.people
     @tasks = @venue.tasks
@@ -51,7 +52,7 @@ class VenuesController < AppController
   def edit
     @venue = Venue.find(params[:id])
     add_asset(@venue)
-    @venue.schedulings.build unless @venue.schedulings.any?
+    @venue.schedulings.build(name: "Programmation Principale") unless @venue.schedulings.any?
     @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
   end
 

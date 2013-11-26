@@ -1,0 +1,153 @@
+- content_for :scripts do
+  = javascript_include_tag "contacts"
+  = javascript_include_tag "tag"
+  = javascript_include_tag "contacts_form"
+
+#menu-vertical
+  %span
+    = link_to t(:cancel), @structure
+    ou
+  .btn.btn-alert.btn-large.btn-submit{:href => "#"}
+    Enregistrer
+  
+
+%h1.page-title Modifier la structure
+/%h2= @structure.name
+
+= simple_nested_form_for(@structure, :html => { :class => 'form-horizontal form-edit' }) do |f|
+  /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
+  = display_errors(@structure)
+  
+  .form-inputs
+    %header
+      .control-group
+        .pic-container
+          .pic= image_tag @structure.avatar_url
+        = f.fields_for :contact do |c|
+          = c.input :name, label: false, :class => "input-Xlarge"
+        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+        = f.input :kind, collection: [:venue, :festival, :show_buyer, :structure], as: :radio_buttons, item_wrapper_class: "inline"
+  
+    .row-fluid
+      .span12
+        .tabbable
+          / ________________________________________________________ nav-tabs _________________
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#contact-infos"} Coordonnées
+            %li
+              %a{"data-toggle" => "tab", :href => "#basic-infos"} Infos
+          
+          .tab-content
+            / ________________________________________________________________________________________________________________ contact-infos
+            #contact-infos.tab-pane.active
+              /.section-title
+              /.title Coordonnées
+              / ________________________________________________________ email
+              = f.fields_for :contact do |c|
+
+                = c.fields_for :emails do |email|
+                  .nested-fields
+                    = email.link_to_remove :title => "Remove this email" do
+                      %i.entypo.edi-minus-2
+                    = email.input :address, label:"Email", :wrapper => :append do
+                      = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
+                      = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+                      = email.input_field :specific_kind, :class => "other input-medium"
+                .links
+                  = c.link_to_add :emails, :title => 'Add a new email' do
+                    %i.entypo.edi-plus-2
+                    Add a new email
+
+
+                / ________________________________________________________ phone
+                = c.fields_for :phones do |phone|
+                  .nested-fields
+                    = phone.link_to_remove :title => "Remove this phone" do
+                      %i.entypo.edi-minus-2
+                    = phone.input :national_number, :wrapper => :append do
+                      = phone.input_field :national_number, :class => "input-medium", :validate => true
+                      = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
+                      = phone.input_field :specific_kind, :class => "other input-medium"
+                .links
+                  = c.link_to_add :phones, :title => 'Ajouter un téléphone' do
+                    %i.entypo.edi-plus-2
+                    Add a new phone
+
+
+
+                / ________________________________________________________ address
+                .fields-group
+                  = c.fields_for :addresses do |address|
+                    .nested-fields.addresses
+                      = address.link_to_remove :title => "Remove this address" do
+                        %i.entypo.edi-minus-2
+
+                      = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
+                      = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+                      .control-group.nolabel
+                        = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
+                        = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
+                        = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
+                      .control-group.nolabel.state.hidden
+                        = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
+                    
+                      = address.input :more_info, label:false
+
+                  .links
+                    = c.link_to_add :addresses, :title => 'Add a new address' do
+                      %i.entypo.edi-plus-2
+                      Add a new address
+
+
+
+                / ________________________________________________________ website
+                = c.fields_for :websites do |website|
+                  .nested-fields
+                    = website.link_to_remove :title => "Remove this website" do
+                      %i.entypo.edi-minus-2
+                    /= website.input :url, :label => "Website"
+                    /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
+
+                    /= website.input :url, wrapper: :with_tooltip, tooltip: "Coucou tooltip" do
+                    = website.input :url, wrapper: :append do
+                      = website.input_field :url, :class => "input-xlarge"
+                      = website.input_field :kind, label:false, :collection => %w(Work Home),  :selected => "Work", :class => "add-on btn dropdown-toggle"
+
+                .links
+                  = c.link_to_add :websites, :title => 'Add a new website' do
+                    %i.entypo.edi-plus-2
+                    Add a new website
+
+            / ________________________________________________________________________________________________________________ contact-infos
+            #basic-infos.tab-pane
+              /%section#basic-infos
+              /.section-title
+              /.title Infos lieu
+    
+              -#  ________________________________________________________ kind of venue
+              /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
+
+              = f.fields_for :contact do |c|
+
+                -#  ________________________________________________________ TAGS V1
+  
+                = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
+
+                -#  ________________________________________________________ TAGS V1
+                = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {available_tags: ["Chouette"]} }
+  
+
+
+
+                -# ________________________________________________________ Observations
+                = f.fields_for :contact do |c|
+                  = c.input :remark
+
+                
+
+    / ________________________________________________________ actions
+    .form-actions
+      = f.button :submit, :class => "btn-primary btn-large btn-alert"
+      ou
+      = link_to t(:cancel), @structure

@@ -5,9 +5,10 @@
 #  id         :integer          not null, primary key
 #  nb         :integer
 #  kind       :string(255)
-#  venue_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  room_id    :integer
+#  modular    :boolean
 #
 
 class Capacity < ActiveRecord::Base

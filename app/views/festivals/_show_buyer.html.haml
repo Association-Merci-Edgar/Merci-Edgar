@@ -1,0 +1,14 @@
+%li{id: "show_buyer_#{show_buyer.to_param}"}
+  = render partial: "contacts/contact_elem", locals: {contact: show_buyer.structure.contact, edit_link_path:edit_show_buyer_path(show_buyer) }
+  
+
+  .mainrow
+    = link_to show_buyer do
+      %h3= show_buyer.name
+      .pic= image_tag show_buyer.avatar_url(:thumb)
+    .infos-line
+      / = render venue.capacities if venue.capacities
+      = render show_buyer.address if show_buyer.address
+      
+    .tags
+      = render partial: "tags/tags", locals: { asset: show_buyer}

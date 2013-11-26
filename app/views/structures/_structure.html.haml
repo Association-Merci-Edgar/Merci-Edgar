@@ -1,1 +1,5 @@
-= render structure.structurable if structure.structurable.present?
+- if structure.structurable.present?
+  = render structure.structurable 
+
+- else
+  = render partial: "contacts/contact_elem", locals: {contact: structure.contact, edit_link_path:edit_structure_path(structure), fine_model_css_id:"structure_#{structure.to_param}"}

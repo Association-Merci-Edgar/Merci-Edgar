@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: prospectings
+#
+#  id            :integer          not null, primary key
+#  start_month   :integer
+#  end_month     :integer
+#  scheduling_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class Prospecting < ActiveRecord::Base
   belongs_to :scheduling, touch: true
   attr_accessible :start_month, :end_month

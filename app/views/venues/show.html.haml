@@ -1,176 +1,78 @@
 -# _____________________________________  SHOW VENUE
 - content_for :scripts do
   = render 'select_tab'
-  
-.row-fluid.toppage.showitem
-  %header
-    .pic= image_tag @venue.avatar
-    %h2= @venue.name
-    
-    .infos
-      .infos-line
-        /-  if @venue.try(:capacities)
-        /  - @venue.capacities.each do |capacity|
-        /    %span.jauge= render capacity
+
+-content_for :extra_navtabs do
+  %li
+    %a{"data-toggle" => "tab", :href => "#dates"} Dates
+
+-content_for :extra_content_tabs do
+  / ________________________________________________________ dates              
+  #dates.tab-pane
+    /%p Dates de spectacle
+    %ul.list-large
+      %li
+        .meta
+          .badge.badge-red En attente de payement
+        .actions
+          /= link_to 'Edit', edit_venue_path(venue)
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
             
-        - if @venue.city
-          %span.location
-            %span.city= @venue.city
-            = link_to @venue.address.department_name, only_contacts_path(filter:"dept",no:@venue.address.department_code)
-      .tags
-        = render partial: "tags/tags", locals: {asset: @venue}
-    
-    
-  .meta
-    -# _________________________ contacted
-    - if @venue.contacted?
-      %a.ico.contacted.full{:href => "#"}
-    - else
-      %a.ico.contacted{:href => "#"}
-    //%a.ico.dealed{:href => "#"}
-
-    / _________________________ favorite
-    - if @venue.favorite?(current_user)
-      = link_to remove_to_favorites_contact_path(@venue), remote: true do
-        %i.ico.favorite.full{id: "fav_contact_#{@venue.id}"}
-    - else
-      = link_to add_to_favorites_contact_path(@venue), remote: true do
-        %i.ico.favorite{id: "fav_contact_#{@venue.id}"}
-
-
-
-
-    = link_to edit_venue_path(@venue), :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{@venue.updated_at.present? ? @venue.updated_at.to_date : '22/01/2013'} <br>par Sandrine Untel", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
-      %i.entypo.edi-pencil
-      
-  - if notice.present?
-    .notice= notice
-    
-      
-.row-fluid
-  .span12
-    .tabbable
-      / ________________________________________________________ nav-tabs _________________
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-toggle" => "tab", :href => "#activity"} Suivi
-        %li
-          %a{"data-toggle" => "tab", :href => "#infos"} Infos
-        %li.w_badge
-          %a{"data-toggle" => "tab", :href => "#team"}
-            = "Équipe"
-            %span.badge.badge-shy="#{@venue.people.size}"
-        %li.w_badge
-          %a{"data-toggle" => "tab", :href => "#tasks"}
-            = "#{t(:tasks)}"
-            %span.badge.badge-shy="#{@pending_tasks.size}"
-        %li
-          %a{"data-toggle" => "tab", :href => "#dates"} Dates
+        %h4
+          %a{:href => "#"}
+            .pic= image_tag "squared/pro4.jpg"
+            Lundi 1 juin 2013 — NomDuProjet
+          
+        .infos-line
+          /%span NomDuProjet
+          %span Formule
+          —
+          %span Responsable :
+          .pic.pic-mini= image_tag "squared/per3.jpg"
+          %a{:href => "#"} Christophe R.
+          
+      %li
+        .meta
+          .badge.badge-green Validé
+        .actions
+          /= link_to 'Edit', edit_venue_path(venue)
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+        %h4
+          %a{:href => "#"}
+            .pic= image_tag "squared/pro3.jpg"
+            Samedi 5 Juillet 2013 — AutreProjet
+          
+        .infos-line
+          /%span NomDuProjet
+          %span Formule
+          —
+          %span Responsable :
+          .pic.pic-mini= image_tag "squared/per2.jpg"
+          %a{:href => "#"} Christophe R.
           
           
-      .tab-content
-        / ________________________________________________________ activity
-        #activity.tab-pane.active
-          = render partial:'activity'
-                  
-        / ________________________________________________________ infos
-        #infos.tab-pane
-          = render partial:'infos'
-        / ________________________________________________________ team
-        #team.tab-pane
-          - if @people.any?
-            = render partial:'team'
-          - else
-            = render partial:'empty_team'
+      %li
+        .meta
+          .badge.badge-blue Option
+        .actions
+          /= link_to 'Edit', edit_venue_path(venue)
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
             
-        / ________________________________________________________ tasks
-        #tasks.tab-pane
-          - if @tasks.any?
-            = render partial:'tasks/tasks', locals: {asset: @venue, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
-          - else
-            = render partial:'tasks/empty_tasks', locals: {asset: @venue}
-            
+        %h4
+          %a{:href => "#"}
+            .pic= image_tag "squared/pro2.jpg"
+            Lundi 1 juin 2013 — NomDuProjet
+        .infos-line
+          /%span NomDuProjet
+          %span Formule
+          —
+          %span Responsable :
+          .pic.pic-mini= image_tag "squared/per2.jpg"
+          %a{:href => "#"} Christophe R.
 
-         
-        / ________________________________________________________ dates              
-        #dates.tab-pane
-          /%p Dates de spectacle
-          %ul.list-large
-            %li
-              .meta
-                .badge.badge-red En attente de payement
-              .actions
-                /= link_to 'Edit', edit_venue_path(venue)
-                %a.shybtn{:href => "#"}
-                  %i.entypo.edi-pencil
-                    
-              %h4
-                %a{:href => "#"}
-                  .pic= image_tag "squared/pro4.jpg"
-                  Lundi 1 juin 2013 — NomDuProjet
-                  
-              .infos-line
-                /%span NomDuProjet
-                %span Formule
-                —
-                %span Responsable :
-                .pic.pic-mini= image_tag "squared/per3.jpg"
-                %a{:href => "#"} Christophe R.
-                  
-            %li
-              .meta
-                .badge.badge-green Validé
-              .actions
-                /= link_to 'Edit', edit_venue_path(venue)
-                %a.shybtn{:href => "#"}
-                  %i.entypo.edi-pencil
-                    
-              %h4
-                %a{:href => "#"}
-                  .pic= image_tag "squared/pro3.jpg"
-                  Samedi 5 Juillet 2013 — AutreProjet
-                  
-              .infos-line
-                /%span NomDuProjet
-                %span Formule
-                —
-                %span Responsable :
-                .pic.pic-mini= image_tag "squared/per2.jpg"
-                %a{:href => "#"} Christophe R.
-                  
-                  
-            %li
-              .meta
-                .badge.badge-blue Option
-              .actions
-                /= link_to 'Edit', edit_venue_path(venue)
-                %a.shybtn{:href => "#"}
-                  %i.entypo.edi-pencil
-                    
-              %h4
-                %a{:href => "#"}
-                  .pic= image_tag "squared/pro2.jpg"
-                  Lundi 1 juin 2013 — NomDuProjet
-              .infos-line
-                /%span NomDuProjet
-                %span Formule
-                —
-                %span Responsable :
-                .pic.pic-mini= image_tag "squared/per2.jpg"
-                %a{:href => "#"} Christophe R.
-                  
-              
-                    
-                    
-                
-                
-            
-                    
-                    
-              
-          .btn-in-list
-            %a{:href => "#"}
-              %i.entypo.edi-plus-3
-              %span
-                New Date
-              
+
+= render partial: "structures/show", locals: {structure: @venue.structure, edit_link_path: edit_venue_path(@venue)}

@@ -3,16 +3,13 @@
 # Table name: contacts
 #
 #  id               :integer          not null, primary key
-#  phone            :string(255)
-#  email            :string(255)
-#  website          :string(255)
-#  street           :string(255)
-#  postal_code      :string(255)
-#  state            :string(255)
-#  city             :string(255)
-#  country          :string(255)
 #  contactable_id   :integer
 #  contactable_type :string(255)
+#  name             :string(255)
+#  network_tags     :string(255)
+#  custom_tags      :string(255)
+#  remark           :text
+#  account_id       :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

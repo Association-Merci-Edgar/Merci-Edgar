@@ -2,12 +2,12 @@
 #
 # Table name: phones
 #
-#  id               :integer          not null, primary key
-#  number           :string(255)
-#  kind             :string(255)
-#  contact_datum_id :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id         :integer          not null, primary key
+#  number     :string(255)
+#  kind       :string(255)
+#  contact_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 require 'spec_helper'

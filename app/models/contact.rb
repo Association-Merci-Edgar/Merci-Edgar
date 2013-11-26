@@ -3,16 +3,13 @@
 # Table name: contacts
 #
 #  id               :integer          not null, primary key
-#  phone            :string(255)
-#  email            :string(255)
-#  website          :string(255)
-#  street           :string(255)
-#  postal_code      :string(255)
-#  state            :string(255)
-#  city             :string(255)
-#  country          :string(255)
 #  contactable_id   :integer
 #  contactable_type :string(255)
+#  name             :string(255)
+#  network_tags     :string(255)
+#  custom_tags      :string(255)
+#  remark           :text
+#  account_id       :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
@@ -21,9 +18,11 @@ class Contact < ActiveRecord::Base
   extend ContactsHelper
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :name, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :avatar, :style_tags, :network_tags, :custom_tags, :remark
+  attr_accessible :name, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :style_tags, :network_tags, :custom_tags, :remark
 
   belongs_to :contactable, polymorphic: true
+  
+  validates :name, uniqueness: true
 
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
@@ -47,7 +46,11 @@ class Contact < ActiveRecord::Base
 
   before_save :titleize_name
 
-  delegate :avatar, to: :contactable
+  delegate :fine_model, to: :contactable
+  
+  def avatar  
+    self.fine_model.avatar
+  end
 
   scope :searchy, lambda { |names|
     joins(:tags).where(tags: {name: names}).group('contacts.id').having(['COUNT(*) >= ?', names.length])
@@ -61,7 +64,7 @@ class Contact < ActiveRecord::Base
         )
   }
   scope :tagged_with, lambda { |tag_type,tag_name| where('? = ?', tag_type, tag_name).order("contacts.name") }
-  scope :by_style, lambda { |tag_name| where("style_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
+  # scope :by_style, lambda { |tag_name| where("style_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
   scope :by_network, lambda { |tag_name| where("network_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
   scope :by_custom, lambda { |tag_name| where("custom_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order("contacts.name")}
@@ -73,7 +76,21 @@ class Contact < ActiveRecord::Base
   scope :recently_updated, order("updated_at desc").limit(10)
 
   AVAILABLE_STYLE_TAGS = ["Rock","Chanson","Electro","Jazz"]
+  
+  def self.by_style(style)
+    venues = Venue.by_style(style)
+    festivals = Festival.by_style(style)
+    show_buyers = ShowBuyer.by_style(style)
+    (venues+festivals+show_buyers).sort_by(&:name)
+  end
 
+  def self.by_contract(contract)
+    venues = Venue.by_contract(contract)
+    festivals = Festival.by_contract(contract)
+    show_buyers = ShowBuyer.by_contract(contract)
+    (venues+festivals+show_buyers).sort_by(&:name)
+  end
+  
   def titleize_name
     self.name = self.name.titleize if self.name
   end
@@ -186,10 +203,6 @@ class Contact < ActiveRecord::Base
 
   def to_s
     name
-  end
-  
-  def url_for
-    contactable.url_for
   end
 
 end

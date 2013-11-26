@@ -2,21 +2,22 @@
 #
 # Table name: tasks
 #
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  priority     :integer
-#  category     :string(255)
-#  bucket       :string(255)
-#  due_at       :datetime
-#  completed_at :datetime
-#  asset_id     :integer
-#  asset_type   :string(255)
-#  assigned_to  :integer
-#  completed_by :integer
-#  account_id   :integer
-#  user_id      :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  priority      :integer
+#  category      :string(255)
+#  specific_time :boolean
+#  due_at        :datetime
+#  completed_at  :datetime
+#  asset_id      :integer
+#  asset_type    :string(255)
+#  assigned_to   :integer
+#  completed_by  :integer
+#  account_id    :integer
+#  user_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  project_id    :integer
 #
 
 class Task < ActiveRecord::Base

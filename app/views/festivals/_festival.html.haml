@@ -1,0 +1,14 @@
+%li{id: "festival_#{festival.to_param}"}
+  = render partial: "contacts/contact_elem", locals: {contact: festival.structure.contact, edit_link_path:edit_festival_path(festival) }
+  
+
+  .mainrow
+    = link_to festival do
+      %h3= festival.name
+      .pic= image_tag festival.avatar_url(:thumb)
+    .infos-line
+      / = render venue.capacities if venue.capacities
+      = render festival.address if festival.address
+      
+    .tags
+      = render partial: "tags/tags", locals: { asset: festival}

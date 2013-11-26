@@ -1,13 +1,15 @@
-- if asset.class.name == "Venue"
-  - asset.capacity_tags.each do |c|
+- fm = asset.fine_model
+- if fm.class.name == "Venue"
+  - fm.capacity_tags.each do |c|
     = venue_capacity_link(c)
   
-  = venue_kind_link(asset.kind)
+  = venue_kind_link(fm.kind)
 
-  - asset.contract_list.try(:each) do |c|
+- if ["Venue","ShowBuyer", "Festival"].include?(fm.class.name)
+  - fm.contract_list.try(:each) do |c|
     = tag_link("contract",c,"tag-legal")
 
-  - asset.style_list.try(:each) do |s|
+  - fm.style_list.try(:each) do |s|
     = tag_link("style",s,"tag-style")
 
 - asset.network_list.try(:each) do |s|

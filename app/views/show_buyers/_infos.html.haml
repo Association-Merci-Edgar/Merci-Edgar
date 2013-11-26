@@ -1,0 +1,7 @@
+- content_for :infos do
+  / _____________________________________________ right    
+  %ul.list-infos
+    /%i.entypo.edi-info
+    = render @show_buyer.schedulings
+  
+= render partial: "structures/info", locals: {structure: @structure}  

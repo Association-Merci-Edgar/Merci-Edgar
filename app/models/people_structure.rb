@@ -1,4 +1,14 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: people_structures
+#
+#  id           :integer          not null, primary key
+#  person_id    :integer
+#  structure_id :integer
+#  title        :string(255)
+#
+
 class PeopleStructure < ActiveRecord::Base
   attr_accessible :title, :structure, :structure_attributes, :structure_name
   belongs_to :person

@@ -32,7 +32,7 @@
     - ps = person.people_structures.first
     - if ps.present?
       = ps.title if ps.title.present?
-      = link_to ps.structure.name,ps.structure if ps.structure.present?
+      = link_to ps.structure.name,ps.structure.fine_model if ps.structure.present?
     
     - email = person.emails.first
     - if email.present?

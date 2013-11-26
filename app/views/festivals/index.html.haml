@@ -1,0 +1,25 @@
+%h1 Listing festivals
+
+%table
+  %tr
+    %th Nb edition
+    %th Last year
+    %th Artists kind
+    %th Account
+    %th
+    %th
+    %th
+
+  - @festivals.each do |festival|
+    %tr
+      %td= festival.nb_edition
+      %td= festival.last_year
+      %td= festival.artists_kind
+      %td= festival.account_id
+      %td= link_to 'Show', festival
+      %td= link_to 'Edit', edit_festival_path(festival)
+      %td= link_to 'Destroy', festival, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Festival', new_festival_path

@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Edgar::Application.routes.draw do
 
+
   get "backdoor/play1"
   get "backdoor/play2"
   get "backdoor/play3"
@@ -32,7 +33,8 @@ Edgar::Application.routes.draw do
       put 'people/:id/set_main_person', action: :set_main_person, as: :set_main_person
       resources :people
     end
-    resources :generic_structures
+    resources :festivals
+    resources :show_buyers
     resources :venues do
       resources :people
       resources :tasks do

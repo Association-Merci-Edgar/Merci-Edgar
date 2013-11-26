@@ -1,0 +1,77 @@
+-# _____________________________________  SHOW VENUE
+
+-content_for :extra_navtabs do
+  %li
+    %a{"data-toggle" => "tab", :href => "#dates"} Dates
+    
+
+-content_for :extra_content_tabs do
+  / ________________________________________________________ dates              
+  #dates.tab-pane
+    /%p Dates de spectacle
+    %ul.list-large
+      %li
+        .meta
+          .badge.badge-red En attente de payement
+        .actions
+          /= link_to 'Edit', edit_venue_path(venue)
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+        %h4
+          %a{:href => "#"}
+            .pic= image_tag "squared/pro4.jpg"
+            Lundi 1 juin 2013 — NomDuProjet
+          
+        .infos-line
+          /%span NomDuProjet
+          %span Formule
+          —
+          %span Responsable :
+          .pic.pic-mini= image_tag "squared/per3.jpg"
+          %a{:href => "#"} Christophe R.
+          
+      %li
+        .meta
+          .badge.badge-green Validé
+        .actions
+          /= link_to 'Edit', edit_venue_path(venue)
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+        %h4
+          %a{:href => "#"}
+            .pic= image_tag "squared/pro3.jpg"
+            Samedi 5 Juillet 2013 — AutreProjet
+          
+        .infos-line
+          /%span NomDuProjet
+          %span Formule
+          —
+          %span Responsable :
+          .pic.pic-mini= image_tag "squared/per2.jpg"
+          %a{:href => "#"} Christophe R.
+          
+          
+      %li
+        .meta
+          .badge.badge-blue Option
+        .actions
+          /= link_to 'Edit', edit_venue_path(venue)
+          %a.shybtn{:href => "#"}
+            %i.entypo.edi-pencil
+            
+        %h4
+          %a{:href => "#"}
+            .pic= image_tag "squared/pro2.jpg"
+            Lundi 1 juin 2013 — NomDuProjet
+        .infos-line
+          /%span NomDuProjet
+          %span Formule
+          —
+          %span Responsable :
+          .pic.pic-mini= image_tag "squared/per2.jpg"
+          %a{:href => "#"} Christophe R.
+
+
+= render partial: "structures/show", locals: {structure: @festival.structure, edit_link_path: edit_festival_path(@festival)}
