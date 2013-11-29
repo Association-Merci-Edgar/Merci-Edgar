@@ -3,6 +3,8 @@ class StructuresController < AppController
   def index
     @structures = Structure.joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%")
     case params[:type]
+    when "ShowBuyer"
+      @structures = @structures.where(structurable_type: ["ShowBuyer"])
     when "ShowHost"
       @structures = @structures.where(structurable_type: ["Venue","Festival"])
     end

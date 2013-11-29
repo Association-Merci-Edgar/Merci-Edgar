@@ -2,6 +2,7 @@
   = javascript_include_tag "contacts"
   = javascript_include_tag "tag"
   = javascript_include_tag "contacts_form"
+  = javascript_include_tag "scheduling"
 
 #menu-vertical
   %span
@@ -132,6 +133,9 @@
               /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
               = f.input :artists_kind, :collection => ["Artistes en developpement", "Artistes émergents", "Artistes confirmés"], :as => :radio_buttons, item_wrapper_class: "inline"
 
+              = f.input :nb_edition
+              = f.input :last_year
+              
 
               = f.fields_for :structure do |s|
                 = s.fields_for :contact do |c|
@@ -167,8 +171,8 @@
                     %i.entypo.edi-minus-2
                   = v.input :name
                   
-                  = v.input :external_show_buyer, collection: ["Cette structure", "Un autre organisateur de spectacles"], as: :radio_buttons, item_wrapper_class: "inline"  
-                  = v.input :show_buyer_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: structures_path(type: "ShowBuyer")} }
+                  = v.input :external_show_buyer, collection: ["Cette structure", "Un autre organisateur de spectacles"], as: :radio_buttons, item_wrapper_class: "inline", input_html: {class: "external_show_buyer_radio"}  
+                  = v.input :show_buyer_name, input_html: {autocomplete:"off", class: "jq_autocomplete external_show_buyer_radio", data: {autocomplete_source: structures_path(type: "ShowBuyer")} }
                   
                   = v.input :scheduler_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
                   -# = v.input :scheduler, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
@@ -193,7 +197,7 @@
                         %i.entypo.edi-minus-2
 
                       .control-group  
-                        %label.control-label #{t("simple_form.labels.venue.scheduling.prospecting")}
+                        %label.control-label #{t("simple_form.labels.venue.schedulings.prospecting")}
 
                         .inline-inputs
                           = s.input :prospecting, :wrapper => :prepend, :label => false do

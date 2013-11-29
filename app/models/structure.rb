@@ -40,12 +40,10 @@ class Structure < ActiveRecord::Base
   end
   
   def kind=(k)
-    debugger
     unless structurable.present?
       case k
       when "venue"
         self.structurable = Venue.new
-        debugger
       when "festival"
         self.structurable = Festival.new
       when "show_buyer"
