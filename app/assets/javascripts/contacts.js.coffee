@@ -3,9 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('.jq_autocomplete').autocomplete
-    source: $('.jq_autocomplete').data('autocomplete-source')
-    delay: 1000
+  $('.jq_autocomplete').each (index,element) =>
+    typeaheadField = $(element)
+    typeaheadField.autocomplete
+      source: typeaheadField.data('autocomplete-source')
+      delay: 1000
       
   ###
   $('.typeah').typeahead
