@@ -20,7 +20,7 @@ class Festival < ActiveRecord::Base
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 
-  has_many :schedulings, as: :show_host, dependent: :destroy
+  has_many :schedulings, as: :show_host, dependent: :destroy, autosave: true
   has_many :show_buyers, through: :schedulings, uniq: true
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 

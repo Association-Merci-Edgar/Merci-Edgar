@@ -71,12 +71,36 @@ fr:
       contact:
         remark: Observations
 
+      structure:
+        contact:
+          addresses:
+            city: Ville
+            postal_code: Code postal
+            country: Pays
+            street: Adresse
+      festival:
+        artists_kind: "Type d'artistes"
+        nb_edition: "Nombre d'éditions"
+        last_year: "Derniere année"  
+
+        schedulings:
+          external_show_buyer: Programmé par
+          show_buyer_name : Nom de la structure organisatrice de spectacle
+          scheduler_name: "Programmateur"          
+          period: Cycle de programmation
+          prospecting: Programmateur en recherche active de spectacles
+          contract_list: Types de contrats
+
       venue:
         kind: Type de salle
+        
         residency: Résidence
         accompaniment: Accompagnement
         
         schedulings:
+          external_show_buyer: Programmé par
+          show_buyer_name : Nom de la structure organisatrice de spectacle
+          scheduler_name: "Programmateur"          
           period: Cycle de programmation
           prospecting: Programmateur en recherche active de spectacles
           contract_list: Types de contrats
@@ -146,6 +170,21 @@ fr:
           work: Travail
           perso: Perso
           other: Autre
+      festival:
+        schedulings:
+          period: 
+            nil: "Non fourni"
+            all_year: "Toute l'année"
+            quaterly: "Par trimestre"
+            per_semester: "Tous les 6 mois"
+      show_buyer:
+        schedulings:
+          period: 
+            nil: "Non fourni"
+            all_year: "Toute l'année"
+            quaterly: "Par trimestre"
+            per_semester: "Tous les 6 mois"
+          
       venue:
         kind:
           kind: Type de structure
