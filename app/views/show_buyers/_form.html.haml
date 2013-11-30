@@ -167,7 +167,10 @@
                   = v.input :name
                   
                   -# = v.input :external_show_host, collection: ["Lieu ou Festival", "Lieu éphémère"], as: :radio_buttons, item_wrapper_class: "inline"  
+                  = v.hidden_field :show_host_kind, value:"Venue"
+                  
                   = v.input :show_host_name, hint: "ou creer une nouvelle #{link_to("nouveau lieu ou festival", new_structure_path, remote:true)}", input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: structures_path(type: "ShowHost")} }
+                  
                   
                   = v.input :scheduler_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
                   -# = v.input :scheduler, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
