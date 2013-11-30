@@ -23,7 +23,7 @@ class Scheduling < ActiveRecord::Base
   belongs_to :scheduler, class_name: "Person", touch: true, autosave: true
   has_many :prospectings, dependent: :destroy
 
-  attr_accessible :name, :period, :contract_list, :style_tags, :prospectings_attributes, :show_buyer_name, :show_host_name, :scheduler_name, :external_show_buyer
+  attr_accessible :name, :period, :contract_list, :style_tags, :prospectings_attributes, :show_buyer_name, :show_host_name, :show_host_kind, :scheduler_name, :external_show_buyer
   attr_accessor :scheduler_name
   
   # attr_writer :external_show_buyer
@@ -56,11 +56,20 @@ class Scheduling < ActiveRecord::Base
     end
   end
   
+  def show_host_kind=(kind)
+    @show_host_kind = kind
+  end
+  
+  def show_host_kind
+    self.show_host.class.name if self.show_host
+  end
+  
   def show_host_name=(name)
-    if name.present?
+    if name.present? && name != show_host_name && @show_host_kind
       show_host_structure = Structure.joins(:contact).where(structurable_type: ["Venue","Festival"], contacts:{name: name}).first_or_initialize
       if show_host_structure.new_record?
-        self.show_host = Venue.new(structure_attributes: { contact_attributes: {name: name} })
+        self.show_host = Venue.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Venue"
+        self.show_host = Festival.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Festival"        
       else
         self.show_host = show_host_structure.structurable
       end
