@@ -1,5 +1,5 @@
 #thesearch
-  <input type="text" data-provide="typeahead" autocomplete="off" class="#typea" autofocus="autofocus" placeholder="Accéder rapidement à un contacts, une tâches, une dates..." data-provide="typeahead" data-items="4" data-source= "['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Dakota','North Carolina','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']">
+  = text_field_tag "search", nil, placeholder: "Accéder rapidement à un contact...", class: "jq_autocomplete", autofocus: true, data: {autocomplete_source: structures_path} 
   .tour-backdrop.search-backdrop
 -#  
   :javascript
@@ -8,3 +8,6 @@
   
   -#
     .dropup
+    
+    = v.input :show_host_name, hint: "ou creer une nouvelle #{link_to("nouveau lieu ou festival", new_structure_path, remote:true)}", input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: structures_path(type: "ShowHost")} }
+    
