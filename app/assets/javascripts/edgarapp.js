@@ -21,6 +21,21 @@ $('document').ready(function() {
   }
   )};
   */
+
+	$('.ajax-typeahead').typeahead({
+	    source: function(query, process) {
+	        return $.ajax({
+	            url: $(this)[0].$element[0].dataset.link,
+	            type: 'get',
+	            data: {term: query},
+	            dataType: 'json',
+	            success: function(json) {
+	                //return typeof json.options == 'undefined' ? false : process(json.options);
+								return process(json);
+	            }
+	        });
+	    }
+	});
   
 // show/hide the leftpanel _________________________________
   window.smallScreens = function() {
