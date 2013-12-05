@@ -11,4 +11,4 @@
       = render festival.address if festival.address
       
     .tags
-      = render partial: "tags/tags", locals: { asset: festival}
+      = render partial: "tags/tags", locals: { contact: festival.structure.contact}

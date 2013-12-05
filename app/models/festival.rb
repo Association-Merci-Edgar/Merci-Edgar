@@ -30,6 +30,9 @@ class Festival < ActiveRecord::Base
 #  validate :venue_name_must_be_unique_by_city, :on => :create
   # validates_presence_of :addresses
 
+
+  before_save :set_contact_criteria 
+  
   mount_uploader :avatar, AvatarUploader
 
   scope :by_contract, lambda { |tag_name| joins(:schedulings).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
@@ -38,6 +41,20 @@ class Festival < ActiveRecord::Base
   def fine_model
     self
   end
+
+  def set_contact_criteria
+    self.build_structure unless structure.present?
+    self.structure.build_contact unless structure.contact.present?
+    contact = structure.contact
+    
+    c_style_list = self.style_list
+    contact.style_tags = c_style_list.join(',') if c_style_list.present?
+    
+    c_contract_list = self.contract_list
+    contact.contract_tags = c_contract_list.join(',') if c_contract_list.present?
+        
+  end
+
 
   def contract_list
     cl = []
