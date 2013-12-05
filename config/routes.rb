@@ -73,6 +73,8 @@ Edgar::Application.routes.draw do
     resources :opportunities
 
     resources :projects
+    
+    resources :styles, only: [:index]
 
 
     mount Sidekiq::Web, at: "/sidekiq"

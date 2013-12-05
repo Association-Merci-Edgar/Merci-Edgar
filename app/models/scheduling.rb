@@ -35,6 +35,7 @@ class Scheduling < ActiveRecord::Base
   
   before_save :set_show_buyer
   after_save :set_scheduler_function
+  after_save :update_styles
   
   def to_s
     result = name
@@ -154,5 +155,7 @@ class Scheduling < ActiveRecord::Base
     self.style_tags = styles.join(',') if styles.present?
   end
 
-
+  def update_styles
+    Style.add_styles(style_list)
+  end
 end
