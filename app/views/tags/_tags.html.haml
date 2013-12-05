@@ -1,21 +1,19 @@
-- fm = asset.fine_model
-- if fm.class.name == "Venue"
-  - fm.capacity_tags.each do |c|
-    = venue_capacity_link(c)
+- contact.capacity_list.try(:each) do |c|
+  = tag_link(contacts_path(capacity_range: c), c,"tag-custom")
+    
+= tag_link(contacts_path(venue_kind: contact.venue_kind), t(contact.venue_kind, scope:"simple_form.options.venue.kind"),"tag-type") if contact.venue_kind.present?
+
+- contact.contract_list.try(:each) do |c|
+  = tag_link(contacts_path(contract_list: c), c,"tag-legal")
+
+-# contact.style_tags.try(:each) do |s|
+- contact.style_list.try(:each) do |s|
+  = tag_link(contacts_path(style_list: s), s, "tag-style")
+
+- contact.network_list.try(:each) do |n|
+  = tag_link(contacts_path(network_list: n),s,"tag-style")
   
-  = venue_kind_link(fm.kind)
 
-- if ["Venue","ShowBuyer", "Festival"].include?(fm.class.name)
-  - fm.contract_list.try(:each) do |c|
-    = tag_link("contract",c,"tag-legal")
-
-  - fm.style_list.try(:each) do |s|
-    = tag_link("style",s,"tag-style")
-
-- asset.network_list.try(:each) do |s|
-  = tag_link("network",s,"tag-style")
-
-
-- asset.custom_list.try(:each) do |c|
-  = tag_link("custom",c,"tag-custom")
+- contact.custom_list.try(:each) do |c|
+  = tag_link(contacts_path(custom_list: c),c,"tag-custom")
 

@@ -37,7 +37,9 @@ actorsInit = function(){
         $gotfilters = true;
         var $thetargetname = $f.attr('id');
         //console.log($thetargetname)
-        var $theText = $f.val();
+        var $theText = $f.data("text");
+				if (!$theText) { $theText = $f.val() }
+				
         var $theTagClass = $f.attr('class');
         $filtersArray.push($theTagClass);
         //console.log("1: "+$filtersArray);
@@ -108,7 +110,20 @@ $('.filters-pool .tag').popover({callback: function() {
   //console.log($globalClass)
   $('.popover').prev().addClass('active');
   
-  
+  /*
+  tagitField = $(".popover-content input[autofocus]:first");
+	availableTags = tagitField.data('available-tags')
+  console.log("avail:" + availableTags)
+	
+	tagitField.tagit({
+		singleField: true,
+		allowSpaces: true,
+		availableTags: availableTags	
+	});
+  */
+
+
+
   //___________________________________________________ actions on click on the OK button here :
   $('.popover').find(".btn[type='submit']").on("click", function(){
     
@@ -154,14 +169,20 @@ function filtergo_taglist(theBT) {
   
   var $thetargetname = theBT.closest(".tag-list").attr('id').substr(2);
   
+	theactor = $("#actor_"+ $thetargetname)
   if ( $("#actor_"+ $thetargetname).length != 0  ) {    // check if the div exists
-    $("#actor_"+ $thetargetname).remove();
+    // $("#actor_"+ $thetargetname).remove();
+    $thevalue = $hid.find("#"+ $thetargetname).val() + ", " + $thevalue;
+		oldtext = theactor.find('.thevalue').text()
+		theactor.find('.thevalue').text(oldtext + ', ' + $theText)
   }
-  
-  $('.filters-stage').append( "<a class='"+ $theTagClass +" tag-actor active' id = actor_"+ $thetargetname +" href='#'><span class='close'>x</span><span class='thevalue'>"+ $theText +"</span></a>" );
-  $iniBTNS.show();
+  else {
+	  $('.filters-stage').append( "<a class='"+ $theTagClass +" tag-actor active' id = actor_"+ $thetargetname +" href='#'><span class='close'>x</span><span class='thevalue'>"+ $theText +"</span></a>" );
+	}
+	
+	$iniBTNS.show();
   $hid.find("#"+ $thetargetname).val($thevalue);
-  
+ 
   
   $('.filters-stage').find('.tag-actor').click(function() {
     $thetargetname = $(this).attr( "id").substr(6);

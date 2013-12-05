@@ -28,7 +28,7 @@
     .dropdown
       / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        = params[:filter].present? ? t(params[:filter], scope: "filters").titleize : t(params[:controller]).titleize
+        = @label_category.present? ? t(@label_category, scope: "filters").titleize : "Contacts"
         %i.entypo.caret-ed
 
       %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
@@ -36,11 +36,23 @@
           = link_to contacts_path, role: "menuitem", tabindex: "-1" do
             Tous les contacts
         %li{role: "presentation"}
-          = link_to people_path, role: "menuitem", tabindex: "-1" do
+          = link_to contacts_path(category: "people"), role: "menuitem", tabindex: "-1" do
             Toutes les personnes
         %li{role: "presentation"}
-          = link_to venues_path, role: "menuitem", tabindex: "-1" do
+          = link_to contacts_path(category: "structures"), role: "menuitem", tabindex: "-1" do
+            Toutes les structures
+
+        %li{role: "presentation"}
+          = link_to contacts_path(category: "venues"), role: "menuitem", tabindex: "-1" do
             Tous les lieux
+        %li{role: "presentation"}
+          = link_to contacts_path(category: "festivals"), role: "menuitem", tabindex: "-1" do
+            Tous les festivals
+        %li{role: "presentation"}
+          = link_to contacts_path(category: "show_buyers"), role: "menuitem", tabindex: "-1" do
+            Tous les autres organisateurs de spectacle
+
+
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
           = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
@@ -108,7 +120,7 @@
           
         -#/%a#f_capacities.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_cap(this); return false' method='post' action='#'><input class='input-mini' autofocus='autofocus' type='number' placeholder='0' name='capacity_lt'><span class='add-middle'><</span><input class='input-mini' type='number' placeholder='∞' name='capacity_gt'> <input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form><span class='hint'>Entrez une ou deux valeurs</span>"} Jauge
           
-        %a#f_capacities.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='tag-list' id='f_capacity_range'><a class='tag tag-custom' data-content='&lt; 100' href='#'>0 &lt; 100</a><a class='tag tag-custom' data-content='&lt; 101-400' href='#'>101 &lt; 400</a><a class='tag tag-custom' data-content='&lt; 401-1200' href='#'>401 &lt; 1200</a><a class='tag tag-custom' data-content='&gt; 1201' href='#'>1201 &lt; ∞</a></div>"}
+        %a#f_capacities.tag.tag-custom{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='tag-list' id='f_capacity_range'><a class='tag tag-custom' data-content='&lt; 100' href='#'>0 &lt; 100</a><a class='tag tag-custom' data-content='100-400' href='#'>100-400</a><a class='tag tag-custom' data-content='401-1200' href='#'>401-1200</a><a class='tag tag-custom' data-content='&gt; 1200' href='#'>&gt; 1200</a></div>"}
           Jauge
           /∞
           
@@ -121,11 +133,11 @@
         
         -#/= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
         
-        %a#f_kind.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='tag-list' id='f_venue_kind'><a class='tag tag-type' data-content='bar' href='#'>"+t("bar", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='theater_cafe' href='#'>"+t("theater_cafe", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='cultural_center' href='#'>"+t("cultural_center", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='mjc' href='#'>"+t("mjc", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='smac' href='#'>"+t("smac", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='music_venue' href='#'>"+t("music_venue", scope:"simple_form.options.venue.venue_info.kind")+"</a><a class='tag tag-type' data-content='other' href='#'>"+t("other", scope:"simple_form.options.venue.venue_info.kind")+"</a></div>"}
+        %a#f_kind.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<div class='tag-list' id='f_venue_kind'><a class='tag tag-type' data-content='bar' href='#'>"+t("bar", scope:"simple_form.options.venue.kind")+"</a><a class='tag tag-type' data-content='theater_cafe' href='#'>"+t("theater_cafe", scope:"simple_form.options.venue.kind")+"</a><a class='tag tag-type' data-content='cultural_center' href='#'>"+t("cultural_center", scope:"simple_form.options.venue.kind")+"</a><a class='tag tag-type' data-content='mjc' href='#'>"+t("mjc", scope:"simple_form.options.venue.kind")+"</a><a class='tag tag-type' data-content='smac' href='#'>"+t("smac", scope:"simple_form.options.venue.kind")+"</a><a class='tag tag-type' data-content='music_venue' href='#'>"+t("music_venue", scope:"simple_form.options.venue.kind")+"</a><a class='tag tag-type' data-content='other' href='#'>"+t("other", scope:"simple_form.options.venue.kind")+"</a></div>"}
           Type de lieu
         -#/%a#f_type.tag.tag-type{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo_sel(this); return false' method='post' action='#'><select name='f_venue_kind' id='theselect'><option value=''></option><option value='bar'>Bar</option><option value='theater_cafe'>Cafe Theatre</option><option value='cultural_center'>Centre culturel</option></select><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}Type de lieu
         
-        %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large style_tags_input' autofocus='autofocus' data-class='tag-style' data-available-tags='Rock, Humour, Chanson' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>'<form onsubmit="filtergo(this); return false" method="post" action="#"><input type="text" name="thefield" id="f_style_list" class="input-large style_tags_input" autofocus="autofocus" data-class="tag-style" data-available-tags="Rock, Humour, Chanson" placeholder="Rock, Humour…"><input type="submit" value="ok" name="commit" class="btn btn-primary inline"></form>'}
           Esthétique
         
         /action='#'  
@@ -160,11 +172,12 @@
             Rechercher
 
 
-= form_tag contacts_path, method: :get, :id=>"filters-hiddenform", :class=>"hidden" do
+= form_tag contacts_path, method: :get, :id=>"filters-hiddenform", :class=>"" do
   /, :class=>"hidden"
 
   /= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
-  = text_field_tag :venue_kind, params[:venue_kind], placeholder: "Type de sale", :class=>"tag-type"
+  = hidden_field_tag :category, params[:category]
+  = text_field_tag :venue_kind, params[:venue_kind], placeholder: "Type de salle", :class=>"tag-type", data: {text: translate_multiple_values(params[:venue_kind],"simple_form.options.venue.kind")}
   
   /= text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"
   /= text_field_tag :capacity_gt, params[:capacity_gt], placeholder: "Jauge >"

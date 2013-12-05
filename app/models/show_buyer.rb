@@ -27,11 +27,26 @@ class ShowBuyer < ActiveRecord::Base
 
   delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure  
 
+  before_save :set_contact_criteria 
+  
   scope :by_contract, lambda { |tag_name| joins(:schedulings).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
   scope :by_style, lambda { |tag_name| joins(:schedulings).where("schedulings.style_tags LIKE ?", "%#{tag_name}%") }
 
   def fine_model
     self
+  end
+
+  def set_contact_criteria
+    self.build_structure unless structure.present?
+    self.structure.build_contact unless structure.contact.present?
+    contact = structure.contact
+    
+    c_style_list = self.style_list
+    contact.style_tags = c_style_list.join(',') if c_style_list.present?
+    
+    c_contract_list = self.contract_list
+    contact.contract_tags = c_contract_list.join(',') if c_contract_list.present?
+    
   end
 
   def contract_list

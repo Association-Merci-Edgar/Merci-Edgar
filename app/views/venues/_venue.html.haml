@@ -11,7 +11,7 @@
       = render venue.address if venue.address
       
     .tags
-      = render partial: "tags/tags", locals: { asset: venue}
+      = render partial: "tags/tags", locals: { contact: venue.structure.contact}
 
 
 

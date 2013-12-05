@@ -11,4 +11,4 @@
       = render show_buyer.address if show_buyer.address
       
     .tags
-      = render partial: "tags/tags", locals: { asset: show_buyer}
+      = render partial: "tags/tags", locals: { contact: show_buyer.structure.contact}

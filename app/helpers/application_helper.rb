@@ -48,5 +48,15 @@ module ApplicationHelper
     session[:history] << asset.id
     session[:history].shift if session[:history].length > 4
   end
+  
+  def translate_multiple_values(values, scope)
+    if values
+      translated_values = []
+      values.split(',').map(&:strip).each do |v|
+        translated_values.push(I18n.t(v, scope: scope))
+      end
+      translated_values.join(', ')
+    end
+  end
 
 end
