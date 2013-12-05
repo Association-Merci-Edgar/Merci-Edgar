@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202134900) do
+ActiveRecord::Schema.define(:version => 20131205092417) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -259,6 +259,15 @@ ActiveRecord::Schema.define(:version => 20131202134900) do
   end
 
   add_index "structures", ["structurable_id"], :name => "index_structures_on_structurable_id"
+
+  create_table "styles", :force => true do |t|
+    t.string   "style"
+    t.integer  "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "styles", ["account_id"], :name => "index_styles_on_account_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"

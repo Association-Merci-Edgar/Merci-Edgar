@@ -21,7 +21,11 @@ $(document).ready(function() {
   $(".style_tags_input").tagit({
 		singleField: true,
 		allowSpaces: true,
-		availableTags: availableStyleTags	
+		// availableTags: availableStyleTags
+		autocomplete: {
+	    source: '/fr/styles',
+	    delay: 1000
+	  }	
 	});
 
 	var availableNetworkTags = $(".network_tags_input").data('available-tags')
