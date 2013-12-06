@@ -46,4 +46,6 @@ $(document).on('nested:fieldAdded', function(event){
 		// toggleShowBuyer(show_buyer_radio_input)
 		show_buyer_radio_input.toggleShowBuyerOnChange()
 	})
+	
+
 })

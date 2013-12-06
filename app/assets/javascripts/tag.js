@@ -17,38 +17,65 @@ $.ajax({
 */
 
 $(document).ready(function() {
-	var availableStyleTags = $(".style_tags_input").data('available-tags')
+
+	var availableStyleTags = $(".style_tags_input").data('autocomplete-source')
   $(".style_tags_input").tagit({
 		singleField: true,
 		allowSpaces: true,
 		// availableTags: availableStyleTags
 		autocomplete: {
-	    source: '/fr/styles',
+	    source: availableStyleTags,
 	    delay: 1000
 	  }	
 	});
 
-	var availableNetworkTags = $(".network_tags_input").data('available-tags')
+	var availableNetworkTags = $(".network_tags_input").data('autocomplete-source')
   $(".network_tags_input").tagit({
 		singleField: true,
 		allowSpaces: true,
-		availableTags: availableNetworkTags	
+		autocomplete: {
+	    source: availableNetworkTags,
+	    delay: 1000
+	  }	
 	});
 
-	var availableCustomTags = $(".custom_tags_input").data('available-tags')
+	var availableCustomTags = $(".custom_tags_input").data('autocomplete-source')
   $(".custom_tags_input").tagit({
 		singleField: true,
 		allowSpaces: true,
-		availableTags: availableCustomTags	
+		autocomplete: {
+	    source: availableCustomTags,
+	    delay: 1000
+	  }	
 	});
 
 });
 
-$('.tag').on('show', function (e) {
-	availableStyleTags = $(".style_tags_input").data('available-tags')
-  $(".style_tags_input").tagit({
+$(document).on('nested:fieldAdded', function(event){
+  var field = event.field;
+	input = field.find('.style_tags_input')
+
+	var availableStyleTags = input.data('autocomplete-source')
+  input.tagit({
 		singleField: true,
 		allowSpaces: true,
-		availableTags: availableStyleTags	
+		//availableTags: availableStyleTags
+		
+		
+		autocomplete: {
+	    source: availableStyleTags,
+	    delay: 1000
+			// _renderItem: function(ul, item) { return $("<li>").append("<a>" + item.label + "</a>").appendTo(ul) }
+    }
+	
 	});
+/*	
+	input.autocomplete({
+    source: availableStyleTags,
+    delay: 1000
+		
+	}).data("ui-autocomplete")._renderItem = function(ul, item) {
+    return $("<li>").append("<a>" + item.label + "</a>").appendTo(ul);
+  };
+*/  
 });
