@@ -45,6 +45,8 @@ class Contact < ActiveRecord::Base
   # mount_uploader :avatar, AvatarUploader
 
   before_save :titleize_name
+  after_save  :update_networks
+  after_save  :update_customs
 
   delegate :fine_model, to: :contactable
   
@@ -258,5 +260,13 @@ class Contact < ActiveRecord::Base
     self.capacity_tags.split(',') if self.capacity_tags
   end
 
+  def update_networks
+    Network.add_networks(network_list)
+  end
+  
+  def update_customs
+    Custom.add_customs(custom_list)
+  end
+    
 
 end

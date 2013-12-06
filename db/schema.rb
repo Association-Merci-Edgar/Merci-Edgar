@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205092417) do
+ActiveRecord::Schema.define(:version => 20131205194642) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(:version => 20131205092417) do
   add_index "contacts", ["account_id"], :name => "index_contacts_on_account_id"
   add_index "contacts", ["contactable_id"], :name => "index_contacts_on_contactable_id"
 
+  create_table "customs", :force => true do |t|
+    t.string   "custom"
+    t.integer  "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "customs", ["account_id"], :name => "index_customs_on_account_id"
+
   create_table "emails", :force => true do |t|
     t.string   "address"
     t.string   "kind"
@@ -113,6 +122,15 @@ ActiveRecord::Schema.define(:version => 20131205092417) do
   end
 
   add_index "festivals", ["account_id"], :name => "index_festivals_on_account_id"
+
+  create_table "networks", :force => true do |t|
+    t.string   "network"
+    t.integer  "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "networks", ["account_id"], :name => "index_networks_on_account_id"
 
   create_table "note_reports", :force => true do |t|
     t.text     "content"

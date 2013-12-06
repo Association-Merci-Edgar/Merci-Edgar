@@ -1,3 +1,6 @@
+- contact.network_list.try(:each) do |c|
+  = tag_link(contacts_path(network_list: c), c,"tag-legal")
+
 - contact.capacity_list.try(:each) do |c|
   = tag_link(contacts_path(capacity_range: c), c,"tag-custom")
     
