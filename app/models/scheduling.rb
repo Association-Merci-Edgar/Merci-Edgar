@@ -36,6 +36,8 @@ class Scheduling < ActiveRecord::Base
   before_save :set_show_buyer
   after_save :set_scheduler_function
   after_save :update_styles
+
+  CONTRACT_LIST = ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"]
   
   def to_s
     result = name
