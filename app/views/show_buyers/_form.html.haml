@@ -174,7 +174,7 @@
                   
                   = v.input :scheduler_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
                   -# = v.input :scheduler, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
-                  = v.input :contract_list, :collection => ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"], :as => :check_boxes, item_wrapper_class:"inline"
+                  = v.input :contract_list, :collection => Scheduling::CONTRACT_LIST, :as => :check_boxes, item_wrapper_class:"inline"
           
 
                   = v.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {autocomplete_source: styles_path} }

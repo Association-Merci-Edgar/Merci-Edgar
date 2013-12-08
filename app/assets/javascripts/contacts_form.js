@@ -1,3 +1,19 @@
+$(function() {
+	$(".network_tags_input" ).multivalues_autocomplete({json_url: $(".network_tags_input").data('autocomplete-source')})
+	$(".custom_tags_input" ).multivalues_autocomplete({json_url: $(".custom_tags_input").data('autocomplete-source')})
+	$(".style_tags_input" ).multivalues_autocomplete({json_url: $(".style_tags_input").data('autocomplete-source')})
+});
+
+
+
+$(document).on('nested:fieldAdded', function(event){
+
+  var field = event.field;
+	input = field.find('.style_tags_input')
+	input.remote_autocomplete({json_url: input.data('autocomplete-source')});
+
+});
+
 
 //_________________________________ Others Things
 
