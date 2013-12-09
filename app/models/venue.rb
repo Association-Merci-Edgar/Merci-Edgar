@@ -41,7 +41,7 @@ class Venue < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
   
-  before_save :set_contact_criteria 
+  before_update :set_contact_criteria 
 
   scope :by_type, (lambda do |kind|
     where(kind: kind) if kind.present?

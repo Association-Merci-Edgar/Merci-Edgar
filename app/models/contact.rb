@@ -261,11 +261,11 @@ class Contact < ActiveRecord::Base
   end
 
   def update_networks
-    Network.add_networks(network_list)
+    Network.add_networks(network_list) if network_tags.present? && network_tags_changed?
   end
   
   def update_customs
-    Custom.add_customs(custom_list)
+    Custom.add_customs(custom_list) if custom_tags.present? && custom_tags_changed?
   end
     
 
