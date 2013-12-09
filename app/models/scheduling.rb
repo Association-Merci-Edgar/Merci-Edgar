@@ -121,7 +121,6 @@ class Scheduling < ActiveRecord::Base
       ps = s.people_structures.where(title:"Programmateur", person_id: scheduler.id).first_or_initialize
       if ps.new_record?
         ps.person = scheduler
-        debugger
         ps.save
       end
     end
@@ -150,14 +149,15 @@ class Scheduling < ActiveRecord::Base
   end
 
   def style_list
-    self.style_tags.split(',') if self.style_tags.present?
+    self.style_tags.split(',').map(&:strip) if self.style_tags.present?
   end
 
   def style_list=(styles)
-    self.style_tags = styles.join(',') if styles.present?
+    self.style_tags = styles.join(', ') if styles.present?
   end
 
   def update_styles
-    Style.add_styles(style_list)
+    # debugger
+    Style.add_styles(style_list) if style_tags.present?
   end
 end

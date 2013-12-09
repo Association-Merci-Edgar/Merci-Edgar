@@ -52,6 +52,7 @@ fr:
       add_room : Ajouter une salle à ce lieux
     labels:
       defaults:
+        name: "Nom"
         start: "Début"
         end: "Fin"
         email: "Votre email"
@@ -71,6 +72,16 @@ fr:
       contact:
         remark: Observations
 
+      schedulings: &schedulings
+        external_show_buyer: Programmé par
+        show_buyer_name : Nom de la structure organisatrice de spectacle
+        show_host_name : Lieu de programmation
+        scheduler_name: "Programmateur"          
+        period: Cycle de programmation
+        prospecting: Programmateur en recherche active de spectacles
+        contract_list: Types de contrats
+
+
       structure:
         contact:
           addresses:
@@ -84,12 +95,11 @@ fr:
         last_year: "Derniere année"  
 
         schedulings:
-          external_show_buyer: Programmé par
-          show_buyer_name : Nom de la structure organisatrice de spectacle
-          scheduler_name: "Programmateur"          
-          period: Cycle de programmation
-          prospecting: Programmateur en recherche active de spectacles
-          contract_list: Types de contrats
+          <<: *schedulings
+
+      show_buyer:
+        schedulings:
+          <<: *schedulings
 
       venue:
         kind: Type de salle
@@ -98,12 +108,8 @@ fr:
         accompaniment: Accompagnement
         
         schedulings:
-          external_show_buyer: Programmé par
-          show_buyer_name : Nom de la structure organisatrice de spectacle
-          scheduler_name: "Programmateur"          
-          period: Cycle de programmation
-          prospecting: Programmateur en recherche active de spectacles
-          contract_list: Types de contrats
+          <<: *schedulings
+
         contracts: Contrats
         rooms:
           capacities:
@@ -170,20 +176,20 @@ fr:
           work: Travail
           perso: Perso
           other: Autre
+
+      schedulings: &schedulings_options
+        period: 
+          nil: "Non fourni"
+          all_year: "Toute l'année"
+          quaterly: "Par trimestre"
+          per_semester: "Tous les 6 mois"
+
       festival:
         schedulings:
-          period: 
-            nil: "Non fourni"
-            all_year: "Toute l'année"
-            quaterly: "Par trimestre"
-            per_semester: "Tous les 6 mois"
+          <<: *schedulings_options
       show_buyer:
         schedulings:
-          period: 
-            nil: "Non fourni"
-            all_year: "Toute l'année"
-            quaterly: "Par trimestre"
-            per_semester: "Tous les 6 mois"
+          <<: *schedulings_options
           
       venue:
         kind:
@@ -197,11 +203,7 @@ fr:
           theater_cafe: Café-Théâtre
           other: Autre
         schedulings:
-          period: 
-            nil: "Non fourni"
-            all_year: "Toute l'année"
-            quaterly: "Par trimestre"
-            per_semester: "Tous les 6 mois"
+          <<: *schedulings_options
             
         addresses:
           kind:

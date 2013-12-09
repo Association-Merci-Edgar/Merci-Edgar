@@ -1,6 +1,7 @@
 class Custom < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
   validates :custom, presence: true, uniqueness: true
+  validates_uniqueness_of :custom, scope: :account_id
   
   def self.add_custom(custom_name)
     c = Custom.new()

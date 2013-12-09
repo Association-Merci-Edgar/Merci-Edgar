@@ -10,7 +10,7 @@ $(document).on('nested:fieldAdded', function(event){
 
   var field = event.field;
 	input = field.find('.style_tags_input')
-	input.remote_autocomplete({json_url: input.data('autocomplete-source')});
+	input.multivalues_autocomplete({json_url: input.data('autocomplete-source')});
 
 });
 
