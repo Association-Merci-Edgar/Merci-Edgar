@@ -1,14 +1,24 @@
 - unless reporting.new_record?
   %li
     %h4= l reporting.created_at, format: :abbrev
-      
+
     .infos
       .pic.pic-mini= image_tag reporting.user.avatar
       = reporting.user.nickname
       - if reporting.project.present?
         .pic.pic-mini= image_tag reporting.project.avatar
         = reporting.project.name
+    .actions  
+      %a.shybtn.editbtn.pull-right{:href => "#"}
+        %i.entypo.edi-pencil
     
-    
-    .content= render reporting.report
-      
+    .content 
+      = render reporting.report
+    %form.hidden
+      %textarea
+      .actions-form
+        %button.btn.btn-secondary.pull-right{:type => "submit"}
+          Valider les modifications
+        %button.btn.btn-link.pull-right{}
+          Annuler
+        %div.clearfix

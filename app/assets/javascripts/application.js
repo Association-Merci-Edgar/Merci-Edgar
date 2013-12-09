@@ -28,6 +28,7 @@
 //= require_tree ./appli
 //= require edgarapp
 //= require tasks_group
+//= require jquery.autosize.min
 //= require_self
 
 /*
