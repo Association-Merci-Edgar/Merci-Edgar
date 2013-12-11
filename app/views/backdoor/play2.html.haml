@@ -4,11 +4,11 @@
   .swipeable
     %span
       %input{:id => "m1", :type => "checkbox"}
-      %label{:for=> "m1"} Janvier
+      %label{:for=> "m1"} Jan.
 
     %span
       %input{:id => "m2", :type => "checkbox"}
-      %label{:for=> "m2"} Février
+      %label{:for=> "m2"} Fév.
 
     %span
       %input{:id => "m3", :type => "checkbox"}
@@ -28,11 +28,11 @@
       
     %span
       %input{:id => "m7", :type => "checkbox"}
-      %label{:for=> "m7"} Juillet 
+      %label{:for=> "m7"} Juil. 
   
     %span
       %input{:id => "m8", :type => "checkbox"}
-      %label{:for=> "m8"} Aout
+      %label{:for=> "m8"} Aôut
 -#      
   %ul#mylist
     %li
@@ -126,4 +126,156 @@
             %i.entypo.edi-plus-3
             %span
               Ajouter un utilisateur
-  
+%section
+  .span6
+    .map_container
+      <img alt="Venue_default" src="/assets/fallback/map_default.png">
+  .span6
+    / _____________________________________________ right
+    %ul.list-infos
+      %li.infolabel Info Lieu
+      %li
+        Ouverture salle :
+    %ul.list-infos
+      / %i.entypo.edi-info
+      %li.infolabel Programmation
+      %li
+        Programmation Principale
+        à
+        %a{href: "/fr/venues/2-l-olympia"} L'olympia
+      %li
+      %li
+        %span.intitule Estetique :
+        %a.tag.tag-style Rock
+        %a.tag.tag-style Techno
+      %li
+        %span.intitule Contrats :
+        %a.tag.tag-legal Co-realisation
+      %li
+    %ul.list-infos
+      %li.infolabel
+        Dimensions plateau (Profondeur / Largeur / Hauteur)
+      %li Non précisé
+    %ul.list-infos
+      %li.infolabel Observations
+      %li
+      
+    %ul.list-infos
+      %li.infolabel Réseaux sociaux
+      .tabbable
+        %ul.nav.nav-tabs.sub-tabs
+          %li.active
+            %a{"data-toggle" => "tab", href: "#facebook"}
+              %i.entypo.edi-facebook
+          %li
+            %a{"data-toggle" => "tab", href: "#twitter"}
+              %i.entypo.edi-twitter
+        .tab-content.sub-pane
+          #facebook.tab-pane.active
+            %ul.social-list
+              %li
+                %span Aujourd’hui à 12h30
+                %span Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur.
+              %li
+                %span Hier à 12h30
+                %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+              %li
+                %span Hier à 12h30
+                %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+              %a Voir le profil facebook
+          #twitter.tab-pane
+            %ul.social-list
+              twitter
+    %textarea#venue_structure_attributes_contact_attributes_addresses_attributes_0_more_info.text.optional{cols: "40", name: "venue[structure_attributes][contact_attributes][addresses_attributes][0][more_info]", placeholder: "Infos supplémentaires (Boite Postale, Digicode, ...)", rows: "20"}
+    
+    
+    
+%section
+  %ul#ui-id-1.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{style: "display: block; top: 467px; left: 240px; width: 1316px;", tabindex: "0"}
+    %li.ui-menu-item{role: "presentation"}
+      %span#ui-id-5.ui-corner-all.noresult{tabindex: "-1"} Pas de résultat...
+      
+      
+    %li.ui-menu-item{role: "presentation"}
+      %a#ui-id-5.ui-corner-all{tabindex: "-1"} L'olympia
+      %span.infos Organisateur de spectacle
+      
+    %li.ui-menu-item.action{role: "presentation"}
+      %a#ui-id-4.ui-corner-all{tabindex: "-1",href: "#" } Creer la structure olymp
+
+
+%section
+  .row-fluid
+    %ul#contact-list.list-large
+      %li.list-header
+        2
+        résulats — Page
+      %li#venue_2-l-olympia
+        .rightrow
+          .meta
+            %a{"data-remote" => "true", href: "/fr/contacts/2/add_to_favorites"}
+              %i#fav_contact_2.ico.favorite
+            %a.ico.contacted.full{href: "#"}
+            %a.ico.dealed{href: "#"}
+          .mini-map.france.reg-10
+          .actions
+            %a.shybtn{href: "/fr/venues/2-l-olympia/edit"}
+              %i.entypo.edi-pencil
+            
+              
+            .dropdown
+              / Link or button to toggle dropdown
+              %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                %i.entypo.edi-bolt
+                /%i.entypo.caret-ed
+
+              %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+                %li{role: "presentation"}
+                  %a
+                    %i.entypo.edi-bookmarks
+                    Ajouter à une liste
+                  
+                %li{role: "presentation"}
+                  %a
+                    %i.entypo.edi-tag
+                    Ajouter un mot-clés
+                  
+                %li{role: "presentation"}
+                  %a
+                    %i.entypo.edi-export
+                    Exporter
+                  
+                %li{role: "presentation"}
+                  %a
+                    %i.entypo.edi-erase
+                    Supprimer
+
+        .mainrow
+          %a{href: "/fr/venues/2-l-olympia"}
+            %h3
+              L'olympia
+              %span.contact-type Organisateur de spectacle
+            .pic
+              %img{alt: "Thumb_venue_default", src: "/assets/fallback/thumb_venue_default.png"}/
+          .infos-line
+            / = render venue.capacities if venue.capacities
+            %span.location
+              75007
+              Paris
+              (
+              %a{href: "/fr/contacts/only/dept?no=75"} Paris
+              ,
+              Ile de France
+              )
+          .tags
+            %a.tag.tag-type{href: "/fr/contacts?venue_kind=bar"} Bar
+            %a.tag.tag-legal{href: "/fr/contacts?contract_list=Co-realisation"} Co-realisation
+      
+      %li.list-header
+      .btns-in-list
+        %i.entypo.edi-plus-3
+        %span
+          %a{href: "/fr/venues/new"} Ajouter un lieu
+          |
+          %a{href: "/fr/people/new"}
+            Ajouter une personne
