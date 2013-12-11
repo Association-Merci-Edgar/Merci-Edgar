@@ -129,6 +129,8 @@ class Contact < ActiveRecord::Base
       contact_ids = ShowBuyer.joins(:structure => :contact).order("contacts.name").collect {|s| s.structure.contact.id }
     when "structures"
       contact_ids = Structure.joins(:contact).order("contacts.name").collect {|s| s.contact.id }
+    when "people"
+      contact_ids = Contact.where(contactable_type: "Person").pluck(:id)
     else
       raise "Invalid Parameter"
     end

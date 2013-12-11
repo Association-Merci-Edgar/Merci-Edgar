@@ -12,8 +12,6 @@ class PeopleController < AppController
     respond_to do |format|
       format.html { render "contacts/index"}
       format.json { 
-        json=[]
-        @contacts.each { |c| json.push({id:c.id, name:c.name}) }          
         render json: @contacts.map(&:name)
       }
     end

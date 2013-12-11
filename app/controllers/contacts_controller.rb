@@ -2,7 +2,7 @@ class ContactsController < AppController
   def index
     @contacts = Contact.advanced_search(params).page params[:page]
     if params[:category].present?
-      raise "Invalid Parameter" if %w(venues festivals show_buyers structures).include?(params[:category]) == false
+      raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
       @label_category = params[:category]
     end
     
