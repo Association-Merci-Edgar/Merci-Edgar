@@ -37,7 +37,7 @@ class StructuresController < AppController
     
     
     if @structure.save
-      if params[:commit] == t("helpers.submit.venue.create")
+      if params[:commit] == t("helpers.submit.create")
         redirect_to @structure.fine_model, notice: t("activerecord.notices.models.structure.created", name: @structure.name)
       else
         edit_link_path = send("edit_#{@structure.fine_model.class.name.downcase}_path",@structure.fine_model)

@@ -8,7 +8,7 @@
   - contact = @structure.contact if @structure.present?
   - contact = @person.contact if @person.present?
     
-  - if @structure.present? || @person.present?
+  - if params[:action] == "show" && @structure.present? || @person.present?
     %li
       /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
       = link_to new_contact_task_path(contact), remote:true do

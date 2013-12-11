@@ -177,15 +177,15 @@ REGIONS = {
   end
 
   def department_name
-    DEPARTEMENTS[department_code][:name]
+    DEPARTEMENTS[department_code].try(:fetch,:name)
   end
 
   def region_code
-    DEPARTEMENTS[department_code][:region_code]
+    DEPARTEMENTS[department_code].try(:fetch,:region_code)
   end
 
   def region_name
-    REGIONS[DEPARTEMENTS[department_code][:region_code]][:name]
+    REGIONS[region_code].try(:fetch,:name)
   end
 
   def department_code

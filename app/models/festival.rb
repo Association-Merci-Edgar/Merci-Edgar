@@ -31,7 +31,7 @@ class Festival < ActiveRecord::Base
   # validates_presence_of :addresses
 
 
-  before_save :set_contact_criteria 
+  before_update :set_contact_criteria 
   
   mount_uploader :avatar, AvatarUploader
 
