@@ -112,7 +112,7 @@ class Scheduling < ActiveRecord::Base
   end
   
   def scheduler_name
-    self.scheduler.try(:name)
+    self.scheduler.try(:to_s)
   end
   
   def set_scheduler_function
