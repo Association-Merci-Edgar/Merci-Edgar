@@ -244,7 +244,7 @@ a, .btn-link {color:$dblue;
 
 .btn.btn-link {color:$dblue; padding: 11px 19px;}
 
-.showlink { border-bottom : dotted 1px $green ;
+.showlink:not(.tag) { border-bottom : dotted 1px $green ;
   &:hover {color:$green; text-decoration:none; border-color:transparent;}
 }
 
@@ -256,6 +256,7 @@ a, .btn-link {color:$dblue;
 	//float: left;
 	width: 100%;
 	margin-bottom:30px;
+  z-index: 100;
 }
 
 .maincontentinner {
@@ -578,6 +579,7 @@ form section .section-title {padding-top:80px;}
   }
 }
 
+.map_container {overflow:hidden;}
 
 
 /* ________________________________________________________ NAV BAR   */
@@ -893,22 +895,33 @@ legend {font-size: 20px;
 
 
 
+
+/*  ________________________________________ swipeable */
+
+.swipeable {
+@include noselect;
+}
+
 .swipeable:not(#foo) > span {
-  display: inline-block; margin-right:-2px;
+  display: inline-block; margin-right:-5px;
   @include noselect;
 }
+
+.swipeable:not(#foo) > span > input[type='checkbox'] {width : 0px;}
+
 .swipeable:not(#foo) > span > input[type='checkbox'] + label {
-  padding: 2px 4px 4px 32px;
-  //background-image:none;
+  padding: 3px 8px 5px 8px;
+  background-image:none;
   background-color: $beige;
   border : solid 2px $dbeige2;
-  
+  color:$lblue;
 }
 
 .swipeable:not(#foo) > span > input[type='checkbox']:checked + label {
-  background-color: $dbeige;
-  
-  
+  //background-color: $dbeige;
+  border-color:$green;
+  color:$dblue;
+  background-color: $white;
 }
 
 :not(#foo) > span > input[type='radio'] + label,
@@ -1526,11 +1539,37 @@ select.select-right { width:auto; background:$dbeige2;
 //.ui-corner-all{position:absolute;}
 
 
-ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; }
+/*  _____________________________________________________ JQUERY UI autocomplete  */
+
+ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; z-index:300;}
 
 .ui-menu .ui-menu-item a {
 	display: inline-block;
+  &:focus, &:hover {
+    background:$dblue;
+    color:$white;
+  }
 }
+
+.ui-menu .ui-menu-item.action a {
+	color:$green;
+  &:focus, &:hover {
+    background:$green;
+    color:$white;
+  }
+}
+
+.ui-menu .ui-menu-item .infos {
+	font-size:14px;
+  color: $lblue;
+}
+.ui-menu .ui-menu-item .noresult {
+  color: $lblue;
+  margin-left: 7px;
+}
+
+/*  ____  */
+
 
 
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
@@ -1555,6 +1594,7 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
 
 /*  _____________________________________________________ thesearch   */
 #thesearch {
+  z-index: 200;
   position:fixed;
   display:none;
   .searchbkg{z-index:1998;}
@@ -1562,7 +1602,7 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
   input {
     padding:6px 20px;
     border:none;
-    z-index:1999;
+    z-index:2200;
     position:absolute;
     top:415px;
     height:52px;
@@ -1637,7 +1677,7 @@ section {
   list-style:none;
   margin:0;
   font-size:16px;
-  li {
+  &>li {
     padding:20px 0px;
     border-bottom: dotted 2px lighten( $dblue, 60% );
 
@@ -1869,18 +1909,29 @@ li {line-height: inherit;}
 .list-header .meta {position:absolute; top:0; right:0;}
 
 
-
+button.shybtn {padding:4px 8px;}
+#contact-list.list-large .dropdown button {
+  margin-top : -3px;}
 
 /* _______________________________________________________  List_large   */
 
 #contact-list {margin-top:20px;}
-#contact-list.list-large li:not(.list-header) {min-height: 111px;}
+#contact-list.list-large>li:not(.list-header) {min-height: 111px;}
+
+#contact-list.list-large h3 .contact-type {
+  color: $lblue;
+  font-size:14px;
+  &:hover{color:$green;};
+}
+
+
 
 .list-large {
   .actions {top:56px;}
+  .actions>*{display: inline-block;}
   .content {font-size:15px;color:$dblue;}
   h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
-  li {
+  &>li {
     padding: 20px 0 16px;
     min-height:66px;
     
@@ -2021,7 +2072,10 @@ header {
 .pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 
 
-
+textarea {
+  resize:vertical;
+  height:84px; width:100%;
+}
 
 
 /*  ________________________________________ activityfield*/
@@ -2115,14 +2169,10 @@ ul.list-infos {
   a {@extend .showlink;}
 }
 
-.infolabel {
+.infolabel, .intitule {
   font-size:0.9em;
   color: $lblue;
-  
 }
-
-
-
 
 
 ul.social-list {
