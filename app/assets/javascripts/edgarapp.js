@@ -142,21 +142,34 @@ $(function() {
 });
 
 
-
+//  _________________________________ SEARCH TOGGLE
+var currentnav='';
 toggleSearch = function(){
   if ($('#search-nav').hasClass("active")) {
     // HIDE
     $('#search-nav').removeClass("active");
     $('#thesearch input').val("");
     $('#thesearch').hide();
+    
+    currentnav.addClass("active");
   } else {
     // SHOW
   $('.searchahead').typeahead();
+  
+  // get and apply the correct TOP position
+  var offset = $('#search-nav').offset();
+  //console.log(offset.top);
+  $('#thesearch').find('input').css('top', offset.top + 'px');
+  
+  currentnav = $('.leftmenu').find('.nav').find('.active');
+  currentnav.removeClass("active");
+  
   $('#thesearch').show();
   $('#search-nav').addClass("active");
   $('#thesearch').find("[autofocus]:first").focus();
   }
 }
+
 $('#search-nav a').click(function(event) {
   event.preventDefault();
   toggleSearch()
@@ -167,6 +180,8 @@ $('.search-backdrop').click(function(event) {
 });
 
 
+
+//  _________________________________
 
 initializer = function() {
   //$(".leftpanel").height( $(document).height() ); // Fix the leftmenu height on scroll
