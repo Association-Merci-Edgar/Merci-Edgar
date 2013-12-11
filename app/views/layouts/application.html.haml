@@ -8,7 +8,7 @@
         = render 'layouts/togglemenu'
         
       #plusmenu
-        = render 'layouts/plus_menu' unless params[:action] == "new" or params[:action] == "edit"
+        = render 'layouts/plus_menu' if ["index","show"].include?(params[:action])
         /= yield(:plus_menu)
         
       .leftpanel

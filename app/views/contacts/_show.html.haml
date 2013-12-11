@@ -14,7 +14,7 @@
         - if contact.city
           %span.location
             %span.city= contact.city
-            = link_to contact.address.department_name, only_contacts_path(filter:"dept",no:contact.address.department_code)
+            = link_to contact.address.department_name, only_contacts_path(filter:"dept",no:contact.address.department_code) if contact.address.department_name
       .tags
         = render partial: "tags/tags", locals: {contact: contact}
     

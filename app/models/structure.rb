@@ -30,6 +30,9 @@ class Structure < ActiveRecord::Base
   # delegate :avatar, to: :structurable
 
   mount_uploader :avatar, AvatarUploader
+  
+  validates_presence_of :contact
+  validates_associated :contact
 
 
   def kind

@@ -292,12 +292,9 @@ fr:
   helpers:
     browse: Parcourir...
     submit:
-      update: "Mettre à jour"
+      update: "Enregistrer les modifications"
       create: "Créer"
-      venue:
-        create: "Créer la salle"
-        create_and_edit: "Ajouter davantage d'infos"
-        update: "Modifier la salle"
+      create_and_edit: "Ajouter davantage d'infos"
   
   errors:
     messages:  
