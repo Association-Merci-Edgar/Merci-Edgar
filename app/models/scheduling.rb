@@ -103,16 +103,13 @@ class Scheduling < ActiveRecord::Base
     if name.present?
       self.scheduler = Person.joins(:contact).where(contacts: {name:name}).first_or_initialize
       if self.scheduler.new_record?
-        words = name.split(' ').compact
-        self.scheduler.first_name = words[0]
-        self.scheduler.last_name = words[1]
+        scheduler.name = name
       end
-      # set_scheduler_function
     end
   end
   
   def scheduler_name
-    self.scheduler.try(:to_s)
+    self.scheduler.try(:name)
   end
   
   def set_scheduler_function

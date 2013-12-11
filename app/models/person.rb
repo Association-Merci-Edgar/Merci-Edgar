@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
 
-  delegate :name, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
+  delegate :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
 
   before_save :set_name
   
@@ -33,6 +33,17 @@ class Person < ActiveRecord::Base
   
   def fine_model
     self
+  end
+
+  def name
+    [self.last_name, self.first_name].compact.join(' ')
+  end
+  
+  # name : last_name first_name
+  def name=(name)
+    words = name.split(' ')
+    self.last_name = words.shift
+    self.first_name = words.join(' ') if words.present?
   end
 
   def set_name

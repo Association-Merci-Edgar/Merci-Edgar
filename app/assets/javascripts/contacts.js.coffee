@@ -13,7 +13,7 @@ jQuery ->
       open: (event, ui) ->
         menu = $(this).data("uiAutocomplete").menu
         item = $('li', menu.element).first()
-        menu.focus(null,item) if item
+        # menu.focus(null,item) if item
 
       focus: (event, ui) ->
         console.log("focus handler")
@@ -71,7 +71,7 @@ jQuery ->
         open: (event, ui) ->
           menu = $(this).data("uiAutocomplete").menu
           item = $('li', menu.element).first()
-          menu.focus(null,item) if item
+          # menu.focus(null,item) if item
 
         focus: (event, ui) ->
           console.log("focus handler")
