@@ -912,7 +912,7 @@ legend {font-size: 20px;
 .swipeable:not(#foo) > span > input[type='checkbox'] + label {
   padding: 3px 8px 5px 8px;
   background-image:none;
-  background-color: $white;
+  background-color: $beige;
   border : solid 2px $dbeige2;
   color:$lblue;
 }
@@ -921,6 +921,7 @@ legend {font-size: 20px;
   //background-color: $dbeige;
   border-color:$green;
   color:$dblue;
+  background-color: $white;
 }
 
 :not(#foo) > span > input[type='radio'] + label,
@@ -1920,6 +1921,7 @@ button.shybtn {padding:4px 8px;}
 #contact-list.list-large h3 .contact-type {
   color: $lblue;
   font-size:14px;
+  &:hover{color:$green;};
 }
 
 
