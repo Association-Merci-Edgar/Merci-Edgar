@@ -22,7 +22,7 @@ class Venue < ActiveRecord::Base
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 
-  has_many :schedulings, as: :show_host, dependent: :destroy
+  has_many :schedulings, as: :show_host, dependent: :destroy, order: "id ASC"
   has_many :show_buyers, through: :schedulings, uniq: true
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 

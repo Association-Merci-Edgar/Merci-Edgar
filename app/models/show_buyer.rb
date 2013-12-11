@@ -16,7 +16,7 @@ class ShowBuyer < ActiveRecord::Base
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 
-  has_many :schedulings, autosave: true
+  has_many :schedulings, autosave: true, order: "id ASC
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
   has_many :show_hosts, through: :schedulings, uniq: true
