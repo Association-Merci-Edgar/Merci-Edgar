@@ -4,16 +4,15 @@ class PeopleController < AppController
   # GET /people.json
   def index
     if params[:term].present?
-      @contacts = Person.joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%")
-    else
-      @contacts = Person.order(:name).page params[:page]
-    end
-
-    respond_to do |format|
-      format.html { render "contacts/index"}
-      format.json { 
-        render json: @contacts.map(&:name)
-      }
+      @contacts = Contact.order(:name).where("lower(name) LIKE ?", "%#{params[:term].downcase}%")
+      json = []
+      @contacts.each { |c| json.push({value:c.name, label:c.name, new: "false"}) }
+      
+      unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
+        json.push({value:params[:term], label: "Creer la personne " + params[:term], new:"true"})
+      end
+      
+      render json: json
     end
     
   end

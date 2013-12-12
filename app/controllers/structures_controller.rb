@@ -9,6 +9,7 @@ class StructuresController < AppController
       @structures = @structures.where(structurable_type: ["Venue","Festival"])
     end
     json=[]
+    @structures.each { |s| json.push({value:s.name, label:s.name, new: "false", kind: s.kind}) }
     unless @structures.map(&:name).map(&:downcase).include?(params[:term].downcase)
       if params[:type] == "ShowHost"
         json.push({value:params[:term], label: "Creer le lieu " + params[:term], new:"true", show_host_kind:"Venue"})
@@ -17,7 +18,6 @@ class StructuresController < AppController
         json.push({value:params[:term], label: "Creer la structure " + params[:term], new:"true"})
       end
     end
-    @structures.each { |s| json.push({value:s.name, label:s.name, new: "false"}) }
     render json: json
   end
   
