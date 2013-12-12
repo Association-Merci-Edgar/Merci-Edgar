@@ -49,10 +49,13 @@ class Contact < ActiveRecord::Base
   after_save  :update_customs
 
   delegate :fine_model, to: :contactable
-  
     
   def avatar  
     self.fine_model.avatar
+  end
+  
+  def avatar_url(version)
+    self.fine_model.avatar_url(version)
   end
 
   scope :by_network, lambda { |tag_name| where("network_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }

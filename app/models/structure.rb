@@ -74,8 +74,9 @@ class Structure < ActiveRecord::Base
   end
 
   def set_main_person(user,person)
-    rel = self.relatives.build(user: user) unless relative(user).present?
+    rel = relative(user) || self.relatives.build(user: user)
     rel.person = person
+    rel.save
   end
 
 

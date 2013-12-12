@@ -13,7 +13,7 @@
           %a{href: "#"}
             %i.ico.principal.full{id: "main_contact_#{person.id}"}
         - else
-          = link_to structure_set_main_person_path(@structure,person), method: :put do
+          = link_to structure_set_main_person_path(@structure,person), remote:true, method: :put do
             %i.ico.principal{id: "main_contact_#{person.id}"}
           
         

@@ -6,7 +6,7 @@ class ContactsController < AppController
       @contacts.each do |c| 
         fm = c.fine_model
         link = send(fm.class.name.underscore + "_path", fm)
-        json.push({value:c.name, label:c.name, new: "false", link: link })
+        json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb) })
       end
       unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
         json.push({value:params[:term], 

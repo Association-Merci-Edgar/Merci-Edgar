@@ -1,7 +1,7 @@
 class StructuresController < AppController
 
   def index
-    @structures = Structure.joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%")
+    @structures = Structure.joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(5)
     case params[:type]
     when "ShowBuyer"
       @structures = @structures.where(structurable_type: ["ShowBuyer"])
@@ -9,7 +9,7 @@ class StructuresController < AppController
       @structures = @structures.where(structurable_type: ["Venue","Festival"])
     end
     json=[]
-    @structures.each { |s| json.push({value:s.name, label:s.name, new: "false", kind: s.kind}) }
+    @structures.each { |s| json.push({value:s.name, label:s.name, new: "false", kind: s.kind, avatar: s.avatar_url(:thumb)}) }
     unless @structures.map(&:name).map(&:downcase).include?(params[:term].downcase)
       if params[:type] == "ShowHost"
         json.push({value:params[:term], label: "Creer le lieu " + params[:term], new:"true", show_host_kind:"Venue"})
@@ -86,7 +86,7 @@ class StructuresController < AppController
 
   def set_main_person
     @structure = Structure.find(params[:structure_id])
-    @old_contact = @structure.main_person(current_user)
+    @old_person = @structure.main_person(current_user)
     @person = Person.find(params[:id])
     @structure.set_main_person(current_user,@person)
     @structure.save

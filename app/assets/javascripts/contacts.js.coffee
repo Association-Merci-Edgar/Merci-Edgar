@@ -38,10 +38,10 @@ jQuery ->
         false
     ).data("ui-autocomplete")._renderItem = (ul, item) ->
       if item.new is "true"
-        item_html = "<a>" + item.label + "</a>"
+        item_html = "<a><i class='entypo edi-plus-3'></i>" + item.label + "</a>"
         $("<li class='action'>").append(item_html).appendTo ul
       else
-        item_html = "<a>" + item.label + "</a>"
+        item_html = "<a><div class='pic pic-mini'><img alt='user' src='" + item.avatar + "'></div>" + item.label + "</a>"
         if item.kind
           item_html = item_html + "<span class='infos'>" + item.kind + "</span>"
         $("<li>").append(item_html).appendTo ul
@@ -102,13 +102,14 @@ jQuery ->
           false
       ).data("ui-autocomplete")._renderItem = (ul, item) ->
         if item.new is "true"
-          item_html = "<a>" + item.label + "</a>"
+          item_html = "<a><i class='entypo edi-plus-3'></i>" + item.label + "</a>"
           $("<li class='action'>").append(item_html).appendTo ul
         else
-          item_html = "<a>" + item.label + "</a>"
+          item_html = "<a><div class='pic pic-mini'><img alt='user' src='" + item.avatar + "'></div>" + item.label + "</a>"
           if item.kind
             item_html = item_html + "<span class='infos'>" + item.kind + "</span>"
           $("<li>").append(item_html).appendTo ul
+
           
   ###
     # and activate datepicker on it
