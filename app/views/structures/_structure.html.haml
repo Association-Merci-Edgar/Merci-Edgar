@@ -9,7 +9,7 @@
     .mainrow
       = link_to structure do
         %h3= structure.name
-        .pic= image_tag structure.avatar_url(:thumb)
+        .pic= image_tag structure.avatar_url
       .infos-line
         / = render venue.capacities if venue.capacities
         = render structure.address if structure.address

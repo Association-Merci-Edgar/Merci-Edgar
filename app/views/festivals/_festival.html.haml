@@ -5,7 +5,7 @@
   .mainrow
     = link_to festival do
       %h3= festival.name
-      .pic= image_tag festival.avatar_url(:thumb)
+      .pic= image_tag festival.avatar_url
     .infos-line
       / = render venue.capacities if venue.capacities
       = render festival.address if festival.address
