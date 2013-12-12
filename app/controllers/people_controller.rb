@@ -40,6 +40,7 @@ class PeopleController < AppController
     session[:return_to] = request.referer
     @person = Person.new
     @person.build_contact
+    @person.name = params[:name] if params[:name].present?
     ps = @person.people_structures.build
     ps.structure = Structure.find(params[:structure_id]) if params[:structure_id]
     ps.structure = nil if !ps.structure.is_a? Structure

@@ -25,6 +25,7 @@ class StructuresController < AppController
     session[:return_to] ||= request.referer
     @structure = Structure.new
     @structure.build_contact.addresses.build
+    @structure.contact.name = params[:name] if params[:name].present?
 
     respond_to do |format|
       format.html

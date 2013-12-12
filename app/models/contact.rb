@@ -50,6 +50,7 @@ class Contact < ActiveRecord::Base
 
   delegate :fine_model, to: :contactable
   
+    
   def avatar  
     self.fine_model.avatar
   end

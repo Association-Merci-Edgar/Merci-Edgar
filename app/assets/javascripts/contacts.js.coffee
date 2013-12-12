@@ -22,16 +22,19 @@ jQuery ->
 
       select: (event, ui) ->
         typeaheadField.val ui.item.value
-        if ui.item.new is "true"
-          console.log("new")
-          typeaheadField.css("color", "blue")
+        if ui.item.link
+          window.location.href = ui.item.link
         else
-          console.log("exist")
-          typeaheadField.css("color", "")
-        show_host_kind = ui.item.show_host_kind
-        if show_host_kind
-          show_host_kind_input = typeaheadField.parent().parent().prev()
-          show_host_kind_input.val show_host_kind
+          if ui.item.new is "true"
+            console.log("new")
+            typeaheadField.css("color", "blue")
+          else
+            console.log("exist")
+            typeaheadField.css("color", "")
+          show_host_kind = ui.item.show_host_kind
+          if show_host_kind
+            show_host_kind_input = typeaheadField.parent().parent().prev()
+            show_host_kind_input.val show_host_kind
         false
     ).data("ui-autocomplete")._renderItem = (ul, item) ->
       if item.new is "true"
