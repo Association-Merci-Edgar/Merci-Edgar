@@ -11,6 +11,8 @@
     .actions  
       %a.shybtn.editbtn.pull-right{:href => "#"}
         %i.entypo.edi-pencil
+      %a.shybtn.cancel.pull-right.hidden{:href => "#"}
+        %i.entypo.edi-cross
     
     .content 
       = render reporting.report
@@ -18,7 +20,7 @@
       %textarea
       .actions-form
         %button.btn.btn-secondary.pull-right{:type => "submit"}
-          Valider les modifications
-        %button.btn.btn-link.pull-right{}
+          Enregistrer les modifications
+        %button.btn.btn-link.cancel.hidden.pull-right{}
           Annuler
         %div.clearfix
