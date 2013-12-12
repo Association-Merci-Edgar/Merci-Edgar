@@ -672,7 +672,7 @@ a.pull-right {float:right;}
 	padding : 13px 0 14px 26px;// 15px 0 15px 26px; // 13px 0px 12px 24px;
 	display:block;
 	&:focus { text-decoration:none;}
-	i.entypo { margin-bottom:6px; }
+	i.entypo { margin-bottom:3px; }//6px
 }
 
 .leftmenu li a:hover, .leftmenu li a:focus, .leftmenu li.active a, .leftmenu li.active a:hover, .leftmenu li.active a:focus, .leftmenu li.tour-step-backdrop a  {
@@ -1550,7 +1550,9 @@ select.select-right { width:auto; background:$dbeige2;
 
 
 // theSearch UI : (better naming ?)
-#ui-id-1 {position: fixed;}
+#ui-id-1 {position: fixed;
+  @include b-radius-notLR ("left");
+}
 
 ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; z-index:300;}
 
@@ -1651,7 +1653,8 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
     border:none;
     z-index:2200;
     position:absolute;
-    top:415px;
+    //top:415px;
+    top:467px;
     height:52px;
     line-height:52px;
     width:100%;
@@ -2356,9 +2359,13 @@ $tooltipTXT: $white;
 
 @media (max-width: 1024px) {
   .footer {width:30px;}
+  #accounts-tab a>span {display:none;}
+  .leftpanel.small .righticon { margin-left: 6px;}
+  #ui-id-1 {left:30px;}
 }
-/*
-  .account-tab, #accounts-tab span {display:none;}
+
+
+  /*.account-tab, #accounts-tab span {display:none;}
   .logo {padding-left:14px;}
   
   .leftmenu .righticon {
