@@ -1,4 +1,13 @@
-//______________________ Edit Button
+
+//______________________ New Entry - Cancel Button
+$('.new_reporting .cancel').on('click', function (event) {
+  event.stopPropagation(); event.preventDefault();
+  $('.new_reporting textarea').val("");
+
+});
+
+
+//______________________ Existing Entry - Edit Button
 
 $('#activity .list-large > li .editbtn').on('click', function (event) {
   event.stopPropagation();
@@ -14,6 +23,8 @@ $('#activity .list-large > li .editbtn').on('click', function (event) {
   $form.toggleClass('hidden');
   $content.toggleClass('hidden');
   $(this).toggleClass('hidden');
+  $(this).closest('li').find('.cancel').toggleClass('hidden');
+  
   $textarea.focus();
   
   //console.log($content);
@@ -23,7 +34,7 @@ $('#activity .list-large > li .editbtn').on('click', function (event) {
 
 
 
-//______________________ Submit Button
+//______________________ Existing Entry - Submit Button
 
 $('#activity .list-large > li button[type="submit"] ').on('click', function (event) {
   event.stopPropagation(); event.preventDefault();
@@ -33,13 +44,14 @@ $('#activity .list-large > li button[type="submit"] ').on('click', function (eve
   $form.toggleClass('hidden');
   $content.toggleClass('hidden');
   $(this).closest('li').find('.editbtn').toggleClass('hidden');
+  
 
 });
 
 
 
-//______________________ Cancel Button
-$('#activity .list-large > li .btn-link').on('click', function (event) {
+//______________________ Existing Entry - Cancel Button
+$('#activity .list-large > li .cancel').on('click', function (event) {
   event.stopPropagation(); event.preventDefault();
   var $content = $(this).closest('li').find('.content');
   var $form = $(this).closest('li').find('form');
@@ -47,6 +59,7 @@ $('#activity .list-large > li .btn-link').on('click', function (event) {
   $form.toggleClass('hidden');
   $content.toggleClass('hidden');
   $(this).closest('li').find('.editbtn').toggleClass('hidden');
+  $(this).closest('li').find('.cancel').toggleClass('hidden');
 
 });
 
