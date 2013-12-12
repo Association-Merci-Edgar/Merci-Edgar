@@ -1,13 +1,37 @@
 class ContactsController < AppController
   def index
-    @contacts = Contact.advanced_search(params).page params[:page]
-    if params[:category].present?
-      raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
-      @label_category = params[:category]
-    end
+    if request.xhr?
+      @contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
+      json=[]
+      @contacts.each do |c| 
+        fm = c.fine_model
+        link = send(fm.class.name.underscore + "_path", fm)
+        json.push({value:c.name, label:c.name, new: "false", link: link })
+      end
+      unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
+        json.push({value:params[:term], 
+          label: "Creer la structure " + params[:term], new:"true", 
+          link: new_structure_path(name: params[:term])
+          })
+        json.push({value:params[:term], 
+          label: "Creer la personne " + params[:term], new:"true", 
+          link: new_person_path(name: params[:term])
+          })
+        
+      end
+      render json: json
+      
+      
+    else
+      @contacts = Contact.advanced_search(params).page params[:page]
+      if params[:category].present?
+        raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
+        @label_category = params[:category]
+      end
     
-    if @contacts.present? == false
-      render 'empty'
+      if @contacts.present? == false
+        render 'empty'
+      end
     end
   end
 
