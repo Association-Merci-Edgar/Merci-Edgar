@@ -157,9 +157,9 @@ toggleSearch = function(){
   $('.searchahead').typeahead();
   
   // get and apply the correct TOP position
-  var offset = $('#search-nav').offset();
+  //var offset = $('#search-nav').offset();
   //console.log(offset.top);
-  $('#thesearch').find('input').css('top', offset.top + 'px');
+  //$('#thesearch').find('input').css('top', offset.top + 'px');
   
   currentnav = $('.leftmenu').find('.nav').find('.active');
   currentnav.removeClass("active");
