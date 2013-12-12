@@ -1534,8 +1534,8 @@ select.select-right { width:auto; background:$dbeige2;
   text-align: left;
 }
 
-#rooms-infos .fields,
-#schedulings .fields {
+#rooms-infos>.fields,
+#schedulings>.fields {
   border-bottom: 1px solid $dbeige;
    margin-bottom:30px;
 }
