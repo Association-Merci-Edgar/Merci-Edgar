@@ -242,7 +242,9 @@ a, .btn-link {color:$dblue;
   &:hover, &:active, &:focus {color:$green; text-decoration:none;}
 }
 
-.btn.btn-link {color:$dblue; padding: 11px 19px;}
+.btn.btn-link {color:$dblue; padding: 4px 19px;}
+
+.modal-footer .btn.btn-link {padding-top: 11px;}
 
 .showlink:not(.tag) { border-bottom : dotted 1px $green ;
   &:hover {color:$green; text-decoration:none; border-color:transparent;}
@@ -1532,6 +1534,11 @@ select.select-right { width:auto; background:$dbeige2;
   text-align: left;
 }
 
+#rooms-infos .fields,
+#schedulings .fields {
+  border-bottom: 1px solid $dbeige;
+   margin-bottom:30px;
+}
 
 /*  _____________________________________________________ JQUERY UI   */
 
@@ -1541,28 +1548,48 @@ select.select-right { width:auto; background:$dbeige2;
 
 /*  _____________________________________________________ JQUERY UI autocomplete  */
 
+
+// theSearch UI : (better naming ?)
+#ui-id-1 {position: fixed;}
+
 ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners; border: 1px solid $dbeige; padding:10px; z-index:300;}
 
+.ui-widget-content,
 .ui-menu .ui-menu-item a {
 	display: inline-block;
-  &:focus, &:hover {
-    background:$dblue;
-    color:$white;
-  }
+  border:none;
+  padding-bottom:3px;
+  //margin: 2px 0;
+  //background:$white;
+  
 }
 
 .ui-menu .ui-menu-item.action a {
 	color:$green;
-  &:focus, &:hover {
-    background:$green;
-    color:$white;
-  }
+  //background:$white;
+  border:none;
+  
 }
 
 .ui-menu .ui-menu-item .infos {
+  display: inline-block;
 	font-size:14px;
+  margin-left:3px;
   color: $lblue;
 }
+
+
+.ui-menu .pic-mini {
+  margin-right: 5px;
+  margin-top: 0px;
+}
+
+.ui-menu .entypo {
+  font-size: 25px;
+  margin-right: 2px;
+ // margin-left: -1px;
+}
+
 .ui-menu .ui-menu-item .noresult {
   color: $lblue;
   margin-left: 7px;
@@ -1571,11 +1598,30 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
 /*  ____  */
 
 
-
+.ui-menu .ui-menu-item a:hover, .ui-menu .ui-menu-item a:focus, 
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
-	background:$green; border-color:$green;
-	margin:0;
+   display: inline-block;
+	background:$dblue;
+  color:$white;
+  border:none;
+  border-color:$dblue;
+	
 }
+
+.ui-menu .ui-menu-item.action a:hover, .ui-menu .ui-menu-item.action a:focus, 
+.ui-menu .ui-menu-item.action .ui-state-hover, 
+.ui-menu .ui-menu-item.action .ui-widget-content .ui-state-hover,
+.ui-menu .ui-menu-item.action .ui-widget-header .ui-state-hover, 
+.ui-menu .ui-menu-item.action .ui-state-focus,
+.ui-menu .ui-menu-item.action .ui-widget-content .ui-state-focus,
+.ui-menu .ui-menu-item.action .ui-widget-header .ui-state-focus {
+	background:$green;
+  color:$white;
+  border:none;
+  border-color:$green;
+	
+}
+
 
 .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1600,12 +1646,14 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
   .searchbkg{z-index:1998;}
   width:100%;
   input {
+    margin-bottom:0px;
     padding:6px 20px;
     border:none;
     z-index:2200;
     position:absolute;
     top:415px;
     height:52px;
+    line-height:52px;
     width:100%;
     background:$green;
     color:$white;
@@ -1957,12 +2005,13 @@ nav.pagination{ display: inline-block;}
 #team .list-large h4 {display:block;}
 
 #activity .list-large  {
-  h4, .infos {display:inline-block; margin-right:10px; font-size:22px;}
+  h4, .infos {display:inline-block; margin-right:10px; font-size:21px;}
   .pic-mini {
     margin: 0 4px;
     text-decoration:none; width:23px;}
 }
 
+#reporting_project_id {float:left;}
 
 /* ____________________________________________________________ List_medium  */
 .list-medium li {
@@ -2088,6 +2137,7 @@ textarea {
   float:left;
   font-size:17px;
   padding:8px;
+  margin-bottom: 13px;
   &:focus{
     background:$green;
     border-color:$green;
@@ -2122,18 +2172,18 @@ textarea {
 }
 
 #activityfield-outter{
-  display:inline-block;
+  //display:inline-block;
   width:100%;
-  #activityfield{ width:95%;
-    @include b-radius-notLR ("right")
+  #activityfield{
+    width:100%;
+    //@include b-radius-notLR ("right")
     }
   button {
-    width:5%;
-    min-height:80px;
-    font-size:24px;
-    @include b-radius-notLR ("left");
-    margin-left:-1px;
-
+    //width:5%;
+    //min-height:80px;
+    //font-size:24px;
+    //@include b-radius-notLR ("left");
+    //margin-left:-1px;
     }
 }
 
@@ -2150,7 +2200,11 @@ textarea {
   select{background-color:$dbeige2;}
 }
 
+#reportings li form textarea {
+  min-height:80px;
+}
 
+//#reportings li { padding: 18px 0;}
 
 /* ACCOUNT ________________________________________ */
 
