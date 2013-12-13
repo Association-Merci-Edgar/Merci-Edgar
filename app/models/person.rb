@@ -21,13 +21,14 @@ class Person < ActiveRecord::Base
   has_many :relatives, dependent: :destroy
   validates_presence_of :first_name
   validates_presence_of :last_name
+  validates_associated :contact
 
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
 
   delegate :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
 
-  before_save :set_name
+  before_validation :set_name
   
   mount_uploader :avatar, AvatarUploader
   
