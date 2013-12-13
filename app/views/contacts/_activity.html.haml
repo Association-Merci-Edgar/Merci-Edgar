@@ -11,19 +11,7 @@
           %li projet 2
 
     #activityfield-outter
-      = simple_form_for(@reporting, remote: true) do |f|
-       
-        = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
-        = f.hidden_field :asset_id
-        = f.hidden_field :asset_type
-        = f.input :project_id, collection: Project.all, label: false, value_method: :id, prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
-        
-        = button_tag(type: 'submit', class: "btn btn-secondary pull-right submit") do 
-          Créer la note
-          
-        = button_tag(type: 'cancel', class: "btn btn-link pull-right cancel") do 
-          Annuler
-        %div.clearfix
+      = render partial: "reportings/form", locals: {reporting: @reporting, edit: false}
                             
     / ____________________________________ list reportings
     %ul.list-large#reportings

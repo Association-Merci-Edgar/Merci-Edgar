@@ -1,5 +1,5 @@
 - unless reporting.new_record?
-  %li
+  %li{id: "reporting_#{reporting.id}"}
     %h4= l reporting.created_at, format: :abbrev
 
     .infos
@@ -9,18 +9,11 @@
         .pic.pic-mini= image_tag reporting.project.avatar
         = reporting.project.name
     .actions  
-      %a.shybtn.editbtn.pull-right{:href => "#"}
+      = link_to "#", class: "shybtn editbtn pull-right" do
         %i.entypo.edi-pencil
       %a.shybtn.cancel.pull-right.hidden{:href => "#"}
         %i.entypo.edi-cross
     
     .content 
       = render reporting.report
-    %form.hidden
-      %textarea
-      .actions-form
-        %button.btn.btn-secondary.pull-right{:type => "submit"}
-          Enregistrer les modifications
-        %button.btn.btn-link.cancel.hidden.pull-right{}
-          Annuler
-        %div.clearfix
+    = render partial: "reportings/form", locals: {reporting: reporting, edit:true, action: :edit}
