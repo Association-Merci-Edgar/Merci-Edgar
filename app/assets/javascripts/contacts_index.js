@@ -33,7 +33,7 @@ actorsInit = function(){
       var $f = $(this);
       //f= $r[i];
       
-      if ($f.val() !="") {
+      if (($f.val() !="") && ($f.val() != "show map")) {
         $gotfilters = true;
         var $thetargetname = $f.attr('id');
         //console.log($thetargetname)
