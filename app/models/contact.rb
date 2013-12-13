@@ -44,7 +44,7 @@ class Contact < ActiveRecord::Base
 
   # mount_uploader :avatar, AvatarUploader
 
-  before_save :titleize_name
+  before_validation :titleize_name
   after_save  :update_networks
   after_save  :update_customs
 
@@ -76,7 +76,14 @@ class Contact < ActiveRecord::Base
   
   
   def titleize_name
-    self.name = self.name.titleize if self.name
+    if self.name
+      # titleize with hyphen
+      self.name = name.split.map{|w| w.split('-').map(&:capitalize).join('-')}.join(' ')
+      
+      # capitalize after l' or d'
+      r = /[lLdD]'(\w*)/
+      self.name = self.name.gsub(r) {|m| m.gsub($1, $1.capitalize) }      
+    end
   end
 
   def phone_number
@@ -274,5 +281,4 @@ class Contact < ActiveRecord::Base
     Custom.add_customs(custom_list) if custom_tags.present? && custom_tags_changed?
   end
     
-
 end
