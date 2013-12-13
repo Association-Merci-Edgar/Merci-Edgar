@@ -1,10 +1,11 @@
 .page-title
   Contacts
-  .subpage-nav
-    = link_to contacts_path do
-      Liste
-    = link_to show_map_contacts_path, :class =>"active" do
-      Carte
+  -#
+    .subpage-nav
+      = link_to contacts_path, :class =>"active" do
+        Liste
+      = link_to show_map_contacts_path do
+        Carte
 
 /%form.inline-form
 = form_tag show_map_contacts_path, method: :get, class: "inline-form" do
