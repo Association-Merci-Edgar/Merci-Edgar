@@ -111,7 +111,8 @@ $('.filters-pool .tag').popover({callback: function() {
   $('.popover').prev().addClass('active');
   
 	tagField = $(".popover-content input[autofocus]:first");
-	tagField.multivalues_autocomplete({available_tags: tagField.data('available-tags'),json_url: tagField.data('autocomplete-source')})
+	if (tagField.data("autocomplete-source") || tagField.data('available-tags'))
+		tagField.multivalues_autocomplete({available_tags: tagField.data('available-tags'),json_url: tagField.data('autocomplete-source')})
 	
   /*
   tagitField = $(".popover-content input[autofocus]:first");

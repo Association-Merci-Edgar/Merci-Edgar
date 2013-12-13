@@ -1,5 +1,7 @@
-$("#reportings").prepend("<%= j render(partial:'reporting', locals: {reporting: @reporting}) %>");
+$("#reporting_<%= @reporting.id %>").replaceWith("<%= j render(partial:'reporting', locals: {reporting: @reporting}) %>");
 $('#activityfield').val('')
+
+
 
 //______________________ Existing Entry - Edit Button
 

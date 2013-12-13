@@ -35,7 +35,7 @@ $('#activity .list-large > li .editbtn').on('click', function (event) {
 
 
 //______________________ Existing Entry - Submit Button
-
+/*
 $('#activity .list-large > li button[type="submit"] ').on('click', function (event) {
   event.stopPropagation(); event.preventDefault();
   var $content = $(this).closest('li').find('.content');
@@ -47,7 +47,7 @@ $('#activity .list-large > li button[type="submit"] ').on('click', function (eve
   
 
 });
-
+*/
 
 
 //______________________ Existing Entry - Cancel Button
