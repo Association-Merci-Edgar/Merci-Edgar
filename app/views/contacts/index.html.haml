@@ -129,6 +129,7 @@
         
         %a.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post'><input type='text' name='thefield' id='f_dept' class='input-large' autofocus='autofocus' placeholder='Localité, code postal…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Addresse
+
         
         /<br>
         
@@ -177,7 +178,7 @@
             Rechercher
 
 
-= form_tag contacts_path, method: :get, :id=>"filters-hiddenform", :class=>"hidden" do
+= form_tag contacts_path, method: :get, :id=>"filters-hiddenform", :class=>"" do
   /, :class=>"hidden"
 
   /= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
@@ -192,10 +193,14 @@
   
   = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)", :class=>"tag-style"
   = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats", :class=>"tag-legal"
+  = text_field_tag :network_list, params[:network_list]
   = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso", :class=>"tag-custom"
   = text_field_tag :dept, params[:dept], placeholder:  "N°Departement", :class=>"tag-custom2"
+  = text_field_tag :address, params[:address], placeholder:"Localité, Adresse, ...", :class =>"input-xlarge"
+  = text_field_tag :radius, params[:radius], placeholder:"50", :class =>"input-mini"
+  
   = button_tag "Search", name: nil
-   
+  = submit_tag "show map"
 /______________________________________________________ LISTS       
 .row-fluid
   %ul#contact-list.list-large

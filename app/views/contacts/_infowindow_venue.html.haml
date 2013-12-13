@@ -1,10 +1,5 @@
-%h4= link_to model.name, model
+%h4= link_to contact.name, contact.fine_model
 <br>
 
-- model.rooms.each do |r|
-  - r.capacities.each do |capacity|
-    = render capacity
-
-= render model.address if model.address
 .tags
-  = render partial: "tags/tags", locals: { asset: model}
+  = render partial: "tags/tags", locals: { contact: contact}

@@ -23,14 +23,29 @@ class ContactsController < AppController
       
       
     else
-      @contacts = Contact.advanced_search(params).page params[:page]
-      if params[:category].present?
-        raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
-        @label_category = params[:category]
-      end
-    
-      if @contacts.present? == false
-        render 'empty'
+      if params[:commit] == "show map"
+        contact_ids = Contact.advanced_search(params).pluck(:id)
+        contacts = Address.where(account_id: Account.current_id, contact_id: contact_ids)
+        @contacts_json = contacts.to_gmaps4rails do |address, marker|
+          contact = address.contact
+          marker.infowindow render_to_string(:partial => "contacts/infowindow_venue", :locals => { :contact => contact})
+          marker.title   address.contact.name
+          # marker.sidebar render_to_string(address.contact)
+          # marker.json({ :id => address.id, :foo => "bar" })
+        end if contacts.present?
+        render "show_map"
+        
+        
+      else  
+        @contacts = Contact.advanced_search(params).page params[:page]
+        if params[:category].present?
+          raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
+          @label_category = params[:category]
+        end
+  
+        if @contacts.present? == false
+          render 'empty'
+        end
       end
     end
   end
