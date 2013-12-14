@@ -1,5 +1,5 @@
 - contact.network_list.try(:each) do |c|
-  = tag_link(contacts_path(network_list: c), c,"tag-legal")
+  = tag_link(contacts_path(network_list: c), c,"tag-network")
 
 - contact.capacity_list.try(:each) do |c|
   = tag_link(contacts_path(capacity_range: c), c,"tag-custom")
@@ -13,9 +13,6 @@
 - contact.style_list.try(:each) do |s|
   = tag_link(contacts_path(style_list: s), s, "tag-style")
 
-- contact.network_list.try(:each) do |n|
-  = tag_link(contacts_path(network_list: n),s,"tag-style")
-  
 
 - contact.custom_list.try(:each) do |c|
   = tag_link(contacts_path(custom_list: c),c,"tag-custom")
