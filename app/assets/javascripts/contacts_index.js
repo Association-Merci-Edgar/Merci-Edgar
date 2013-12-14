@@ -1,8 +1,13 @@
+
 var $hid = $('#filters-hiddenform');
 //$hid.find("input").val("");
 
 $('#final_submit').click(function() {
   $hid.submit();
+});
+
+$( "#final_submit_map" ).click(function() {
+  $hid.find( "input:last" ).trigger( "click" );
 });
 
 function openFilters(){
@@ -130,9 +135,8 @@ $('.filters-pool .tag').popover({callback: function() {
 
   //___________________________________________________ actions on click on the OK button here :
   $('.popover').find(".btn[type='submit']").on("click", function(){
-    
     $(this).closest('.popover').prev().removeClass('active').popover('hide');
-    
+    $(this).closest('.popover').find("form").submit();
   });
   
   
@@ -339,8 +343,67 @@ function filtergo(theform) {
 
 
 
+
+function filtergogeo(theform) {
+	// Traiter les éléments du formulaire
+	//console.log(theform["thefield"].data('content'));
+	
+	var $thevalue = theform["thefield"].value;
+	console.log($thevalue);
+	var $thetargetname = theform["thefield"].id.substr(2);
+	
+	/*
+	console.log($thetargetname);
+	var $theTagClass = theform.data('content');
+	console.log("theclass: "+$theTagClass);
+		
+	var $theform = theform;
+	console.log($theform);
+	console.log($theform["thefield"].data('class'));
+	*/
+/*
+  var $theTagClass = $theform.closest(".tag").className;
+  
+  console.log("theclass: "+$theTagClass);
+  var $theTagClass ="";
+  */
+  
+  if ($thevalue != "") {
+	  theactor = $('.filters-stage').find("#actor_"+ $thetargetname);
+	  //alert ( theactor );
+	  //alert ( theactor.length != 0 );
+	  
+	  if ( theactor.length != 0  ) {    // check if the div exists
+	    $("#actor_"+ $thetargetname).remove();
+    }
+      $('.filters-stage').append( "<a class='tag "+$globalClass+" tag-actor active' id = actor_"+ $thetargetname +" href='#'><span class='close'>x</span><span class='thevalue'>"+ $thevalue +"km</span></a>" );
+    
+    
+    $iniBTNS.show();
+    $hid.find("#"+ $thetargetname).val($thevalue);
+  }
+  
+  
+  $('.filters-stage .tag-actor').click(function() { 
+    $thetargetname = $(this).attr( "id").substr(6);
+    //alert (thetargetname);
+    $(this).remove();
+    $hid.find("#"+ $thetargetname).val("");
+    hideTheInit();
+  });
+		
+		
+}
+
+
+
+
+
+//ui-autocomplete
+
 $('html').on('mouseup', function(e) {
-    if(!$(e.target).closest('.popover').length) {
+    //if(!$(e.target).closest('.popover').length) {
+    if( !$(e.target).closest('.popover').length || $(e.target).hasClass("ui-corner-all") )  {
         $('.popover').each(function(){
             $(this.previousSibling).popover('hide');
         });
@@ -392,3 +455,4 @@ $(".filters-trigger").click(function () {
   		 //$(this).slideDown(2000);
     	//$(this).slideUp(2000);
   
+
