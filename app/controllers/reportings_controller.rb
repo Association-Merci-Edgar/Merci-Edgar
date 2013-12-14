@@ -5,18 +5,15 @@ class ReportingsController < ApplicationController
     if @reporting.save
       render "reportings/create"
     else
-      redirect_to reporting.asset, notice: "Une erreur est survenue"
+      redirect_to @reporting.asset.fine_model, notice: "Une erreur est survenue"
     end
   end
 
   def update
     @reporting = Reporting.find(params[:id])
     @reporting.user = current_user
-    if @reporting.update_attributes(params[:reporting])
-      render "reportings/update"
-    else
-      redirect_to reporting.asset, notice: "Une erreur est survenue"
-    end
+    @reporting.update_attributes(params[:reporting])
+    render "reportings/update"
   end
       
 end

@@ -19,6 +19,8 @@ class Reporting < ActiveRecord::Base
   belongs_to :report, polymorphic:true
   belongs_to :project
   belongs_to :user
+  validates :report, presence: true 
+  validates_associated :report
 
   def note_report_content=(content)
     self.report = NoteReport.new(content: content)
