@@ -2131,6 +2131,8 @@ header {
 .pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 
 
+.row-fluid input.span12 { width:100%; min-height:40px;}
+
 textarea {
   resize:vertical;
   height:84px; width:100%;

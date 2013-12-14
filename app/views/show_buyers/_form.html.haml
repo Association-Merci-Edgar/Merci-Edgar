@@ -26,7 +26,7 @@
         = f.fields_for :structure do |s|
           = s.fields_for :contact do |c|
             = c.input :name, label: false, :class => "input-Xlarge"
-        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 80x80 pixels."
   
     .row-fluid
       .span12
@@ -87,8 +87,11 @@
                         = address.link_to_remove :title => "Remove this address" do
                           %i.entypo.edi-minus-2
 
-                        = address.input :street,:placeholder =>"Addresse", :input_html => { :class => "input-xlarge" }
-                        = address.input :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "pull-right select-right add-on btn dropdown-toggle" }
+                        = address.input :street, label:"Addresse", :wrapper => :append do
+                          = address.input_field :street,:placeholder =>"Addresse",  :label => false, :input_html => { :class => "input-xlarge" }
+                          = address.input_field :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "add-on btn dropdown-toggle" }
+                          
+                          
                         .control-group.nolabel
                           = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
                           = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
@@ -136,10 +139,10 @@
 
                   -#  ________________________________________________________ TAGS V1
     
-                  = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
+                  = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span12 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
 
                   -#  ________________________________________________________ TAGS V1
-                  = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
+                  = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
     
 
 

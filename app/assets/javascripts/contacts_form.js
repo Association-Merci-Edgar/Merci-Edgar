@@ -1,17 +1,33 @@
 $(function() {
-	$(".network_tags_input" ).multivalues_autocomplete({json_url: $(".network_tags_input").data('autocomplete-source')})
+  if ($(".network_tags_input").length) {
+	$(".network_tags_input").multivalues_autocomplete({json_url: $(".network_tags_input").data('autocomplete-source')})
+  }
+  if ($(".custom_tags_input").length) {
 	$(".custom_tags_input" ).multivalues_autocomplete({json_url: $(".custom_tags_input").data('autocomplete-source')})
+  }
+  if ($(".style_tags_input").length) {
 	$(".style_tags_input" ).multivalues_autocomplete({json_url: $(".style_tags_input").data('autocomplete-source')})
+  }
 });
 
 
 
+
 $(document).on('nested:fieldAdded', function(event){
-
+  // this field was just inserted into your form
   var field = event.field;
-	input = field.find('.style_tags_input')
+  var spe = field.find(".control-group .input-append");
+  //var spem = field.find(".venue_emails_address .input-append");
+  //alert (spem.width());
+  if (spe.width() != null){spe.specificKind();};
+  //$.each($('.input-append'), function() { $(this).specificKind();  });
+  
+  // trigger the autocomplete
+	input = field.find('.style_tags_input');
+  if (input.length) {
 	input.multivalues_autocomplete({json_url: input.data('autocomplete-source')});
-
+  }
+  
 });
 
 
@@ -80,11 +96,12 @@ $.fn.specificKind = function() {
 
 
 //______________ phone & emails
-$.each($('.venue_phones_national_number .input-append'), function() { $(this).specificKind();  });
+$.each($('.input-append'), function() { $(this).specificKind();  });
+/*$.each($('.venue_phones_national_number .input-append'), function() { $(this).specificKind();  });
 $.each($('.venue_emails_address .input-append'), function() {    $(this).specificKind();  });
 $.each($('.person_phones_national_number .input-append'), function() {      $(this).specificKind(); });
 $.each($('.person_emails_address .input-append'), function() {      $(this).specificKind(); });
-
+*/
 
 /*
 $(function() {
@@ -121,6 +138,8 @@ $.fn.checkState = function() {
     $state.removeClass("hidden");
   }
 }
+
+
 //  __________________________________________________________________ !!!! NOT TRIGGERED
 $(".country").change(function() {
   if ($(this).val() != "FR"){
@@ -131,15 +150,6 @@ $(".country").change(function() {
 $.each($('.addresses'), function() {  $(this).checkState(); });
 
 
-$(document).on('nested:fieldAdded', function(event){
-  // this field was just inserted into your form
-  var field = event.field;
-  var spe = field.find(".control-group .input-append");
-  //var spem = field.find(".venue_emails_address .input-append");
-  //alert (spem.width());
-  if (spe.width() != null){spe.specificKind();};
-
-});
 
 
 
