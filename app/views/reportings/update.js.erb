@@ -1,4 +1,10 @@
-$("#reporting_<%= @reporting.id %>").replaceWith("<%= j render(partial:'reporting', locals: {reporting: @reporting}) %>");
+<% if @reporting.errors.present? %>
+	<% htm = display_inline_errors @reporting %>
+	$("#reporting_<%= @reporting.id %>").prepend("<%= j htm %>")
+<% else %>
+	$("#reporting_<%= @reporting.id %>").replaceWith("<%= j render(partial:'reporting', locals: {reporting: @reporting}) %>");
+<% end %>
+
 $('#activityfield').val('')
 
 

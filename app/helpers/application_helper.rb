@@ -18,16 +18,26 @@ module ApplicationHelper
   end
 
   def display_errors(object)
+    notice = get_errors(object)
+    content_tag(:div, notice, class:'notice error') if notice
+  end
+
+  def display_inline_errors(object)
+    notice = get_errors(object)
+    content_tag(:span, notice, class:'help-inline') if notice
+  end
+  
+  def get_errors(object)
     if object && object.respond_to?(:errors) && object.errors.present?
       notice = content_tag(:span, "Oups ! Quelques erreurs se sont glissées !", class:'noticetitle')
       object.errors.full_messages.each do |m|
         notice += content_tag(:span, m + ' / ')
       end
-
-      content_tag(:div, notice, class:'notice error')
+      notice
     end
+    
   end
-
+  
   def menu_link(link_text, link, icon, controller, badge)
     class_name = controller.include?(controller_name) ? "active" : ""
     badge_tag = content_tag(:span,badge, class:"badge")
