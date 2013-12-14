@@ -26,6 +26,10 @@ class ContactsController < AppController
       if params[:commit] == "show map"
         contact_ids = Contact.advanced_search(params).pluck(:id)
         contacts = Address.where(account_id: Account.current_id, contact_id: contact_ids)
+        if params[:address].present?
+          radius = params[:radius] || 100
+          contacts = contacts.near(params[:address], radius, units: :km)
+        end
         @contacts_json = contacts.to_gmaps4rails do |address, marker|
           contact = address.contact
           marker.infowindow render_to_string(:partial => "contacts/infowindow_venue", :locals => { :contact => contact})
