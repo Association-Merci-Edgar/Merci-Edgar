@@ -4,7 +4,7 @@
 
     %section#profile-photo
       %h4 Photo de votre profil
-      .pic= image_tag @user.avatar
+      .pic.pic-user= image_tag @user.avatar
       %p
         L’image doit faire au moins 300x300 pixels.
       = simple_form_for(@user, :html => { :method => :put, :class => 'form-vertical' }) do |f|

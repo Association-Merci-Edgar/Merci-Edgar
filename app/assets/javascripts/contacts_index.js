@@ -135,8 +135,15 @@ $('.filters-pool .tag').popover({callback: function() {
 
   //___________________________________________________ actions on click on the OK button here :
   $('.popover').find(".btn[type='submit']").on("click", function(){
+    
+    
+    
     $(this).closest('.popover').prev().removeClass('active').popover('hide');
     $(this).closest('.popover').find("form").submit();
+    
+    // workaround for the double submit problem :
+    //$(this).closest('.popover').find("form").submit(function() { $(this).unbind('submit').submit();});
+     return false;
   });
   
   
@@ -349,7 +356,7 @@ function filtergogeo(theform) {
 	//console.log(theform["thefield"].data('content'));
 	
 	var $thevalue = theform["thefield"].value;
-	console.log($thevalue);
+	//console.log($thevalue);
 	var $thetargetname = theform["thefield"].id.substr(2);
 	
 	/*
@@ -371,7 +378,7 @@ function filtergogeo(theform) {
   if ($thevalue != "") {
 	  theactor = $('.filters-stage').find("#actor_"+ $thetargetname);
 	  //alert ( theactor );
-	  //alert ( theactor.length != 0 );
+	 // alert ( theactor.length != 0 );
 	  
 	  if ( theactor.length != 0  ) {    // check if the div exists
 	    $("#actor_"+ $thetargetname).remove();

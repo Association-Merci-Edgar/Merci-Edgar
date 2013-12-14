@@ -1763,6 +1763,9 @@ section {
     display: inline-block;
     margin-right: 10px;
 }
+//a[id*='Some:Same']
+
+
 
 /*  _____________________________________________________  ROWS   */
 
@@ -1827,6 +1830,7 @@ section {
   &.tag-legal {border-color:$yellow;  &:hover, &:active, &.active {background-color:$yellow; color:$dblue;} }
   &.tag-custom {border-color:$lblue; &:hover, &:active, &.active {background-color:$lblue;} }
   &.tag-custom2 {border-color:$dblue; &:hover, &:active, &.active {background-color:$dblue;} }
+  &.tag-networks {border-color:$blue; &:hover, &:active, &.active {background-color:$blue;} }
 }
 
 
@@ -2118,6 +2122,9 @@ header {
   }
 }
 
+//.list-large li[id^='#person_'] .pic img,
+//.pic.pic-person img,
+//.pic.pic-user img{@include roundcornersFX(40px);}
 
 .pic-mini {width:24px;margin-right:12px; margin-top:1px;float:none;}
 .pic-small {@include square(44);margin-right:14px; margin-top:0;}
