@@ -3,7 +3,7 @@
     %h4= l reporting.created_at, format: :abbrev
 
     .infos
-      .pic.pic-mini= image_tag reporting.user.avatar
+      .pic.pic-mini.pic-user= image_tag reporting.user.avatar
       = reporting.user.nickname
       - if reporting.project.present?
         .pic.pic-mini= image_tag reporting.project.avatar

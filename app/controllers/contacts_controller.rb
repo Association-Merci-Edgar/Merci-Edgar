@@ -10,11 +10,11 @@ class ContactsController < AppController
       end
       unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
         json.push({value:params[:term], 
-          label: "Creer la structure " + params[:term], new:"true", 
+          label: "Creer la structure : " + params[:term], new:"true", 
           link: new_structure_path(name: params[:term])
           })
         json.push({value:params[:term], 
-          label: "Creer la personne " + params[:term], new:"true", 
+          label: "Creer la personne : " + params[:term], new:"true", 
           link: new_person_path(name: params[:term])
           })
         
