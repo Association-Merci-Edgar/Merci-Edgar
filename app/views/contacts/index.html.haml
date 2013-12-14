@@ -131,7 +131,7 @@
         %a#f_dept.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post'><input type='text' name='thefield' id='f_dept' class='input-large' autofocus='autofocus' placeholder='Localité, code postal…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           A proximité de
           
-        %a#f_radius.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergogeo(this); return false' method='post'><div class='input-append inline'><input class='input-mini' id='f_radius' name='thefield' autofocus='autofocus' placeholder='50' type='text' value=''><span class='add-on'>km</span></div><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        %a#f_radius.tag.tag-custom2{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergogeo(this); return false' method='post'><div class='input-append inline'><input class='input-mini' id='f_radius' name='thefield' autofocus='autofocus' type='text' value='50'><span class='add-on'>km</span></div><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Dans un rayon de
           -#<label>Rayon :</label>
           
@@ -153,7 +153,7 @@
         %a#f_style.tag.tag-style{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large style_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{styles_path}' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Esthétique
 
-        %a#f_network.tag.tag-networks{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_network_list' class='input-large network_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{networks_path}' placeholder='…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+        %a#f_network.tag.tag-network{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_network_list' class='input-large network_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{networks_path}' placeholder='…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
           Réseau
 
         
@@ -206,7 +206,7 @@
   
   = text_field_tag :style_list, params[:style_list], placeholder: "Styles (separes par virgule)", :class=>"tag-style"
   = text_field_tag :contract_list, params[:contract_list], placeholder: "Types de contrats", :class=>"tag-legal"
-  = text_field_tag :network_list, params[:network_list], :class=>"tag-networks"
+  = text_field_tag :network_list, params[:network_list], :class=>"tag-network"
   = text_field_tag :custom_list, params[:custom_list], placeholder: "Tags perso", :class=>"tag-custom"
   = text_field_tag :dept, params[:dept], placeholder:  "N°Departement", :class=>"tag-custom2"
   = text_field_tag :address, params[:address], placeholder:"Localité, Adresse, ...", :class =>"input-xlarge"
