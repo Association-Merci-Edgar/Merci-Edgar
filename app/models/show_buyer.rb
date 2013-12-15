@@ -12,7 +12,7 @@
 class ShowBuyer < ActiveRecord::Base
   # default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :licence, :structure_attributes, :schedulings_attributes, :avatar
+  attr_accessible :licence, :structure_attributes, :schedulings_attributes, :avatar, :remote_avatar_url
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 

@@ -280,5 +280,5 @@ class Contact < ActiveRecord::Base
   def update_customs
     Custom.add_customs(custom_list) if custom_tags.present? && custom_tags_changed?
   end
-    
+      
 end

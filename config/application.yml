@@ -22,7 +22,7 @@ development:
   
   AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
   AWS_SECRET_ACCESS_KEY: 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
-  AWS_S3_BUCKET: merciedgar-dev    
+  AWS_S3_BUCKET: merciedgar-dev
   
 wip:
   MANDRILL_USERNAME: dev@merciedgar.com
