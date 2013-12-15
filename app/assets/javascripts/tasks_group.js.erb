@@ -1,0 +1,83 @@
+function toggleUncompletedTask(input) {
+	var checked=$(input).is(':checked')
+	if (checked) {
+		link = $(input).parent().attr("data-complete-link")
+	}
+	else {
+		link = $(input).parent().attr("data-uncomplete-link")
+	}
+	var theItem = $(input).parent().parent();
+  $.ajax({
+    type: "PUT",
+    url: link,
+    /*success: function(data) {
+			if (checked) {
+				theItem.wrap("<strike></strike>");
+				setTimeout(function(){move(theItem, $('.list-medium').last())}, 4000);
+			}
+			else {
+				theItem.unwrap("<strike></strike>");
+			}
+    }*/
+  });
+  return false;
+}
+
+function toggleCompletedTask(input) {
+	var checked=$(input).is(':checked')
+	console.log(checked)
+	if (checked) {
+		link = $(input).parent().attr("data-complete-link")
+	}
+	else {
+		link = $(input).parent().attr("data-uncomplete-link")
+	}
+	var theItem = $(input).parent().parent();
+  $.ajax({
+    type: "PUT",
+    url: link,
+    success: function(data) {
+			if (checked) {
+				theItem.unwrap("<strike></strike>");
+			}
+			else {
+				theItem.wrap("<strike></strike>");
+				setTimeout(function(){move(theItem, $('.list-medium').first())}, 4000);
+				// dest = $('.list-medium').first()
+				// theItem.appendTo(dest)
+			}
+    }
+  });
+  return false;
+}
+
+function move(source, dest) {
+	source.toggle("highlight")
+	task_id = source.data("task-id")
+	
+	new_source = dest.find(source);
+	new_source.toggle("highlight");
+}
+
+
+
+
+
+
+
+
+/*
+$( "#final_submit" ).click(function() {
+  $('.filters-hiddenform form').submit();
+});
+}
+*/
+
+/*
+$.each($('.filters-trigger'), function() {      
+  $(this).click(function () {
+  	  $(this).toggleClass("active");
+  		$('.filters-outercontainer').toggleClass("open");
+  	});
+});
+*/

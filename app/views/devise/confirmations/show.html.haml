@@ -1,17 +1,43 @@
-%h2 Account Activation
-= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal', :method => 'put'}, :id => 'activation-form' do |f|
-  = devise_error_messages!
-  %fieldset
-    %legend
-      Account Activation
-      - if resource.email
-        for #{resource.email}
-    - if @requires_password
-      %p
-        = f.label :password,'Choose a Password:'
-        = f.password_field :password
-      %p
-        = f.label :password_confirmation, 'Password Confirmation:'
-        = f.password_field :password_confirmation
-    = hidden_field_tag :confirmation_token, @confirmation_token
-    %p= f.submit "Activate"
+.container.simple-page
+  .logo
+    %i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.edi-logoedgar.logotype
+      
+  = simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal', :method => 'put'}, :id => 'activation-form' do |f|
+    = devise_error_messages!
+    
+    %h1.page-title #{t("simple_form.labels.defaults.firsttime_welcome")}
+    %fieldset
+      %legend
+        #{t("simple_form.labels.defaults.firsttime_wording2")}
+        <br>
+        - if resource.email
+          #{resource.email}
+      - if @requires_password
+        .row-fluid.control-group
+          = f.input_field :first_name, :class=>"span6 inline"
+          = f.input_field :last_name, autocomplete: "off", :class=>"span6 inline"
+            
+        .row-fluid.control-group
+          = f.input_field :password, :class=>"span6 inline"
+          = f.input_field :password_confirmation, :class=>"span6 inline"
+          
+          %span.help-block
+            #{t("simple_form.labels.defaults.recommnandations_password")}        
+
+        = debug @current_account
+        = debug @confirmable.accounts
+      
+        - if @account.new_record?
+          .row-fluid.control-group
+            = f.simple_fields_for :accounts do |account|
+              = account.input_field :name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
+
+      = hidden_field_tag :confirmation_token, @confirmation_token
+      
+      /%p= f.submit "Activate"
+      = f.submit "C’est parti !", :class => "btn-primary btn-large"
+      /<button class="btn btn-large btn-primary" type="submit"></button>
+
+  #footer
+    © Merci Edgar 2013

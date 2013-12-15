@@ -1,0 +1,2 @@
+class CapRange < Tag
+end

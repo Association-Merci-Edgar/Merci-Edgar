@@ -1,0 +1,18 @@
+%li{id: "venue_#{venue.to_param}"}
+  = render partial: "contacts/contact_elem", locals: {contact: venue.structure.contact, edit_link_path:edit_venue_path(venue) }
+  
+
+  .mainrow
+    = link_to venue do
+      %h3= venue.name
+      .pic= image_tag venue.avatar_url
+    .infos-line
+      / = render venue.capacities if venue.capacities
+      = render venue.address if venue.address
+      
+    .tags
+      = render partial: "tags/tags", locals: { contact: venue.structure.contact}
+
+
+
+

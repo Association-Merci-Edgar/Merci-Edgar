@@ -1,0 +1,9 @@
+%span.location
+  = address.postal_code
+  = address.city
+  - if address.department_name
+    (
+    = link_to address.department_name, only_contacts_path(filter:"dept",no:address.department_code)
+    ,
+    = address.region_name
+    )

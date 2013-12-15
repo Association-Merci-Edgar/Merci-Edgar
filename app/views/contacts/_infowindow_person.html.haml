@@ -1,0 +1,15 @@
+%h4= link_to model.name, model
+<br>
+%span
+  - ps = model.people_structures.first
+  - if ps.present?
+    = ps.title if ps.title.present?
+    = link_to ps.structure.name,ps.structure if ps.structure.present?
+  
+  - email = model.emails.first
+  - if email.present?
+    = email.address
+  
+  - phone = model.phones.first
+  - if phone.present?
+    = phone.national_number

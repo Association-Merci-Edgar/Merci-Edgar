@@ -1,14 +1,29 @@
 !!!
 %html
   %head
-    = render 'layouts/head'
-  %body{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
-    /
-      \################# START MAIN-WRAPPER ####################
-      \============================================================
-    .main-wrapper
-      = render 'layouts/header'
-      = yield
-      = render 'layouts/footer'
-    = render 'layouts/javascripts'
+    = render 'layouts/head_app'
+  %body
+    #mainwrapper.mainwrapper
+      .togglemenu
+        = render 'layouts/togglemenu'
+        
+      #plusmenu
+        = render 'layouts/plus_menu' if ["index","show"].include?(params[:action])
+        /= yield(:plus_menu)
+        
+      .leftpanel
+        = render 'layouts/left_panel'
+        
+      .mainpanel
+        = render 'layouts/search_modal'
+        .maincontent
+          .maincontentinner#top
+            = yield
+            
+      /.rightpanel
+      /  = yield(:right_panel)
+    
+    = render 'layouts/modal'
+      
+    = render 'layouts/javascripts_app'
 

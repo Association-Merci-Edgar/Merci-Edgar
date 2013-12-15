@@ -23,4 +23,20 @@ en:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
+    labels:
+      defaults:
+        first_name: "First name"
+        last_name: "Last name"
+        org_name_choices: "Enter the name of your association, label, porduction company…"
+        password: "Enter your password"
+        forgot_password : "Forgot your password?"
+        choose_password : "Choose a password"
+        repeat_password : "Repeat your password"
+        recommnandations_password : "6 digits with 1 number if safer"
+        signin: "Sign in"
+        signout: "Sign out"
+        signup_fun: "Let's go!"
+        firsttime_welcome: "Welcome to Merci Edgar!"
+        firsttime_wording1: "Let's meet:"
+        firsttime_wording2: "Account activation for :"
 

@@ -1,7 +1,33 @@
-%h2 Sign in
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.input :email, :autofocus => true
-  = f.input :password
-  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Sign in", :class => 'btn-primary'
-= render "devise/shared/links"
+.container.simple-page.signin-form
+  .logo
+    %i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.edi-logoedgar.logotype
+  
+  %h1.page-title Bienvenue !
+  %legend #{t("simple_form.labels.defaults.signin")}
+  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical', id: "toto" }) do |f|
+    .row-fluid.control-group
+      = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}", :class=>"span6 inline"
+      = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}", :class=>"span6 inline"
+  
+    -# = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+    .control-group.boolean.optional.user_remember_me
+      -#
+        /%label.checkbox.hidden
+          /%input{name: "user[remember_me]", type: "hidden", value: "0"}/
+      %span
+        %input.optional{id: "user_remember_me", type: "checkbox", value: "0"} 
+        %label{for: "user_remember_me"} Se souvenir de moi
+
+          
+      -#/%input.btn-primary.btn-large{name: "commit", type: "submit", value: "Se connecter"}/
+  
+    .form-actions
+      = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'btn-primary btn-large'
+    .link
+      
+      = render "devise/shared/links"
+      .pull-right
+        = link_to "www.merciedgar.com", "http://www.merciedgar.com"
+  #footer
+    © Merci Edgar 2013

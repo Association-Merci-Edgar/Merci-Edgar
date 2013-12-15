@@ -1,0 +1,47 @@
+#plusmenu-trigger
+  %i.entypo.edi-plus-3
+  
+%ul.pluslist
+  %li.list-header
+    Ajouter
+
+  - contact = @structure.contact if @structure.present?
+  - contact = @person.contact if @person.present?
+    
+  - if params[:action] == "show" && @structure.present? || @person.present?
+    %li
+      /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
+      = link_to new_contact_task_path(contact), remote:true do
+        %i.entypo.edi-check_2
+        une tâche
+
+  - unless @person.present? || @structure.present?
+    %li
+      = link_to new_task_path, remote:true do
+        %i.entypo.edi-check_2
+        une tâche générique
+  %li
+    - if @structure.present?
+      = link_to new_structure_person_path(@structure) do
+        %i.entypo.edi-user
+        une personne à cette structure
+    - else
+      = link_to new_person_path do
+        %i.entypo.edi-user
+        une personne
+  %li
+    = link_to new_structure_path do
+      %i.entypo.edi-venue
+      une structure
+  
+-#
+  %li
+    /= link_to new_oportunitie do
+    %a{:href=>"#"}
+      %i.entypo.edi-dates
+      une date
+  %li
+    /= link_to new_oportunitie do
+    %a{:href=>"#"}
+      %i.entypo.edi-megaphone
+      une campagne

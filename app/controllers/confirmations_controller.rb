@@ -17,16 +17,12 @@ class ConfirmationsController < Devise::PasswordsController
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do
-      if @confirmable.has_no_password?
-        @confirmable.attempt_set_password(params[:user])
-        if @confirmable.valid?
-          do_confirm
-        else
-          do_show
-          @confirmable.errors.clear #so that we won't render :new
-        end
+      @confirmable.attempt_set_password(params[:user])
+      if @confirmable.valid?
+        do_confirm
       else
-        self.class.add_error_on(self, :email, :password_allready_set)
+        do_show
+        @confirmable.errors.clear #so that we won't render :new
       end
     end
 
@@ -62,13 +58,23 @@ class ConfirmationsController < Devise::PasswordsController
   def do_show
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
+    # @confirmable.accounts.destroy_all
+    @current_account = Account.find(Account.find_by_domain(request.subdomain))
+    if @confirmable.accounts.include?(@current_account)
+      @account = @current_account
+    else
+      @account = @confirmable.accounts.build unless @confirmable.accounts.any?
+    end
     render 'devise/confirmations/show'
   end
 
   def do_confirm
     @confirmable.confirm!
     set_flash_message :notice, :confirmed
-    sign_in_and_redirect(resource_name, @confirmable)
+    logger.debug "before signin and redirect"
+    sign_in(@confirmable)
+    redirect_to "#{request.protocol}#{@confirmable.accounts.first.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"
+    # sign_in_and_redirect(resource_name, @confirmable)
   end
 
   # The path used after resending confirmation instructions.

@@ -1,0 +1,90 @@
+-content_for :scripts do
+  = javascript_include_tag "tour/home-tour-fr"
+  
+%header.page-title
+  Bienvenue chez Edgar !
+
+
+%section
+  %h3.message
+    Faissons connaissance !<br>
+    Avant tout, Edgar vous présente les bases  :
+    
+%section
+  .row-fluid
+    .media.video
+      <iframe src="//player.vimeo.com/video/81417704?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+%section
+  %h3.message
+    /Ceci est une version béta,<br>
+    /de nouvelles fonctionnalités arriveront trés prochainement.<br>
+    Les premiers pas :
+
+%section
+  .row-fluid.label-blocks
+    .span4
+      = link_to edit_user_path(current_user), :class => "label label-large" do
+        %i.edi-cog
+        %h4 Paramétrez votre compte
+        %p
+          Uploader votre photo,<br>
+          Créer votre projet artistique,<br>
+          Et plus encore...
+        
+    .span4
+      = link_to contacts_path, :class => "label label-large" do
+        %i.edi-book
+        %h4 Gérez vos contacts
+        %p
+          Importez, créez et <br>
+          organiser vos contacts, <br>
+          ils sont importants !
+          
+  
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i.edi-light-bulb
+        %h4
+          Des suggestions ?
+        %p
+          Nous avons besoin de vos retours ! <br>
+          A tout moment, vous pouvez cliquer <br>
+          sur cette icon en bas à gauche de l'écran.
+          
+          
+          
+                 
+-#
+  .row-fluid.label-blocks
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i.edi-directions
+        %h4
+          Perdu ?
+        %p
+          Visiter l’application  <br>à l’aide des liens en bas à gauche
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i
+          %img{alt: "Thumb_venue_default", src: "/assets/appli/label_block_pics_video0.png"}
+        %h4
+          Voir le tutoriel vidéo
+        %p
+          Edgar vous explique ses bases  
+          
+          
+%section          
+  %span
+    %input{:id => "wlcm", :type => "checkbox"}
+    %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
+
+  -#    
+    - if user_signed_in?
+      - if current_user.has_role? :admin
+        = link_to "Administration", users_path
+      = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+    - else
+      = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+

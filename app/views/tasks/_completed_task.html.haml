@@ -1,0 +1,51 @@
+%li{id: "task_#{task.id}"}
+  - complete_link = task.assetask.present? ? send("complete_#{task.assetask.class.name.downcase}_task_path",task.asset,t) : complete_task_path(t)
+  - uncomplete_link = task.assetask.present? ? send("uncomplete_#{task.assetask.class.name.downcase}_task_path",task.asset,t) : uncomplete_task_path(t)
+  
+  %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-complete-link" => complete_link, "data-uncomplete-link" => uncomplete_link}
+    %input{:type => "checkbox", :class=>"checkbox", :onclick =>"toggleCompletedTask(this)", checked:true}
+    %label
+  .rightrow.small
+    - color,date = task.friendly_date
+    = show_badge(color, date)
+    .actions
+      -#%a.shybtn{:href => "#"}
+      - if task.assetask.present?
+        = link_to send("edit_#{task.assetask.class.name.downcase}_task_path",task.asset,t), :class => "shybtn" do
+          %i.entypo.edi-pencil
+      - else
+        = link_to edit_task_path(t), :class => "shybtn" do
+          %i.entypo.edi-pencil
+          
+  .mainrow
+    .title
+      - if task.assetask.present?
+        = link_to task.name, send("edit_#{task.assetask.class.name.downcase}_task_path",task.asset,t), remote:true
+      - else
+        = link_to task.name, edit_task_path(t)
+      
+    .infos-line
+      .infos-part
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag task.completor.avatar
+          = task.completor.nickname
+      - if task.assetask.present?
+        .infos-part
+          = link_to task.asset do
+            .pic.pic-mini= image_tag task.assetask.avatar
+            = task.assetask.name
+      - if task.project.present?
+        .infos-part
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag task.project.avatar
+            = task.project.name
+        .infos-part
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag task.assignee.avatar
+            = task.assignee.nickname
+      
+      - if task.project.present?
+        .infos-part
+          %a{:href => "#"}
+            .pic.pic-mini= image_tag task.project.avatar
+            = task.project.name

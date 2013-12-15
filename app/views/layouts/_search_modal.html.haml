@@ -1,0 +1,13 @@
+#thesearch
+  = text_field_tag "search", nil, placeholder: "Accéder rapidement à un contact...", class: "jq_autocomplete", autofocus: true, data: {autocomplete_source: contacts_path} 
+  .tour-backdrop.search-backdrop
+-#  
+  :javascript
+    $('#typea').typeahead();
+
+  
+  -#
+    .dropup
+    
+    = v.input :show_host_name, hint: "ou creer une nouvelle #{link_to("nouveau lieu ou festival", new_structure_path, remote:true)}", input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: contacts_path()} }
+    
