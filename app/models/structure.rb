@@ -14,7 +14,7 @@
 class Structure < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :contact_attributes, :avatar, :kind
+  attr_accessible :contact_attributes, :avatar, :remote_avatar_url, :kind
 
   has_one :contact, as: :contactable, dependent: :destroy
   accepts_nested_attributes_for :contact
@@ -46,11 +46,18 @@ class Structure < ActiveRecord::Base
     unless structurable.present?
       case k
       when "venue"
-        self.structurable = Venue.new
+        v = Venue.new
+        self.structurable = v
+        v.structure = self
+        
       when "festival"
-        self.structurable = Festival.new
+        f = Festival.new
+        self.structurable = f
+        f.structure = self
       when "show_buyer"
-        self.structurable = ShowBuyer.new
+        s = ShowBuyer.new
+        self.structurable = s
+        s.structure = self 
       end
     end 
   end
@@ -87,4 +94,5 @@ class Structure < ActiveRecord::Base
   def relative(user)
     relative = self.relatives.where(user_id: user.id).first
   end
+
 end
