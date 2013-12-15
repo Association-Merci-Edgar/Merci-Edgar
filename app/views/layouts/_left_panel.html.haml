@@ -58,7 +58,7 @@
                 - if c.present?
                   %li
                     = link_to c do
-                      -#.pic.pic-mini= image_tag c.avatar
+                      .pic.pic-mini= image_tag c.fine_model.avatar_url(:thumb)
                       = c
                 
       %li

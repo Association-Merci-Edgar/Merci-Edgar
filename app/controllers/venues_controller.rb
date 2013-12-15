@@ -21,7 +21,7 @@ class VenuesController < AppController
   # GET /venues/1.json
   def show
     @venue = Venue.find(params[:id])
-    add_asset(@venue)
+    add_asset(@venue.structure.contact)
     @structure = @venue.structure
     @main_person = @venue.main_person(current_user)
     @people = @venue.people
@@ -51,7 +51,7 @@ class VenuesController < AppController
   # GET /venues/1/edit
   def edit
     @venue = Venue.find(params[:id])
-    add_asset(@venue)
+    add_asset(@venue.structure.contact)
     @venue.schedulings.build(name: "Programmation Principale") unless @venue.schedulings.any?
     @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
   end
@@ -60,7 +60,7 @@ class VenuesController < AppController
   # POST /venues.json
   def create
     @venue = Venue.new(params[:venue])
-    add_asset(@venue)
+    add_asset(@venue.structure.contact)
 
     respond_to do |format|
       if @venue.save

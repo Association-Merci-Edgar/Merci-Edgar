@@ -1,4 +1,5 @@
 class StructuresController < AppController
+  include ApplicationHelper
 
   def index
     @structures = Structure.joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(5)
@@ -54,6 +55,7 @@ class StructuresController < AppController
 
   def edit
     @structure = Structure.find(params[:id])
+    add_asset(@structure.contact)
   end
   
   def update
@@ -76,6 +78,7 @@ class StructuresController < AppController
 
   def show
     @structure = Structure.find(params[:id])
+    add_asset(@structure.contact)
     @people = @structure.people
     @tasks = @structure.tasks
     @pending_tasks = @tasks.pending
