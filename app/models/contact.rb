@@ -23,6 +23,7 @@ class Contact < ActiveRecord::Base
   belongs_to :contactable, polymorphic: true
   
   validates_uniqueness_of :name, scope: :account_id
+  # validates_associated :phones
 
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy

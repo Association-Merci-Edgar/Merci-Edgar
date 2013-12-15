@@ -16,6 +16,8 @@ class Phone < ActiveRecord::Base
   # validates :national_number, :phone => true, :allow_blank => true
   validate :check_number
   before_validation :set_kind
+  before_validation :set_number
+  
   attr_accessor :country
   VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :fax, :other]
   PERSON_KIND = [:work, :mobile, :perso, :fax, :other]
@@ -74,10 +76,17 @@ class Phone < ActiveRecord::Base
   def national_number=(n)
     @national_number = n
     self.number = @national_number
+    puts "IN NN -- number:#{self.number} // #{@national_number}"
   end
 
+  def set_number
+    international = Phone.internat(@national_number,country)
+    self.number = international if international
+    puts "IN SN -- number:#{self.number} // #{@national_number}"
+  end
+  
   def check_number
-    self.number = Phone.internat(self.number,country)
+    puts "IN CN -- number:#{self.number} // #{@national_number}"
     if !Phony.plausible?(self.number)
       errors.add(:national_number, "Wrong phone number")
     end
