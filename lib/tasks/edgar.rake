@@ -3,11 +3,12 @@ namespace :edgar do
   task :dream_team => :environment do
     dream_account = Account.create(name:"Base Edgar",domain:"community")
     krichtof = dream_account.users.build(name:"Christophe Robillard",email:"christophe.robillard@gmail.com",first_name:"Christophe",last_name:"Robillard",password:"changeme",password_confirmation:"changeme")
-    jp = dream_account.users.build(name:"Jean-Paul Bagnis",email:"jp@jpbagnis.com",first_name:"Jean-Paul",last_name:"Bagnis",password:"changeme",password_confirmation:"changeme")
+    # jp = dream_account.users.build(name:"Jean-Paul Bagnis",email:"jp@jpbagnis.com",first_name:"Jean-Paul",last_name:"Bagnis",password:"changeme",password_confirmation:"changeme")
     krichtof.confirmed_at = Time.now
-    jp.confirmed_at = Time.now
+    # jp.confirmed_at = Time.now
     if !dream_account.save
-      logger.info "Error while creating staff users : #{dream_account.errors}"
+      #logger.info "Error while creating staff users : #{dream_account.errors}"
+      puts "Error while creating staff users : #{dream_account.errors.full_messages}"
     end
   end
 
