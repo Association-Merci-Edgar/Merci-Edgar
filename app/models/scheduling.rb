@@ -23,7 +23,7 @@ class Scheduling < ActiveRecord::Base
   belongs_to :scheduler, class_name: "Person", touch: true, autosave: true
   has_many :prospectings, dependent: :destroy
 
-  attr_accessible :name, :period, :contract_list, :style_tags, :prospectings_attributes, :show_buyer_name, :show_host_name, :show_host_kind, :scheduler_name, :external_show_buyer
+  attr_accessible :name, :period, :contract_tags, :contract_list, :style_tags, :prospectings_attributes, :show_buyer_name, :show_host_name, :show_host_kind, :scheduler_name, :external_show_buyer
   attr_accessor :scheduler_name
   
   # attr_writer :external_show_buyer

@@ -17,7 +17,7 @@
 class Venue < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar
+  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
 
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
@@ -41,7 +41,7 @@ class Venue < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
   
-  before_update :set_contact_criteria 
+  before_save :set_contact_criteria 
 
   scope :by_type, (lambda do |kind|
     where(kind: kind) if kind.present?
@@ -156,5 +156,12 @@ class Venue < ActiveRecord::Base
       end if s.style_list.present?
     end
     sl
+  end
+  
+  def to_xml
+    super(:skip_types => true,
+      except: [:created_at, :updated_at, :account_id], 
+      :include => {:structure => {except: [:created_at, :updated_at, :account_id], include: :contact}, :schedulings => {}}
+        )
   end
 end
