@@ -1,26 +1,5 @@
-.page-title
-  Contacts
-  -#
-    .subpage-nav
-      = link_to contacts_path, :class =>"active" do
-        Liste
-      = link_to show_map_contacts_path do
-        Carte
+= render 'header'
 
-/%form.inline-form
-= form_tag show_map_contacts_path, method: :get, class: "inline-form" do
-  .control-group
-    = label_tag :address,"Afficher des lieux à proximité de"
-    = text_field_tag :address, params[:address], placeholder:"Localité, Adresse, ...", :class =>"input-xlarge"
-
-  .control-group
-    = label_tag :radius,"Rayon"
-    .input-append.inline
-      = text_field_tag :radius, params[:radius], placeholder:"50", :class =>"input-mini"
-      %span.add-on km
-  %button.btn.btn-primary.inline{type:"submit"}
-    %i.entypo.edi-search
-    
 / = gmaps4rails(@contacts_json)
 - if @contacts_json.present?
   #gmaps_index
