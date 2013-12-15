@@ -15,7 +15,7 @@ class FestivalsController < AppController
   # GET /festivals/1.json
   def show
     @festival = Festival.find(params[:id])
-    add_asset(@festival)
+    add_asset(@festival.structure.contact)
     @structure = @festival.structure
     @main_person = @festival.main_person(current_user)
     @people = @festival.structure.people
@@ -40,7 +40,7 @@ class FestivalsController < AppController
   # GET /festivals/1/edit
   def edit
     @festival = Festival.find(params[:id])
-    add_asset(@festival)
+    add_asset(@festival.structure.contact)
     @festival.schedulings.build(name: "Programmation") unless @festival.schedulings.any?
   
   end

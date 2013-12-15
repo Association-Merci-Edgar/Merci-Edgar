@@ -21,7 +21,7 @@ class PeopleController < AppController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
-    add_asset(@person)
+    add_asset(@person.contact)
     @tasks = @person.tasks
     @pending_tasks = @tasks.pending
     @completed_tasks = @tasks.completed
@@ -54,7 +54,7 @@ class PeopleController < AppController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    add_asset(@person)
+    add_asset(@person.contact)
   end
 
   # POST /people

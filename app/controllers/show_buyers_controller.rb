@@ -19,7 +19,7 @@ class ShowBuyersController < AppController
   # GET /venues/1.json
   def show
     @show_buyer = ShowBuyer.find(params[:id])
-    add_asset(@show_buyer)
+    add_asset(@show_buyer.structure.contact)
     @structure = @show_buyer.structure
     @main_person = @show_buyer.main_person(current_user)
     @people = @show_buyer.structure.people
@@ -48,7 +48,7 @@ class ShowBuyersController < AppController
   # GET /venues/1/edit
   def edit
     @show_buyer = ShowBuyer.find(params[:id])
-    add_asset(@show_buyer)
+    add_asset(@show_buyer.structure.contact)
     @show_buyer.schedulings.build(name: "Programmation") unless @show_buyer.schedulings.any?
   end
 
@@ -56,7 +56,7 @@ class ShowBuyersController < AppController
   # POST /venues.json
   def create
     @show_buyer = ShowBuyer.new(params[:venue])
-    add_asset(@show_buyer)
+    add_asset(@show_buyer.structure.contact)
 
     respond_to do |format|
       if @show_buyer.save
