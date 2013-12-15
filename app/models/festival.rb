@@ -15,7 +15,7 @@
 class Festival < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :artists_kind, :last_year, :nb_edition, :structure_attributes, :schedulings_attributes, :network_tags, :avatar
+  attr_accessible :artists_kind, :last_year, :nb_edition, :structure_attributes, :schedulings_attributes, :network_tags, :avatar, :remote_avatar_url
 
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
@@ -31,7 +31,7 @@ class Festival < ActiveRecord::Base
   # validates_presence_of :addresses
 
 
-  before_update :set_contact_criteria 
+  before_save :set_contact_criteria 
   
   mount_uploader :avatar, AvatarUploader
 

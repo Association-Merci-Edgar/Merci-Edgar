@@ -153,4 +153,15 @@ class Account < ActiveRecord::Base
   def manager?(user)
     self.abilitations.where(user: user).first.manager?
   end
+
+  def populate
+    samples = YAML.load(File.open("config/sample_data.yml"))
+    olympiaf = Venue.create(samples["venues"]["olympiaf"])
+    kismar = Festival.create(samples["festivals"]["kismar"])
+    fly = Structure.create(samples["structures"]["fly"])
+    bob = olympiaf.people.first
+    bob.update_attributes(samples["people"]["bob"])
+    aurore = Person.create(samples["people"]["aurore"])
+  end
+  
 end

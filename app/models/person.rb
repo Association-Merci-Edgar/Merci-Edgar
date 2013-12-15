@@ -14,7 +14,7 @@
 
 class Person < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
-  attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar
+  attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar, :remote_avatar_url
   has_one :contact, as: :contactable, dependent: :destroy
   has_many :structures, through: :people_structures, uniq:true
   has_many :people_structures, dependent: :destroy
