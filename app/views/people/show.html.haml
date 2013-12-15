@@ -13,7 +13,7 @@
     %ul.list-infos
       %li.infolabel= @person.title(@person.main_structure(current_user))
       %li
-        .pic.pic-small.pic-user= image_tag @person.main_structure(current_user).avatar_url
+        .pic.pic-small.pic-user= image_tag @person.main_structure(current_user).fine_model.avatar_url
         = link_to @person.main_structure(current_user).structurable do
           %h4= @person.main_structure(current_user).name
       %li= @person.main_structure(current_user).address.full_address if @person.main_structure(current_user).address
