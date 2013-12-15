@@ -1,0 +1,34 @@
+= simple_form_for(@person, :html => { :class => 'form-horizontal form-edit' }) do |f|
+  = display_errors(@person)
+
+
+
+  .form-inputs
+    %header
+      .control-group
+        .pic-container
+          .pic= image_tag @person.avatar
+          
+        = f.input :first_name, label: false, :class => "input-Xlarge"
+        = f.input :name, label: false, :class => "input-Xlarge"
+        
+        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+
+
+
+    %section#basic-infos
+      -#________________________________________________________people_structures
+      .fields-group
+        = f.fields_for :people_structures do |ps|
+          .nested-fields
+            = render 'people_structure_fields', f: ps
+     
+      .links
+        = link_to_add_association 'Ajouter une fonction', f, :people_structures, :wrap_object => Proc.new {|ps| ps.build_structure; ps }
+        
+        
+  .form-actions
+    = f.button :submit, :class => "btn-primary btn-large"
+    ou
+    = link_to t(:cancel), @person
+        

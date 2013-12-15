@@ -1,0 +1,15 @@
+%section
+  %h3.message
+    Aucune personne relative à 
+    <br>
+    = @structure.name
+    <br>
+    Voulez vous en ajouter ?
+
+%section
+  .row-fluid.label-blocks
+    .span4
+      = link_to new_structure_person_path(@structure), :class => "label label-large" do
+        %i.edi-check_2
+        %h4 Ajouter une personne 
+        %p à cette structure

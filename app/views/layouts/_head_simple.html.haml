@@ -1,0 +1,21 @@
+= csrf_meta_tags
+%meta{:charset => "utf-8"}/
+%title Merci Edgar
+%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+%meta{:content => "", :name => "description"}/
+%meta{:content => "", :name => "author"}/
+
+/ Le styles
+= stylesheet_link_tag "application"
+
+/ HTML5 shim, for IE6-8 support of HTML5 elements
+/[if lt IE 9]
+  <script src="/assets/js/html5shiv.js"></script>
+/ Fav and touch icons
+%link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}/
+-#
+  %link{:href => "/assets/ico/apple-touch-icon-144-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "144x144"}/
+  %link{:href => "/assets/ico/apple-touch-icon-114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}/
+  %link{:href => "/assets/ico/apple-touch-icon-72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}/
+  %link{:href => "/assets/ico/apple-touch-icon-57-precomposed.png", :rel => "apple-touch-icon-precomposed"}/
+  %link{:href => "/assets/ico/favicon.png", :rel => "shortcut icon"}/

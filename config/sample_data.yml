@@ -1,0 +1,80 @@
+venues:
+  olympiaf:
+    remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/olympiaf.jpg"
+    kind: music_venue
+    rooms_attributes:
+      main_room:
+        name: "Salle principale"
+        capacities_attributes:
+          1:
+            nb: 250
+    structure_attributes:
+      contact_attributes:
+        name: "L'Olympiaf"
+        addresses_attributes:
+          main_address:
+            kind: main_address
+            city: Monteton
+            postal_code: 47120
+            country: FR
+            
+    schedulings_attributes:
+      main_scheduling:
+        name: "Programmation principale"
+        contract_tags: "Cession, Co-production"
+        scheduler_name: "Bigwell Bob"
+        style_tags: "Chanson, Rock, Funk"
+          
+festivals:
+  kismar:
+    remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/kismar.jpg"
+    nb_edition: 5
+    last_year: 2013
+    structure_attributes:
+      contact_attributes:
+        name: "Kismar Festival"
+        addresses_attributes:
+          main_address:
+            kind: main_address
+            city: La Baffe
+            postal_code: 88460
+            country: FR
+    schedulings_attributes:
+      main_scheduling:
+        name: "Programmation principale"
+        show_buyer_name: "Comité d'Entreprise des Dentistes Associés"
+        contract_tags: "Cession"
+        scheduler_name: "Bigwell Bob"
+        style_tags: "Funk, Fanfare"
+
+structures:
+  fly:
+    remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/fly.jpg"
+    contact_attributes:
+      name: "Fly Imprimeur"
+      addresses_attributes:
+        main_address:
+          kind: main_address
+          city: Arnac-La-Poste
+          postal_code: 87160
+          country: FR
+    
+
+people:
+  bob:
+    remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/fred.jpg"
+    contact_attributes:
+      name: "Bigwell Bob"
+      phones_attributes:
+        main_phone:
+          national_number: "01 02 03 04 05"
+    
+  aurore:
+    remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/aurelie.jpg"
+    first_name: Aurore
+    last_name: "Boréale"
+    people_structures_attributes:
+      comm:
+        structure_name: "L'Olympiaf"  
+        title: "Responsable Communication"
+      

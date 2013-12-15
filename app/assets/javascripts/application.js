@@ -10,13 +10,35 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
+// require jquery
+//= require jquery.ui.all
 //= require jquery_ujs
+//= require tag-it
+//= require tag
 //= require bootstrap
-//= require_tree .
-$('document').ready(function() {
+// require bootstrap-typeahead
+//= require_tree ./datetimepicker
+//= require jquery_nested_form
+//= require gmaps4rails/gmaps4rails.base
+//= require gmaps4rails/gmaps4rails.googlemaps
+//= require uservoice
 
-  // display validation errors for the "request invitation" form
+//= require contacts
+//= require nested_form
+//= require_tree ./appli
+//= require edgarapp
+//= require tasks_group
+//= require jquery.autosize.min
+//= require_self
+
+/*
+$('document').ready(function() {
+	
+
+  $("html").niceScroll();
+  			
+	$('.datepicker').datetimepicker();
+	// display validation errors for the "request invitation" form
   if ($('.alert-error').length > 0) {
     $("#request-invite").modal('toggle');
   }
@@ -67,3 +89,4 @@ function loadSocial() {
       $.getScript('https://apis.google.com/js/plusone.js');
     }
 }
+*/

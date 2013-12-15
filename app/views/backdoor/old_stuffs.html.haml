@@ -1,0 +1,141 @@
+%h1.page-title Old Stuffs
+  
+-#
+  .dropdown
+    / Link or button to toggle dropdown
+    %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      .status-ico.fav-all
+
+    %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}
+          Tout
+          .status-ico.fav-all
+      %li{role: "presentation"}
+        //%a{href: "#", role: "menuitem", tabindex: "-1"}
+        = link_to only_contacts_path(filter: "favorites"), role: "menuitem", tabindex: "-1" do
+          Favoris
+          .status-ico.fav-on
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}
+          Non Favoris
+          .status-ico.fav-off
+        
+        
+  
+  .dropdown
+    / Link or button to toggle dropdown
+    %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      .status-ico.con-all
+
+    %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}
+          Tout
+          .status-ico.con-all
+      %li{role: "presentation"}
+        //%a{href: "#", role: "menuitem", tabindex: "-1"}
+        = link_to only_contacts_path(filter: "contacted"), role: "menuitem", tabindex: "-1" do
+          Contactés
+          .status-ico.con-on
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}
+          Non Contactés
+          .status-ico.con-off
+        
+  .dropdown
+    / Link or button to toggle dropdown
+    %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      .status-ico.dea-all
+
+    %ul.dropdown-menu.pull-right{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}
+          Tout
+          .status-ico.dea-all
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}             
+          Déjà joué
+          .status-ico.dea-on
+      %li{role: "presentation"}
+        %a{href: "#", role: "menuitem", tabindex: "-1"}
+          Jamais joué
+          .status-ico.dea-off
+
+
+// old TASKS Filters
+-#
+  %section.span3.filters
+    .search
+      = form_tag contacts_path, method: "get", class: "form-search form-horizontal", id:"custom-search-form" do
+        .input-append
+          = text_field_tag :search, params[:search], class:"search-query", placeholder:"—"
+          %button.btn{type:"submit"}
+            %i.icon-search
+    -#
+      %ul.nav.nav-list.filters-list
+        %li.nav-header
+          Types
+        %li
+          = nav_link "Tout", contacts_path, "edi-book"
+        %li
+          = nav_link "Personnes", people_path, "edi-user"
+        %li
+          = nav_link "Salles", venues_path, "edi-venue"
+
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Filtres
+      %li
+        = nav_link "Tout", tasks_path, "edi-check_2"
+
+
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Projets
+      %li
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag "squared/pro1.jpg"
+          Projet A
+      %li
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag "squared/pro2.jpg"
+          Projet B
+      %li
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag "squared/pro3.jpg"
+          /%i.edi-rocket
+          Projet C
+
+
+    %ul.nav.nav-list.filters-list
+      %li.nav-header
+        Utilisateurs
+      %li
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag "squared/per1.jpg"
+          Untel X.
+      %li
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag "squared/per2.jpg"
+          Sarah B.
+      %li
+        %a{:href => "#"}
+          .pic.pic-mini= image_tag "squared/per3.jpg"
+          /%i.edi-rocket
+          Simon C.
+
+
+
+
+-#
+  .span9
+    %ul.list-large
+      %li.list-header
+        50 résultats
+        = paginate @tasks
+        .meta
+          %a.shybtn{:href => "#",:title => "bulk / Traitement par lot",:rel => "tooltip"}
+            %i.edi-list
+
+      = render @tasks

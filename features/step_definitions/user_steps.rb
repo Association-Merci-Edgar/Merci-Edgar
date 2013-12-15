@@ -19,7 +19,9 @@ end
 def create_user
   create_visitor
   delete_user
-  @user = FactoryGirl.create(:user, email: @visitor[:email])
+  @user = FactoryGirl.build(:user, email: @visitor[:email])
+  @user.stubs(:add_user_to_mailchimp)
+  @user.save
 end
 
 def delete_user
@@ -29,22 +31,27 @@ end
 
 def sign_up
   delete_user
-  visit '/users/sign_up'
+  visit '/fr/users/sign_up'
   fill_in "Email", :with => @visitor[:email]
-  click_button "Request Invitation"
+  click_button "Je veux le tester !"
   find_user
 end
 
-def sign_in
-  visit '/users/sign_in'
-  fill_in "Email", :with => @visitor[:email]
-  fill_in "Password", :with => @visitor[:password]
-  click_button "Sign in"
+def sign_in(user)
+  Capybara.app_host = "http://www.lvh.me"
+  visit new_user_session_path(:locale => :fr)
+  fill_in "user_email", :with => user.email
+  fill_in "user_password", :with => user.password
+  click_button "Se connecter"
+  Capybara.app_host = "http://#{user.accounts.first.domain}.lvh.me"
+  Capybara.always_include_port = true
 end
 
 ### GIVEN ###
 Given /^I am not logged in$/ do
-  visit '/users/sign_out'
+  Capybara.app_host = "http://www.lvh.me"
+  Capybara.always_include_port = true
+  visit '/fr/users/sign_out'
 end
 
 Given /^I am logged in$/ do
@@ -129,7 +136,15 @@ When /^I look at the list of users$/ do
   visit '/'
 end
 
+When /^I save the current page/ do
+  save_and_open_page
+end
+
 ### THEN ###
+Then /^I pause for a while$/ do
+  sleep 30
+end
+
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
   page.should_not have_content "Sign up"
@@ -185,4 +200,13 @@ end
 Then /^I should see my name$/ do
   create_user
   page.should have_content @user[:name]
+end
+
+Then /^the user "([^"]*)" should belong to account "([^"]*)"$/ do |user_name, account_name|
+  User.find_by_name(user_name).accounts.should include(Account.find_by_name(account_name))
+end
+
+Then /^"([^"]*)" account should have domain "([^"]*)"$/ do |account_name, domain|
+  print "#{account_name} #{domain} / #{Account.find_by_name(account_name).name} #{Account.find_by_name(account_name).domain}"
+  Account.find_by_name(account_name).domain.should == domain
 end

@@ -1,0 +1,240 @@
+fr:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'obligatoire'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Veuillez vérifier les problèmes suivants :"
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    placeholders:
+      defaults:
+        first_name: "Prénom"
+        last_name: "Nom"
+        name: "Nom"
+        password: "Saisissez votre mot de passe"
+        forgot_password : "Mot de passe oublié ?"
+        password : "Choisissez un mot de passe"
+        password_confirmation : "Répétez votre mot de passe"
+      accounts:
+        name: "Nom de votre association, label, groupe..."
+        user: "Nom d'utilisateur"
+      addresses:
+        city: Ville, localité
+        postal_code: Code postal
+        more_info: Infos supplémentaires (Boite Postale, Digicode, ...)
+      venue:
+        name: "Nom de la salle"
+      emails:
+        address: "Adresse électronique"
+      phones:
+        national_number : "Numéro de téléphone"
+      task:
+        name: "Tâche"
+    buttons:
+      add_capacity : Ajouter une jauge à cette salle
+      add_room : Ajouter une salle à ce lieux
+    labels:
+      defaults:
+        name: "Nom"
+        start: "Début"
+        end: "Fin"
+        email: "Votre email"
+        password: "Mot de passe"
+        forgot_password : "Mot de passe oublié ?"
+        choose_password : "Choisissez un mot de passe"
+        repeat_password : "Répéter votre mot de passe"
+        recommnandations_password : "Pour plus de sécurité, utilisez 6 caractères ou plus avec au moins 1 chiffre"
+        signin: "Se connecter"
+        signout: "Se déconnecter"
+        signup_fun: "C’est parti !"
+        firsttime_welcome: "Bienvenue chez Edgar !"
+        firsttime_wording1: "Faisons les présentations:"
+        firsttime_wording2: "Activation de compte pour l’adresse :"
+      project:
+        name: Projet artistique
+      contact:
+        remark: Observations
+
+      schedulings: &schedulings
+        external_show_buyer: Programmé par
+        show_buyer_name : Nom de la structure organisatrice de spectacle
+        show_host_name : Lieu de programmation
+        scheduler_name: "Programmateur"          
+        period: Cycle de programmation
+        prospecting: Programmateur en recherche active de spectacles
+        contract_list: Types de contrats
+
+
+      structure:
+        contact:
+          addresses:
+            city: Ville
+            postal_code: Code postal
+            country: Pays
+            street: Adresse
+      festival:
+        artists_kind: "Type d'artistes"
+        nb_edition: "Nombre d'éditions"
+        last_year: "Derniere année"  
+
+        schedulings:
+          <<: *schedulings
+
+      show_buyer:
+        schedulings:
+          <<: *schedulings
+
+      venue:
+        kind: Type de salle
+        
+        residency: Résidence
+        accompaniment: Accompagnement
+        
+        schedulings:
+          <<: *schedulings
+
+        contracts: Contrats
+        rooms:
+          capacities:
+            nb: Jauge
+            modular: Modulable
+          bar: Bar dans la salle
+        addresses:
+          city: Ville
+          postal_code: Code postal
+          country: Pays
+          street: Adresse
+        websites:
+          url: Site web
+        phones:
+          national_number: N°Téléphone
+      person:
+        people_structures:
+          title: Fonction
+          structure_name: Nom de la structure
+          structure_city: Ville
+          structure_country: Pays 
+      task:
+        assigned_to: Assigné à 
+      user:
+        first_name: Prénom
+        last_name: Nom
+        password_confirmation: Confirmation du mot de passe
+    hints:
+      defaults:
+        password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
+      #venue:
+      #  name: "Un nom unique par ville"   
+    tooltips:
+      venue:
+        venue_info:
+          kind: "SMAC: salle de musique actuelle, blablabla"
+    options:
+      structure:
+        #kind: "Type de structure"
+        kind:
+          kind: "Type de structure"
+          venue: "Lieu"
+          festival: "Festival"
+          show_buyer: "Autre organisateur de spectacles"
+          structure: "Structure générique"
+      phones: &phones
+        classic_kind:
+          reception: Standard
+          scheduling: Programmation
+          administrative: Administration
+          fax: Fax
+          ticket: Billeterie
+          other: Autre
+          work: Ligne directe
+          mobile: Mobile
+          perso: Perso
+      emails:
+        classic_kind:
+          reception: Accueil
+          scheduling: Programmation
+          administrative: Administration
+          technical: Technique
+          ticket: Billeterie
+          work: Travail
+          perso: Perso
+          other: Autre
+
+      schedulings: &schedulings_options
+        period: 
+          nil: "Non fourni"
+          all_year: "Toute l'année"
+          quaterly: "Par trimestre"
+          per_semester: "Tous les 6 mois"
+
+      festival:
+        schedulings:
+          <<: *schedulings_options
+      show_buyer:
+        schedulings:
+          <<: *schedulings_options
+          
+      venue:
+        kind:
+          kind: Type de structure
+          bar: Bar
+          cultural_center: Centre culturel
+          smac: SMAC
+          music_venue: Salle de concerts
+          theater: Théâtre
+          mjc: MJC
+          theater_cafe: Café-Théâtre
+          other: Autre
+        schedulings:
+          <<: *schedulings_options
+            
+        addresses:
+          kind:
+            main_address: "Adresse du lieu"
+            admin_address: "Adresse administrative"
+        phones: 
+          <<: *phones
+        rooms:
+          capacities:
+            kind:
+              seating: "Assis"
+              standing: "Debout"
+              mixed: "Mixte"
+              flexible: "Modulable"
+        prospecting:
+          start_prospecting: Début
+          end_prospecting: Fin
+        season:
+          season: Saison
+      task:
+        bucket:
+          overdue: En retard
+          due_today: Aujourd'hui
+          due_tomorrow: Demain
+          due_this_week: Cette semaine
+          due_next_week: La semaine prochaine
+          due_this_month: Ce mois ci
+          specific: Date précise ...
+          
+    helpers:
+      submit:
+        venue:
+          
+          

@@ -1,0 +1,24 @@
+- content_for :contact_infoline do
+  - @person.people_structures.each do |ps|
+    %span= ps.title
+    %span à
+    %span.infolabel
+      = link_to ps.structure.name, ps.structure.fine_model
+      \/
+    /%span.infolabel.dblue= @person.addresses.first.city
+    /%span.infolabel — Ile de france
+
+- content_for :relative_infos do
+  - if @person.main_structure(current_user).present?
+    %ul.list-infos
+      %li.infolabel= @person.title(@person.main_structure(current_user))
+      %li
+        .pic.pic-small.pic-user= image_tag @person.main_structure(current_user).fine_model.avatar_url
+        = link_to @person.main_structure(current_user).structurable do
+          %h4= @person.main_structure(current_user).name
+      %li= @person.main_structure(current_user).address.full_address if @person.main_structure(current_user).address
+      %li= @person.main_structure(current_user).phone_number
+      %li= link_to @person.main_structure(current_user).website_url, @person.main_structure(current_user).website_url if @person.main_structure(current_user).website_url
+
+
+= render partial: "contacts/show", locals: {contact: @person.contact, edit_link_path: edit_person_path(@person)}                

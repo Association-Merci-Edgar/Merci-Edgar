@@ -1,0 +1,27 @@
+= render 'header'
+/______________________________________________________ LISTS       
+.row-fluid
+  %ul#contact-list.list-large
+    - unless @no_paging
+      %li.list-header
+        = @contacts.total_count
+        résulats — Page 
+        = paginate @contacts
+    -#  
+      .meta
+        %a.shybtn{:href => "#",:title => "bulk / Traitement par lot", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
+          %i.edi-list
+    
+    = render @contacts
+
+    - unless @no_paging
+      %li.list-header
+        = paginate @contacts
+    
+    .btns-in-list
+      %i.entypo.edi-plus-3
+      %span
+        = link_to "Ajouter un lieu", new_venue_path
+        |
+        = link_to new_person_path do
+          Ajouter une personne

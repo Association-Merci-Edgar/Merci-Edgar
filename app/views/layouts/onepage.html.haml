@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    = render 'layouts/head'
+  %body{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
+    /
+      \################# START MAIN-WRAPPER ####################
+      \============================================================
+    .main-wrapper
+      = render 'layouts/header'
+      = yield
+      = render 'layouts/footer'
+      = render 'layouts/javascripts'
+

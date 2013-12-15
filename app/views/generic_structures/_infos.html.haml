@@ -1,0 +1,89 @@
+.row-fluid
+  / _____________________________________________ left
+  .span6
+    %ul.list-infos
+      /%i.entypo.edi-location-2
+      %li.infolabel Coordonnées
+      
+      - map_displayed = false
+      - @structure.addresses.each do |address|
+        %li
+          %span.infolabel= t(address.kind, scope:"simple_form.options.venue.addresses.kind")
+          /%img{ :src => "http://placehold.it/280x140&text=googlemaps", :alt => "Description of image" }
+          / = gmaps4rails(address.to_gmaps4rails)
+          
+          - if address.kind == "main_address" and !map_displayed
+            = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => false, :class => "gmaps4rails_map", :container_class => "map_container" },"markers" => { "data" => address.to_gmaps4rails })
+            - map_displayed = true
+          %br
+            = address.street
+          = address.postal_code
+          = address.city
+          = address.more_info
+      -#  
+        -content_for :script do
+          <script type="text/javascript">
+      
+          Gmaps.map.callback = function() {
+          google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
+          //Map fully loaded here
+          $('#map').height($(".map_container").height());
+          $('#map').width($(".map_container").width());
+          google.maps.event.trigger($('#map'), 'resize');
+      
+          }
+          )};
+      
+        </script>
+        
+        
+      - @structure.emails.each do |email|
+        = render email
+
+      - @structure.phones.each do |phone|
+        = render phone
+
+      - @structure.websites.each do |website|
+        = render website
+        
+        
+        
+
+  / _____________________________________________ right
+  .span6
+    
+    %ul.list-infos
+      %li.infolabel Observations
+      -#%li= @structure.remark
+          
+    %ul.list-infos
+      %li.infolabel Réseaux sociaux
+      
+      .tabbable
+        %ul.nav.nav-tabs.sub-tabs
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#facebook"}
+              %i.entypo.edi-facebook
+          %li
+            %a{"data-toggle" => "tab", :href => "#twitter"}
+              %i.entypo.edi-twitter
+
+        .tab-content.sub-pane
+
+          #facebook.tab-pane.active
+            %ul.social-list
+              %li
+                %span Aujourd’hui à 12h30
+                %span Superatis Tauri montis verticibus qui ad solis ospatiis porrqsdigitur. Sdfate distqsdqs rtum sublimius attoqdslluntur.
+              %li
+                %span Hier à 12h30
+                %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+              %li
+                %span Hier à 12h30
+                %span Verticibus qui ad solis ospatiis porrigitur late distrtum sublimius attolluntur. Superatis Tauri montis qddqsverticibus qui ad solis ospatiis porrigitur late distrtum sublimius addttolluntur.
+              %a Voir le profil facebook
+              
+          #twitter.tab-pane
+            %ul.social-list
+              twitter
+

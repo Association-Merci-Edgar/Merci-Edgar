@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1 Welcome
+    %p
+      = @manager.name 
+      is pleased to invite you to try #{link_to ENV["DOMAIN"], root_url}.
+    %p Please click the link below to confirm your email address and set your password:
+    %p= link_to 'Confirm my account', confirmation_url(@member, :confirmation_token => @member.confirmation_token, subdomain: @account.domain, :locale => I18n.locale)

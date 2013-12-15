@@ -1,0 +1,86 @@
+
+- content_for :user_tab do
+  #profile.tab-pane.active
+
+    %section#profile-photo
+      %h4 Photo de votre profil
+      .pic.pic-user= image_tag @user.avatar
+      %p
+        L’image doit faire au moins 300x300 pixels.
+      = simple_form_for(@user, :html => { :method => :put, :class => 'form-vertical' }) do |f|
+        = f.input :avatar, label:false
+        = f.button :submit, :class => 'btn-primary'
+
+        
+    .row-fluid
+      = display_errors @user
+    .row-fluid
+      %section.span6
+        %h4 Informations de base
+        = simple_form_for(@user, :html => { :method => :put, :class => 'form-vertical' }) do |f|
+          
+          
+          /= f.input :name, :autofocus => true
+          = f.input :name
+          = f.input :first_name, :required => true
+          = f.input :last_name, :required => true
+          = f.input :email, :required => true
+        
+  
+          /%a.btn{:href => "#"} Mettre à jour
+          = f.button :submit, :class => 'btn-primary'
+         
+      %section.span6
+        %h4 Changement du mot de passe
+        = simple_form_for(@user, :html => { :method => :put, :class => 'form-vertical' }) do |f|
+           
+          = f.input :password, :autocomplete => "off"
+          = f.input :password_confirmation, :autocomplete => "off"
+    
+          /%a.btn{:href => "#"} Mettre à jour
+          = f.button :submit, :class => 'btn-primary'
+    
+  
+    .row-fluid  
+      %section.span6
+        %h4 Réglages
+        
+        %label Fuseau horaire
+        %select{:name => "select"}
+          %option{:value => ""} (GMT + 01:00) Paris
+          %option{:value => ""} (GMT+02)
+          %option{:value => ""} Selection Two
+          %option{:value => ""} Selection Three
+          %option{:value => ""} Selection Four
+
+        %label Langue
+        %select{:name => "select"}
+          %option{:value => ""} FR
+          %option{:value => ""} EN
+          %option{:value => ""} ES
+          %option{:value => ""} DE
+      
+        %label Pays par défauls lors de l’ajout
+        %select{:name => "select"}
+          %option{:value => ""} France
+          %option{:value => ""} England
+          %option{:value => ""} Etc...
+        
+        %p
+          %a.btn.btn-primary{:href => "#"} Mettre à jour
+          /= f.button :submit, 'Update', :class => 'btn-primary'
+    
+    
+      %section.span6
+        %h4 Notifications   
+        %p Fréquence des emails
+      
+    %section
+      %h4 Cancel my personal account
+      %p
+        Unhappy?
+      %p
+        #{link_to "Cancel my account", registration_path(@user), :class =>"btn btn-primary", :data => { :confirm => "Are you sure?" }, :method => :delete}
+      /= link_to "Back", :back    
+  
+= render 'devise/shared/profile'

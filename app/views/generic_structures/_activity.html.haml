@@ -1,0 +1,58 @@
+.row-fluid
+  .span8
+    -#
+      .btn-group
+        //ici un select :
+        %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          Selectionner un projet
+          %span.caret
+        %ul.dropdown-menu
+          %li projet 1
+          %li projet 2
+
+    #activityfield-outter
+      = simple_form_for(@reporting) do |f|
+        = f.input :project_id, collection: Project.all, label: false, value_method: :id, prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
+        = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
+        = f.hidden_field :asset_id
+        = f.hidden_field :asset_type
+        = button_tag(type: 'submit', class: "btn-secondary submit") do 
+          %i.entypo.edi-arrow-down-5
+                              
+    / ____________________________________ list reportings
+    %ul.list-large
+      = render @reportings
+   
+
+
+
+  / _____________________ infos-mini  
+  #infos-mini.span4
+    - if @structure.relative
+      %ul.list-infos
+        %li.infolabel
+          Contact principal
+        %li
+          .pic.pic-small= image_tag @structure.relative.avatar
+          = link_to @structure.relative do
+            %h4= @structure.relative
+        %li= @structure.relative.title(@structure)
+        %li= @structure.relative.phone_number
+        %li= @structure.relative.email_address
+  
+    %ul.list-infos
+      - if @structure.address
+        %li.infolabel= t(@structure.address.kind, scope: "simple_form.options.venue.addresses.kind")
+        %li= @structure.address.full_address
+      %li= @structure.email_address
+      
+    %ul.list-infos
+      %li.infolabel Autres
+      - @structure.emails.each do |email|
+        = render email
+
+      - @structure.phones.each do |phone|
+        = render phone
+        
+      - @structure.websites.each do |website|
+        = render website

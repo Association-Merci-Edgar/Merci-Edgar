@@ -1,0 +1,53 @@
+%ul.list-medium.collapse#completed_tasks
+  - tasks.each do |t|
+    %li{id: "task_#{t.id}", data: {task_id: t.id}}
+      - complete_link = t.asset.present? ? complete_contact_task_path(t.asset,t) : complete_task_path(t)
+      - uncomplete_link = t.asset.present? ? uncomplete_contact_task_path(t.asset,t) : uncomplete_task_path(t)
+      
+      %span.pull-left{title:"Marquer comme éffectué", "data-placement"=>"top-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-complete-link" => complete_link, "data-uncomplete-link" => uncomplete_link}
+        %input{:type => "checkbox", :class=>"checkbox", :onclick =>"toggleCompletedTask(this)", checked:true}
+        %label
+      .rightrow.small
+        - color,date = t.friendly_date
+        = show_badge(color, date)
+        .actions
+          -#%a.shybtn{:href => "#"}
+          - if t.asset.present?
+            = link_to edit_contact_task_path(t.asset,t), :class => "shybtn", remote:true do
+              %i.entypo.edi-pencil
+          - else
+            = link_to edit_task_path(t), :class => "shybtn" do
+              %i.entypo.edi-pencil
+              
+      .mainrow
+        .title
+          - if t.asset.present?
+            = link_to t.name, edit_contact_task_path(t.asset,t), remote:true
+          - else
+            = link_to t.name, edit_task_path(t)
+          
+        .infos-line
+          .infos-part
+            %a{:href => "#"}
+              .pic.pic-mini= image_tag t.completor.avatar
+              = t.completor.nickname
+          - if t.asset.present?
+            .infos-part
+              = link_to t.asset do
+                .pic.pic-mini= image_tag t.asset.avatar
+                = t.asset.name
+          - if t.project.present?
+            .infos-part
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag t.project.avatar
+                = t.project.name
+            .infos-part
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag t.assignee.avatar
+                = t.assignee.nickname
+          
+          - if t.project.present?
+            .infos-part
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag t.project.avatar
+                = t.project.name

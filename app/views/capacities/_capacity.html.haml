@@ -1,0 +1,4 @@
+%span.jauge
+  %span.number= capacity.nb
+  = t(capacity.kind, scope:"simple_form.options.venue.rooms.capacities.kind")
+  = t("simple_form.labels.venue.rooms.capacities.modular") if capacity.modular?

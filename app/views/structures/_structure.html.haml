@@ -1,0 +1,19 @@
+- if structure.structurable.present?
+  = render structure.structurable 
+
+- else
+  %li{id: "structure_#{structure.to_param}"}
+    = render partial: "contacts/contact_elem", locals: {contact: structure.contact, edit_link_path:edit_structure_path(structure) }
+  
+
+    .mainrow
+      = link_to structure do
+        %h3= structure.name
+        .pic= image_tag structure.avatar_url
+      .infos-line
+        / = render venue.capacities if venue.capacities
+        = render structure.address if structure.address
+      
+      .tags
+        = render partial: "tags/tags", locals: { contact: structure.contact}
+  

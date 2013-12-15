@@ -11,7 +11,7 @@ def invitation_request user
 end
 
 When /^I visit the home page$/ do
-    visit root_path
+    visit root_path(:locale => :fr)
 end
 
 When /^I fill in "(.*?)" with "(.*?)"$/ do |field, value|
@@ -22,8 +22,12 @@ When /^I click a button "([^"]*)"$/ do |arg1|
   click_button (arg1)
 end
 
-When /^I follow "(.*?)"$/ do |link|
-  click_link(link)
+When /^I follow (the first )?"(.*?)"$/ do |first,link|
+  if first
+    click_link(link, :match => :first)
+  else
+    click_link(link)
+  end
 end
 
 Then /^I should see a form with a field "([^"]*)"$/ do |arg1|

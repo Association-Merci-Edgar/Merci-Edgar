@@ -1,15 +1,85 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
-  = f.error_notification
-  = display_base_errors resource
-  = f.input :name, :autofocus => true
-  = f.input :email, :required => true
-  = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
-  = f.input :password_confirmation, :required => false
-  = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
-  = f.button :submit, 'Update', :class => 'btn-primary'
-%h3 Cancel my account
-%p
-  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
-= link_to "Back", :back
+- content_for :user_tab do
+  .row-fluid
+    #profile-photo.span12
+      %h4 Photo de votre profil
+      .pic
+        %i.entypo.edi-user
+      %p
+        L’image doit faire au moins 300x300px.
+      %a.btn.btn-primary{:href => "#"}
+        Uploader une photo
+      
+
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+    = f.error_notification
+    = display_base_errors resource
+      
+    .row-fluid
+  
+      .span6
+        %h4 Informations de base
+        /= f.input :name, :autofocus => true
+        = f.input :first_name, :required => true
+        = f.input :last_name, :required => true
+        = f.input :email, :required => true
+    
+        /%a.btn{:href => "#"} Mettre à jour
+        = f.button :submit, 'Update', :class => 'btn-primary'
+         
+      .span6
+        %h4 Identifiant et mot de passe
+        = f.input :name
+        /= f.input :password, :autocomplete => "off", :required => false, :hint => false
+        /, :hint => "leave it blank if you don't want to change it"
+        /= f.input :password_confirmation, :required => false
+        /= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+
+      
+        /%a.btn{:href => "#"} Mettre à jour
+        = f.button :submit, 'Update', :class => 'btn-primary'
+    
+  
+  .row-fluid  
+    .span6
+      %h4 Réglages
+      %label Fuseau horaire
+      .btn-group
+        %select{:name => "select"}
+          %option{:value => ""} (GMT + 01:00) Paris
+          %option{:value => ""} (GMT+02)
+          %option{:value => ""} Selection Two
+          %option{:value => ""} Selection Three
+          %option{:value => ""} Selection Four
+
+      %label Langue
+      .btn-group
+        %select{:name => "select"}
+          %option{:value => ""} FR
+          %option{:value => ""} EN
+          %option{:value => ""} ES
+          %option{:value => ""} DE
+      
+      %label Pays par défauls lors de l’ajout
+      .btn-group
+        %select{:name => "select"}
+          %option{:value => ""} France
+          %option{:value => ""} England
+          %option{:value => ""} Etc...
+        
+      %p
+        %a.btn.btn-primary{:href => "#"} Mettre à jour
+        /= f.button :submit, 'Update', :class => 'btn-primary'
+    
+    .span6
+      %h4 Notifications   
+      %p Fréquence des emails
+      
+  .row-fluid  
+    %h4 Cancel my personal account
+    %p
+      Unhappy?
+    %p
+      #{link_to "Cancel my account", registration_path(resource_name), :class =>"btn btn-primary", :data => { :confirm => "Are you sure?" }, :method => :delete}
+    /= link_to "Back", :back    
+  
+= render 'devise/shared/profile'

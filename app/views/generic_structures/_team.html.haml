@@ -1,0 +1,54 @@
+%ul.list-large
+  - @people.each do |person|
+  
+    %li
+    
+      .pic-container
+        .pic
+          /%i.entypo.edi-house
+          = image_tag person.avatar_url(:thumb)
+          
+      .meta
+        - if person.main_contact?(@venue)
+          %a{href: "#"}
+            %i.ico.principal.full{id: "main_contact_#{person.id}"}
+        - else
+          = link_to venue_set_main_contact_path(@venue,person), method: :put, remote: true do
+            %i.ico.principal{id: "main_contact_#{person.id}"}
+          
+        
+        -# _________________________ favorite
+        - if person.favorite?(current_user)
+          = link_to remove_to_favorites_contact_path(person), remote: true do
+            %i.ico.favorite.full{id: "fav_contact_#{person.id}"}
+        - else
+          = link_to add_to_favorites_contact_path(person), remote: true do
+            %i.ico.favorite{id: "fav_contact_#{person.id}"}
+
+        -# _________________________ contacted
+        - if person.contacted?
+          %a.ico.contacted.full{:href => "#"}
+        - else
+          %a.ico.contacted{:href => "#"}                    
+      .actions 
+        /= link_to 'Edit', edit_venue_path(venue)
+        = link_to edit_venue_person_path(@venue,person), :class => "shybtn" do
+          %i.entypo.edi-pencil
+        /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+          %i.entypo.edi-cross
+              
+      %h4= link_to "#{person.first_name} #{person.name}", person
+      .infos-line
+        = person.info_contact(@venue)
+      
+      
+  
+  .btn-in-list
+    = link_to new_venue_person_path(@venue) do
+      %i.entypo.edi-plus-3
+      %span
+        Ajouter une personne
+        //New Person
+  
+  

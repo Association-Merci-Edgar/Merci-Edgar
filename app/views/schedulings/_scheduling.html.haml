@@ -1,0 +1,28 @@
+%li.infolabel Programmation
+%li
+  = scheduling.name 
+  - if scheduling.show_host.present?
+    à
+    = link_to scheduling.show_host.name, scheduling.show_host
+  
+  - if scheduling.show_buyer.present?
+    par
+    = link_to scheduling.show_buyer.name, scheduling.show_buyer
+    
+
+%li      
+- if scheduling.scheduler.present?
+  Programmateur : 
+  = link_to(scheduling.scheduler.name, scheduling.scheduler) 
+
+%li
+  Styles :
+  = scheduling.style_tags
+%li
+  Contrats :
+  = scheduling.contract_tags
+  
+%li= t(scheduling.period, scope: 'simple_form.options.venue.schedulings.period') if scheduling.period.present?
+- if scheduling.prospectings.any?
+  - scheduling.prospectings.each do |s|
+    %li= "Programmateur en recherche active : #{s}"

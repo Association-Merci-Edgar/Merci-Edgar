@@ -1,22 +1,35 @@
 class UsersController < ApplicationController
+  # layout "application", only: [:edit]
   before_filter :authenticate_user!
 
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
+    render layout: "simple"
   end
 
   def show
     @user = User.find(params[:id])
   end
 
-  def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+  def edit
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user], :as => :admin)
-      redirect_to users_path, :notice => "User updated."
+  end
+  def update
+    @user = User.find(params[:id])
+    if current_user != @user
+      authorize! :update, @user, :message => 'Not authorized as an administrator.'
+      if @user.update_attributes(params[:user], :as => :admin)
+        redirect_to users_path, :notice => "User updated."
+      else
+        redirect_to users_path, :alert => "Unable to update user."
+      end
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      if @user.update_attributes(params[:user])
+        redirect_to users_path, :notice => "User updated."
+      else
+        render :edit
+      end
     end
   end
 

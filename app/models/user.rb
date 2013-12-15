@@ -1,12 +1,51 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  name                   :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  avatar                 :string(255)
+#
+
 class User < ActiveRecord::Base
   rolify
+  # has_and_belongs_to_many :accounts
+  has_many :accounts, through: :abilitations
+  has_many :abilitations, dependent: :destroy
+  
+  accepts_nested_attributes_for :accounts
+  validates_associated :accounts
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :accounts_attributes, :avatar
+
+  has_many :favorite_contacts
+  has_many :favorites, through: :favorite_contacts, source: :contact
+
+
+  mount_uploader :avatar, AvatarUploader
 
   after_create :add_user_to_mailchimp
   before_destroy :remove_user_from_mailchimp
@@ -45,6 +84,11 @@ class User < ActiveRecord::Base
     p = {}
     p[:password] = params[:password]
     p[:password_confirmation] = params[:password_confirmation]
+    p[:accounts_attributes] = params[:accounts_attributes] if params[:accounts_attributes].present?
+    p[:name] = params[:name]
+    p[:first_name] = params[:first_name]
+    p[:last_name] = params[:last_name]
+    
     update_attributes(p)
   end
 
@@ -57,6 +101,40 @@ class User < ActiveRecord::Base
   def only_if_unconfirmed
     pending_any_confirmation {yield}
   end
+
+  def authorized_for_domain?(domain)
+    self.accounts.map{|a| a.domain}.include?(domain)
+  end
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+
+  def add_to_favorites(contact)
+    fav = self.favorite_contacts.build
+    fav.contact = contact
+  end
+
+  def remove_to_favorites(contact)
+    fav = self.favorite_contacts.where(contact_id:contact.id).first
+    self.favorite_contacts.destroy(fav) if fav
+  end
+
+  def nickname
+    [self.first_name,self.last_name].compact.join.truncate(8, omission:".")
+  end
+
+  def current_abilitation
+    self.abilitations.where(account_id: Account.current_id).first
+  end
+
+  def send_abilitation_instructions(account,manager)
+    self.generate_confirmation_token!
+    UserMailer.abilitation_instructions(account,manager,self).deliver
+  end
+
+
 
   private
 

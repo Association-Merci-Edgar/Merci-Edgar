@@ -1,0 +1,16 @@
+= simple_form_for(@project) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .control-group
+      .pic-container
+        .pic= image_tag @project.avatar
+      .inline-inputs  
+        = f.input :name, label: false, :class => "input-Xlarge"
+    
+      = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+    = f.input :description
+
+  .form-actions
+    = f.button :submit
+
