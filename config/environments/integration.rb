@@ -20,6 +20,12 @@ Edgar::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # Add the fonts path
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
+  # Precompile additional assets
+  config.assets.precompile += %w( jquery.js jquery_ujs contacts_index.js contacts.js tag.js contacts_form.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf )
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
