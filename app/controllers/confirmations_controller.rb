@@ -59,17 +59,15 @@ class ConfirmationsController < Devise::PasswordsController
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     # @confirmable.accounts.destroy_all
-    @current_account = Account.find(Account.find_by_domain(request.subdomain))
-    if @confirmable.accounts.include?(@current_account)
-      @account = @current_account
-    else
-      @account = @confirmable.accounts.build unless @confirmable.accounts.any?
-    end
+    @account = @confirmable.accounts.build unless @confirmable.accounts.any?
     render 'devise/confirmations/show'
   end
 
   def do_confirm
     @confirmable.confirm!
+    account = @confirmable.accounts.first
+    # @job_id = SampleImportWorker.perform_async(account.id)
+    
     set_flash_message :notice, :confirmed
     logger.debug "before signin and redirect"
     sign_in(@confirmable)
