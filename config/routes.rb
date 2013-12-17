@@ -64,7 +64,7 @@ Edgar::Application.routes.draw do
       get 'show_map', on: :collection
     end
     resource :account do
-      put 'duplicate_community', action: :duplicate_community, as: :duplicate_community
+      put 'import_samples', action: :import_samples, as: :import_samples
       resources :abilitations, only: [:create, :update, :destroy, :index]
     end
     resources :reportings

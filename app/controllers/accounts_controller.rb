@@ -14,12 +14,8 @@ class AccountsController < ApplicationController
     end
   end
 
-  def duplicate_community
-    if Contact.count < 1
-      @job_id = ImportWorker.perform_async(Account.current_id)
-      redirect_to contacts_path, notice: "Import initie"
-    else
-      redirect_to contacts_path, notice: "Pas d'import possible"
-    end
+  def import_samples
+    @job_id = SamplesImportWorker.perform_async(Account.current_id)
+    redirect_to contacts_path, notice: "Import initie"
   end
 end
