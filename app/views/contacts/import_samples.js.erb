@@ -1,0 +1,14 @@
+(function pollJobidStatus() {
+  $.getJSON('<%= import_samples_status_account_path(id: @job_id) %>', function (response) {
+    if (response.status == "working") {
+    	$(".bar").width(response.pct + '%');
+    }
+    if (response.status == "complete") {
+	    $(".bar").width(response.pct + '%');
+			console.log("before redirection")
+			window.location = "<%= contacts_path %>"
+    }
+
+    setTimeout(pollJobidStatus, 1000);
+  });
+}());

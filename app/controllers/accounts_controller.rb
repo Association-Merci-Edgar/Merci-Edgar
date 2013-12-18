@@ -15,7 +15,21 @@ class AccountsController < ApplicationController
   end
 
   def import_samples
-    @job_id = SamplesImportWorker.perform_async(Account.current_id)
-    redirect_to contacts_path, notice: "Import initie"
+    logger.debug "account current_id: #{Account.current_id}"
+    @job_id = SamplesImportWorker.perform_async(5)
+    render 'contacts/import_samples'
+  end
+  
+  def import_samples_status
+    jid = params[:id]
+    logger.debug "jid: #{jid} "
+    begin  
+      status_container = SidekiqStatus::Container.load(jid)
+      logger.debug "status: #{status_container.status.to_s} // #{status_container.at} // #{status_container.pct_complete}"
+      render json: {:status => status_container.status, pct: status_container.pct_complete }      
+    rescue
+      render json: {:status => "job not found" }
+    end
+      
   end
 end

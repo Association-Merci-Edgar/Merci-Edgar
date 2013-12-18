@@ -7,9 +7,12 @@
     Arrangeons celà !
 
 %section
+  .progress
+    .bar
+%section
   .row-fluid.label-blocks
     .span4
-      = link_to import_samples_account_path, method: :put, :class => "label label-large" do
+      = link_to import_samples_account_path, remote: true, method: :put, :class => "label label-large" do
         %i.edi-vcard
         %h4 Importer des contacts exemples
         %p (6 fiches pour tester)

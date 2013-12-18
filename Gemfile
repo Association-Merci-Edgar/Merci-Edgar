@@ -42,6 +42,7 @@ gem 'icalendar'
 # gem 'thin'
 gem 'unicorn'
 gem 'sidekiq'
+gem 'sidekiq_status'
 gem 'sinatra', require: false
 gem 'slim'
 
