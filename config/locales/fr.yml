@@ -124,6 +124,7 @@ fr:
       less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
       not_a_number: "n'est pas un nombre"
       not_an_integer: "doit être un nombre entier"
+      not_saved: "Informations non sauvegardées"
       odd: "doit être impair"
       record_invalid: "La validation a échoué : %{errors}"
       restrict_dependent_destroy:
@@ -265,7 +266,15 @@ fr:
   activerecord:
     models:
       venue: Lieu
+      show_buyer: Organisateur de spectacle
+      user: Utilisateur
+      account: Compte
     attributes:
+      user:
+        accounts: Le compte
+        password: Le mot de passe
+      user/accounts:
+        name: Le nom du compte
       venue/addresses:
         postal_code: Code postal
         city: Ville
@@ -295,10 +304,4 @@ fr:
       update: "Enregistrer les modifications"
       create: "Créer"
       create_and_edit: "Ajouter davantage d'infos"
-  
-  errors:
-    messages:  
-      blank: "Ne peut pas être vide"
-      taken: "Déjà pris"
-      not_a_number: "N'est pas un nombre"
       
