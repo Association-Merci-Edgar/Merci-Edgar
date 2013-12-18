@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
 
   def import_samples
     logger.debug "account current_id: #{Account.current_id}"
-    @job_id = SamplesImportWorker.perform_async(5)
+    @job_id = SamplesImportWorker.perform_async(Account.current_id)
     render 'contacts/import_samples'
   end
   
