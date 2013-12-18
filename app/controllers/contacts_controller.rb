@@ -23,6 +23,10 @@ class ContactsController < AppController
       
       
     else
+      if Contact.count == 0
+        render "empty"
+        return
+      end
       if params[:commit] == "show map"
         if params[:address].present?
           radius = params[:radius] || 100
@@ -49,10 +53,11 @@ class ContactsController < AppController
           raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
           @label_category = params[:category]
         end
-  
+=begin        
         if @contacts.present? == false
           render 'empty'
         end
+=end
       end
     end
   end
