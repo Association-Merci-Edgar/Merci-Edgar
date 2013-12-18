@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205194642) do
+ActiveRecord::Schema.define(:version => 20131218151435) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -265,7 +265,10 @@ ActiveRecord::Schema.define(:version => 20131205194642) do
     t.string   "avatar"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "account_id"
   end
+
+  add_index "show_buyers", ["account_id"], :name => "index_show_buyers_on_account_id"
 
   create_table "structures", :force => true do |t|
     t.integer  "structurable_id"

@@ -11,6 +11,7 @@ venues:
     structure_attributes:
       contact_attributes:
         name: "L'Olympiaf"
+        custom_tags: "Exemple"
         addresses_attributes:
           main_address:
             kind: main_address
@@ -33,6 +34,7 @@ festivals:
     structure_attributes:
       contact_attributes:
         name: "Kismar Festival"
+        custom_tags: "Exemple"
         addresses_attributes:
           main_address:
             kind: main_address
@@ -47,11 +49,20 @@ festivals:
         scheduler_name: "Bigwell Bob"
         style_tags: "Funk, Fanfare"
 
+show_buyers:
+  ceda:
+    remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/ceda.jpg"
+    structure_attributes:
+      contact_attributes:
+        name: "Comité d'Entreprise des Dentistes Associés"
+        custom_tags: "Exemple"
+
 structures:
   fly:
     remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/fly.jpg"
     contact_attributes:
       name: "Fly Imprimeur"
+      custom_tags: "Exemple"
       addresses_attributes:
         main_address:
           kind: main_address
@@ -65,6 +76,7 @@ people:
     remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/fred.jpg"
     contact_attributes:
       name: "Bigwell Bob"
+      custom_tags: "Exemple"
       phones_attributes:
         main_phone:
           national_number: "01 02 03 04 05"
@@ -73,6 +85,8 @@ people:
     remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/aurelie.jpg"
     first_name: Aurore
     last_name: "Boréale"
+    contact_attributes:
+      custom_tags: "Exemple"
     people_structures_attributes:
       comm:
         structure_name: "L'Olympiaf"  

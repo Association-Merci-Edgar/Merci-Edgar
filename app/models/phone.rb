@@ -76,17 +76,14 @@ class Phone < ActiveRecord::Base
   def national_number=(n)
     @national_number = n
     self.number = @national_number
-    puts "IN NN -- number:#{self.number} // #{@national_number}"
   end
 
   def set_number
     international = Phone.internat(@national_number,country)
     self.number = international if international
-    puts "IN SN -- number:#{self.number} // #{@national_number}"
   end
   
   def check_number
-    puts "IN CN -- number:#{self.number} // #{@national_number}"
     if !Phony.plausible?(self.number)
       errors.add(:national_number, "Wrong phone number")
     end
