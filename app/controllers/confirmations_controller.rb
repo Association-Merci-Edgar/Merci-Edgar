@@ -59,7 +59,11 @@ class ConfirmationsController < Devise::PasswordsController
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     # @confirmable.accounts.destroy_all
-    @account = @confirmable.accounts.build unless @confirmable.accounts.any?
+    if @confirmable.accounts.any?
+      @account = @confirmable.accounts.first
+    else
+      @account = @confirmable.accounts.build unless @confirmable.accounts.any?
+    end
     render 'devise/confirmations/show'
   end
 

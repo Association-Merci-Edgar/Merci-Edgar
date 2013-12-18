@@ -65,7 +65,7 @@ fr:
         signout: "Se déconnecter"
         signup_fun: "C’est parti !"
         firsttime_welcome: "Bienvenue chez Edgar !"
-        firsttime_wording1: "Faisons les présentations:"
+        firsttime_wording1: "Faisons les présentations !"
         firsttime_wording2: "Activation de compte pour l’adresse :"
       project:
         name: Projet artistique

@@ -2,17 +2,16 @@
   .logo
     %i.entypo.edi-logoedgar_under.logotype
     %i.entypo.edi-logoedgar.logotype
+
+  %h1.page-title #{t("simple_form.labels.defaults.firsttime_welcome")}
       
   = simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal', :method => 'put'}, :id => 'activation-form' do |f|
     = devise_error_messages!
     
-    %h1.page-title #{t("simple_form.labels.defaults.firsttime_welcome")}
     %fieldset
       %legend
-        #{t("simple_form.labels.defaults.firsttime_wording2")}
+        #{t("simple_form.labels.defaults.firsttime_wording1")}
         <br>
-        - if resource.email
-          #{resource.email}
       - if @requires_password
         .row-fluid.control-group
           = f.input_field :first_name, :class=>"span6 inline"
