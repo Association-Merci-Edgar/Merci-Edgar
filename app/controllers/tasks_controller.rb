@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TasksController < ApplicationController
   def new
     #@asset = Venue.find(params[:venue_id]) if params[:venue_id]
@@ -46,8 +47,13 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @asset = @task.asset
     if @task.save
-      @pending_tasks = @task.asset.tasks.pending
-      @completed_tasks = @task.asset.tasks.completed
+      if @asset
+        @pending_tasks = @task.asset.tasks.pending
+        @completed_tasks = @task.asset.tasks.completed
+      else
+        @redirect = true
+      end
+      
       render "create"
     else
       respond_to do |format|
