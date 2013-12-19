@@ -26,8 +26,9 @@ Edgar::Application.routes.draw do
       get 'invite', :on => :member
     end
 
-    get "welcome/index"
-    get "home/index"
+    get "welcome", to: "welcome#index"
+    get "home", to: "home#index"
+    get "dashboard", to: "dashboard#index"
 
     resources :structures do
       put 'people/:id/set_main_person', action: :set_main_person, as: :set_main_person
