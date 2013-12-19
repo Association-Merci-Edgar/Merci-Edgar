@@ -86,6 +86,23 @@ class StructuresController < AppController
     @reportings = @structure.reportings
     @reporting = @structure.reportings.build
   end
+  
+  # DELETE /structures/1
+  def destroy
+    @structure = Structure.find(params[:id])
+    @structure_id = params[:id]
+    if @structure.structurable_type.present?
+      redirect_to @structure, notice: "ERREUR GRAVE ! PREVENEZ EDGAR !"
+    else
+      @structure.destroy
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to contacts_url }
+      format.js { render "destroy" }
+    end
+  end
+  
 
   def set_main_person
     @structure = Structure.find(params[:structure_id])

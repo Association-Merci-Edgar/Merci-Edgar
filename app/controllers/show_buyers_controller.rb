@@ -99,7 +99,7 @@ class ShowBuyersController < AppController
   # DELETE /venues/1.json
   def destroy
     @show_buyer_id = params[:id]
-    @show_buyer = Venue.find(@show_buyer_id)
+    @show_buyer = ShowBuyer.find(@show_buyer_id)
     @show_buyer.destroy
 
     respond_to do |format|

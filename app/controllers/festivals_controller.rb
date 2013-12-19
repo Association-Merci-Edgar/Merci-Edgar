@@ -82,7 +82,6 @@ class FestivalsController < AppController
   def destroy
     @festival = Festival.find(params[:id])
     @festival_id = params[:id]
-    @festival = Venue.find(@festival_id)
     @festival.destroy
 
     respond_to do |format|
