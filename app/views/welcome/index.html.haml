@@ -7,7 +7,7 @@
 
 %section
   %h3.message
-    Faissons connaissance !<br>
+    Faisons connaissance !<br>
     Avant tout, Edgar vous présente les bases  :
     
 %section
@@ -44,14 +44,15 @@
           
   
     .span4
-      = link_to new_venue_path, :class => "label label-large" do
+      %a.label.label-large#uservoice-nav{"data-uv-default-mode" => "feedback", "data-uv-forum-id" => "170962", "data-uv-lightbox" => "classic_widget", "data-uv-link-color" => "#007dbf", "data-uv-mode" => "full", "data-uv-primary-color" => "#cc6d00", "data-uv-support-tab_name" => "Oups ! Je rencontre un problème !", href: "javascript:void(0)", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true"}
+      
         %i.edi-light-bulb
         %h4
           Des suggestions ?
         %p
           Nous avons besoin de vos retours ! <br>
           A tout moment, vous pouvez cliquer <br>
-          sur cette icon en bas à gauche de l'écran.
+          sur cette icone en bas à gauche de l'écran.
           
           
           
@@ -74,11 +75,11 @@
         %p
           Edgar vous explique ses bases  
           
-          
-%section          
-  %span
-    %input{:id => "wlcm", :type => "checkbox"}
-    %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
+-#          
+  %section          
+    %span
+      %input{:id => "wlcm", :type => "checkbox"}
+      %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
 
   -#    
     - if user_signed_in?

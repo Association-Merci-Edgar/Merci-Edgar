@@ -11,20 +11,18 @@ $ ->
   tour.addSteps [
       title: "Bienvenue !"
       content: "Ceci est un guide de présentation de l’application." +
-        "<br>(Vous pouvez utiliser les flèches de votre clavier pour passer les étapes.)"
+        "<br>(Vous pouvez utiliser les flèches gauche et droite de votre clavier pour passer les étapes.)"
       orphan: true
     ,
       
       element: ".leftpanel"
       placement: "right"
       title: "Voyons d’abord le menu principal"
-      content: "Introduce new users to your product by walking them through it step by step. Built" +
-        "on the awesome <a href='http://twitter.github.com/bootstrap' target='_blank'>Bootstrap " +
-        "from Twitter.</a>"
+      content: "A votre gauche, le menu principal, à partir duquel vous pourrez gérer vos contacts, organiser vos tâches..."
       fixed: true
     ,
 
-      element: "#account-nav"
+      element: "#accounts-tab"
       placement: "right"
       title: "Compte"
       content: "Voici le chemin vers les préférences de votre compte"
@@ -36,36 +34,38 @@ $ ->
       element: "#search-nav"
       placement: "right"
       title: "Recherche"
-      content: "Atteignez en un clin d’œil un contact, une tâche ou une date."
+      content: "Atteignez en un clin d’œil à une personne ou une structure."
       fixed: true
     ,
+      element: "#plusmenu-trigger"
+      placement: "left"
+      title: "Le bouton +"
+      content: "Le bouton plus vous permet à tout moment de créer une nouvelle personne, structure ou tâche"
+      fixed: true 
+    ,
+
       element: "#recent-nav"
       placement: "right"
       title: "Dernièrement"
-      content: "Ici une liste des pages consultées récemment."
+      content: "Ici une liste des fiches consultées récemment."
       fixed: true
       onShown: (tour) -> clickerShow()
 #      onNext: (tour) -> clickerHide()
     ,
       element: "#opportunities-nav"
       placement: "right"
-      title: "Dates de spectacles"
-      content: "Easy is better, right? Easy like Bootstrap."
+      title: "Contrats"
+      content: "Bientôt ici la liste de vos contrats pour vos futures dates de spectacle ..."
       fixed: true
     ,
       element: ".footer"
       placement: "top"
-      title: "Et là, des liens pour :"
+      title: "En bas à gauche ... Quelques liens pour"
       content: "- se déconnecter"+
         "<br>- recommencer ce tour"+
         "<br>- voir le guide en ligne de Merci Edgar"+
         "<br>- nous faire des suggestions et signaler des erreurs"
       fixed: true
-    ,
-      element: "#dash-tasks"
-      placement: "bottom"
-      title: "Résumé des tâches"
-      content: "Easy is better, right? Easy like Bootstrap." 
     ,
       element: "#dash-stats"
       placement: "top"
@@ -73,7 +73,7 @@ $ ->
       content: "Easy is better, right? Easy like Bootstrap."
     ,
       title: "Ce tour est terminé"
-      content: "Un tour est disponible pour la pluspart des pages."
+      content: "Un tour sera disponible pour la plupart des pages."
       orphan: true
       
     ]

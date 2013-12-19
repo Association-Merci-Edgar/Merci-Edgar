@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131218151435) do
+ActiveRecord::Schema.define(:version => 20131219163707) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -336,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20131218151435) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "avatar"
+    t.boolean  "welcome_hidden"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
