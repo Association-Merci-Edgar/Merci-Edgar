@@ -60,7 +60,7 @@ fr:
         forgot_password : "Mot de passe oublié ?"
         choose_password : "Choisissez un mot de passe"
         repeat_password : "Répéter votre mot de passe"
-        recommnandations_password : "Pour plus de sécurité, utilisez 6 caractères ou plus avec au moins 1 chiffre"
+        recommnandations_password : "Pour plus de sécurité, utilisez 8 caractères ou plus avec au moins 1 chiffre"
         signin: "Se connecter"
         signout: "Se déconnecter"
         signup_fun: "C’est parti !"

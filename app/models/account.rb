@@ -18,18 +18,30 @@ class Account < ActiveRecord::Base
   attr_accessible :domain, :name
   validates_presence_of :name
   validates_uniqueness_of :domain
+  validates_format_of :domain, :with => /\A[a-z0-9]*\z/
   validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
+  before_validation :set_domain_name
   before_validation :ensure_domain_uniqueness, :on => :create
 
+  def set_domain_name
+    if domain_changed?
+      domain = domainnize(domain)
+    end
+  end
+  
   def ensure_domain_uniqueness
     if self.domain.blank?
-      self.domain = self.name.downcase.delete(' ')
+      self.domain = domainnize(self.name)
     end
     num = 2
     while (Account.find_by_domain(self.domain).present?)
       self.domain = "#{self.domain}#{num}"
       num += 1
     end
+  end
+  
+  def domainnize(str)
+    I18n.transliterate(str).delete("^a-zA-Z0-9").downcase if str.present?
   end
 
   def self.current_id=(id)
