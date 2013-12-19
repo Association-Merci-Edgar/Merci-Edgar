@@ -21,5 +21,5 @@
   .actions
     = link_to edit_link_path, :class => "shybtn" do
       %i.entypo.edi-pencil
-    = link_to contact.fine_model, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' }, remote: true do
+    = link_to contact.fine_model, :class => "shybtn", :method => :delete, :data => { :confirm => 'Voulez-vous vraiment supprimer ce contact ?' }, remote: true do
       %i.entypo.edi-cross
