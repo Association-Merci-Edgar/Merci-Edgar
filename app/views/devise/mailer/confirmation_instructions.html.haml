@@ -1,6 +1,15 @@
 %p
-  Welcome #{@resource.email}!
+  Bonjour #{@resource.email}!
 %p
-  We're pleased to invite you to try #{link_to ENV["DOMAIN"], root_url}.
-%p Please click the link below to confirm your email address and set your password:
-%p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token, subdomain: 'www', :locale => I18n.locale)
+  Nous sommes heureux de vous inviter à tester en avant-première 
+  %b Merci Edgar
+  , l'assistant virtuel des artistes !
+%p
+  En effet, 
+  %b vous faites partie de la dizaine de "privilégiés"
+  , parmi plus de 300 personnes qui se sont pré-inscrits..
+
+%p
+  Merci de cliquer sur le lien ci-dessous pour confirmer votre compte :
+%p= link_to 'Confirmer mon compte', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token, subdomain: 'www', :locale => I18n.locale)
+%p= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token, subdomain: 'www', :locale => I18n.locale)
