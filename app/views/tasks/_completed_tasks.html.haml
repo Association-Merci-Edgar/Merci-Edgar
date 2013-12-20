@@ -33,7 +33,7 @@
               = t.completor.nickname
           - if t.asset.present?
             .infos-part
-              = link_to t.asset do
+              = link_to t.asset.fine_model do
                 .pic.pic-mini= image_tag t.asset.avatar
                 = t.asset.name
           - if t.project.present?
