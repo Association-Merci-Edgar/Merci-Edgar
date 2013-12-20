@@ -1,6 +1,6 @@
 - content_for :scripts do
-  -#= javascript_include_tag "tag"
   = javascript_include_tag "contacts"
+  = javascript_include_tag "tag"
   = javascript_include_tag "contacts_form"
     
 
@@ -58,10 +58,10 @@
           
           = f.fields_for :contact do |c|
             -#  ________________________________________________________ TAGS V1
-            = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {available_tags: ["Fedelima","Cry","RIF"]} }
+            = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
 
             -#  ________________________________________________________ TAGS V1
-            = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {available_tags: ["Chouette"]} }
+            = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
           
             -# ________________________________________________________ Observations
             /= f.input :remark
@@ -162,7 +162,7 @@
         
     / ________________________________________________________ actions
     .form-actions
-      = f.button :wrapped, :class => "btn-primary btn-large btn-alert"
+      = f.button :submit, :class => "btn-primary btn-large btn-alert"
       ou
       = link_to t(:cancel), session[:return_to]
-  
+        
