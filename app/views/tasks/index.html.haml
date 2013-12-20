@@ -24,7 +24,7 @@
       .badge.badge-small.badge-red= @pending_tasks.due_today.size
       pour aujourd’hui
       
-  /_____________________________________________________________________________ FILTERS
+-#  /_____________________________________________________________________________ FILTERS
   .sorters
     /______________________________________________________ USERS
     .dropdown
@@ -97,30 +97,6 @@
   
 %section
   = render :partial => "pending", :locals => {:tasks => @pending_tasks}
-
-
-  %ul.list-medium
-    %li
-      .rightrow.small
-        .badge.badge-black hier
-        .actions
-          %a.shybtn{:href => "#"}
-            %i.entypo.edi-pencil
-
-      .rightrow
-        .s1of2
-          %a{:href => "#"}
-            .pic.pic-mini= image_tag "squared/pro2.jpg"
-            ProjetXqsd
-        .s1of2
-          %a{:href => "#"}
-            .pic.pic-mini= image_tag "squared/per2.jpg"
-            Untel X.
-
-      .mainrow
-        %input{:type => "checkbox"}
-        %a{:href => "#"} Relance de payement
-
 
 
 
