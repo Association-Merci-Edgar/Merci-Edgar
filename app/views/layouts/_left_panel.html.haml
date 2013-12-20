@@ -57,7 +57,7 @@
               - session[:history].reverse.map{|i| Contact.find_by_id(i)}.each do |c|
                 - if c.present?
                   %li
-                    = link_to c do
+                    = link_to c.fine_model do
                       .pic.pic-mini= image_tag c.fine_model.avatar_url(:thumb)
                       = c
                 
