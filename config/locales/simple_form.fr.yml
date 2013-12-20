@@ -82,7 +82,8 @@ fr:
         prospecting: Programmateur en recherche active de spectacles
         contract_list: Types de contrats
 
-
+      phones: &phones
+        national_number: N°Téléphone
       structure:
         contact:
           addresses:
@@ -125,7 +126,8 @@ fr:
         websites:
           url: Site web
         phones:
-          national_number: N°Téléphone
+          <<: *phones
+          
       person:
         people_structures:
           title: Fonction
@@ -140,7 +142,7 @@ fr:
         password_confirmation: Confirmation du mot de passe
     hints:
       defaults:
-        password: "Pour plus de sécurité, utilisez 3 caractères ou plus avec au moins 1 chiffre"
+        password: "Pour plus de sécurité, utilisez 8 caractères ou plus avec au moins 1 chiffre"
       #venue:
       #  name: "Un nom unique par ville"   
     tooltips:
@@ -156,6 +158,11 @@ fr:
           festival: "Festival"
           show_buyer: "Autre organisateur de spectacles"
           structure: "Structure générique"
+      addresses: &addresses
+        kind:
+          main_address: "Adresse principale"
+          admin_address: "Adresse administrative"
+  
       phones: &phones
         classic_kind:
           reception: Standard
@@ -207,9 +214,7 @@ fr:
           <<: *schedulings_options
             
         addresses:
-          kind:
-            main_address: "Adresse du lieu"
-            admin_address: "Adresse administrative"
+          <<: *addresses
         phones: 
           <<: *phones
         rooms:

@@ -41,11 +41,11 @@
             
               %a{href: "/fr/people/41"}
                 %h3= user.name
-                .pic= image_tag "squared/pro2.jpg"
+                .pic= image_tag user.avatar
               %span.infos-line
                 %a= user.email
 
-
+-#
           %li
             - abilitation = Abilitation.new
             - abilitation.build_user

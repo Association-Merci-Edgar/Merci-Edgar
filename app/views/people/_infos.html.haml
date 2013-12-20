@@ -16,7 +16,7 @@
           .principal-company
             %ul.list-small
               %li
-                .pic.pic-small= image_tag ps.structure.avatar_url
+                .pic.pic-small= image_tag ps.structure.fine_model.avatar_url
                 = link_to ps.structure.structurable do
                   %h4= ps.structure.structurable
               %li
@@ -55,7 +55,7 @@
       - @person.websites.each do |website|
         = render website
 
-
+-#
     %ul.list-infos
       %li.infolabel Réseaux sociaux
 

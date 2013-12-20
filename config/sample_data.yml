@@ -80,6 +80,8 @@ people:
       phones_attributes:
         main_phone:
           national_number: "01 02 03 04 05"
+          kind: perso
+          
     
   aurore:
     remote_avatar_url: "http://s3-eu-west-1.amazonaws.com/merciedgar-dev/samples/aurelie.jpg"
