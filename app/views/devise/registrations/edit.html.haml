@@ -41,7 +41,7 @@
   
   .row-fluid  
     .span6
-      %h4 Réglages
+      %h4 Réglages (non pris en compte pour l'instant')
       %label Fuseau horaire
       .btn-group
         %select{:name => "select"}
@@ -70,16 +70,6 @@
         %a.btn.btn-primary{:href => "#"} Mettre à jour
         /= f.button :submit, 'Update', :class => 'btn-primary'
     
-    .span6
-      %h4 Notifications   
-      %p Fréquence des emails
       
-  .row-fluid  
-    %h4 Cancel my personal account
-    %p
-      Unhappy?
-    %p
-      #{link_to "Cancel my account", registration_path(resource_name), :class =>"btn btn-primary", :data => { :confirm => "Are you sure?" }, :method => :delete}
-    /= link_to "Back", :back    
   
 = render 'devise/shared/profile'
