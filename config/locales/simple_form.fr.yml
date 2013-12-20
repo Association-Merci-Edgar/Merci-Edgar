@@ -2,6 +2,7 @@ fr:
   simple_form:
     "yes": 'Yes'
     "no": 'No'
+    creating: "En cours de creation..."
     required:
       text: 'obligatoire'
       mark: '*'
