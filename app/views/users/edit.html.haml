@@ -6,7 +6,7 @@
       %h4 Photo de votre profil
       .pic.pic-user= image_tag @user.avatar
       %p
-        L’image doit faire au moins 300x300 pixels.
+        L’image doit peser moins de 100 Ko.
       = simple_form_for(@user, :html => { :method => :put, :class => 'form-vertical' }) do |f|
         = f.input :avatar, label:false
         = f.button :submit, :class => 'btn-primary'
@@ -43,7 +43,7 @@
   
     .row-fluid  
       %section.span6
-        %h4 Réglages
+        %h4 Réglages (non pris en compte pour l'instant)
         
         %label Fuseau horaire
         %select{:name => "select"}
@@ -68,13 +68,7 @@
         
         %p
           %a.btn.btn-primary{:href => "#"} Mettre à jour
-          /= f.button :submit, 'Update', :class => 'btn-primary'
-    
-    
-      %section.span6
-        %h4 Notifications   
-        %p Fréquence des emails
-      
+-#      
     %section
       %h4 Cancel my personal account
       %p
