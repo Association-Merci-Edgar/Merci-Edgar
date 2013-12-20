@@ -6,7 +6,7 @@
       .pic-container
         .pic
           /%i.entypo.edi-house
-          = image_tag person.avatar_url(:thumb)
+          = image_tag person.avatar_url
           
       .meta
         - if @structure.main_person?(current_user,person)
