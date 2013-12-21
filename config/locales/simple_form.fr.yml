@@ -40,8 +40,11 @@ fr:
         city: Ville, localité
         postal_code: Code postal
         more_info: Infos supplémentaires (Boite Postale, Digicode, ...)
+      schedulings:
+        remark: "Spécificité / Fréquence / etc ..."
       venue:
-        name: "Nom de la salle"
+        name: "Nom du lieu"
+      
       emails:
         address: "Adresse électronique"
       phones:
@@ -81,6 +84,7 @@ fr:
         period: Cycle de programmation
         prospecting: Programmateur en recherche active de spectacles
         contract_list: Types de contrats
+        remark: Observations
 
       phones: &phones
         national_number: N°Téléphone

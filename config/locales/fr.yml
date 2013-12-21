@@ -295,6 +295,16 @@ fr:
         structure:
           created: "La structure %{name} a été créée avec succès"
           updated: "La structure %{name} a été modifiée avec succès"
+        venue:
+          created: "Le lieu %{name} a été créé avec succès"
+          updated: "Le lieu %{name} a été modifié avec succès"
+        festival:
+          created: "Le festival %{name} a été créé avec succès"
+          updated: "Le festival %{name} a été modifié avec succès"
+        show_buyer:
+          created: "L'organisateur de spectacle %{name} a été créé avec succès"
+          updated: "L'organisateur de spectacle %{name} a été modifiée avec succès"
+          
         person:
           created: "La personne %{name} a été créée avec succès"
           updated: "La personne %{name} a été modifiée avec succès"
