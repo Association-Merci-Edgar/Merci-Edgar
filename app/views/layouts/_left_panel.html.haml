@@ -27,14 +27,15 @@
       = menu_link("Tâches", tasks_path, "edi-check_2",["tasks"], Task.pending.size)
             
       %li#opportunities-nav.comingsoon
-        /= link_to new_venue_path, :class => "rightbt" do
-        /  %i.entypo.edi-plus-3
-        = link_to opportunities_path do
+        -#= link_to opportunities_path do
+        %a{:href => "#"}
+
           %i.entypo.edi-contracts
           Contrats
           
       %li#campaigns-nav.comingsoon
-        = link_to campaigns_path do
+        -# = link_to campaigns_path do
+        %a{:href => "#"}
           %i.entypo.edi-megaphone
           Campagnes
           
@@ -44,7 +45,7 @@
           %i.entypo.edi-search
           Recherche
         
-      %li#recent-nav.click-nav.comingsoon
+      %li#recent-nav.click-nav
         .ul.no-js
           %a.clicker{:href => "#"}
             %i.entypo.edi-pushpin
