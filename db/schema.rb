@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131221091113) do
+ActiveRecord::Schema.define(:version => 20131221141422) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -114,11 +114,10 @@ ActiveRecord::Schema.define(:version => 20131221091113) do
   create_table "festivals", :force => true do |t|
     t.integer  "nb_edition"
     t.integer  "last_year"
-    t.string   "artists_kind"
     t.string   "avatar"
     t.integer  "account_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "festivals", ["account_id"], :name => "index_festivals_on_account_id"
@@ -255,6 +254,7 @@ ActiveRecord::Schema.define(:version => 20131221091113) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.text     "remark"
+    t.boolean  "discovery"
   end
 
   add_index "schedulings", ["scheduler_id"], :name => "index_schedulings_on_scheduler_id"

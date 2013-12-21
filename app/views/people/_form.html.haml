@@ -22,8 +22,8 @@
         .pic-container
           .pic.pic-person= image_tag @person.avatar_url
         .inline-inputs  
-          = f.input :first_name, label: false, :class => "input-Xlarge"
           = f.input :last_name, label: false, :class => "input-Xlarge"
+          = f.input :first_name, label: false, :class => "input-Xlarge"
         
         = f.input :avatar, label:false, :hint => "L’image doit faire au moins 80x80 pixels."
         

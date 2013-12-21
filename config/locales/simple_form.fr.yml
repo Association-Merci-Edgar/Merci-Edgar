@@ -85,7 +85,7 @@ fr:
         prospecting: Programmateur en recherche active de spectacles
         contract_list: Types de contrats
         remark: Observations
-
+        discovery: "Scène Découverte"
       phones: &phones
         national_number: N°Téléphone
       structure:
