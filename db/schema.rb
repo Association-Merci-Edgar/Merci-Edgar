@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219163707) do
+ActiveRecord::Schema.define(:version => 20131221091113) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(:version => 20131219163707) do
     t.string   "style_tags"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.text     "remark"
   end
 
   add_index "schedulings", ["scheduler_id"], :name => "index_schedulings_on_scheduler_id"

@@ -64,7 +64,7 @@ class ShowBuyersController < AppController
           if params[:commit] == t("helpers.submit.venue.create")
             redirect_to @show_buyer, notice: t("activerecord.notices.models.venue.created", name: @show_buyer.name)
           else
-            redirect_to edit_show_buyer_path(@show_buyer), notice: t("activerecord.notices.models.venue.created", name: @show_buyer.name)
+            redirect_to edit_show_buyer_path(@show_buyer), notice: t("activerecord.notices.models.show_buyer.created", name: @show_buyer.name)
           end
         end
         format.json { render json: @show_buyer, status: :created, location: @show_buyer }

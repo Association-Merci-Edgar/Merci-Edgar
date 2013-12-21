@@ -52,7 +52,7 @@ class FestivalsController < AppController
 
     respond_to do |format|
       if @festival.save
-        format.html { redirect_to @festival, notice: 'Festival was successfully created.' }
+        format.html { redirect_to @festival, notice: t("activerecord.notices.models.festival.created", name: @festival.name) }
         format.json { render json: @festival, status: :created, location: @festival }
       else
         format.html { render action: "new" }
@@ -68,7 +68,7 @@ class FestivalsController < AppController
     
     respond_to do |format|
       if @festival.update_attributes(params[:festival])
-        format.html { redirect_to @festival, notice: 'Festival was successfully updated.' }
+        format.html { redirect_to @festival, notice: t("activerecord.notices.models.festival.updated", name: @festival.name) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
