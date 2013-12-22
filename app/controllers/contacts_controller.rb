@@ -29,7 +29,7 @@ class ContactsController < AppController
       end
       if params[:commit] == "show map"
         if params[:address].present?
-          radius = params[:radius] || 100
+          radius = params[:radius].present? ? params[:radius] : 100
           contacts = Address.near(params[:address], radius, units: :km)
         else
           contacts = Address.where(account_id: Account.current_id)
