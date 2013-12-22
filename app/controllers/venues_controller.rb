@@ -40,7 +40,7 @@ class VenuesController < AppController
     @venue.build_structure
     @venue.structure.build_contact
     @venue.addresses.build
-    @venue.rooms.build
+    @venue.rooms.build.capacities.build
 
     respond_to do |format|
       format.html
@@ -53,7 +53,7 @@ class VenuesController < AppController
     @venue = Venue.find(params[:id])
     add_asset(@venue.structure.contact)
     @venue.schedulings.build(name: "Programmation Principale") unless @venue.schedulings.any?
-    @venue.rooms.build(name:@venue.name) unless @venue.rooms.any?
+    @venue.rooms.build(name:@venue.name).capacities.build unless @venue.rooms.any?
   end
 
   # POST /venues
