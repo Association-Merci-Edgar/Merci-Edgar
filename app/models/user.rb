@@ -102,8 +102,8 @@ class User < ActiveRecord::Base
     pending_any_confirmation {yield}
   end
 
-  def authorized_for_domain?(domain)
-    self.has_role? :admin || self.accounts.map{|a| a.domain}.include?(domain)
+  def authorized_for_domain?(domain_name)
+    self.has_role?(:admin) || self.accounts.map{|a| a.domain}.include?(domain_name)
   end
 
   def name
