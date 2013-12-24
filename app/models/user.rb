@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
   end
 
   def authorized_for_domain?(domain)
-    self.accounts.map{|a| a.domain}.include?(domain)
+    self.has_role? :admin || self.accounts.map{|a| a.domain}.include?(domain)
   end
 
   def name
