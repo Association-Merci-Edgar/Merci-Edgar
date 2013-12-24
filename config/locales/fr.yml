@@ -254,9 +254,11 @@ fr:
     tagged_with: "Filtre"
     capacities_between: Jauge comprise entre
     capacities_less_than: "Jauge inferieure à "
-    venues: Tous les lieux
-    festivals: Tous les festivals
-    show_buyers: Tous les autres organisateurs de spectacle
+    venues: Lieux
+    festivals: Festivals
+    people: Personnes
+    structures: Structures
+    show_buyers: Organisateurs de spectacle
      
   
   # Kind of addresses
