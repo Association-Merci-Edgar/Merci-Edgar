@@ -147,29 +147,31 @@ class Task < ActiveRecord::Base
 
   def friendly_date
     date = self.completed_at.present? ? completed_at : self.due_at
-    case
-    when date < Time.zone.now && completed_at.present?
-      ["green", I18n.localize(date.in_time_zone, format: :short)]
+    if date
+      case
+      when date < Time.zone.now && completed_at.present?
+        ["green", I18n.localize(date.in_time_zone, format: :short)]
 
-    when date < Time.zone.now && !completed_at.present?
-      ["black", "#{I18n.t(:overdue)} // #{I18n.localize(date.in_time_zone, format: :short)}"]
+      when date < Time.zone.now && !completed_at.present?
+        ["black", "#{I18n.t(:overdue)} // #{I18n.localize(date.in_time_zone, format: :short)}"]
 
-    when date >= Time.zone.now.midnight && date < Time.zone.now.midnight.tomorrow
-      ["red", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly_day, day:I18n.t(:due_today)) : I18n.t(:due_today)]
+      when date >= Time.zone.now.midnight && date < Time.zone.now.midnight.tomorrow
+        ["red", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly_day, day:I18n.t(:due_today)) : I18n.t(:due_today)]
 
-    when date >= Time.zone.now.midnight.tomorrow && date < Time.zone.now.midnight.tomorrow + 1.day
-      ["blue", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly_day, day:I18n.t(:due_tomorrow)) : I18n.t(:due_tomorrow)]
+      when date >= Time.zone.now.midnight.tomorrow && date < Time.zone.now.midnight.tomorrow + 1.day
+        ["blue", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly_day, day:I18n.t(:due_tomorrow)) : I18n.t(:due_tomorrow)]
 
-    when date >= (Time.zone.now.midnight.tomorrow + 1.day) && date < Time.zone.now.next_week
-      ["green", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly) : I18n.t(:due_this_week)]
+      when date >= (Time.zone.now.midnight.tomorrow + 1.day) && date < Time.zone.now.next_week
+        ["green", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly) : I18n.t(:due_this_week)]
 
-    when date >= Time.zone.now.next_week && self.due_at < (Time.zone.now.next_week.end_of_week + 1.day)
-      ["gray", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly) : I18n.t(:due_next_week)]
+      when date >= Time.zone.now.next_week && self.due_at < (Time.zone.now.next_week.end_of_week + 1.day)
+        ["gray", self.specific_time? ? I18n.localize(date.in_time_zone, format: :friendly) : I18n.t(:due_next_week)]
 
-    when date >= Time.zone.now.next_week.end_of_week + 1.day && date < Time.zone.now.end_of_month + 1.day
-      ["gray", self.specific_time? ? I18n.localize(date.in_time_zone, format: :short) : I18n.t(:due_this_month)]
-    else
-      ["gray", self.specific_time? ? I18n.localize(date.in_time_zone, format: :short) : I18n.t(:due_later)]
+      when date >= Time.zone.now.next_week.end_of_week + 1.day && date < Time.zone.now.end_of_month + 1.day
+        ["gray", self.specific_time? ? I18n.localize(date.in_time_zone, format: :short) : I18n.t(:due_this_month)]
+      else
+        ["gray", self.specific_time? ? I18n.localize(date.in_time_zone, format: :short) : I18n.t(:due_later)]
+      end
     end
   end
 
