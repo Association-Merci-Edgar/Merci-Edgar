@@ -3,6 +3,6 @@ class DashboardController < AppController
     if params[:empty] == "1"
       render "empty"
     end
-    @pending_tasks = Task.pending.limit(2)
+    @pending_tasks = Task.pending.limit(3)
   end
 end
