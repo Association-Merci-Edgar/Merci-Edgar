@@ -80,7 +80,6 @@ class ShowBuyersController < AppController
   # PUT /venues/1.json
   def update
     @show_buyer = ShowBuyer.find(params[:id])
-    ap params
     respond_to do |format|
       if @show_buyer.update_attributes(params[:show_buyer])
         format.html do
