@@ -95,4 +95,9 @@ class Structure < ActiveRecord::Base
     relative = self.relatives.where(user_id: user.id).first
   end
 
+  def deep_xml(builder=nil)
+    to_xml(:builder => builder, :skip_instruct => true, :skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :avatar, :structurable_type, :structurable_id]) do |xml|
+      contact.deep_xml(xml)
+    end    
+  end
 end

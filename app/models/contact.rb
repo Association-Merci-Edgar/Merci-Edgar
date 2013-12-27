@@ -16,13 +16,16 @@
 
 class Contact < ActiveRecord::Base
   extend ContactsHelper
+  include MyAttributes
+  
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :name, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :style_tags, :network_tags, :custom_tags, :remark
 
   belongs_to :contactable, polymorphic: true
+  belongs_to :duplicate, class_name: "Contact"
   
-  validates_uniqueness_of :name, scope: :account_id
+  validates_uniqueness_of :name, scope: [:account_id]
   # validates_associated :phones
 
   has_many :emails, :dependent => :destroy
@@ -281,5 +284,38 @@ class Contact < ActiveRecord::Base
   def update_customs
     Custom.add_customs(custom_list) if custom_tags.present? && custom_tags_changed?
   end
+  
+  def deep_xml(builder=nil)
+    to_xml(:builder => builder, 
+      :skip_instruct => true, 
+      :skip_types => true, 
+      except: [:id, :duplicate_id, :name, :created_at, :updated_at, :contactable_type, :contactable_id, :account_id, :avatar, :contract_tags, :style_tags, :capacity_tags, :venue_kind],
+      :include => {
+        :phones => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
+        :websites => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
+        :emails => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
+        :addresses => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]}
+      }
+      ) do |xml|
+      # contact.deep_xml(xml)
+    end    
+  end
+  
+  def self.new_from_mml_hash(contact_attributes)
+    addresses_attributes = contact_attributes.delete("addresses")
+    phones_attributes = contact_attributes.delete("phones")
+    websites_attributes = contact_attributes.delete("websites")
+    emails_attributes = contact_attributes.delete("emails")
+    
+    contact = Contact.new(contact_attributes)
+    
+    contact.build_children(:addresses, addresses_attributes["address"]) if addresses_attributes
+    contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
+    contact.build_children(:websites, websites_attributes["website"]) if websites_attributes
+    contact.build_children(:emails, emails_attributes["email"]) if emails_attributes
+    
+    contact
+  end
+  
       
 end
