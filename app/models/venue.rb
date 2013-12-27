@@ -157,11 +157,37 @@ class Venue < ActiveRecord::Base
     end
     sl
   end
+
+
+  def deep_xml(builder=nil)
+    to_xml(:builder => builder, :skip_types => true, except: [:id, :created_at, :updated_at, :account_id]) do |xml|
+      xml.name name
+      structure.deep_xml(xml)
+    end
+  end
   
-  def to_xml
-    super(:skip_types => true,
-      except: [:created_at, :updated_at, :account_id], 
-      :include => {:structure => {except: [:created_at, :updated_at, :account_id], include: :contact}, :schedulings => {}}
-        )
+  def self.from_xml(xml)
+    attributes = Hash.from_xml(xml)
+    venue_attributes = attributes["venue"]
+    name = venue_attributes.delete("name")
+    
+    duplicate = Contact.find_by_name(name)
+    if duplicate
+      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
+      name = "#{name} ##{nb_duplicates + 1}"
+    end
+
+
+    structure_attributes = venue_attributes.delete("structure")
+    contact_attributes = structure_attributes.delete("contact")
+    v = Venue.new(venue_attributes)
+    v.structure = Structure.new(structure_attributes)
+
+    contact = Contact.new_from_mml_hash(contact_attributes)
+    contact.name = name
+    contact.duplicate = duplicate
+    v.structure.contact = contact
+    
+    v    
   end
 end
