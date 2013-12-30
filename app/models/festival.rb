@@ -13,6 +13,7 @@
 #
 
 class Festival < ActiveRecord::Base
+  include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :artists_kind, :last_year, :nb_edition, :structure_attributes, :schedulings_attributes, :network_tags, :avatar, :remote_avatar_url
@@ -74,6 +75,31 @@ class Festival < ActiveRecord::Base
       end if s.style_list.present?
     end
     sl
+  end
+
+  def self.from_xml(xml)
+    attributes = Hash.from_xml(xml)
+    festival_attributes = attributes["festival"]
+    name = festival_attributes.delete("name")
+    
+    duplicate = Contact.find_by_name(name)
+    if duplicate
+      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
+      name = "#{name} ##{nb_duplicates + 1}"
+    end
+
+
+    structure_attributes = festival_attributes.delete("structure")
+    contact_attributes = structure_attributes.delete("contact")
+    f = Festival.new(festival_attributes)
+    f.structure = Structure.new(structure_attributes)
+
+    contact = Contact.new_from_mml_hash(contact_attributes)
+    contact.name = name
+    contact.duplicate = duplicate
+    f.structure.contact = contact
+    
+    f    
   end
 
 end

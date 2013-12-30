@@ -15,6 +15,7 @@
 #
 
 class Venue < ActiveRecord::Base
+  include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
@@ -159,12 +160,6 @@ class Venue < ActiveRecord::Base
   end
 
 
-  def deep_xml(builder=nil)
-    to_xml(:builder => builder, :skip_types => true, except: [:id, :created_at, :updated_at, :account_id]) do |xml|
-      xml.name name
-      structure.deep_xml(xml)
-    end
-  end
   
   def self.from_xml(xml)
     attributes = Hash.from_xml(xml)

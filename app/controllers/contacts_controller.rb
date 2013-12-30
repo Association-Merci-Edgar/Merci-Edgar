@@ -1,3 +1,5 @@
+require "rexml/document"
+
 class ContactsController < AppController
   def index
     if request.xhr?
@@ -52,6 +54,14 @@ class ContactsController < AppController
         if params[:category].present?
           raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
           @label_category = params[:category]
+        end
+        
+        respond_to do |format|
+          format.html
+          format.xml do
+            stream = render_to_string(template: "contacts/index")
+            send_data(stream, type:"text/xml", filename: "export_merciedgar")
+          end
         end
       end
     end
