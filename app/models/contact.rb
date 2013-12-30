@@ -301,6 +301,10 @@ class Contact < ActiveRecord::Base
     end    
   end
   
+  def fine_deep_xml
+    self.fine_model.deep_xml unless self.contactable_type == "Person"
+  end
+  
   def self.new_from_mml_hash(contact_attributes)
     addresses_attributes = contact_attributes.delete("addresses")
     phones_attributes = contact_attributes.delete("phones")

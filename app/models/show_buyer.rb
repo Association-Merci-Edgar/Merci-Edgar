@@ -10,6 +10,8 @@
 #
 
 class ShowBuyer < ActiveRecord::Base
+  include Contacts::Xml
+  
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :licence, :structure_attributes, :schedulings_attributes, :avatar, :remote_avatar_url
@@ -67,6 +69,31 @@ class ShowBuyer < ActiveRecord::Base
       end if s.style_list.present?
     end
     sl
+  end
+
+  def self.from_xml(xml)
+    attributes = Hash.from_xml(xml)
+    show_buyer_attributes = attributes["show_buyer"]
+    name = show_buyer_attributes.delete("name")
+    
+    duplicate = Contact.find_by_name(name)
+    if duplicate
+      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
+      name = "#{name} ##{nb_duplicates + 1}"
+    end
+
+
+    structure_attributes = show_buyer_attributes.delete("structure")
+    contact_attributes = structure_attributes.delete("contact")
+    s = ShowBuyer.new(show_buyer_attributes)
+    s.structure = Structure.new(structure_attributes)
+
+    contact = Contact.new_from_mml_hash(contact_attributes)
+    contact.name = name
+    contact.duplicate = duplicate
+    s.structure.contact = contact
+    
+    s    
   end
 
 end

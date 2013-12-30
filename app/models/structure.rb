@@ -96,8 +96,21 @@ class Structure < ActiveRecord::Base
   end
 
   def deep_xml(builder=nil)
-    to_xml(:builder => builder, :skip_instruct => true, :skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :avatar, :structurable_type, :structurable_id]) do |xml|
+    to_xml(
+      :builder => builder, :skip_instruct => true, :skip_types => true, 
+      except: [:id, :created_at, :updated_at, :account_id, :avatar, :structurable_type, :structurable_id]
+      ) do |xml|
+      xml.name self.name unless structurable_type  
       contact.deep_xml(xml)
+      xml.people do
+        people_structures.each do |ps|
+          xml.person do
+            xml.last_name ps.person.last_name
+            xml.first_name ps.person.first_name
+            xml.title ps.title
+          end
+        end
+      end
     end    
   end
 end
