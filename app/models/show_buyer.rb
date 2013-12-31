@@ -96,4 +96,15 @@ class ShowBuyer < ActiveRecord::Base
     s    
   end
 
+  def self.from_merciedgar_hash(show_buyer_attributes, imported_at)
+    structure_attributes = show_buyer_attributes.delete("structure")
+    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
+
+    show_buyer = ShowBuyer.new(show_buyer_attributes)
+    show_buyer.structure = structure
+    
+    show_buyer
+    
+  end
+
 end

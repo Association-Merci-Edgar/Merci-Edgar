@@ -20,7 +20,7 @@ class Contact < ActiveRecord::Base
   
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :name, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :style_tags, :network_tags, :custom_tags, :remark
+  attr_accessible :name, :imported_at, :source, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :style_tags, :network_tags, :custom_tags, :remark
 
   belongs_to :contactable, polymorphic: true
   belongs_to :duplicate, class_name: "Contact"
@@ -289,7 +289,7 @@ class Contact < ActiveRecord::Base
     to_xml(:builder => builder, 
       :skip_instruct => true, 
       :skip_types => true, 
-      except: [:id, :duplicate_id, :name, :created_at, :updated_at, :contactable_type, :contactable_id, :account_id, :avatar, :contract_tags, :style_tags, :capacity_tags, :venue_kind],
+      except: [:id, :duplicate_id, :created_at, :updated_at, :contactable_type, :contactable_id, :account_id, :avatar, :contract_tags, :style_tags, :capacity_tags, :venue_kind],
       :include => {
         :phones => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
         :websites => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
@@ -305,13 +305,22 @@ class Contact < ActiveRecord::Base
     self.fine_model.deep_xml unless self.contactable_type == "Person"
   end
   
-  def self.new_from_mml_hash(contact_attributes)
+  def self.new_from_merciedgar_hash(contact_attributes, imported_at)
     addresses_attributes = contact_attributes.delete("addresses")
     phones_attributes = contact_attributes.delete("phones")
     websites_attributes = contact_attributes.delete("websites")
     emails_attributes = contact_attributes.delete("emails")
     
     contact = Contact.new(contact_attributes)
+    duplicate = Contact.find_by_name(contact_attributes["name"])
+    if duplicate
+      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
+      contact.name = "#{name} ##{nb_duplicates + 1}"
+    end
+    
+    contact.imported_at = imported_at
+    
+    
     
     contact.build_children(:addresses, addresses_attributes["address"]) if addresses_attributes
     contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
@@ -321,5 +330,79 @@ class Contact < ActiveRecord::Base
     contact
   end
   
+  def self.import_from_xml(xml)
+    attributes = Hash.from_xml(xml)
+    imported_at = Time.now
+    
+    venues = attributes["merciedgar"].delete("venue")
+    if venues.is_a?(Array)
+      venues.each do |venue_attributes|
+        venue = Venue.from_merciedgar_hash(venue_attributes, imported_at)
+        venue.save
+        puts "Le lieu #{venue.name} a ete importe"
+      end
+    else
+      if venues.is_a?(Hash)
+        venue_attributes = venues
+        venue = Venue.from_merciedgar_hash(venue_attributes, imported_at)
+        venue.save
+        puts "Le lieu #{venue.name} a ete importe"
+      end
+    end
+    
+    festivals = attributes["merciedgar"].delete("festival")
+    if festivals.is_a?(Array)
+      festivals.each do |festivals_attributes|
+        festival = Festival.from_merciedgar_hash(festival_attributes, imported_at)
+        festival.save
+        puts "Le festival #{venue.name} a ete importe"
+      end
+    else
+      if festivals.is_a?(Hash)
+        festival_attributes = festivals
+        festival = Festival.from_merciedgar_hash(festival_attributes, imported_at)
+        festival.save
+        puts "Le festival #{festival.name} a ete importe"
+      end
+    end
+
+    show_buyers = attributes["merciedgar"].delete("show_buyer")
+    if show_buyers.is_a?(Array)
+      show_buyers.each do |show_buyer_attributes|
+        show_buyer = ShowBuyer.from_merciedgar_hash(show_buyer_attributes, imported_at)
+        show_buyer.save
+        puts "Le lieu #{show_buyer.name} a ete importe"
+      end
+    else
+      if show_buyers.is_a?(Hash)
+        show_buyer_attributes = show_buyers
+        show_buyer = ShowBuyer.from_merciedgar_hash(show_buyer_attributes, imported_at)
+        show_buyer.save
+        puts "L'organisateur #{show_buyer.name} a ete importe"
+      end
+    end
+
+    structures = attributes["merciedgar"].delete("structure")
+    if structures.is_a?(Array)
+      structures.each do |structure_attributes|
+        structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
+        structure.save
+        puts "Le lieu #{structure.name} a ete importe"
+      end
+    else
+      if structures.is_a?(Hash)
+        structure_attributes = structures
+        structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
+        structure.save
+        puts "La structure #{structure.name} a ete importe"
+      end
+    end
+
+    
+  end
+  
+  def self.import_from_xml_file(xml_file)
+    
+  end
       
 end
