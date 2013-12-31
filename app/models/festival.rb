@@ -101,5 +101,17 @@ class Festival < ActiveRecord::Base
     
     f    
   end
+  
+  def self.from_merciedgar_hash(festival_attributes, imported_at)
+    structure_attributes = festival_attributes.delete("structure")
+    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
+
+    festival = Festival.new(festival_attributes)
+    festival.structure = structure
+    
+    festival
+    
+  end
+  
 
 end

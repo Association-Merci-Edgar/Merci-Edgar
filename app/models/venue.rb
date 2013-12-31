@@ -160,29 +160,20 @@ class Venue < ActiveRecord::Base
   end
 
 
-  
+  def self.from_merciedgar_hash(venue_attributes, imported_at)
+    structure_attributes = venue_attributes.delete("structure")
+    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
+
+    venue = Venue.new(venue_attributes)
+    venue.structure = structure
+    
+    venue
+    
+  end
+
   def self.from_xml(xml)
     attributes = Hash.from_xml(xml)
     venue_attributes = attributes["venue"]
-    name = venue_attributes.delete("name")
-    
-    duplicate = Contact.find_by_name(name)
-    if duplicate
-      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
-      name = "#{name} ##{nb_duplicates + 1}"
-    end
-
-
-    structure_attributes = venue_attributes.delete("structure")
-    contact_attributes = structure_attributes.delete("contact")
-    v = Venue.new(venue_attributes)
-    v.structure = Structure.new(structure_attributes)
-
-    contact = Contact.new_from_mml_hash(contact_attributes)
-    contact.name = name
-    contact.duplicate = duplicate
-    v.structure.contact = contact
-    
-    v    
+    self.from_merciedgar_hash(venue_attributes, Time.now)
   end
 end

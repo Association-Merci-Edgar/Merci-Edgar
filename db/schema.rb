@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131227154913) do
+ActiveRecord::Schema.define(:version => 20131230084318) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20131227154913) do
     t.string   "capacity_tags"
     t.string   "venue_kind"
     t.integer  "duplicate_id"
+    t.datetime "imported_at"
+    t.string   "source"
   end
 
   add_index "contacts", ["account_id"], :name => "index_contacts_on_account_id"

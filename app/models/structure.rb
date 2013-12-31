@@ -100,7 +100,6 @@ class Structure < ActiveRecord::Base
       :builder => builder, :skip_instruct => true, :skip_types => true, 
       except: [:id, :created_at, :updated_at, :account_id, :avatar, :structurable_type, :structurable_id]
       ) do |xml|
-      xml.name self.name unless structurable_type  
       contact.deep_xml(xml)
       xml.people do
         people_structures.each do |ps|
@@ -112,5 +111,59 @@ class Structure < ActiveRecord::Base
         end
       end
     end    
+  end
+
+  def self.from_merciedgar_hash(structure_attributes, imported_at)  
+    contact_attributes = structure_attributes.delete("contact")
+
+    people_attributes = structure_attributes.delete("people")
+
+    structure = Structure.new(structure_attributes)
+
+    people_array = people_attributes["person"]
+    
+    if people_array.is_a?(Array)
+      people_array.each do |person_hash|
+        person = Person.find_or_initialize_by_first_name_and_last_name(person_hash["first_name"],person_hash["last_name"])
+        if person.new_record?
+          person.build_contact.imported_at = imported_at
+        else
+          if person.imported_at != imported_at
+            nb_duplicates = Contact.where("name LIKE ?","#{person.name} #%").size
+            first_name = "#{person_hash["first_name"]} ##{nb_duplicates + 1}"
+            
+            person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
+          end
+        end
+        ps = structure.people_structures.build
+        ps.person = person
+        ps.title = person_hash["title"]
+      end   
+    else
+      if people_array.is_a?(Hash)
+        person_hash = people_array
+        person = Person.find_or_initialize_by_first_name_and_last_name(person_hash["first_name"],person_hash["last_name"])
+        if person.new_record?
+          person.build_contact.imported_at = imported_at
+        else
+          if person.imported_at != imported_at
+            nb_duplicates = Contact.where("name LIKE ?","#{person.name} #%").size
+            first_name = "#{person_hash("first_name")} ##{nb_duplicates + 1}"
+            
+            person = Person.new(person_hash("last_name"), first_name)
+          end
+        end
+        ps = structure.people_structures.build
+        ps.person = person
+        ps.title = person_hash["title"]
+      end
+    end
+      
+
+    
+    contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at)
+    structure.contact = contact
+    
+    structure
   end
 end

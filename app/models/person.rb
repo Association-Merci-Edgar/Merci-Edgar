@@ -26,7 +26,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
 
-  delegate :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
+  delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
 
   before_validation :set_name
   
