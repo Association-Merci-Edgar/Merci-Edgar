@@ -24,6 +24,7 @@ class Contact < ActiveRecord::Base
 
   belongs_to :contactable, polymorphic: true
   belongs_to :duplicate, class_name: "Contact"
+  has_many :duplicates, class_name: "Contact", foreign_key: "duplicate_id"
   
   validates_uniqueness_of :name, scope: [:account_id]
   # validates_associated :phones
@@ -318,6 +319,7 @@ class Contact < ActiveRecord::Base
     if duplicate
       nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
       contact.name = "#{name} ##{nb_duplicates + 1}"
+      contact.duplicate = duplicate
     end
     
     contact.imported_at = imported_at
