@@ -97,11 +97,13 @@ class ShowBuyer < ActiveRecord::Base
   end
 
   def self.from_merciedgar_hash(show_buyer_attributes, imported_at)
+    avatar_attributes = show_buyer_attributes.delete("base64_avatar")
     structure_attributes = show_buyer_attributes.delete("structure")
     structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
 
     show_buyer = ShowBuyer.new(show_buyer_attributes)
     show_buyer.structure = structure
+    show_buyer.upload_base64_avatar(avatar_attributes)
     
     show_buyer
     

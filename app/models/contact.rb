@@ -302,7 +302,8 @@ class Contact < ActiveRecord::Base
   end
   
   def fine_deep_xml
-    self.fine_model.deep_xml unless self.contactable_type == "Person"
+    self.fine_model.deep_xml
+#    self.fine_model.deep_xml unless self.contactable_type == "Person"
   end
   
   def self.new_from_merciedgar_hash(contact_attributes, imported_at)
@@ -312,7 +313,8 @@ class Contact < ActiveRecord::Base
     emails_attributes = contact_attributes.delete("emails")
     
     contact = Contact.new(contact_attributes)
-    duplicate = Contact.find_by_name(contact_attributes["name"])
+    name = contact_attributes["name"]
+    duplicate = Contact.find_by_name(name)
     if duplicate
       nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
       contact.name = "#{name} ##{nb_duplicates + 1}"
@@ -333,6 +335,22 @@ class Contact < ActiveRecord::Base
   def self.import_from_xml(xml)
     attributes = Hash.from_xml(xml)
     imported_at = Time.now
+
+    people = attributes["merciedgar"].delete("person")
+    if people.is_a?(Array)
+      people.each do |person_attributes|
+        person = Person.from_merciedgar_hash(person_attributes, imported_at)
+        person.save
+        puts "La person #{person.name} a ete importee"
+      end
+    else
+      if people.is_a?(Hash)
+        person_attributes = people
+        person = Person.from_merciedgar_hash(person_attributes, imported_at)
+        person.save
+        puts "La person #{person.name} a ete importee"
+      end
+    end
     
     venues = attributes["merciedgar"].delete("venue")
     if venues.is_a?(Array)

@@ -13,6 +13,7 @@
 #
 
 class Person < ActiveRecord::Base
+  include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
   attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar, :remote_avatar_url
   has_one :contact, as: :contactable, dependent: :destroy
@@ -110,6 +111,42 @@ class Person < ActiveRecord::Base
     Contact.unscoped do
       self.amoeba_dup
     end
+  end
+  
+  def deep_xml(builder=nil)
+    to_xml(
+      :builder => builder, :skip_instruct => true, :skip_types => true, 
+      except: [:id, :created_at, :updated_at, :account_id, :avatar]
+      ) do |xml|
+      contact.deep_xml(xml)
+      xml.base64_avatar do
+        xml.filename self.avatar.file.filename 
+        xml.content self.base64_avatar
+      end  unless self.avatar_url == self.avatar.default_url      
+    end    
+  end
+  
+  def self.from_merciedgar_hash(person_attributes, imported_at)  
+    avatar_attributes = person_attributes.delete("base64_avatar")
+    contact_attributes = person_attributes.delete("contact")
+    first_name = person_attributes.delete("first_name")
+    last_name = person_attributes.delete("last_name")
+    person = Person.find_or_initialize_by_first_name_and_last_name(first_name,last_name)
+    if person.new_record?
+      person.build_contact.imported_at = imported_at
+    else
+      if person.imported_at != imported_at
+        nb_duplicates = Contact.where("name LIKE ?","#{person.name} #%").size
+        fname = "#{first_name} ##{nb_duplicates + 1}"
+        old_person = person
+        person = Person.new(last_name:last_name, first_name:fname)
+        person.build_contact.duplicate = old_person.contact
+        person.contact.imported_at = imported_at
+      end
+    end
+    person.assign_attributes(person_attributes)
+    person.upload_base64_avatar(avatar_attributes)
+    person
   end
 
 end

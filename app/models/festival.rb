@@ -103,11 +103,13 @@ class Festival < ActiveRecord::Base
   end
   
   def self.from_merciedgar_hash(festival_attributes, imported_at)
+    avatar_attributes = festival_attributes.delete("base64_avatar")
     structure_attributes = festival_attributes.delete("structure")
     structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
 
     festival = Festival.new(festival_attributes)
     festival.structure = structure
+    festival.upload_base64_avatar(avatar_attributes)
     
     festival
     
