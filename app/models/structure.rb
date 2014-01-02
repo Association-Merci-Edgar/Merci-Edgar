@@ -12,6 +12,7 @@
 #
 
 class Structure < ActiveRecord::Base
+  include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :contact_attributes, :avatar, :remote_avatar_url, :kind
@@ -110,10 +111,17 @@ class Structure < ActiveRecord::Base
           end
         end
       end
+      xml.base64_avatar do
+        xml.filename self.avatar.file.filename 
+        xml.content self.base64_avatar
+      end  unless self.avatar_url == self.avatar.default_url
+      
     end    
   end
 
   def self.from_merciedgar_hash(structure_attributes, imported_at)  
+    avatar_attributes = structure_attributes.delete("base64_avatar")
+    
     contact_attributes = structure_attributes.delete("contact")
 
     people_attributes = structure_attributes.delete("people")
@@ -128,11 +136,14 @@ class Structure < ActiveRecord::Base
         if person.new_record?
           person.build_contact.imported_at = imported_at
         else
-          if person.imported_at != imported_at
-            nb_duplicates = Contact.where("name LIKE ?","#{person.name} #%").size
+          duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
+          nb_duplicates = duplicates.size
+          person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
+          unless person
             first_name = "#{person_hash["first_name"]} ##{nb_duplicates + 1}"
             
             person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
+            person.build_contact.imported_at = imported_at
           end
         end
         ps = structure.people_structures.build
@@ -146,11 +157,14 @@ class Structure < ActiveRecord::Base
         if person.new_record?
           person.build_contact.imported_at = imported_at
         else
-          if person.imported_at != imported_at
-            nb_duplicates = Contact.where("name LIKE ?","#{person.name} #%").size
-            first_name = "#{person_hash("first_name")} ##{nb_duplicates + 1}"
+          duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
+          nb_duplicates = duplicates.size
+          person = duplicates.where(imported_at: imported_at).first
+          unless person
+            first_name = "#{person_hash["first_name"]} ##{nb_duplicates + 1}"
             
-            person = Person.new(person_hash("last_name"), first_name)
+            person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
+            person.build_contact.imported_at = imported_at
           end
         end
         ps = structure.people_structures.build
@@ -163,7 +177,7 @@ class Structure < ActiveRecord::Base
     
     contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at)
     structure.contact = contact
-    
+    structure.upload_base64_avatar(avatar_attributes)
     structure
   end
 end
