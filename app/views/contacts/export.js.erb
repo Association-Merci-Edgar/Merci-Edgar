@@ -1,0 +1,20 @@
+$(".progress").show();
+(function pollJobidStatus() {
+  $.getJSON('<%= job_path(@job_id) %>', function (response) {
+    if (response.status == "working") {
+    	$(".bar").width(response.pct + 5 + '%');
+			if (response.message != null) {
+				$(".bar").text(response.message)
+			}
+    }
+    if (response.status == "complete") {
+	    //
+		$(".progress").hide();
+			window.location = response.result
+			return false;
+    }
+
+    setTimeout(pollJobidStatus, 1000);
+  });
+}());
+// $(".progress").hide();

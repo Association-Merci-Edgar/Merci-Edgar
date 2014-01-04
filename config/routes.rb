@@ -63,6 +63,7 @@ Edgar::Application.routes.draw do
       get 'add_to_favorites', on: :member
       get 'remove_to_favorites', on: :member
       get 'show_map', on: :collection
+      get 'export', on: :collection
     end
     resource :account do
       put 'import_samples', action: :import_samples, as: :import_samples
@@ -80,7 +81,8 @@ Edgar::Application.routes.draw do
     resources :styles, only: [:index]
     resources :networks, only: [:index]
     resources :customs, only: [:index]
-
+    
+    resources :jobs, only: [:show]
 
     mount Sidekiq::Web, at: "/sidekiq"
 

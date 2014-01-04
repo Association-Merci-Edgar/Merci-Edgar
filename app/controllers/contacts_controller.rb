@@ -49,7 +49,7 @@ class ContactsController < AppController
         render "show_map"
         
         
-      else  
+      else
         @contacts = Contact.advanced_search(params).page params[:page]
         if params[:category].present?
           raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
@@ -66,7 +66,13 @@ class ContactsController < AppController
       end
     end
   end
+  
+  def export
+    @job_id = XmlExportWorker.perform_async(Account.current_id, params)
+    render 'contacts/export'
+  end
 
+  
   def show_map
     if params[:address].present?
       radius = params[:radius] || 100
