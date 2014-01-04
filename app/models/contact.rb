@@ -156,8 +156,8 @@ class Contact < ActiveRecord::Base
   end
 
   def self.advanced_search(params)
-    if params[:category].present?
-      @contacts = Contact.by_type(params[:category])
+    if params["category"].present?
+      @contacts = Contact.by_type(params["category"])
     else
       @contacts = Contact.order(:name)
     end
@@ -179,12 +179,12 @@ class Contact < ActiveRecord::Base
     end
 =end
 
-    @contacts = tagged_with(@contacts, params[:style_list], "style_tags") if params[:style_list].present?
-    @contacts = tagged_with(@contacts, params[:network_list], "network_tags") if params[:network_list].present?
-    @contacts = tagged_with(@contacts, params[:custom_list], "custom_tags") if params[:custom_list].present?
-    @contacts = tagged_with(@contacts, params[:contract_list], "contract_tags") if params[:contract_list].present?
-    @contacts = in_string_list(@contacts,params[:venue_kind], :venue_kind) if params[:venue_kind].present?
-    @contacts = tagged_with(@contacts, params[:capacity_range], "capacity_tags") if params[:capacity_range].present?
+    @contacts = tagged_with(@contacts, params["style_list"], "style_tags") if params["style_list"].present?
+    @contacts = tagged_with(@contacts, params["network_list"], "network_tags") if params["network_list"].present?
+    @contacts = tagged_with(@contacts, params["custom_list"], "custom_tags") if params["custom_list"].present?
+    @contacts = tagged_with(@contacts, params["contract_list"], "contract_tags") if params["contract_list"].present?
+    @contacts = in_string_list(@contacts,params["venue_kind"], :venue_kind) if params["venue_kind"].present?
+    @contacts = tagged_with(@contacts, params["capacity_range"], "capacity_tags") if params["capacity_range"].present?
     # @contacts = @contacts.by_department(params[:dept]) if params[:dept].present?
     
     # @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?

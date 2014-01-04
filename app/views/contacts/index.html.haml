@@ -1,8 +1,8 @@
 = render 'header'
 /______________________________________________________ LISTS       
-COUCOU
-Un p'tit link
-= link_to "Export XML", params.merge({format:"xml"})
+.progress{:style => "display:none"}
+  .bar
+= link_to "Export XML", export_contacts_path(params), remote: true
 .row-fluid
   %ul#contact-list.list-large
     - unless @no_paging
