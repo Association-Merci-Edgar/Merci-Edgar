@@ -8,7 +8,9 @@ $(".progress").show();
 			}
     }
     if (response.status == "complete") {
-	    window.location = response.result
+	    //
+		$(".progress").hide();
+			window.location = response.result
 			return false;
     }
 

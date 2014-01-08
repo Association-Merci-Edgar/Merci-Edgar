@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20131230084318) do
     t.string   "capacity_tags"
     t.string   "venue_kind"
     t.integer  "duplicate_id"
-    t.datetime "imported_at"
+    t.integer  "imported_at"
     t.string   "source"
   end
 

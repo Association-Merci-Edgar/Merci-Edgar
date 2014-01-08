@@ -136,6 +136,7 @@ class Structure < ActiveRecord::Base
         if person.new_record?
           person.build_contact.imported_at = imported_at
         else
+          old_person = person
           duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
           nb_duplicates = duplicates.size
           person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
@@ -144,6 +145,7 @@ class Structure < ActiveRecord::Base
             
             person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
             person.build_contact.imported_at = imported_at
+            person.contact.duplicate = old_person.contact
           end
         end
         ps = structure.people_structures.build
@@ -157,6 +159,7 @@ class Structure < ActiveRecord::Base
         if person.new_record?
           person.build_contact.imported_at = imported_at
         else
+          old_person = person
           duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
           nb_duplicates = duplicates.size
           person = duplicates.where(imported_at: imported_at).first
@@ -165,6 +168,7 @@ class Structure < ActiveRecord::Base
             
             person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
             person.build_contact.imported_at = imported_at
+            person.contact.duplicate = old_person.contact
           end
         end
         ps = structure.people_structures.build

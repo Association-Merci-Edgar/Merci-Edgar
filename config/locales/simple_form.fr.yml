@@ -75,7 +75,9 @@ fr:
         name: Projet artistique
       contact:
         remark: Observations
-
+      import:
+        filename: "Choisissez un fichier .mml"
+        custom_tags: "Tag(s) personnalisé(s) à ajouter aux contacts importés<br><span class='help-block'>(séparés par des virgules)</span>"
       schedulings: &schedulings
         external_show_buyer: Programmé par
         show_buyer_name : Nom de la structure organisatrice de spectacle

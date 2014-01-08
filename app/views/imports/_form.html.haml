@@ -1,0 +1,20 @@
+.modal-header
+  %a.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+  %h3#myModalLabel Import de contacts
+  
+
+= simple_form_for(@import, remote: true) do |f|
+  .modal-body  
+    .errors     
+    = f.input :filename, as: :file
+    %p
+     
+    = f.input :custom_tags, :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
+    
+    %section
+      .progress
+        .bar
+        
+  .modal-footer
+    = f.button :submit
+        

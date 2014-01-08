@@ -8,11 +8,17 @@ $(".progress").show();
 			}
     }
     if (response.status == "complete") {
-	    window.location = response.result
+			nb_imported_contacts = response.result["nb_imported_contacts"]
+			nb_duplicates = response.result["nb_duplicates"]
+
+			$(".progress").hide();
+			$('#myModal').modal('toggle')
+			console.log("result import:" + nb_imported_contacts + " / " + nb_duplicates)
+			window.location = "<%= import_path(@job_id) %>"
+			
 			return false;
     }
 
     setTimeout(pollJobidStatus, 1000);
   });
 }());
-// $(".progress").hide();

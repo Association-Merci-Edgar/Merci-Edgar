@@ -13,6 +13,7 @@
 // require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require tag-it
 //= require tag
 //= require bootstrap
