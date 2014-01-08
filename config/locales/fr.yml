@@ -265,6 +265,17 @@ fr:
   main_address: Adresse principale
   admin_address: Adresse administrative
   
+  activemodel:
+    attributes:
+      import:
+        filename: Nom de fichier
+    errors:
+      models:
+        import:
+          attributes:
+            filename:
+              blank: "Vous n'avez pas choisi de fichier .mml"
+  
   activerecord:
     models:
       venue: Lieu
@@ -285,13 +296,21 @@ fr:
         depth: Profondeur
         height: Hauteur
         width: Largeur
+      import:
+        filename: Le nom de fichier
     errors:
       models:
+        attributes:
+          filename:
+            blank: "Aucun fichier sélectionné"
         venue:
           attributes:
             name:
               taken: "Une salle existe déjà avec ce nom"
-              
+        import:
+          attributes:
+            filename: "Vous n'avez pas choisi un fichier à importer"
+
     notices:
       models:
         structure:

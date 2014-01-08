@@ -1,0 +1,24 @@
+%ul#contact-list.list-large
+  - unless @no_paging
+    %li.list-header
+      = @contacts.try(:total_count)
+      résulats — Page 
+      = paginate @contacts if @contacts
+  -#  
+    .meta
+      %a.shybtn{:href => "#",:title => "bulk / Traitement par lot", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
+        %i.edi-list
+  
+  = render @contacts if @contacts
+
+  - unless @no_paging
+    %li.list-header
+      = paginate @contacts if @contacts
+  
+  .btns-in-list
+    %i.entypo.edi-plus-3
+    %span
+      = link_to "Ajouter une structure", new_structure_path
+      |
+      = link_to new_person_path do
+        Ajouter une personne

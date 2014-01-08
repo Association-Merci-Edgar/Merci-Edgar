@@ -27,6 +27,7 @@ class Contact < ActiveRecord::Base
   has_many :duplicates, class_name: "Contact", foreign_key: "duplicate_id"
   
   validates_uniqueness_of :name, scope: [:account_id]
+  validates_presence_of :name
   # validates_associated :phones
 
   has_many :emails, :dependent => :destroy
@@ -73,6 +74,9 @@ class Contact < ActiveRecord::Base
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order("contacts.name")}
   scope :with_reportings, joins: :reportings
   scope :by_department, lambda { |code_dept| joins(:addresses).where('addresses.postal_code LIKE ?', "#{code_dept}%").order("contacts.name")}
+
+  scope :imported_at, lambda { |imported_at| where(imported_at: imported_at) }
+  scope :duplicated, where("duplicate_id IS NOT NULL")
 
   scope :recently_created, order("created_at desc").limit(10)
   scope :recently_updated, order("updated_at desc").limit(10)
@@ -190,6 +194,8 @@ class Contact < ActiveRecord::Base
     # @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
     # @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
     # @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
+    @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"]
+    @contacts = @contacts.duplicated if params["duplicated"].present? && params["duplicated"]
     @contacts
   end
 
@@ -212,13 +218,18 @@ class Contact < ActiveRecord::Base
 
 
   def custom_list
-    self.custom_tags.split(',') if self.custom_tags.present?
+    self.custom_tags.split(',').uniq if self.custom_tags.present?
   end
 
   def custom_list=(customs)
     self.custom_tags = customs.join(',') if customs.present?
   end
 
+  def add_custom_tags(tags)
+    self.custom_tags = custom_tags ? custom_tags + ',' + tags : tags
+    self.custom_tags = custom_tags.split(',').map(&:strip).uniq.join(',')
+  end
+  
   def network_list
     self.network_tags.split(',') if self.network_tags.present?
   end
@@ -333,96 +344,5 @@ class Contact < ActiveRecord::Base
     
     contact
   end
-  
-  def self.import_from_xml(xml)
-    attributes = Hash.from_xml(xml)
-    imported_at = Time.now
-
-    people = attributes["merciedgar"].delete("person")
-    if people.is_a?(Array)
-      people.each do |person_attributes|
-        person = Person.from_merciedgar_hash(person_attributes, imported_at)
-        person.save
-        puts "La person #{person.name} a ete importee"
-      end
-    else
-      if people.is_a?(Hash)
-        person_attributes = people
-        person = Person.from_merciedgar_hash(person_attributes, imported_at)
-        person.save
-        puts "La person #{person.name} a ete importee"
-      end
-    end
-    
-    venues = attributes["merciedgar"].delete("venue")
-    if venues.is_a?(Array)
-      venues.each do |venue_attributes|
-        venue = Venue.from_merciedgar_hash(venue_attributes, imported_at)
-        venue.save
-        puts "Le lieu #{venue.name} a ete importe"
-      end
-    else
-      if venues.is_a?(Hash)
-        venue_attributes = venues
-        venue = Venue.from_merciedgar_hash(venue_attributes, imported_at)
-        venue.save
-        puts "Le lieu #{venue.name} a ete importe"
-      end
-    end
-    
-    festivals = attributes["merciedgar"].delete("festival")
-    if festivals.is_a?(Array)
-      festivals.each do |festivals_attributes|
-        festival = Festival.from_merciedgar_hash(festival_attributes, imported_at)
-        festival.save
-        puts "Le festival #{venue.name} a ete importe"
-      end
-    else
-      if festivals.is_a?(Hash)
-        festival_attributes = festivals
-        festival = Festival.from_merciedgar_hash(festival_attributes, imported_at)
-        festival.save
-        puts "Le festival #{festival.name} a ete importe"
-      end
-    end
-
-    show_buyers = attributes["merciedgar"].delete("show_buyer")
-    if show_buyers.is_a?(Array)
-      show_buyers.each do |show_buyer_attributes|
-        show_buyer = ShowBuyer.from_merciedgar_hash(show_buyer_attributes, imported_at)
-        show_buyer.save
-        puts "Le lieu #{show_buyer.name} a ete importe"
-      end
-    else
-      if show_buyers.is_a?(Hash)
-        show_buyer_attributes = show_buyers
-        show_buyer = ShowBuyer.from_merciedgar_hash(show_buyer_attributes, imported_at)
-        show_buyer.save
-        puts "L'organisateur #{show_buyer.name} a ete importe"
-      end
-    end
-
-    structures = attributes["merciedgar"].delete("structure")
-    if structures.is_a?(Array)
-      structures.each do |structure_attributes|
-        structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
-        structure.save
-        puts "Le lieu #{structure.name} a ete importe"
-      end
-    else
-      if structures.is_a?(Hash)
-        structure_attributes = structures
-        structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
-        structure.save
-        puts "La structure #{structure.name} a ete importe"
-      end
-    end
-
-    
-  end
-  
-  def self.import_from_xml_file(xml_file)
-    
-  end
-      
+        
 end

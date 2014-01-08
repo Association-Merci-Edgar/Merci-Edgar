@@ -1,0 +1,8 @@
+.notice.info
+  = @nb_imported_contacts
+  ont été importés avec succès
+  = link_to "lien",contacts_path(imported_at: @imported_at)
+.notice.warning
+  = @nb_duplicates
+  doublons ont été importés. Les voici
+  = link_to "lien", contacts_path(imported_at: @imported_at, duplicated:true)

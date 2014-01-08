@@ -84,6 +84,8 @@ Edgar::Application.routes.draw do
     
     resources :jobs, only: [:show]
 
+    resources :imports
+    
     mount Sidekiq::Web, at: "/sidekiq"
 
 

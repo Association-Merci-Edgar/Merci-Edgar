@@ -9,6 +9,7 @@ group :assets do
 end
 gem 'jquery-rails', '~> 3.0.4'
 gem 'jquery-ui-rails'
+gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'

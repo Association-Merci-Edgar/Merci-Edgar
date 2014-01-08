@@ -26,7 +26,7 @@ class ContactsController < AppController
       
     else
       if Contact.count == 0
-        render "empty"
+        render "index"
         return
       end
       if params[:commit] == "show map"

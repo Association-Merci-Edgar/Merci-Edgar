@@ -3,28 +3,7 @@
 .progress{:style => "display:none"}
   .bar
 = link_to "Export XML", export_contacts_path(params), remote: true
-.row-fluid
-  %ul#contact-list.list-large
-    - unless @no_paging
-      %li.list-header
-        = @contacts.total_count
-        résulats — Page 
-        = paginate @contacts
-    -#  
-      .meta
-        %a.shybtn{:href => "#",:title => "bulk / Traitement par lot", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
-          %i.edi-list
-    
-    = render @contacts
+= link_to "Import XML", new_import_path, remote:true
 
-    - unless @no_paging
-      %li.list-header
-        = paginate @contacts
-    
-    .btns-in-list
-      %i.entypo.edi-plus-3
-      %span
-        = link_to "Ajouter une structure", new_structure_path
-        |
-        = link_to new_person_path do
-          Ajouter une personne
+.row-fluid
+  = render 'paginated_contacts'
