@@ -8,6 +8,7 @@ $lblue:   lighten( $dblue, 40% );
 $vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
 $beige:   #edede8;
 $dbeige:  rgba(194, 194, 177, 1);
+$dbeige1:  rgba(221, 221, 212, 1);
 $dbeige2: rgba(209, 209, 197, 1);
 $orange:  #ff5a3e;
 $yellow:  #EDE232;
@@ -389,7 +390,7 @@ $lbrown: rgba(209, 209, 197, 1);
 
 .btn-tertiary {
   @extend .btn-primary;
-  background:$dbeige;
+  background:$dbeige1;
   color:$mblue;
   &:hover, &:focus, &:active {
     background:$green;
@@ -486,6 +487,18 @@ section > h4 {display:block; margin-bottom:24px;}
   display:block;
 }
 
+.progress {
+  margin-bottom: 50px;
+  .bar {}
+  .message {
+    position: absolute;
+    margin-top:30px;
+   
+  }
+}
+
+.ghost {opacity:0;}
+
 header {display:block;}
 
 .subpage-nav {
@@ -494,7 +507,7 @@ header {display:block;}
   margin-left:10px;
   //a:not(.active) {color:$lblue;
    // &:hover{color:$green;};}
-  a{margin-right:10px;}
+  a{margin-left:10px;}
   .active:hover{cursor:default; color:$dblue;}
 }
 
@@ -1713,7 +1726,7 @@ section {
 .badge-orange {background:$orange;}
 .badge-blue {background:$blue;}
 .badge-green {background:$green2;}
-.badge-shy {background:none; border: solid 1px $lblue; color:$dblue; ;}
+.badge-coun {background:none; border: solid 1px $lblue; color:$dblue; ;}
 
 
 
@@ -1970,7 +1983,13 @@ button.shybtn {padding:4px 8px;}
 
 /* _______________________________________________________  List_large   */
 
-#contact-list {margin-top:20px;}
+#contact-list {
+  margin-top:20px;
+  li.list-header {
+    margin-top:30px;
+    margin-bottom:10px;
+  }
+}
 #contact-list.list-large>li:not(.list-header) {min-height: 111px;}
 
 #contact-list.list-large h3 .contact-type {
@@ -1999,6 +2018,11 @@ button.shybtn {padding:4px 8px;}
 
 nav.pagination{ display: inline-block;}
 
+.badge-count {
+  border: 1px solid $dbeige;
+  @include roundcornersFX(30px);
+  padding:5px 10px;
+}
 
 .list-large {
   color:$vlblue;
@@ -2087,6 +2111,9 @@ margin-bottom: 60px;
 form#contact_us .uvFieldTextarea { height:150px; };
 
 
+.list-small>li { border:none;
+  min-height:none;
+}
 
 /*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
@@ -2132,6 +2159,11 @@ header {
 
 
 .row-fluid input.span12 { width:100%; min-height:40px;}
+
+input.fullwidth { width:100%;
+  @include borderbox;
+  height: 36px;
+}
 
 textarea {
   resize:vertical;

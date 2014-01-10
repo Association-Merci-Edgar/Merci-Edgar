@@ -136,7 +136,7 @@ window.onload = function() {
 			'edi-plus-2' : '&#xe080;',
 			'edi-cross-3' : '&#xe081;',
 			'edi-minus-3' : '&#xe082;',
-			'edi-plus-3' : '&#xe083;',
+			'edi-plus3' : '&#xe083;',
 			'edi-erase' : '&#xe084;',
 			'edi-blocked' : '&#xe085;',
 			'edi-info' : '&#xe086;',
