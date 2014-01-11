@@ -160,10 +160,10 @@ class Venue < ActiveRecord::Base
   end
 
 
-  def self.from_merciedgar_hash(venue_attributes, imported_at)
+  def self.from_merciedgar_hash(venue_attributes, imported_at, custom_tags)
     avatar_attributes = venue_attributes.delete("base64_avatar")
     structure_attributes = venue_attributes.delete("structure")
-    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at)
+    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)
 
     venue = Venue.new(venue_attributes)
     venue.structure = structure

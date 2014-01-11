@@ -1,5 +1,3 @@
-require "rexml/document"
-
 class ContactsController < AppController
   def index
     if request.xhr?

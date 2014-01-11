@@ -31,6 +31,8 @@ gem 'yaml_db'
 
 gem 'kaminari'
 
+gem "libxml-ruby", "~> 2.7.0"
+
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
