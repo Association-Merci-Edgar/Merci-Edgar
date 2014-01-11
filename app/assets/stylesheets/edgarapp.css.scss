@@ -492,8 +492,9 @@ section > h4 {display:block; margin-bottom:24px;}
   .bar {}
   .message {
     position: absolute;
-    margin-top:30px;
-   
+    margin-top:24px;
+    color:$mblue;
+    font-size:14px;
   }
 }
 
