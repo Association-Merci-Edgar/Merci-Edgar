@@ -126,7 +126,7 @@ class Person < ActiveRecord::Base
     end    
   end
   
-  def self.from_merciedgar_hash(person_attributes, imported_at)  
+  def self.from_merciedgar_hash(person_attributes, imported_at, custom_tags)  
     avatar_attributes = person_attributes.delete("base64_avatar")
     contact_attributes = person_attributes.delete("contact")
     first_name = person_attributes.delete("first_name")
@@ -146,6 +146,7 @@ class Person < ActiveRecord::Base
     end
     person.assign_attributes(person_attributes)
     person.upload_base64_avatar(avatar_attributes)
+    person.contact.add_custom_tags(custom_tags)
     person
   end
 

@@ -183,6 +183,7 @@ GEM
     kgio (2.8.1)
     launchy (2.3.0)
       addressable (~> 2.3)
+    libxml-ruby (2.7.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -352,6 +353,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   launchy
+  libxml-ruby (~> 2.7.0)
   mini_magick
   mocha
   nested_form

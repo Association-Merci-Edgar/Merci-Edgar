@@ -119,7 +119,7 @@ class Structure < ActiveRecord::Base
     end    
   end
 
-  def self.from_merciedgar_hash(structure_attributes, imported_at)  
+  def self.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)  
     avatar_attributes = structure_attributes.delete("base64_avatar")
     
     contact_attributes = structure_attributes.delete("contact")
@@ -146,6 +146,7 @@ class Structure < ActiveRecord::Base
             person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
             person.build_contact.imported_at = imported_at
             person.contact.duplicate = old_person.contact
+            person.contact.add_custom_tags(custom_tags)
           end
         end
         ps = structure.people_structures.build
@@ -169,6 +170,7 @@ class Structure < ActiveRecord::Base
             person = Person.new(last_name:person_hash["last_name"], first_name: first_name)
             person.build_contact.imported_at = imported_at
             person.contact.duplicate = old_person.contact
+            person.contact.add_custom_tags(custom_tags)
           end
         end
         ps = structure.people_structures.build
@@ -179,7 +181,7 @@ class Structure < ActiveRecord::Base
       
 
     
-    contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at)
+    contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
     structure.contact = contact
     structure.upload_base64_avatar(avatar_attributes)
     structure

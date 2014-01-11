@@ -226,8 +226,10 @@ class Contact < ActiveRecord::Base
   end
 
   def add_custom_tags(tags)
-    self.custom_tags = custom_tags ? custom_tags + ',' + tags : tags
-    self.custom_tags = custom_tags.split(',').map(&:strip).uniq.join(',')
+    if tags.present?
+      self.custom_tags = custom_tags ? custom_tags + ',' + tags : tags
+      self.custom_tags = custom_tags.split(',').map(&:strip).uniq.join(',')
+    end
   end
   
   def network_list
@@ -318,7 +320,7 @@ class Contact < ActiveRecord::Base
 #    self.fine_model.deep_xml unless self.contactable_type == "Person"
   end
   
-  def self.new_from_merciedgar_hash(contact_attributes, imported_at)
+  def self.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
     addresses_attributes = contact_attributes.delete("addresses")
     phones_attributes = contact_attributes.delete("phones")
     websites_attributes = contact_attributes.delete("websites")
@@ -341,6 +343,8 @@ class Contact < ActiveRecord::Base
     contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
     contact.build_children(:websites, websites_attributes["website"]) if websites_attributes
     contact.build_children(:emails, emails_attributes["email"]) if emails_attributes
+    
+    contact.add_custom_tags(custom_tags)
     
     contact
   end
