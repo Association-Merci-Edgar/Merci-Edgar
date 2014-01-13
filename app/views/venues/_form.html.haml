@@ -56,14 +56,14 @@
                   = c.fields_for :emails do |email|
                     .nested-fields
                       = email.link_to_remove :title => "Remove this email" do
-                        %i.entypo.edi-minus-2
+                        %i.entypo.edi-minus2
                       = email.input :address, label:"Email", :wrapper => :append do
                         = email.input_field :address, :label => "Email", :validate => true, :class => "input-xlarge"
                         = email.input_field :classic_kind, :label => "Type", :collection => Email::VENUE_KIND, :class => "add-on btn dropdown-toggle"
                         = email.input_field :specific_kind, :class => "other input-medium"
                   .links
                     = c.link_to_add :emails, :title => 'Add a new email' do
-                      %i.entypo.edi-plus-2
+                      %i.entypo.edi-plus2
                       Add a new email
 
 
@@ -71,14 +71,14 @@
                   = c.fields_for :phones do |phone|
                     .nested-fields
                       = phone.link_to_remove :title => "Remove this phone" do
-                        %i.entypo.edi-minus-2
+                        %i.entypo.edi-minus2
                       = phone.input :national_number, :wrapper => :append do
                         = phone.input_field :national_number, :class => "input-medium", :validate => true
                         = phone.input_field :classic_kind, label:false, :collection => Phone::VENUE_KIND, :class => "add-on btn dropdown-toggle"
                         = phone.input_field :specific_kind, :class => "other input-medium"
                   .links
                     = c.link_to_add :phones, :title => 'Ajouter un téléphone' do
-                      %i.entypo.edi-plus-2
+                      %i.entypo.edi-plus2
                       Add a new phone
 
 
@@ -88,7 +88,7 @@
                     = c.fields_for :addresses do |address|
                       .nested-fields.addresses
                         = address.link_to_remove :title => "Remove this address" do
-                          %i.entypo.edi-minus-2
+                          %i.entypo.edi-minus2
 
                         = address.input :street, label:"Addresse", :wrapper => :append do
                           = address.input_field :street,:placeholder =>"Addresse",  :label => false, :input_html => { :class => "input-xlarge" }
@@ -105,7 +105,7 @@
 
                     .links
                       = c.link_to_add :addresses, :title => 'Add a new address' do
-                        %i.entypo.edi-plus-2
+                        %i.entypo.edi-plus2
                         Add a new address
 
 
@@ -114,7 +114,7 @@
                   = c.fields_for :websites do |website|
                     .nested-fields
                       = website.link_to_remove :title => "Remove this website" do
-                        %i.entypo.edi-minus-2
+                        %i.entypo.edi-minus2
                       /= website.input :url, :label => "Website"
                       /= website.input :kind, :label => "Type", :collection => %w(Work Home),  :selected => "Work"
 
@@ -125,7 +125,7 @@
 
                   .links
                     = c.link_to_add :websites, :title => 'Add a new website' do
-                      %i.entypo.edi-plus-2
+                      %i.entypo.edi-plus2
                       Add a new website
 
             / ________________________________________________________________________________________________________________ contact-infos
@@ -191,7 +191,7 @@
                 -#, :input_html => { :class => "span4" }
                 .nested-fields
                   = v.link_to_remove :title => "Supprimer cette programmation" do
-                    %i.entypo.edi-minus-2
+                    %i.entypo.edi-minus2
                   = v.input :name
                   
                   = v.input :external_show_buyer, collection: ["Cette structure", "Un autre organisateur de spectacles"], as: :radio_buttons, item_wrapper_class: "inline", input_html: {class: "external_show_buyer_radio"}  
@@ -220,7 +220,7 @@
                   = v.fields_for :prospectings do |s|
                     .nested-fields
                       = s.link_to_remove :title => "Supprimer cette periode de prospection" do
-                        %i.entypo.edi-minus-2
+                        %i.entypo.edi-minus2
 
                       .control-group  
                         %label.control-label #{t("simple_form.labels.venue.schedulings.prospecting")}
@@ -236,7 +236,7 @@
                             
                   .links
                     = v.link_to_add :prospectings, :title => 'Ajouter une periode de prospection' do
-                      %i.entypo.edi-plus-2
+                      %i.entypo.edi-plus2
                       Ajouter une periode de prospection
                       
                 = v.input :remark
@@ -244,7 +244,7 @@
 
               .links
                 = f.link_to_add :schedulings, :title => 'Ajouter une periode de programmation' do
-                  %i.entypo.edi-plus-2
+                  %i.entypo.edi-plus2
                   Ajouter une programmation
 
                                   
@@ -267,7 +267,7 @@
                       .nested-fields.fields_for_capacities
                         = capacity.link_to_remove :title => "Supprimer cette jauge" do
                           /Remove this capacity
-                          %i.entypo.edi-minus-2
+                          %i.entypo.edi-minus2
 
 
                         %label.control-label
@@ -285,7 +285,7 @@
 
                     .links
                       = room.link_to_add :capacities, :title => t("simple_form.buttons.add_capacity") do
-                        %i.entypo.edi-plus-2
+                        %i.entypo.edi-plus2
                         #{t("simple_form.buttons.add_capacity")}
 
 
