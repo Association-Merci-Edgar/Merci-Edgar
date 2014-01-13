@@ -9,11 +9,12 @@
     = f.input :filename, as: :file
     %p
      
-    = f.input :custom_tags, :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
+    = f.input :custom_tags, :input_html => { :class => "fullwidth custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
     
-    %section
+    %section.progressbar.ghost
       .progress
-        .bar
+        .bar{:style=>"width: 50%"}
+        .message Importation de tel chose
         
   .modal-footer
     = f.button :submit

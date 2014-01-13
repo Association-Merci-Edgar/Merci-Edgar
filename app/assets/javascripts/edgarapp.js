@@ -185,9 +185,10 @@ $.fn.fadeUp = function() {
 }
 */
 
-//  _________________________________ Hide Notices 
+//  _________________________________ Hide Notices
 $(function() {
-  $div = $('.notice:not(.error)')
+  //$div = $('.notice:not(.error)')
+  $div = $('.notice.transient')
   if ($div.get(0)) {    // check if the div exists
     setTimeout(function(){ //$div.animate({height: "0px"}, 400);
         //$div.fadeOut();

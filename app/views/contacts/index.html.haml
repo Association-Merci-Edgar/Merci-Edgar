@@ -2,8 +2,6 @@
 /______________________________________________________ LISTS       
 .progress{:style => "display:none"}
   .bar
-= link_to "Export XML", export_contacts_path(params), remote: true
-= link_to "Import XML", new_import_path, remote:true
 
 .row-fluid
   = render 'paginated_contacts'
