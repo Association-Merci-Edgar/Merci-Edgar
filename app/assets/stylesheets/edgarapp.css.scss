@@ -1727,9 +1727,14 @@ section {
 .badge-orange {background:$orange;}
 .badge-blue {background:$blue;}
 .badge-green {background:$green2;}
-.badge-coun {background:none; border: solid 1px $lblue; color:$dblue; ;}
 
+//.badge-count {background:none; border: solid 1px $lblue; color:$dblue; ;}
 
+.badge-count {
+  border: 1px solid $dbeige;
+  @include roundcornersFX(30px);
+  padding:5px 10px;
+}
 
 
 
@@ -2019,11 +2024,7 @@ button.shybtn {padding:4px 8px;}
 
 nav.pagination{ display: inline-block;}
 
-.badge-count {
-  border: 1px solid $dbeige;
-  @include roundcornersFX(30px);
-  padding:5px 10px;
-}
+
 
 .list-large {
   color:$vlblue;
@@ -2397,12 +2398,15 @@ $tooltipTXT: $white;
 .dropdown-menu > li > a {
   &:hover, &:focus { background:$green; }
 }
-
+.leftpanel.small {
+  .righticon { margin-left: 6px;}
+  #accounts-tab a>span {display:none;}
+}
 
 @media (max-width: 1024px) {
   .footer {width:30px;}
   #accounts-tab a>span {display:none;}
-  .leftpanel.small .righticon { margin-left: 6px;}
+  
   #ui-id-1 {left:30px;}
 }
 
