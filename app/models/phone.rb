@@ -12,7 +12,7 @@
 
 class Phone < ActiveRecord::Base
   belongs_to :contact, touch:true
-  attr_accessible :kind, :national_number, :country, :specific_kind, :classic_kind
+  attr_accessible :kind, :national_number, :number, :country, :specific_kind, :classic_kind
   # validates :national_number, :phone => true, :allow_blank => true
   validate :check_number
   before_validation :set_kind
@@ -79,8 +79,10 @@ class Phone < ActiveRecord::Base
   end
 
   def set_number
-    international = Phone.internat(@national_number,country)
-    self.number = international if international
+    if @national_number
+      international = Phone.internat(@national_number,country)
+      self.number = international if international
+    end
   end
   
   def check_number

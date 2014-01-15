@@ -343,7 +343,22 @@ class Contact < ActiveRecord::Base
     contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
     contact.build_children(:websites, websites_attributes["website"]) if websites_attributes
     contact.build_children(:emails, emails_attributes["email"]) if emails_attributes
-    
+=begin    
+    if phones_attributes
+      phones_hash = phones_attributes["phone"]
+      if phones_hash.is_a? Array
+        phones_hash.each do |attr|
+          phone = contact.phones.build
+          phone.number = attr.delete("number")
+          phone.assign_attributes(attr)
+        end
+      else
+        phone = contact.phones.build
+        phone.number = phones_hash.delete("number")
+        phone.assign_attributes(phones_hash)
+      end
+    end
+=end    
     contact.add_custom_tags(custom_tags)
     
     contact
