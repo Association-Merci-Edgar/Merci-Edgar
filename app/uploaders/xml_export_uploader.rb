@@ -9,9 +9,15 @@ class XmlExportUploader < CarrierWave::Uploader::Base
   # storage :file
   storage :fog
 
+  def initialize(subdir=nil)
+    super
+    @store_subdir = subdir
+  end
+
+
   # Override the directory where uploaded files will be stored.
   def store_dir
-    "exports"
+    "exports/#{@store_subdir}"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

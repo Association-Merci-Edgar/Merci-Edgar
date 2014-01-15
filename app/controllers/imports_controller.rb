@@ -6,10 +6,9 @@ class ImportsController < AppController
   def create
     @import = Import.new(params[:import])
     if @import.valid?
-      uploader = XmlImportUploader.new
+      uploader = XmlImportUploader.new(Account.current_id.to_s)
       uploader.store!(@import.filename)
-      logger.info "uploader url: #{uploader.url}"
-      @job_id = XmlImportWorker.perform_async(Account.current_id, uploader.url, @import.custom_tags)
+      @job_id = XmlImportWorker.perform_async(Account.current_id, Account.current_id.to_s, @import.filename.original_filename, @import.custom_tags)
       render "create"
     else
       render "errors"

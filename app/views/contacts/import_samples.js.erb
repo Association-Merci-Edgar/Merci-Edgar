@@ -1,12 +1,19 @@
+$(".progressbar").toggleClass("ghost");
 (function pollJobidStatus() {
-  $.getJSON('<%= import_samples_status_account_path(id: @job_id) %>', function (response) {
+  $.getJSON('<%= job_path(@job_id) %>', function (response) {
     if (response.status == "working") {
     	$(".bar").width(response.pct + 5 + '%');
+			if (response.message != null) {
+				$(".message").text(response.message)
+			}
     }
     if (response.status == "complete") {
-	    $(".bar").width('100%');
-			console.log("before redirection")
+			nb_imported_contacts = response.result["nb_imported_contacts"]
+			nb_duplicates = response.result["nb_duplicates"]
+
+			$(".progressbar").toggleClass("ghost");
 			window.location = "<%= contacts_path %>"
+			
 			return false;
     }
 

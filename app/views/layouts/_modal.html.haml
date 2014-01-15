@@ -1,0 +1,19 @@
+#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  #myModalContent
+  
+    .modal-header
+      %a.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#myModalLabel Export des contacts
+
+
+    .modal-body  
+      .errors     
+      %p
+
+
+      %section.progressbar
+        .progress
+          .bar
+          .message Export en cours ...
+
+  

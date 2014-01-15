@@ -67,7 +67,6 @@ Edgar::Application.routes.draw do
     end
     resource :account do
       put 'import_samples', action: :import_samples, as: :import_samples
-      get 'import_samples_status', action: :import_samples_status, as: :import_samples_status
       
       resources :abilitations, only: [:create, :update, :destroy, :index]
     end

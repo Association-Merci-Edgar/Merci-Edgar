@@ -24,7 +24,7 @@ class ContactsController < AppController
       
     else
       if Contact.count == 0
-        render "index"
+        render "empty"
         return
       end
       if params[:commit] == "show map"
@@ -56,10 +56,6 @@ class ContactsController < AppController
         
         respond_to do |format|
           format.html
-          format.xml do
-            stream = render_to_string(template: "contacts/index")
-            send_data(stream, type:"text/xml", filename: "export_merciedgar")
-          end
         end
       end
     end

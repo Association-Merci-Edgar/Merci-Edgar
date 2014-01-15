@@ -7,6 +7,10 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 # Add application configuration variables here, as shown below.
 #
+
+SAMPLES_XML_DIR: samples
+SAMPLES_XML_FILE: merciedgar_initial_contacts.xml
+
 development:
   MANDRILL_USERNAME: dev@merciedgar.com
   MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
