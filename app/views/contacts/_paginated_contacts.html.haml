@@ -10,7 +10,7 @@
       
       /= link_to "Exporter ces contacts", export_contacts_path(params), remote: true
       
-      = link_to new_import_path, remote:true, :class=>"", :title =>"Exporter ces contacts dans un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      = link_to export_contacts_path(params), remote:true, :class=>"", :title =>"Exporter ces contacts dans un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.entypo.edi-export
   -#  
     .meta

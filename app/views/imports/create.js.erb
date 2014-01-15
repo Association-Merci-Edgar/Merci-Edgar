@@ -1,17 +1,17 @@
-$(".progress").show();
+$(".progressbar").toggleClass("ghost");
 (function pollJobidStatus() {
   $.getJSON('<%= job_path(@job_id) %>', function (response) {
     if (response.status == "working") {
     	$(".bar").width(response.pct + 5 + '%');
 			if (response.message != null) {
-				$(".bar").text(response.message)
+				$(".message").text(response.message)
 			}
     }
     if (response.status == "complete") {
 			nb_imported_contacts = response.result["nb_imported_contacts"]
 			nb_duplicates = response.result["nb_duplicates"]
 
-			$(".progress").hide();
+			$(".progressbar").toggleClass("ghost");
 			$('#myModal').modal('toggle')
 			console.log("result import:" + nb_imported_contacts + " / " + nb_duplicates)
 			window.location = "<%= import_path(@job_id) %>"

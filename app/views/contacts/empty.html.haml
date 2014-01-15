@@ -7,18 +7,24 @@
     Arrangeons celà !
 
 %section
-  .progress
-    .bar
-%section
   .row-fluid.label-blocks
     .span4
       = link_to import_samples_account_path, remote: true, method: :put, :class => "label label-large" do
         %i.edi-vcard
         %h4 Importer des contacts exemples
         %p (6 fiches pour tester)
+
+
+
       
     .span4
       = link_to new_person_path, :class => "label label-large" do
         %i.edi-user-add
         %h4 Créer un contact
         %p manuellement
+        
+%section.progressbar.ghost
+  .progress
+    .bar
+    .message Import en cours ...
+        

@@ -2,10 +2,10 @@ require 'xml'
 class XmlImportWorker
   include SidekiqStatus::Worker
 
-  def perform(account_id, xml_file_url, custom_tags)
+  def perform(account_id, subdir, xml_filename, custom_tags)
     Account.current_id = account_id
-    uploader = XmlImportUploader.new
-    uploader.retrieve_from_store!(File.basename(xml_file_url))
+    uploader = XmlImportUploader.new(subdir)
+    uploader.retrieve_from_store!(xml_filename)
     uploader.cache_stored_file!
     #at(10,"Lecture du fichier")
     File.open(uploader.file.path) do |io|

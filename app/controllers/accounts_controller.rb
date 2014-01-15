@@ -15,21 +15,8 @@ class AccountsController < ApplicationController
   end
 
   def import_samples
-    logger.debug "account current_id: #{Account.current_id}"
-    @job_id = SamplesImportWorker.perform_async(Account.current_id)
+    @job_id = XmlImportWorker.perform_async(Account.current_id, ENV["SAMPLES_XML_DIR"], ENV["SAMPLES_XML_FILE"], nil)
     render 'contacts/import_samples'
   end
   
-  def import_samples_status
-    jid = params[:id]
-    logger.debug "jid: #{jid} "
-    begin  
-      status_container = SidekiqStatus::Container.load(jid)
-      logger.debug "status: #{status_container.status.to_s} // #{status_container.at} // #{status_container.pct_complete}"
-      render json: {:status => status_container.status, pct: status_container.pct_complete }      
-    rescue
-      render json: {:status => "job not found" }
-    end
-      
-  end
 end

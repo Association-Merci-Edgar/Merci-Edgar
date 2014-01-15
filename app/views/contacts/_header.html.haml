@@ -11,7 +11,7 @@
       %i.entypo.edi-import
 
       
-    = link_to new_import_path, remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+    = link_to show_map_contacts_path(params), remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
       %i.entypo.edi-earth
       /map
   -#
@@ -22,17 +22,6 @@
         Carte
 .row-fluid
   .sorters
-    
-    -#
-      %select.btn-tertiary
-        %option
-          Types
-        %option
-          = nav_link "Tout", contacts_path, "edi-book"
-        %option
-          = nav_link "Personnes", people_path, "edi-user"
-        %option
-          = nav_link "Salles", venues_path, "edi-venue"
           
           
     /______________________________________________________ VIEWS

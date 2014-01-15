@@ -1,14 +1,18 @@
-$(".progress").show();
+$('#myModal').modal('toggle')
+$(".bar").width('1%');
+$('.message').text('Export en cours...')
 (function pollJobidStatus() {
   $.getJSON('<%= job_path(@job_id) %>', function (response) {
     if (response.status == "working") {
-    	$(".bar").width(response.pct + 5 + '%');
+    	$(".bar").width(response.pct + '%');
 			if (response.message != null) {
-				$(".bar").text(response.message)
+				$(".message").text(response.message)
 			}
     }
     if (response.status == "complete") {
-			$(".progress").hide()
+			$("#myModal").modal('toggle')
+			$('.bar').width('1%')
+			$('.message').text('')
 	    window.location = response.result
 			return false;
     }

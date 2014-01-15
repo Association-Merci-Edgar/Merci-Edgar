@@ -11,7 +11,7 @@ class XmlImportUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   def store_dir
-    "imports"
+    "imports/#{@store_subdir}"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -28,5 +28,10 @@ class XmlImportUploader < CarrierWave::Uploader::Base
 
   def fog_attributes
     {'Content-Disposition' => "attachment"}
+  end
+  
+  def initialize(subdir=nil)
+    super
+    @store_subdir = subdir
   end
 end

@@ -23,7 +23,7 @@ class XmlExportWorker
     end
     xml_data = xml.target!
     xml_file = AppSpecificStringIO.new(filename, xml_data)
-    uploader = XmlExportUploader.new
+    uploader = XmlExportUploader.new(Account.current_id.to_s)
     uploader.store!(xml_file)
     self.payload = uploader.url
   end
