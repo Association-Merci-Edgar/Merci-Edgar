@@ -163,7 +163,7 @@ class Structure < ActiveRecord::Base
           old_person = person
           duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
           nb_duplicates = duplicates.size
-          person = duplicates.where(imported_at: imported_at).first
+          person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
           unless person
             first_name = "#{person_hash["first_name"]} ##{nb_duplicates + 1}"
             

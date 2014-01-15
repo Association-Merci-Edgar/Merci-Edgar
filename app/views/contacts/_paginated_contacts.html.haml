@@ -1,10 +1,9 @@
 %ul#contact-list.list-large
   - unless @no_paging
     %li.list-header
-      %span.badge-count
-        = @contacts.try(:total_count)
+      %span.badge-count= @contacts.try(:total_count)
       
-      résultats - Page 
+      résultats
       = paginate @contacts if @contacts
       —
       

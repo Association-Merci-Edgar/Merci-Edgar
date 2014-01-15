@@ -132,21 +132,27 @@ class Person < ActiveRecord::Base
     first_name = person_attributes.delete("first_name")
     last_name = person_attributes.delete("last_name")
     person = Person.find_or_initialize_by_first_name_and_last_name(first_name,last_name)
-    if person.new_record?
-      person.build_contact.imported_at = imported_at
-    else
-      if person.imported_at != imported_at
-        nb_duplicates = Contact.where("name LIKE ?","#{person.name} #%").size
+    unless person.new_record?
+      old_person = person
+      duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
+      nb_duplicates = duplicates.size
+      person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
+      unless person
         fname = "#{first_name} ##{nb_duplicates + 1}"
-        old_person = person
+        
         person = Person.new(last_name:last_name, first_name:fname)
-        person.build_contact.duplicate = old_person.contact
-        person.contact.imported_at = imported_at
+        logger.info {"CONTACT ATTRIBUTES --------- #{contact_attributes}"}
+
       end
+      
     end
     person.assign_attributes(person_attributes)
-    person.upload_base64_avatar(avatar_attributes)
+    person.upload_base64_avatar(avatar_attributes) if avatar_attributes.present?
+
+    person.contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
+    person.contact.duplicate = old_person.contact if old_person
     person.contact.add_custom_tags(custom_tags)
+
     person
   end
 
