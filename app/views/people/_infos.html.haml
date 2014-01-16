@@ -22,7 +22,7 @@
               %li
                 = render ps.structure.address if ps.structure.address.present?
               %li= ps.structure.phone_number
-              %li= link_to ps.structure.website_url if ps.structure.website_url.present?
+              %li= link_to ps.structure.website_url, ps.structure.website_url, target: "_blank" if ps.structure.website_url.present?
             
             
         - @person.other_people_structures(current_user).each do |ps|
