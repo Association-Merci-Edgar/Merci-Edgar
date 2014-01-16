@@ -51,8 +51,11 @@ class Contact < ActiveRecord::Base
   # mount_uploader :avatar, AvatarUploader
 
   before_validation :titleize_name
-  after_save  :update_networks
-  after_save  :update_customs
+  before_save :format_networks, if: "network_tags_changed?"
+  before_save :format_customs, if: "custom_tags_changed?"
+  
+  after_save  :update_networks, if: "network_tags_changed?"
+  after_save  :update_customs, if: "custom_tags_changed?"
 
   delegate :fine_model, to: :contactable
     
@@ -292,11 +295,19 @@ class Contact < ActiveRecord::Base
   end
 
   def update_networks
-    Network.add_networks(network_list) if network_tags.present? && network_tags_changed?
+    Network.add_networks(network_list) if network_tags.present?
   end
   
   def update_customs
-    Custom.add_customs(custom_list) if custom_tags.present? && custom_tags_changed?
+    Custom.add_customs(custom_list) if custom_tags.present?
+  end
+  
+  def format_networks
+    self.network_tags = self.network_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.network_tags.present?
+  end
+
+  def format_customs
+    self.custom_tags = self.custom_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.custom_tags.present?
   end
   
   def deep_xml(builder=nil)
@@ -343,22 +354,6 @@ class Contact < ActiveRecord::Base
     contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
     contact.build_children(:websites, websites_attributes["website"]) if websites_attributes
     contact.build_children(:emails, emails_attributes["email"]) if emails_attributes
-=begin    
-    if phones_attributes
-      phones_hash = phones_attributes["phone"]
-      if phones_hash.is_a? Array
-        phones_hash.each do |attr|
-          phone = contact.phones.build
-          phone.number = attr.delete("number")
-          phone.assign_attributes(attr)
-        end
-      else
-        phone = contact.phones.build
-        phone.number = phones_hash.delete("number")
-        phone.assign_attributes(phones_hash)
-      end
-    end
-=end    
     contact.add_custom_tags(custom_tags)
     
     contact

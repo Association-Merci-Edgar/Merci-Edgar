@@ -33,6 +33,7 @@ class Scheduling < ActiveRecord::Base
   validates :name, presence: true
   validates :external_show_buyer, presence: true
   
+  before_save :format_styles, if: "style_tags_changed?"
   before_save :set_show_buyer
   after_save :set_scheduler_function
   after_save :update_styles
@@ -146,15 +147,19 @@ class Scheduling < ActiveRecord::Base
   end
 
   def style_list
-    self.style_tags.split(',').map(&:strip) if self.style_tags.present?
+    self.style_tags.split(',').map(&:strip).map(&:downcase) if self.style_tags.present?
   end
 
   def style_list=(styles)
-    self.style_tags = styles.join(', ') if styles.present?
+    self.style_tags = styles.map(&:downcase).join(', ') if styles.present?
   end
 
   def update_styles
     # debugger
     Style.add_styles(style_list) if style_tags.present?
+  end
+  
+  def format_styles
+    self.style_tags = self.style_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.style_tags.present?
   end
 end
