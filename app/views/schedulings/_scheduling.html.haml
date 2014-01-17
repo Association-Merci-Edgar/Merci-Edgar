@@ -26,3 +26,7 @@
 - if scheduling.prospectings.any?
   - scheduling.prospectings.each do |s|
     %li= "Programmateur en recherche active : #{s}"
+    
+%li
+  Observations :
+  = scheduling.remark
