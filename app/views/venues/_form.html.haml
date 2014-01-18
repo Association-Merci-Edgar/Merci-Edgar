@@ -276,13 +276,8 @@
                           = capacity.input :nb, :wrapper => :append, :label => false do
                             = capacity.input_field :nb, :class => "input-small"
                             = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed], selected: :seating, :class => "add-on dropdown-toggle"
-                          %span
-                            = capacity.input_field :modular
-                            /, inline_label:"Modulable"
-                            %label Modulable
+                          = capacity.input :modular, wrapper: :edgar_checkbox
                             
-                          //= capacity.input_field :modular, wrapper: :edgar_checkbox
-
                     .links
                       = room.link_to_add :capacities, :title => t("simple_form.buttons.add_capacity") do
                         %i.entypo.edi-plus2
