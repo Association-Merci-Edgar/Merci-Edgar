@@ -10,8 +10,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
-    @asset = Venue.find(params[:venue_id]) if params[:venue_id]
-    @asset = Person.find(params[:person_id]) if params[:person_id]
+    @asset = Contact.find(params[:contact_id]) if params[:contact_id]
     @users = Account.find(Account.current_id).users
   end
 
@@ -19,8 +18,12 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @asset = @task.asset
     if @task.update_attributes(params[:task])
-      link = @asset.present? ? send("#{@asset.class.name.underscore}_path",@asset) : tasks_path
-      render :js => "window.location = '#{link}?tab=tasks'"
+      if @asset
+        @pending_tasks = @task.asset.tasks.pending
+        @completed_tasks = @task.asset.tasks.completed
+      else
+        @redirect = true
+      end
     else
       render :edit
     end

@@ -1,7 +1,13 @@
 $('#myModalContent').replaceWith('<%= j render("ajax_form") %>');
 $('.datepicker').datetimepicker();
 
-$('.task_calendar').hide();
+
+if ( $("#task_bucket").val() == "specific" ) {
+  $('.task_calendar').show();
+} else {
+   $('.task_calendar').hide();
+}
+
 
 
 
