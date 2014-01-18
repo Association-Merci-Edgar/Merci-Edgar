@@ -12,7 +12,7 @@ $('#myModal').modal('hide');
 	if (pending_tasks.length > 0) {
 		counter = $("#pending_tasks_wrapper .title-infos .badge");
 		counter.text( Number(counter.text())+1 );
-		pending_tasks.replaceWith("<%= j render(partial:'pending', locals: {tasks: @task.asset.tasks.pending, asset: @task.asset}) %>")
+		pending_tasks.replaceWith("<%= j render(partial:'pending', locals: {tasks: @task.asset.tasks.pending}) %>")
 	}	
 	else {
 		$('#empty_tasks').replaceWith("<%= j render(partial:'tasks/tasks', locals: {asset: @task.asset, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}) %>");

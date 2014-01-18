@@ -10,14 +10,8 @@
           .badge.badge-small.badge-red= pending_tasks.due_today.size
           tâches pour aujourd’hui  
 
-      = render :partial => "tasks/pending", :locals => {:tasks => pending_tasks}
+      = render :partial => "tasks/pending", :locals => {:tasks => pending_tasks, :asset => asset}
 
-  
-
-      .btn-in-list
-        = link_to new_contact_task_path(asset), remote:true do
-          %i.entypo.edi-plus3
-          %span Créer une nouvelle tâche
       
       
   #completed_tasks_wrapper

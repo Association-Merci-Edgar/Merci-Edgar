@@ -72,7 +72,8 @@ class Task < ActiveRecord::Base
   end
 
   def bucket
-    return nil if self.due_at.blank? || self.specific_time
+    return "due_today" if self.due_at.blank? 
+    return "specific" if self.specific_time
     case
     when self.due_at < Time.zone.now
       "overdue"
@@ -113,7 +114,7 @@ class Task < ActiveRecord::Base
 
   def calendar=(s)
     if s.present?
-      self.due_at = Time.strptime(s,'%d/%m/%Y %H:%M')
+      self.due_at = Time.zone.parse(s,'%d/%m/%Y %H:%M')
       self.specific_time = true
     end
   end
