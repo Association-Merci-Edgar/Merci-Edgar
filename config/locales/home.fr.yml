@@ -19,7 +19,7 @@ fr:
       are_you_artist: "Vous êtes artiste, tourneur ?"
       time: "Vous passez plus de temps à gérer l’administratif qu’à créer ?"
       edgar_for_you: "est là pour vous aider !"
-      virtual_assistant: "L’assistant virtuel"
+      virtual_assistant: "Le logiciel de booking"
       
     i_want_it: "Je m'inscris !"
     features:
@@ -33,11 +33,11 @@ fr:
       track_what: "suivez l'historique de vos conversations, générez automatiquement le bon contrat, envoyez votre dernière fiche technique, ..."
       
       
-      track_v1: "Gérez vos relations avec un lieu"
-      track_what_1: "suivez l'historique de vos échanges, générez automatiquement le bon contrat, envoyez votre dernière fiche technique"
+      track_1: "Gérez vos contacts"
+      track_what_1: "lieux, festivals, autres organisateurs de spectacle en utilisant notre puissant moteur de recherche pour retrouver rapidement vos contacts à partir de nombreux critères"
       
       communicate: "Communiquez auprès des pros et de vos fans"
-      communicate_what: "via Facebook ou par mail, et suivez qui a ouvert vos mails, qui a cliqué sur vos liens"
+      communicate_what: "via Facebook ou par mail, et suivez qui a ouvert vos mails, qui a cliqué sur vos liens <i>Prochainement</i>"
       
       schedule: Planifiez d’un clic
       schedule_what: "et de manière collaborative vos tâches en cours (ou en retard ;), vos prochaines dates ou répétitions"
@@ -59,7 +59,7 @@ fr:
       no_installation_details: "Merci Edgar est accessible depuis n'importe quel navigateur"
       byfor: "Fait par des artistes, pour des artistes !"
       byfor_details: "et ça, ça change tout !"
-      evolutive: "Un outil évolutif et collectif"
+      evolutive: "Un outil évolutif"
       evolutive_details: "Nous allons construire l'outil avec vous ! Il évoluera en fonction de vos besoins."
     request:
       invitation: "Demande d'invitation"
@@ -89,11 +89,11 @@ fr:
       description: "Edgar est toujours sur la brèche. Ne manquez pas une miette de son actualité en parcourant régulièrement notre blog !"  
       more: "Plus d'actualités sur le blog de Merci Edgar"
       news1:
-        title: "Edgar en ebullition"
-        description: "99% des personnes qui sont au courant de l’existence aujourd’hui de Merci Edgar ne le sont que grâce à Internet. Et l’idée au départ du lancement de ces apéros, c’était de pouvoir se rencontrer dans la vraie vie..."
+        title: "BIS de Nantes 2014"
+        description: "Rencontrez-nous sur notre stand aux BIS de Nantes les 22 et 23 janvier (place des tournées, stand 116) et découvrez en avant-première votre futur logiciel de booking !"
       news2:
-        title: "Edgar a la pêche, et c'est grâce au FIDIM !"
-        description: "Samedi 25 mai, Edgar participait au FIDIM, le Forum des Initiatives Digitales pour la Musique, au centre FGO-Barbara. L’occasion de vous faire une démo de notre futur logiciel en ligne de booking..."
+        title: "En 2014, Edgar sort de l'oeuf !"
+        description: "On y est presque ! Encore quelques semaines qui nous séparent du 6 février 2014, date de sortie officielle de votre logiciel de booking Merci Edgar, votre futur assistant virtuel !"
     team:
       title: "L’équipe"
       description: "Nous avons un objectif : faire d'Edgar votre meilleur assistant !"

@@ -82,8 +82,8 @@
           %img{:alt => "", :src => "images/pic-photo-2.png"}/
           /%img{:alt => "", :src => %= image_tag "images/onepage/pic-photo-2.png"}/
           /<%= image_tag "images/onepage/pic-photo-2.png" %>
-        %h4= t("home.features.track")
-        %p= t("home.features.track_what")
+        %h4= t("home.features.track_1")
+        %p= t("home.features.track_what_1")
       / / ITEM
       
       / ITEM
@@ -105,7 +105,7 @@
           / <i class='ed-icon-ed-comm fa-icon-large black'></i>
           %img{:alt => "", :src => "images/pic-photo-3.png"}/
         %h4= t("home.features.communicate")
-        %p= t("home.features.communicate_what")
+        %p= t("home.features.communicate_what").html_safe
       / / ITEM
       
       
@@ -393,30 +393,7 @@
   .container
     / PRESS BLOCK
     .row-fluid.panel
-      .span6
-        %h3
-          %span
-            = t("home.events.title")
-        %p.subtitle
-          = t("home.events.description")
-          
-        .row-fluid
-          .edgar-news
-            .span5
-              %h4= t("home.events.event1.title")
-              %p= t("home.events.event1.description").html_safe
-                
-              %p.text-right
-                %a.sml-link{:href => "http://blog.merciedgar.com/post/54441323172/pique-nique-dedgar-au-parc-de-la-villette", :title => "", :target => "blank"}= t("home.team.more")
-          .edgar-news
-            .span5.offset2
-              %h4= t("home.events.event2.title")
-              %p= t("home.events.event2.description").html_safe
-              
-              %p.text-right
-                %a.sml-link{:href => "http://blog.merciedgar.com/post/54441606419/edgar-sera-a-avignon", :title => "", :target => "blank"}= t("home.team.more")
-          %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/event", :target => "blank"}= t("home.events.more")
-      .span6
+      .span12
         %h3
           %span
           = t("home.news.title")
@@ -428,15 +405,13 @@
             .span5
               %h4= t("home.news.news1.title")
               %p= t("home.news.news1.description").html_safe
-              %p.text-right
-                %a.sml-link{:href => "http://blog.merciedgar.com/post/54169780157/edgar-en-pleine-ebullition", :title => "", :target => "blank"}= t("home.team.more")
           .edgar-news
             .span5.offset2
               %h4= t("home.news.news2.title")
               %p= t("home.news.news2.description").html_safe
               
               %p.text-right
-                %a.sml-link{:href => "http://blog.merciedgar.com/post/52058967916/edgar-a-la-peche-et-cest-grace-au-fidim", :title => ""}= t("home.team.more")
+                %a.sml-link{:href => "http://blog.merciedgar.com/post/73970382117/bientot-la-sortie", :title => "", :target => "_blank"}= t("home.team.more")
           %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/news", :target => "blank"}= t("home.news.more")
   / /CONTAINER
 / / portfolio section
