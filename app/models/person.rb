@@ -22,7 +22,7 @@ class Person < ActiveRecord::Base
   has_many :relatives, dependent: :destroy
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_associated :contact
+  # validates_associated :contact
 
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
@@ -134,7 +134,7 @@ class Person < ActiveRecord::Base
     person = Person.find_or_initialize_by_first_name_and_last_name(first_name,last_name)
     unless person.new_record?
       old_person = person
-      duplicates = Contact.where("name = ? OR name LIKE ?",person.name,"#{person.name} #%")
+      duplicates = Contact.where("name LIKE ?", "#{person.name} #%")
       nb_duplicates = duplicates.size
       person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
       unless person

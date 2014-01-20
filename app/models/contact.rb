@@ -201,7 +201,16 @@ class Contact < ActiveRecord::Base
     @contacts = @contacts.duplicated if params["duplicated"].present? && params["duplicated"]
     @contacts
   end
-
+  
+  def self.advanced_search_for_structures(params)
+    self.advanced_search(params).where(:contactable_type => "Structure")
+  end
+  
+  def self.advanced_search_for_people(params)
+    self.advanced_search(params).where(:contactable_type => "Person")
+  end
+  
+  
   def self.search(search)
     if search.present?
       a = search.split

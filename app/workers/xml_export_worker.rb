@@ -6,20 +6,27 @@ class XmlExportWorker
     filename = ["export",Account.find(account_id).domain,Time.now.to_i].join('_')
     filename << ".xml"
     
-    contacts = Contact.advanced_search(params)
-    logger.info "params: #{params}"
-    logger.info "nb contacts : #{contacts.size}"
-    self.total = contacts.size
+    contact_people = Contact.advanced_search_for_people(params)
+    contact_structures = Contact.advanced_search_for_structures(params)
+    self.total = contact_people.size + contact_structures.size
     index = 0
     xml = Builder::XmlMarkup.new
     xml.instruct!
     xml.merciedgar do
-      contacts.find_each do |contact|
+      contact_people.find_each do |contact|
         contact_xml = contact.fine_deep_xml
         xml << contact_xml if contact_xml
         index += 1
         at(index, "Le contact #{contact.name} exporte")
       end
+      
+      contact_structures.find_each do |contact|
+        contact_xml = contact.fine_deep_xml
+        xml << contact_xml if contact_xml
+        index += 1
+        at(index, "Le contact #{contact.name} exporte")
+      end
+      
     end
     xml_data = xml.target!
     xml_file = AppSpecificStringIO.new(filename, xml_data)

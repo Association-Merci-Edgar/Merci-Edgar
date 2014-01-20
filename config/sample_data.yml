@@ -8,6 +8,7 @@ venues:
         capacities_attributes:
           1:
             nb: 250
+            kind: seating
     structure_attributes:
       contact_attributes:
         name: "L'Olympiaf"

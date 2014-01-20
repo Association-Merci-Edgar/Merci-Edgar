@@ -33,7 +33,7 @@ class Structure < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   validates_presence_of :contact
-  validates_associated :contact
+  # validates_associated :contact
 
 
   def kind

@@ -162,4 +162,21 @@ class Scheduling < ActiveRecord::Base
   def format_styles
     self.style_tags = self.style_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.style_tags.present?
   end
+  
+  def deep_xml(builder=nil)
+    to_xml(builder: builder, :skip_instruct => true, :skip_types => true, except: [:id, :created_at, :updated_at, :scheduler_id, :show_host_id, :show_host_type, :show_buyer_id])  do |xml|
+      xml.scheduler_name scheduler_name if scheduler_id
+      xml.show_buyer_name show_buyer_name if show_buyer_id
+    end
+  end
+  
+  def self.from_merciedgar_hash(scheduling_attributes, imported_at)  
+    show_buyer_name = scheduling_attributes.delete("show_buyer_name")
+    show_host_name = scheduling_attributes.delete("show_host_name")
+    scheduler_name = scheduling_attributes.delete("scheduler_name")
+    scheduling = Scheduling.new(scheduling_attributes)
+    scheduling.show_buyer = Contact.where("name = ? or name LIKE ?", show_buyer_name, "#{show_buyer_name} #%").where(imported_at: imported_at).first.try(:fine_model) if show_buyer_name   
+    scheduling.scheduler = Contact.where("name = ? or name LIKE ?", scheduler_name, "#{scheduler_name} #%").where(imported_at: imported_at).first.try(:fine_model) if scheduler_name
+    scheduling
+  end
 end
