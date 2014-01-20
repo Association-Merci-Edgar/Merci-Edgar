@@ -1,16 +1,19 @@
 //  COMMENT 
 
 jQuery('.login-toggle').click(function(){
+  console.log("ter")
   if (!jQuery('#login-tab').hasClass("invisible")) {
     jQuery('#login-tab').addClass("invisible");
-    jQuery('#socialfixed').addClass("invisible");
-    jQuery('#langswitch').addClass("invisible");
+    jQuery('#nav').addClass("hidden");
+    //jQuery('#socialfixed').addClass("invisible");
+    //jQuery('#langswitch').addClass("invisible");
     jQuery('#login-form').removeClass("invisible");
     jQuery("input:text:visible:first").focus();
   } else {
     jQuery('#login-tab').removeClass("invisible");
-    jQuery('#socialfixed').removeClass("invisible");
-    jQuery('#langswitch').removeClass("invisible");
+    jQuery('#nav').removeClass("hidden");
+    //jQuery('#socialfixed').removeClass("invisible");
+    //jQuery('#langswitch').removeClass("invisible");
     jQuery('#login-form').addClass("invisible");
   }
   

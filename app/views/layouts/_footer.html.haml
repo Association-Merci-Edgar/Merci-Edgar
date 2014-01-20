@@ -1,12 +1,15 @@
 %footer#contact-section.footer
   .container
     .row-fluid
-      .span3
-        .logo
-          %i.ed-icon-ed-logo-bkg.logotype
-          %a{:href => "#header-section"}
-            %i.ed-icon-ed-logo.logotype
-      .span5
+      .span8
+        %a{:href => "#header-section"}
+          %img{:alt => "", :src => "images/logo-edgar-horiz-typ-white.png"}/
+        -#
+          .logo
+            %i.ed-icon-ed-logo-bkg.logotype
+            %a{:href => "#header-section"}
+              %i.ed-icon-ed-logo.logotype
+      
         %address
           %i.fa-icon-map-marker
           Au bourg, 47120 Monteton, France
