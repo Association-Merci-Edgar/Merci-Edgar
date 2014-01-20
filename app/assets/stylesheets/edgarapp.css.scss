@@ -1340,7 +1340,8 @@ a.label-large {
 
 //.controls, .control-group//, .control-group label
 //{display:inline;}
-
+.venue_rooms_capacities_nb {float:left;}
+//label.boolean { margin-top:5px !important}
 
 .form-edit{margin-top:50px;}
 
@@ -1386,7 +1387,9 @@ span.add-on {height:22px !important; display:block;}
 .form-horizontal span > .control-label { width:auto;}
 span.boolean{display:inline-block;}
 
-.control-group > .control-label {margin-top:5px; 
+//.control-group > 
+.control-label {
+  margin-top:2px; 
   a {color:$mblue;}
   }
 
