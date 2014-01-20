@@ -8,25 +8,43 @@ fr:
     baseline: "l’assistant virtuel<br>des artistes"
     menu:
       what: "C’est quoi ?"
-      who: "Qui est derrière ?"
+      who: "C’est qui ?"
       news: "Actualités"
     slogan: 
-      are_you_artist: "Vous êtes artiste ?"
+      
       creation: création
-      edgar_for_you: "est là pour vous aider !"
-      management: gestion
+      
+      management: gestion,
       of: de
+      are_you_artist: "Vous êtes artiste, tourneur ?"
       time: "Vous passez plus de temps à gérer l’administratif qu’à créer ?"
+      edgar_for_you: "est là pour vous aider !"
+      virtual_assistant: "L’assistant virtuel"
+      
     i_want_it: "Je m'inscris !"
     features:
-      find: Trouvez rapidement les lieux
-      find_what: "compatibles avec votre style, selon leur emplacement, selon leur jauge, ..."
-      track: Gérez vos relations avec un lieu
-      track_what: "suivez l'historique de vos échanges, générez automatiquement le bon contrat, envoyez votre dernière fiche technique"
+      find: Explorez vos contacts
+      find_what: "selon leur esthétique, leur emplacement, etc. Ou selon vos propre mots-clés personnalisés !"
+      
+      find_v1: Trouvez rapidement les lieux
+      find_what_v1: "compatibles avec votre style, selon leur emplacement, selon leur jauge, ..."
+      
+      track: "Facilitez vos échanges"
+      track_what: "suivez l'historique de vos conversations, générez automatiquement le bon contrat, envoyez votre dernière fiche technique, ..."
+      
+      
+      track_v1: "Gérez vos relations avec un lieu"
+      track_what_1: "suivez l'historique de vos échanges, générez automatiquement le bon contrat, envoyez votre dernière fiche technique"
+      
       communicate: "Communiquez auprès des pros et de vos fans"
       communicate_what: "via Facebook ou par mail, et suivez qui a ouvert vos mails, qui a cliqué sur vos liens"
-      schedule: Planifiez et gérez en un coup d'œil
-      schedule_what: "vos tâches en cours, en retard, le planning de vos prochaines dates ou répétitions"
+      
+      schedule: Planifiez d’un clic
+      schedule_what: "et de manière collaborative vos tâches en cours (ou en retard ;), vos prochaines dates ou répétitions"
+      
+      schedule_v1: Planifiez et gérez en un coup d'œil
+      schedule_what_v1: "vos tâches en cours, en retard, le planning de vos prochaines dates ou répétitions"
+      
     promise: 
       why: "Pourquoi choisir Merci Edgar ?"
       alone: "Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul !"
@@ -41,7 +59,7 @@ fr:
       no_installation_details: "Merci Edgar est accessible depuis n'importe quel navigateur"
       byfor: "Fait par des artistes, pour des artistes !"
       byfor_details: "et ça, ça change tout !"
-      evolutive: "Un outil evolutif et collectif"
+      evolutive: "Un outil évolutif et collectif"
       evolutive_details: "Nous allons construire l'outil avec vous ! Il évoluera en fonction de vos besoins."
     request:
       invitation: "Demande d'invitation"
@@ -88,7 +106,7 @@ fr:
         description: "Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale..."
       jp:
         title: "Designer graphique et d'interface de Merci Edgar / Concepteur / Directeur artistique freelance"
-        description: "Je consacre une grande part de mon activité à créer des campagnes de communication, identités visuelles et sites Internet pour de jeunes entreprises, des projets associatifs ou engagés.<p>La variété des domaines d'activité de mes commanditaires m'ouvrent des horizons insoupçonnés, et les rencontres nourrissent ma curiosité toujours à l'affût de nouvelles manières de travailler et de penser."
+        description: "Je consacre une grande part de mon activité à créer des campagnes de communication, identités visuelles et sites Internet pour de jeunes entreprises, des projets associatifs ou engagés."
       aline: 
         title: "Conseillère technique pour Merci Edgar / Chargée de production du label Adone"
         description: "A défaut d'études supérieures, après mon bac je déménage à Paris et intègre les Cours Florent (cours d'art dramatique) avec le rêve fou de devenir comédienne et surtout.. d'en vivre ! Je ferai les 3 ans du cursus mais la réalité du métier me rattrape vite car en parallèle des cours, je découvre le Théâtre Les Blancs Manteaux et je commence à y travailler en tant qu'accessoiriste sur un spectacle. Rapidement..."
@@ -101,7 +119,7 @@ fr:
         description: "Après avoir travaillé en tant que chef de projet multilingue chez Levi's et Nike pendant 10 ans en voyageant dans toute l'Europe, j'ai décidé de devenir traductrice freelance spécialisée dans les sites web, le marketing et la communication. Fan de rock, blues, musiques alternatives, j'adore sortir et découvrir de nouveaux sons, en France comme à l'étranger."
       fred:
         title: "Responsable de la production audiovisuelle pour Merci Edgar / Réalisateur / Chef opérateur"
-        description: "Je suis un ex-jeune réalisateur indépendant de courts métrages diffusés dans des festivals de films à travers le monde, notamment un reboot du Zombie de Romero et  je suis également chef opérateur de documentaires sur des sujets divers diffusés sur France Télévision, notamment un film sur le fonctionnement d'un CECOS (centre d'étude et de conservation des oeufs et du sperme humains)"
+        description: "Je suis un ex-jeune réalisateur indépendant de courts métrages diffusés dans des festivals de films à travers le monde, notamment un reboot du Zombie de Romero et  je suis également chef opérateur de documentaires sur des sujets divers diffusés sur France Télévision, notamment un film sur le fonctionnement d'un CECOS (centre d'étude et de conservation des œufs et du sperme humains)"
       people:
         title: "Vous"
         description: "Vous faites partie de l'équipe ! Grâce aux apéros d'Edgar notamment, nous construisons ensemble l'assistant virtuel dont vous ne pourrez plus vous passer !"
