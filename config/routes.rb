@@ -13,6 +13,10 @@ Edgar::Application.routes.draw do
       root :to => 'home#index'
       get "search/index"
     end
+    
+    authenticated :user, lambda {|u| u.id == 1} do
+      mount Sidekiq::Web, at: "/sidekiq"
+    end
 
     devise_scope :user do
       root :to => "devise/registrations#new", :as => "locale_root", constraints: {subdomain: 'www'}
@@ -85,7 +89,6 @@ Edgar::Application.routes.draw do
 
     resources :imports
     
-    mount Sidekiq::Web, at: "/sidekiq"
 
 
   end
