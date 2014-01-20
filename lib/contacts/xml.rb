@@ -3,6 +3,17 @@ module Contacts
     def deep_xml(skip_instruct = true, builder=nil)
       to_xml(:builder => builder, :skip_instruct => skip_instruct, :skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :avatar]) do |xml|
         structure.deep_xml(xml)
+        # schedulings.to_xml(:builder => builder, :skip_instruct => true, :skip_types => true, except: [:id, :created_at, :updated_at]))
+        
+        case self.class.name
+        when "Venue", "Festival"
+          xml.schedulings do
+            schedulings.each do |s|
+              s.deep_xml(xml)
+            end
+          end
+        end
+        
         xml.base64_avatar do
           xml.filename self.avatar.file.filename 
           xml.content self.base64_avatar
