@@ -12,12 +12,12 @@
       .badge.badge-medium.badge-shy= Task.pending.size
     .title-infos
       dont
-      .badge.badge-small.badge-black= Task.overdue.size
+      .badge.badge-small.badge-black= Task.pending.overdue.size
       en retard,
-      .badge.badge-small.badge-red= Task.due_today.size
+      .badge.badge-small.badge-red= Task.pending.due_today.size
       pour aujourd’hui  
 
-  = render :partial => "tasks/pending", :locals => {:tasks => @pending_tasks}
+  = render :partial => "tasks/pending", :locals => {:tasks => @pending_tasks, asset: nil}
 
   .btn-in-list
     =link_to tasks_path, :class=>"align-right" do
