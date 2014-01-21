@@ -89,7 +89,7 @@ Edgar::Application.routes.draw do
 
     resources :imports
     
-
+    resources :coupons
 
   end
 
