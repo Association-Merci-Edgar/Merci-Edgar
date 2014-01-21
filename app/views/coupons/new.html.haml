@@ -1,0 +1,9 @@
+= simple_form_for(@coupon) do |f|
+  = label_tag(:nb_coupons)
+  = text_field_tag(:nb_coupons)
+  
+  = f.input :promoter
+  
+  = f.input :event
+  
+  = submit_tag

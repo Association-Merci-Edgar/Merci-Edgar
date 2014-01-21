@@ -1,0 +1,5 @@
+#coupon{:id => coupon.id}
+  %tr
+    %td= coupon.code
+    %td= coupon.promoter
+    %td= link_to coupon.status, coupon_path(id:coupon, distributed: !coupon.distributed), method: :put, remote: true
