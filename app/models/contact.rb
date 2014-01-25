@@ -127,7 +127,7 @@ class Contact < ActiveRecord::Base
   end
 
   def contacted?
-    self.reportings.any?
+    self.reportings.any? {|r| r.new_record? == false }
   end
 
 

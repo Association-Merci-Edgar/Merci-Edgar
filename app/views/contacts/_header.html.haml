@@ -8,9 +8,9 @@
   
   // IMPORT
   -#
-    .subpage-nav
-      = link_to new_import_path, remote:true, :class=>"", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
-        %i.entypo.edi-import
+  .subpage-nav
+    = link_to new_import_path, remote:true, :class=>"", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      %i.entypo.edi-import
 
     // SHOW MAP
     -#  
@@ -108,7 +108,7 @@
       = link_to only_contacts_path(filter: "contacted"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà échangé", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.ico.edi-comment
    
-      %a{:href => "#", :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà joué", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
+      -# %a{:href => "#", :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà joué", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
         %i.ico.edi-flag
     
       
