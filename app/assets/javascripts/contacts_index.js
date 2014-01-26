@@ -410,12 +410,17 @@ function filtergogeo(theform) {
 
 $('html').on('mouseup', function(e) {
     //if(!$(e.target).closest('.popover').length) {
-    if( !$(e.target).closest('.popover').length || $(e.target).hasClass("ui-corner-all") )  {
+     // var classy = $(e.target).attr("class"); 
+     // console.log(classy);
+     // console.log($(e.target).hasClass("ui-corner-all"));
+    if( !$(e.target).closest('.popover').length && !$(e.target).hasClass("ui-corner-all") )  {
         $('.popover').each(function(){
             $(this.previousSibling).popover('hide');
         });
         $('.filters-pool .tag').removeClass('active');
     }
+    
+    
 });
 
 

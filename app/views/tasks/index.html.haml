@@ -95,15 +95,15 @@
             Général
 
   
-%section
-  = render :partial => "pending", :locals => {:tasks => @pending_tasks, :asset => nil}
+
+= render :partial => "pending", :locals => {:tasks => @pending_tasks, :asset => nil}
 
 
 
-  .btn-in-list
-    = link_to new_task_path, remote:true do
-      %i.entypo.edi-plus3
-      %span
-        Nouvelle tâche
+.btn-in-list
+  = link_to new_task_path, remote:true do
+    %i.entypo.edi-plus3
+    %span
+      Nouvelle tâche
           
           

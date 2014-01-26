@@ -1,5 +1,5 @@
 - content_for :account_tab do
-  #account.tab-pane.active
+  #account.tab-pane.notedit.active
     .row-fluid
       -#_____________________________________________________ Nom et domaine
       %section.span6
@@ -27,7 +27,7 @@
     .row-fluid
       %section.span6
         %h4 Utilisateurs
-        %ul.list-small
+        %ul.list.list-small
           - @account.users.each do |user|
             %li
               .meta
