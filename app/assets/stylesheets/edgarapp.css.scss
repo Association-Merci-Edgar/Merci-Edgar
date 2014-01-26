@@ -263,9 +263,15 @@ a, .btn-link {color:$dblue;
 }
 
 .maincontentinner {
-	padding: 48px 64px 34px 48px;//34px 64px 34px 34px ;
+	padding: 48px 64px 34px 48px; //34px 64px 34px 34px ;
   position:relative;
 }
+/*
+.maincontentinner > * {
+  padding-left:48px;
+  padding-right:68px;
+}
+*/
 
 .leftpanel {
 	float: left;
@@ -1752,7 +1758,8 @@ section {
   font-size:16px;
   &>li {
     padding:20px 0px;
-    border-bottom: dotted 2px lighten( $dblue, 60% );
+    
+    border-bottom: dotted 1px lighten( $dblue, 60% );
 
     position:relative;
     clear:both;
@@ -1897,10 +1904,15 @@ ul.tagit li.tagit-choice-editable {
   //position:absolute;
   float:right;
   z-index:3;
-  position:absolute; right:0;
+  position:absolute; //right:0;
+  
+}
+//#contact-list .actions
+.list-large .actions{
+  right:68px;
 }
 
-.mini-map { position:absolute; right:0; top:52px; z-index:2; height:80px; width:120px;
+.mini-map { position:absolute; top:52px; z-index:2; height:80px; width:120px; right:68px;
   &.france {background: url(appli/sprites/france-minimap-sprite.png) no-repeat top left;}
 }
 .mini-map.france.reg-1 {background-position: -5px -5px;}
@@ -2237,7 +2249,6 @@ textarea {
 }
 
 
-
 .btn-secondary i {padding-top:4px; margin:0;
   &:before{ width:15px;overflow:hidden;}
   }
@@ -2396,6 +2407,64 @@ $tooltipTXT: $white;
   border-width: 0 5px 5px;
   border-bottom-color: $tooltipBKG;
 }
+
+
+.maincontentinner { padding: 48px 0 34px 0; }
+
+.list-large > li,
+.list-large > li.list-header,
+.list-medium > li,
+.list-medium > strike > li,
+.page-title,
+.btns-in-list,
+.btn-in-list,
+.sorters,
+section.rawcontent,
+.maincontentinner > form,
+.nav-tabs,
+//.tab-pane:not(#task), .tab-pane:not(#dates),
+.tabbables-not .tab-pane > *:not(.list),
+.section-title,
+.toppage,
+.padded {
+  padding-left:48px;
+  padding-right:68px;
+}
+
+.tab-pane > .row-fluid,
+.toppage {
+  @include borderbox;
+}
+
+
+.list-small > li {
+  padding-left:10px;
+  padding-right:10px;
+}
+/*
+
+//_______________________ ALT
+.list-large {
+  margin-left:-48px;
+}
+
+.list-large > li,
+.list-large > li.list-header,
+.list-medium > li,
+
+.btns-in-list,
+.btn-in-list,
+
+
+.nav-tabs,
+//.tab-pane:not(#task), .tab-pane:not(#dates),
+.tab-pane,
+.section-title {
+  padding-left:48px;
+  padding-right:68px;
+}
+*/
+
 
 /* ___________________________________________________  Bootstrap dropdown-menu  */
 .dropdown-menu > li > a {

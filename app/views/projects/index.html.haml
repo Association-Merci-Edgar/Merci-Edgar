@@ -1,16 +1,15 @@
 - content_for :projects_tab do
   #projects.tab-pane.active
-    .row-fluid
-      %ul.list-large
-        -#_____________________________________________________ DEMO ELEMENTS
-        = render @projects
+    %ul.list.list-large
+      -#_____________________________________________________ DEMO ELEMENTS
+      = render @projects
 
-        -#_____________________________________________________ ADD NEW
-        .btn-in-list
-          = link_to new_project_path do
-            %i.entypo.edi-plus3
-            %span
-              Ajouter un projet artistique
+      -#_____________________________________________________ ADD NEW
+      .btn-in-list
+        = link_to new_project_path do
+          %i.entypo.edi-plus3
+          %span
+            Ajouter un projet artistique
         
     
 = render 'devise/shared/profile'
