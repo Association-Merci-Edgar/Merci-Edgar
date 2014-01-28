@@ -97,21 +97,6 @@ class Person < ActiveRecord::Base
   def relative(user)
     relative = self.relatives.where(user_id: user.id).first
   end
-
-  amoeba do
-    enable
-    include_field :emails
-    include_field :phones
-    include_field :addresses
-    include_field :websites
-    include_field :taggings
-  end
-
-  def my_dup
-    Contact.unscoped do
-      self.amoeba_dup
-    end
-  end
   
   def deep_xml(builder=nil)
     to_xml(
