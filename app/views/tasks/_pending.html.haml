@@ -4,7 +4,7 @@
 #pending_tasks  
   - if tasks.any?
 
-    %ul.list-medium
+    %ul.list.list-medium
   
       
       - tasks.each do |t|
@@ -36,12 +36,13 @@
             .infos-line
               .infos-part
                 %a{:href => "#"}
-                  .pic.pic-mini= image_tag t.assignee.avatar
+                  .pic.pic-mini.pic-user= image_tag t.assignee.avatar
                   = t.assignee.nickname
               - if t.asset.present?
                 .infos-part
                   = link_to t.asset.fine_model do
                     .pic.pic-mini= image_tag t.asset.avatar
+                    // .pic-person if asset = person
                     = t.asset.name
               - if t.project.present?
                 .infos-part

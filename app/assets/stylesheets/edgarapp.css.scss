@@ -463,7 +463,8 @@ $lbrown: rgba(209, 209, 197, 1);
 h1, h2, h3, h4 {font-weight:300; display:inline; line-height:inherit;}
 
 h1 {font-size:37px; color:$orange;}
-h2 {font-size:32px; font-weight:bold;}
+h2 {font-size:32px; //font-weight:bold;
+}
 h3 {font-size:28px;}
 h4 {font-size:24px; margin-bottom:18px;}
 h5 {font-size:20px;}
@@ -472,8 +473,9 @@ h6 {font-size:17px;}
 h2 {
   line-height:32px;
   margin:0px;
-  margin-top:-4px;
-  margin-bottom: 11px;
+  margin-top: 7px;
+  
+  display:inline-block;
 }
 
 h3.message {line-height: 36px;}
@@ -1561,6 +1563,7 @@ select.select-right { width:auto; background:$dbeige2;
 #schedulings>.fields {
   border-bottom: 1px solid $dbeige;
    margin-bottom:30px;
+   padding-bottom:30px;
 }
 
 /*  _____________________________________________________ JQUERY UI   */
@@ -2167,8 +2170,8 @@ header {
 }
 
 //.list-large li[id^='#person_'] .pic img,
-//.pic.pic-person img,
-//.pic.pic-user img{@include roundcornersFX(40px);}
+.pic.pic-person img,
+.pic.pic-user img{@include roundcornersFX(40px);}
 
 .pic-mini {width:24px;margin-right:12px; margin-top:1px;float:none;}
 .pic-small {@include square(44);margin-right:14px; margin-top:0;}
@@ -2419,13 +2422,16 @@ $tooltipTXT: $white;
 .btns-in-list,
 .btn-in-list,
 .sorters,
+.filters-outercontainer,
 section.rawcontent,
 .maincontentinner > form,
 .nav-tabs,
 //.tab-pane:not(#task), .tab-pane:not(#dates),
 .tabbables-not .tab-pane > *:not(.list),
+.tabbable .tab-pane > *:not(.list),
 .section-title,
 .toppage,
+#tasks .title-infos,
 .padded {
   padding-left:48px;
   padding-right:68px;
@@ -2437,9 +2443,20 @@ section.rawcontent,
 }
 
 
-.list-small > li {
+.list-small > li,
+#reportings > li
+ {
   padding-left:10px;
   padding-right:10px;
+}
+
+
+#pending_tasks_wrapper, #completed_tasks_wrapper,
+form .tabbable .tab-pane > *
+//.form-edit
+ {
+  padding-left:0px !important;
+  padding-right:0px !important;
 }
 /*
 

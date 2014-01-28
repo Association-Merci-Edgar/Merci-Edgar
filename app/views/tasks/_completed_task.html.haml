@@ -41,7 +41,7 @@
             = task.project.name
         .infos-part
           %a{:href => "#"}
-            .pic.pic-mini= image_tag task.assignee.avatar
+            .pic.pic-mini.pic-user= image_tag task.assignee.avatar
             = task.assignee.nickname
       
       - if task.project.present?

@@ -1,4 +1,4 @@
-%ul.list-medium.collapse#completed_tasks
+%ul.list.list-medium.collapse#completed_tasks
   - tasks.each do |t|
     %li{id: "task_#{t.id}", data: {task_id: t.id}}
       - complete_link = t.asset.present? ? complete_contact_task_path(t.asset,t) : complete_task_path(t)
@@ -34,7 +34,7 @@
           - if t.asset.present?
             .infos-part
               = link_to t.asset.fine_model do
-                .pic.pic-mini= image_tag t.asset.avatar
+                .pic.pic-mini.pic-user= image_tag t.asset.avatar
                 = t.asset.name
           - if t.project.present?
             .infos-part
@@ -43,7 +43,7 @@
                 = t.project.name
             .infos-part
               %a{:href => "#"}
-                .pic.pic-mini= image_tag t.assignee.avatar
+                .pic.pic-mini.pic-user= image_tag t.assignee.avatar
                 = t.assignee.nickname
           
           - if t.project.present?

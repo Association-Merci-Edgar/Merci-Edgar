@@ -41,7 +41,7 @@
             
               %a{href: "/fr/people/41"}
                 %h3= user.name
-                .pic= image_tag user.avatar
+                .pic.pic-user= image_tag user.avatar
               %span.infos-line
                 %a= user.email
 
@@ -60,7 +60,5 @@
               %i.entypo.edi-plus3
               %span
                 Ajouter un utilisateur
-          
 
-    
 = render 'devise/shared/profile'
