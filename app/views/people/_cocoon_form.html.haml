@@ -2,12 +2,11 @@
   = display_errors(@person)
 
 
-
   .form-inputs
     %header
       .control-group
         .pic-container
-          .pic= image_tag @person.avatar
+          .pic.pic-person= image_tag @person.avatar
           
         = f.input :first_name, label: false, :class => "input-Xlarge"
         = f.input :name, label: false, :class => "input-Xlarge"

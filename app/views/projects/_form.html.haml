@@ -12,7 +12,5 @@
     = f.input :description
 
   .form-actions
-    = f.button :submit
-    ou
-    = link_to "Annuler", projects_path 
-
+    = f.button :submit, class:"btn-primary btn-large btn-alert"
+    = link_to "Annuler", projects_path, class:"btn btn-link"

@@ -1,7 +1,10 @@
   
 .row-fluid.toppage.showitem
   %header
-    .pic= image_tag contact.avatar
+    - if @person
+      .pic.pic-person= image_tag contact.avatar
+    - if !@person
+      .pic= image_tag contact.avatar
     %h2= contact.name
     
     .infos
@@ -34,8 +37,6 @@
     - else
       = link_to add_to_favorites_contact_path(contact), remote: true do
         %i.ico.favorite{id: "fav_contact_#{contact.id}"}
-
-
 
 
     = link_to edit_link_path, :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{contact.updated_at.present? ? contact.updated_at.to_date : '22/01/2013'}", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do

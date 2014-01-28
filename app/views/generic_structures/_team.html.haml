@@ -1,11 +1,9 @@
-%ul.list-large
+%ul.list.list-large
   - @people.each do |person|
   
     %li
-    
       .pic-container
-        .pic
-          /%i.entypo.edi-house
+        .pic.pic-person
           = image_tag person.avatar_url(:thumb)
           
       .meta

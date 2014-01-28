@@ -22,7 +22,7 @@
       %li.infolabel
         Contact principal
       %li
-        .pic.pic-small= image_tag @main_person.avatar_url
+        .pic.pic-small.pic-person= image_tag @main_person.avatar_url
         = link_to @main_person do
           %h4= @main_person
       %li= @main_person.title(structure)
