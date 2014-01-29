@@ -73,7 +73,8 @@ class Scheduling < ActiveRecord::Base
       show_host_structure = Structure.joins(:contact).where(structurable_type: ["Venue","Festival"], contacts:{name: name}).first_or_initialize
       if show_host_structure.new_record?
         self.show_host = Venue.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Venue"
-        self.show_host = Festival.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Festival"        
+        self.show_host = Festival.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Festival"
+        self.show_host.save        
       else
         self.show_host = show_host_structure.structurable
       end
@@ -88,7 +89,10 @@ class Scheduling < ActiveRecord::Base
   def show_buyer_name=(name)
     if name.present? && @external_show_buyer != "Cette structure"
       self.show_buyer = ShowBuyer.joins(:structure => :contact).where(contacts: {name: name}).first_or_initialize
-      self.show_buyer.build_structure.build_contact(name: name) if self.show_buyer.new_record?
+      if self.show_buyer.new_record?
+        self.show_buyer.build_structure.build_contact(name: name) 
+        self.show_buyer.save
+      end
     end
   end
   
@@ -105,6 +109,7 @@ class Scheduling < ActiveRecord::Base
       self.scheduler = Person.joins(:contact).where(contacts: {name:name}).first_or_initialize
       if self.scheduler.new_record?
         scheduler.name = name
+        scheduler.save
       end
     end
   end
