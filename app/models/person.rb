@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
 
   delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
 
-  before_validation :set_name
+  before_validation :set_contact_name
   
   mount_uploader :avatar, AvatarUploader
   
@@ -48,7 +48,7 @@ class Person < ActiveRecord::Base
     self.first_name = words.join(' ') if words.present?
   end
 
-  def set_name
+  def set_contact_name
     self.build_contact unless contact.present?
     contact.name = "#{last_name} #{first_name}" if self.changed.include?("first_name") || self.changed.include?("last_name")
   end
@@ -96,21 +96,6 @@ class Person < ActiveRecord::Base
 
   def relative(user)
     relative = self.relatives.where(user_id: user.id).first
-  end
-
-  amoeba do
-    enable
-    include_field :emails
-    include_field :phones
-    include_field :addresses
-    include_field :websites
-    include_field :taggings
-  end
-
-  def my_dup
-    Contact.unscoped do
-      self.amoeba_dup
-    end
   end
   
   def deep_xml(builder=nil)
