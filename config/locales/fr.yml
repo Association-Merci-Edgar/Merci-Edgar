@@ -280,6 +280,8 @@ fr:
     models:
       venue: Lieu
       show_buyer: Organisateur de spectacle
+      festival: Festival
+      structure: Structure
       user: Utilisateur
       account: Compte
     attributes:

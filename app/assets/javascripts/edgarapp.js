@@ -212,7 +212,7 @@ toggleSearch = function(){
     currentnav.addClass("active");
   } else {
     // SHOW
-  $('.searchahead').typeahead();
+  // $('.searchahead').typeahead();
   
   // get and apply the correct TOP position
   //var offset = $('#search-nav').offset();

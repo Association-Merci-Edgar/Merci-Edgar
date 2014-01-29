@@ -6,7 +6,8 @@ class ContactsController < AppController
       @contacts.each do |c| 
         fm = c.fine_model
         link = send(fm.class.name.underscore + "_path", fm)
-        json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb) })
+        kind = I18n.t(fm.class.name.underscore, scope: "activerecord.models")
+        json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb), kind: kind})
       end
       unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
         json.push({value:params[:term], 
