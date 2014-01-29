@@ -36,8 +36,6 @@ GEM
       phony (~> 1.7.4)
       rake (>= 0.8.7)
     addressable (2.3.4)
-    amoeba (2.0.0)
-      activerecord (>= 3.0)
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -319,7 +317,6 @@ PLATFORMS
 
 DEPENDENCIES
   activevalidators
-  amoeba
   annotate
   awesome_print
   better_errors
