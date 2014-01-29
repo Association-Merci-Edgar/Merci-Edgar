@@ -6,7 +6,7 @@
     - if !@person
       .pic= image_tag contact.avatar
     %h2= contact.name
-    
+    = tag_link(contacts_path(category: contact.fine_model.class.name.underscore.pluralize),t(contact.fine_model.class.name.underscore,scope:"activerecord.models"),"tag-custom")
     .infos
       .infos-line
         /-  if contact.try(:capacities)

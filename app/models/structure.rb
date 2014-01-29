@@ -39,7 +39,7 @@ class Structure < ActiveRecord::Base
   def kind
     fm = self.fine_model
     if fm.present?
-      fm.class.name.downcase
+      fm.class.name.underscore
     end
   end
   

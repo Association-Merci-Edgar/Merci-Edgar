@@ -282,6 +282,7 @@ fr:
       show_buyer: Organisateur de spectacle
       festival: Festival
       structure: Structure
+      person: Personne
       user: Utilisateur
       account: Compte
     attributes:
