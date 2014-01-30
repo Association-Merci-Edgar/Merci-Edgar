@@ -21,6 +21,7 @@ class CouponsController < AppController
   end
   
   def index
-    @coupons = Coupon.all
+    @coupons = Coupon.where(distributed:false)
+    @coupons = @coupons.where(event:params[:event]) if params[:event]
   end
 end

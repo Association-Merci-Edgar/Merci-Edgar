@@ -1,1 +1,4 @@
+- Coupon.pluck(:event).uniq.each do |event|
+  = link_to event, coupons_path(event: event) 
+%p
 = render @coupons
