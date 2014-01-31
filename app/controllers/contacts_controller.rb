@@ -28,28 +28,30 @@ class ContactsController < AppController
         render "empty"
         return
       end
+
+      if params[:address].present?
+        radius = params[:radius].present? ? params[:radius] : 100
+        addresses = Address.near(params[:address], radius, units: :km).where(account_id: Account.current_id)
+      end
+      
       if params[:commit] == "show map"
-        if params[:address].present?
-          radius = params[:radius].present? ? params[:radius] : 100
-          contacts = Address.near(params[:address], radius, units: :km)
-        else
-          contacts = Address.where(account_id: Account.current_id)
-        end
 
         contact_ids = Contact.advanced_search(params).pluck(:id)
-        contacts = contacts.where(account_id: Account.current_id, contact_id: contact_ids)
-        @contacts_json = contacts.to_gmaps4rails do |address, marker|
+        addresses = addresses.where(contact_id: contact_ids)
+        @contacts_json = addresses.to_gmaps4rails do |address, marker|
           contact = address.contact
           marker.infowindow render_to_string(:partial => "contacts/infowindow_venue", :locals => { :contact => contact})
           marker.title   address.contact.name
           # marker.sidebar render_to_string(address.contact)
           # marker.json({ :id => address.id, :foo => "bar" })
-        end if contacts.present?
+        end if addresses.present?
         render "show_map"
         
         
       else
-        @contacts = Contact.advanced_search(params).page params[:page]
+        @contacts = Contact.advanced_search(params)
+        @contacts = @contacts.where(id: addresses.map(&:contact_id)) if addresses
+        @contacts = @contacts.page params[:page]
         if params[:category].present?
           raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
           @label_category = params[:category]
