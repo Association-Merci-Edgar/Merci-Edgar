@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 gem 'rails', '3.2.13'
 
 group :assets do
@@ -57,7 +57,7 @@ group :development do
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
-  gem 'debugger'
+  gem 'debugger', "~> 1.6.2"
   gem 'annotate'
 end
 group :development, :test do
