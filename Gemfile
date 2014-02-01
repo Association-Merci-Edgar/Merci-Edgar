@@ -12,7 +12,7 @@ gem 'jquery-ui-rails'
 gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass'
 gem 'cancan'
-gem 'devise'
+gem 'devise', '~> 3.2'
 gem 'figaro'
 gem 'gibbon'
 gem 'haml-rails'
@@ -28,7 +28,7 @@ gem 'client_side_validations-simple_form'
 
 gem 'yaml_db'
 
-gem 'kaminari'
+gem 'kaminari', '~> 0.15'
 
 gem "libxml-ruby", "~> 2.7.0"
 
@@ -77,6 +77,8 @@ group :test do
   gem 'launchy'
   gem 'faker'
 end
+
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :production, :test do
   gem 'pg'
