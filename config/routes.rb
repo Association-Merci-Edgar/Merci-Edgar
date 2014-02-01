@@ -3,6 +3,9 @@ require 'sidekiq/web'
 Edgar::Application.routes.draw do
 
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   get "backdoor/play1"
   get "backdoor/play2"
   get "backdoor/play3"
