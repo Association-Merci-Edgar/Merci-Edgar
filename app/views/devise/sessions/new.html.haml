@@ -3,13 +3,16 @@
     %i.entypo.edi-logoedgar_under.logotype
     %i.entypo.edi-logoedgar.logotype
   
-  %h1.page-title Bienvenue !
-  %legend #{t("simple_form.labels.defaults.signin")}
+  %h1 Bienvenue !
+  /%legend #{t("simple_form.labels.defaults.signin")}
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical', id: "toto" }) do |f|
     .row-fluid.control-group
       = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}", :class=>"span6 inline"
       = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}", :class=>"span6 inline"
-  
+    
+    .link.pull-right
+      = render "devise/shared/links"
+    
     -# = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
     .control-group.boolean.optional.user_remember_me
       -#
@@ -24,10 +27,11 @@
   
     .form-actions
       = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'btn-primary btn-large'
-    .link
+    
       
-      = render "devise/shared/links"
-      .pull-right
-        = link_to "www.merciedgar.com", "http://www.merciedgar.com"
+      
   #footer
-    © Merci Edgar 2013
+    © Merci Edgar 2014
+    
+    .pull-right
+      = link_to "www.merciedgar.com", "http://www.merciedgar.com"
