@@ -47,6 +47,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    dd
     @task = Task.new(params[:task])
     @asset = @task.asset
     if @task.save
