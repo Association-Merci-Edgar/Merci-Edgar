@@ -46,6 +46,10 @@ class Scheduling < ActiveRecord::Base
     result = [result, show_buyer.try(:name)].compact.join(" par ")
     result
   end
+  
+  def prospecting_months_s
+    prospecting_months.present? ? prospecting_months.map {|m| I18n.t("date.abbr_month_names")[m.to_i]}.join('-') : "Non renseigné"
+  end
     
   def external_show_buyer=(value)
     @external_show_buyer = value
