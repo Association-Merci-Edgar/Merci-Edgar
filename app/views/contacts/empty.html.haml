@@ -1,21 +1,18 @@
 %header.page-title Contacts
 
-%section
+%section.padded
   %h3
     Vous n’avez aucun contact…
     <br>
     Arrangeons celà !
 
-%section
+%section.padded
   .row-fluid.label-blocks
     .span4
       = link_to import_samples_account_path, remote: true, method: :put, :class => "label label-large" do
         %i.edi-vcard
         %h4 Importer des contacts exemples
         %p (6 fiches pour tester)
-
-
-
       
     .span4
       = link_to new_person_path, :class => "label label-large" do
@@ -23,8 +20,7 @@
         %h4 Créer un contact
         %p manuellement
         
-%section.progressbar.ghost
+%section.progressbar.ghost.padded
   .progress
     .bar
-    .message Import en cours ...
-        
+    .message Import en cours…

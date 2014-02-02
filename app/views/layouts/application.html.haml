@@ -3,9 +3,15 @@
   %head
     = render 'layouts/head_app'
   %body
+    
     #mainwrapper.mainwrapper
+      
       .togglemenu
         = render 'layouts/togglemenu'
+        
+      .sticker.sticker-beta
+        /Version Bêta-test
+        BETA
         
       #plusmenu
         = render 'layouts/plus_menu' if ["index","show"].include?(params[:action])

@@ -1,14 +1,15 @@
-= simple_form_for(@project) do |f|
+= simple_form_for(@project, :html => { :class => 'form-horizontal form-edit' }) do |f|
   = f.error_notification
 
   .form-inputs
-    .control-group
-      .pic-container
-        .pic= image_tag @project.avatar
-      .inline-inputs  
-        = f.input :name, label: false, :class => "input-Xlarge"
+    %header
+      .control-group
+        .pic-container
+          .pic= image_tag @project.avatar
+        .inline-inputs  
+          = f.input :name, label: false, :class => "input-Xlarge"
     
-      = f.input :avatar, label:false, :hint => "L’image doit faire au moins 300x300 pixels."
+        = f.input :avatar, label:false, :hint => "L’image doit faire au moins 80x80 pixels."
     = f.input :description
 
   .form-actions
