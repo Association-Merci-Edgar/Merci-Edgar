@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131151510) do
+ActiveRecord::Schema.define(:version => 20140202132335) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -292,18 +292,19 @@ ActiveRecord::Schema.define(:version => 20140131151510) do
   add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"
 
   create_table "schedulings", :force => true do |t|
-    t.string   "name"
-    t.integer  "show_host_id"
-    t.string   "show_host_type"
-    t.integer  "show_buyer_id"
-    t.integer  "scheduler_id"
-    t.string   "period"
-    t.string   "contract_tags"
-    t.string   "style_tags"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.text     "remark"
-    t.boolean  "discovery"
+    t.string       "name"
+    t.integer      "show_host_id"
+    t.string       "show_host_type"
+    t.integer      "show_buyer_id"
+    t.integer      "scheduler_id"
+    t.string       "period"
+    t.string       "contract_tags"
+    t.string       "style_tags"
+    t.datetime     "created_at",         :null => false
+    t.datetime     "updated_at",         :null => false
+    t.text         "remark"
+    t.boolean      "discovery"
+    t.string_array "prospecting_months"
   end
 
   add_index "schedulings", ["scheduler_id"], :name => "index_schedulings_on_scheduler_id"
@@ -400,15 +401,16 @@ ActiveRecord::Schema.define(:version => 20140131151510) do
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
   create_table "venues", :force => true do |t|
-    t.string   "kind"
-    t.integer  "start_season"
-    t.integer  "end_season"
-    t.boolean  "residency"
-    t.boolean  "accompaniment"
-    t.string   "avatar"
-    t.integer  "account_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string       "kind"
+    t.boolean      "residency"
+    t.boolean      "accompaniment"
+    t.string       "avatar"
+    t.integer      "account_id"
+    t.datetime     "created_at",    :null => false
+    t.datetime     "updated_at",    :null => false
+    t.integer      "start_season"
+    t.integer      "end_season"
+    t.string_array "season_months"
   end
 
   add_index "venues", ["account_id"], :name => "index_venues_on_account_id"

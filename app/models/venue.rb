@@ -18,7 +18,7 @@ class Venue < ActiveRecord::Base
   include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
+  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :season_months, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
 
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
@@ -74,7 +74,14 @@ class Venue < ActiveRecord::Base
   def fine_model
     self
   end
-
+=begin
+  def season_months=(sm)
+  end
+  
+  def season_months
+    super.map(&:to_s) 
+  end
+=end  
   def set_contact_criteria
     self.build_structure unless structure.present?
     self.structure.build_contact unless structure.contact.present?
@@ -136,7 +143,7 @@ class Venue < ActiveRecord::Base
 
 
   def season
-    [start_season, end_season].map {|m| I18n.t("date.month_names")[m].titleize if m.present? }.compact.join(' - ')
+    season_months.map {|m| I18n.t("date.month_names")[m.to_i].titleize if m.present? }.compact.join(' - ') if season_months
   end
 
   def contract_list

@@ -193,28 +193,11 @@
 
               
               
-                  -#________________________________________________________ scheduling OK
-                  = v.fields_for :prospectings do |s|
-                    .nested-fields
-                      = s.link_to_remove :title => "Supprimer cette periode de prospection" do
-                        %i.entypo.edi-minus2
-
-                      .control-group  
-                        %label.control-label #{t("simple_form.labels.schedulings.prospecting")}
-
-                        .inline-inputs
-                          = s.input :prospecting, :wrapper => :prepend, :label => false do
-                            = content_tag :span, t("simple_form.labels.defaults.start"), :class => "add-on"
-                            = s.input_field :start_month, :label => "Debut Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
-
-                          = s.input :prospecting, :wrapper => :prepend, :label => false do
-                            = content_tag :span, t("simple_form.labels.defaults.end"), :class => "add-on"
-                            = s.input_field :end_month, :label => "Fin Programmation", :collection => 1..12, label_method: lambda { |i| t("date.month_names")[i] }
-                            
-                  .links
-                    = v.link_to_add :prospectings, :title => 'Ajouter une periode de prospection' do
-                      %i.entypo.edi-plus2
-                      Ajouter une periode de prospection
+                  .control-group  
+                    %label.control-label #{t("simple_form.labels.schedulings.prospecting")}
+                    .swipeable
+                      -#= f.input_field :season_months, collection: ["Jan","Fev", "Mar","Avr","Mai","Juin","Juil","Aout","Nov","Dec"], as: :check_boxes
+                      = v.input_field :prospecting_months, collection: (1..12).to_a, label_method: lambda {|index| t("date.abbr_month_names")[index.to_i]}, as: :check_boxes
                   
                   = v.input :remark
 

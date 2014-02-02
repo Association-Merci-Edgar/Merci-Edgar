@@ -84,7 +84,6 @@ class VenuesController < AppController
   # PUT /venues/1.json
   def update
     @venue = Venue.find(params[:id])
-
     respond_to do |format|
       if @venue.update_attributes(params[:venue])
         format.html do
