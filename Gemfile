@@ -52,7 +52,7 @@ gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'html2haml'
   gem 'hub', :require=>nil
@@ -60,13 +60,10 @@ group :development do
   gem 'debugger', "~> 1.6.2"
   gem 'annotate'
 end
-group :development, :test do
-  gem 'pg'
+group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'mocha'
-end
-group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
@@ -80,6 +77,4 @@ end
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-group :production, :test do
-  gem 'pg'
-end
+gem 'pg'
