@@ -3,7 +3,7 @@
     %i.entypo.edi-logoedgar_under.logotype
     %i.entypo.edi-logoedgar.logotype
 
-  %h1.page-title #{t("simple_form.labels.defaults.firsttime_welcome")}
+  %h1 #{t("simple_form.labels.defaults.firsttime_welcome")}
       
   = simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-horizontal', :method => 'put'}, :id => 'activation-form' do |f|
     = devise_error_messages!

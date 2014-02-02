@@ -190,7 +190,7 @@ textarea {@include borderbox;}
 
 .ico.favorite {
   &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
-  &.full:before, &.full:before {content: "\e01d";} //.edi-heart
+  &:hover:before, &.full:before {content: "\e01d";} //.edi-heart
 }
 .ico.contacted {
   &:before, &.full:hover:before {content: "\e110";}//.edi-comment-2
@@ -828,6 +828,10 @@ a .logo:hover, a .logo:focus {
   margin: 0 auto;
   margin-top:40px;
   display: block;
+  h1 {
+    display:inline-block;
+    margin-bottom:40px;
+  }
   form{margin-bottom:30px;}
   .logotype {
     text-align: center;
@@ -846,10 +850,14 @@ a .logo:hover, a .logo:focus {
     //input[type="password"], input[type="text"] {width:100%;};
     label.checkbox {display:inline-block;}
     
+    
+    
     //*[class*="span"] {min-height: 40px;}
     #footer {
       font-size:15px;
       color:$mblue;
+      display:inline;
+      .pull-right {display:inline-block;}
       }
 }
 
@@ -1213,7 +1221,8 @@ legend {font-size: 20px;
     background:$green;
     color:$white;
     border-color:transparent;
-  };
+  }
+  
 }
 
 
@@ -1514,7 +1523,7 @@ input.apple  {margin-left:20px;}
 }
 .venue_name .control-label {display:none;}
 .form-horizontal .pic-container {
-  margin-left:90px;
+  margin-left:99px;
   @include square(100);
   .pic { @include square(100);}
   position:absolute;
@@ -1739,6 +1748,7 @@ section {
 .badge-orange {background:$orange;}
 .badge-blue {background:$blue;}
 .badge-green {background:$green2;}
+.badge-grey {background:$mblue;}
 
 //.badge-count {background:none; border: solid 1px $lblue; color:$dblue; ;}
 
@@ -1749,8 +1759,23 @@ section {
 }
 
 
-
-
+.sticker {
+  position: absolute;
+  @include noselect;
+  &.sticker-beta {
+    position: fixed;
+    padding: 0px 50px;
+    font-weight: bold;
+    top: 8px;
+    left: -47px;
+    z-index:3000;
+    line-height: 19px;
+    font-size:12px;
+    background-color:$yellow;
+    color:$dblue90;
+    @include rotate(-45);
+  }
+}
 
 
 /*  _____________________________________________________  LISTS   */
@@ -1865,6 +1890,12 @@ section {
   &.tag-network {border-color:$blue; &:hover, &:active, &.active {background-color:$blue;} }
 }
 
+h2 + .tag {margin-left:8px;
+  @include roundcornersFX(30px);
+  //border : dotted 1px;
+  color:$lblue;
+  border-color:$lblue;
+}
 
 /*  _____________________________________________________ UI TAGS  */
 
@@ -1908,14 +1939,15 @@ ul.tagit li.tagit-choice-editable {
   float:right;
   z-index:3;
   position:absolute; //right:0;
-  
+  i:before {padding-left: 1px;}
 }
+
 //#contact-list .actions
 .list-large .actions{
   right:68px;
 }
 
-.mini-map { position:absolute; top:52px; z-index:2; height:80px; width:120px; right:68px;
+.mini-map { position:absolute; top:46px; z-index:2; height:80px; width:120px; right:68px;
   &.france {background: url(appli/sprites/france-minimap-sprite.png) no-repeat top left;}
 }
 .mini-map.france.reg-1 {background-position: -5px -5px;}
@@ -2023,34 +2055,30 @@ button.shybtn {padding:4px 8px;}
 }
 
 
-
 .list-large {
   .actions {top:56px;}
   .actions>*{display: inline-block;}
   .content {font-size:15px;color:$dblue;}
   h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
   &>li {
-    padding: 20px 0 16px;
+    padding: 20px 0 10px;
     min-height:66px;
     
     &.list-header { padding:0; min-height: 10px; border:none;
       margin-bottom:10px;
       &:hover{background:none;}}
   }
+  
+  color:$vlblue;
+  .rightrow {width:90px;}
+  h3{ display:block; margin-top:0px; margin-bottom: 12px; font-size:25px;}
+  //&.cards {min-height: 60px;}
 }
+
 .list-large + li {padding:0;}
 
 nav.pagination{ display: inline-block;}
 
-
-
-.list-large {
-  color:$vlblue;
-  .rightrow {width:90px;}
-  //.meta {margin-bottom: 10px;}
-  h3{ display:block; margin-top:0px; margin-bottom: 16px;}
-  //&.cards {min-height: 60px;}
-}
 
 
 #team .list-large h4 {display:block;}
@@ -2143,7 +2171,7 @@ header {
   display:inline-block;
   margin-bottom:24px;
   .infos {
-    margin-top: 6px;
+    margin-top: 4px;
     margin-left:100px;
     //font-size:20px;
     //.infolabel {font-size:15px;}
