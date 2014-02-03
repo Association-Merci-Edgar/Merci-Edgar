@@ -402,14 +402,14 @@ ActiveRecord::Schema.define(:version => 20140202132335) do
 
   create_table "venues", :force => true do |t|
     t.string       "kind"
+    t.integer      "start_season"
+    t.integer      "end_season"
     t.boolean      "residency"
     t.boolean      "accompaniment"
     t.string       "avatar"
     t.integer      "account_id"
     t.datetime     "created_at",    :null => false
     t.datetime     "updated_at",    :null => false
-    t.integer      "start_season"
-    t.integer      "end_season"
     t.string_array "season_months"
   end
 

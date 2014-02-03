@@ -13,11 +13,11 @@ class SamplesImportWorker
 
       olympiaf = Venue.create!(samples["venues"]["olympiaf"])
       index += 1
-      at(index)
+      at(index, "Salle Olympiaf importée")
 
       kismar = Festival.create!(samples["festivals"]["kismar"])
       index += 1
-      at(index)
+      at(index, "Festival Kismar importé")
 
       ceda = kismar.schedulings.first.show_buyer
       ceda.update_attributes!(samples["show_buyers"]["ceda"])
@@ -26,16 +26,16 @@ class SamplesImportWorker
 
       fly = Structure.create!(samples["structures"]["fly"])
       index += 1
-      at(index)
+      at(index, "Structure CEDA importée")
 
       bob = olympiaf.people.first
       bob.update_attributes!(samples["people"]["bob"])
       index += 1
-      at(index, "Bob importe")
+      at(index, "Bob importé")
 
       aurore = Person.create!(samples["people"]["aurore"])
       index += 1
-      at(index, "Aurore Boreale Importe")
+      at(index, "Aurore Boreale importée")
     rescue
       
     end

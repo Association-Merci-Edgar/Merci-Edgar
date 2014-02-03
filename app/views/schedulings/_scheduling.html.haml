@@ -23,9 +23,8 @@
   = scheduling.contract_tags
   
 %li= t(scheduling.period, scope: 'simple_form.options.venue.schedulings.period') if scheduling.period.present?
-- if scheduling.prospectings.any?
-  - scheduling.prospectings.each do |s|
-    %li= "Programmateur en recherche active : #{s}"
+
+%li= "Programmateur en recherche active : #{scheduling.prospecting_months_s}"
     
 %li
   Observations :

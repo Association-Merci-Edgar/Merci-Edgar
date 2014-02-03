@@ -143,7 +143,7 @@ class Venue < ActiveRecord::Base
 
 
   def season
-    season_months.map {|m| I18n.t("date.month_names")[m.to_i].titleize if m.present? }.compact.join(' - ') if season_months
+    season_months.map {|m| I18n.t("date.abbr_month_names")[m.to_i] if m.present? }.compact.join(' - ') if season_months
   end
 
   def contract_list
