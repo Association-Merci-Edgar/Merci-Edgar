@@ -21,14 +21,14 @@
       
         = f.input :assigned_to, collection: @users, label_method: :name, value_method: :id, selected: current_user.id
       
-        = f.input :project_id, collection: Project.all, label_method: :name, value_method: :id, prompt: "Selectionnez un projet", label: t("simple_form.labels.project.name")
+        = f.input :project_id, collection: Project.all, label_method: :name, value_method: :id, prompt: "Aucun projet", label: t("simple_form.labels.project.name")
         / if zero projects :
         .message
           %i.entypo.edi-warning
           Vous n’avez encore créé de projet artistique !
           %br
-        %a.shybtn{:href => "#"}
-          Cliquer ici pour le faire
+          %a{:href => "#"}
+            Cliquer ici pour créer un projet
 
     .modal-footer
       /.btn.btn-secondary
