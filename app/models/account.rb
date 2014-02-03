@@ -150,14 +150,6 @@ class Account < ActiveRecord::Base
     end
   end
   
-  def duplicate_community
-    community = Account.find(1)
-    community.venues.each do |v|
-      my_venue = v.my_dup
-      my_venue.save
-    end
-  end
-  
   def member?(user)
     self.abilitations.where(user: user).first.member?
   end
@@ -165,6 +157,13 @@ class Account < ActiveRecord::Base
   def manager?(user)
     self.abilitations.where(user: user).first.manager?
   end
-
+  
+  def empty
+    Venue.destroy_all
+    Festival.destroy_all
+    ShowBuyer.destroy_all
+    Structure.destroy_all
+    Person.destroy_all
+  end
   
 end
