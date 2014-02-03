@@ -4,7 +4,9 @@
 
   .mainrow
     = link_to venue do
-      %h3= venue.name
+      %h3
+        = venue.name
+        %a.badge.badge-grey.doublons Doublon
       .pic= image_tag venue.avatar_url
     .infos-line
       / = render venue.capacities if venue.capacities

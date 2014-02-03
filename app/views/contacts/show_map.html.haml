@@ -6,4 +6,12 @@
     = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 7, "auto_adjust" => true, "auto_zoom" => true, :container_class => "map_container" },"markers" => { "data" => @contacts_json }, "options" => {"list_container" => "markers_list" })
   //, :class => "gmaps_big"
 - else
-  Aucun lieu trouvé
+  %section.padded
+    .label.label-large
+      %i.edi-cross
+      %div
+        %h3.message.centered
+          Aucun contact trouvé...
+        %p
+          Essayez peut-être avec moins de critères ?
+      

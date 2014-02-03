@@ -473,8 +473,7 @@ h6 {font-size:17px;}
 h2 {
   line-height:32px;
   margin:0px;
-  margin-top: 7px;
-  
+  //margin-top: 7px;
   display:inline-block;
 }
 
@@ -576,7 +575,9 @@ form section .section-title {padding-top:80px;}
 
 /* ________________________________________________________ INDEX MAP SHOW_MAP   */
 
-
+.message .entypo {font-size:16px;
+vertical-align: initial;
+}
 
 /*
 #gmaps_index{
@@ -605,6 +606,10 @@ form section .section-title {padding-top:80px;}
 
 .map_container {overflow:hidden;}
 
+.modal .message {margin-bottom:6px;}
+
+
+.centered { text-align: center;}
 
 /* ________________________________________________________ NAV BAR   */
 
@@ -708,7 +713,8 @@ a.pull-right {float:right;}
 
 //.leftmenu, .logo { }
 
-.leftmenu a .badge { float:right; margin-top:4px; margin-right:24px; background:none; border: solid 1px $lblue; color:$lblue;}
+.leftmenu a .badge { float:right; margin-top:4px; margin-right:26px;
+  background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li, .logo {width:240px;}
 
@@ -942,12 +948,18 @@ legend {font-size: 20px;
 .swipeable:not(#foo) > span > input[type='checkbox'] {width : 0px;}
 
 .swipeable:not(#foo) > span > input[type='checkbox'] + label {
-  padding: 3px 8px 5px 8px;
+  padding: 4px 8px 6px 8px;
   background-image:none;
   background-color: $beige;
   border : solid 2px $dbeige2;
   color:$lblue;
 }
+/*
+.swipeable:not(#foo) > span > input[type='checkbox'] + label:last-child{
+  @include roundcornersFX(30);
+  background-color: $red;
+};
+*/
 
 .swipeable:not(#foo) > span > input[type='checkbox']:checked + label {
   //background-color: $dbeige;
@@ -1748,7 +1760,15 @@ section {
 .badge-orange {background:$orange;}
 .badge-blue {background:$blue;}
 .badge-green {background:$green2;}
-.badge-grey {background:$mblue;}
+
+.badge.badge-grey.doublons {background:$mblue;
+  @include roundcornersFX(30px);
+  //border:$orange 1px solid;
+  font-size: 12px;
+  float: none;
+}
+
+header .badge-grey {padding: 6px 12px;}
 
 //.badge-count {background:none; border: solid 1px $lblue; color:$dblue; ;}
 
@@ -2177,7 +2197,7 @@ header {
     //.infolabel {font-size:15px;}
     
   } 
-  .pic{width:80px;}
+  .pic{width:80px; margin-top: -4px;}
 }
 
 //#account-page .row-fluid { margin-bottom:36px;}

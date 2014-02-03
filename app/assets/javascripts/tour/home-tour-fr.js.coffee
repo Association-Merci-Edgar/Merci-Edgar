@@ -25,7 +25,7 @@ $ ->
       element: "#accounts-tab"
       placement: "right"
       title: "Compte"
-      content: "Voici le chemin vers les préférences de votre compte"
+      content: "Cliquez ici pour paramétrer votre compte<br> : <br> - renseigner vos données personnelles <br> - ajouter la photo de votre profil  <br> - créer vos projets artistiques"
       fixed: true
       
 #campaigns-nav

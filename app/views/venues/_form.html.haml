@@ -161,7 +161,7 @@
               -#________________________________________________________ season 
               .control-group  
                 %label.control-label #{t("simple_form.labels.venue.season")}
-                .swipeable
+                .controls.swipeable
                   -#= f.input_field :season_months, collection: ["Jan","Fev", "Mar","Avr","Mai","Juin","Juil","Aout","Nov","Dec"], as: :check_boxes
                   = f.input_field :season_months, collection: (1..12).to_a, label_method: lambda {|index| t("date.abbr_month_names")[index.to_i]}, as: :check_boxes
 
@@ -212,7 +212,7 @@
 
                 .control-group  
                   %label.control-label #{t("simple_form.labels.schedulings.prospecting")}
-                  .swipeable
+                  .controls.swipeable
                     -#= f.input_field :season_months, collection: ["Jan","Fev", "Mar","Avr","Mai","Juin","Juil","Aout","Nov","Dec"], as: :check_boxes
                     = v.input_field :prospecting_months, collection: (1..12).to_a, label_method: lambda {|index| t("date.abbr_month_names")[index.to_i]}, as: :check_boxes
 
