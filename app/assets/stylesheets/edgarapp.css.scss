@@ -894,7 +894,7 @@ legend {font-size: 20px;
   input, select { width: 233px !important;}
   #task_calendar {margin-top:-1px;}
   }
-  select#task_assigned_to { width: 237px !important;}
+  select { width: 237px !important;}
 }
 
 
@@ -1966,6 +1966,9 @@ ul.tagit li.tagit-choice-editable {
 .list-large .actions{
   right:68px;
 }
+#activity .list-large .actions{
+  right:10px;
+}
 
 .mini-map { position:absolute; top:46px; z-index:2; height:80px; width:120px; right:68px;
   &.france {background: url(appli/sprites/france-minimap-sprite.png) no-repeat top left;}
@@ -2103,11 +2106,20 @@ nav.pagination{ display: inline-block;}
 
 #team .list-large h4 {display:block;}
 
+
 #activity .list-large  {
   h4, .infos {display:inline-block; margin-right:10px; font-size:21px;}
   .pic-mini {
     margin: 0 4px;
     text-decoration:none; width:23px;}
+  h4 {color:$mblue;}
+  i.ico {vertical-align: text-top;}
+}
+
+li.system-reporting {
+  //background-color:$dbeige1;
+  background: url(appli/dots_bkg.gif) repeat top left;
+  
 }
 
 #reporting_project_id {float:left;}
