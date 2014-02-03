@@ -1,4 +1,5 @@
 $('#myModal').modal('toggle')
+$('#myModal .errors').text("")
 $(".bar").width('1%');
 $('.message').text('Export en cours...')
 (function pollJobidStatus() {
@@ -16,6 +17,13 @@ $('.message').text('Export en cours...')
 	    window.location = response.result
 			return false;
     }
+
+		if (response.status == "failed") {
+			$('#myModal .bar').width("0%")
+			$('#myModal .message').text("")
+			$('#myModal .errors').append("<div class='notice error'>Un problème est survenu. Edgar est averti !</div>")
+			return
+		}
 
     setTimeout(pollJobidStatus, 1000);
   });

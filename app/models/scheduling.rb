@@ -183,9 +183,16 @@ class Scheduling < ActiveRecord::Base
     show_buyer_name = scheduling_attributes.delete("show_buyer_name")
     show_host_name = scheduling_attributes.delete("show_host_name")
     scheduler_name = scheduling_attributes.delete("scheduler_name")
+    
+    prospecting_months = scheduling_attributes.delete("prospecting_months")
+    if prospecting_months
+      pmonths = prospecting_months.delete("prospecting_month")
+      pmonths = [].push(pmonths.to_s) unless pmonths.is_a?(Array)
+    end
     scheduling = Scheduling.new(scheduling_attributes)
     scheduling.show_buyer = Contact.where("name = ? or name LIKE ?", show_buyer_name, "#{show_buyer_name} #%").where(imported_at: imported_at).first.try(:fine_model) if show_buyer_name   
     scheduling.scheduler = Contact.where("name = ? or name LIKE ?", scheduler_name, "#{scheduler_name} #%").where(imported_at: imported_at).first.try(:fine_model) if scheduler_name
+    scheduling.prospecting_months = pmonths
     scheduling
   end
 end
