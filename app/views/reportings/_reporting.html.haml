@@ -17,3 +17,27 @@
     .content 
       = render reporting.report
     = render partial: "reportings/form", locals: {reporting: reporting, edit:true, action: :edit}
+  
+  
+  
+-#  
+  /system-reporting !!!
+  
+  %li{id: "reporting_#{reporting.id}", class:"system-reporting"}
+    %h4= l reporting.created_at, format: :abbrev
+
+    .infos
+      /.pic.pic-mini.pic-user= image_tag reporting.user.avatar
+      %i.ico.edi-logoedgar
+      Merci Edgar
+      
+      - if reporting.project.present?
+        .pic.pic-mini= image_tag reporting.project.avatar
+        = reporting.project.name
+    .actions  
+      %a.shybtn.cancel.pull-right.hidden{:href => "#"}
+        %i.entypo.edi-cross
+    
+    .content 
+      = render reporting.report
+    = render partial: "reportings/form", locals: {reporting: reporting, edit:true, action: :edit}
