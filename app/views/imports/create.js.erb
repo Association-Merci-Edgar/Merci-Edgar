@@ -18,6 +18,12 @@ $(".progressbar").toggleClass("ghost");
 			
 			return false;
     }
+		if (response.status == "failed") {
+			$('#myModal .bar').width("0%")
+			$('#myModal .message').text("")
+			$('#myModal .errors').append("<div class='notice error'>Un problème est survenu. Edgar est averti !</div>")
+			return
+		}
 
     setTimeout(pollJobidStatus, 1000);
   });
