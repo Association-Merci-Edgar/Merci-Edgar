@@ -11,56 +11,57 @@ class XmlImportWorker
     #at(10,"Lecture du fichier")
     imported_at = Time.zone.now.to_i
 
-    File.open(uploader.file.path) do |io|
-      self.total = io.size
+    ActiveRecord::Base.transaction do
+      File.open(uploader.file.path) do |io|
+        self.total = io.size
       
-      at(20, "Lecture du fichier ...")
+        at(20, "Lecture du fichier ...")
 
     
-      xml_reader = XML::Reader.io(io)
-      xml_reader.read
-      raise "No valid Merci Edgar File" unless xml_reader.name == "merciedgar"
+        xml_reader = XML::Reader.io(io)
+        xml_reader.read
+        raise "No valid Merci Edgar File" unless xml_reader.name == "merciedgar"
       
-      while xml_reader.read do
-        case xml_reader.name
-          when "show-buyer", "person", "structure"
-            xml_node = xml_reader.expand.to_s
-            attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
-            instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, custom_tags)
-            instance.save
-            at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
+        while xml_reader.read do
+          case xml_reader.name
+            when "show-buyer", "person", "structure"
+              xml_node = xml_reader.expand.to_s
+              attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
+              instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, custom_tags)
+              instance.save
+              at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
                 
+          end
+          xml_reader.next
         end
-        xml_reader.next
       end
-    end
 
 
-    File.open(uploader.file.path) do |io|
-      self.total = io.size
+      File.open(uploader.file.path) do |io|
+        self.total = io.size
       
-      at(20, "Lecture du fichier ...")
+        at(20, "Lecture du fichier ...")
 
     
-      xml_reader = XML::Reader.io(io)
-      xml_reader.read
-      raise "No valid Merci Edgar File" unless xml_reader.name == "merciedgar"
+        xml_reader = XML::Reader.io(io)
+        xml_reader.read
+        raise "No valid Merci Edgar File" unless xml_reader.name == "merciedgar"
       
-      while xml_reader.read do
-        case xml_reader.name
-          when "venue", "festival"
-            xml_node = xml_reader.expand.to_s
-            attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
-            instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, custom_tags)
-            instance.save
-            at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
+        while xml_reader.read do
+          case xml_reader.name
+            when "venue", "festival"
+              xml_node = xml_reader.expand.to_s
+              attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
+              instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, custom_tags)
+              instance.save
+              at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
                        
                 
+          end
+          xml_reader.next 
         end
-        xml_reader.next 
       end
     end
-
 
     imported_contacts = Contact.where(imported_at: imported_at)
     nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count

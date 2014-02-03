@@ -71,5 +71,10 @@ namespace :edgar do
 
     Contact.unscoped.find_each {|c| Account.current_id=c.account_id; c.format_customs; c.format_networks; c.update_customs; c.update_networks; c.save}
   end
+  
+  task :empty_first_account => :environment do
+    Account.current_id=1
+    Account.find(1).empty
+  end
 
 end

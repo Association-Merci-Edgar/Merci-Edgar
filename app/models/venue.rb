@@ -172,10 +172,17 @@ class Venue < ActiveRecord::Base
     structure_attributes = venue_attributes.delete("structure")
     structure = Structure.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)
     schedulings_attributes = venue_attributes.delete("schedulings")
+    season_months = venue_attributes.delete("season_months")
+    if season_months
+      smonths = season_months.delete("season_month")
+      smonths = [].push(smonths.to_s) unless smonths.is_a?(Array)
+    end
+
     
     venue = Venue.new(venue_attributes)
     venue.structure = structure
     venue.upload_base64_avatar(avatar_attributes)
+    venue.season_months = smonths
     
     if schedulings_attributes.present? && schedulings_attributes["scheduling"].present?
       if schedulings_attributes["scheduling"].is_a?(Hash)
