@@ -12,12 +12,20 @@
   = f.hidden_field :asset_type
   = f.input :project_id, collection: Project.all, label: false, value_method: :id, prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
   
+      
   = button_tag(type: 'submit', class: "btn btn-secondary pull-right submit") do 
     = submit_label
+    
   
+      
   - if edit
     %button.btn.btn-link.cancel.hidden.pull-right{}
       Annuler
     
-  %div.clearfix
-  
+  .clearfix
+  .message
+    %i.entypo.edi-warning
+    Vous n’avez encore créé de projet artistique !
+    
+    %a{:href => "#"}
+      Cliquer ici pour créer un projet
