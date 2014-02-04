@@ -18,7 +18,7 @@ class Venue < ActiveRecord::Base
   include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
 
-  attr_accessible :kind, :residency, :accompaniment, :start_season, :end_season, :season_months, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
+  attr_accessible :kind, :residency, :accompaniment, :season_months, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
 
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
@@ -31,14 +31,8 @@ class Venue < ActiveRecord::Base
   has_many :rooms, :dependent => :destroy
   accepts_nested_attributes_for :rooms, :reject_if => :all_blank, :allow_destroy => true
 
-  validates :start_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
-  validates :end_season, numericality: { only_integer:true, greater_than: 0, less_than: 13}, allow_blank: true
-
 
   delegate :name, :contact, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
-  # validate :venue_must_have_at_least_one_address
-#  validate :venue_name_must_be_unique_by_city, :on => :create
-  # validates_presence_of :addresses
   
   mount_uploader :avatar, AvatarUploader
   
