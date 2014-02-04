@@ -21,14 +21,14 @@ class Scheduling < ActiveRecord::Base
   belongs_to :show_host, polymorphic: true, autosave: true
   belongs_to :show_buyer, autosave: true
   belongs_to :scheduler, class_name: "Person", touch: true, autosave: true
-  has_many :prospectings, dependent: :destroy
+  # has_many :prospectings, dependent: :destroy
 
-  attr_accessible :name, :period, :remark, :discovery, :contract_tags, :contract_list, :style_tags, :prospectings_attributes, :prospecting_months, :show_buyer_name, :show_host_name, :show_host_kind, :scheduler_name, :external_show_buyer
+  attr_accessible :name, :period, :remark, :discovery, :contract_tags, :contract_list, :style_tags, :prospecting_months, :show_buyer_name, :show_host_name, :show_host_kind, :scheduler_name, :external_show_buyer
   attr_accessor :scheduler_name
   
   # attr_writer :external_show_buyer
   
-  accepts_nested_attributes_for :prospectings, :reject_if => :all_blank, :allow_destroy => true
+  # accepts_nested_attributes_for :prospectings, :reject_if => :all_blank, :allow_destroy => true
   
   validates :name, presence: true
   validates :external_show_buyer, presence: true
