@@ -80,12 +80,33 @@ class Contact < ActiveRecord::Base
 
   scope :imported_at, lambda { |imported_at| where(imported_at: imported_at) }
   scope :duplicated, where("duplicate_id IS NOT NULL")
+  scope :duplicate_of, lambda { |dup_id| where("contacts.duplicate_id = ? OR contacts.id = ?",dup_id, dup_id) }
+  
 
   scope :recently_created, order("created_at desc").limit(10)
   scope :recently_updated, order("updated_at desc").limit(10)
 
   AVAILABLE_STYLE_TAGS = ["Rock","Chanson","Electro","Jazz"]
   
+  def has_duplicates?
+    self.duplicate.present? || self.duplicates.any?
+  end
+  
+  def dup_id
+    if has_duplicates?
+      return @dup_id if @dup_id
+      if self.duplicate.present?
+        @dup_id = self.duplicate_id
+      else
+        if self.duplicates.any?
+          @dup_id = self.id
+        end
+      end
+      return @dup_id
+    else
+      nil
+    end
+  end
   
   def titleize_name
     if self.name
@@ -168,23 +189,6 @@ class Contact < ActiveRecord::Base
     else
       @contacts = Contact.order(:name)
     end
-=begin    
-    if params[:capacity_range].present? || params[:capacity_lt].present? || params[:capacity_gt].present? || params[:venue_kind].present?
-      @contacts = Venue.order("contacts.name")
-    else
-      @contacts = Contact.order("contacts.name")
-    end
-    if params[:capacity_range].present?
-      case
-      when params[:capacity_range] =~ /< (\d+)/
-        @contacts = @contacts.capacities_less_than($1) if $1.present?
-      when params[:capacity_range] =~ /> (\d+)/
-        @contacts = @contacts.capacities_more_than($1) if $1.present?
-      when params[:capacity_range] =~ /(\d+)-(\d+)/
-        @contacts = @contacts.capacities_between($1,$2) if $1.present? && $2.present?
-      end
-    end
-=end
 
     @contacts = tagged_with(@contacts, params["style_list"], "style_tags") if params["style_list"].present?
     @contacts = tagged_with(@contacts, params["network_list"], "network_tags") if params["network_list"].present?
@@ -199,6 +203,7 @@ class Contact < ActiveRecord::Base
     # @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
     @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"]
     @contacts = @contacts.duplicated if params["duplicated"].present? && params["duplicated"]
+    @contacts = @contacts.duplicate_of(params["duplicate_of"]) if params["duplicate_of"]
     @contacts
   end
   

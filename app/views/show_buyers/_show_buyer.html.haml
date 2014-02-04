@@ -4,7 +4,11 @@
 
   .mainrow
     = link_to show_buyer do
-      %h3= show_buyer.name
+      %h3
+        = show_buyer.name
+        - if show_buyer.contact.has_duplicates?
+          = link_to "Doublon", contacts_path(duplicate_of: show_buyer.contact.dup_id), class: "a badge badge-grey doublons"
+
       .pic= image_tag show_buyer.avatar_url
     .infos-line
       / = render venue.capacities if venue.capacities
