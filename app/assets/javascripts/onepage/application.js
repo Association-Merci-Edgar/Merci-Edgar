@@ -37,8 +37,8 @@ jQuery('document').ready(function() {
 
   // use AJAX to submit the "request invitation" form
   jQuery('#invitation_button').on('click', function() {
-    var email = jQuery('#invit_user #user_email').val();
-    var dataString = 'user[email]='+ email;
+    email = jQuery('#invit_user #user_email').val();
+    dataString = 'user[email]='+ email;
     jQuery.ajax({
       type: "POST",
       url: "/fr/users",
