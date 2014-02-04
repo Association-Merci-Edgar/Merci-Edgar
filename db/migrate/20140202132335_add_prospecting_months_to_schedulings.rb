@@ -7,7 +7,6 @@ class AddProspectingMonthsToSchedulings < ActiveRecord::Migration
       s.prospectings.each {|p| months.push(*ModuloRange.new(p.start_month,p.end_month))}
       if months.present?
         s.update_attributes!(:prospecting_months => months.map(&:to_s))
-        puts "#{s.id} // months added: #{s.prospecting_months}"
       end
     end    
   end
