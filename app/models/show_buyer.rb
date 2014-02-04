@@ -23,7 +23,7 @@ class ShowBuyer < ActiveRecord::Base
 
   has_many :show_hosts, through: :schedulings, uniq: true
 
-  delegate :name, to: :structure
+  delegate :name, :contact, to: :structure
 
   mount_uploader :avatar, AvatarUploader
 

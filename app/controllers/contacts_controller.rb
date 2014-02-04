@@ -35,7 +35,7 @@ class ContactsController < AppController
       end
       
       if params[:commit] == "show map"
-
+        addresses = Address.where(account_id: Account.current_id) unless addresses.present?
         contact_ids = Contact.advanced_search(params).pluck(:id)
         addresses = addresses.where(contact_id: contact_ids)
         @contacts_json = addresses.to_gmaps4rails do |address, marker|

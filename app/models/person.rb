@@ -103,7 +103,7 @@ class Person < ActiveRecord::Base
       :builder => builder, :skip_instruct => true, :skip_types => true, 
       except: [:id, :created_at, :updated_at, :account_id, :avatar]
       ) do |xml|
-      contact.deep_xml(xml)
+      # contact.deep_xml(xml)
       xml.base64_avatar do
         xml.filename self.avatar.file.filename 
         xml.content self.base64_avatar
@@ -113,7 +113,7 @@ class Person < ActiveRecord::Base
   
   def self.from_merciedgar_hash(person_attributes, imported_at, custom_tags)  
     avatar_attributes = person_attributes.delete("base64_avatar")
-    contact_attributes = person_attributes.delete("contact")
+    contact_attributes = person_attributes.delete("contact") || {}
     first_name = person_attributes.delete("first_name")
     last_name = person_attributes.delete("last_name")
     person = Person.find_or_initialize_by_first_name_and_last_name(first_name,last_name)

@@ -57,16 +57,16 @@
 
 
         %li.divider{role: "presentation"}
-        %li{role: "presentation"}
+        -#%li{role: "presentation"}
           = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
         %li{role: "presentation"}
           = link_to("Récemment créés",only_contacts_path(filter:"recently_created"), role: "menuitem", tabindex: "-1")
+
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans mot-clés
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"} Personnes sans activité depuis 30 jours
-    
+          = link_to contacts_path(duplicated: "true"), role: "menuitem", tabindex: "-1" do
+            Tous les doublons
+        
     
       -#
         /______________________________________________________ SHORTLISTS
