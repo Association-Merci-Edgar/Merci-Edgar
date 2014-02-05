@@ -22,7 +22,8 @@ Edgar::Application.routes.draw do
     end
 
     devise_scope :user do
-      root :to => "devise/registrations#new", :as => "locale_root", constraints: {subdomain: 'www'}
+      root :to => "showcase#index", :as => "locale_root", constraints: {subdomain: 'www'}
+      # root :to => "devise/registrations#new", :as => "locale_root", constraints: {subdomain: 'soonlaunch'}
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
       match '', to: 'sessions#new', constraints: {subdomain: /.+/}
 

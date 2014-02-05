@@ -56,7 +56,7 @@
               %span.lenom Merci Edgar
               =t("home.slogan.edgar_for_you")
             /%hr.half/
-        -#.span4
+        .span4
           #features-anchor.camein
             %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
               = t("home.i_want_it")   
@@ -129,7 +129,7 @@
             %br/
             = t("home.promise.goal")
             %p
-            -#%a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+            %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
               = t("home.i_want_it")
       .span6
         .panel.first
@@ -503,10 +503,13 @@
         %p
         %h4= t("home.team.people.title")
         %p= t("home.team.people.description")
-        -#.camein
+        .camein
           %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
             = t("home.i_want_it")
         
+    / /ROW
+  / /CONTAINER
+
 #team-christophe.modal{:style => "display: none"}
   .modal-header
     %a.close{"data-dismiss" => "modal"} x
@@ -624,3 +627,5 @@
 
         %p
           Ma marque de fabrique c’est l’éclectisme et une passion sans limite pour la création artistique. Merci Edgar est résolument au service d’artistes créatifs désireux de se produire sur scéne. Alors, prêts pour le grand saut ?
+          
+        
