@@ -79,3 +79,5 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'pg'
 gem 'ar_pg_array'
+
+gem 'rollbar'
