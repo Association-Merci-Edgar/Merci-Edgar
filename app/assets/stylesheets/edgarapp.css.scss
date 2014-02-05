@@ -7,6 +7,7 @@ $lblue:   lighten( $dblue, 40% );
 
 $vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
 $beige:   #edede8;
+$lbeige:  lighten( $beige, 5% );
 $dbeige:  rgba(194, 194, 177, 1);
 $dbeige1:  rgba(221, 221, 212, 1);
 $dbeige2: rgba(209, 209, 197, 1);
@@ -897,6 +898,7 @@ legend {font-size: 20px;
   select { width: 237px !important;}
 }
 
+.message a, .notice a { border-bottom:dotted 1px $green; }
 
 
 /*  ________________________________________ CUSTOM checkbox & radio */
@@ -1754,21 +1756,23 @@ section {
   
   
 .badge-medium { padding: 3px 10px;}
-
 .badge-black {background:$dblue;}
 .badge-red {background:$red;}
 .badge-orange {background:$orange;}
 .badge-blue {background:$blue;}
 .badge-green {background:$green2;}
+.badge.badge-grey {background:$mblue;}
 
-.badge.badge-grey.doublons {background:$mblue;
+.list-large li .badge.badge-capsule {
   @include roundcornersFX(30px);
   //border:$orange 1px solid;
   font-size: 12px;
   float: none;
 }
 
-header .badge-grey {padding: 6px 12px;}
+
+header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
+
 
 //.badge-count {background:none; border: solid 1px $lblue; color:$dblue; ;}
 
@@ -1850,8 +1854,8 @@ header .badge-grey {padding: 6px 12px;}
 .mainrow {
   //background: green;
   overflow: hidden;
-  
 }
+
 .rightrow {
   width: 320px;
   height:100%;
@@ -1910,7 +1914,10 @@ header .badge-grey {padding: 6px 12px;}
   &.tag-network {border-color:$blue; &:hover, &:active, &.active {background-color:$blue;} }
 }
 
-h2 + .tag {margin-left:8px;
+
+
+h2 + .tag {
+  margin:0px;
   @include roundcornersFX(30px);
   //border : dotted 1px;
   color:$lblue;
@@ -2078,6 +2085,7 @@ button.shybtn {padding:4px 8px;}
 }
 
 
+
 .list-large {
   .actions {top:56px;}
   .actions>*{display: inline-block;}
@@ -2118,7 +2126,7 @@ nav.pagination{ display: inline-block;}
 
 li.system-reporting {
   //background-color:$dbeige1;
-  background: url(appli/dots_bkg.gif) repeat top left;
+  background: $lbeige url(appli/dots_bkg.gif) repeat top left;
   
 }
 
@@ -2197,20 +2205,28 @@ form#contact_us .uvFieldTextarea { height:150px; };
 
 /*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
-.showitem header {}
+//.showitem header {}
 
 header {
+  width:100%;
   display:inline-block;
   margin-bottom:24px;
+  
+  
+  h2 { margin-right:8px; display:inline;
+  }
   .infos {
     margin-top: 4px;
-    margin-left:100px;
+    //margin-left:100px;
     //font-size:20px;
     //.infolabel {font-size:15px;}
     
   } 
-  .pic{width:80px; margin-top: -4px;}
+  .pic{width:80px; height:80px; margin-top: -4px; }
+  .rightrow {width:110px;}
+  .mainrow{overflow: inherit;}
 }
+
 
 //#account-page .row-fluid { margin-bottom:36px;}
 
@@ -2220,7 +2236,7 @@ header {
   float:left; 
   margin-right:18px;
   //@include square(60);
-  width:60px;
+  width:60px;height: 60px;
   display:inline-block;
 	text-align:center; 
   img {
@@ -2268,21 +2284,20 @@ textarea {
     color:$white;
     @include plholder ($white);
   };
-  
 }
+
 #activity .list-large form { margin:0;}
 #activity .list-large textarea {
   resize:vertical;
   height:auto; width:100%;
   margin: 10px 0 18px;
-  
   &:focus{
     background:$green;
     border-color:$green;
     color:$white;
   };
-  
 }
+
 #activity .list-large > li .actions { top: inherit;}
 #activity .list-large > li:hover .actions{
   display: inline-block;
@@ -2311,10 +2326,10 @@ textarea {
     }
 }
 
-
-.btn-secondary i {padding-top:4px; margin:0;
+.btn-secondary i {
+  padding-top:4px; margin:0;
   &:before{ width:15px;overflow:hidden;}
-  }
+}
 
 
 //#activity select.ed-select, 
@@ -2385,6 +2400,7 @@ ul.social-list {
   margin-bottom:24px;
   & > li{margin-bottom: -2px;}
 }
+
 .nav-tabs li.w_badge {margin-bottom: -1px;}
 
 .nav-tabs > li > a {
@@ -2414,15 +2430,12 @@ ul.social-list {
 
 
 
-
-
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
 	background: none;
 	border:none;
 	border-bottom: 1px solid $dblue;
 	color:$dblue;
 	cursor: default;
-	
 }
 
 .nav-tabs > li > a:hover {
@@ -2471,6 +2484,8 @@ $tooltipTXT: $white;
   border-bottom-color: $tooltipBKG;
 }
 
+
+/* PAGE PADDED */
 
 .maincontentinner { padding: 48px 0 34px 0; }
 
