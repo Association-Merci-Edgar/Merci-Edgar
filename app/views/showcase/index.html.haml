@@ -1,0 +1,632 @@
+- content_for :hero do
+  / HEADER MAIN
+  .hero-unit
+    .container
+      #langswitch.noselect
+        = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
+        |
+        = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
+      
+      / SOCIALS
+    
+      #socialfixed
+        %ul.social-left
+          %li
+            %a{:href => "https://www.facebook.com/pages/Merci-Edgar/164510577033726", :title => "Facebook Merci Edgar", :target => "blank"}
+              %i.ed-icon-facebook
+          %li
+            %a{:href => "https://twitter.com/MerciEdgar", :title => "Twitter Merci Edgar", :target => "blank"}
+              %i.ed-icon-twitter
+          %li
+            %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
+              %i.ed-icon-vimeo
+      / END SOCIALS
+      
+      .row-fluid
+        .span12
+          .sticker.sticker-big
+            Lancement le<br>
+            %span.bold
+              6 février 2014 !
+              
+          %img{:alt => "", :src => "images/hero-img2d.png"}/
+      .row-fluid
+        .span12
+          %div
+            .slogan
+              %span.slogan-primo
+                %span.de= t("home.slogan.of")
+                
+                = t("home.slogan.management")
+                
+              
+              %span.slogan-secundo
+                %span.de= t("home.slogan.of")
+              = t("home.slogan.creation")
+              
+      .row-fluid.slimcol
+        .span8
+          .argu
+            %p
+              = t("home.slogan.are_you_artist")
+              %br/
+              /=t("home.slogan.time")
+              /%br/
+              =t("home.slogan.virtual_assistant")
+              %span.lenom Merci Edgar
+              =t("home.slogan.edgar_for_you")
+            /%hr.half/
+        .span4
+          #features-anchor.camein
+            %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+              = t("home.i_want_it")   
+
+
+%section#features-section
+  .container
+    .row-fluid.label-blocks
+      -#
+        / ITEM
+        .span4
+          .label.label-large.label-info
+            / <i class='ed-icon-ed-search fa-icon-large black'></i>
+            %img{:alt => "", :src => "images/pic-photo-1.png"}/
+          %h4= t("home.features.find")
+          %p= t("home.features.find_what")
+        / / ITEM
+      
+      / ITEM
+      .span4
+        .label.label-large.label-info
+          / <i class='ed-icon-ed_relations fa-icon-large black'></i>
+          %img{:alt => "", :src => "images/pic-photo-2.png"}/
+          /%img{:alt => "", :src => %= image_tag "images/onepage/pic-photo-2.png"}/
+          /<%= image_tag "images/onepage/pic-photo-2.png" %>
+        %h4= t("home.features.track_1")
+        %p= t("home.features.track_what_1")
+      / / ITEM
+      
+      / ITEM
+      .span4
+        .label.label-large.label-info
+          / <i class='ed-icon-ed-time fa-icon-large black'></i>
+          %img{:alt => "", :src => "images/pic-photo-4.png"}/
+        %h4= t("home.features.schedule")
+        %p= t("home.features.schedule_what")
+      / / ITEM
+      
+      / ITEM
+      .span4
+        
+        .label.label-large.label-info
+          -#
+            .sticker.sticker-small
+              Prochainement
+          / <i class='ed-icon-ed-comm fa-icon-large black'></i>
+          %img{:alt => "", :src => "images/pic-photo-3.png"}/
+        %h4= t("home.features.communicate")
+        %p= t("home.features.communicate_what").html_safe
+      / / ITEM
+      
+      
+  / /CONTAINER
+  /
+    \/ ##################### FEATURES section ###########
+    \======================================================
+  / / MARKETING INTRO
+  .container
+    / FEATURED IMAGE
+    .row-fluid
+      .span12
+        %span.section-title= t("home.promise.why")
+    .row-fluid
+      .span6
+        .panel.first
+          %p
+            = t("home.promise.alone")
+            %br/
+            = t("home.promise.more_time_for")
+            %br/
+            = t("home.promise.goal")
+            %p
+            %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+              = t("home.i_want_it")
+      .span6
+        .panel.first
+          .row-fluid.paragraph-middle
+            %ul.engagements
+              %li
+                %strong= t("home.commitments.free")
+                %br/
+                = t("home.commitments.free_details")
+              %li
+                %strong= t("home.commitments.simple")
+                %br/
+                = t("home.commitments.simple_details")
+              %li
+                %strong= t("home.commitments.no_installation")
+                %br/
+                = t("home.commitments.no_installation_details")
+              %li
+                %strong= t("home.commitments.byfor")
+                %br/
+                = t("home.commitments.byfor_details")
+              %li
+                %strong= t("home.commitments.evolutive")
+                %br/
+                = t("home.commitments.evolutive_details")
+              
+/
+  \################## EDGAR TV SECTION #################
+  \=======================================================
+%section#tv-section
+  .container
+    / TITLE
+    .row-fluid.panel
+      .span12
+        %h3
+          %span
+            Edgar TV
+        %p.subtitle= t("home.tv.description")
+        %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
+        
+    / TITLE
+    /
+      \################### START NEWS ###################
+      \=======================================================
+    #container-folio.row
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/41597390981/sanseverino", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/sansev.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Sanseverino, artiste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/40413767004/aureliethuot", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/aurelie.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Aurélie Thuot, productrice de spectacles
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/52538891880/francois-alquier-est-un-journaliste-atypique", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/alquier.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                François Alquier, journaliste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/33374624316/mariongeoffroy", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/marion.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Marion Geoffroy, directrice de salle
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      / portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/36508301980/papy", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/papy.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Papy, accompagnateur d'artistes
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/43897181676/stephanie-berrebi-est-journaliste-mais-pas-que", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/steph.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Stéphanie Berrebi, journaliste
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/42750733973/depuis-toujours-passionne-par-la-transmission-et", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/karim.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Karim Kanal, accompagnateur-conseil
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/34491364088/didierpascalis", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/didierpascalis.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Didier Pascalis, producteur
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/38631124519/kidibuzz", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/nomi.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Nomi, programmateur
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/51384353684/roxanne-joseph-avec-carole-chichin-et-nicolas", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/roxanne.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Roxane Joseph, directrice de festival
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item            
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/53671067577/edgard-garcia-est-le-directeur-de-zebrock-une", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/garcia.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Edgard Garcia, directeur d'une association d'action culturelle
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item      
+      .span3.project-item.seo.graphics.box
+        .thumbnail
+          / IMAGE CONTAINER
+          %a{:href => "http://blog.merciedgar.com/post/47936599491/florence-faissat-est-programmatrice-pour-les", :target => "blank"}
+            %div
+              .thumb-hover
+              %img{:src => "images/screens/faissat.jpg"}/
+            / END IMAGE CONTAINER
+            / CAPTION
+            .caption.text-center
+              / TITLE
+              %h4
+                Florence Faissat, programmatrice télé
+            / / TITLE
+          / END CAPTION
+        / END: THUMBNAIL
+      / END: portfolio item
+    / /container-folio row
+    %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/entretien", :target => "blank"}= t("home.tv.more")
+  / /CONTAINER
+/
+
+/
+  \################## NEWS SECTION #################
+  \=======================================================
+%section#news-section
+  .container
+    / PRESS BLOCK
+    .row-fluid.panel
+      .span12
+        %h3
+          %span
+          = t("home.news.title")
+        %p.subtitle
+          = t("home.news.description")
+          
+        .row-fluid
+          .edgar-news
+            .span5
+              %h4= t("home.news.news1.title")
+              %p= t("home.news.news1.description").html_safe
+          .edgar-news
+            .span5.offset2
+              %h4= t("home.news.news2.title")
+              %p= t("home.news.news2.description").html_safe
+              
+              %p.text-right
+                %a.sml-link{:href => "http://blog.merciedgar.com/post/73970382117/bientot-la-sortie", :title => "", :target => "_blank"}= t("home.team.more")
+          %a.sml-link.bigger{:href => "http://blog.merciedgar.com/tagged/news", :target => "blank"}= t("home.news.more")
+  / /CONTAINER
+/ / portfolio section
+%section#team-section
+  .container
+    .row-fluid.panel
+    
+      %h3
+        = t("home.team.title")
+      %p.subtitle= t("home.team.description")
+    .row-fluid
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/robi.jpg"}/
+        %p
+        %h4 Christophe Robillard
+        %br/
+        %small= t("home.team.robi.title")
+        %p= t("home.team.robi.description")
+          
+        %a.sml-link{"data-toggle" => "modal", :href => "#team-christophe", :title => ""}= t("home.team.more")
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/aurelie.jpg"}/
+        %p
+        %h4 Aurélie Thuot
+        %br/
+        %small= t("home.team.aurelie.title")
+        %p= t("home.team.aurelie.description")
+        %a.sml-link{"data-toggle" => "modal", :href => "#team-aurelie", :title => ""}= t("home.team.more")
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/jp.jpg"}/
+        %p
+        %h4 Jean-Paul Bagnis
+        %br/
+        %small= t("home.team.jp.title")
+        %p= t("home.team.jp.description").html_safe
+        %a.sml-link{"data-toggle" => "modal", :href => "#team-jp", :title => ""}= t("home.team.more")
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/aline.jpg"}/
+        %p
+        %h4 Aline Texier
+        %br/
+        %small= t("home.team.aline.title")
+        %p= t("home.team.aline.description")
+        %a.sml-link{"data-toggle" => "modal", :href => "#team-aline", :title => ""}= t("home.team.more")
+    / /ROW
+    .row-fluid
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/lylian.jpg"}/
+        %p
+        %h4 Lylian Monty
+        %br/
+        %small= t("home.team.lylian.title")
+        %p= t("home.team.lylian.description")
+        %a.sml-link{"data-toggle" => "modal", :href => "#team-lylian", :title => ""}= t("home.team.more")
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/nath.jpg"}/
+        %p
+        %h4 Nathalie Jacomet Young
+        %br/
+        %small= t("home.team.nath.title")
+        %p= t("home.team.nath.description")
+        
+      .span3.testimonial-box
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/fred.jpg"}/
+        %p
+        %h4 Frédéric Desreumaux
+        %br/
+        %small= t("home.team.fred.title")
+        %p= t("home.team.fred.description")
+        
+      .span3.testimonial-box.youto
+        .row-fluid
+          .span8.offset2
+            %img.img-circle{:alt => "", :src => "images/staff/people.jpg"}/
+        %p
+        %h4= t("home.team.people.title")
+        %p= t("home.team.people.description")
+        .camein
+          %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+            = t("home.i_want_it")
+        
+    / /ROW
+  / /CONTAINER
+
+
+#team-christophe.modal{:style => "display: none"}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} x
+    %h3 Christophe Robillard
+  .modal-body
+    .row-fluid
+      .span2
+        %img.img-circle{:alt => "", :src => "images/staff/robi.jpg"}/
+      .span10
+        %small.title Fondateur de Merci Edgar
+        %small.title Developpeur
+        %p
+          Je me présente. Je m’appelle Christophe Robillard, j’ai 35 ans. On me surnomme Robi. Je suis chanteur, pianiste, compositeur. Je ne vis pas de la scéne. Comme beaucoup d’intermittents du spectacle, j’ai d’autres activités à côté. Certains donnent des cours de chant, de guitare, de théâtre. Personnellement, ce qui me fait vivre, c’est l’informatique.
+        %p
+          Comme beaucoup, je n’ai pas de tourneur, de chargé de diffusion, d’agent qui m’aiderait à développer plus efficacement mon projet. Alors je dépense une énergie folle dans la communication, dans la recherche de nouvelles dates. Comme beaucoup, la majeure partie de mon temps est consacrée à des tâches non artistiques, mais indispensables pour continuer.
+        %p
+          L’année derniére, je jouais mon spectacle au Sentier des Halles à Paris, accompagné d’Olivia Scemama à la contrebasse et de deux comédiens improvisateurs, Mélanie Le Moine et Thierry Bilisko. Je ne vous cache pas que nous étions heureux d’avoir l’opportunité de jouer dans cette salle qui a une petite renommée (elle appartient à l’Olympia). Mon passage à Vivement Dimanche chez Drucker y a sans doute été pour quelque chose... Nous avons rempli les deux dates. Evidemment, ce n’est pas trés compliqué, c’est une petite salle ; mais nous étions content d’avoir réussi à mobiliser notre public.
+        %p
+          Il y avait un hic. Pas un programmateur ! Pas un directeur de salle ! Aucun ne s’était déplacé ! Ce n’était pas faute de les avoir informé. Qu’on se comprenne bien, je ne leur jette pas la pierre, mais c’est à ce moment que j’ai pris conscience que je n’étais pas suffisamment outillé pour ìvendreî mon spectacle à des salles, communiquer intelligemment aux professionnels de la profession ;)
+
+        %p
+          Alors j’ai enfilé ma casquette d’informaticien et me suis dit : "Aujourd’hui, je n’ai pas  de tourneur, pas de chargé de diffusion ? Qu’à cela ne tienne, je vais en inventer un, il s’appellera Edgar !" Et c’est ainsi que m’est venue l’idée de développer un logiciel qui aide les artistes sans entourage professionnel à être plus efficace dans leur communication et dans leur recherche de dates. Edgar proposera donc aux artistes des outils les aidant au quotidien dans toutes leurs t‚ches non artistiques.
+        %p
+          Dans mes rêves les plus fous, je me suis mis à imaginer Edgar proposer plusieurs outils : 
+          %ul
+            %li un logiciel pour gérer ses différents contacts professionnels, en faire le suivi, leur adresser des mails en masse sans avoir à bricoler avec un fichier excel de 40 colonnes et un logiciel de mail qui m’interdit d’en envoyer plus de 50 !
+            %li des video d’interview de directeurs de salle, de tourneurs, de journalistes, de chargés de diffusion, permettant à l’artiste de mieux appréhender l’univers du spectacle vivant.
+            
+          Bref, je me suis mis à rêver... Et puis j’ai décidé de donner vie à Edgar. 
+        %p
+          Alors on dit quoi ? Merci Edgar !
+
+#team-aurelie.modal{:style => "display: none"}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} x
+    %h3 Aurelie Thuot
+  .modal-body
+    .row-fluid
+      .span2
+        %img.img-circle{:alt => "", :src => "images/staff/aurelie.jpg"}/
+      .span10
+        %small.title Conseillère technique pour Merci Edgar / Fondatrice et directrice du label Adone / Fondatrice et consultante d'Aglae Services
+        
+        %p
+          Forte d’un cursus en sociologie puis en conception et mise en oeuvre de projets culturels, je me suis spécialisée dans les professions du spectacle vivant et notamment la musique en suivant des formations relatives au management d’artistes, à la production de spectacle, à l’édition musicale...
+        %p
+          Après avoir été attachée de presse sur la production d’art lyrique Norma Yeu 2001, conseillère administrative et chargée de diffusion pour la compagnie de théâtre Déli Délo ainsi qu’assistante de Cathy Bitton (manager de Laurent Voulzy, Susheela Raman, …) en 2002, j'ai travaillé pendant deux ans comme assistante administrative au sein de la compagnie de théâtre Entrées de Jeu spécialisée dans les débats théâtraux. Cette expérience m'a permis d’acquérir les compétences administratives requises dans le milieu spécifique du spectacle vivant.
+        %p
+          Ces rencontres m’ont menée à la musique. D’abord tourneuse et attachée de presse pour le groupe Oldelaf et monsieur D en free lance, je fonde en 2004 en collaboration avec Les Fatals Picards la structure Adone.
+        %p
+          Adone est une structure associative, un label à taille humaine spécialisé dans la production de spectacles (musique, humour et jeune public), le management d'artistes, l'accompagnement de carrière, l'encadrement administratif et la production phonographique.
+          Nous travaillons aujourd'hui avec Les Fatals Picards, Les Rois de la Suède, JereM, L'Armée du love, Les Petites Bourrettes, H2ommes et Arnaud Maillard ).
+        %p
+          J'ai en parallèle fondé la structure Aglae Services en collaboration avec Clément Praud, qui propose des services en traitement des salaires, conseils aux projets, recherches de financements et formations.
+        %p
+          Je donne aussi régulièrement des formations autour de la production de spectacle et le management artistique auprès d'organismes tels qu'ATLA ou Formations sur mesures.
+
+
+#team-jp.modal{:style => "display: none"}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} x
+    %h3 Jean-Paul Bagnis
+  .modal-body
+    .row-fluid
+      .span2
+        %img.img-circle{:alt => "", :src => "images/staff/jp.jpg"}/
+      .span10
+        %small.title Designer graphique et d'interface de Merci Edgar / Concepteur / Directeur artistique freelance
+
+        %p
+          Je consacre une grande part de mon activité à créer des campagnes de communication, identités visuelles et sites Internet pour de jeunes entreprises, des projets associatifs ou engagés.
+        %p
+          La variété des domaines d'activité de mes commanditaires m'ouvrent des horizons insoupçonnés, et les rencontres nourrissent ma curiosité toujours à l'affût de nouvelles maniéres de travailler et de penser.
+        %p
+          Par ailleurs le bénévolat de compétences pour des associations permet un double saut : un engagement au service de causes qui m'importent et une découverte de pratiques alternatives, car c'est dans ces endroits que se forgent de nouveaux modéles (économiques, éthiques, de travail collaboratif, etc.).
+        %p
+          Selon moi le métier de designer consiste à résoudre un probléme en ayant toujours en ligne de mire l'humain et la recherche de la simplicité.
+        %p
+          Le projet Merci Edgar m'a plu d'emblée car il offre aux artistes des outils pour travailler plus efficacement, libérant ainsi du temps pour ce qui compte le plus : la créativité.
+          
+#team-aline.modal{:style => "display: none"}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} x
+    %h3 Aline Texier
+  .modal-body
+    .row-fluid
+      .span2
+        %img.img-circle{:alt => "", :src => "images/staff/aline.jpg"}/
+      .span10
+        %small.title Conseillére technique pour Merci Edgar / Chargée de production du label Adone
+
+        %p
+          A défaut d'études supérieures, aprés mon bac je déménage à Paris et intégre les Cours Florent (cours d'art dramatique) avec le rêve fou de devenir comédienne et surtout.. d'en vivre ! Je ferai les 3 ans du cursus mais la réalité du métier me rattrape vite car en paralléle des cours, je découvre le Théâtre Les Blancs Manteaux et je commence à y travailler en tant qu'accessoiriste sur un spectacle. Rapidement, j'y trouve ma place et devient assistante de direction : j'y resterai 4 ans.
+          
+        %p
+          Années durant lesquelles la programmation humour du théâtre se développera jusqu'à la programmation de concerts tous les soirs : mes premiéres rencontres avec le milieu des musiques actuelles. A côté de cette activité, je continue, tous les ans, à m'investir sur un festival : Le Dinard Comedy Festival (anciennement Les Estivales du rire de Dinard) : je fais partie d l'équipe organisatrice et sur l'événement j'occupe le poste de coordinatrices des artistes.
+        %p
+          Vient un temps où je souhaite me professionnaliser et développer mes compétences dans le milieu culturel : j'intégre la formation "Management artistique et culturel" de l'Ecole Atla. Trés vite aprés ma formation, j'intégre Adone où j'occupe actuellement le poste de Chargée de production.
+          
+#team-lylian.modal{:style => "display: none"}
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} x
+    %h3 Lylian Monty
+  .modal-body
+    .row-fluid
+      .span2
+        %img.img-circle{:alt => "", :src => "images/staff/lylian.jpg"}/
+      .span10
+        %small.title Gardien des chiffres et des grands équilibres de Merci Edgar / Ecrivain / Fleuriste / Manager conseil
+
+        %p
+          Quelque part entre Full Monty et Monty Python, il y a Lylian Monty. Je suis un artisan au service de la reine des fleurs (fleuriste en un mot !) doublé d’un consultant au royaume de la technologie, à moins que ce ne soit le contraire.
+        %p
+          J’ai écrit des romans singuliers parmi lesquels un triptyque plutôt acide qui m’a valu quelques lecteurs dont Robi de Robi & Co. De fil en aiguille,  j’ai ensuite imaginé des paroles pour des chansons lumineuses que Robi a systématiquement refusées à l’exception d’une seule : un must ! Avec Robi, nous avons réfléchi à plusieurs projets ces derniéres années jusqu’à ce que germe dans son esprit l’idée de Merci Edgar ! 
+
+        %p
+          Ma marque de fabrique c’est l’éclectisme et une passion sans limite pour la création artistique. Merci Edgar est résolument au service d’artistes créatifs désireux de se produire sur scéne. Alors, prêts pour le grand saut ?
+          
+        
