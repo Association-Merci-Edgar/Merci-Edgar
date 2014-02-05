@@ -8,6 +8,9 @@ class UsersController < ApplicationController
     render layout: "simple"
   end
 
+  def create
+    dd
+  end
   def show
     @user = User.find(params[:id])
   end
