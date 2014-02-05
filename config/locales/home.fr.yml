@@ -47,7 +47,7 @@ fr:
       
     promise: 
       why: "Pourquoi choisir Merci Edgar ?"
-      alone: "Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul !"
+      alone: "Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul!"
       more_time_for: "Vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, des tâches administratives ou commerciales ?"
       goal: "Avec Merci Edgar, vous avez enfin un outil vous permettant d'être plus efficace, organisé dans vos recherches de dates. Bref, vous allez gagner du temps, du temps que vous pourrez consacrer à votre passion, pour le plaisir de votre public !"
     commitments:
@@ -75,7 +75,7 @@ fr:
       social_message: "Je viens de decouvrir Merci Edgar ! Cela peut vous interesser ..."
     events:
       title: "Evénements"
-      description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d'Edgar"
+      description: "Notez dès maintenant sur votre calepin le prochain apéro ou pique-nique d’Edgar"
       more: "Plus d'événements sur le blog de Merci Edgar"
       event1:
         title: "Pique-nique d'Edgar au parc de la Villette"
