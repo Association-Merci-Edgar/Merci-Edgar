@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :accounts_attributes, :avatar
+  attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :accounts_attributes, :avatar, :label_name
 
   has_many :favorite_contacts
   has_many :favorites, through: :favorite_contacts, source: :contact
@@ -134,7 +134,13 @@ class User < ActiveRecord::Base
     UserMailer.abilitation_instructions(account,manager,self).deliver
   end
 
-
+  def label_name
+    @label_name
+  end
+  
+  def label_name=(label)
+    @label_name = label
+  end
 
   private
 
