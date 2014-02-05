@@ -1,8 +1,26 @@
 class RegistrationsController < Devise::RegistrationsController
-
-  # override #create to respond to AJAX with a partial
+  layout "simple"
   def create
-    build_resource
+    if 1 == 2
+      create_confirmation_needed
+    else
+      @user = User.new(params[:user])
+      if @user.valid?
+        @user.confirm!
+        abilitation = @user.abilitations.build
+        abilitation.build_account(name: @user.label_name)
+        abilitation.kind = "manager"
+        @user.save
+        sign_in(@user)
+        redirect_to "#{request.protocol}#{abilitation.account.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"        
+      else
+        render "new"
+      end
+    end
+  end
+  # override #create to respond to AJAX with a partial
+  def create_with_confirmation
+    build_resource(params[:user])
 
     if resource.save
       if resource.active_for_authentication?
