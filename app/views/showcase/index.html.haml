@@ -1,14 +1,18 @@
+.sticker.sticker-beta
+  /Version Bêta-test
+  BETA
+
 - content_for :hero do
   / HEADER MAIN
   .hero-unit
     .container
+      
       #langswitch.noselect
         = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
         |
         = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
       
       / SOCIALS
-    
       #socialfixed
         %ul.social-left
           %li
@@ -22,44 +26,54 @@
               %i.ed-icon-vimeo
       / END SOCIALS
       
-      .row-fluid
-        .span12
-          .sticker.sticker-big
-            Lancement le<br>
-            %span.bold
-              6 février 2014 !
+      
+      .row-fluid.hero-launch
+        %img{:alt => "", :src => "images/vitrinne-banner-launch1.jpg"}/
+      
+      
+      
+      
+      // OLD HERO
+      -#
+        .row-fluid
+          .span12
+            .sticker.sticker-big
+              Lancement le<br>
+              %span.bold
+                6 février 2014 !
               
-          %img{:alt => "", :src => "images/hero-img2d.png"}/
-      .row-fluid
-        .span12
-          %div
-            .slogan
-              %span.slogan-primo
-                %span.de= t("home.slogan.of")
+            %img{:alt => "", :src => "images/hero-img2d.png"}/
+          
+        .row-fluid
+          .span12
+            %div
+              .slogan
+                %span.slogan-primo
+                  %span.de= t("home.slogan.of")
                 
-                = t("home.slogan.management")
+                  = t("home.slogan.management")
                 
               
-              %span.slogan-secundo
-                %span.de= t("home.slogan.of")
-              = t("home.slogan.creation")
+                %span.slogan-secundo
+                  %span.de= t("home.slogan.of")
+                = t("home.slogan.creation")
               
-      .row-fluid.slimcol
-        .span8
-          .argu
-            %p
-              = t("home.slogan.are_you_artist")
-              %br/
-              /=t("home.slogan.time")
-              /%br/
-              =t("home.slogan.virtual_assistant")
-              %span.lenom Merci Edgar
-              =t("home.slogan.edgar_for_you")
-            /%hr.half/
-        -#.span4
-          #features-anchor.camein
-            %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
-              = t("home.i_want_it")   
+        .row-fluid.slimcol
+          .span8
+            .argu
+              %p
+                = t("home.slogan.are_you_artist")
+                %br/
+                /=t("home.slogan.time")
+                /%br/
+                =t("home.slogan.virtual_assistant")
+                %span.lenom Merci Edgar
+                =t("home.slogan.edgar_for_you")
+              /%hr.half/
+          -#.span4
+            #features-anchor.camein
+              %a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+                = t("home.i_want_it")   
 
 
 %section#features-section
