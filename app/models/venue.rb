@@ -137,7 +137,14 @@ class Venue < ActiveRecord::Base
 
 
   def season
-    season_months.map {|m| I18n.t("date.abbr_month_names")[m.to_i] if m.present? }.compact.join(' - ') if season_months
+    season_months.present? ? season_months.map {|m| I18n.t("date.abbr_month_names")[m.to_i] if m.present? }.compact.join(' - ') : "Non renseigné"
+  end
+  
+  def services
+    services = []
+    services << "Accompagnement" if self.accompaniment
+    services << "Résidence" if self.residency
+    services.present? ? services.join(', ') : "Non renseigné"     
   end
 
   def contract_list
