@@ -2487,7 +2487,10 @@ $tooltipTXT: $white;
 
 /* PAGE PADDED */
 
-.maincontentinner { padding: 48px 0 34px 0; }
+.maincontentinner { padding: 48px 0 34px 0;
+}
+
+.page-title {@include borderbox;}
 
 .list-large > li,
 .list-large > li.list-header,
