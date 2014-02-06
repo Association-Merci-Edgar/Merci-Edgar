@@ -14,7 +14,7 @@
         BETA
         
       #plusmenu
-        = render 'layouts/plus_menu' if ["index","show"].include?(params[:action])
+        = render 'layouts/plus_menu' if ["index","show"].include?(params[:action]) && (controller_name != "projects")
         /= yield(:plus_menu)
         
       .leftpanel
