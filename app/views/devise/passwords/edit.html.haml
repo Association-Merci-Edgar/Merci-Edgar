@@ -1,0 +1,21 @@
+.container.simple-page
+  .logo
+    %i.entypo.edi-logoedgar_under.logotype
+    %i.entypo.edi-logoedgar.logotype
+    
+  %h1 Renouvellement du mot de passe
+  %legend Réglons ça en quelques clics :
+  //Forgot your password?
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    = f.error_notification
+    = f.input :reset_password_token, :as => :hidden
+    = f.full_error :reset_password_token
+    //.form-inputs
+    .row-fluid.control-group
+      = f.input :password, :label => "Nouveau mot de passe", :required => true, :autofocus => true
+      = f.input :password_confirmation, :label => "Confirmez votre nouveau mot de passe", :required => true
+    .form-actions
+      = f.button :submit, "Changer mon mot de passe", :class => 'btn-primary btn-large'
+  = render "devise/shared/links"
+  #footer
+    © Merci Edgar 2013
