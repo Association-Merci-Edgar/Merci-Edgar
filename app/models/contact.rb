@@ -372,5 +372,13 @@ class Contact < ActiveRecord::Base
     
     contact
   end
+  
+  def making_prospecting?
+    schedulings = self.fine_model.try(:schedulings)
+    schedulings.each do |s|
+      return true if s.making_prospecting?
+    end
+    return false
+  end
         
 end
