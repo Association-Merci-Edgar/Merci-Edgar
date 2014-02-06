@@ -24,12 +24,11 @@
         = f.input :project_id, collection: Project.all, label_method: :name, value_method: :id, prompt: "Aucun projet", label: t("simple_form.labels.project.name")
         / if zero projects :
         .message
+        - unless Project.any?
           %i.entypo.edi-warning
           Vous n’avez encore créé de projet artistique !
           %br
-          %a{:href => "#"}
-            Cliquer ici pour créer un projet
-
+          = link_to "Cliquez ici pour créer un projet", projects_path
     .modal-footer
       /.btn.btn-secondary
       = f.button :submit, class:"btn-primary btn-large pull-right"

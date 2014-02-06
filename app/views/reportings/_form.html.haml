@@ -10,7 +10,7 @@
   = f.input :note_report_content, label:false, input_html: {id: "activityfield"}, placeholder: "écrire une nouvelle note", as: :text
   = f.hidden_field :asset_id
   = f.hidden_field :asset_type
-  = f.input :project_id, collection: Project.all, label: false, value_method: :id, prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
+  = f.input :project_id, collection: Project.all, label: false, value_method: :id, selected: Project.first.try(:id), prompt: "Selectionnez un projet", :input_html => { :class => ".ed-select" }
   
       
   = button_tag(type: 'submit', class: "btn btn-secondary pull-right submit") do 
@@ -23,9 +23,8 @@
       Annuler
     
   .clearfix
-  -#.message
-    %i.entypo.edi-warning
-    Vous n’avez encore créé de projet artistique !
-    
-    %a{:href => "#"}
-      Cliquer ici pour créer un projet
+  .message
+    - unless Project.any?
+      %i.entypo.edi-warning
+      Vous n’avez encore créé de projet artistique !
+      = link_to "Cliquez ici pour créer un projet", projects_path
