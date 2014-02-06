@@ -2,31 +2,49 @@
 <html>
 <head>
   <title>Désolé, une erreur est survenue (500)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="/assets/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300; font-size: 16px; line-height: 1.5em;
+        margin: 0px; padding: 20px;
+        color: #30303a; background: #edede8; }
     div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+      text-align:center; width: 440px;
+      padding: 0; margin: 4em auto 0 auto; }
+    h1 { font-size: 34px; color: #ff5a3e; font-weight: 300; line-height: 42px;}
+    .btn-large { font-size: 20px; padding: 11px 19px; letter-spacing: 0.02em; color:#fff; text-decoration:none;}
+    .btn-primary {
+      -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;
+      background-color: #50beb4;
+      -webkit-transition: background 0.2s ease-in-out;
+      -moz-transition: background 0.2s ease-in-out;
+      -ms-transition: background 0.2s ease-in-out;
+      -o-transition: background 0.2s ease-in-out;
+      transition: background 0.2s ease-in-out;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    .btn-primary:hover {background-color: #30303a; color:#fff;}
+    a{color:#50beb4;}
+    a:hover{color:#ff5a3e;}
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/500.html -->
   <div class="dialog">
-    <h1>Vraiment désolé. Une erreur est survenue</h1>
-    <p>Mais soyez indulgents, c'est une version de test !
+    <img alt="" src="images/edgar-logo-symbol.png">
+    <h1>Vraiment désolé ! </br>Une erreur est survenue…</h1>
+    
+    <p>Mais soyez indulgents, ceci est une version de test !</p>
 
       <!-- UserVoice JavaScript SDK (only needed once on a page) -->
       <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/723gOPnipxnrcTzKLFHaQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
 
-      <p>Alors pour nous aider à régler le problème, merci de nous écrire <a href="javascript:void(0)" data-uv-lightbox="classic_widget" data-uv-mode="support" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf">une petite bafouille</a>, en nous expliquant précisément ce qui s'est passé.
-
+      <p>Alors pour nous aider à régler le problème,</br> merci de nous écrire <a href="javascript:void(0)" data-uv-lightbox="classic_widget" data-uv-mode="support" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf">une petite bafouille</a>, </br>en nous expliquant précisément ce qui s'est passé.
+      </br>
+      <a href="/fr/" >Retour page d’accueil</a>
+        </p>
+        
   </div>
 </body>
 </html>
