@@ -3,7 +3,7 @@
     #logo-nav
   
     .account-tab
-      = Account.find(Account.current_id).name
+      = Account.find(Account.current_id).name.truncate(18)
       
   
 %nav.leftmenu
@@ -18,7 +18,7 @@
         
         = link_to edit_user_path(current_user) do
           %span
-            = current_user.name
+            = current_user.name.truncate(18)
           %i.entypo.edi-cog.righticon
           /User: #{@user.name}
       

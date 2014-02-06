@@ -18,7 +18,7 @@
               %li
                 .pic.pic-small= image_tag ps.structure.fine_model.avatar_url
                 = link_to ps.structure.structurable do
-                  %h4= ps.structure.structurable
+                  %h4= ps.structure.structurable.name
               %li
                 = render ps.structure.address if ps.structure.address.present?
               %li= ps.structure.phone_number
