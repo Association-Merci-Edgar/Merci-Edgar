@@ -5,6 +5,7 @@ class TasksController < ApplicationController
     #@asset = Person.find(params[:person_id]) if params[:person_id]
     @asset = Contact.find(params[:contact_id]) if params[:contact_id]
     @task = Task.new
+    @task.project = Project.first
     @users = Account.find(Account.current_id).users
   end
 

@@ -5,13 +5,13 @@
         %i.entypo.edi-pencil
       = link_to project, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "shybtn" do
         %i.entypo.edi-cross
-  = link_to project do
+  = link_to edit_project_path(project) do
     %h3= project.name
     .pic
       = image_tag project.avatar
   %span
-    Infos à venir
+    = project.description.truncate(100)
     
   .tags
-    .tag.tag-style Bientôt des tags
+    .tag.tag-style Projet
     

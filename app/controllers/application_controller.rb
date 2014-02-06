@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :set_current_tenant
   after_filter :reset_tenant
+  
+  helper_method :current_account
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
