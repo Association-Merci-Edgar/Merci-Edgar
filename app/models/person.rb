@@ -20,6 +20,8 @@ class Person < ActiveRecord::Base
   has_many :structures, through: :people_structures, uniq:true
   has_many :people_structures, dependent: :destroy
   has_many :relatives, dependent: :destroy
+  has_many :schedulings, foreign_key: "scheduler_id"
+  
   validates_presence_of :first_name
   validates_presence_of :last_name
   # validates_associated :contact

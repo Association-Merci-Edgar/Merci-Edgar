@@ -6,6 +6,8 @@
       %h3
         = venue.name
         -# %a.badge.badge-green.badge-capsule En recherche active
+        - if venue.contact.making_prospecting?
+          %a.badge.badge-green.badge-capsule En recherche active
         - if venue.contact.has_duplicates?
           = link_to "Doublon", contacts_path(duplicate_of: venue.contact.dup_id), class: "a badge badge-grey doublons"
       .pic= image_tag venue.avatar_url

@@ -37,7 +37,7 @@ class Scheduling < ActiveRecord::Base
   before_save :set_show_buyer
   after_save :set_scheduler_function
   after_save :update_styles
-
+  
   CONTRACT_LIST = ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"]
   
   def to_s
@@ -134,17 +134,8 @@ class Scheduling < ActiveRecord::Base
   end
       
       
-  def making_prospecting?(m=nil)
-    if prospectings.any?
-      m ||= Time.zone.now.month
-      return prospectings.any? do |s|
-        m += 12 if s.end_month < s.start_month && m < s.start_month
-        end_month = s.end_month < s.start_month ? s.end_month + 12 : s.end_month
-        s.start_month <= m && end_month >= m
-      end
-    else
-      return false
-    end
+  def making_prospecting?(m=Time.zone.now.month)
+    self.prospecting_months.present? ? self.prospecting_months.include?(m.to_s) : false
   end
 
   def contract_list

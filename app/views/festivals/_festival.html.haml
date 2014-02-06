@@ -6,6 +6,8 @@
     = link_to festival do
       %h3
         = festival.name
+        - if festival.contact.making_prospecting?
+          %a.badge.badge-green.badge-capsule En recherche active
         - if festival.contact.has_duplicates?
           = link_to "Doublon", contacts_path(duplicate_of: festival.contact.dup_id), class: "a badge badge-grey doublons"
 
