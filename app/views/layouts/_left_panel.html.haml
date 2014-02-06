@@ -23,7 +23,7 @@
           /User: #{@user.name}
       
       = menu_link("Bienvenue", welcome_path, "edi-new",["welcome"],nil)
-      = menu_link("Tableau de bord", dashboard_path, "edi-gauge",["home"],nil)
+      -#= menu_link("Tableau de bord", dashboard_path, "edi-gauge",["home"],nil)
       = menu_link("Contacts", contacts_path, "edi-book",["contacts","venues","people"], Contact.count)
       = menu_link("Tâches", tasks_path, "edi-check_2",["tasks"], Task.pending.size)
             
