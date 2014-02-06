@@ -70,12 +70,13 @@ class ConfirmationsController < Devise::PasswordsController
   def do_confirm
     @confirmable.confirm!
     account = @confirmable.accounts.first
+    @confirmable.abilitations.first.update_attributes!(kind: "manager")
     # @job_id = SampleImportWorker.perform_async(account.id)
     
     set_flash_message :notice, :confirmed
     logger.debug "before signin and redirect"
     sign_in(@confirmable)
-    redirect_to "#{request.protocol}#{@confirmable.accounts.first.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"
+    redirect_to "#{request.protocol}#{account.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"
     # sign_in_and_redirect(resource_name, @confirmable)
   end
 
