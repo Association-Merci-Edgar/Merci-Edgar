@@ -17,8 +17,8 @@
             %ul.list-infos
               %li
                 .pic.pic-small= image_tag ps.structure.fine_model.avatar_url
-                = link_to ps.structure.structurable do
-                  %h4= ps.structure.structurable.name
+                = link_to ps.structure.fine_model do
+                  %h4= ps.structure.fine_model.name
               %li
                 = render ps.structure.address if ps.structure.address.present?
               %li= ps.structure.phone_number
