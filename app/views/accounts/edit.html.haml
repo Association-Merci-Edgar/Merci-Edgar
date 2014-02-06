@@ -32,14 +32,14 @@
             %li
               .meta
                 .badge.badge-red= user.current_abilitation.kind
-              .actions
+              -#.actions
                 %a.shybtn{href: "/fr/people/41/edit"}
                   %i.entypo.edi-pencil
                 -#
                   %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
                     %i.entypo.edi-cross
             
-              %a{href: "/fr/people/41"}
+              %a{href: "#"}
                 %h3= user.name
                 .pic.pic-user= image_tag user.avatar
               %span.infos-line
