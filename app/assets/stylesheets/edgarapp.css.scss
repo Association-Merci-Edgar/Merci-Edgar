@@ -369,6 +369,9 @@ $lbrown: rgba(209, 209, 197, 1);
 
 .btn {padding: 6px 12px; font-size:16px; text-shadow:none;}
 
+.btn.disabled, .btn[disabled] {
+  background:$vlblue;
+}
 .btn:hover, btn:focus {
   //transition: background 0.2s;
   @include transition("all", 0.2s)

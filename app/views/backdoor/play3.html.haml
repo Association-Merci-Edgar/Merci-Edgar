@@ -1,15 +1,59 @@
-%section.progressbar
+.section-title Progressbar
+%section.progressbar.padded
   .progress
     .bar{:style=>"width: 0%"}
     .message Importation de tel chose
     
-%section.progressbar
+%section.progressbar.padded
   .progress
     .bar{:style=>"width: 50%"}
     .message Importation de tel chose
       
-%section.progressbar
+%section.progressbar.padded
   .progress
     .bar{:style=>"width: 80%"}
     .message Importation de tel chose
+
+
+.section-title Boutton "stateful"
+%section.padded
   
+  %button.btn-stateful.btn.btn-primary{type: "button", "data-loading-text" => "Je charge..."} Ce boutton va charger un truc…
+  %br
+  %br
+  %input.btn.btn-primary{"data-loading-text" => "Je charge...", type: "submit", value: "Cet input va charger un truc…"}/
+  %br
+  %br
+  avec un état "c'est fait" + un bouton "reset" (qui ne marche pas…):
+  %br
+  .control-group
+    .controls
+      %input.btn.btn-primary{"data-loading-text" => "Loading...", "data-reset-text" => "Try that again", type: "submit", value: "Submit"}/
+      %input.btn.btn-tertiary{type: "reset"}/
+  
+:javascript
+  $('.btn-stateful')
+      .click(function () {
+          var delay = 3000
+          var btn = $(this)
+          btn.button('loading')
+          setTimeout(function () {
+              btn.button('reset')
+          }, delay)
+      });
+      
+  $(':input[data-loading-text]').click(function () {
+      var delay = 3000
+      var btn = $(this)
+      btn.button('loading')
+      setTimeout(function () {
+          btn.button('reset')
+      }, delay)
+  })
+  
+  
+  $(':input[type="reset"]').click(function () {
+      var btn = $(this).previousSibling;
+      console.log(btn);
+      btn.button('reset')
+  })
