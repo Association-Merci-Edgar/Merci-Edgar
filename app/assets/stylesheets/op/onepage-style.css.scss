@@ -2965,13 +2965,32 @@ input[type="text"].subscribe-input{
   
 .hero-unit {
   padding:0;
-  background-color:#ace2ec;
-  background-image: url(../../images/vitrinne-banner-launch1-deg.jpg);
+  background-color: #324672; //#ace2ec;
+  background-image: url(../../images/vitrinne-banner-launch2-deg.jpg);
   background-repeat-x: initial;
   //height: 537px;
   &:after {margin-bottom:40px;};
 }
 .hero-unit img { margin:0};
+
+
+.overlaybg {min-height: initial;}
+
+
+#cta { //background-color: #555;
+  padding: 30px 0;
+  p {font-size: 17px;}
+}
+
+
+.social-left li a {  color: #FFF;}
+#langswitch .active, #langswitch a:hover {border-color: #fff;}
+#socialfixed ul, #langswitch a { margin-top:10px; color: #FFF;}
+#langswitch {
+  color:#fff;
+  top:13px;
+}
+
 
 
 @media (max-width: 979px){
