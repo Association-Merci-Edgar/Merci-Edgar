@@ -29,7 +29,7 @@
       
       
       .row-fluid.hero-launch
-        %img{:alt => "", :src => "images/vitrinne-banner-launch1.jpg"}/
+        %img{:alt => "", :src => "images/vitrinne-banner-launch2.jpg"}/
         #features-anchor
       
       
@@ -59,21 +59,23 @@
                   %span.de= t("home.slogan.of")
                 = t("home.slogan.creation")
               
-.row-fluid.slimcol
-  .span8
-    .argu
-      %p
-        = t("home.slogan.are_you_artist")
-        %br/
-        /=t("home.slogan.time")
-        /%br/
-        =t("home.slogan.virtual_assistant")
-        %span.lenom Merci Edgar
-        =t("home.slogan.edgar_for_you")
-      /%hr.half/
-  .span4
-    #features-anchor.camein
-      = link_to "Je m'inscris", new_user_registration_path, class: "btn btn-large btn-danger btn-block"
+
+.container#cta
+  .row-fluid.slimcol
+    .span8
+      .argu
+        %p
+          = t("home.slogan.are_you_artist")
+          %br/
+          /=t("home.slogan.time")
+          /%br/
+          =t("home.slogan.virtual_assistant")
+          %span.lenom Merci Edgar
+          =t("home.slogan.edgar_for_you")
+        /%hr.half/
+    .span4
+      #features-anchor.camein
+        = link_to "Je m'inscris", new_user_registration_path, class: "btn btn-large btn-danger btn-block"
 
 %section#features-section
   .container
