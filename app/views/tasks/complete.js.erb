@@ -24,7 +24,7 @@ function clean_and_refresh_completed_tasks(li_task) {
 		<% if @task.asset %>		
 			completed_tasks.replaceWith("<%= j render(partial:'completed_tasks', locals: {tasks: @task.asset.tasks.completed}) %>")
 		<% else %>
-			completed_tasks.replaceWith("<%= j render(partial:'completed_tasks', locals: {tasks: Task.tracked_by(current_user).completed}) %>")
+			completed_tasks.replaceWith("<%= j render(partial:'completed_tasks', locals: {tasks: Task.order("due_at ASC").completed}) %>")
 		<% end %>
 		
 	}

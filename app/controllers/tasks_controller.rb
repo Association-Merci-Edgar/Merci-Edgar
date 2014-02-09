@@ -70,6 +70,7 @@ class TasksController < AppController
   def index
     @tasks = Task.order("due_at ASC")
     @pending_tasks = @tasks.pending
+    @completed_tasks = @tasks.completed
     respond_to do |format|
       format.html
       format.ics do
