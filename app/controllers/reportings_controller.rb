@@ -1,4 +1,4 @@
-class ReportingsController < ApplicationController
+class ReportingsController < AppController
   def create
     @reporting = Reporting.new(params[:reporting])
     @reporting.user = current_user

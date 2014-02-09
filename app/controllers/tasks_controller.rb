@@ -1,5 +1,5 @@
 # encoding: utf-8
-class TasksController < ApplicationController
+class TasksController < AppController
   def new
     #@asset = Venue.find(params[:venue_id]) if params[:venue_id]
     #@asset = Person.find(params[:person_id]) if params[:person_id]
