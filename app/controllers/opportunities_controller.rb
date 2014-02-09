@@ -1,4 +1,4 @@
-class OpportunitiesController < ApplicationController
+class OpportunitiesController < AppController
   # GET /opportunities
   # GET /opportunities.json
   def index

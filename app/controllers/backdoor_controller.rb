@@ -1,4 +1,4 @@
-class BackdoorController < ApplicationController
+class BackdoorController < AppController
   def play1
   end
   def play2

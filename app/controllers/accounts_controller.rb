@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class AccountsController < AppController
   def create
   end
   def edit
