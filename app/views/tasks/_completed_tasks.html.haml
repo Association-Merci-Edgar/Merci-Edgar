@@ -26,26 +26,17 @@
           - else
             = link_to t.name, edit_task_path(t)
           
-        .infos-line
+        .infos-line          
           .infos-part
-            %a{:href => "#"}
-              .pic.pic-mini= image_tag t.completor.avatar
-              = t.completor.nickname
+            - if t.completor
+              %a{:href => "#"}
+                .pic.pic-mini= image_tag t.completor.avatar
+                = t.completor.nickname
           - if t.asset.present?
             .infos-part
               = link_to t.asset.fine_model do
                 .pic.pic-mini.pic-user= image_tag t.asset.avatar
                 = t.asset.name
-          - if t.project.present?
-            .infos-part
-              %a{:href => "#"}
-                .pic.pic-mini= image_tag t.project.avatar
-                = t.project.name
-            .infos-part
-              %a{:href => "#"}
-                .pic.pic-mini.pic-user= image_tag t.assignee.avatar
-                = t.assignee.nickname
-          
           - if t.project.present?
             .infos-part
               %a{:href => "#"}

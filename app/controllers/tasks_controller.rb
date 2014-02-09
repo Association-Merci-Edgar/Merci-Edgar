@@ -68,7 +68,7 @@ class TasksController < AppController
   end
 
   def index
-    @tasks = Task.tracked_by(current_user)
+    @tasks = Task.order("due_at ASC")
     @pending_tasks = @tasks.pending
     respond_to do |format|
       format.html

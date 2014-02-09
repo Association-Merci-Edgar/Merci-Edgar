@@ -35,9 +35,10 @@
                 = link_to t.name, edit_task_path(t), remote:true
             .infos-line
               .infos-part
-                %a{:href => "#"}
-                  .pic.pic-mini.pic-user= image_tag t.assignee.avatar
-                  = t.assignee.nickname
+                - if t.assignee
+                  %a{:href => "#"}
+                    .pic.pic-mini.pic-user= image_tag t.assignee.avatar
+                    = t.assignee.nickname
               - if t.asset.present?
                 .infos-part
                   = link_to t.asset.fine_model do
