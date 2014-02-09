@@ -29,7 +29,7 @@ function clean_and_refresh_uncompleted_tasks(li_task) {
 		<% if @task.asset %>
 			pending_tasks.replaceWith("<%= j render(partial:'pending', locals: {tasks: @task.asset.tasks.pending, asset: @task.asset}) %>")
 		<% else %>
-			pending_tasks.replaceWith("<%= j render(partial:'pending', locals: {tasks: Task.tracked_by(current_user).pending}) %>")
+			pending_tasks.replaceWith("<%= j render(partial:'pending', locals: {tasks: Task.order("due_at ASC").pending, asset:nil}) %>")
 		<% end %>
 	}
 		
