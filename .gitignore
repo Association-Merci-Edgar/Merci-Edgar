@@ -79,3 +79,4 @@ pickle-email-*.html
 
 *.dump
 dump.rdb
+config/database_with_prod_in_dev.yml
