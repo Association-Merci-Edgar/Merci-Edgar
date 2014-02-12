@@ -121,8 +121,20 @@ class User < ActiveRecord::Base
     self.favorite_contacts.destroy(fav) if fav
   end
 
+  def display_name
+    if self.first_name.present?
+      [self.first_name,self.last_name].compact.join(' ')
+    else
+      self.email
+    end
+  end
+  
+  def to_s
+    display_name
+  end
+  
   def nickname
-    [self.first_name,self.last_name].compact.join.truncate(8, omission:".")
+    display_name.truncate(8, omission:"...")
   end
 
   def current_abilitation
