@@ -24,11 +24,8 @@
           %span.help-block
             #{t("simple_form.labels.defaults.recommnandations_password")}        
 
-      
-        - if @account.new_record?
-          .row-fluid.control-group
-            = f.simple_fields_for :accounts do |account|
-              = account.input_field :name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
+        .row-fluid.control-group
+          = f.input_field :label_name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
 
       = hidden_field_tag :confirmation_token, @confirmation_token
       
