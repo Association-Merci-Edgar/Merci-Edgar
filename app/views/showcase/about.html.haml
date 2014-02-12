@@ -11,9 +11,9 @@
 %space
 %section
   .container
-    .row
+    .row-fluid
       .span6
-        .img-disc= image_tag("multipage/eclosion.jpg")
+        .img-disc.pull-right= image_tag("multipage/eclosion.jpg")
         
       .span6
         %h3 Par et pour les artistes
@@ -34,7 +34,7 @@
         %h2 Edgar TV
         %p.subtitle= t("home.tv.description")
 
-    #container-folio.row
+    #container-folio.row-fluid
       / portfolio item
       .span3.project-item.seo.graphics.box
         .thumbnail
