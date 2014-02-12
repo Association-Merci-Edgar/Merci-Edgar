@@ -18,7 +18,7 @@
         
         = link_to edit_user_path(current_user) do
           %span
-            = current_user.name.truncate(18)
+            = current_user.display_name.truncate(18)
           %i.entypo.edi-cog.righticon
           /User: #{@user.name}
       
