@@ -478,14 +478,11 @@ small { color:$dblue;
   float: right;
   text-align:right;
   color: $orange;
-  -moz-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-}
-
-.sml-link:before {
+  @include transition(all, .2s);
+  
+  &:hover {color: $orange; text-decoration:none;}
+  
+  &:before {
   font-family: 'icomoon';
   content: "\e67a";/*\e28082*/
   padding-right : 7px;
@@ -493,11 +490,10 @@ small { color:$dblue;
   top:.1em;
   padding-top:2px;
   vertical-align: middle;
+  }
 }
-.sml-link:hover {color: #30303a; text-decoration:none;}
 
-#news-section span6 { height:100%;}
-.row-fluid .span6 { height:100%;}
+
 
 .bigger {
   font-size:0.9em; font-weight:bold; margin-top: 10px;
@@ -506,6 +502,13 @@ small { color:$dblue;
 }
 
 .ed-icon-check:before {font-size:20px;}
+
+
+#news-section span6 { height:100%;}
+.row-fluid .span6 { height:100%;}
+
+
+
 
 /*************** FIX BS MARGIN on fluid scafolding **************/ 
 #container-folio.row-fluid .span6:nth-child(2n+1){
@@ -623,6 +626,8 @@ small { color:$dblue;
   //border-bottom:2px solid #30303a;
 }
 
+/*
+
 .navbar .brand {
 	color: #6bcdd6;
 	font-size: 26px;
@@ -657,6 +662,7 @@ footer .brand:hover {
 	color: #57A4C8;
 
 }
+*/
 
 .navbar-fixed-top, .navbar-static-top{
   -moz-transition: all 0.3s ease-in-out;
@@ -2590,7 +2596,7 @@ input[type="text"].subscribe-input{
 	.container {width: auto;}
 	.slogan {
 		font-size:38px;
-	line-height:38px;
+	  line-height:38px;
 	}
 	
 	//.slogan .de {font-size:26px;}
@@ -2601,12 +2607,12 @@ input[type="text"].subscribe-input{
   }
 	
 	
-	body{
-		padding:0px;
-	}
-	.container, .navbar .container{
-		padding:0px 40px;
-		
+  body{
+    padding:0px;
+  }
+  .container, .navbar .container {
+    padding:0px 40px;
+    max-width:940px;
 	}
   .nav-collapse, .nav-collapse.collapse { position:fixed};
   
@@ -2765,13 +2771,6 @@ input[type="text"].subscribe-input{
 		margin-top: 0px;
 }
 
-	.btn{
-		
-	}
-	.logo-client{
-		border-right:none;
-		border-bottom:1px solid #dedede;
-	}
 	
 	.news-thumb .caption{
 		padding-left:30px;
@@ -3043,15 +3042,7 @@ section.princing {
 
 body{padding-top:80px;}
 
-
-@media (max-width: 979px){
-  .container {
-    padding: 0px;
-  }
-  #header-section .hero-unit {
-    padding:0;
-  }
-}
+    
 
 
 
