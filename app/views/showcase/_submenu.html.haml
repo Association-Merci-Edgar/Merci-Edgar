@@ -1,0 +1,27 @@
+.submenu
+  #langswitch.noselect
+    
+    = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
+    |
+    = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
+    
+  -#
+    %a.btn{"data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-original-title" => "FR", "data-placement" => "bottom", "data-toggle" => "popover", href: "#", title: ""} FR
+    
+    
+
+  / SOCIALS
+  #socialfixed
+    %ul.socials
+      %li
+        %a{:href => "https://www.facebook.com/pages/Merci-Edgar/164510577033726", :title => "Facebook Merci Edgar", :target => "blank"}
+          %i.ico.edi-facebook
+          
+      %li
+        %a{:href => "https://twitter.com/MerciEdgar", :title => "Twitter Merci Edgar", :target => "blank"}
+          %i.ico.edi-twitter
+          
+      %li
+        %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
+          %i.ico.edi-vimeo
+/ END SOCIALS

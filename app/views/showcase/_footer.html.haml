@@ -3,11 +3,12 @@
     .row-fluid
       .span8
         %a{:href => "#header-section"}
-          -# = image_tag "logo-edgar-horiz-typ-white.png"
+          = image_tag("multipage/logo-edgar-horiz-typ-white.png")
+          
         -#
           .logo
             %i.ed-icon-ed-logo-bkg.logotype
-            %a{:href => "#header-section"}
+            = link_to locale_root_path do
               %i.ed-icon-ed-logo.logotype
       
         %address
@@ -15,17 +16,15 @@
           Au bourg, 47120 Monteton, France
           %br/
         .foot-line
-      .span4
-        %ul.social-top
         
+      .span4
+        %ul.socials
           %li
             %a{:href => "https://www.facebook.com/pages/Merci-Edgar/164510577033726", :title => "Facebook Merci Edgar", :target => "blank"}
-              %i.ed-icon-facebook
+              %i.ico.edi-facebook
           %li
             %a{:href => "https://twitter.com/MerciEdgar", :title => "Twitter Merci Edgar", :target => "blank"}
-              %i.ed-icon-twitter
+              %i.ico.edi-twitter
           %li
             %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
-              %i.ed-icon-vimeo
-    / ROW-FLUID
-/ END: FOOTER
+              %i.ico.edi-vimeo
