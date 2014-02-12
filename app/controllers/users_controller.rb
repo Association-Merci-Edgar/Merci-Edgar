@@ -8,16 +8,15 @@ class UsersController < ApplicationController
     render layout: "simple"
   end
 
-  def create
-    dd
-  end
   def show
     @user = User.find(params[:id])
   end
 
   def edit
     @user = User.find(params[:id])
+    @user.label_name = current_account.name
   end
+  
   def update
     @user = User.find(params[:id])
     if current_user != @user
