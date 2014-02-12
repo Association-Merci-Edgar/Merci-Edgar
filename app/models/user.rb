@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :accounts
   validates_associated :accounts
+  
+  validates_presence_of :label_name
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -84,7 +87,7 @@ class User < ActiveRecord::Base
     p = {}
     p[:password] = params[:password]
     p[:password_confirmation] = params[:password_confirmation]
-    p[:accounts_attributes] = params[:accounts_attributes] if params[:accounts_attributes].present?
+    p[:label_name] = params[:label_name]
     p[:name] = params[:name]
     p[:first_name] = params[:first_name]
     p[:last_name] = params[:last_name]

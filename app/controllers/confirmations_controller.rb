@@ -59,24 +59,21 @@ class ConfirmationsController < Devise::PasswordsController
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     # @confirmable.accounts.destroy_all
-    if @confirmable.accounts.any?
-      @account = @confirmable.accounts.first
-    else
-      @account = @confirmable.accounts.build unless @confirmable.accounts.any?
-    end
     render 'devise/confirmations/show'
   end
 
   def do_confirm
     @confirmable.confirm!
-    account = @confirmable.accounts.first
-    @confirmable.abilitations.first.update_attributes!(kind: "manager")
+    abilitation = @confirmable.abilitations.build
+    abilitation.build_account(name: @confirmable.label_name)
+    abilitation.kind = "manager"
+    @confirmable.save!
     # @job_id = SampleImportWorker.perform_async(account.id)
     
     set_flash_message :notice, :confirmed
     logger.debug "before signin and redirect"
     sign_in(@confirmable)
-    redirect_to "#{request.protocol}#{account.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"
+    redirect_to "#{request.protocol}#{abilitation.account.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"        
     # sign_in_and_redirect(resource_name, @confirmable)
   end
 

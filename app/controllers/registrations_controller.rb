@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
         abilitation = @user.abilitations.build
         abilitation.build_account(name: @user.label_name)
         abilitation.kind = "manager"
-        @user.save
+        @user.save!
         sign_in(@user)
         redirect_to "#{request.protocol}#{abilitation.account.domain}.#{request.domain}:#{request.port}#{new_user_session_path}"        
       else
