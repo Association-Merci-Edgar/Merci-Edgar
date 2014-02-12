@@ -1,0 +1,144 @@
+- content_for :hero do
+  / HEADER MAIN
+.hero-unit.notfullimg#hero-features
+  .container
+    = render 'showcase/submenu'
+    .thehero
+      %h4 Voici vos nouveaux meilleurs amis :
+      = image_tag("multipage/showcase-banner-feat.png")
+      
+%section.bkg-white
+  %space
+  .container
+    .row-fluid
+      .span5
+        %h3 Gérer votre base contacts
+        %p
+          Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul ! alors que vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, effectuer les tâches administratives, jouer au commercial pour se vendre...
+        %a.btn-iconic
+          %i.ico.edi-play3
+          Voir le tutoriel vidéo
+      .span7
+        #myCarousel.carousel.slide
+          %ol.carousel-indicators
+            %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+            %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+            %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+          / Carousel items
+          .carousel-inner
+            .item.active
+              = image_tag("multipage/screenys/screeny2.jpg")
+            .item
+              = image_tag("multipage/screenys/screeny1.jpg")
+            .item
+              = image_tag("multipage/screenys/screeny1.jpg")
+          / Carousel nav
+          %a.carousel-control.left{"data-slide" => "prev", href: "#myCarousel"} ‹
+          %a.carousel-control.right{"data-slide" => "next", href: "#myCarousel"} ›
+      
+
+
+%section.bkg-white
+  .container
+    .row-fluid
+      .span7
+        = image_tag("multipage/screenys/screeny2.jpg")
+      .span5
+        %h3 Gérer vos relations avec un lieu
+        %p
+          Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul ! alors que vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, effectuer les tâches administratives, jouer au commercial pour se vendre...
+      
+        %a.btn-iconic
+          %i.ico.edi-play3
+          Voir le tutoriel vidéo
+          
+          
+%section.bkg-white
+  .container
+    .row-fluid
+      .span5
+        %h3 Gérer votre base contacts
+        %p
+          Vous êtes artiste ? Vous n'avez pas encore de tourneur ? Vous n'avez pas le choix, vous devez vous occuper de tout, et tout seul ! alors que vous aimeriez consacrer davantage de temps à créer, répéter, jouer sur scène plutôt qu'à vous occuper de la communication, effectuer les tâches administratives, jouer au commercial pour se vendre...
+        %a.btn-iconic
+          %i.ico.edi-play3
+          Voir le tutoriel vidéo
+      .span7
+        = image_tag("multipage/screenys/screeny1.jpg")
+  %space 
+        
+        
+%section.cta.cta-brown
+  .container
+    %h3
+      = link_to features_path do
+        %i.ico.edi-play3
+        Voir tous les tutoriaux vidéo
+
+   
+/ Why Edgar ??    
+%section
+  .container
+    %h4= t("home.promise.why")
+    .row-fluid
+      .span6
+        %p
+          = t("home.promise.alone")
+          %br/
+          = t("home.promise.more_time_for")
+          %br/
+          = t("home.promise.goal")
+          %p
+          -#%a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
+            = t("home.i_want_it")
+            
+      .span6
+        .row-fluid.paragraph-middle
+          %ul.engagements
+            %li
+              %strong= t("home.commitments.free")
+              %br/
+              = t("home.commitments.free_details")
+            %li
+              %strong= t("home.commitments.simple")
+              %br/
+              = t("home.commitments.simple_details")
+            %li
+              %strong= t("home.commitments.no_installation")
+              %br/
+              = t("home.commitments.no_installation_details")
+            %li
+              %strong= t("home.commitments.byfor")
+              %br/
+              = t("home.commitments.byfor_details")
+            %li
+              %strong= t("home.commitments.evolutive")
+              %br/
+              = t("home.commitments.evolutive_details")
+              
+  
+%section.princing
+  .container
+    %h4 Combien ça coûte ?
+    .row-fluid
+      / ITEM
+      .span6
+        .label-round.plan-free
+          %i.ico.edi-rocket
+          %br
+          %h4 Offre pré-lancement
+          %p Gratuite pendant quelques mois
+          .badge Gratuit !
+        
+      / ITEM
+      .span6
+        .label-round.plan-soon
+          %i.ico.edi-user
+          %br
+          %h4 Version Standard
+          %p Lancement trés prochainement !
+          .badge 10€ / utilisateur
+          %p Module gestion de contacts
+       
+       
+= render 'showcase/cta-enroll'

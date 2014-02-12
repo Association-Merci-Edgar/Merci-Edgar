@@ -1,14 +1,15 @@
 !!!
 %html
   %head
-    = render 'layouts/head'
-  %body{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
+    = render 'showcase/head'
+  %body
+    /{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
     /
       \################# START MAIN-WRAPPER ####################
       \============================================================
     .main-wrapper
-      -#= render 'layouts/header'
+      = render 'showcase/header'
       = yield
-      = render 'layouts/footer'
-      = render 'layouts/javascripts'
+      = render 'showcase/footer'
+      = render 'showcase/javascripts'
 
