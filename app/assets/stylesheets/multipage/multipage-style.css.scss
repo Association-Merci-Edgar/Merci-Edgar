@@ -2592,8 +2592,12 @@ input[type="text"].subscribe-input{
 }
 /* \media 1200 */
 
+
+
 @media (max-width:979px){
-	.container {width: auto;}
+	//.container {width: auto;}
+  .container {max-width: 960px;}
+  
 	.slogan {
 		font-size:38px;
 	  line-height:38px;
@@ -2908,7 +2912,7 @@ input[type="text"].subscribe-input{
 .bkg-white {background-color:$white;}
 
 .submenu {  z-index:200;
-  position: absolute;
+  position: absolute !important;
   float:right;
   right:0;
   padding-top: 10px;
@@ -2938,7 +2942,7 @@ input[type="text"].subscribe-input{
 
 .hero-unit#hero-launch {
   background-color: #324672; //#ace2ec;
-  background-image: url(../../images/vitrinne-banner-launch2-deg.jpg);
+  background-image: url(image_path("multipage/vitrinne-banner-launch2-deg.jpg"));
 }
 .hero-unit.notfullimg .thehero {
   padding:60px 0;
@@ -3043,7 +3047,7 @@ section.princing {
 body{padding-top:80px;}
 
     
-
+.container {max-width: 980px;}
 
 
 /*  -_________ Launch */
