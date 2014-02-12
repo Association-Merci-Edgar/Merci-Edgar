@@ -289,6 +289,7 @@ fr:
       user:
         accounts: Le compte
         password: Le mot de passe
+        label_name : "Le nom du label, groupe, compagnie"
       user/accounts:
         name: Le nom du compte
       venue/addresses:
