@@ -43,7 +43,7 @@
     .row-fluid
       .span7
         .img-box
-          .sticker.sticker-small Prochainement
+          /.sticker.sticker-small Prochainement
           = image_tag("multipage/screenys/screeny2.jpg")
       .span5
         %h3 Travaillez vos contacts !
@@ -67,7 +67,8 @@
           %i.ico.edi-play3
           Voir le tutoriel vidéo
       .span7
-        = image_tag("multipage/screenys/screeny1.jpg")
+        .img-box
+          = image_tag("multipage/screenys/screeny1.jpg")
   %space 
 
 
@@ -75,7 +76,8 @@
   .container
     .row-fluid
       .span7
-        = image_tag("multipage/screenys/screeny1.jpg")
+        .img-box
+          = image_tag("multipage/screenys/screeny1.jpg")
       .span5
         %h3 Geolocalisez !
         %p
@@ -97,31 +99,56 @@
           %i.ico.edi-play3
           Voir le tutoriel vidéo
       .span7
-        = image_tag("multipage/screenys/screeny1.jpg")
+        .img-box
+          = image_tag("multipage/screenys/screeny1.jpg")
   %space 
         
-
-%section.cta.cta-brown
-  .container
-    %h3
-      Prochainement
-    %p
-      Module d'administration : gestion et suivi d'une date vendue
-      %br
-      Module de communication : il permettra de coupler sa base de données Merci Edgar avec des outils d'envoi de mail en masse notamment
-      
 %section.cta.cta-brown
   .container
     %h3
       = link_to features_path do
         %i.ico.edi-play3
         Voir tous les tutoriaux vidéo
+        
+        
+%section#soon-section
+  .container
+    %h3 Prochainement
+    %p
+    .row-fluid.label-blocks
+      .span4
+        .label.label-large.label-info
+          %i.ico.edi-dates
+        %h4 Module administration
+        %p gestion et suivi d'une date vendue
+        
+      .span4
+        .label.label-large.label-info
+          %i.ico.edi-megaphone
+        %h4 Module communication
+        %p il permettra de coupler sa base de données Merci Edgar avec des outils d'envoi de mail en masse notamment
+      .span4
+        .label.label-large
+          %i.ico.edi-plus3
+        %h4 Et bien plus !
+        %p On y travailles
+        
+        
+        
+  -#
+    %p
+      Module d’administration : gestion et suivi d'une date vendue
+      %br
+      Module de communication : il permettra de coupler sa base de données Merci Edgar avec des outils d'envoi de mail en masse notamment
+      
+
 
    
 / Why Edgar ??    
 %section
   .container
-    %h4= t("home.promise.why")
+    %h3= t("home.promise.why")
+    %p
     .row-fluid
       .span6
         %p

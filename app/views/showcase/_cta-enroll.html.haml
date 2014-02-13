@@ -1,6 +1,13 @@
-%section.cta.cta-black
+%section.cta.cta-black#cta-enroll
   .container
     %h3 S’incrire pour utiliser la version de pré-lancement
     %p Pas de carte de crédit nécessaire. Sans engagement.
-    = link_to new_user_registration_path, class: "btn btn-large btn-danger btn-block" do
-      J’essaie Merci Edgar !
+    
+    .row-fluid
+      .span4
+        %input{type:"text", placeholder:"Votre nom"}
+      .span4
+        %input{type:"text", placeholder:"Votre email"}
+      .span4
+        = link_to new_user_registration_path, class: "btn btn-large btn-danger btn-block" do
+          J’essaie Merci Edgar !
