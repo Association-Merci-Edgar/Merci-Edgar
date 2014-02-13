@@ -32,46 +32,17 @@
           #main-nav
             %nav.nav-collapse.collapse.pull-right
               %ul#nav.nav
-                = showcase_menu_link("Accueil", locale_root_path, "index")
-                = showcase_menu_link("Fonctionnalités", features_path, "features")
-                = showcase_menu_link("Infos", about_path, "about")
+                /= showcase_menu_link("Accueil", locale_root_path, "index")
+                = showcase_menu_link("Fonctionnalités et Tarifs", features_path, "features")
+                = showcase_menu_link("À propos", about_path, "about")
                 %li= link_to "Blog", "http://blog.merciedgar.com", target: "_blank"
-                  
+                %li
+                  %a.btn.btn-enroll{href: "#cta-enroll"}
+                    Inscription
                 
                   
                   
-              #login-tab
-                - if user_signed_in?
-                  - if current_user.has_role? :admin
-                    = link_to "Administration", users_path
-                  = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
-                - else
-                  /= link_to t("simple_form.labels.defaults.signin"), new_user_session_path
-                  /%a{:href => "#", :class => "login-btn login-toggle"}
-                  .login-btn.login-toggle
-                    =t("simple_form.labels.defaults.signin")
-                
-              #login-form.invisible
-                .close-btn.login-btn.login-toggle
-                  x
-                .form-signin
-                  
-                  /%h2 #{t("simple_form.labels.defaults.signin")}
-                  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-                    = f.input_field :email, :autofocus => true, :class => "medium", placeholder:"#{t("simple_form.labels.defaults.email")}"
-                    = f.input_field :password, :class => "small", :placeholder => "#{t("simple_form.labels.defaults.password")}"
-                    /= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-                    
-                    - if devise_mapping.recoverable? && controller_name != 'passwords'
-                      /= link_to t("simple_form.labels.defaults.forgot_password"), new_password_path(resource_name)
-                      /= link_to t('?'), new_password_path(resource_name), :class => "login-btn forgot-btn", :rel => "tooltip", :title => "Forgot your password ?"
-                      = link_to "?", new_password_path(resource_name), :class => "login-btn forgot-btn", :rel => "tooltip", "data-placement" => "bottom", :title => "Mot de passe oublié ?"
-                      / t("simple_form.labels.defaults.forgot_password")
-                      / !!! WRONG TITLE SHOWING. WANTED : , :title => "Forgot your password ?"
-                      /%br/login-btn
-                    
-                    = f.button :submit, t("simple_form.labels.defaults.signin"), :class => 'login-btn login-submit'
-                    /= link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+              
                   
     
   = yield(:hero)

@@ -62,7 +62,16 @@ $white: #fff;
 	transition: $prop $speed ease-in-out;
 }
 
+@mixin plholder($col) { 
+  &::-webkit-input-placeholder {color: $col;}
+  &:-moz-placeholder {color: $col;} /* Firefox 18- */
+  &::-moz-placeholder {color: $col;}  /* Firefox 19+ */
+  &:-ms-input-placeholder {color: $col;}
+}
 
+@mixin borderbox {
+  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;
+}
 
 /******************** GLOBAL ******************************/
 
@@ -163,7 +172,7 @@ h6 {font-size:17px;}
   }
 }
 
-.img-box { position:relative;}
+
 
 .logotype {
 	position:absolute;
@@ -276,7 +285,7 @@ ul.social-left li {
 
 #login-tab {
   float:right;
-  margin-top:6px;
+  margin-top:9px;
   margin-left:24px;
 }
 
@@ -305,9 +314,10 @@ ul.social-left li {
 }
 
 .close-btn, .forgot-btn {width:10px; height:10px; float:right; text-align:center; margin-left:8px; margin-top:3px; }
+
 .forgot-btn {float:none; margin-left:0px;}
 
-.login-btn {
+.login-btn, a.login-btn {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
@@ -331,10 +341,10 @@ ul.social-left li {
 .login-submit {
   background-color:$orange;
   color:#fff;
-}
-.login-submit:hover{
+  &:hover {
   background-color:#30303a;
   color:#fff;
+  }
 }
 
 .forgot-btn{
@@ -344,12 +354,12 @@ ul.social-left li {
 .close-btn {
   position: absolute;
   right:0px;
-  margin-top: -26px;
-  background: #30303a;
-   padding: 4px 8px;
-}
-.close-btn:hover {
-  background:$orange;
+  //margin-top: -26px;
+  background: $orange;
+  padding: 4px 8px;
+  &:hover {
+  background:$dblue90;
+  }
 }
 
 .form-signin { display: inline-block;}
@@ -609,7 +619,8 @@ small { color:$dblue;
 }
 
 .navbar .nav {
-	margin-right:30px;
+	//margin-right:20px;
+  margin-right:0px;
 }
 
 .navbar .nav > li > a {
@@ -617,14 +628,15 @@ small { color:$dblue;
   padding : 10px 0px;
   padding-bottom:5px;
   margin: 0;
-  margin-left:40px;
+  margin-left:32px;
   font-weight:bold;
-}
-.navbar .nav > li > a:hover{
+  &:hover {
   background:none;
   color:$orange;
   border-bottom:2px solid transparent;
+  }
 }
+
 .navbar .nav .active > a, .navbar .nav .active > a:hover, .navbar .nav  .active > a:focus {
   background: none;
   color: $orange;
@@ -2210,6 +2222,17 @@ fieldset[disabled] .btn-primary.active {
   border-color: #428bca;
 }
 
+.navbar .nav > li > a.btn-enroll {
+  font-weight:300;
+  background: $green;
+  color:$white;
+  padding: 10px 18px;
+  @include roundcornersFX(50px);
+  &:hover, &:focus {
+    background:$orange;
+  }
+}
+
 .btn-white{
 	background:rgba(0,0,0, 0.7);
 	border:2px solid #fff;
@@ -2999,7 +3022,7 @@ input[type="text"].subscribe-input{
 .hero-unit#hero-features {background:$dbeige2;}
 .hero-unit#hero-about {background:#B0E2DC;}
 
-#cta-enroll {
+#cta-enroll-light {
   padding-top: 35px;
   p {font-size: 17px;}
 }
@@ -3024,8 +3047,32 @@ input[type="text"].subscribe-input{
     &.cta-brown {background:$dbeige2;}
     &.cta-black {background:$dblue90;
       p, h3 {color:$white;}
-      .btn-danger.btn-block:hover{background:$white; color:$dblue;};
+      .btn-danger.btn-block {
+        
+      &:hover, &:focus {background:$white; color:$dblue;};
+      }
     }
+}
+
+.cta input {
+  font-weight:300;
+    font-size:21px;
+    width:100%;
+    height:45px;
+    border: 2px solid $beige;
+    background:$dblue90;
+    color:$white;
+    //@include roundcornersFX(6px);
+    @include plholder ($beige);
+    @include borderbox;
+    &:focus {
+      background:$green;
+      border-color:$green; box-shadow: none;
+    }
+}
+.btn {box-shadow: none; outline: none;}
+.cta .btn-danger.btn-block {
+  width:100%;
 }
 
 a.btn-iconic {
@@ -3038,6 +3085,36 @@ a.btn-iconic {
     line-height: 1px;
     margin-right: 2px;
   }
+}
+
+
+.label-large i {
+  font-size: 70px;
+  display: inline-block;
+  width: 140px;
+  height: 140px;
+  line-height: 140px;
+  background: white;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+  margin-bottom: 8px;
+  color:$dblue90;
+}
+
+#soon-section {
+  background: $white;
+  .label-large i {
+  background: $beige;
+  }
+  .label-blocks p {padding-top:0;}
+}
+
+
+.img-box {
+  position:relative;
+  @include roundcornersFX(20px);
+  border:1px solid $dbeige2;
 }
 
 section.princing {
