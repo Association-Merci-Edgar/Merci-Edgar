@@ -10,7 +10,9 @@
 
 %meta{:content => "Merci Edgar, #{t("baseline")}", :property => "og:title"}/
 %meta{:content => "#{t("home.slogan.are_you_artist")} #{t("home.slogan.time")} Merci Edgar #{t("home.slogan.edgar_for_you")}", :property => "og:description"}/
-%meta{:content => "http://#{ENV["DOMAIN"]}/images/vitrinne-banner-launch1.jpg", :property => "og:image"}/
+
+%meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/edgar-head.png')}", :property => "og:image"}/
+%meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/vitrinne-banner-launch2.jpg')}", :property => "og:image"}/
 
 %meta{:content => "image/jpg", :property => "og:image:type"}/
 %meta{:content => "620", :property => "og:image:width"}/
@@ -44,3 +46,6 @@
 /%link{:href => "/assets/ico/apple-touch-icon-114-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}/
 /%link{:href => "/assets/ico/apple-touch-icon-72-precomposed.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}/
 /%link{:href => "/assets/ico/apple-touch-icon-57-precomposed.png", :rel => "apple-touch-icon-precomposed"}/
+
+
+/[if gte IE 9] <style type="text/css"> \.gradient { filter: none;} </style>
