@@ -47,6 +47,12 @@ module ApplicationHelper
     content_tag(:li,link_tag, id: "#{controller[0]}-tab", class: class_name)
   end
 
+  def showcase_menu_link(link_text, link, action)
+    class_name = action_name == action ? "active" : ""    
+    link_tag = link_to(link_text, link)
+    content_tag(:li,link_tag, class: class_name)
+  end
+  
   def show_badge(color, text)
     badge_color = "badge-#{color}" if color
     content_tag(:div,text,class:"badge #{badge_color}")
