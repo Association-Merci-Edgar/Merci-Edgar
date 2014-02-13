@@ -129,7 +129,7 @@ h6 {font-size:17px;}
     @include rotate(-45);
   }
 }
-/*
+
 .sticker {
   &.sticker-big {
     padding:8px 23px;
@@ -145,19 +145,25 @@ h6 {font-size:17px;}
   }
   &.sticker-small {
     padding:1px 10px;
-    @include rotate( 7 );
-    margin-left: 126px;
-    margin-top: 142px;
-    
+    @include rotate( 20 );
+
     @include roundcornersFX(4px);
-    background-color:$dbeige2;
+    //background-color:$dbeige2;
+    background-color:$yellow;
+    border: 1px solid $dbeige2;
     color:$dblue;
     font-size:13px;
     line-height:22px;
     font-weight:normal;
+    
+    position: absolute;
+    right: -8px;
+    top: 8px;
+    
   }
 }
-*/
+
+.img-box { position:relative;}
 
 .logotype {
 	position:absolute;
@@ -213,6 +219,7 @@ a .ed-icon-ed-logo:hover {
 #langswitch {float:right; right:0px;
   font-size:12px;
   font-weight:bold;
+  margin-left: 20px;
 }
 
 #langswitch a {color:#30303a;}
@@ -224,7 +231,8 @@ a .ed-icon-ed-logo:hover {
 }
 
 #socialfixed, #langswitch, #login-menu { padding-top:6px;}
-#socialfixed, #login-menu { height:22px; float:right; margin-right: 20px;} 
+
+#socialfixed, #login-menu { height:22px; float:right;} 
 
 .social-left li a, #login-menu a {
   //@include transition(all, .3s);
@@ -2582,6 +2590,11 @@ input[type="text"].subscribe-input{
 		
 		}
 		.hero-unit img {bottom:0px;}
+    
+    
+.navbar .btn-navbar .icon-bar {
+    background-color: $dblue;
+}
 		
 /*****************************  @MEDIA *************************************************/
 
@@ -2589,14 +2602,20 @@ input[type="text"].subscribe-input{
 	#main-nav select {
 		display:none;
 	}
+  .container {max-width: 960px;}
 }
 /* \media 1200 */
 
 
 
 @media (max-width:979px){
+  
+  
 	//.container {width: auto;}
-  .container {max-width: 960px;}
+  
+  
+  .row-fluid [class*="span"]:first-child {
+   margin-bottom: 30px;}
   
 	.slogan {
 		font-size:38px;
@@ -2619,6 +2638,14 @@ input[type="text"].subscribe-input{
     max-width:940px;
 	}
   .nav-collapse, .nav-collapse.collapse { position:fixed};
+  
+  
+  .nav-collapse, .nav-collapse.collapse {
+    background-color: #fff;
+    padding-right: 40px;
+    padding-bottom: 30px;
+  }
+  
   
   .navbar .logo {
     width: 50px;
@@ -2941,9 +2968,25 @@ input[type="text"].subscribe-input{
 .hero-unit img { margin:0};
 
 .hero-unit#hero-launch {
-  background-color: #324672; //#ace2ec;
-  background-image: url(image_path("multipage/vitrinne-banner-launch2-deg.jpg"));
+  //background-color: #324672; //#ace2ec;
+  //background-image: url(image_path("multipage/vitrinne-banner-launch2-deg.jpg"));
+  
+  
+  background: #1a4072; /* Old browsers */
+  /*http://www.colorzilla.com/gradient-editor/
+   IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhNDA3MiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0NjRjN2IiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top,  #1a4072 0%, #464c7b 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1a4072), color-stop(100%,#464c7b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #1a4072 0%,#464c7b 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #1a4072 0%,#464c7b 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #1a4072 0%,#464c7b 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #1a4072 0%,#464c7b 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a4072', endColorstr='#464c7b',GradientType=0 ); /* IE6-8 */
+  
 }
+
+
 .hero-unit.notfullimg .thehero {
   padding:60px 0;
   padding-top:70px;
@@ -2957,7 +3000,7 @@ input[type="text"].subscribe-input{
 .hero-unit#hero-about {background:#B0E2DC;}
 
 #cta-enroll {
-  padding: 35px 0;
+  padding-top: 35px;
   p {font-size: 17px;}
 }
 
@@ -2981,6 +3024,7 @@ input[type="text"].subscribe-input{
     &.cta-brown {background:$dbeige2;}
     &.cta-black {background:$dblue90;
       p, h3 {color:$white;}
+      .btn-danger.btn-block:hover{background:$white; color:$dblue;};
     }
 }
 

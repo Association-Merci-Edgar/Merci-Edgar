@@ -1,12 +1,13 @@
 .container.submenu
-  #langswitch.noselect
-    
-    = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
-    |
-    = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
-    
   -#
-    %a.btn{"data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-original-title" => "FR", "data-placement" => "bottom", "data-toggle" => "popover", href: "#", title: ""} FR
+    #langswitch.noselect
+    
+      = link_to "FR", "/fr", :class => params[:locale].eql?("fr") ? 'active' : ''
+      |
+      = link_to "EN", "/en", :class => params[:locale].eql?("en") ? 'active' : ''
+    
+    -#
+      %a.btn{"data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-original-title" => "FR", "data-placement" => "bottom", "data-toggle" => "popover", href: "#", title: ""} FR
     
     
 
