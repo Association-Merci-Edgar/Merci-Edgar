@@ -19,6 +19,103 @@ $red:     rgba(204, 57, 50, 1);
 $blue:    rgba(80, 180, 210, 1);
 $white:   #fff;
 
+@mixin noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+@mixin transition ($prop, $speed) {
+  -webkit-transition: $prop $speed ease-in-out;
+  -moz-transition: $prop $speed ease-in-out;
+	-ms-transition: $prop $speed ease-in-out;
+	-o-transition: $prop $speed ease-in-out;
+	transition: $prop $speed ease-in-out;
+}
+
+
+
+@mixin roundcorners {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+@mixin roundcornersFX($value) {
+	-webkit-border-radius: $value;
+	-moz-border-radius: $value;
+	border-radius: $value;
+}
+
+@mixin borderbox {
+  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;
+}
+
+@mixin b-radius-notLR ($lr) {
+  -moz-border-radius-top#{$lr}:  0;
+  -webkit-border-top-#{$lr}-radius: 0;
+  border-top-#{$lr}-radius: 0;
+  -moz-border-radius-bottom#{$lr}:  0;
+  -webkit-border-bottom-#{$lr}-radius: 0;
+  border-bottom-#{$lr}-radius: 0;
+}
+
+@mixin contentbox {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+@mixin transition($prop, $speed) {
+  -webkit-transition: $prop $speed ease-in-out;
+  -moz-transition: $prop $speed ease-in-out;
+	-ms-transition: $prop $speed ease-in-out;
+	-o-transition: $prop $speed ease-in-out;
+	transition: $prop $speed ease-in-out;
+}
+
+@mixin square($px) {
+  height: #{$px}px;
+  width: #{$px}px;
+}
+  
+@mixin transfX {
+  -webkit-transform:scaleX(1.1);
+  -moz-transform:scaleX(1.1);
+  -ms-transform:scaleX(1.1);
+  -o-transform:scaleX(1.1);
+  transform:scaleX(1.1);
+}
+
+@mixin noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+@mixin rotate( $degrees ) {
+  -webkit-transform: rotate(#{$degrees}deg); //Chrome, Safari
+  -moz-transform: rotate(#{$degrees}deg); //firefox
+  -ms-transform: rotate(#{$degrees}deg);
+  -o-transform: rotate(#{$degrees}deg); //Opera
+  transform: rotate(#{$degrees}deg);
+  filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)});
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
+  zoom: 1;
+}
+
+//@mixin btn {}
+
+@mixin plholder($col) { 
+  &::-webkit-input-placeholder {color: $col;}
+  &:-moz-placeholder {color: $col;} /* Firefox 18- */
+  &::-moz-placeholder {color: $col;}  /* Firefox 19+ */
+  &:-ms-input-placeholder {color: $col;}
+}
 
 /* ______________________________________________________________ INIT + FLATIZER   */
 
@@ -2056,12 +2153,15 @@ li.system-reporting {
 
 #reporting_project_id {float:left;}
 
+
+
+
 /* ____________________________________________________________ List_medium  */
 .list-medium li {
   .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
   .infos-line{
     
-    .pic-mini {width:20px; margin-right: 6px;}
+    .pic-mini {width:20px;  margin-right: 6px;}
     a {font-size:17px; }
     .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
     }
@@ -2173,7 +2273,7 @@ header {
 .pic.pic-person img,
 .pic.pic-user img{@include roundcornersFX(40px);}
 
-.pic-mini {width:24px;margin-right:12px; margin-top:1px;float:none;}
+.pic-mini {@include square(20); margin-right:12px; margin-top:1px;float:none;}
 .pic-small {@include square(44);margin-right:14px; margin-top:0;}
 .pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 
