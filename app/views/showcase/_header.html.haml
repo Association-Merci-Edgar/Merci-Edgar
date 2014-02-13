@@ -32,18 +32,10 @@
           #main-nav
             %nav.nav-collapse.collapse.pull-right
               %ul#nav.nav
-                %li.active
-                  = link_to locale_root_path do
-                    Accueil
-                %li
-                  /= link_to t("home.menu.what"), features_path
-                  = link_to features_path do
-                    Fonctionnalités
-                %li
-                  = link_to about_path do
-                    Infos
-                %li
-                  %a{:href => "http://blog.merciedgar.com/tagged/news", :target => "_blank"} Blog
+                = showcase_menu_link("Accueil", locale_root_path, "index")
+                = showcase_menu_link("Fonctionnalités", features_path, "features")
+                = showcase_menu_link("Infos", about_path, "about")
+                %li= link_to "Blog", "http://blog.merciedgar.com", target: "_blank"
                   
                 
                   
