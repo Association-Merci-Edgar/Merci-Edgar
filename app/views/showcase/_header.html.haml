@@ -1,7 +1,8 @@
 /
   \######################  START HEADER ######################
 
-%header    
+  
+%header
   .nav-top
     .sticker.sticker-beta BETA
     
@@ -16,12 +17,9 @@
             %span.icon-bar
             %span.icon-bar
           .logo
-            -#
-              %i.ed-icon-ed-logo-bkg.logotype
-              = link_to locale_root_path do
-                %i.ed-icon-ed-logo.logotype
             = link_to locale_root_path do
-              = image_tag("multipage/logo-edgar-horiz.png")
+              .logo-ed.logo-header.edi-ed-logo-horiz
+              /= image_tag("multipage/logo-edgar-horiz.png")
               
           -#    
             #baseline
@@ -38,11 +36,7 @@
                 %li= link_to "Blog", "http://blog.merciedgar.com", target: "_blank"
                 %li
                   %a.btn.btn-enroll{href: "#cta-enroll"}
-                    Inscription
-                
-                  
-                  
-              
-                  
+                    S’inscrire
+
     
   = yield(:hero)

@@ -4,20 +4,14 @@
   .container
     .row-fluid
       .span8
-        %a{:href => "#header-section"}
-          = image_tag("multipage/logo-edgar-horiz-typ-white.png")
-          
-        -#
-          .logo
-            %i.ed-icon-ed-logo-bkg.logotype
-            = link_to locale_root_path do
-              %i.ed-icon-ed-logo.logotype
-      
+        /%a{href: "#thetop"}
+        = link_to locale_root_path do
+          .logo-ed.logo-footer.edi-ed-logo-typo
+          -#= image_tag("multipage/logo-edgar-horiz-typ-white.png")
         %address
           %i.fa-icon-map-marker
           Au bourg, 47120 Monteton, France
-          %br/
-        .foot-line
+         
         
       .span4
         %ul.socials
@@ -30,3 +24,7 @@
           %li
             %a{:href => "http://vimeo.com/channels/entretiensdedgar", :title => "Vimeo Channel Entretiens d'Edgar", :target => "blank"}
               %i.ico.edi-vimeo
+              
+            %a{:href => "mailto:contact@merciedgar.com", :title => "Mail"}
+              %i.ico.edi-mail
+              
