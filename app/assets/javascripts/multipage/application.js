@@ -15,6 +15,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_self
+//= require multipage/jquery.localscroll-min
+//= require multipage/jquery.scrollTo-min
+//= require multipage/tinyscrolling
+
 
 jQuery('document').ready(function() {
 

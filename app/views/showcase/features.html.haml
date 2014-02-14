@@ -19,6 +19,9 @@
           %i.ico.edi-play3
           Voir le tutoriel vidéo
       .span7
+        .img-box
+          = image_tag("multipage/screenys/scr_560_list.jpg")
+      -#
         #myCarousel.carousel.slide
           %ol.carousel-indicators
             %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
@@ -44,7 +47,7 @@
       .span7
         .img-box
           /.sticker.sticker-small Prochainement
-          = image_tag("multipage/screenys/screeny2.jpg")
+          = image_tag("multipage/screenys/scr_560_reporting.jpg")
       .span5
         %h3 Travaillez vos contacts !
         %p
@@ -68,7 +71,7 @@
           Voir le tutoriel vidéo
       .span7
         .img-box
-          = image_tag("multipage/screenys/screeny1.jpg")
+          = image_tag("multipage/screenys/scr_560_filters.jpg")
   %space 
 
 
@@ -77,9 +80,9 @@
     .row-fluid
       .span7
         .img-box
-          = image_tag("multipage/screenys/screeny1.jpg")
+          = image_tag("multipage/screenys/scr_560_map.jpg")
       .span5
-        %h3 Geolocalisez !
+        %h3 Géolocalisez !
         %p
           Une fois l'adresse de votre contact pro renseigné, Edgar saura le situer sur une carte. La géocalisation couplée avec notre puissant moteur de recherche vous permettra de trouver vos différents contacts (lieux, festivals, autres organisateurs de spectacles, ...) à une certaine distance d'un lieu. Pratique pour organiser une tournée !
 
@@ -100,7 +103,7 @@
           Voir le tutoriel vidéo
       .span7
         .img-box
-          = image_tag("multipage/screenys/screeny1.jpg")
+          = image_tag("multipage/screenys/scr_560_teamwork.jpg")
   %space 
         
 %section.cta.cta-brown
@@ -113,8 +116,8 @@
         
 %section#soon-section
   .container
-    %h3 Prochainement
-    %p
+    %h2.section-title Prochainement
+    
     .row-fluid.label-blocks
       .span4
         .label.label-large.label-info
@@ -147,8 +150,7 @@
 / Why Edgar ??    
 %section
   .container
-    %h3= t("home.promise.why")
-    %p
+    %h2.section-title= t("home.promise.why")
     .row-fluid
       .span6
         %p
@@ -157,9 +159,9 @@
           = t("home.promise.more_time_for")
           %br/
           = t("home.promise.goal")
-          %p
+          -#%p
           -#%a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
-            = t("home.i_want_it")
+          -#= t("home.i_want_it")
             
       .span6
         .row.paragraph-middle
@@ -188,7 +190,7 @@
   
 %section.princing
   .container
-    %h4 Combien ça coûte ?
+    %h2.section-title Combien ça coûte ?
     .row-fluid
       / ITEM
       .span6
@@ -207,7 +209,5 @@
           %h4 Offre Standard
           %p Lancement très prochainement !
           .badge 10€ / utilisateur
-          %p (avec uniquement le le module gestion de contacts)
+          %p.small (avec uniquement le le module gestion de contacts)
        
-       
-= render 'showcase/cta-enroll'

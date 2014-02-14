@@ -111,7 +111,7 @@ body {
 h1, h2, h3, h4 {font-weight:300; display:inline; line-height:inherit;}
 
 h1 {font-size:37px; color:$orange;}
-h2 {font-size:32px; //font-weight:bold;
+h2 {font-size:36px; //font-weight:bold;
 }
 h3 {font-size:28px;}
 h4 {font-size:24px;
@@ -315,47 +315,56 @@ ul.social-left li {
 
 .close-btn, .forgot-btn {width:10px; height:10px; float:right; text-align:center; margin-left:8px; margin-top:3px; }
 
-.forgot-btn {float:none; margin-left:0px;}
+.forgot-btn{
+  float:none; margin-left:0px;
+  background:$orange;
+}
 
-.login-btn, a.login-btn {
+.login-btn {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
-  background:$orange;
-  color:#fff;
   font-size:13px;
   line-height:16px;
   padding: 5px 12px;
   height:16px;
   border:none;
-  @include transition(background, .2s)
-}
-
-.login-btn:hover {
-  background:#30303a;
+  @include transition(background, .2s);
+  &:hover {
+  background:$dblue;
   color:#fff;
   text-decoration:none;
   cursor:pointer;
+  }
 }
 
-.login-submit {
-  background-color:$orange;
-  color:#fff;
+.login-submit, .login-btn, .close-btn {
+  background:$beige;
+  color:$dblue;
+  font-weight:bold;
   &:hover {
-  background-color:#30303a;
+  background:$orange;
   color:#fff;
   }
 }
 
-.forgot-btn{
-  background:#50BFB2;
+.navbar .nav > li > a.btn-enroll {
+  text-shadow:none;
+  background: $orange;
+  color:$white;
+  padding: 8px 14px;
+  padding-top:10px;
+  @include roundcornersFX(50px);
+  &:hover, &:focus {
+    color:$white;
+    background:$green;
+  }
 }
 
 .close-btn {
   position: absolute;
   right:0px;
   //margin-top: -26px;
-  background: $orange;
   padding: 4px 8px;
   &:hover {
   background:$dblue90;
@@ -377,7 +386,10 @@ ul.social-left li {
 
 
 
-ul.engagements { list-style:outside; list-style-position:outside; list-style:none; margin-top:10px;}
+ul.engagements { list-style:outside; list-style-position:outside;
+  list-style:none;
+  margin: 10px 0 0  50px;
+}
 
 ul.engagements li {
 	text-indent:-25px;
@@ -388,7 +400,7 @@ ul.engagements li:before {
 	color:$orange;
 	font-family: 'icomoon';
 	content: "\e002";
-	padding-right:6px; /* give the bullet some padding from the text Make sure to use em*/
+	padding-right:8px; /* give the bullet some padding from the text Make sure to use em*/
   position:relative;
   top:.1em; /* set the vertical position of the bullet if necessary. Make sure to use em or % */
 }
@@ -451,7 +463,14 @@ h1, h2, h3, h4 {
 
 }
 
-.section-title { margin-bottom: 10px; margin-top:10px;}
+.section-title { margin-bottom: 40px; margin-top:10px;
+  text-align:center;
+  display: block;
+}
+
+.subtitle {text-align:center;
+  display: block;
+  margin-bottom:20px;}
 		
 .modal-header h3 {
 	font-size: 36px;
@@ -541,16 +560,7 @@ small { color:$dblue;
 	margin-left:0px;
 }
 
-.row-fluid.label-blocks .span4:nth-child(3n+1), 
-.row-fluid.label-blocks .span3:nth-child(4n+1),
-.row-fluid.label-blocks .span6:nth-child(2n+1){
-	margin-left:0px;
-}	 
-.row-fluid.label-blocks .span4, 
-.row-fluid.label-blocks .span3,
-.row-fluid.label-blocks .span6{
-	margin-bottom:30px;
-}	
+
 
 /**************************** EVENTS ANIMATED ***************************/	
 /*
@@ -1532,6 +1542,7 @@ space {height:30px; display:block;}
 
 #features-section {
   padding-bottom: 0px;
+  padding-top: 60px;
   h4 {
     margin-top: 0px;
     margin-bottom: 8px;
@@ -2019,10 +2030,10 @@ text-align:center;
 footer{
 	//margin-top:150px;
 	padding-top:50px;
-  padding-bottom:40px;
-	background:$dblue;
+  padding-bottom:45px;
+	background:$white;
   
-  color:$white;
+  color:$dblue;
   img {margin-bottom: 10px;  height:auto;}
   
   address {
@@ -2035,6 +2046,11 @@ footer{
     margin-top: -11px;
   }
   
+  ul.socials li a{
+    color:$white;
+    background:$dblue;
+    &:hover {}
+  }
 }
 
 
@@ -2048,7 +2064,7 @@ ul.socials {
     @include transition(all, .2s);
     background:$beige;
     line-height: 0px;
-    padding: 5px;
+    padding: 6px;
   	color:$dblue;
     list-style:none;
   	display:inline-block;
@@ -2222,16 +2238,6 @@ fieldset[disabled] .btn-primary.active {
   border-color: #428bca;
 }
 
-.navbar .nav > li > a.btn-enroll {
-  font-weight:300;
-  background: $green;
-  color:$white;
-  padding: 10px 18px;
-  @include roundcornersFX(50px);
-  &:hover, &:focus {
-    background:$orange;
-  }
-}
 
 .btn-white{
 	background:rgba(0,0,0, 0.7);
@@ -2952,6 +2958,17 @@ input[type="text"].subscribe-input{
 		font-size: 24px;
 		text-align: center;
 	}
+  
+  .row-fluid.label-blocks .span4:nth-child(3n+1), 
+  .row-fluid.label-blocks .span3:nth-child(4n+1),
+  .row-fluid.label-blocks .span6:nth-child(2n+1){
+  	margin-left:0px;
+  }	 
+  .row-fluid.label-blocks .span4, 
+  .row-fluid.label-blocks .span3,
+  .row-fluid.label-blocks .span6{
+  	margin-bottom:30px;
+  }	
 
 }
 
@@ -3019,7 +3036,8 @@ input[type="text"].subscribe-input{
   img{padding-top:30px;}
 }
 
-.hero-unit#hero-features {background:$dbeige2;}
+.hero-unit#hero-features {background:$dbeige2;
+  img{width:84%;}}
 .hero-unit#hero-about {background:#B0E2DC;}
 
 #cta-enroll-light {
@@ -3107,20 +3125,43 @@ a.btn-iconic {
   .label-large i {
   background: $beige;
   }
-  .label-blocks p {padding-top:0;}
+  .label-blocks p {padding-top:0; margin:0;}
 }
 
 
 .img-box {
+  //overflow:hidden;
   position:relative;
+  img {
   @include roundcornersFX(20px);
-  border:1px solid $dbeige2;
+  border:2px solid $dbeige2;
+  }
+}
+
+.logo-ed {
+  @include transition(color, .2s)
+}
+
+.logo-header {
+  color:$dblue;
+  font-size: 80px;
+  margin-top: -10px;
+  &:hover{color:$orange;}
+}
+
+.logo-footer {
+  color:$dblue;
+  font-size: 34px;
+  margin-top: -10px;
+  display: inline;
+  vertical-align: sub;
+  &:hover{color:$orange;}
 }
 
 section.princing {
   background:$green; color:$white;
-   text-align:center;
-  h4{color:$white;}
+  
+ .section-title {color:$white;}
   
 }
 
@@ -3136,6 +3177,7 @@ section.princing {
   padding:50px;
   
   &, h4 {color:$dblue;}
+  
   h4 { padding:0; margin:0; margin-top:12px;}
   i {font-size:110px;}
   .badge {
@@ -3147,7 +3189,9 @@ section.princing {
     
   p {margin:0;}
     
-  &.plan-soon {background:$dbeige2;}
+  &.plan-soon {background:$dbeige2; 
+    p.small {font-size:14px; width:80%; margin:0 auto; line-height:20px;}
+  }
   &.plan-soon .badge {background:$blue;}
   &.plan-free .badge {background:$green2;}
   
