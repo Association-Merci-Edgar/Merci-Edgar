@@ -23,9 +23,10 @@
           
           %span.help-block
             #{t("simple_form.labels.defaults.recommnandations_password")}        
-
-        .row-fluid.control-group
-          = f.input_field :label_name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
+        
+        - unless resource.label_name.present?      
+          .row-fluid.control-group
+            = f.input_field :label_name, placeholder: "Nom de votre label, association, groupe, compagnie ...", :class=>"span12"
 
       = hidden_field_tag :confirmation_token, @confirmation_token
       

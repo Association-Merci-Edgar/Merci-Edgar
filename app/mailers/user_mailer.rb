@@ -8,9 +8,19 @@ class UserMailer < ActionMailer::Base
   end
   
   def abilitation_instructions(account, manager, member)
+    abilitation_email(account, manager, member)
+  end
+  
+  def abilitation_notification(account, manager, member)
+    abilitation_email(account, manager, member)
+  end
+  
+  private
+  def abilitation_email(account, manager, member)
     @account = account
     @manager = manager
     @member = member
-    mail(:to => member.email, :subject => "Rejoignez le groupe")
-  end
+    mail(:to => member.email, :subject => "Bienvenue dans la base de #{@account.name} (Merci Edgar)")    
+  end  
+  
 end

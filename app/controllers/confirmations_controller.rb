@@ -57,6 +57,7 @@ class ConfirmationsController < Devise::PasswordsController
 
   def do_show
     @confirmation_token = params[:confirmation_token]
+    @confirmable.label_name = params[:label_name]
     @requires_password = true
     # @confirmable.accounts.destroy_all
     render 'devise/confirmations/show'
@@ -64,9 +65,12 @@ class ConfirmationsController < Devise::PasswordsController
 
   def do_confirm
     @confirmable.confirm!
-    abilitation = @confirmable.abilitations.build
-    abilitation.build_account(name: @confirmable.label_name)
-    abilitation.kind = "manager"
+    abilitation = @confirmable.abilitations.first
+    unless @confirmable.abilitations.any?
+      abilitation = @confirmable.abilitations.build
+      abilitation.build_account(name: @confirmable.label_name)
+      abilitation.kind = "manager"
+    end
     @confirmable.save!
     # @job_id = SampleImportWorker.perform_async(account.id)
     

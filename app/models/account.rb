@@ -151,11 +151,11 @@ class Account < ActiveRecord::Base
   end
   
   def member?(user)
-    self.abilitations.where(user: user).first.member?
+    self.abilitations.where(user_id: user.id).first.member?
   end
   
   def manager?(user)
-    self.abilitations.where(user: user).first.manager?
+    self.abilitations.where(user_id: user.id).first.manager?
   end
   
   def empty
