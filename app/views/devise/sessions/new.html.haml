@@ -2,11 +2,15 @@
   .logo
     %i.entypo.edi-logoedgar_under.logotype
     %i.entypo.edi-logoedgar.logotype
-  
   %h1 Bienvenue !
   /%legend #{t("simple_form.labels.defaults.signin")}
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical', id: "toto" }) do |f|
+
     .row-fluid.control-group
+      - if notice
+        .notice.info= notice
+      - if alert
+        .notice.error= alert
       = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}", :class=>"span6 inline"
       = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}", :class=>"span6 inline"
     
