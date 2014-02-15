@@ -1,5 +1,5 @@
 %header.page-title
-  Compte 
+  Profil 
   %h3.dblue= current_user.name
   
   /______________________ Déconnexion
@@ -10,17 +10,19 @@
   .span12
     .tabbables-not
       %ul.nav.nav-tabs
-        = user_tab_link "Compte", edit_account_path, "accounts"
         = user_tab_link "Votre profil", edit_user_path(current_user), "users"
-        = user_tab_link "Projets artistiques", projects_path, "projects"
-        %li
-          %a{"data-toggle" => "tab", :href => "#extras"} Extras
+        - if current_account.manager?(current_user)
+          = user_tab_link "Compte", edit_account_path, "accounts"
+          = user_tab_link "Projets artistiques", projects_path, "projects"
+          %li
+            %a{"data-toggle" => "tab", :href => "#extras"} Extras
         
                   
       .tab-content
-        = yield :account_tab
         = yield :user_tab
-        = yield :projects_tab
-        #extras.tab-pane
-          %section.span6
-            %h4 En construction...
+        - if current_account.manager?(current_user)
+          = yield :account_tab
+          = yield :projects_tab
+          #extras.tab-pane
+            %section.span6
+              %h4 En construction...

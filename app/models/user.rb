@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
     p = {}
     p[:password] = params[:password]
     p[:password_confirmation] = params[:password_confirmation]
-    p[:label_name] = params[:label_name]
+    p[:label_name] = params[:label_name] unless self.label_name.present?
     p[:name] = params[:name]
     p[:first_name] = params[:first_name]
     p[:last_name] = params[:last_name]
@@ -148,8 +148,15 @@ class User < ActiveRecord::Base
     self.generate_confirmation_token!
     UserMailer.abilitation_instructions(account,manager,self).deliver
   end
+  
+  def send_abilitation_notification(account, manager)
+    UserMailer.abilitation_notification(account, manager, self).deliver
+  end
 
   def label_name
+    if self.accounts.any?
+      @label_name = self.accounts.first.name
+    end
     @label_name
   end
   

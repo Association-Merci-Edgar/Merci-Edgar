@@ -43,18 +43,10 @@
               %span.infos-line
                 %a= user.email
 
--#
-          %li
-            - abilitation = Abilitation.new
-            - abilitation.build_user
-            = simple_form_for(abilitation, url: account_abilitations_path) do |f|
-              = f.fields_for :user do |u|
-                = u.input :email
-              = f.submit
-            
+
           -#_____________________________________________________ ADD NEW
-          .btn-in-list
-            %a
+          -#.btn-in-list
+            = link_to new_account_abilitation_path(account_id: current_account.id), remote:true do
               %i.entypo.edi-plus3
               %span
                 Ajouter un utilisateur
