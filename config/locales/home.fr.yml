@@ -40,7 +40,7 @@ fr:
       communicate_what: "via Facebook ou par mail, et suivez qui a ouvert vos mails, qui a cliqué sur vos liens <i>Prochainement</i>"
       
       schedule: Planifiez d’un clic
-      schedule_what: "et de manière collaborative vos tâches en cours (ou en retard ;), vos prochaines dates ou répétitions"
+      schedule_what: "et de manière collaborative vos tâches en cours (ou en retard...), vos prochaines dates ou répétitions"
       
       schedule_v1: Planifiez et gérez en un coup d'œil
       schedule_what_v1: "vos tâches en cours, en retard, le planning de vos prochaines dates ou répétitions"
@@ -65,7 +65,7 @@ fr:
       invitation: "Demande d'invitation"
       explanation: "Merci Edgar est en cours de construction. Laissez votre mail dès maintenant pour être averti lors de sa sortie !"
     tv:
-      description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Déjà 17 interviews depuis octobre 2012 !"
+      description: "Edgar n'est pas seulement un assistant virtuel, il aide aussi les artistes en réalisant des interviews de professionnels du spectacle, leur permettant ainsi de mieux comprendre le milieu dans lequel ils souhaitent évoluer. Retrouvez une semaine sur deux un nouvel entretien !"
       more: "Plus de videos sur le blog de Merci Edgar"
     thankyou:
       title: "Merci !"

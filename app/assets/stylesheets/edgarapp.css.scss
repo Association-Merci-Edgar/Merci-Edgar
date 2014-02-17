@@ -19,6 +19,23 @@ $red:     rgba(204, 57, 50, 1);
 $blue:    rgba(80, 180, 210, 1);
 $white:   #fff;
 
+@mixin noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+@mixin transition ($prop, $speed) {
+  -webkit-transition: $prop $speed ease-in-out;
+  -moz-transition: $prop $speed ease-in-out;
+	-ms-transition: $prop $speed ease-in-out;
+	-o-transition: $prop $speed ease-in-out;
+	transition: $prop $speed ease-in-out;
+}
+
+
 
 @mixin roundcorners {
 	-webkit-border-radius: 6px;
@@ -2136,12 +2153,15 @@ li.system-reporting {
 
 #reporting_project_id {float:left;}
 
+
+
+
 /* ____________________________________________________________ List_medium  */
 .list-medium li {
   .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
   .infos-line{
     
-    .pic-mini {width:20px; margin-right: 6px;}
+    .pic-mini {width:20px;  margin-right: 6px;}
     a {font-size:17px; }
     .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
     }
@@ -2253,7 +2273,7 @@ header {
 .pic.pic-person img,
 .pic.pic-user img{@include roundcornersFX(40px);}
 
-.pic-mini {width:24px;margin-right:12px; margin-top:1px;float:none;}
+.pic-mini {@include square(20); margin-right:12px; margin-top:1px;float:none;}
 .pic-small {@include square(44);margin-right:14px; margin-top:0;}
 .pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 

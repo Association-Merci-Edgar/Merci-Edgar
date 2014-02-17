@@ -1,0 +1,42 @@
+/
+  \######################  START HEADER ######################
+
+  
+%header
+  .nav-top
+    .sticker.sticker-beta BETA
+    
+    / navbar-fixed-top
+    #top-nav.navbar.navbar-fixed-top
+      / INNER
+      .navbar-inner
+        .container
+          / Collapse button
+          %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .logo
+            = link_to locale_root_path do
+              .logo-ed.logo-header.edi-ed-logo-horiz
+              /= image_tag("multipage/logo-edgar-horiz.png")
+              
+          -#    
+            #baseline
+              = t("home.baseline").html_safe
+            
+            
+          / TOP NAVIGATION
+          #main-nav
+            %nav.nav-collapse.collapse.pull-right
+              %ul#nav.nav
+                /= showcase_menu_link("Accueil", locale_root_path, "index")
+                = showcase_menu_link("Fonctionnalités et Tarifs", features_path, "features")
+                = showcase_menu_link("À propos", about_path, "about")
+                %li= link_to "Blog", "http://blog.merciedgar.com", target: "_blank"
+                %li
+                  %a.btn.btn-enroll{href: "#cta-enroll"}
+                    S’inscrire
+
+    
+  = yield(:hero)
