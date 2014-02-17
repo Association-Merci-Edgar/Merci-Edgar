@@ -10,6 +10,7 @@ Edgar::Application.routes.draw do
   get "backdoor/play2"
   get "backdoor/play3"
   get "tags/index"
+  
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
@@ -26,6 +27,9 @@ Edgar::Application.routes.draw do
       # root :to => "devise/registrations#new", :as => "locale_root", constraints: {subdomain: 'soonlaunch'}
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
       match '', to: 'sessions#new', constraints: {subdomain: /.+/}
+      get "features", to: "showcase#features"
+      get "about", to: "showcase#about"
+      
 
     end
     devise_for :users, :controllers => { :registrations => "registrations", :confirmations => "confirmations", :sessions => "sessions"}

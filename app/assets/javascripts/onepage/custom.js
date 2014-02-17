@@ -24,7 +24,7 @@ jQuery("[rel='tooltip']").tooltip();
 
 
 
-jQuery('.login-btn').removeClass("btn");
+//jQuery('.login-btn').removeClass("btn");
 
 jQuery('.nav-collapse .nav > li > a').click(function(){
 			

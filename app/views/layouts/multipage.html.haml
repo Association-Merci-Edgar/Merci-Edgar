@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    = render 'showcase/head'
+  %body#thetop
+    /{"data-spy" => "scroll", "data-target" => ".scroller-spy"}
+    /
+      \################# START MAIN-WRAPPER ####################
+      \============================================================
+    .main-wrapper
+      = render 'showcase/header'
+      = yield
+      = render 'showcase/footer'
+      = render 'showcase/javascripts'
+
