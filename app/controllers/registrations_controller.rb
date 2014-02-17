@@ -1,5 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
   layout "simple"
+
+  def new
+    resource = build_resource(params[:user])
+    respond_with resource
+  end
+  
   def create
     if 1 == 2
       create_confirmation_needed

@@ -1,14 +1,15 @@
 %section.cta.cta-black#cta-enroll
-  .container
-    %h3 S’incrire pour utiliser la version de pré-lancement
-    %p Pas de carte de crédit nécessaire. Sans engagement.
+  - user = User.new
+  = form_for(user, url: new_user_registration_path, method: :get) do |f|
+    .container
+      %h3 S’incrire pour utiliser la version de pré-lancement
+      %p Pas de carte de crédit nécessaire. Sans engagement.
     
-    .row-fluid
-      .span4
-        %input{type:"text", placeholder:"Votre nom"}
-      .span4
-        %input{type:"text", placeholder:"Votre email"}
-      .span4
-        = link_to new_user_registration_path, class: "btn btn-large btn-danger btn-block" do
-          -#J’essaie Merci Edgar !
-          Je m’inscris !
+      .row-fluid
+        .span5.offset2
+          = f.text_field(:email, placeholder: "Votre email")
+        .span5
+          = f.button "Je m'inscris !", class: "btn btn-large btn-danger btn-block"
+          -#= link_to new_user_registration_path, class: "btn btn-large btn-danger btn-block" do
+            -#J’essaie Merci Edgar !
+            Je m’inscris !
