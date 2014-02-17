@@ -444,12 +444,6 @@ h1, h2, h3, h4 {
   margin-bottom:15px;
 }
 
-.slimcol {
-  margin: 0 auto;
-  width: 75%;
-}
-
-
 .slogan-secundo {  }
 
 .slogan-primo:before {
@@ -3062,7 +3056,8 @@ input[type="text"].subscribe-input{
     vertical-align: middle;
     line-height: 1px;
     margin-right: 2px;}
-    &.cta-brown {background:$dbeige2;}
+    &.cta-brown {background:$dbeige2;
+      h2{color:$dblue;}}
     &.cta-black {background:$dblue90;
       p, h3 {color:$white;}
       .btn-danger.btn-block {
@@ -3070,6 +3065,18 @@ input[type="text"].subscribe-input{
       &:hover, &:focus {background:$white; color:$dblue;};
       }
     }
+}
+.container h2 + p {text-align : center;} 
+
+p.notes {
+  padding:5px 10px;
+  color:$dbeige3;
+  @include roundcornersFX(10px);
+  background:$beige;
+  &:before{
+    font-family: 'icomoon';
+    content: "\e63d";
+  }
 }
 
 .cta input {
@@ -3080,6 +3087,8 @@ input[type="text"].subscribe-input{
     border: 2px solid $beige;
     background:$dblue90;
     color:$white;
+    padding-left: 12px;
+    padding-top: 6px;
     //@include roundcornersFX(6px);
     @include plholder ($beige);
     @include borderbox;

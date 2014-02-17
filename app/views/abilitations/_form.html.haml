@@ -2,8 +2,10 @@
   .modal-header
     %a.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
     %h3#myModalLabel
-      Ajouter un utilisateur au compte
-      = current_account.name
+      Ajouter un utilisateur
+    %br
+    au compte
+    = current_account.name
 
   = simple_form_for(@abilitation, url: account_abilitations_path) do |f|
     .modal-body
@@ -11,10 +13,9 @@
       .form-inputs
         .row-fluid
           = f.fields_for :user do |u|
-            = u.input :email, label: "Envoyer une invitation à ", placeholder: "user@example.com"
+            = u.input :email, label: "Envoyer une invitation à ", placeholder: "user@example.com", input_html: {class: "span12"}
             = u.hidden_field :label_name
 
     .modal-footer
-      /.btn.btn-secondary
-      = f.button :submit, class:'btn-primary', value:"Envoyer l'email d'invitation"
+      = f.button :submit, class:'btn-primary btn-large pull-right', value:"Envoyer l’email d’invitation"
       %button.btn.btn-link{"aria-hidden" => "true", "data-dismiss" => "modal"} Annuler

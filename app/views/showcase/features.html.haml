@@ -15,6 +15,10 @@
         %h3 Gérer votre base contacts
         %p
           Merci Edgar permet aux artistes et aux tourneurs de gérer leurs contacts professionnels (lieux, festivals, autres organisateurs de spectacles, mais aussi tout type de structure comme les média, les institutionnels, les imprimeurs, ...) à l'aide d'une interface simple et intuitive.
+        %p.notes
+          L’import de vos fichiers Xcel sera disponible en mars.
+          
+      -#
         %a.btn-iconic
           %i.ico.edi-play3
           Voir le tutoriel vidéo
@@ -53,10 +57,11 @@
         %p
           Assignez-vous des tâches à propos de tel contact, rédigez des comptes-rendus pour suivre vos différentes intéractions avec vos contacts. En un mot, faites d'Edgar votre assistant virtuel qui saura tout de vos contacts pro !
           
-      
+      -#
         %a.btn-iconic
           %i.ico.edi-play3
           Voir le tutoriel vidéo
+         
           
           
 %section.bkg-white
@@ -66,6 +71,7 @@
         %h3 Segmentez et recherchez !
         %p
           Une fois vos contacts correctement qualifiés, profitez de notre puissant moteur de recherche pour segmenter votre base de données à l'aide de recherche multi-critères (par esthétique, proximité géographique, jauge, ...) Envie de trouver dans votre base tous les lieux qui programment de la chanson, avec une jauge de moins de 100 personnes, dans un rayon de 100 km de Nantes ? Demandez à Edgar, en un clic, il vous apportera la réponse !
+      -#
         %a.btn-iconic
           %i.ico.edi-play3
           Voir le tutoriel vidéo
@@ -73,6 +79,7 @@
         .img-box
           = image_tag("multipage/screenys/scr_560_filters.jpg")
   %space 
+
 
 
 %section.bkg-white
@@ -85,11 +92,13 @@
         %h3 Géolocalisez !
         %p
           Une fois l'adresse de votre contact pro renseigné, Edgar saura le situer sur une carte. La géocalisation couplée avec notre puissant moteur de recherche vous permettra de trouver vos différents contacts (lieux, festivals, autres organisateurs de spectacles, ...) à une certaine distance d'un lieu. Pratique pour organiser une tournée !
-
+      -#
         %a.btn-iconic
           %i.ico.edi-play3
           Voir le tutoriel vidéo
   %space 
+
+
 
 %section.bkg-white
   .container
@@ -98,6 +107,9 @@
         %h3 Travaillez en équipe !
         %p
           Edgar vous permet un accès multi-utilisateurs à votre base. Vous saurez qui a rédigé le dernier compte-rendu sur tel contact, vous pourrez assigner une tâche à un de vos collèques. En un mot, vous pourrez travailler en équipe grâce à Edgar !
+        %p.notes
+          Disponible à partir  du 25 février.
+      -#
         %a.btn-iconic
           %i.ico.edi-play3
           Voir le tutoriel vidéo
@@ -105,36 +117,58 @@
         .img-box
           = image_tag("multipage/screenys/scr_560_teamwork.jpg")
   %space 
-        
+
+
+-#
+  %section.cta.cta-brown
+    .container
+      %h3
+        = link_to features_path do
+          %i.ico.edi-play3
+          Voir tous les tutoriaux vidéo
+
+
 %section.cta.cta-brown
   .container
-    %h3
-      = link_to features_path do
-        %i.ico.edi-play3
-        Voir tous les tutoriaux vidéo
-        
-        
+    .section-title
+      %h2 Les premiers pas sur Merci Edgar en vidéo :
+    <iframe src="//player.vimeo.com/video/86027838?byline=0&amp;portrait=0&amp;color=fff" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    
+    
+
+
 %section#soon-section
   .container
-    %h2.section-title Prochainement
+    .section-title
+      %h2 Prochainement
+      %p Voici ce qu'y se prépare. !! ça couter + Nous ne somme pas encore en mesure de tarifer...
     
     .row-fluid.label-blocks
       .span4
-        .label.label-large.label-info
+        .label.label-large
           %i.ico.edi-dates
         %h4 Module administration
         %p gestion et suivi d'une date vendue
         
       .span4
-        .label.label-large.label-info
+        .label.label-large
           %i.ico.edi-megaphone
         %h4 Module communication
         %p il permettra de coupler sa base de données Merci Edgar avec des outils d'envoi de mail en masse notamment
+        
+      .span4
+        .label.label-large
+          %i.ico.edi-mobile
+        %h4 Edgar Mobile
+        %p Une version mobile sera bientôt disponible.
+  -#      
+    .row-fluid.label-blocks
       .span4
         .label.label-large
           %i.ico.edi-plus3
         %h4 Et bien plus !
         %p On y travailles
+      
         
         
         
@@ -208,6 +242,6 @@
           %br
           %h4 Offre Standard
           %p Lancement très prochainement !
-          .badge 10€ / utilisateur
+          .badge 10€/mois/utilisateur
           %p.small (avec uniquement le le module gestion de contacts)
        
