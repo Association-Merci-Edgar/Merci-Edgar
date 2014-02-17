@@ -3,10 +3,10 @@
   = form_for(user, url: new_user_registration_path, method: :get) do |f|
     .container
       %h3 S’incrire pour utiliser la version de pré-lancement
-      %p Pas de carte de crédit nécessaire. Sans engagement.
+      %p Ceci est une version de test. Pas de carte de crédit nécessaire. Sans engagement.
     
       .row-fluid
-        .span5.offset2
+        .span5.offset1
           = f.text_field(:email, placeholder: "Votre email")
         .span5
           = f.button "Je m'inscris !", class: "btn btn-large btn-danger btn-block"

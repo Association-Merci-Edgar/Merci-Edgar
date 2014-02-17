@@ -35,8 +35,6 @@ $white:   #fff;
 	transition: $prop $speed ease-in-out;
 }
 
-
-
 @mixin roundcorners {
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -856,13 +854,14 @@ a .logo:hover, a .logo:focus {
   margin-top:40px;
   display: block;
   h1 {
-    display:inline-block;
+    display:block;
     margin-bottom:40px;
     text-align:center;
   }
   form{margin-bottom:30px;}
   .logotype {
     text-align: center;
+    margin-right:0;
     }
   .logo {
     font-size:110px;
@@ -903,9 +902,11 @@ a .logo:hover, a .logo:focus {
 
 legend {font-size: 20px;
    line-height: 30px;
-   margin-bottom: 15px;
+   //margin-bottom: 15px;
    border:none;
+   margin-top: 15px;
 }
+
 .hidden{display:none !important;}
 
 #new_task {
@@ -1418,6 +1419,8 @@ select.add-on {height:34px;}
 
 .inline {display:inline;}
 span.add-on {height:22px !important; display:block;}
+
+.form-horizontal input + .help-block,
 .help-block {
     margin-top: 5px;
 }
@@ -2278,7 +2281,16 @@ header {
 .pic-large {@include square(80);}//margin-right:14px; margin-top:0;}
 
 
-.row-fluid input.span12 { width:100%; min-height:40px;}
+
+.row-fluid input.span6 {
+  min-height:40px;
+  margin-left: 1.5641%;
+  &:first-child {margin-left:0}
+}
+
+
+
+.row-fluid input.span12 { width:100%; min-height:40px; @include borderbox;}
 
 input.fullwidth { width:100%;
   @include borderbox;
