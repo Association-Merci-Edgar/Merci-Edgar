@@ -351,6 +351,8 @@ active_admin.css: active_admin-9ec2ea2ba12aea017597f8ad9b5b2cfd.css
 active_admin/index.css: active_admin-9ec2ea2ba12aea017597f8ad9b5b2cfd.css
 application.css: application-da4ea72b1fa7e30e2c5311e025b3a363.css
 application/index.css: application-da4ea72b1fa7e30e2c5311e025b3a363.css
+multipage.css: multipage-77d86273a2b39ca6a0f3c89e73ba5e25.css
+multipage/index.css: multipage-77d86273a2b39ca6a0f3c89e73ba5e25.css
 onepage.css: onepage-351ade260febd90365cac0e6fab7f3be.css
 onepage/index.css: onepage-351ade260febd90365cac0e6fab7f3be.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
