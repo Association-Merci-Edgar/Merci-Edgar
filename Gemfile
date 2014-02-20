@@ -63,7 +63,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'mocha'
+  gem 'mocha', require: false
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
