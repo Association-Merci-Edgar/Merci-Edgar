@@ -29,13 +29,13 @@
           - @account.users.each do |user|
             %li
               .meta
-                .badge.badge-red= user.current_abilitation.kind
-              -#.actions
-                %a.shybtn{href: "/fr/people/41/edit"}
+                .badge.badge-red= t(user.current_abilitation.kind)
+              .actions
+                -#%a.shybtn{href: "/fr/people/41/edit"}
                   %i.entypo.edi-pencil
-                -#
-                  %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
-                    %i.entypo.edi-cross
+                
+                = link_to account_abilitation_path(user.current_abilitation), method: :delete, data: { confirm: "Are you sure ?" }, class: "shybtn" do
+                  %i.entypo.edi-cross
             
               %a{href: "#"}
                 %h3= user.name
@@ -45,7 +45,7 @@
 
 
           -#_____________________________________________________ ADD NEW
-          -#.btn-in-list
+          .btn-in-list
             = link_to new_account_abilitation_path(account_id: current_account.id), remote:true do
               %i.entypo.edi-plus3
               %span

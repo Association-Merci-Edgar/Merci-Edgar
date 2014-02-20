@@ -23,6 +23,10 @@ class Account < ActiveRecord::Base
   before_validation :set_domain_name
   before_validation :ensure_domain_uniqueness, :on => :create
 
+  def to_s
+    self.name
+  end
+  
   def set_domain_name
     if domain_changed?
       domain = domainnize(domain)
