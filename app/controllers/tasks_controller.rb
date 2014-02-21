@@ -69,6 +69,8 @@ class TasksController < AppController
 
   def index
     @tasks = Task.order("due_at ASC")
+    @tasks = @tasks.tracked_by(params[:user_id]) if params[:user_id]
+    @tasks = @tasks.by_project(params[:project_id]) if params[:project_id]
     @pending_tasks = @tasks.pending
     @completed_tasks = @tasks.completed
     respond_to do |format|

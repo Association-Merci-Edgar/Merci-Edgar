@@ -29,69 +29,40 @@
     .dropdown
       / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Tous les utilisateurs
+        = params[:user_id].present? ? User.find(params[:user_id]) : "Tous les utilisateurs"
         %i.entypo.caret-ed
       
       %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/per1.jpg"
-            Utilisateurs A
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/per2.jpg"
-            Utilisateurs B
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/per3.jpg"
-            Utilisateurs C
+        - if params[:user_id]
+          %li{role: "presentation"}
+            = link_to "Tous les utilisateurs", tasks_path(params.except(:user_id)), role: "menuitem", tabindex: "-1"
+        - current_account.users.each do |account_user|
+          %li{role: "presentation"}
+            = link_to tasks_path(params.merge(user_id: account_user.id)), role: "menuitem", tabindex: "-1" do
+              .pic.pic-mini= image_tag account_user.avatar
+              = account_user
             
           
     /______________________________________________________ PROJECTS
     .dropdown
       / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Tous les projets
+        = params[:project_id].present? ? Project.find(params[:project_id]) : "Tous les projets"
         %i.entypo.caret-ed
-
       %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/pro1.jpg"
-            Projets A
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/pro2.jpg"
-            Projets B
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/pro3.jpg"
-            Projets C
+        - if params[:project_id]
+          %li{role: "presentation"}
+            = link_to "Tous les projets", tasks_path(params.except(:project_id)), role: "menuitem", tabindex: "-1"
+        - current_account.projects.each do |account_project|
+          %li{role: "presentation"}
+            = link_to tasks_path(params.merge(project_id: account_project.id)), role: "menuitem", tabindex: "-1" do
+              .pic.pic-mini= image_tag account_project.avatar
+              = account_project
       -#
         %li.divider{role: "presentation"}
         %li{role: "presentation"}
           %button.btn-primary Créer une liste
           
-    /______________________________________________________ SUBJECTS
-    .dropdown
-      / Link or button to toggle dropdown
-      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Tous les sujets
-        %i.entypo.caret-ed
-
-      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/pro1.jpg"
-            Personne Untel
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini= image_tag "squared/pro2.jpg"
-            Lieux X
-        %li{role: "presentation"}
-          %a{href: "#", role: "menuitem", tabindex: "-1"}
-            .pic.pic-mini
-            Général
 
   
 
