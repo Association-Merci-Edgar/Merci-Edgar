@@ -11,8 +11,8 @@
         .notice.info= notice
       - if alert
         .notice.error= alert
-      = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}", :class=>"span6 inline"
-      = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}", :class=>"span6 inline"
+      = f.input_field :email, autocomplete: "off", :autofocus => true, :placeholder => "#{t("simple_form.labels.defaults.email")}", :class=>"span12"
+      = f.input_field :password, :placeholder => "#{t("simple_form.labels.defaults.password")}", :class=>"span12"
     
     .link.pull-right
       = render "devise/shared/links"

@@ -15,10 +15,58 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_self
-//= require multipage/tinyscrolling
 
+
+/*
+  = require multipage/tinyscrolling
+*/
 
 jQuery('document').ready(function() {
+  /*
+  $('[data-toggle="modali"]').on('click', function (event) {
+      event.stopPropagation(); event.preventDefault();
+      console.log("modali");
+      var target = $(this).attr("data-content");
+      console.log("modali "+target);
+      
+      var offset = $(this).offset();
+      $(target).css({top: offset.top, left: offset.left});
+         
+      
+      //$("#mydiv").parent().css({position: 'relative'});
+      //$("#mydiv").css({top: 200, left: 200, position:'absolute'});
+      
+      
+      $(target).toggle()
+      
+  });
+  */
+  /*
+  $('.collapse').on('show', function () {
+    // do something…
+    console.log("acc")
+  })
+  */
+  /*
+      $('.collapse').on('shown', function (event) {
+        event.preventDefault();
+        console.log("accu")
+          //var offset = $('.accordion-toggle.in').offset();
+          var offset = $('.accordion-toggle:not(.collapsed)').offset();
+          console.log(offset.top)
+              if(offset)$('html,body').scrollTop( offset.top); //offset.top + 80
+      });
+      */
+      //$('#collapse1').collapse({ toggle: true })
+  
+      //$(".collapse").collapse()
+      /*
+      $('.accordion-toggle').click(function(){
+        $('.accordion-toggle').removeClass("in");
+        $(this).addClass("in");
+      }
+      */
+  
 
   // display validation errors for the "request invitation" form
   if (jQuery('.alert-error').length > 0) {

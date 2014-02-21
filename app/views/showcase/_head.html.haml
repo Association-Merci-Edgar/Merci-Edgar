@@ -13,6 +13,7 @@
 
 %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/edgar-head.png')}", :property => "og:image"}/
 %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/vitrinne-banner-launch2.jpg')}", :property => "og:image"}/
+= yield :facebook_og
 
 %meta{:content => "image/jpg", :property => "og:image:type"}/
 %meta{:content => "620", :property => "og:image:width"}/
