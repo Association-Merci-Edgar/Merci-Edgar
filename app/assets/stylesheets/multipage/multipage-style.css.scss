@@ -101,11 +101,12 @@ body {
     -moz-font-smoothing: antialiased;
     -o-font-smoothing: antialiased;
     
-  padding-top:80px;
+  
 	color: $dblue;
 	background:$beige;
 }
-
+//body{padding-top:80px;}
+.main-wrapper{padding-top:80px;}
 
 /* ______________________________________________________________ Headlines   */
 h1, h2, h3, h4 {font-weight:300; display:inline; line-height:inherit;}
@@ -554,7 +555,7 @@ small { color:$dblue;
 	margin-left:0px;
 }
 
-
+.modali {position:absolute; width:560px; height : auto;}
 
 /**************************** EVENTS ANIMATED ***************************/	
 /*
@@ -3218,7 +3219,6 @@ section.princing {
   top:13px;
 }
 
-body{padding-top:80px;}
 
     
 .container {max-width: 980px;}

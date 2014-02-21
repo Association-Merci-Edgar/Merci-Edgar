@@ -4,7 +4,7 @@
   
     .account-tab
       = Account.find(Account.current_id).name.truncate(18)
-      
+    %i.entypo.edi-cog.righticon
   
 %nav.leftmenu
   .sidebar-nav
@@ -63,7 +63,7 @@
                       .pic.pic-mini= image_tag c.fine_model.avatar_url(:thumb)
                       = c
                 
-      %li
+      
         
                         
 .footer
