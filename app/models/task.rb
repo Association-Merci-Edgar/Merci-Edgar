@@ -34,7 +34,8 @@ class Task < ActiveRecord::Base
 
   validates :user, :name, presence: true
 
-  scope :tracked_by, lambda { |user| where('user_id = ? OR assigned_to = ?', user.id, user.id) }
+  scope :tracked_by, lambda { |user_id| where('user_id = ? OR assigned_to = ?', user_id, user_id) }
+  scope :by_project, lambda { |project_id| where(project_id: project_id) }
 
   scope :pending,       where('completed_at IS NULL').order('tasks.due_at, tasks.id')
   scope :assigned,      where('completed_at IS NULL AND assigned_to IS NOT NULL').order('tasks.due_at, tasks.id')
