@@ -330,7 +330,10 @@ ul.social-left li {
   padding: 5px 12px;
   height:16px;
   border:none;
+  
+  
   @include transition(background, .2s);
+  
   &:hover {
   background:$dblue;
   color:#fff;
@@ -340,14 +343,19 @@ ul.social-left li {
 }
 
 .login-submit, .login-btn, .close-btn {
-  background:$beige;
-  color:$dblue;
+  //background:$beige;
+  //color:$dblue;
+  background:$green;
+  color:$white;
   font-weight:bold;
   &:hover {
-  background:$orange;
-  color:#fff;
+  //background:$orange;
+  //color:$white;
+  background:$dblue;
   }
 }
+
+
 
 .navbar .nav > li > a.btn-enroll {
   text-shadow:none;
@@ -363,9 +371,10 @@ ul.social-left li {
 }
 
 .close-btn {
-  position: absolute;
-  right:0px;
-  //margin-top: -26px;
+  //position: absolute;
+  //right:0px;
+  margin-top: -26px;
+  
   padding: 4px 8px;
   &:hover {
   background:$dblue90;
@@ -633,7 +642,7 @@ small { color:$dblue;
   padding : 10px 0px;
   padding-bottom:5px;
   margin: 0;
-  margin-left:32px;
+  margin-left:28px;
   font-weight:bold;
   &:hover {
   background:none;
@@ -2795,16 +2804,22 @@ input[type="text"].subscribe-input{
 	}
  
 }
-
-
+// ODD
+/*
+.main-wrapper section.feat-section {
+  .span5 {float:right;}
+}
+.main-wrapper section.feat-section:nth-child(2n+3) {
+  .span5 {float:left;}
+  background:$green;
+}
+*/
 
 @media (max-width: 767px){
 	/*.hero-unit .slogan {background:#FFF;}
 	.hero-unit .half {display:none;}
 	.hero-unit .span8 { float:right;}
 	.hero-unit .span4 { float:left; }*/
-	
- 
 	
 	.btn-white{
 		background:none;

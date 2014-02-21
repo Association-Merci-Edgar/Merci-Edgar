@@ -1,11 +1,40 @@
-= link_to home_path do
-  .logo
-    #logo-nav
-  
-    .account-tab
-      = Account.find(Account.current_id).name.truncate(18)
-    %i.entypo.edi-cog.righticon
-  
+
+/______________________________________________________ LINK TO HOMEPAGE
+-#
+  = link_to home_path do
+    .logo
+      #logo-nav
+      .account-tab
+        = Account.find(Account.current_id).name.truncate(18)
+      %i.ico.edi-cog.righticon
+    
+    
+/______________________________________________________ ACCOUNT SWITCH
+.dropdown
+  %a{"data-toggle" => "dropdown"}
+    .logo
+      #logo-nav
+      .account-tab
+        = Account.find(Account.current_id).name.truncate(18)
+      %i.ico.edi-cog.righticon
+      
+      
+  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu-accounts", role: "menu"}
+    %li{role: "presentation"}
+      %span
+        Changer pour le compte :
+    %li{role: "menuitem"}
+      %a
+        %i.ico.edi-cog
+        account 1
+    
+    %li{role: "menuitem"}
+      %a
+        %i.ico.edi-cog
+        account 2
+        
+          
+
 %nav.leftmenu
   .sidebar-nav
     %ul.nav.nav-list
@@ -13,45 +42,45 @@
       -# %li#account-nav.user-tab
       %li#accounts-tab
         /%a.user-tab.rightbt{:href => "#"}
-        /%i.entypo.edi-cog
+        /%i.ico.edi-cog
         /%a.user-tab{:href => "/accounts"}
         
         = link_to edit_user_path(current_user) do
           %span
             = current_user.display_name.truncate(18)
-          %i.entypo.edi-cog.righticon
+          %i.ico.edi-cog.righticon
           /User: #{@user.name}
       
       = menu_link("Bienvenue", welcome_path, "edi-new",["welcome"],nil)
       -#= menu_link("Tableau de bord", dashboard_path, "edi-gauge",["home"],nil)
       = menu_link("Contacts", contacts_path, "edi-book",["contacts","venues","people"], Contact.count)
-      = menu_link("Tâches", tasks_path, "edi-check_2",["tasks"], Task.pending.size)
+      = menu_link("Tâches", tasks_path, "edi-check",["tasks"], Task.pending.size)
             
       %li#opportunities-nav.comingsoon
         -#= link_to opportunities_path do
         %a{:href => "#"}
 
-          %i.entypo.edi-contracts
+          %i.ico.edi-contracts
           Contrats
           
       %li#campaigns-nav.comingsoon
         -# = link_to campaigns_path do
         %a{:href => "#"}
-          %i.entypo.edi-megaphone
+          %i.ico.edi-megaphone
           Campagnes
           
       %li#search-nav
         //= link_to search_index_path do
         %a{:href => "#"}
-          %i.entypo.edi-search
+          %i.ico.edi-search
           Recherche
         
       %li#recent-nav.click-nav
         .ul.no-js
           %a.clicker{:href => "#"}
-            %i.entypo.edi-pushpin
+            %i.ico.edi-pushpin
             Dernièrement
-            %i.entypo.edi-arrow-down-5.rightbt
+            %i.ico.edi-arrow-down-5.rightbt
      
           %ul.nav.nav-list.recent.comingsoon
             /%li.nav-header Récemment consulté
@@ -68,23 +97,23 @@
                         
 .footer
   /%a.pull-right{:href => "#"}
-  /  %i.entypo.edi-arrow-left-5
+  /  %i.ico.edi-arrow-left-5
       
   = link_to destroy_user_session_path, :method => :delete, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion", :id=>"#logout-nav" do
     /%a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion"}
-    %i.entypo.edi-moon
-    /%i.entypo.edi-cross-3
+    %i.ico.edi-moon
+    /%i.ico.edi-cross-3
     
   %a#start_tour.start{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Tour"}
-    %i.entypo.edi-directions
+    %i.ico.edi-directions
     
   %a#help-nav{:href => "https://merciedgar.uservoice.com/knowledgebase", "target" => "_blank", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Aide"}
-    %i.entypo.edi-info
-    /%i.entypo.edi-lifebuoy
-    /%i.entypo.edi-compass
-    /%i.entypo.edi-help
+    %i.ico.edi-info
+    /%i.ico.edi-lifebuoy
+    /%i.ico.edi-compass
+    /%i.ico.edi-help
     
   %a#uservoice-nav{"data-uv-default-mode" => "feedback", "data-uv-forum-id" => "170962", "data-uv-lightbox" => "classic_widget", "data-uv-link-color" => "#007dbf", "data-uv-mode" => "full", "data-uv-primary-color" => "#cc6d00", "data-uv-support-tab_name" => "Oups ! Je rencontre un problème !", href: "javascript:void(0)", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Suggestions"}
-    %i.entypo.edi-light-bulb
+    %i.ico.edi-light-bulb
     /Suggestions et Support
 

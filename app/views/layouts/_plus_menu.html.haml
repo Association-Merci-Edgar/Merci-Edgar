@@ -12,13 +12,13 @@
     %li
       /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
       = link_to new_contact_task_path(contact), remote:true do
-        %i.entypo.edi-check_2
+        %i.entypo.edi-check
         une tâche
 
   - unless @person.present? || @structure.present?
     %li
       = link_to new_task_path, remote:true do
-        %i.entypo.edi-check_2
+        %i.entypo.edi-check
         une tâche générique
   %li
     - if @structure.present?
