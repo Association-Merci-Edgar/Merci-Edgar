@@ -42,7 +42,7 @@ module ApplicationHelper
     class_name = controller.include?(controller_name) ? "active" : ""
     badge_tag = content_tag(:span,badge, class:"badge")
     link_tag = link_to link do
-      content_tag(:i,nil,class:"entypo #{icon}") + " " + link_text + badge_tag
+      content_tag(:i,nil,class:"ico #{icon}") + " " + link_text + badge_tag
     end
     content_tag(:li,link_tag, id: "#{controller[0]}-tab", class: class_name)
   end

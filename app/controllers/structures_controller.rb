@@ -13,10 +13,10 @@ class StructuresController < AppController
     @structures.each { |s| json.push({value:s.name, label:s.name, new: "false", kind: I18n.t(s.kind, scope: "activerecord.models"), avatar: s.fine_model.avatar_url(:thumb)}) }
     unless @structures.map(&:name).map(&:downcase).include?(params[:term].downcase)
       if params[:type] == "ShowHost"
-        json.push({value:params[:term], label: "Creer le lieu " + params[:term], new:"true", show_host_kind:"Venue"})
-        json.push({value:params[:term], label: "Creer le festival " + params[:term], show_host_kind: "Festival", new:"true"})
+        json.push({value:params[:term], label: "Créer le lieu " + params[:term], new:"true", show_host_kind:"Venue"})
+        json.push({value:params[:term], label: "Créer le festival " + params[:term], show_host_kind: "Festival", new:"true"})
       else  
-        json.push({value:params[:term], label: "Creer la structure " + params[:term], new:"true"})
+        json.push({value:params[:term], label: "Créer la structure " + params[:term], new:"true"})
       end
     end
     render json: json

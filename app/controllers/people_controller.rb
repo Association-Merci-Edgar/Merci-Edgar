@@ -9,7 +9,7 @@ class PeopleController < AppController
       @contacts.each { |c| json.push({value:c.name, label:c.name, new: "false", avatar: c.avatar_url(:thumb)}) }
       
       unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
-        json.push({value:params[:term], label: "Creer la personne " + params[:term], new:"true"})
+        json.push({value:params[:term], label: "Créer la personne " + params[:term], new:"true"})
       end
       
       render json: json

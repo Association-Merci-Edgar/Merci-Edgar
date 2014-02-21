@@ -171,16 +171,12 @@ textarea {@include borderbox;}
 
 .venue_addresses_more_info textarea { height:80px; width:100%;}
 
-
 .inline-form {
   label, input, .control-group {display:inline;}
   input, select {margin-bottom:4px;}
   .control-group { margin-right:6px;}
   select#kms {width:90px;}
 }
-
-
-
 
 .caret {
   border-color:$dblue transparent transparent transparent;
@@ -196,11 +192,11 @@ textarea {@include borderbox;}
 
 /* ________________________________________________________________________ ICO  */
 
-.entypo:before { font-family: 'Entypo'; line-height: 1;}
+.entypo:before { font-family: 'icomoon'; line-height: 1;}
 
 .ico {vertical-align: middle; font-size:22px; margin-left:2px;
   border-bottom:none !important;
-  &:before { font-family: 'Entypo'; line-height: 1;}
+  &:before { font-family: 'icomoon'; line-height: 1;}
   &:visited, &:active, &:link {color:$dblue;} 
 }
 
@@ -256,8 +252,8 @@ textarea {@include borderbox;}
 
 
 a, .btn-link {color:$dblue;
-  &:hover, &:active, &:focus {color:$green; text-decoration:none;}
-}
+  &:hover, &:focus {color:$green; text-decoration:none;}
+} //&:active,
 
 .btn.btn-link {color:$dblue; padding: 4px 19px;}
 
@@ -299,7 +295,7 @@ a, .btn-link {color:$dblue;
 	//@include transition("all", 0.2s);
 }
 
-.entypo {
+.ico {
 	margin-right: .1em;
 	//display:block;
 	vertical-align: middle; 
@@ -582,8 +578,8 @@ form section .section-title {padding-top:80px;}
 	display:none; position:fixed;
 	top: 30px; left: 0px;
 }
-/*.togglemenu .entypo { width:20px;}*/
-.togglemenu .entypo:before {font-size:24px;  color:#fff;}
+/*.togglemenu .ico { width:20px;}*/
+.togglemenu .ico:before {font-size:24px;  color:#fff;}
 .togglemenu .btn {
 	background-image: none;
 	background-color: $dblue;
@@ -594,7 +590,7 @@ form section .section-title {padding-top:80px;}
 
 /* ________________________________________________________ INDEX MAP SHOW_MAP   */
 
-.message .entypo {font-size:16px;
+.message .ico {font-size:16px;
 vertical-align: initial;
 }
 
@@ -647,7 +643,7 @@ vertical-align: initial;
   .logo {padding-left:13px;}
   .account-tab, .user-tab span {display:none;}
   .user-tab .righticon {margin-left: 3px; font-size: 18px;}
-  li a i.entypo { margin-right:20px; }
+  li a i.ico { margin-right:20px; }
   .footer {width:30px;}
   .righticon {
     display: block;
@@ -667,8 +663,8 @@ vertical-align: initial;
 
 .leftpanel { overflow:hidden;}
 .leftpanel i { font-size:24px;}
-.leftpanel .entypo.edi-check_2 { height:24px;} // tasks icon
-.leftpanel .entypo.edi-check_2:before { font-size:20px; margin-left:2px;}
+.leftpanel .ico.edi-check { height:24px;} // tasks icon
+.leftpanel .ico.ajouterefore { font-size:20px; margin-left:2px;}
 
 
 .logo {
@@ -685,11 +681,19 @@ vertical-align: initial;
 }
 
 
-.leftpanel .entypo { width:30px; display:inline-block;}
+.leftpanel .ico { width:30px; display:inline-block;}
 
-//.leftpanel .entypo.logotype:before { font-size:50px;}
+//.leftpanel .ico.logotype:before { font-size:50px;}
 a .logotype, .edi-logoedgar { color: $dblue;}
 
+
+.leftpanel ul.dropdown-menu {position:fixed; left:240px; top:27px;
+  li span{padding: 3px 20px;}
+  li .ico {width:17px;}
+  min-width:240px;
+  }
+  
+.leftpanel.small ul.dropdown-menu {left:78px;}
 
 .footer {
   position:fixed;
@@ -706,7 +710,7 @@ a .logotype, .edi-logoedgar { color: $dblue;}
   #uservoice-nav {color:$orange;
     &:hover{color:$white;}
     }
-  .entypo{width:auto; min-width:10px;}
+  .ico{width:auto; min-width:10px;}
 }
 
 a.pull-right {float:right;}
@@ -718,7 +722,7 @@ a.pull-right {float:right;}
 	padding : 13px 0 14px 26px;// 15px 0 15px 26px; // 13px 0px 12px 24px;
 	display:block;
 	&:focus { text-decoration:none;}
-	i.entypo { margin-bottom:3px; }//6px
+	i.ico { margin-bottom:3px; }//6px
 }
 
 .leftmenu li a:hover, .leftmenu li a:focus, .leftmenu li.active a, .leftmenu li.active a:hover, .leftmenu li.active a:focus, .leftmenu li.tour-step-backdrop a  {
@@ -728,16 +732,40 @@ a.pull-right {float:right;}
 }
 .leftmenu li a:hover { background: $dbeige2;} // don't move
 
+
+a .logo {
+  cursor:pointer;
+  &:hover, &:focus, &:active {
+  background-color: $dbeige2;
+  color:$dblue;
+  #logo-nav {background-position: bottom left ;}
+  .righticon {display:block;}
+}};
+
+
+.leftpanel.small {
+  a .logo { 
+    .righticon {display:none;}
+    &:hover, &:focus {
+    .righticon {display:none;}
+    }
+  }
+}
+
 .leftmenu .righticon,
 .logo .righticon {
-  float: right; display:none; margin-top:6px; margin-right: 6px;}
-
-//.leftmenu, .logo { }
+  float: right; display:none; margin-top:6px; margin-right: 6px;
+  
+}  
+.logo .righticon {
+  margin-top: 37px;
+}
 
 .leftmenu a .badge { float:right; margin-top:4px; margin-right:26px;
   background:none; border: solid 1px $lblue; color:$lblue;}
 
-.leftmenu li, .logo {width:240px;}
+.leftmenu li {width:240px;}
+.leftmenu .logo { width: initial; }
 
 //.click-nav {}
 .nav li.comingsoon a, .comingsoon li a {color:$vlblue;}
@@ -757,7 +785,7 @@ i {font-style: normal;}
 .recent { //margin-top:6px;
   display: none;}
 .recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 44px;}
-//.recent .entypo {width:20px;}
+//.recent .ico {width:20px;}
 .recent .pic { margin-top:2px;}
 /*
 .recent .pic i {
@@ -769,7 +797,7 @@ i {font-style: normal;}
 
 
 /* NAV BAR / rightbt _______________________________ */
-
+/*
 .rightbt {
 	display : block;
 	float: right;
@@ -779,8 +807,11 @@ i {font-style: normal;}
 }
 
 .nav li a.rightbt:hover {background-color: transparent;}
-li a.rightbt {float:right;/* background-color:#9F0;*/}
+li a.rightbt {float:right;
+// background-color:#9F0;
+}
 .rightbt i { margin-left:-14px;  padding-top:7px;}
+*/
 
 .account-tab { margin-left: 55px; font-size:16px; padding-top:30px; font-weight:bold;}
 /*.account-tab { background: url('appli/nav-logo-anim.gif') top left no-repeat;
@@ -790,13 +821,10 @@ li a.rightbt {float:right;/* background-color:#9F0;*/}
   padding-left: 55px;
   }
 */
+
 .account-tab{margin-left:0; display:inline-block;}
 
-a .logo:hover, a .logo:focus {
-  background-color: $dbeige2;
-  color:$dblue;
-  #logo-nav {background-position: bottom left ;}
-};
+
 
 #logo-nav {
   display: inline-block;
@@ -835,12 +863,24 @@ a .logo:hover, a .logo:focus {
   -o-transform:rotate(180deg); //Opera
 }
 	
-	
-/*a.rightbt .entypo { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
-//.rightbt .entypo{color: #999;  font-size:16px;}
-//.entypo.rightbt { font-size:16px;}
 
-//.rightbt:hover .entypo:before {color: #000;}
+a.btn-iconic {
+  display:inline-block;
+  color:$green;
+  &:hover{color:$orange;};
+  .ico {
+    font-size: 34px;
+    vertical-align: middle;
+    line-height: 1px;
+    margin-right: 2px;
+  }
+}
+
+/*a.rightbt .ico { width:3px; padding:O;    top:Opx; margin-right: 3px;}*/
+//.rightbt .ico{color: #999;  font-size:16px;}
+//.ico.rightbt { font-size:16px;}
+
+//.rightbt:hover .ico:before {color: #000;}
 
 /*____________ */
 
@@ -1661,7 +1701,7 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
   margin-top: 0px;
 }
 
-.ui-menu .entypo {
+.ui-menu .ico {
   font-size: 25px;
   margin-right: 2px;
  // margin-left: -1px;
@@ -1728,8 +1768,8 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
     border:none;
     z-index:2200;
     position:absolute;
-    //top:415px;
-    top:467px;
+    top:415px;
+    //top:467px;
     height:52px;
     line-height:52px;
     width:100%;
@@ -2003,7 +2043,10 @@ ul.tagit li.tagit-choice-editable {
   right:10px;
 }
 
-.mini-map { position:absolute; top:46px; z-index:2; height:80px; width:120px; right:68px;
+.mini-map { position:absolute;
+  //top:46px; 
+  top:38px;
+  z-index:2; height:80px; width:120px; right:68px;
   &.france {background: url(appli/sprites/france-minimap-sprite.png) no-repeat top left;}
 }
 .mini-map.france.reg-1 {background-position: -5px -5px;}
@@ -2118,7 +2161,8 @@ button.shybtn {padding:4px 8px;}
   .content {font-size:15px;color:$dblue;}
   h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
   &>li {
-    padding: 20px 0 10px;
+    //padding: 20px 0 10px;
+    padding: 13px 0 4px;
     min-height:66px;
     
     &.list-header { padding:0; min-height: 10px; border:none;
@@ -2423,7 +2467,7 @@ ul.social-list {
 //.dblue{color:$dblue;}
 
 /*
-.rightrowel .entypo {display:inline-block;}
+.rightrowel .ico {display:inline-block;}
 .rightrowel ul {padding-top: 6px; border-top: #CCC solid thin; margin-top:16px;}
 .rightrowel .nav-header {display:inline-block; padding-left:0;}
 .rightrowel ul a { display:inline;}
@@ -2600,9 +2644,29 @@ form .tabbable .tab-pane > *
 
 
 /* ___________________________________________________  Bootstrap dropdown-menu  */
+
+.dropdown-menu > li[role="presentation"] {padding: 10px 0;}
+
 .dropdown-menu > li > a {
-  &:hover, &:focus { background:$green; }
+  padding: 6px 20px 9px;
+  &:hover, &:focus { background:$green;
+  }
 }
+
+.dropdown-menu {
+  color:$mblue;
+  padding: 0;
+  border:none;
+  @include roundcornersFX(3px);
+  & > li {
+    &:first-child a {padding-top:12px;}
+    &:last-child a {padding-bottom:12px;}
+  }
+}
+
+
+
+
 .leftpanel.small {
   .righticon { margin-left: 6px;}
   #accounts-tab a>span {display:none;}
