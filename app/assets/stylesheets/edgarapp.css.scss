@@ -728,7 +728,9 @@ a.pull-right {float:right;}
 }
 .leftmenu li a:hover { background: $dbeige2;} // don't move
 
-.leftmenu .righticon {float: right; display:none;margin-top:6px; margin-right: 6px;}
+.leftmenu .righticon,
+.logo .righticon {
+  float: right; display:none; margin-top:6px; margin-right: 6px;}
 
 //.leftmenu, .logo { }
 

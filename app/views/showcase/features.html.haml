@@ -7,6 +7,14 @@
       %h4 Voici vos nouveaux meilleurs amis :
       = image_tag("multipage/showcase-banner-feat.png")
       
+      
+      
+- content_for :facebook_og do
+  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_teamwork.jpg')}", :property => "og:image"}/
+  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_map.jpg')}", :property => "og:image"}/
+  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_filters.jpg')}", :property => "og:image"}/
+  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_reporting.jpg')}", :property => "og:image"}/
+      
 %section.bkg-white
   %space
   .container
@@ -98,7 +106,7 @@
           Voir le tutoriel vidéo
   %space 
 
-
+  
 
 %section.bkg-white
   .container
