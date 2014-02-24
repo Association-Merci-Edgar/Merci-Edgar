@@ -118,6 +118,7 @@
     %i.ico.edi-light-bulb
     /Suggestions et Support
     
-  %a#ed-news-nav{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Nouveautés"}
+  = link_to announcements_path, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Nouveautés", :id=>"ed-news-nav" do
     %i.ico.edi-book2
     .badge.badge-mini 3
+
