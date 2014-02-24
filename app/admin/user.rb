@@ -1,11 +1,11 @@
 ActiveAdmin.register User do
-
+=begin
   sidebar "Abilitation Details", only: [:show, :edit] do
     ul do
       li link_to("Abilitations", admin_user_abils_path(user))
     end
   end
-
+=end
   index do
     column :id do |user|
       link_to user.id, admin_user_path(user)
@@ -18,9 +18,31 @@ ActiveAdmin.register User do
 
   end
   
-end
+  show do
+    attributes_table do
+      row :id
+      row :email
+      row "account" do |user|
+        html = ""
+        user.abilitations.each do |ab|
+          html << link_to("#{ab.account.name} (#{ab.kind})", admin_account_path(ab.account))
+          html << "<br>"
+        end if user.abilitations.any?
+        html.html_safe
+      end
 
-ActiveAdmin.register Abilitation, as: "Abil" do
+      row :first_name
+      row :last_name
+      row :name
+      row :confirmed_at
+      row :created_at
+      row :last_sign_in_at
+    end
+  end
+  
+end
+=begin
+ActiveAdmin.register Abilitation, as: "Abili" do
   belongs_to :user
   navigation_menu :user
   
@@ -32,3 +54,4 @@ ActiveAdmin.register Abilitation, as: "Abil" do
     end
   end
 end
+=end
