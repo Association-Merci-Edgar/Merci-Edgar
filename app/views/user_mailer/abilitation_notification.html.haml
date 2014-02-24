@@ -5,11 +5,11 @@
   %body
     %h1 Invitation
     %p
-      = @manager.name 
-      vous donne accès à la base du compte
+      = @manager
+      = "vous invite à accéder à la base Merci Edgar du compte #{@account.name}."
       = @account.name 
       
     %p
-      Lien pour y accéder :
+      Merci de cliquer sur le lien suivant pour y accéder :
       = link_to "Accéder au compte #{@account.name}", locale_root_url(locale: :fr, subdomain: @account.domain)
       

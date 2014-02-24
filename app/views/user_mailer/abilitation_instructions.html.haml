@@ -3,10 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1 Welcome
+    %h1 Bonjour
     %p
-      = @manager.name 
-      is pleased to invite you to try 
+      = @manager 
+      = "vous invite à accéder à la base Merci Edgar du compte #{@account.name}."
+      
       = #{link_to ENV["DOMAIN"], root_url}.
-    %p Please click the link below to confirm your email address and set your password:
-    %p= link_to 'Confirm my account', confirmation_url(@member, :confirmation_token => @member.confirmation_token, subdomain: @account.domain, :locale => I18n.locale)
+    %p Merci de cliquer sur le lien suivant pour confirmer votre compte :
+    %p= link_to 'Confirmer mon compte Merci Edgar', confirmation_url(@member, :confirmation_token => @member.confirmation_token, subdomain: @account.domain, :locale => I18n.locale)

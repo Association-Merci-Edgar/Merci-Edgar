@@ -7,7 +7,7 @@ class AppController < ApplicationController
       if ! current_user.authorized_for_domain?(request.subdomain)
         #raise  ActionController::RoutingError.new('Not Found')
         sign_out current_user
-        redirect_to root_path
+        redirect_to root_path, notice: "Vous n'avez pas le droit d'accéder à cette page"
       end
     end
   end
