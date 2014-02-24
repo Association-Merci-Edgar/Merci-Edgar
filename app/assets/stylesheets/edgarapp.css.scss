@@ -1836,6 +1836,12 @@ section {
 .badge-green {background:$green2;}
 .badge.badge-grey {background:$mblue;}
 
+
+.badge-member {background:$blue;}
+.badge-manager {background:$red;}
+.badge-notif {background:$green;}
+
+
 .list-large li .badge.badge-capsule {
   @include roundcornersFX(30px);
   //border:$orange 1px solid;
