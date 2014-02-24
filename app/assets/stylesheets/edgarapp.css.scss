@@ -3,6 +3,7 @@ $dblue:   rgba(48, 48, 58, 1); //#30303a;
 $dblue90: rgba(58, 58, 68, 1); //#45454e;
 $dblue60:   lighten( $dblue, 60% );
 $mblue:   lighten( $dblue, 20% );
+$lmblue:   lighten( $dblue, 30% );
 $lblue:   lighten( $dblue, 40% );
 
 $vlblue:  rgba(131, 131, 137, 1); //lighten( $dblue, 60% );
@@ -495,7 +496,7 @@ h2 {
 h3.message {line-height: 36px;}
 
 section > h4 {display:block; margin-bottom:24px;}
-.section-title {font-size:24px; margin-bottom:24px;}
+.section-title {font-size:24px; margin-bottom:30px;}
 
 .bold {font-weight:bold;}
 
@@ -700,7 +701,7 @@ a .logotype, .edi-logoedgar { color: $dblue;}
   bottom:0px;
   padding: 5px 25px;
   margin-bottom:12px;
-  a {color:$mblue; }
+  a {color:$lmblue; }
   a:hover{color:$white;};
   i {
     font-size:18px;
@@ -730,8 +731,8 @@ a.pull-right {float:right;}
   color:$dblue;
   & .righticon {display:block;}
 }
-.leftmenu li a:hover { background: $dbeige2;} // don't move
-
+.leftmenu li:not(.comingsoon) a:hover { background: $dbeige2;} // don't move
+.leftmenu li.comingsoon a:hover { background: $dblue90; cursor:default;} 
 
 a .logo {
   cursor:pointer;
@@ -761,7 +762,7 @@ a .logo {
   margin-top: 37px;
 }
 
-.leftmenu a .badge { float:right; margin-top:4px; margin-right:26px;
+.leftmenu li a .badge { float:right; margin-top:4px; margin-right:26px;
   background:none; border: solid 1px $lblue; color:$lblue;}
 
 .leftmenu li {width:240px;}
@@ -1836,6 +1837,18 @@ section {
   float: none;
 }
 
+#ed-news-nav {
+  position : relative;
+  .badge-mini {
+    background:$red; 
+    position: absolute;
+    padding: 2px 5px;
+    top: -7px;
+    right: -8px;
+  }
+}
+
+
 
 header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 
@@ -2592,9 +2605,14 @@ section.rawcontent,
 .section-title,
 .toppage,
 #tasks .title-infos,
+
 .padded {
   padding-left:48px;
   padding-right:68px;
+  .section-title {
+    padding-left:0px;
+    padding-right:0px;
+  }
 }
 
 .tab-pane > .row-fluid,
@@ -2642,6 +2660,10 @@ form .tabbable .tab-pane > *
 }
 */
 
+.popover[class*="tour-"] .popover-navigation *[data-role=next]:before {content: "\e6d0";} //.edi-arrow-right5
+.popover[class*="tour-"] .popover-navigation *[data-role=prev]:before {content: "\e6cd";}
+.popover[class*="tour-"] .popover-navigation *[data-role=end]:before {content: "\e678";} //.edi-cross
+
 
 /* ___________________________________________________  Bootstrap dropdown-menu  */
 
@@ -2663,6 +2685,39 @@ form .tabbable .tab-pane > *
     &:last-child a {padding-bottom:12px;}
   }
 }
+
+/*
+.video-discipline{
+  //position: absolute;
+  //top: 0; left: 0;
+  //width: 100%;
+  width:99.4%;
+}
+
+
+.player .video-wrapper {
+  //background: none repeat scroll 0 0 #FFFFFF;
+  //height: 100%;
+  position: relative;
+  width: 100%;
+  padding-top: 56.2%;
+}
+
+.media.video iframe, .media.video object, .media.video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.fluid-width-video-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+*/
 
 
 
