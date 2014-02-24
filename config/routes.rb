@@ -97,6 +97,7 @@ Edgar::Application.routes.draw do
     resources :imports
     resources :exports, only: [:new]
     
+    resources :announcements, only: [:index]
     resources :coupons
 
   end
