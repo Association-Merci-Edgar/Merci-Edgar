@@ -1,9 +1,8 @@
 -content_for :scripts do
   = javascript_include_tag "tour/home-tour-fr"
   
-%header
-  %h1.page-title
-    Tableau de bord
+%header.page-title
+  %h1 Tableau de bord
 
 %section#dash-tasks
   .section-title
@@ -34,7 +33,7 @@
           Nouveautés d’edgar
           .badge.badge-medium.badge-shy 2
        
-      %ul.list-medium
+      %ul.list-smal
         %li
           %a{:href => "#"} En cours de developpement : Traduire les messages d'erreur
 

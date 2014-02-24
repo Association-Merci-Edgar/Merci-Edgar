@@ -500,7 +500,7 @@ section > h4 {display:block; margin-bottom:24px;}
 
 .bold {font-weight:bold;}
 
-
+.dblue{color:$dblue;}
 
 .label-large p {line-height: 18px;}
 
@@ -526,6 +526,7 @@ section > h4 {display:block; margin-bottom:24px;}
 header {display:block;}
 
 .subpage-nav {
+  
   display:inline;
   font-size:18px;
   margin-left:10px;
@@ -545,6 +546,7 @@ header {display:block;}
   border-bottom: solid 1px $lblue;
   
   ul.subpage-nav {
+    
     list-style : none;
     margin-left: 0px;
     li {display:inline-block;
@@ -553,6 +555,11 @@ header {display:block;}
     }
   }
 }
+
+#dontshow {color:$dblue;
+  float:right;
+  margin-top:6px;
+  }
 
 form section .section-title {padding-top:80px;}
 
@@ -777,7 +784,7 @@ a .logo {
 
 
 .leftpanel .edi-cog   {font-size:13px;}
-.leftpanel .edi-arrow-down-5 {font-size:17px; margin-top:6px;}
+.leftpanel .caret-ed {font-size:17px; margin-top:6px;} // derniérement
 
 
 
@@ -851,7 +858,7 @@ li a.rightbt {float:right;
 }
 
 .caret-ed {
-  &:before {content: "\e0d1";} //.edi-arrow-down-5
+  &:before {content: "\e6ce";} //.edi-arrow-down-5
   width: 16px;
   display : inline-block;
   @include transition(transform, .2s)
@@ -1799,8 +1806,7 @@ bottom: 100%;
   padding:20px 0;
   border-bottom: solid 1px $lblue;
   .title-infos, .title {display: inline-block;}
-  .title {font-size:28px;
-    .badge {font-size:18px; }
+  .title {font-size:26px;
   }
   .badge {font-size:15px; margin: 0 4px; font-weight:300;}
 }
@@ -1812,7 +1818,7 @@ bottom: 100%;
 
 section {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 
@@ -1822,7 +1828,7 @@ section {
 }
   
   
-.badge-medium { padding: 3px 10px;}
+.badge-medium { padding: 3px 10px 4px; vertical-align: top; font-size:17px; }
 .badge-black {background:$dblue;}
 .badge-red {background:$red;}
 .badge-orange {background:$orange;}
@@ -1889,12 +1895,9 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
   font-size:16px;
   &>li {
     padding:20px 0px;
-    
     border-bottom: dotted 1px lighten( $dblue, 60% );
-
     position:relative;
     clear:both;
-    
     background:$beige;
     @include transition("background-color", 0.2s);
     //@include transition("width", 0.2s);
@@ -2148,6 +2151,9 @@ li {line-height: inherit;}
 button.shybtn {padding:4px 8px;}
 #contact-list.list-large .dropdown button {
   margin-top : -3px;}
+  
+  
+
 
 /* _______________________________________________________  List_large   */
 
@@ -2158,7 +2164,9 @@ button.shybtn {padding:4px 8px;}
     margin-bottom:10px;
   }
 }
-#contact-list.list-large>li:not(.list-header) {min-height: 111px;}
+
+#contact-list.list-large>li:not(.list-header),
+#projects-list >li {min-height: 111px;}
 
 #contact-list.list-large h3 .contact-type {
   color: $lblue;
@@ -2217,14 +2225,12 @@ li.system-reporting {
 
 
 
-
 /* ____________________________________________________________ List_medium  */
 .list-medium li {
   .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
   .infos-line{
-    
     .pic-mini {width:20px;  margin-right: 6px;}
-    a {font-size:17px; }
+    a {font-size:16px; }
     .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
     }
   }
@@ -2233,7 +2239,6 @@ li.system-reporting {
   min-height:28px;
   padding:18px 0px;
   //border-bottom: dotted 1px lighten( $dblue, 60% );
-  
   .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
   /*.span7 {font-size:17px;
     a { margin-left:25px; }
@@ -2251,11 +2256,18 @@ li.system-reporting {
   .shybtn { padding:0px 8px; line-height:21px; height:24px;}
   //.pic img {margin-top:-3px;}
   .actions {position:relative;}
+  
+}
+
+#users-list li { min-height:62px;
+  padding: 18px 10px;
 }
 
 //.s1of2 {display:inline-block; width:40%;}
-
-.list-medium .btn-in-list a i {font-size:30px !important;}
+.list-medium {
+  .btn-in-list a i {font-size:30px !important;}
+  .btn-in-list a { padding-top:0;}
+}
 
 .infos {color:$mblue;} 
 
@@ -2266,16 +2278,21 @@ li.system-reporting {
 */
 
 #pending_tasks_wrapper {
-margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
+
+
 /*  _____________________________________________________ list-small // USERS */
-.list-small { @extend .list-medium; }
 .list-small {
+  @extend .list-medium;
   font-size:16px;
   line-height: 1.4em;
-  list-style:none;
-  li {min-height:62px;}
+  li {
+    border:none;
+    min-height:none;
+    padding:10px 0px 5px;
+  }
   h3 { font-size:22px;}
   .infos-line{margin-top:5px;
     a {font-size:15px;}
@@ -2285,9 +2302,6 @@ margin-bottom: 60px;
 form#contact_us .uvFieldTextarea { height:150px; };
 
 
-.list-small>li { border:none;
-  min-height:none;
-}
 
 /*  _____________________________________________________ VIEW_SHOW   */
 //.toppage {background:#fff;}
@@ -2493,7 +2507,7 @@ ul.social-list {
   font-weight:bold;
   border-bottom:solid 1px lighten( $dblue, 60% );
   margin-bottom:24px;
-  & > li{margin-bottom: -2px;}
+  & > li{margin-bottom: -1px;}
 }
 
 .nav-tabs li.w_badge {margin-bottom: -1px;}
@@ -2622,12 +2636,18 @@ section.rawcontent,
 
 
 .list-small > li,
-#reportings > li
- {
+#reportings > li,
+{
   padding-left:10px;
   padding-right:10px;
 }
-
+.padded {
+    .list-medium > li,
+    .btn-in-list {
+      padding-left:10px;
+      padding-right:10px;
+  } 
+}    
 
 #pending_tasks_wrapper, #completed_tasks_wrapper,
 form .tabbable .tab-pane > *
@@ -2682,7 +2702,7 @@ form .tabbable .tab-pane > *
   @include roundcornersFX(3px);
   & > li {
     &:first-child a {padding-top:12px;}
-    &:last-child a {padding-bottom:12px;}
+    &:last-child a {padding-bottom:14px;}
   }
 }
 
