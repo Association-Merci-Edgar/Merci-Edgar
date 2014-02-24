@@ -2,12 +2,19 @@
   = javascript_include_tag "tour/home-tour-fr"
   
 %header.page-title
-  Bienvenue chez Edgar !
+  %h1 Bienvenue chez Edgar !
+  #dontshow
+    %span
+      %input{:id => "wlcm", :type => "checkbox"}
+      %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
 
 
+
+-#_________________________________________________________ First steps
 %section.padded
   .section-title
     .title Faisons connaissance !
+    
   .row-fluid
     .span5
       %h4.message
@@ -20,7 +27,7 @@
 
 
     
-
+-#_________________________________________________________ Starting
 %section.padded
   .section-title
     .title Bien démarrer
@@ -56,14 +63,26 @@
           sur cette icone en bas à gauche de l'écran.
           
           
+-#
+  .row-fluid.label-blocks
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i.edi-directions
+        %h4
+          Perdu ?
+        %p
+          Visiter l’application  <br>à l’aide des liens en bas à gauche
+    .span4
+      = link_to new_venue_path, :class => "label label-large" do
+        %i
+          %img{alt: "Thumb_venue_default", src: "/assets/appli/label_block_pics_video0.png"}
+        %h4
+          Voir le tutoriel vidéo
+        %p
+          Edgar vous explique ses bases 
+          
 
-%section.padded     
-  %span
-    %input{:id => "wlcm", :type => "checkbox"}
-    %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
-    
-    
-    
+-#_________________________________________________________ First Tutorials
 %section#dash-ednews.padded
   .row-fluid
     .span6
@@ -78,7 +97,7 @@
           Plus de tutoriaux
           /.badge.badge-medium.badge-shy 2
        
-      %ul.list-medium
+      %ul.list-small
         %li
           %a.btn-iconic
             %i.ico.edi-play3
@@ -99,32 +118,10 @@
           %a.align-right{:href => "#"}
             %span
               Voir tous les tutoriaux
-              %i.entypo.edi-ellipsis
-
-
+            %i.entypo.edi-ellipsis
 
 
     
--#
-  .row-fluid.label-blocks
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        %i.edi-directions
-        %h4
-          Perdu ?
-        %p
-          Visiter l’application  <br>à l’aide des liens en bas à gauche
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        %i
-          %img{alt: "Thumb_venue_default", src: "/assets/appli/label_block_pics_video0.png"}
-        %h4
-          Voir le tutoriel vidéo
-        %p
-          Edgar vous explique ses bases  
-          
-          
-
 
   -#    
     - if user_signed_in?
