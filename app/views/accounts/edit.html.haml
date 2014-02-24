@@ -29,7 +29,8 @@
           - @account.users.each do |user|
             %li
               .meta
-                .badge.badge-red= t(user.current_abilitation.kind)
+                .badge.badge-red
+                  = user.confirmed? ? t(user.current_abilitation.kind) : "Invitation envoyée"
               .actions
                 -#%a.shybtn{href: "/fr/people/41/edit"}
                   %i.entypo.edi-pencil
