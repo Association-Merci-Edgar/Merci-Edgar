@@ -1,1 +1,116 @@
-Nouveautés ...
+-content_for :scripts do
+  = javascript_include_tag "tour/home-tour-fr"
+  
+%header.page-title
+  %h1 Nouveautés
+
+
+-#_________________________________________________________ Notifications
+%section.padded
+  .row-fluid
+    .span12
+      .section-title
+        .title
+          Notifications
+          .badge.badge-medium.badge-shy 3
+       
+      %ul.list-small
+        %li
+          %a{:href => "#"} Nouveau : Traduire les messages d'erreur
+        %li
+          %a{:href => "#"} Super : Import/Export de fiches
+        %li
+          %a{:href => "#"} Multi-utilisateurs
+
+        .btn-in-list
+          %a.align-right{:href => "#"}
+            %span Voir toutes les notifications
+            %i.entypo.edi-ellipsis
+  -#
+    .span3
+      .section-title
+        .title
+      .btn.btn-tertiary
+        Voir la page de status
+    
+-#_________________________________________________________ Nouveautés
+%section.padded
+  .row-fluid
+    .span6
+      .section-title
+        .title
+          Nouveautés d’Edgar
+          .badge.badge-medium.badge-shy 3
+       
+      %ul.list-small
+        %li
+          %a{:href => "#"} Nouveau : Traduire les messages d'erreur
+        %li
+          %a{:href => "#"} Super : Import/Export de fiches
+        %li
+          %a{:href => "#"} Multi-utilisateurs
+
+        .btn-in-list
+          %a.align-right{:href => "#"}
+            %span Voir toutes les nouveautés
+            %i.entypo.edi-ellipsis
+            
+            
+    .span6
+      .section-title
+        .title
+          En cours de développement
+          /.badge.badge-medium.badge-shy 2
+       
+      %ul.list-small
+        %li
+          %a{:href => "#"} En cours de developpement : Traduire les messages d'erreur
+        %li
+          %a{:href => "#"} En cours de developpement : Import/Export de fiches
+        %li
+          %a{:href => "#"} En cours de developpement : Multi-utilisateurs
+
+        .btn-in-list
+          %a.align-right{:href => "#"}
+            %span Voir tous les futurs développements
+            %i.entypo.edi-ellipsis
+            
+            
+            
+-#_________________________________________________________ tutorials
+%section.padded
+  .row-fluid
+    .span6
+      .section-title
+        .title Le dernier tutorial
+      .media.video
+        <iframe src="//player.vimeo.com/video/81417704?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        
+    .span6
+      .section-title
+        .title
+          Plus de tutoriaux
+          /.badge.badge-medium.badge-shy 2
+       
+      %ul.list-small
+        %li
+          %a.btn-iconic
+            %i.ico.edi-play3
+            En cours de developpement : Traduire les messages d'erreur
+
+        %li
+          %a.btn-iconic
+            %i.ico.edi-play3
+            Multi-utilisateurs
+            
+        %li
+          %a.btn-iconic
+            %i.ico.edi-play3
+            En cours de developpement : Traduire les messages d'erreur
+          
+
+        .btn-in-list
+          %a.align-right{:href => "#"}
+            %span
+              Voir tous les tutoriaux
+            %i.entypo.edi-ellipsis
