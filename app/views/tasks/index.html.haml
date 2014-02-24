@@ -25,7 +25,7 @@
         %li{role: "presentation"}
           = link_to "Tous les utilisateurs", tasks_path(params.except(:user_id)), role: "menuitem", tabindex: "-1"
       - current_account.users.each do |account_user|
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to tasks_path(params.merge(user_id: account_user.id)), role: "menuitem", tabindex: "-1" do
             .pic.pic-mini= image_tag account_user.avatar
             = account_user
@@ -37,18 +37,18 @@
     %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
       = params[:project_id].present? ? Project.find(params[:project_id]) : "Tous les projets"
       %i.entypo.caret-ed
-    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu2", role: "menu"}
       - if params[:project_id]
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to "Tous les projets", tasks_path(params.except(:project_id)), role: "menuitem", tabindex: "-1"
       - current_account.projects.each do |account_project|
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to tasks_path(params.merge(project_id: account_project.id)), role: "menuitem", tabindex: "-1" do
             .pic.pic-mini= image_tag account_project.avatar
             = account_project
     -#
       %li.divider{role: "presentation"}
-      %li{role: "presentation"}
+      %li{role: "menuitem"}
         %button.btn-primary Créer une liste
           
   
