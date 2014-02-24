@@ -6,23 +6,24 @@
 
 
 %section.padded
-  %h3.message
-    Faisons connaissance !<br>
-    Avant tout, Edgar vous présente les bases  :
-    
-%section.padded
+  .section-title
+    .title Faisons connaissance !
   .row-fluid
-    .media.video
-      <iframe src="//player.vimeo.com/video/86027838?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    .span5
+      %h4.message
+        Avant tout, Edgar vous présente les bases en vidéo :
+    .span7
+      .video-discipline
+        .media.videoo
+          <iframe src="//player.vimeo.com/video/86027838?byline=0&amp;portrait=0&amp;color=fff" frameborder="0" /width="500" height="281" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          /
 
+
+    
 
 %section.padded
-  %h3.message
-    /Ceci est une version béta,<br>
-    /de nouvelles fonctionnalités arriveront trés prochainement.<br>
-    Les premiers pas :
-
-%section.padded
+  .section-title
+    .title Bien démarrer
   .row-fluid.label-blocks
     .span4
       = link_to edit_user_path(current_user), :class => "label label-large" do
@@ -53,15 +54,21 @@
           Nous avons besoin de vos retours ! <br>
           A tout moment, vous pouvez cliquer <br>
           sur cette icone en bas à gauche de l'écran.
+          
+          
 
-
-
+%section.padded     
+  %span
+    %input{:id => "wlcm", :type => "checkbox"}
+    %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
+    
+    
+    
 %section#dash-ednews.padded
   .row-fluid
     .span6
       .section-title
-        .title
-          Le dernier tutorial
+        .title Le dernier tutorial
       .media.video
         <iframe src="//player.vimeo.com/video/81417704?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         
@@ -93,7 +100,11 @@
             %span
               Voir tous les tutoriaux
               %i.entypo.edi-ellipsis
-                 
+
+
+
+
+    
 -#
   .row-fluid.label-blocks
     .span4
@@ -112,11 +123,8 @@
         %p
           Edgar vous explique ses bases  
           
--#          
-  %section.padded     
-    %span
-      %input{:id => "wlcm", :type => "checkbox"}
-      %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
+          
+
 
   -#    
     - if user_signed_in?
