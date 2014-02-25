@@ -47,6 +47,7 @@ fr:
       short: "%e %b"
       long: "%e %B %Y"
       abbrev: "%a %d %B %Y"
+      veryshort: "%e"
     month_names:
       - ~
       - janvier
@@ -65,6 +66,9 @@ fr:
       - :day
       - :month
       - :year
+  time:
+    formats:
+      short: "%e"
   datetime:
     distance_in_words:
       about_x_hours:
