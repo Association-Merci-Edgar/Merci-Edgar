@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   after_filter :reset_tenant
   
   helper_method :current_account
+  helper_method :announcements_count
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
@@ -12,6 +13,11 @@ class ApplicationController < ActionController::Base
   
   def current_account
     Account.find(Account.current_id)
+  end
+
+  def announcements_count
+    last_hit = cookies.signed[:last_hit]
+    Announcement.where("published_at >= ? AND published_at <= ?", Time.at(last_hit), Time.zone.now).count
   end
 
   private

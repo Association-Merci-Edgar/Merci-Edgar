@@ -12,17 +12,14 @@
       .section-title
         .title
           Nouveautés d’Edgar
-          .badge.badge-medium.badge-shy 3
+          .badge.badge-medium.badge-shy= announcements_count
        
       %ul.list-small
-        %li
-          %a{:href => "#"} Nouveau : Traduire les messages d'erreur
-        %li
-          %a{:href => "#"} Super : Import/Export de fiches
-        %li
-          %a{:href => "#"} Multi-utilisateurs
+        - @announcements.each do |a|
+          %li
+            = link_to "#{l a.published_at, format: :short} - #{a.title}", a.link
 
-        .btn-in-list
+        -#.btn-in-list
           %a.align-right{:href => "#"}
             %span Voir toutes les nouveautés
             %i.entypo.edi-ellipsis
@@ -44,7 +41,7 @@
         %li
           %a{:href => "#"} En cours de developpement : Multi-utilisateurs
 
-        .btn-in-list
+        -#.btn-in-list
           %a.align-right{:href => "#"}
             %span Voir tous les futurs développements
             %i.entypo.edi-ellipsis
