@@ -3,7 +3,7 @@
   
 %header.page-title
   %h1 Bienvenue chez Edgar !
-  #dontshow
+  -#dontshow
     %span
       %input{:id => "wlcm", :type => "checkbox"}
       %label{:for=> "wlcm"} Ne plus afficher cette écran de bienvenue
@@ -83,51 +83,51 @@
           
 
 -#_________________________________________________________ First Tutorials
-%section#dash-ednews.padded
-  .row-fluid
-    .span6
-      .section-title
-        .title Le dernier tutorial
-      .media.video
-        <iframe src="//player.vimeo.com/video/81417704?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  %section#dash-ednews.padded
+    .row-fluid
+      .span6
+        .section-title
+          .title Le dernier tutorial
+        .media.video
+          <iframe src="//player.vimeo.com/video/81417704?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         
-    .span6
-      .section-title
-        .title
-          Plus de tutoriaux
-          /.badge.badge-medium.badge-shy 2
+      .span6
+        .section-title
+          .title
+            Plus de tutoriaux
+            /.badge.badge-medium.badge-shy 2
        
-      %ul.list-small
-        %li
-          %a.btn-iconic
-            %i.ico.edi-play3
-            En cours de developpement : Traduire les messages d'erreur
+        %ul.list-small
+          %li
+            %a.btn-iconic
+              %i.ico.edi-play3
+              En cours de developpement : Traduire les messages d'erreur
 
-        %li
-          %a.btn-iconic
-            %i.ico.edi-play3
-            Multi-utilisateurs
+          %li
+            %a.btn-iconic
+              %i.ico.edi-play3
+              Multi-utilisateurs
             
-        %li
-          %a.btn-iconic
-            %i.ico.edi-play3
-            En cours de developpement : Traduire les messages d'erreur
+          %li
+            %a.btn-iconic
+              %i.ico.edi-play3
+              En cours de developpement : Traduire les messages d'erreur
           
 
-        .btn-in-list
-          %a.align-right{:href => "#"}
-            %span
-              Voir tous les tutoriaux
-            %i.entypo.edi-ellipsis
+          .btn-in-list
+            %a.align-right{:href => "#"}
+              %span
+                Voir tous les tutoriaux
+              %i.entypo.edi-ellipsis
 
 
     
 
-  -#    
-    - if user_signed_in?
-      - if current_user.has_role? :admin
-        = link_to "Administration", users_path
-      = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
-    - else
-      = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
+    -#    
+      - if user_signed_in?
+        - if current_user.has_role? :admin
+          = link_to "Administration", users_path
+        = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
+      - else
+        = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
 

@@ -17,7 +17,7 @@
       %ul.list-small
         - @announcements.each do |a|
           %li
-            = link_to "#{l a.published_at, format: :short} - #{a.title}", a.link
+            = link_to "#{l a.published_at, format: :short} - #{a.title}", a.link, class: "btn-iconic"
 
         -#.btn-in-list
           %a.align-right{:href => "#"}
@@ -35,11 +35,11 @@
        
       %ul.list-small
         %li
-          %a{:href => "#"} En cours de developpement : Traduire les messages d'erreur
+          %a{:href => "#"} Prévu d'ici avril 2014 : Import/Export de fichiers Excel et LibreOffice
         %li
-          %a{:href => "#"} En cours de developpement : Import/Export de fiches
+          %a{:href => "#"} Prévu d'ici octobre 2014 : Envoi de mail en masse
         %li
-          %a{:href => "#"} En cours de developpement : Multi-utilisateurs
+          %a{:href => "#"} Prévu d'ici octobre 2014 : Suivi des représentations vendues, gestion des contrats
 
         -#.btn-in-list
           %a.align-right{:href => "#"}
