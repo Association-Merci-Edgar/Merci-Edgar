@@ -17,7 +17,7 @@
       %ul.list-small
         - @announcements.each do |a|
           %li
-            = link_to "#{l a.published_at, format: :short} - #{a.title}", a.link, class: "btn-iconic"
+            = link_to "#{l a.published_at, format: :short} - #{a.title}", a.link, target: "_blank", class: "btn-iconic"
 
         -#.btn-in-list
           %a.align-right{:href => "#"}
