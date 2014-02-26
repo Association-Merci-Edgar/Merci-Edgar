@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_locale
+  # before_filter :set_locale
   before_filter :set_current_tenant
   after_filter :reset_tenant
   
@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
 
   def announcements_count
     last_hit = cookies.signed[:last_hit]
-    Announcement.where("published_at >= ? AND published_at <= ?", Time.at(last_hit), Time.zone.now).count
+    if last_hit 
+      Announcement.where("published_at >= ? AND published_at <= ?", Time.at(last_hit), Time.zone.now).count
+    else
+      Announcement.where("published_at >= ? AND published_at <= ?", Time.zone.now - 1.week, Time.zone.now).count
+    end
   end
 
   private
