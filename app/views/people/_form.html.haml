@@ -6,7 +6,7 @@
 
 #menu-vertical
   %span
-    = link_to t(:cancel), @venue
+    = link_to t(:cancel), session[:return_to]
     ou
   .btn.btn-alert.btn-large.btn-submit{:href => "#"}
     Enregistrer
