@@ -13,7 +13,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: merciedgar
+  database: merciedgar_prod
   pool: 5
   username: merciedgar
   password: PstxloP1
