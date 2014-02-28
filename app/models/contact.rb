@@ -22,6 +22,7 @@ class Contact < ActiveRecord::Base
 
   attr_accessible :name, :imported_at, :source, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :style_tags, :network_tags, :custom_tags, :remark
 
+  belongs_to :account, counter_cache: true
   belongs_to :contactable, polymorphic: true
   belongs_to :duplicate, class_name: "Contact"
   has_many :duplicates, class_name: "Contact", foreign_key: "duplicate_id"
