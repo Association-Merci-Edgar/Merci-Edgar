@@ -73,6 +73,18 @@ $('document').ready(function() {
 
 	});
 */
+  
+  
+	//______________________ Btn-in-list TOGGLE
+	$('li.btn-in-list a').on('click', function (event) {
+	  event.stopPropagation(); event.preventDefault();
+    var $form = $(this).closest('li').find('.form-in-list');
+    $form.slideToggle(200);
+    $form.find("[autofocus]:first").focus();
+    $(this).closest('li').toggleClass('toggled');
+    
+	});
+  
 
 
 	//______________________ Existing Entry - Cancel Button

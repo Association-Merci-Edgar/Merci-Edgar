@@ -18,7 +18,7 @@
 
   = render :partial => "tasks/pending", :locals => {:tasks => @pending_tasks, asset: nil}
 
-  .btn-in-list
+  %li.btn-in-list
     =link_to tasks_path, :class=>"align-right" do
       %span
         Voir toutes les tâches
@@ -42,7 +42,7 @@
         %li
           %a{:href => "#"} En cours de developpement : Multi-utilisateurs
 
-        .btn-in-list
+        .%li.btn-in-list
           %a.align-right{:href => "#"}
             %span
               Voir toutes les nouveautés

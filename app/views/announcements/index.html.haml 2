@@ -22,7 +22,7 @@
         %li
           %a{:href => "#"} Multi-utilisateurs
 
-        .btn-in-list
+        %li.btn-in-list
           %a.align-right{:href => "#"}
             %span Voir toutes les notifications
             %i.entypo.edi-ellipsis
@@ -50,7 +50,7 @@
         %li
           %a{:href => "#"} Multi-utilisateurs
 
-        .btn-in-list
+        %li.btn-in-list
           %a.align-right{:href => "#"}
             %span Voir toutes les nouveautés
             %i.entypo.edi-ellipsis
@@ -70,7 +70,7 @@
         %li
           %a{:href => "#"} En cours de developpement : Multi-utilisateurs
 
-        .btn-in-list
+        %li.btn-in-list
           %a.align-right{:href => "#"}
             %span Voir tous les futurs développements
             %i.entypo.edi-ellipsis
@@ -109,7 +109,7 @@
             En cours de developpement : Traduire les messages d'erreur
           
 
-        .btn-in-list
+        %li.btn-in-list
           %a.align-right{:href => "#"}
             %span
               Voir tous les tutoriaux

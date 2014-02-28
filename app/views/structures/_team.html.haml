@@ -1,4 +1,6 @@
-%ul.list.list-large
+
+
+%ul.list.list-large#show-team
   - @people.each do |person|
   
     %li
@@ -41,12 +43,30 @@
         = person.info_contact(@structure)
       
       
+  -# _____________________ New Person V2
+  %li.btn-in-list
+    %a{:href => "#"}
+      %i.entypo.edi-plus3
+      %span
+        Ajouter une personne
+    .form-in-list
+      /%i.entypo.edi-plus3
+      /%h4 Ajouter une personne à cette structure
+      %form.inline-form
+        .row-fluid
+          .span6
+            .control-group
+              %input{type:"text", placeholder:"Taper le Prénom puis le Nom de la personne", class:"input-xlarge fullwidth input-flat", autofocus:"autofocus"}
+          .span6
+            %button.btn.btn-primary.btn-alert.btn-large{type:"submit"}
+              Créer la personne
   
-  .btn-in-list
+-# _____________________ New Person V1
+  %li.btn-in-list
     = link_to new_structure_person_path(@structure) do
       %i.entypo.edi-plus3
       %span
         Ajouter une personne
-        //New Person
-  
-  
+        
+        font-size: 20px;
+        padding: 11px 19px;
