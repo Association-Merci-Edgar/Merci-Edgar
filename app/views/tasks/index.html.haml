@@ -65,19 +65,7 @@
       pour aujourd’hui
       
 
-          
-
-  
-
 = render :partial => "pending", :locals => {:tasks => @pending_tasks, :asset => nil}
 -# = render partial:'tasks/tasks', locals: {asset: nil, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
-
-
-
-%li.btn-in-list
-  = link_to new_task_path, remote:true do
-    %i.entypo.edi-plus3
-    %span
-      Nouvelle tâche
-          
+   
           

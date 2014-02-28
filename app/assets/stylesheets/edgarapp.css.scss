@@ -1767,14 +1767,12 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
 
 .input-flat{
   background:$green;
-  color:$white;
   &:focus{background:$green; color:$white;};
   @include plholder ($white);
 }
 
 .input-flat-brown {
   background:$dbeige2;
-  //color:$white;
   &:focus{background:$dbeige2; //color:$white;
   };
   //@include plholder ($white);
@@ -1993,46 +1991,63 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 /*  _____________________________________________________  LISTS   */
 
 
-li.btn-in-list {
-  & a {color: $dblue; display:block; font-size:24px;
+.list-items li.btn-in-list {
+  a {color: $dblue; display:block;
+    font-size:24px;
     padding-top:10px;
+    padding-bottom:10px;
   }
   
-  & a:hover, &.toggled a {
+  a:hover, &.toggled a {
     color:$green;
     span{display:inline-block;};
   };
   
-  & a i {font-size:36px; display:inline-block; margin-left: -5px;
+  a i {font-size:36px; display:inline-block; margin-left: -5px;
     vertical-align:middle;
     width: 62px;
     text-align: center;
     }
   
-  & span {display:none;
+  span {
+    display:none; vertical-align: text-bottom;
     margin: 0 10px;}
   
   border-bottom:none;
-  min-height:60px !important;
+  //min-height:60px !important;
+  min-height:initial !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  //&.toggled{padding-bottom: 10px;}
 }
 
 
 .btns-in-list {
-  & a {color: $dblue; display:block; font-size:20px;
+  a {color: $dblue; display:block; font-size:20px;
     padding-top:20px;}
-  & span a:hover, &:hover i{color:$green;};
-  & i {font-size:36px; display:inline;
+  span a:hover, &:hover i{color:$green;};
+  i {font-size:36px; display:inline;
     }
   &:hover span {display:inline;};
    
-  & span a {display:inline;};
-  & span {display:none; margin: 0 ;}
+  span a {display:inline;};
+  span {display:none; margin: 0 ;}
 }
 
-.form-in-list { //background:$white;
-  padding-top:10px;
+
+.form-in-list {
+  padding-bottom: 16px;
   padding-left:72px;
   display:none;
+  form {margin:0;}
+}
+
+
+#pending_tasks { //.list-medium
+  .btn-in-list {min-height:30px !important;
+    a i {width: 25px;margin-left: -4px;}
+    //span{font-size:20px;}
+  }
 }
 
 
@@ -2190,7 +2205,6 @@ li.system-reporting {
 #pending_tasks_wrapper {
   margin-bottom: 60px;
 }
-
 
 
 /*  _____________________________________________________ list-small // USERS */
