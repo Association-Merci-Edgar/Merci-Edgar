@@ -76,7 +76,7 @@ $('document').ready(function() {
   
   
 	//______________________ Btn-in-list TOGGLE
-	$('li.btn-in-list a').on('click', function (event) {
+	$('#show-team li.btn-in-list a').on('click', function (event) {
 	  event.stopPropagation(); event.preventDefault();
     var $form = $(this).closest('li').find('.form-in-list');
     $form.slideToggle(200);
