@@ -15,7 +15,7 @@ class Account < ActiveRecord::Base
   has_many :abilitations, dependent: :destroy
   # has_and_belongs_to_many :users
   
-  has_many :venues
+  has_many :contacts
   attr_accessible :domain, :name
   validates_presence_of :name
   validates_uniqueness_of :domain
@@ -23,6 +23,8 @@ class Account < ActiveRecord::Base
   validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
   before_validation :set_domain_name
   before_validation :ensure_domain_uniqueness, :on => :create
+  
+  scope :featured, order("contacts_count DESC")
 
   def to_s
     self.name
