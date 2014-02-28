@@ -1296,7 +1296,7 @@ legend {font-size: 20px;
 .shybtn{
   font-size:16px;
   padding: 4px 12px;
-  padding:2px 8px;
+  padding:2px 8px 0px;
   margin-left:4px;
   text-align: center;
   border: solid 1px $vlblue;
@@ -1764,6 +1764,23 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
 }
 
 /*  _____________________________________________________ thesearch   */
+
+.input-flat{
+  background:$green;
+  color:$white;
+  &:focus{background:$green; color:$white;};
+  @include plholder ($white);
+}
+
+.input-flat-brown {
+  background:$dbeige2;
+  //color:$white;
+  &:focus{background:$dbeige2; //color:$white;
+  };
+  //@include plholder ($white);
+}
+
+
 #thesearch {
   z-index: 200;
   position:fixed;
@@ -1781,15 +1798,11 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
     height:52px;
     line-height:52px;
     width:100%;
-    background:$green;
-    color:$white;
     font-size:22px;
     @include roundcornersFX(0);
     @include borderbox;
     //@include box-shadow(inset 5px 1px 1px rgba(0, 0, 0, 0.075));
     @include box-shadow(0px, 0px, 15px, rgba(0, 0, 0, 0.7), "");
-    &:focus{background:$green;};
-    @include plholder ($white);
     }
 }
 
@@ -1905,14 +1918,14 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
     position:relative;
     clear:both;
     background:$beige;
-    @include transition("background-color", 0.2s);
+    @include transition(background, 0.2s);
     //@include transition("width", 0.2s);
     &:last-child{ border:none;}
   }
   li:hover .actions { display:block;}
   
   li:hover .mini-map { display:none;}
-  li:hover{
+  li:hover, li.toggled {
     background:$white;
     //width:102%;
     //@include transfX;
@@ -1933,6 +1946,10 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
     margin-right: 10px;
 }
 //a[id*='Some:Same']
+
+.list-large#show-team li {
+  min-height: 69px;
+}
 
 
 
@@ -1971,6 +1988,233 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 
 .dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px; display:none; z-index:3000;}
 .dumshow {display:block;}
+
+
+/*  _____________________________________________________  LISTS   */
+
+
+li.btn-in-list {
+  & a {color: $dblue; display:block; font-size:24px;
+    padding-top:10px;
+  }
+  
+  & a:hover, &.toggled a {
+    color:$green;
+    span{display:inline-block;};
+  };
+  
+  & a i {font-size:36px; display:inline-block; margin-left: -5px;
+    vertical-align:middle;
+    width: 62px;
+    text-align: center;
+    }
+  
+  & span {display:none;
+    margin: 0 10px;}
+  
+  border-bottom:none;
+  min-height:60px !important;
+}
+
+
+.btns-in-list {
+  & a {color: $dblue; display:block; font-size:20px;
+    padding-top:20px;}
+  & span a:hover, &:hover i{color:$green;};
+  & i {font-size:36px; display:inline;
+    }
+  &:hover span {display:inline;};
+   
+  & span a {display:inline;};
+  & span {display:none; margin: 0 ;}
+}
+
+.form-in-list { //background:$white;
+  padding-top:10px;
+  padding-left:72px;
+  display:none;
+}
+
+
+.inline-form button {
+  vertical-align: top;
+}
+
+input[type="text"].input-xlarge {
+  //@include $bordredbox;
+  //height:26px;
+  height:42px;
+  font-size: 20px;
+  padding: 12px 12px 8px;
+  font-size:20px;
+  //width:100%;
+}
+
+
+.align-right{text-align:right;}
+
+li {line-height: inherit;}
+
+.list-header .meta {position:absolute; top:0; right:0;}
+
+
+button.shybtn {padding:4px 8px;}
+#contact-list.list-large .dropdown button {
+  margin-top : -3px;}
+  
+  
+
+
+/* _______________________________________________________  List_large   */
+
+#contact-list {
+  margin-top:20px;
+  li.list-header {
+    margin-top:30px;
+    margin-bottom:10px;
+  }
+}
+
+#contact-list.list-large>li:not(.list-header),
+#projects-list >li {min-height: 111px;}
+
+#contact-list.list-large h3 .contact-type {
+  color: $lblue;
+  font-size:14px;
+  &:hover{color:$green;};
+}
+
+
+
+.list-large {
+  .actions {top:44px;}
+  .actions>*{display: inline-block;}
+  .content {font-size:15px;color:$dblue;}
+  h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
+  &>li {
+    //padding: 20px 0 10px;
+    padding: 13px 0 4px;
+    min-height:66px;
+    
+    &.list-header { padding:0; min-height: 10px; border:none;
+      margin-bottom:10px;
+      &:hover{background:none;}}
+  }
+  
+  color:$vlblue;
+  .rightrow {width:90px;}
+  h3{ display:block; margin-top:0px; margin-bottom: 12px; font-size:25px;}
+  //&.cards {min-height: 60px;}
+}
+
+.list-large + li {padding:0;}
+
+nav.pagination{ display: inline-block;}
+
+
+
+#team .list-large h4 {display:block;}
+
+
+#activity .list-large  {
+  h4, .infos {display:inline-block; margin-right:10px; font-size:21px;}
+  .pic-mini {
+    margin: 0 4px;
+    text-decoration:none; width:23px;}
+  h4 {color:$mblue;}
+  i.ico {vertical-align: text-top;}
+}
+
+li.system-reporting {
+  //background-color:$dbeige1;
+  background: $lbeige url(appli/dots_bkg.gif) repeat top left;
+  
+}
+
+#reporting_project_id {float:left;}
+
+
+
+/* ____________________________________________________________ List_medium  */
+.list-medium li {
+  .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
+  .infos-line{
+    .pic-mini {width:20px;  margin-right: 6px;}
+    a {font-size:16px; }
+    .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
+    }
+  }
+  //line-height:28px;
+  //a {display:block; }
+  min-height:28px;
+  padding:18px 0px;
+  //border-bottom: dotted 1px lighten( $dblue, 60% );
+  .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
+  /*.span7 {font-size:17px;
+    a { margin-left:25px; }
+    }
+  .span3 {font-size:15px; color:$lblue;
+    a {color:$lblue;
+    &:hover {color:$green;}
+    }
+    }*/
+  input[type="checkbox"] {
+      margin: 6px 14px 0 0 ;
+      float:left;
+  }
+  &:hover .badge { display:none;}
+  .shybtn { padding:0px 8px; line-height:21px; height:24px;}
+  //.pic img {margin-top:-3px;}
+  .actions {position:relative;}
+  
+}
+
+#users-list li { min-height:62px;
+  padding: 18px 10px;
+}
+
+//.s1of2 {display:inline-block; width:40%;}
+.list-medium {
+  .btn-in-list a i {font-size:30px !important;}
+  .btn-in-list a { padding-top:0;}
+}
+
+.infos {color:$mblue;} 
+
+/*
+.list-tasks li:not(:first-child) {
+  @extend .list-medium li;
+};
+*/
+
+#pending_tasks_wrapper {
+  margin-bottom: 60px;
+}
+
+
+
+/*  _____________________________________________________ list-small // USERS */
+.list-small {
+  @extend .list-medium;
+  font-size:16px;
+  line-height: 1.4em;
+  li {
+    border:none;
+    min-height:none;
+    padding:10px 0px 5px;
+  }
+  h3 { font-size:22px;}
+  .infos-line{margin-top:5px;
+    a {font-size:15px;}
+  }
+}
+
+form#contact_us .uvFieldTextarea { height:150px; };
+
+
+
+
+
 /* __________________________________ tags   */
 
 .tags {
@@ -2118,194 +2362,6 @@ ul.tagit li.tagit-choice-editable {
   li a {text-align:right; padding: 3px 8px;}
 }
 */
-
-
-
-
-/*  _____________________________________________________  LISTS   */
-
-
-.btn-in-list {
-  & a {color: $dblue; display:block; font-size:20px;
-    padding-top:20px;}
-  & a:hover{color:$green;};
-  & a i {font-size:36px; display:inline; margin-left: -5px;
-    }
-  & a:hover span{display:inline;};
-  & span {display:none; margin: 0 10px;}
-}
-
-.btns-in-list {
-  & a {color: $dblue; display:block; font-size:20px;
-    padding-top:20px;}
-  & span a:hover, &:hover i{color:$green;};
-  & i {font-size:36px; display:inline;
-    }
-  &:hover span {display:inline;};
-   
-  & span a {display:inline;};
-  & span {display:none; margin: 0 ;}
-}
-
-.align-right{text-align:right;}
-
-li {line-height: inherit;}
-
-.list-header .meta {position:absolute; top:0; right:0;}
-
-
-button.shybtn {padding:4px 8px;}
-#contact-list.list-large .dropdown button {
-  margin-top : -3px;}
-  
-  
-
-
-/* _______________________________________________________  List_large   */
-
-#contact-list {
-  margin-top:20px;
-  li.list-header {
-    margin-top:30px;
-    margin-bottom:10px;
-  }
-}
-
-#contact-list.list-large>li:not(.list-header),
-#projects-list >li {min-height: 111px;}
-
-#contact-list.list-large h3 .contact-type {
-  color: $lblue;
-  font-size:14px;
-  &:hover{color:$green;};
-}
-
-
-
-.list-large {
-  .actions {top:56px;}
-  .actions>*{display: inline-block;}
-  .content {font-size:15px;color:$dblue;}
-  h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
-  &>li {
-    //padding: 20px 0 10px;
-    padding: 13px 0 4px;
-    min-height:66px;
-    
-    &.list-header { padding:0; min-height: 10px; border:none;
-      margin-bottom:10px;
-      &:hover{background:none;}}
-  }
-  
-  color:$vlblue;
-  .rightrow {width:90px;}
-  h3{ display:block; margin-top:0px; margin-bottom: 12px; font-size:25px;}
-  //&.cards {min-height: 60px;}
-}
-
-.list-large + li {padding:0;}
-
-nav.pagination{ display: inline-block;}
-
-
-
-#team .list-large h4 {display:block;}
-
-
-#activity .list-large  {
-  h4, .infos {display:inline-block; margin-right:10px; font-size:21px;}
-  .pic-mini {
-    margin: 0 4px;
-    text-decoration:none; width:23px;}
-  h4 {color:$mblue;}
-  i.ico {vertical-align: text-top;}
-}
-
-li.system-reporting {
-  //background-color:$dbeige1;
-  background: $lbeige url(appli/dots_bkg.gif) repeat top left;
-  
-}
-
-#reporting_project_id {float:left;}
-
-
-
-/* ____________________________________________________________ List_medium  */
-.list-medium li {
-  .title {font-size:20px; margin-bottom:8px; margin-top:-2px;}
-  .infos-line{
-    .pic-mini {width:20px;  margin-right: 6px;}
-    a {font-size:16px; }
-    .infos-part{display:inline-block;margin-right:10px; //min-width:100px;
-    }
-  }
-  //line-height:28px;
-  //a {display:block; }
-  min-height:28px;
-  padding:18px 0px;
-  //border-bottom: dotted 1px lighten( $dblue, 60% );
-  .badge {@include roundcornersFX(6px); font-size:14px; padding:5px 10px; float:right;}
-  /*.span7 {font-size:17px;
-    a { margin-left:25px; }
-    }
-  .span3 {font-size:15px; color:$lblue;
-    a {color:$lblue;
-    &:hover {color:$green;}
-    }
-    }*/
-  input[type="checkbox"] {
-      margin: 6px 14px 0 0 ;
-      float:left;
-  }
-  &:hover .badge { display:none;}
-  .shybtn { padding:0px 8px; line-height:21px; height:24px;}
-  //.pic img {margin-top:-3px;}
-  .actions {position:relative;}
-  
-}
-
-#users-list li { min-height:62px;
-  padding: 18px 10px;
-}
-
-//.s1of2 {display:inline-block; width:40%;}
-.list-medium {
-  .btn-in-list a i {font-size:30px !important;}
-  .btn-in-list a { padding-top:0;}
-}
-
-.infos {color:$mblue;} 
-
-/*
-.list-tasks li:not(:first-child) {
-  @extend .list-medium li;
-};
-*/
-
-#pending_tasks_wrapper {
-  margin-bottom: 60px;
-}
-
-
-
-/*  _____________________________________________________ list-small // USERS */
-.list-small {
-  @extend .list-medium;
-  font-size:16px;
-  line-height: 1.4em;
-  li {
-    border:none;
-    min-height:none;
-    padding:10px 0px 5px;
-  }
-  h3 { font-size:22px;}
-  .infos-line{margin-top:5px;
-    a {font-size:15px;}
-  }
-}
-
-form#contact_us .uvFieldTextarea { height:150px; };
 
 
 
