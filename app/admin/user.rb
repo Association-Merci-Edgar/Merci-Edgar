@@ -25,7 +25,7 @@ ActiveAdmin.register User do
       row "account" do |user|
         html = ""
         user.abilitations.each do |ab|
-          html << link_to("#{ab.account.name} (#{ab.kind})", admin_account_path(ab.account))
+          html << link_to("#{ab.account.name} - #{ab.account.contacts_count} (#{ab.kind})", admin_account_path(ab.account))
           html << "<br>"
         end if user.abilitations.any?
         html.html_safe
@@ -38,6 +38,7 @@ ActiveAdmin.register User do
       row :created_at
       row :last_sign_in_at
     end
+    active_admin_comments
   end
   
 end
