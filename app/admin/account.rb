@@ -12,7 +12,7 @@ ActiveAdmin.register Account do
       link_to account.id, admin_account_path(account)
     end
 
-    columns_to_include = ["name","domain", "created_at" ]
+    columns_to_include = ["name","domain", "created_at", "contacts_count" ]
     columns_to_include.each do |c|
       column c.to_sym
     end
