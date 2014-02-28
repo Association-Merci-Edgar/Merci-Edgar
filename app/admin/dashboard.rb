@@ -39,7 +39,12 @@ ActiveAdmin.register_page "Dashboard" do
           ul do
             Account.featured.limit(10).map do |account|
               user = account.abilitations.where(kind: "manager").map(&:user).first
-              li link_to("#{account.name} (#{account.contacts_count})", admin_account_path(account)) + "  //  " +  link_to(user.to_s, admin_user_path(user))
+              if user
+                html_li = link_to("#{account.name} (#{account.contacts_count})", admin_account_path(account)) + "  //  " +  link_to(user.to_s, admin_user_path(user))
+              else 
+                html_li = link_to("#{account.name} (#{account.contacts_count})", admin_account_path(account))
+              end
+              li html_li
             end
           end
         end
