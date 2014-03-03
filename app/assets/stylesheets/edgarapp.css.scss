@@ -1991,19 +1991,19 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 /*  _____________________________________________________  LISTS   */
 
 
-.list-items li.btn-in-list {
-  a {color: $dblue; display:block;
+.list-items > li.btn-in-list {
+  & > a {color: $dblue; display:block;
     font-size:24px;
     padding-top:10px;
     padding-bottom:10px;
   }
   
-  a:hover, &.toggled a {
+  & > a:hover, &.toggled a {
     color:$green;
     span{display:inline-block;};
   };
   
-  a i {font-size:36px; display:inline-block; margin-left: -5px;
+  & > a i {font-size:36px; display:inline-block; margin-left: -5px;
     vertical-align:middle;
     width: 62px;
     text-align: center;

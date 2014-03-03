@@ -1,3 +1,136 @@
+.section-title Tâches avec form-in-list
+%section#dash-tasks.row-fluid
+  %ul#pending_tasks.list.list-medium
+    %li#task_241
+      %span.pull-left{"data-complete-link" => "/fr/contacts/717/tasks/241/complete", "data-html" => "true", "data-original-title" => "Marquer comme éffectué", "data-placement" => "top-left", "data-toggle" => "tooltip", "data-uncomplete-link" => "/fr/contacts/717/tasks/241/uncomplete", title: ""}
+        %input.checkbox{onclick: "toggleUncompletedTask(this)", type: "checkbox"}/
+        %label
+      .rightrow.small
+        .badge.badge-black En retard // 13 fév. 23:59
+        .actions
+          %a.shybtn{"data-remote" => "true", href: "/fr/contacts/717/tasks/241/edit"}
+            %i.entypo.edi-pencil
+      .mainrow
+        .title
+          %a{"data-remote" => "true", href: "/fr/contacts/717/tasks/241/edit"} appelé le boss
+        .infos-line
+          .infos-part
+            %a{href: "#"}
+              .pic.pic-mini.pic-user
+                %img{alt: "User_default", src: "/assets/fallback/user_default.png"}/
+              Chris...
+          .infos-part
+            %a{href: "/fr/venues/168-cafe-des-sports-le"}
+              .pic.pic-mini
+                %img{alt: "Cafe_des_sports20140203-69184-aycn3p", src: "https://merciedgar-dev.s3.amazonaws.com/uploads/account/1/venue/avatar/168/CAFE_DES_SPORTS20140203-69184-aycn3p.jpg"}/
+              / / .pic-person if asset = person
+              Café Des Sports (le)
+          .infos-part
+            %a{href: "#"}
+              .pic.pic-mini
+                %img{alt: "Project_default", src: "/assets/fallback/project_default.png"}/
+              The Project
+  
+    %li#task_242
+      %span.pull-left{"data-complete-link" => "/fr/contacts/703/tasks/242/complete", "data-html" => "true", "data-original-title" => "Marquer comme éffectué", "data-placement" => "top-left", "data-toggle" => "tooltip", "data-uncomplete-link" => "/fr/contacts/703/tasks/242/uncomplete", title: ""}
+        %input.checkbox{onclick: "toggleUncompletedTask(this)", type: "checkbox"}/
+        %label
+      .rightrow.small
+        .badge.badge-black En retard // 24 fév. 23:59
+        .actions
+          %a.shybtn{"data-remote" => "true", href: "/fr/contacts/703/tasks/242/edit"}
+            %i.entypo.edi-pencil
+      .mainrow
+        .title
+          %a{"data-remote" => "true", href: "/fr/contacts/703/tasks/242/edit"} qsdfsdf
+        .infos-line
+          .infos-part
+            %a{href: "#"}
+              .pic.pic-mini.pic-user
+                %img{alt: "Photo", src: "https://merciedgar-dev.s3.amazonaws.com/uploads/user/avatar/319/photo.JPG"}/
+              Jean-...
+          .infos-part
+            %a{href: "/fr/people/229-bob-bigwell"}
+              .pic.pic-mini
+                %img{alt: "Fred", src: "https://merciedgar-dev.s3.amazonaws.com/uploads/account/1/person/avatar/229/fred.jpg"}/
+              / / .pic-person if asset = person
+              Bigwell Bob
+              
+          .infos-part
+            %a{href: "#"}
+              .pic.pic-mini
+                %img{alt: "Project_default", src: "/assets/fallback/project_default.png"}/
+              The Project
+    
+    %li.btn-in-list.expandable
+      %a{:href => "#"}
+        %i.entypo.edi-plus3
+        %span
+          Nouvelle tâche
+      .form-in-list
+        /%i.entypo.edi-plus3
+        /%h4 Ajouter une personne à cette structure
+        %form.inline-form
+          .row-fluid
+            .span11
+              .control-group
+                %input{type:"text", placeholder:"Intitulé de la tâche en édition / création", class:"input-xlarge fullwidth input-flat", autofocus:"autofocus"}
+            .span1
+              %button.btn.btn-shy{type:"cancel"}
+                x
+          .row-fluid
+            .span4
+              %label.control-label
+                Pour quand ?
+              .input-append
+                %select
+                  %option{selected: "selected", value: "due_today"} Aujourd'hui
+                %button.btn
+                  %i.entypo.edi-cal
+              -# dropdown version
+                .input-prepend
+                  .btn-group
+                    %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+                      Action
+                      %span.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{href: "#"} Action
+                      %li
+                        %a{href: "#"} Another action
+                      %li
+                        %a{href: "#"} Something else here
+                      %li.divider
+                      %li
+                        %a{href: "#"} Separated link
+                  / /btn-group
+                  /%input#prependedDropdownButton.span2{type: "text"}/
+                  %button.btn
+                    %i.entypo.edi-cal
+                  
+              
+                  
+                  
+                  
+            .span4
+              %label.control-label Assigné à
+              %select
+                %option{selected: "selected", value: "due_today"} Untel
+            .span4
+              %label.control-label Projet artistique :
+              %select
+                %option{selected: "selected", value: "due_today"} Untel
+                
+          .row-fluid
+            %button.btn.btn-primary.btn-alert.btn-large.pull-right{type:"submit"}
+              Créer la tâche
+              
+        
+          
+          
+          
+
+
 .section-title Progressbar
 %section.progressbar.padded
   .progress
