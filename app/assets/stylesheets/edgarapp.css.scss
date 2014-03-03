@@ -1767,15 +1767,18 @@ ul.ui-autocomplete { position:absolute; background:$white; @include roundcorners
 
 .input-flat{
   background:$green;
-  &:focus{background:$green; color:$white;};
+  &:focus{background:$green; color:$white;
   @include plholder ($white);
+  };
 }
 
-.input-flat-brown {
+input.input-flat-brown {
   background:$dbeige2;
-  &:focus{background:$dbeige2; //color:$white;
+  &:focus{
+    background:$dbeige2; color:$white;
+    @include plholder ($white);
   };
-  //@include plholder ($white);
+  //
 }
 
 
