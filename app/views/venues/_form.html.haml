@@ -291,6 +291,6 @@
 
     / ________________________________________________________ actions
     .form-actions
-      = f.button :submit, :class => "btn-primary btn-large btn-alert"
+      = f.button :submit, :class => "btn-primary btn-large btn-alert btn-stateful", data: {loading_text: "Chachargement..."}
       ou
       = link_to t(:cancel), @venue

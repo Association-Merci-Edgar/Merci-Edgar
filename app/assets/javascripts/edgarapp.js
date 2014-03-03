@@ -22,6 +22,16 @@ $('document').ready(function() {
   )};
   */
 
+  $('.btn-stateful')
+      .click(function () {
+          var btn = $(this)
+          btn.button('loading')
+          //setTimeout(function () {
+          //    btn.button('reset')
+          //}, delay)
+      });
+
+
 // reporting
 
 	//______________________ New Entry - Cancel Button

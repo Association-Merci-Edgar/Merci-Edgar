@@ -37,19 +37,11 @@
           var delay = 3000
           var btn = $(this)
           btn.button('loading')
-          setTimeout(function () {
-              btn.button('reset')
-          }, delay)
+          //setTimeout(function () {
+          //    btn.button('reset')
+          //}, delay)
       });
       
-  $(':input[data-loading-text]').click(function () {
-      var delay = 3000
-      var btn = $(this)
-      btn.button('loading')
-      setTimeout(function () {
-          btn.button('reset')
-      }, delay)
-  })
   
   
   $(':input[type="reset"]').click(function () {
