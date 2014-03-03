@@ -1,0 +1,38 @@
+%li.team_person
+  .pic-container
+    .pic.pic-person
+      = image_tag people_structure.person.avatar_url
+      
+  .meta
+    - if people_structure.structure.main_person?(current_user,people_structure.person)
+      %a{href: "#"}
+        %i.ico.principal.full{id: "main_contact_#{people_structure.person.id}"}
+    - else
+      = link_to structure_set_main_person_path(people_structure.structure,people_structure.person), remote:true, method: :put do
+        %i.ico.principal{id: "main_contact_#{people_structure.person.id}"}
+      
+    
+    -# _________________________ favorite
+    - if people_structure.person.favorite?(current_user)
+      = link_to remove_to_favorites_contact_path(people_structure.person), remote: true do
+        %i.ico.favorite.full{id: "fav_contact_#{people_structure.person.id}"}
+    - else
+      = link_to add_to_favorites_contact_path(people_structure.person), remote: true do
+        %i.ico.favorite{id: "fav_contact_#{people_structure.person.id}"}
+
+    -# _________________________ contacted
+    - if people_structure.person.contacted?
+      %a.ico.contacted.full{:href => "#"}
+    - else
+      %a.ico.contacted{:href => "#"}                    
+  .actions 
+    /= link_to 'Edit', edit_venue_path(venue)
+    = link_to edit_structure_person_path(people_structure.structure,people_structure.person), :class => "shybtn" do
+      %i.entypo.edi-pencil
+    /= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    = link_to people_structure.person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' } do
+      %i.entypo.edi-cross
+          
+  %h4= link_to "#{people_structure.person.name}", people_structure.person
+  .infos-line
+    = people_structure.person.info_contact(people_structure.structure)

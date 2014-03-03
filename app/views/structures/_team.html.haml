@@ -3,7 +3,7 @@
 %ul.list.list-large#show-team
   - @people.each do |person|
   
-    %li
+    %li.team_person
       .pic-container
         .pic.pic-person
           = image_tag person.avatar_url
@@ -52,11 +52,18 @@
     .form-in-list
       /%i.entypo.edi-plus3
       /%h4 Ajouter une personne à cette structure
-      %form.inline-form
+      -# = simple_form_for(Person.new, html: { class: "inline-form" } ) do |f|
+      -#%form.inline-form
+      = form_tag(people_structures_path, method: :post, class: "inline-form", remote:true) do
         .row-fluid
           .span6
             .control-group
-              %input{type:"text", placeholder:"Taper le Prénom puis le Nom de la personne", class:"input-xlarge fullwidth input-flat", autofocus:"autofocus"}
+              = text_field_tag(:person_name, '', placeholder:"Taper le nom puis le prénom de la personne", class:"input-xlarge fullwidth input-flat jq_autocomplete", autofocus:"autofocus", data: {autocomplete_source: people_path})
+
+              = text_field_tag(:function, '', placeholder:"Fonction", class:"input-xlarge fullwidth input-flat")
+              = hidden_field_tag(:structure_id, @structure.id)
+
+              
           .span6
             %button.btn.btn-primary.btn-alert.btn-large{type:"submit"}
               Créer la personne

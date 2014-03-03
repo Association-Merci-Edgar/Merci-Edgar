@@ -43,6 +43,7 @@ class PeopleController < AppController
     @person.name = params[:name] if params[:name].present?
     ps = @person.people_structures.build
     ps.structure = Structure.find(params[:structure_id]) if params[:structure_id]
+    ps.title = params[:title] if params[:title] 
     ps.structure = nil if !ps.structure.is_a? Structure
 
     respond_to do |format|

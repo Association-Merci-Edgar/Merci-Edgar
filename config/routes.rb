@@ -46,6 +46,7 @@ Edgar::Application.routes.draw do
       put 'people/:id/set_main_person', action: :set_main_person, as: :set_main_person
       resources :people
     end
+    resources :people_structures, only: [:create]
     resources :festivals
     resources :show_buyers
     resources :venues do
