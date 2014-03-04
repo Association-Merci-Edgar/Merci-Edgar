@@ -22,7 +22,7 @@
     
     %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
       - if params[:user_id]
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to "Tous les utilisateurs", tasks_path(params.except(:user_id)), role: "menuitem", tabindex: "-1"
       - current_account.users.each do |account_user|
         %li{role: "menuitem"}
@@ -47,7 +47,7 @@
             .pic.pic-mini= image_tag account_project.avatar
             = account_project
     -#
-      %li.divider{role: "presentation"}
+      %li.divider{role: "menuitem"}
       %li{role: "menuitem"}
         %button.btn-primary Créer une liste
           

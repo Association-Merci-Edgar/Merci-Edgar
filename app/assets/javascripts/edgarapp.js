@@ -22,16 +22,6 @@ $('document').ready(function() {
   )};
   */
 
-  $('.btn-stateful')
-      .click(function () {
-          var btn = $(this)
-          btn.button('loading')
-          //setTimeout(function () {
-          //    btn.button('reset')
-          //}, delay)
-      });
-
-
 // reporting
 
 	//______________________ New Entry - Cancel Button
@@ -173,7 +163,8 @@ function navToggle() {
 
   
   
-//  _________________________________ Clickable Dropdown
+//  _________________________________ Clickable Dropdown -- Old "Recent" BTN behaviour
+/*
 clickerShow = function(e) {
   $('.click-nav .js ul').slideToggle(200);
 	$('.clicker').toggleClass('active');
@@ -200,12 +191,15 @@ $(function() {
       	}	
 			});
 });
+*/
+
 /*
 $.fn.fadeUp = function() {
   
   $(this).animate({ height: 0, padding: 0, opacity: 0, min-height:0 }, 500);
 }
 */
+
 
 //  _________________________________ Hide Notices
 $(function() {
@@ -222,42 +216,115 @@ $(function() {
 });
 
 
-//  _________________________________ SEARCH TOGGLE
+
+//  __________________________________________________________________ "Tools" (search & recent) BTN behaviour
+
 var currentnav='';
-toggleSearch = function(){
-  if ($('#search-nav').hasClass("active")) {
+var currenttest='';
+var goActive= 1;
+
+checkTools = function(){
+  //if ( $('.leftmenu').find('.nav').find('.active-tool') ){
+  if ( ($('#recent-nav').hasClass("active-tool")) || ($('#search-nav').hasClass("active-tool")) ) {
+    goActive = 0;
+    } else {
+    goActive = 1;
+  }
+    console.log("goActive=" + goActive );
+}
+
+checkCurrent= function(){
+  console.log(currentnav);
+  currenttest = $('.leftmenu').find('.nav').find('.active');
+  console.log("ct=" + currenttest.length );
+  
+  if ( currenttest.length ){
+    currentnav = currenttest;
+    //goActive= 1;
+  } //else {goActive= 0;}
+  
+  console.log("cnav="+currentnav);
+  
+  //checkTools();
+}
+
+//  _________________________________ "Recent" BTN behaviour
+toggleRecent = function(){
+  checkCurrent();
+  if ( ($('#recent-menu').width()==290)  ){
     // HIDE
-    $('#search-nav').removeClass("active");
+    if (goActive==1) { currentnav.addClass("active"); }
+		$('#recent-nav').removeClass('active-tool');
+    $('#recent-menu').removeClass('expanded');
+    $('#recent-menu').hide();
+    //$('#recent-menu').css('width', '0px');
+  
+   } else {
+     // SHOW
+     
+     if (goActive==1) { currentnav.removeClass("active"); }
+     $('#recent-nav').addClass('active-tool');
+      $('#recent-menu').show();
+     $('#recent-menu').addClass("expanded");
+     //$('#recent-menu').css('width', '290px');
+     
+     if ($('#search-nav').hasClass("active-tool")) {
+       toggleSearch();
+     }
+    }
+};
+
+$('#recent-nav a').click(function(event) { event.preventDefault();
+  if ( !($('#recent-nav').hasClass("active-tool")) ) {
+  toggleRecent();
+  }
+});
+
+$(document).click(function() {
+  if ($('#recent-menu').width()==290) {
+    toggleRecent();
+  }
+});
+
+
+//  _________________________________ SEARCH TOGGLE
+toggleSearch = function(){
+  checkCurrent();
+  
+  if ($('#search-nav').hasClass("active-tool")) {
+    // HIDE
+    if (goActive==1) { currentnav.addClass("active"); }
+    $('#search-nav').removeClass("active-tool");
     $('#thesearch input').val("");
     $('#thesearch').hide();
     
-    currentnav.addClass("active");
   } else {
     // SHOW
-  // $('.searchahead').typeahead();
-  
-  // get and apply the correct TOP position
-  //var offset = $('#search-nav').offset();
-  //console.log(offset.top);
-  //$('#thesearch').find('input').css('top', offset.top + 'px');
-  
-  currentnav = $('.leftmenu').find('.nav').find('.active');
-  currentnav.removeClass("active");
-  
-  $('#thesearch').show();
-  $('#search-nav').addClass("active");
-  $('#thesearch').find("[autofocus]:first").focus();
+    // $('.searchahead').typeahead();
+    // get and apply the correct TOP position
+    //var offset = $('#search-nav').offset();//console.log(offset.top);
+    //$('#thesearch').find('input').css('top', offset.top + 'px');
+    
+    if (goActive==1) { currentnav.removeClass("active"); }
+    
+    $('#thesearch').show();
+    $('#search-nav').addClass("active-tool");
+    $('#thesearch').find("[autofocus]:first").focus();
   }
 }
 
-$('#search-nav a').click(function(event) {
-  event.preventDefault();
-  toggleSearch()
-});
-$('.search-backdrop').click(function(event) {
-  event.preventDefault();
+$('#search-nav a').click(function(event) { event.preventDefault();
+  //goActive= 0;
   toggleSearch();
 });
+$('.search-backdrop').click(function(event) { event.preventDefault();
+  //goActive= 1;
+  toggleSearch();
+  
+});
+
+//  __________________________________________________________________
+
 
 
 
