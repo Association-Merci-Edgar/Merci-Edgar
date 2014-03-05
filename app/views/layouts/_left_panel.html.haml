@@ -141,9 +141,13 @@
       - if c.present?
         %li
           = link_to c.fine_model do
-            .pic= image_tag c.fine_model.avatar_url
+            - if c.fine_model.is_a? Person
+              .pic.pic-person= image_tag c.fine_model.avatar_url
+            - else
+              .pic= image_tag c.fine_model.avatar_url
+            
             -#(:thumb)
             .infos
               %span= c
-              %span Fonction/type de structure
+              %span= t(c.fine_model.class.name.underscore,scope:"activerecord.models")
             

@@ -62,7 +62,7 @@ module ApplicationHelper
     session[:history] ||= []
     session[:history].delete(asset.id)
     session[:history] << asset.id
-    session[:history].shift if session[:history].length > 4
+    session[:history].shift if session[:history].length > 7
   end
   
   def translate_multiple_values(values, scope)
