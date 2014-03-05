@@ -19,19 +19,16 @@
       %i.ico.edi-cog.righticon
       
       
-  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu-accounts", role: "menu"}
-    %li{role: "presentation"}
-      %span
-        Changer pour le compte :
-    %li{role: "menuitem"}
-      %a
-        %i.ico.edi-cog
-        account 1
-    
-    %li{role: "menuitem"}
-      %a
-        %i.ico.edi-cog
-        account 2
+  - if current_user.accounts.size > 1
+    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu-accounts", role: "menu"}
+      %li{role: "presentation"}
+        %span
+          Changer pour le compte :
+      - current_user.accounts.each do |account|
+        %li{role: "menuitem"}
+          = link_to home_url(subdomain: account.domain) do
+            %i.ico.edi-cog
+            = account.name
         
           
 
