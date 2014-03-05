@@ -35,35 +35,35 @@
         %i.entypo.caret-ed
 
       %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to contacts_path, role: "menuitem", tabindex: "-1" do
             Tous les contacts
-        %li{role: "presentation"}
+        %li{role: "menuitemmenuitem"}
           = link_to contacts_path(category: "people"), role: "menuitem", tabindex: "-1" do
             Toutes les personnes
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to contacts_path(category: "structures"), role: "menuitem", tabindex: "-1" do
             Toutes les structures
 
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to contacts_path(category: "venues"), role: "menuitem", tabindex: "-1" do
             Tous les lieux
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to contacts_path(category: "festivals"), role: "menuitem", tabindex: "-1" do
             Tous les festivals
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to contacts_path(category: "show_buyers"), role: "menuitem", tabindex: "-1" do
             Tous les autres organisateurs de spectacle
 
 
-        %li.divider{role: "presentation"}
-        -#%li{role: "presentation"}
+        %li.divider{role: "menuitem"}
+        -#%li{role: "menuitem"}
           = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
-        %li{role: "presentation"}
+        %li{role: "menuitem"}
           = link_to("Récemment créés",only_contacts_path(filter:"recently_created"), role: "menuitem", tabindex: "-1")
 
-        %li.divider{role: "presentation"}
-        %li{role: "presentation"}
+        %li.divider{role: "menuitem"}
+        %li{role: "menuitem"}
           = link_to contacts_path(duplicated: "true"), role: "menuitem", tabindex: "-1" do
             Tous les doublons
         
@@ -77,20 +77,20 @@
             %i.entypo.caret-ed
         
           %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu2", role: "menu"}
-            %li{role: "presentation"}
+            %li{role: "menuitem"}
               %a{href: "#", role: "menuitem", tabindex: "-1"}
                 %i.edi-bookmarks
                 Liste A
-            %li{role: "presentation"}
+            %li{role: "menuitem"}
               %a{href: "#", role: "menuitem", tabindex: "-1"}
                 %i.edi-bookmarks
                 Liste B
-            %li{role: "presentation"}
+            %li{role: "menuitem"}
               %a{href: "#", role: "menuitem", tabindex: "-1"}
                 %i.edi-bookmarks
                 Liste C
-            %li.divider{role: "presentation"}
-            %li{role: "presentation"}
+            %li.divider{role: "menuitem"}
+            %li{role: "menuitem"}
               %button.btn-primary Créer une liste
             
             
