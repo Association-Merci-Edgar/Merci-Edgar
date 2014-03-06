@@ -1,17 +1,56 @@
 -content_for :scripts do
   = javascript_include_tag "tag"
   = javascript_include_tag "contacts_index"
+  
+.bulk-panel.padded
+  .bulkbox
+    %span
+      %input#checkAll.field.checkbox{name: "checkAlls", type: "checkbox"}/
+      //, value: "", onchange: "handleInput(this);", tabindex: "4"
+      %label.choice{for: "checkAlls"}
+      
+  .dropdown.inline
+    / Link or button to toggle dropdown
+    %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      Ajouter à une liste
+      %i.entypo.caret-ed
 
+    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
+      %li{role: "menuitem"}
+        = link_to contacts_path, role: "menuitem", tabindex: "-1" do
+          Liste 1
+      %li{role: "menuitemmenuitem"}
+        = link_to contacts_path(category: "people"), role: "menuitem", tabindex: "-1" do
+          Liste 2
+      %li{role: "menuitem"}
+        = link_to contacts_path(category: "structures"), role: "menuitem", tabindex: "-1" do
+          Liste 3
+          
+  %button.btn.btn-tertiary
+    Ajouter un mot-clé
+    
+  %button.btn.btn-tertiary
+    Exporter
+    
+  %button.btn.btn-tertiary.delete-btn
+    Supprimer
+    
+  .btn.btn-tertiary.pull-right.bulk-switch-off.active
+    %i.ico.edi-list
+    
+    
 %header.page-title
   = t(params[:controller]).titleize
   = [@filtered_by, @param_filter].compact.join(" : ") if @filtered_by.present?
   
   // IMPORT
   -#
-  .subpage-nav
-    = link_to new_import_path, remote:true, :class=>"", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
-      %i.entypo.edi-import
-
+  .subpage-nav.pull-right
+    = link_to new_import_path, remote:true, :class=>"btn btn-tertiary ", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      %i.ico.edi-import
+    .btn.btn-tertiary.bulk-switch
+      %i.ico.edi-list
+      
     // SHOW MAP
     -#  
       = link_to show_map_contacts_path(params), remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
@@ -23,10 +62,11 @@
         Liste
       = link_to show_map_contacts_path do
         Carte
+        
 .row-fluid
+  
   .sorters
-          
-          
+       
     /______________________________________________________ VIEWS
     .dropdown
       / Link or button to toggle dropdown

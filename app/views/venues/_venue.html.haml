@@ -1,7 +1,13 @@
 %li{id: "venue_#{venue.to_param}"}
   = render partial: "contacts/contact_elem", locals: {contact: venue.structure.contact, edit_link_path:edit_venue_path(venue) } 
-
+  .bulkbox
+    %span
+      %input#Field2.field.checkbox.bulk-one{name: "Field2", type: "checkbox", value: ""}/
+      //, onchange: "handleInput(this);", tabindex: "4"
+      %label.choice{for: "Field2"}
+      // First Choice
   .mainrow
+    
     = link_to venue do
       %h3
         = venue.name

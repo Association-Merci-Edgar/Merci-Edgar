@@ -284,7 +284,7 @@ a, .btn-link {color:$dblue;
 }
 
 .maincontentinner {
-	padding: 48px 64px 34px 48px; //34px 64px 34px 34px ;
+	padding: 40px 64px 34px 48px; //34px 64px 34px 34px ;
   position:relative;
 }
 /*
@@ -1258,7 +1258,7 @@ legend {font-size: 20px;
 #plusmenu {
   position: fixed;
   width:45px;
-  top:46px;
+  top:33px;
   color:#fff;
   z-index:800;
 }
@@ -1267,7 +1267,7 @@ legend {font-size: 20px;
 .pluslist {
   display:inline-block;
   position:fixed;
-  top:46px;
+  top:33px;
   float:right;
   right:-295px;// - 315 -255px;
   font-size:20px;
@@ -2049,10 +2049,63 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 //.list-large .meta { position: absolute; right:0; top:24px;}
 
 
-.dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px; display:none; z-index:3000;}
-.dumshow {display:block;}
 
 
+/*  _____________________________________________________  BULK   */
+
+
+
+.bulk-actions-activation {
+  &.active {background:$orange;}
+}
+
+.dropdown-menu {
+  top: initial;
+}
+
+.bulkbox {
+  float:left; width:0px;
+  display:inline-block;
+  overflow: hidden;
+  //& > span > input[type='checkbox'] + label {background-position: 0 -48px !important;}
+  &.active {width:40px;}
+  @include transition(width, .2s)
+}
+
+
+.bulk-panel {
+  position:fixed;
+  width:100%;
+  height:53px;
+  top:-90px;
+  background:$white;
+  z-index: 1999;
+  padding-top: 33px;
+  border-bottom:solid 1px $orange;
+  &.active{top:0px;}
+}
+
+//.sorters
+.bulk-panel .bulkbox {margin-top:4px; height: 26px; width:40px;}
+
+.btn.bulk-switch-off {
+  right: 68px;
+  position: fixed;
+  background:$orange;
+  color:$white;
+}
+
+.btn.delete-btn:hover{background:$orange; color:$white; }
+
+.bulk-switch:hover{background:$orange; };
+
+
+.subpage-nav .ico.edi-import {font-size:18px; height:5px;}
+.subpage-nav .btn { 
+  margin-top:-17px;
+  
+  //padding:4px 10px;
+}
 /*  _____________________________________________________  LISTS   */
 
 
@@ -2140,9 +2193,14 @@ li {line-height: inherit;}
 
 button.shybtn {padding:4px 8px;}
 #contact-list.list-large .dropdown button {
-  margin-top : -3px;}
+  margin-top : -3px;
+}
+
+
+/* _______________________________________________________  dummy   */
   
-  
+.dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px; display:none; z-index:3000;}
+.dumshow {display:block;}
 
 
 /* _______________________________________________________  List_large   */
@@ -2737,7 +2795,7 @@ $tooltipTXT: $white;
 
 /* PAGE PADDED */
 
-.maincontentinner { padding: 48px 0 34px 0;
+.maincontentinner { padding: 46px 0 34px 0;
 }
 
 .page-title {@include borderbox;}

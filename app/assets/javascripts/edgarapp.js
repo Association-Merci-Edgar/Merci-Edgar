@@ -215,7 +215,52 @@ $(function() {
   }
 });
 
+//  _________________________________ Bulk
 
+var bulking=false;
+
+$(".bulk-switch").click(function () {
+  //console.log("bulk-switch");
+  //$(this).toggleClass("active");
+  $(".bulk-panel").toggleClass("active");
+  bulkOn();
+});
+
+$(".bulk-switch-off").click(function () {
+  //$(this).toggleClass("active");
+  $(".bulk-panel").toggleClass("active");
+  bulkOff();
+  $('input:checkbox').prop('checked', 0);
+});
+
+
+
+$("#checkAll").click(function () {
+  //console.log ( $(this).prop('checked') )
+  $('input:checkbox').not(this).prop('checked', this.checked);
+  /*if ( $(this).prop('checked') ) {
+    bulkOn();
+  } else {
+    bulkOff();
+  }*/
+});
+
+$(".bulk-one").click(function () {
+});
+
+
+
+bulkOn = function(){
+  $('.bulkbox').addClass("active");
+  $('.bulk-actions').addClass("active");
+  bulking=true;
+}
+
+bulkOff = function(){
+  $('.bulkbox').removeClass("active");
+  $('.bulk-actions').removeClass("active");
+  bulking=false;
+}
 
 //  __________________________________________________________________ "Tools" (search & recent) BTN behaviour
 
