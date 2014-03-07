@@ -34,13 +34,22 @@
               .dropdown.dropdown-hover
                 %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
                   Ajouter à une liste
-                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
+                  %i.ico.caret-ed
+                %ul.dropdown-menu.list-lists{"aria-labelledby" => "dropdownMenu", role: "menu"}
                   %li{role: "menuitem", tabindex: "-1"}
-                    %a Liste 1
+                    %a.icon Liste 1
                   %li{role: "menuitem", tabindex: "-1"}
-                    %a Liste 2
+                    %a.icon Liste 2
                   %li{role: "menuitem", tabindex: "-1"}
-                    %a Liste 3
+                    %a.icon Liste 3
+                  /if > nolist :
+                  %li{role: "presentation", tabindex: "-1"}
+                    %span Aucune liste disponible !
+                    
+                  %li.special{role: "menuitem", tabindex: "-1"}
+                    %a
+                      %i.ico.edi-plus3
+                      Nouvelle liste
                 
               
               

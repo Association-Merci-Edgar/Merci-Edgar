@@ -206,8 +206,10 @@ textarea {@include borderbox;}
 .ico {vertical-align: middle; font-size:22px; margin-left:2px;
   border-bottom:none !important;
   &:before { font-family: 'icomoon'; line-height: 1;}
-  &:visited, &:active, &:link {color:$dblue;} 
+  &:visited, &:active, &:link {color:$dblue; } 
 }
+
+.icon:before {font-family: 'icomoon'; line-height: 1; margin-left:2px; vertical-align: middle;}
 
 .ico.favorite {
   &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
@@ -262,8 +264,11 @@ textarea {@include borderbox;}
   }
   &:hover > a {background:$dbeige1;}
 }
-.dropdown-menu .divider { margin:0;}
-
+.dropdown-menu {
+  .divider { margin:0;}
+  .special {background:$beige;}
+  .special i{margin-left: 0;}
+}
 
 /* ___________________________________________________  Bootstrap dropdown-menu  */
 
@@ -292,6 +297,12 @@ textarea {@include borderbox;}
   
   .dropdown-menu{width:100%; min-width:250px;}
 }
+
+.list-lists li a.icon:before { content: "\e6a8";
+  margin-left: 2px;
+  padding-right: 6px;
+}
+
 
 /*
 //\e02f";}//.edi-tools
@@ -981,6 +992,7 @@ li a.rightbt {float:right;
   display : inline-block;
   //@include transition(all, .1s);
   @include tranformition(.1s);
+  font-size:.8em;
 }
 
 .caret-ed-right{
@@ -992,7 +1004,7 @@ li a.rightbt {float:right;
 .filters-trigger.active .caret-ed,
 .active-tool .caret-ed
  {
-  @include rotate(180 );
+  @include rotate(180);
 }
 
 
@@ -2107,7 +2119,7 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 
 
 .meta { float:right; }
-.meta i {display:inline-block;font-size:20px;}
+.meta > i {display:inline-block;font-size:20px;}
 //.list-large .meta { position: absolute; right:0; top:24px;}
 
 
