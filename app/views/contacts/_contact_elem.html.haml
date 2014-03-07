@@ -16,8 +16,7 @@
     -# _________________________ dealed
     -# %a.ico.dealed{:href => "#"}
     
-    -# _________________________ List
-    //%a.ico.listed{:href => "#", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-content"=>"<div class='tag-list'><a class='tag tag-custom' data-content='&lt; 100' href='#'>0 &lt; 100</a><a class='tag tag-custom' data-content='100-400' href='#'>100-400</a><a class='tag tag-custom' data-content='401-1200' href='#'>401-1200</a><a class='tag tag-custom' data-content='&gt; 1200' href='#'>&gt; 1200</a></div>"}
+    -# _________________________ Listed
     .dropdown.dropdown-hover.dropdown-in-list
       / Link or button to toggle dropdown
       %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
@@ -36,7 +35,16 @@
         -#%li{role: "menuitem"}
           = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
         %li{role: "menuitem"}
-          = link_to("Ajouter à une liste",only_contacts_path(filter:"recently_created"), role: "menuitem", tabindex: "-1")
+          .dropdown.dropdown-hover
+            %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+              Ajouter à une liste
+            %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
+              %li{role: "menuitem", tabindex: "-1"}
+                %a Liste 1
+              %li{role: "menuitem", tabindex: "-1"}
+                %a Liste 2
+              %li{role: "menuitem", tabindex: "-1"}
+                %a Liste 3
     
    
     

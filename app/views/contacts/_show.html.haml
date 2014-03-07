@@ -1,4 +1,4 @@
-  
+
 .row-fluid.toppage.showitem
   %header
     
@@ -10,6 +10,41 @@
         - else
           %a.ico.contacted{:href => "#"}
         //%a.ico.dealed{:href => "#"}
+        
+        
+        -# _________________________ Listed
+        .dropdown.dropdown-hover.dropdown-in-list
+          / Link or button to toggle dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+            %i.ico.listed
+
+          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
+            %li{role: "presentation"}
+              %span
+                Assigné à :
+                %a Liste 1
+                ,
+                %a Liste 2
+
+
+            %li.divider{role: "menuitem"}
+            -#%li{role: "menuitem"}
+              = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
+            %li{role: "menuitem"}
+              .dropdown.dropdown-hover
+                %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                  Ajouter à une liste
+                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
+                  %li{role: "menuitem", tabindex: "-1"}
+                    %a Liste 1
+                  %li{role: "menuitem", tabindex: "-1"}
+                    %a Liste 2
+                  %li{role: "menuitem", tabindex: "-1"}
+                    %a Liste 3
+                
+              
+              
+              
 
         / _________________________ favorite
         - if contact.favorite?(current_user)

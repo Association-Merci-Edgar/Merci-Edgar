@@ -236,6 +236,10 @@ textarea {@include borderbox;}
   &:hover:before, &.full:before {content: "\e6a8";} //.edi-bookmark
 }
 
+
+
+/* ___________________________________________________  Bootstrap dropdown-menu  */
+
 .dropdown.dropdown-hover:hover > ul.dropdown-menu {
   display: block; 
 }
@@ -259,6 +263,35 @@ textarea {@include borderbox;}
   &:hover > a {background:$dbeige1;}
 }
 .dropdown-menu .divider { margin:0;}
+
+
+/* ___________________________________________________  Bootstrap dropdown-menu  */
+
+.dropdown-menu > li[role="presentation"] {padding: 6px 20px 7px;}
+
+.dropdown-menu > li > a, .dropdown-menu > li > .dropdown {padding: 6px 20px 7px;}
+.dropdown-menu > li > a {
+  &:hover, &:focus { background:$green;
+  }
+}
+
+.dropdown-menu {
+  color:$mblue;
+  padding: 0;
+  border:none;
+  @include roundcornersFX(3px);
+  & > li {
+    &:first-child > a {padding-top:12px;}
+    &:last-child > a {padding-bottom:14px;}
+  }
+}
+
+
+.dropdown-menu > li > .dropdown {
+  &:hover {background:$white; color:$dblue;}
+  
+  .dropdown-menu{width:100%; min-width:250px;}
+}
 
 /*
 //\e02f";}//.edi-tools
@@ -2551,7 +2584,7 @@ header {
     
   } 
   .pic{width:80px; height:80px; margin-top: -4px; }
-  .rightrow {width:110px;}
+  .rightrow {width:130px;}
   .mainrow{overflow: inherit;}
 }
 
@@ -2913,26 +2946,6 @@ form .tabbable .tab-pane > *
 .popover[class*="tour-"] .popover-navigation *[data-role=end]:before {content: "\e678";} //.edi-cross
 
 
-/* ___________________________________________________  Bootstrap dropdown-menu  */
-
-.dropdown-menu > li[role="presentation"] {padding: 6px 20px 7px;}
-
-.dropdown-menu > li > a,{
-  padding: 6px 20px 7px;
-  &:hover, &:focus { background:$green;
-  }
-}
-
-.dropdown-menu {
-  color:$mblue;
-  padding: 0;
-  border:none;
-  @include roundcornersFX(3px);
-  & > li {
-    &:first-child a {padding-top:12px;}
-    &:last-child a {padding-bottom:14px;}
-  }
-}
 
 /*
 .video-discipline{
