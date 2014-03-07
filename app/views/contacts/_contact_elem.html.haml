@@ -16,6 +16,30 @@
     -# _________________________ dealed
     -# %a.ico.dealed{:href => "#"}
     
+    -# _________________________ List
+    //%a.ico.listed{:href => "#", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true", "data-content"=>"<div class='tag-list'><a class='tag tag-custom' data-content='&lt; 100' href='#'>0 &lt; 100</a><a class='tag tag-custom' data-content='100-400' href='#'>100-400</a><a class='tag tag-custom' data-content='401-1200' href='#'>401-1200</a><a class='tag tag-custom' data-content='&gt; 1200' href='#'>&gt; 1200</a></div>"}
+    .dropdown.dropdown-hover.dropdown-in-list
+      / Link or button to toggle dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        %i.ico.listed
+
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
+        %li{role: "presentation"}
+          %span
+            Assigné à :
+            %a Liste 1
+            ,
+            %a Liste 2
+
+
+        %li.divider{role: "menuitem"}
+        -#%li{role: "menuitem"}
+          = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
+        %li{role: "menuitem"}
+          = link_to("Ajouter à une liste",only_contacts_path(filter:"recently_created"), role: "menuitem", tabindex: "-1")
+    
+   
+    
   = content_tag("div",nil, class:"mini-map france reg-#{contact.address.region_code}") if contact.address.present?
   
   .actions

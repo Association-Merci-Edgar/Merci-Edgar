@@ -231,6 +231,35 @@ textarea {@include borderbox;}
 }
 
 
+.ico.listed {
+  &:before, &.full:hover:before {content: "\e6a8";}//.edi-bookmark
+  &:hover:before, &.full:before {content: "\e6a8";} //.edi-bookmark
+}
+
+.dropdown.dropdown-hover:hover > ul.dropdown-menu {
+  display: block; 
+}
+
+.dropdown-in-list{
+  display:inline-block;
+  font-size: 16px;
+  & > ul.dropdown-menu {
+    right: 0; left: auto; //bottom-left position
+    background:$dbeige1;
+    min-width:250px;
+  }
+  & > a {
+    //@extend .btn-shy;
+    
+    border-radius: 6px;
+    padding: 6px 6px 14px;
+    
+    &:hover {background:$dbeige1; color:$dblue;}
+  }
+  &:hover > a {background:$dbeige1;}
+}
+.dropdown-menu .divider { margin:0;}
+
 /*
 //\e02f";}//.edi-tools
 "\e025";}//.edi-quote
@@ -260,7 +289,7 @@ textarea {@include borderbox;}
 
 
 
-a, .btn-link {color:$dblue;
+a, .btn-link {color:$dblue; font-weight: 300;
   &:hover, &:focus {color:$green; text-decoration:none;}
 } //&:active,
 
@@ -387,7 +416,7 @@ $lbrown: rgba(209, 209, 197, 1);
 
 /* ______________________________________________________________ BTNs   */
 
-.btn {padding: 6px 12px; font-size:16px; text-shadow:none;}
+.btn {padding: 6px 12px; font-size:16px; text-shadow:none; font-weight: 300;}
 
 .btn.disabled, .btn[disabled] {
   background:$vlblue;
@@ -1985,10 +2014,10 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
     //@include transition("width", 0.2s);
     &:last-child{ border:none;}
   }
-  li:hover .actions { display:block;}
+  &>li:hover .actions { display:block;}
   
-  li:hover .mini-map { display:none;}
-  li:hover, li.toggled {
+  &>li:hover .mini-map { display:none;}
+  &>li:hover, &>li.toggled, &>li.active {
     background:$white;
     //width:102%;
     //@include transfX;
@@ -2096,9 +2125,9 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 }
 
 .btn.delete-btn:hover{background:$orange; color:$white; }
-
 .bulk-switch:hover{background:$orange; };
 
+.bulk-panel .btn.active {background:$green;color:$white;}
 
 .subpage-nav .ico.edi-import {font-size:18px; height:5px;}
 .subpage-nav .btn { 
@@ -2225,7 +2254,7 @@ button.shybtn {padding:4px 8px;}
 
 
 .list-large {
-  .actions {top:44px;}
+  .actions {top:48px;}
   .actions>*{display: inline-block;}
   .content {font-size:15px;color:$dblue;}
   h4 {margin-top:0px; margin-bottom: 11px; color:$dblue;}
@@ -2886,9 +2915,9 @@ form .tabbable .tab-pane > *
 
 /* ___________________________________________________  Bootstrap dropdown-menu  */
 
-.dropdown-menu > li[role="presentation"] {padding: 10px 0;}
+.dropdown-menu > li[role="presentation"] {padding: 6px 20px 7px;}
 
-.dropdown-menu > li > a {
+.dropdown-menu > li > a,{
   padding: 6px 20px 7px;
   &:hover, &:focus { background:$green;
   }

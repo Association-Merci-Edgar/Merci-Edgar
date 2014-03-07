@@ -26,8 +26,12 @@
         = link_to contacts_path(category: "structures"), role: "menuitem", tabindex: "-1" do
           Liste 3
           
-  %button.btn.btn-tertiary
+  //%button.btn.btn-tertiary
+  //  Ajouter un mot-clé
+  // copier coller de la pop-over des Filtres Estétiques...  
+  %a#f_add_tags.btn.btn-tertiary{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large style_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{styles_path}' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
     Ajouter un mot-clé
+    %i.entypo.caret-ed
     
   %button.btn.btn-tertiary
     Exporter
@@ -46,14 +50,15 @@
   // IMPORT
   -#
   .subpage-nav.pull-right
-    = link_to new_import_path, remote:true, :class=>"btn btn-tertiary ", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+    = link_to new_import_path, remote:true, :class=>"btn btn-tertiary ", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
       %i.ico.edi-import
-    .btn.btn-tertiary.bulk-switch
+      
+    .btn.btn-tertiary.bulk-switch{:title =>"Gestion par lot", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true"}
       %i.ico.edi-list
       
     // SHOW MAP
     -#  
-      = link_to show_map_contacts_path(params), remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      = link_to show_map_contacts_path(params), remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.entypo.edi-earth
         /map
   -#

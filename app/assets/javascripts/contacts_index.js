@@ -1,4 +1,60 @@
 
+//  _________________________________ Bulk
+
+var bulking=false;
+
+$(".bulk-switch").click(function () {
+  //console.log("bulk-switch");
+  $(".bulk-panel").toggleClass("active");
+  bulkOn();
+});
+
+$(".bulk-switch-off").click(function () {
+  //$(this).toggleClass("active");
+  $(".bulk-panel").toggleClass("active");
+  bulkOff();
+  $('input:checkbox').prop('checked', 0);
+});
+
+
+$("#checkAll").click(function () {
+  //console.log ( $(this).prop('checked') )
+  $('input:checkbox').not(this).prop('checked', this.checked);
+  if ( $(this).prop('checked') ) {
+    //bulkOn();
+    $('.bulkbox').closest('li').addClass("active");
+  } else {
+    //bulkOff();
+    $('.bulkbox').closest('li').removeClass("active");
+  }
+    
+});
+
+$(".bulk-one").click(function () {
+  $(this).closest('li').toggleClass("active");
+});
+
+
+bulkOn = function(){
+  $('.bulkbox').addClass("active");
+  $('.bulk-actions').addClass("active");
+  bulking=true;
+}
+
+bulkOff = function(){
+  $('.bulkbox').removeClass("active");
+  $('.bulk-actions').removeClass("active");
+  bulking=false;
+}
+
+
+
+//$(".listed").popover({ trigger: "hover focus" });
+
+
+
+//  _________________________________ FILTERS  / POP OVERs
+
 var $hid = $('#filters-hiddenform');
 //$hid.find("input").val("");
 
@@ -106,7 +162,7 @@ $.fn.popover.Constructor.prototype.show = function () {
     }
 };
 
-$('.filters-pool .tag').popover({callback: function() {
+$('.filters-pool .tag, #f_add_tags').popover({callback: function() {
   //$(".popover-content").find("input").focus();
   $(".popover-content input[autofocus]:first").focus();
   //$('.popover').previousSibling.addClass('active'); // access to the trigger element
@@ -135,8 +191,6 @@ $('.filters-pool .tag').popover({callback: function() {
 
   //___________________________________________________ actions on click on the OK button here :
   $('.popover').find(".btn[type='submit']").on("click", function(){
-    
-    
     
     $(this).closest('.popover').prev().removeClass('active').popover('hide');
     $(this).closest('.popover').find("form").submit();
@@ -417,7 +471,7 @@ $('html').on('mouseup', function(e) {
         $('.popover').each(function(){
             $(this.previousSibling).popover('hide');
         });
-        $('.filters-pool .tag').removeClass('active');
+        $('.filters-pool .tag, #f_add_tags').removeClass('active');
     }
     
     
