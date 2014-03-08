@@ -1,66 +1,62 @@
 class ContactsController < AppController
+  def autocomplete
+    @contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
+    json=[]
+    @contacts.each do |c| 
+      fm = c.fine_model
+      link = send(fm.class.name.underscore + "_path", fm)
+      kind = I18n.t(fm.class.name.underscore, scope: "activerecord.models")
+      json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb), kind: kind})
+    end
+    unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
+      json.push({value:params[:term], 
+        label: "Créer la structure : " + params[:term], new:"true", 
+        link: new_structure_path(name: params[:term])
+        })
+      json.push({value:params[:term], 
+        label: "Créer la personne : " + params[:term], new:"true", 
+        link: new_person_path(name: params[:term])
+        })
+      
+    end
+    render json: json
+    
+  end
+  
   def index
-    if request.xhr?
-      @contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
-      json=[]
-      @contacts.each do |c| 
-        fm = c.fine_model
-        link = send(fm.class.name.underscore + "_path", fm)
-        kind = I18n.t(fm.class.name.underscore, scope: "activerecord.models")
-        json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb), kind: kind})
-      end
-      unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
-        json.push({value:params[:term], 
-          label: "Créer la structure : " + params[:term], new:"true", 
-          link: new_structure_path(name: params[:term])
-          })
-        json.push({value:params[:term], 
-          label: "Créer la personne : " + params[:term], new:"true", 
-          link: new_person_path(name: params[:term])
-          })
-        
-      end
-      render json: json
+    if Contact.count == 0
+      render "empty"
+      return
+    end
+
+    if params[:address].present?
+      radius = params[:radius].present? ? params[:radius] : 100
+      addresses = Address.near(params[:address], radius, units: :km).where(account_id: Account.current_id)
+    end
+    
+    if params[:commit] == "show map"
+      addresses = Address.where(account_id: Account.current_id) unless addresses.present?
+      contact_ids = Contact.advanced_search(params).pluck(:id)
+      addresses = addresses.where(contact_id: contact_ids)
+      @contacts_json = addresses.to_gmaps4rails do |address, marker|
+        contact = address.contact
+        marker.infowindow render_to_string(:partial => "contacts/infowindow_venue", :locals => { :contact => contact})
+        marker.title   address.contact.name
+        # marker.sidebar render_to_string(address.contact)
+        # marker.json({ :id => address.id, :foo => "bar" })
+      end if addresses.present?
+      render "show_map"
       
       
     else
-      if Contact.count == 0
-        render "empty"
-        return
-      end
-
-      if params[:address].present?
-        radius = params[:radius].present? ? params[:radius] : 100
-        addresses = Address.near(params[:address], radius, units: :km).where(account_id: Account.current_id)
+      @contacts = Contact.advanced_search(params)
+      @contacts = @contacts.where(id: addresses.map(&:contact_id)) if addresses
+      @contacts = @contacts.page params[:page]
+      if params[:category].present?
+        raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
+        @label_category = params[:category]
       end
       
-      if params[:commit] == "show map"
-        addresses = Address.where(account_id: Account.current_id) unless addresses.present?
-        contact_ids = Contact.advanced_search(params).pluck(:id)
-        addresses = addresses.where(contact_id: contact_ids)
-        @contacts_json = addresses.to_gmaps4rails do |address, marker|
-          contact = address.contact
-          marker.infowindow render_to_string(:partial => "contacts/infowindow_venue", :locals => { :contact => contact})
-          marker.title   address.contact.name
-          # marker.sidebar render_to_string(address.contact)
-          # marker.json({ :id => address.id, :foo => "bar" })
-        end if addresses.present?
-        render "show_map"
-        
-        
-      else
-        @contacts = Contact.advanced_search(params)
-        @contacts = @contacts.where(id: addresses.map(&:contact_id)) if addresses
-        @contacts = @contacts.page params[:page]
-        if params[:category].present?
-          raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
-          @label_category = params[:category]
-        end
-        
-        respond_to do |format|
-          format.html
-        end
-      end
     end
   end
   

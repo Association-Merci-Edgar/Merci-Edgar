@@ -18,11 +18,11 @@
         %i.edi-list
   
   = render @contacts if @contacts
-
+  #next_contacts
   - unless @no_paging
     %li.list-header
-      = paginate @contacts if @contacts
-  
+      -#= paginate @contacts if @contacts
+      #next_page_link= link_to_next_page @contacts, 'Next page', remote: true
   %li.btns-in-list
     %i.entypo.edi-plus3
     %span
