@@ -215,8 +215,6 @@ $(function() {
   }
 });
 
-
-
 //  __________________________________________________________________ "Tools" (search & recent) BTN behaviour
 
 var currentnav='';

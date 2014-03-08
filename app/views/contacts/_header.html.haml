@@ -1,20 +1,69 @@
 -content_for :scripts do
   = javascript_include_tag "tag"
   = javascript_include_tag "contacts_index"
+  
+.bulk-panel.padded
+  .bulkbox
+    %span
+      %input#checkAll.field.checkbox{name: "checkAlls", type: "checkbox"}/
+      //, value: "", onchange: "handleInput(this);", tabindex: "4"
+      %label.choice{for: "checkAlls"}
+      
+  .dropdown.inline
+    / Link or button to toggle dropdown
+    %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+      Ajouter à une liste
+      %i.entypo.caret-ed
 
+    %ul.dropdown-menu.list-lists{"aria-labelledby" => "dropdownMenu", role: "menu"}
+      %li{role: "menuitem", tabindex: "-1"}
+        %a.icon Liste 1
+      %li{role: "menuitem", tabindex: "-1"}
+        %a.icon Liste 2
+      %li{role: "menuitem", tabindex: "-1"}
+        %a.icon Liste 3
+      /if > nolist :
+      %li{role: "presentation", tabindex: "-1"}
+        %span Aucune liste !
+        
+      %li.special{role: "menuitem", tabindex: "-1"}
+        %a
+          %i.ico.edi-plus3
+          Nouvelle liste
+          
+  //%button.btn.btn-tertiary
+  //  Ajouter un mot-clé
+  // copier coller de la pop-over des Filtres Estétiques...  
+  %a#f_add_tags.btn.btn-tertiary{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large style_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{styles_path}' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+    Ajouter un mot-clé
+    %i.entypo.caret-ed
+    
+  %button.btn.btn-tertiary
+    Exporter
+    
+  %button.btn.btn-tertiary.delete-btn
+    Supprimer
+    
+  .btn.btn-tertiary.pull-right.bulk-switch-off.active
+    %i.ico.edi-list
+    
+    
 %header.page-title
   = t(params[:controller]).titleize
   = [@filtered_by, @param_filter].compact.join(" : ") if @filtered_by.present?
   
   // IMPORT
   -#
-  .subpage-nav
-    = link_to new_import_path, remote:true, :class=>"", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
-      %i.entypo.edi-import
-
+  .subpage-nav.pull-right
+    = link_to new_import_path, remote:true, :class=>"btn btn-tertiary ", :title =>"Importer des contacts depuis un fichier XML", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      %i.ico.edi-import
+      
+    .btn.btn-tertiary.bulk-switch{:title =>"Gestion par lot", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true"}
+      %i.ico.edi-list
+      
     // SHOW MAP
     -#  
-      = link_to show_map_contacts_path(params), remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      = link_to show_map_contacts_path(params), remote:true, :class=>"", :title =>"Voir sur une carte", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.entypo.edi-earth
         /map
   -#
@@ -23,10 +72,11 @@
         Liste
       = link_to show_map_contacts_path do
         Carte
+        
 .row-fluid
+  
   .sorters
-          
-          
+       
     /______________________________________________________ VIEWS
     .dropdown
       / Link or button to toggle dropdown
