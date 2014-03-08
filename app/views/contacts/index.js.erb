@@ -1,2 +1,3 @@
-$('#next_contacts').append('<%= j render(@contacts) %>');
+$('<%= j render(@contacts) %>').insertBefore("li#next_page_li");
 $('#next_page_link').replaceWith("<div id='next_page_link'><%= j link_to_next_page @contacts, 'Next page', remote: true %></div>")
+$("#next_page_spinner").hide();

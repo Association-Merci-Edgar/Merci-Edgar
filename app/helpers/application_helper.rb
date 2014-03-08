@@ -1,5 +1,10 @@
 # encoding: utf-8
 module ApplicationHelper
+  
+  def spinner_tag id
+    #Assuming spinner image is called "spinner.gif"
+    image_tag("appli/ajax-loader.gif", :id => id, :alt => "Loading....", :style => "display:none")
+  end
 
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)

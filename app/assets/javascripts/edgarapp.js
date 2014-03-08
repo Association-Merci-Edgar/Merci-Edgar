@@ -9,6 +9,17 @@ $('document').ready(function() {
     event.preventDefault();
     $(this).parent('.notice').remove();
   });
+
+	// Ajax spinner
+
+	$("*[data-spinner]").on('ajax:beforeSend', function(e){
+	  $($(this).data('spinner')).show();
+	  e.stopPropagation(); //Don't show spinner of parent elements.
+	});
+	$("*[data-spinner]").on('ajax:complete', function(){
+	  $($(this).data('spinner')).hide();
+	});
+
   
   /*
   Gmaps.map.callback = function() {
