@@ -1,0 +1,5 @@
+var contact_ids = <%= @contact_ids.to_json.html_safe %>
+for (var i=0; i< contact_ids.length; i++) {
+	console.log("hide " + contact_ids[i])
+	$("#contact_" + contact_ids[i]).fadeOut()
+}

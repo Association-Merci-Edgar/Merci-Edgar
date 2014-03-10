@@ -1,0 +1,3 @@
+<% @contacts.each do |contact| %>
+	$("#contact_" + "<%= contact.id %>").replaceWith("<%= j render(contact) %>")
+<% end %>

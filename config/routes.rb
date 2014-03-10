@@ -68,6 +68,7 @@ Edgar::Application.routes.draw do
     end
     resources :contacts do
       get 'autocomplete', on: :collection
+      put 'bulk', on: :collection
       resources :tasks do
         put 'complete', :on => :member
         put 'uncomplete', :on => :member

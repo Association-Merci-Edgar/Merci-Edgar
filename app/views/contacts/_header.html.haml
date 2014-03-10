@@ -9,6 +9,7 @@
       //, value: "", onchange: "handleInput(this);", tabindex: "4"
       %label.choice{for: "checkAlls"}
       
+      
   .dropdown.inline
     / Link or button to toggle dropdown
     %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
@@ -34,19 +35,24 @@
   //%button.btn.btn-tertiary
   //  Ajouter un mot-clé
   // copier coller de la pop-over des Filtres Estétiques...  
-  %a#f_add_tags.btn.btn-tertiary{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large style_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{styles_path}' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
-    Ajouter un mot-clé
+  -#%a#f_add_tags.btn.btn-tertiary{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<form onsubmit='filtergo(this); return false' method='post' action='#'><input type='text' name='thefield' id='f_style_list' class='input-large style_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{styles_path}' placeholder='Rock, Humour…'><input type='submit' value='ok' name='commit' class='btn btn-primary inline'></form>"}
+    Ajouter une esthétique
     %i.entypo.caret-ed
-    
-  %button.btn.btn-tertiary
+  
+  %a#f_add_tags.btn.btn-tertiary{:href => "#", :rel=>"popover", "data-html"=>"true", "data-content"=>"<input type='text' id='new_custom_tags' class='input-large custom_tags_input' autofocus='autofocus' data-class='tag-style' data-autocomplete-source='#{customs_path}'><input class='btn btn-primary inline' name='commit' type='submit' onclick=\"var bulk_all=$('#checkAll').is(':checked'); var new_custom_tags=$('#new_custom_tags').val(); $('#bulk_value').val(new_custom_tags); $('#bulk_action').val('add_custom_tags'); $('#bulk_contacts_form').submit(); return false\" value='OK'>"}
+    Ajouter un tag personnalisé
+  -#%button.btn.btn-tertiary{onclick: "$('#action_form').val('export'); $('#bulk_contacts_form').submit(); return false"}
     Exporter
     
-  %button.btn.btn-tertiary.delete-btn
-    Supprimer
+  = link_to "#", onclick: "var bulk_all=$('#checkAll').is(':checked'); $('#bulk_all').val(bulk_all); $('#bulk_action').val('delete'); $('#bulk_contacts_form').submit(); return false", data: {confirm: "Etes vous sûr de supprimer tous les contacts sélectionnés ?"} do
+    %button.btn.btn-tertiary.delete-btn
+      Supprimer
     
   .btn.btn-tertiary.pull-right.bulk-switch-off.active
     %i.ico.edi-list
     
+#message
+
     
 %header.page-title
   = t(params[:controller]).titleize

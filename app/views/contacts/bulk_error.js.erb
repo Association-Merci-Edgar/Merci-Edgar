@@ -1,0 +1,5 @@
+message_div = $("#message")
+message_div.hide()
+message_div.addClass("notice error")
+message_div.html("<%= @error_message %>")
+message_div.fadeIn()

@@ -1,4 +1,39 @@
 class ContactsController < AppController
+  def bulk
+    @contact_ids = params[:contact_ids]
+    puts "contact_ids: #{@contact_ids}"
+    case params[:bulk_action]
+    when "delete"
+      Contact.where(id: params[:contact_ids]).find_each do |contact|
+        unless contact.fine_model.destroy
+          @error_message = "Une erreur est survenue lors de la suppression du contact #{contact.name}"
+          render "bulk_error"
+          return
+        end
+      end
+      redirect_to contacts_path, notice: "Les contacts ont été supprimés"
+    when "add_custom_tags"
+      if params[:bulk_value].present?
+        @contacts = Contact.where(id: params[:contact_ids])
+        @contacts.each do |contact|
+          contact.add_custom_tags(params[:bulk_value])
+          unless contact.save
+            @error_message = "Une erreur est survenue lors de la modificaton du contact #{contact.name}"
+            render "bulk_error"
+            return
+          end
+        end
+        render "bulk_add_custom_tags"
+      else
+        @error_message = "Vous n'avez renseigné aucun tag personnalisé !"
+        render "bulk_error"
+      end
+    end
+    # render "bulk_add_custom_tags"
+    
+    
+  end
+  
   def autocomplete
     @contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
     json=[]

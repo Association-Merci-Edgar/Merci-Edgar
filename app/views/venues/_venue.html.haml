@@ -1,10 +1,10 @@
-%li{id: "venue_#{venue.to_param}"}
+%li{id: "contact_#{venue.contact.id}"}
   = render partial: "contacts/contact_elem", locals: {contact: venue.structure.contact, edit_link_path:edit_venue_path(venue) } 
   .bulkbox
     %span
-      %input#Field2.field.checkbox.bulk-one{name: "Field2", type: "checkbox", value: ""}/
-      //, onchange: "handleInput(this);", tabindex: "4"
-      %label.choice{for: "Field2"}
+      = check_box_tag "contact_ids[]", venue.contact.id, false, class: "checkbox bulk-one field"
+      -#%input#Field2.field.checkbox.bulk-one{name: "Field2", type: "checkbox", value: ""}/
+      %label.choice{for: "contact_ids"}
       // First Choice
   .mainrow
     
