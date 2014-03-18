@@ -1,3 +1,6 @@
+- content_for :facebook_og do
+  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/edgar-head.png')}", :property => "og:image"}/
+  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/vitrinne-banner-launch2.jpg')}", :property => "og:image"}/
 
   
 - content_for :hero do
