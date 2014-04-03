@@ -29,16 +29,18 @@ class Scheduling < ActiveRecord::Base
   # attr_writer :external_show_buyer
   
   # accepts_nested_attributes_for :prospectings, :reject_if => :all_blank, :allow_destroy => true
+  PERIOD_LIST = %w(all_year quaterly per_semester)
+  CONTRACT_LIST = %w(Co-realisation Co-production Cession Location Engagement Autre)
   
   validates :name, presence: true
   validates :external_show_buyer, presence: true
+  validates_inclusion_of :period, in: PERIOD_LIST, allow_nil: true
   
   before_save :format_styles, if: "style_tags_changed?"
   before_save :set_show_buyer
   after_save :set_scheduler_function
   after_save :update_styles
   
-  CONTRACT_LIST = ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"]
   
   def to_s
     result = name
@@ -74,7 +76,7 @@ class Scheduling < ActiveRecord::Base
   
   def show_host_name=(name)
     if name.present? && name != show_host_name && @show_host_kind
-      show_host_structure = Structure.joins(:contact).where(structurable_type: ["Venue","Festival"], contacts:{name: name}).first_or_initialize
+      show_host_structure = Structure.joins(:contact).where(structurable_type: ["Venue","Festival"], contacts:{name: Contact.format_name(name)}).first_or_initialize
       if show_host_structure.new_record?
         self.show_host = Venue.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Venue"
         self.show_host = Festival.new(structure_attributes: { contact_attributes: {name: name} }) if @show_host_kind == "Festival"
@@ -92,7 +94,7 @@ class Scheduling < ActiveRecord::Base
   
   def show_buyer_name=(name)
     if name.present? && @external_show_buyer != "Cette structure"
-      self.show_buyer = ShowBuyer.joins(:structure => :contact).where(contacts: {name: name}).first_or_initialize
+      self.show_buyer = ShowBuyer.joins(:structure => :contact).where(contacts: {name: Contact.format_name(name)}).first_or_initialize
       if self.show_buyer.new_record?
         self.show_buyer.build_structure.build_contact(name: name) 
         self.show_buyer.save
@@ -110,7 +112,7 @@ class Scheduling < ActiveRecord::Base
   
   def scheduler_name=(name)
     if name.present?
-      self.scheduler = Person.joins(:contact).where(contacts: {name:name}).first_or_initialize
+      self.scheduler = Person.joins(:contact).where(contacts: { name: Contact.format_name(name) }).first_or_initialize
       if self.scheduler.new_record?
         scheduler.name = name
         scheduler.save
@@ -133,6 +135,29 @@ class Scheduling < ActiveRecord::Base
     end
   end
       
+  def period_with_integer=(number)
+    case number.to_s
+    when "3" 
+      self.period = "quaterly"
+    when "6"
+      self.period = "per_semester"
+    when "12"
+      self.period = "all_year"
+    else
+      self.period = nil
+    end
+  end
+  
+  def period_with_integer
+    case period
+    when "quaterly"
+      "3"
+    when "per_semester"
+      "6"
+    when "all_year"
+      "12"
+    end
+  end
       
   def making_prospecting?(m=Time.zone.now.month)
     self.prospecting_months.present? ? self.prospecting_months.include?(m.to_s) : false
@@ -184,6 +209,44 @@ class Scheduling < ActiveRecord::Base
     scheduling.show_buyer = Contact.where("name = ? or name LIKE ?", show_buyer_name, "#{show_buyer_name} #%").where(imported_at: imported_at).first.try(:fine_model) if show_buyer_name   
     scheduling.scheduler = Contact.where("name = ? or name LIKE ?", scheduler_name, "#{scheduler_name} #%").where(imported_at: imported_at).first.try(:fine_model) if scheduler_name
     scheduling.prospecting_months = pmonths
+    scheduling
+  end
+  
+  def self.from_csv(row)
+    scheduling = Scheduling.new
+    scheduling.name = "Programmation principale"
+    
+    period_with_integer = row.delete(:cycle_de_programmation)
+    scheduling.period_with_integer = period_with_integer
+    row[:cycle_de_programmation] =  period_with_integer unless scheduling.period_with_integer
+    
+    scheduling.style_tags = row.delete(:styles)
+    
+    contract_tags = row.delete(:contrats)
+    if contract_tags.present?
+      contract_tags_array = contract_tags.split(',').map(&:strip)
+      (contract_tags_array - CONTRACT_LIST).empty? ? scheduling.contract_tags = contract_tags_array.join(',') : row[:contrats] = contract_tags 
+    end
+    
+    scheduling.discovery = true if row.delete("decouverte".to_sym).try(:downcase) == "x"
+    scheduling.remark = row.delete(:observations_programmation)
+    prospecting_months_string = row.delete("mois_prospection".to_sym)
+    if prospecting_months_string
+      begin
+        scheduling.prospecting_months = prospecting_months_string.split(',').map do |e|
+          if e.count('.') == 2
+            elements = e.strip.split('..')
+            Range.new(elements[0].to_i, elements[1].to_i).to_a.map(&:to_s)
+          else
+            e.strip
+          end
+        end.flatten
+      rescue
+        scheduling.prospecting_months_string = nil
+        row["mois_prospection".to_sym] = prospecting_months_string
+      end
+    end
+    scheduling.scheduler_name = row.delete(:nom_programmateur)
     scheduling
   end
 end

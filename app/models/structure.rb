@@ -35,7 +35,6 @@ class Structure < ActiveRecord::Base
   validates_presence_of :contact
   # validates_associated :contact
 
-
   def kind
     fm = self.fine_model
     if fm.present?
@@ -186,4 +185,31 @@ class Structure < ActiveRecord::Base
     structure.upload_base64_avatar(avatar_attributes)
     structure
   end
+  
+  def self.from_csv(row)
+    structure = Structure.new
+    titles = {}
+    row.keys.map(&:to_s).keep_if do |key| 
+      elements = key.split('_')
+      if elements.count > 1 && Contact::VALID_CSV_KEYS.include?(elements[0])
+        titles[elements[1]] ||= {}
+        titles[elements[1]][elements[0]] = row[key.to_sym]
+        row.delete(key.to_sym)
+      end
+    end
+    titles.each do |t|
+      title = t[0]
+      person_hash = t[1]
+      person_name = person_hash.delete("nom")
+      if person_name && person_name.strip.length > 1
+        ps = structure.people_structures.build
+        ps.title = title
+        ps.person = Person.new
+        ps.person.name = person_name 
+      end
+    end
+    structure.contact = Contact.from_csv(row)
+    structure
+  end
+    
 end

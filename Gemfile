@@ -37,7 +37,7 @@ gem 'mini_magick'
 gem 'fog'
 
 gem 'gmaps4rails'
-gem 'geocoder'
+gem 'geocoder', git: 'git@github.com:alexreisner/geocoder.git', branch: 'master'
 
 gem 'icalendar'
 
@@ -81,3 +81,6 @@ gem 'pg'
 gem 'ar_pg_array'
 
 gem 'rollbar'
+
+gem 'smarter_csv'
+gem 'cmess'

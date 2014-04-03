@@ -52,7 +52,8 @@ class Person < ActiveRecord::Base
 
   def set_contact_name
     self.build_contact unless contact.present?
-    contact.name = "#{last_name} #{first_name}" if self.changed.include?("first_name") || self.changed.include?("last_name")
+    
+    contact.name = "#{last_name} #{first_name}".split.map{|w| w.split('-').map(&:capitalize).join('-')}.join(' ') if self.changed.include?("first_name") || self.changed.include?("last_name")
   end
 
 

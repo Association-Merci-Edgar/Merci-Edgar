@@ -203,4 +203,35 @@ class Venue < ActiveRecord::Base
     venue_attributes = attributes["venue"]
     self.from_merciedgar_hash(venue_attributes, Time.now)
   end
+  
+  def self.from_csv(row)
+    venue = Venue.new
+    venue.kind = row.delete("type_lieu".to_sym)
+    venue.residency = true if row.delete("residence".to_sym).try(:downcase) == "x"
+    venue.accompaniment = true if row.delete("accompagnement".to_sym).try(:downcase) == "x"
+    season_months_string = row.delete("saison".to_sym)
+    if season_months_string
+      begin
+        venue.season_months = season_months_string.split(',').map do |e|
+          if e.count('.') == 2
+            elements = e.strip.split('..')
+            Range.new(elements[0].to_i, elements[1].to_i).to_a.map(&:to_s)
+          else
+            e.strip
+          end
+        end.flatten
+      rescue
+        venue.season_months = nil
+        row["saison".to_sym] = season_months_string
+      end
+    end
+    # scheduling_attributes = row.slice(:styles, :types_contrats, :nom_programmateur, :decouverte, :observations_programmation, :mois_prospection)
+    scheduling = Scheduling.from_csv(row) 
+    venue.schedulings << scheduling if scheduling
+    venue.rooms << Room.from_csv(row) if (row.keys & Room::VALID_CSV_KEYS).any?
+    venue.structure = Structure.from_csv(row) 
+    
+    venue
+  end
+  
 end
