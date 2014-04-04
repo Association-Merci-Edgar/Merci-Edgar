@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228084103) do
+ActiveRecord::Schema.define(:version => 20140403140450) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -179,6 +179,23 @@ ActiveRecord::Schema.define(:version => 20140228084103) do
   end
 
   add_index "festivals", ["account_id"], :name => "index_festivals_on_account_id"
+
+  create_table "geonames_postal_codes", :force => true do |t|
+    t.string  "country_code", :null => false
+    t.string  "postal_code",  :null => false
+    t.string  "place_name",   :null => false
+    t.string  "admin_name1"
+    t.string  "admin_code1"
+    t.string  "admin_name2"
+    t.string  "admin_code2"
+    t.string  "admin_name3"
+    t.string  "admin_code3"
+    t.float   "latitude",     :null => false
+    t.float   "longitude",    :null => false
+    t.integer "accuracy"
+  end
+
+  add_index "geonames_postal_codes", ["postal_code"], :name => "index_geonames_postal_codes_on_postal_code"
 
   create_table "networks", :force => true do |t|
     t.string   "network"
