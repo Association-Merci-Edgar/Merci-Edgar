@@ -5,7 +5,7 @@ class GeonamesPostalCode < ActiveRecord::Base
                   
   scope :by_place_name, lambda { |city| where("lower(unaccent(place_name)) LIKE ?", "%#{city.downcase}%" )}
   
-  def self.get_lat_and_long(options)
+  def self.get_latitude_and_longitude(options)
     places = GeonamesPostalCode.order(:id)
     city = options[:city]
     country_code = options[:country_code] || "FR"

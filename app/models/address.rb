@@ -25,7 +25,8 @@ class Address < ActiveRecord::Base
   attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info, :latitude, :longitude
   acts_as_gmappable :process_geocoding => false, address: :full_address
   geocoded_by :full_address
-  after_validation :geocode, unless: :latitude_changed?
+  # after_validation :geocode, unless: :latitude_changed?
+  before_validation :format_postal_code
   before_save :set_account
   validates :postal_code, presence: true
   validates :city, :presence => :true
@@ -199,5 +200,33 @@ REGIONS = {
   def gmaps4rails_infowindow
     self.contact.name
   end
+  
 
+  def self.from_csv(row)
+    address = Address.new
+    address.street = row.delete(:addresse)
+    address.country = Country.find_country_by_names(row.delete(:pays)).try(:alpha2) || "FR"
+    address.postal_code = row.delete(:code_postal)
+    address.format_postal_code
+    address.city = row.delete(:ville)
+    if address.city && address.postal_code
+      lat_long = GeonamesPostalCode.get_latitude_and_longitude(city: address.city, postal_code: address.postal_code, country_code: address.country)
+      if lat_long
+        address.latitude = lat_long["latitude"]
+        address.longitude = lat_long["longitude"]
+      end
+      puts "addresse: #{address.to_yaml}"
+      address
+    else
+      nil
+    end
+  end
+  
+  def format_postal_code
+    if self.postal_code && self.country == "FR" || country == nil
+      if self.postal_code.length == 4
+        self.postal_code = "0#{postal_code}"
+      end
+    end
+  end
 end

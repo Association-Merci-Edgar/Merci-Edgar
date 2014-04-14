@@ -393,18 +393,48 @@ class Contact < ActiveRecord::Base
       puts "DUPLICATE avec name: #{self.name}"
     end    
   end
+
+  def self.get_or_init_by_name(name, imported_at, duplicate_with_imported)
+    normalize_name = Contact.format_name(name.strip)
+    contact = Contact.where(name: normalize_name).first_or_initialize
+    
+    unless contact.new_record? || (contact.imported_at == imported_at && !duplicate_with_imported)
+      duplicates = Contact.where("name LIKE ?", "#{contact.name} #%")
+      nb_duplicates = duplicates.size
+      contact = duplicates.where(imported_at: imported_at).first
+      contact = Contact.new(name: "#{normalize_name} ##{nb_duplicates + 1}") unless contact && !duplicate_with_imported
+    end
+    contact
+
+  end
   
-  def self.from_csv(row)
-    contact = Contact.new
-    name = row[:nom].strip
-    puts "name contact: #{name}"
-    contact.assign_name_and_duplicate(name)
+  def self.get_or_init_from_csv(row, duplicate_with_imported=false)
+    imported_at = row.delete(:imported_at)
+    name = row[:nom]
+    contact = Contact.get_or_init_by_name(name, imported_at, duplicate_with_imported)
+    contact.imported_at = imported_at
+    contact    
+  end
+  
+  def self.from_csv(row, duplicate_with_imported=false)
+    contact = get_or_init_from_csv(row, duplicate_with_imported)
+    contact.assign_from_csv(row)
+    contact
+  end
+  
+  def assign_from_csv(row)
+    contact = self
+    # contact.assign_name_and_duplicate(name)
     contact.remark = ""
+    
+    address = Address.from_csv(row)
+    contact.addresses << address if address
+    
     if row[:tel].present?
       phone = contact.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
       unless phone.valid?
         contact.phones.delete(phone)
-        contact.remark += "Tel: ##{row[:tel]} / "
+        contact.remark += "Tel: #{row[:tel]} / "
       end
     end
     if row[:email].present?
@@ -442,7 +472,6 @@ class Contact < ActiveRecord::Base
         contact.send(:write_attribute, attribute,nil)
       end
     end
-    contact
   end
   
   def making_prospecting?

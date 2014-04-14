@@ -35,6 +35,7 @@ class Room < ActiveRecord::Base
     room = Room.new
     room.name = row[:nom]
     standing_nb = row.delete(:places_debout)
+    puts "INSPECTION STANDING_NB #{standing_nb.inspect}"
     if standing_nb.present? && standing_nb.is_a?(Integer)
       standing_capacity = room.capacities.build(kind: :standing, nb: standing_nb)
       standing_capacity.modular = true if row.delete(:places_debout_modulable).try(:downcase) == "x"    
@@ -53,6 +54,7 @@ class Room < ActiveRecord::Base
     room.depth = row.delete(:profondeur_plateau) if row[:profondeur_plateau].is_a?(Integer)
     room.height = row.delete(:hauteur_plateau) if row[:hauteur_plateau].is_a?(Integer)
     room.bar = true if row.delete(:bar_salle).try(:downcase) == "x" 
+    puts "room: #{room.to_yaml}"
     room
   end
 end

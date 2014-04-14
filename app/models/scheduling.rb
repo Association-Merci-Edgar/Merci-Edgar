@@ -228,7 +228,15 @@ class Scheduling < ActiveRecord::Base
       (contract_tags_array - CONTRACT_LIST).empty? ? scheduling.contract_tags = contract_tags_array.join(',') : row[:contrats] = contract_tags 
     end
     
-    scheduling.discovery = true if row.delete("decouverte".to_sym).try(:downcase) == "x"
+    discovery = row["decouverte".to_sym]
+    if discovery.present?
+      if discovery.try(:downcase) == "x"
+        scheduling.discovery = true
+        row.delete("decouverte".to_sym)
+      end
+    end
+      
+        
     scheduling.remark = row.delete(:observations_programmation)
     prospecting_months_string = row.delete("mois_prospection".to_sym)
     if prospecting_months_string
@@ -246,7 +254,14 @@ class Scheduling < ActiveRecord::Base
         row["mois_prospection".to_sym] = prospecting_months_string
       end
     end
-    scheduling.scheduler_name = row.delete(:nom_programmateur)
+    scheduler_name = row.delete(:nom_programmateur)
+    if scheduler_name && scheduler_name.length > 1 && scheduler_name.split(' ').count > 1
+      # scheduling.scheduler_name = scheduler_name
+      scheduler_hash = {  nom: scheduler_name, imported_at: row[:imported_at] }
+      scheduling.scheduler = Person.from_csv(scheduler_hash)
+    else
+      row[:nom_programmateur] = scheduler_name
+    end
     scheduling
   end
 end

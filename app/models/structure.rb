@@ -189,26 +189,24 @@ class Structure < ActiveRecord::Base
   def self.from_csv(row)
     structure = Structure.new
     titles = {}
-    row.keys.map(&:to_s).keep_if do |key| 
+    row.keys.map(&:to_s).each do |key| 
       elements = key.split('_')
       if elements.count > 1 && Contact::VALID_CSV_KEYS.include?(elements[0])
         titles[elements[1]] ||= {}
-        titles[elements[1]][elements[0]] = row[key.to_sym]
+        titles[elements[1]][elements[0].to_sym] = row[key.to_sym]
         row.delete(key.to_sym)
       end
     end
-    titles.each do |t|
-      title = t[0]
-      person_hash = t[1]
-      person_name = person_hash.delete("nom")
-      if person_name && person_name.strip.length > 1
+    titles.each do |title,person_hash|
+      person_name = person_hash[:nom]
+      if person_name && person_name.strip.length > 1 && title != "programmateur"
         ps = structure.people_structures.build
         ps.title = title
-        ps.person = Person.new
-        ps.person.name = person_name 
+        person_hash[:imported_at] = row[:imported_at]
+        ps.person = Person.from_csv(person_hash)
       end
     end
-    structure.contact = Contact.from_csv(row)
+    structure.contact = Contact.from_csv(row, true)
     structure
   end
     
