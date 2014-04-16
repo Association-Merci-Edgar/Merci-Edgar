@@ -60,7 +60,7 @@ class Contact < ActiveRecord::Base
 
   delegate :fine_model, to: :contactable
   
-  VALID_CSV_KEYS = ["nom","tel","email","web", "reseaux", "tags_perso"]
+  VALID_CSV_KEYS = ["nom","tel","email","web", "reseaux", "tags_perso", "observations"]
   
     
   def avatar  
@@ -425,8 +425,13 @@ class Contact < ActiveRecord::Base
   def assign_from_csv(row)
     contact = self
     # contact.assign_name_and_duplicate(name)
+    row.delete(:first_name_last_name_order)
     contact.remark = ""
     
+    if row[:observations].present?
+      contact.remark += row[:observations]
+    end
+
     address = Address.from_csv(row)
     contact.addresses << address if address
     
@@ -457,6 +462,8 @@ class Contact < ActiveRecord::Base
     if row[:tags_perso].present?
       contact.custom_tags = row[:tags_perso].split(',').map(&:strip).join(',')
     end
+    
+      
     invalid_keys = row.keys.map(&:to_s).delete_if{|key| VALID_CSV_KEYS.include?(key)}
     invalid_keys.each do |invalid_key|
       value = row[invalid_key.to_sym]

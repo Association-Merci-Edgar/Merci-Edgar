@@ -39,6 +39,7 @@ class CsvImport
       chunk.each do |venue_row|
         puts "row: #{venue_row}"
         venue_row[:imported_at] = imported_at
+        venue_row[:first_name_last_name_order] = options[:first_name_last_name_order]
         venue = Venue.from_csv(venue_row)
         unless venue.save
           puts venue.errors.full_messages

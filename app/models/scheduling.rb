@@ -257,7 +257,7 @@ class Scheduling < ActiveRecord::Base
     scheduler_name = row.delete(:nom_programmateur)
     if scheduler_name && scheduler_name.length > 1 && scheduler_name.split(' ').count > 1
       # scheduling.scheduler_name = scheduler_name
-      scheduler_hash = {  nom: scheduler_name, imported_at: row[:imported_at] }
+      scheduler_hash = {  nom: scheduler_name, imported_at: row[:imported_at], first_name_last_name_order: row[:first_name_last_name_order] }
       scheduling.scheduler = Person.from_csv(scheduler_hash)
     else
       row[:nom_programmateur] = scheduler_name

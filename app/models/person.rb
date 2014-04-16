@@ -184,6 +184,13 @@ class Person < ActiveRecord::Base
   end
   
   def self.from_csv(row)
+    if row[:first_name_last_name_order] == "first_name"
+      old_name = row[:nom]
+      words = old_name.split(' ')
+      first_name = words.shift
+      last_name = words.join(' ') if words.present?
+      row[:nom] = [last_name, first_name].join(' ')
+    end
     contact = Contact.from_csv(row) #TODO
     if contact.new_record?
       person = Person.new
