@@ -28,9 +28,9 @@ class Address < ActiveRecord::Base
   # after_validation :geocode, unless: :latitude_changed?
   before_validation :format_postal_code
   before_save :set_account
-  validates :postal_code, presence: true
-  validates :city, :presence => :true
-  validates :country, :presence => :true
+  # validates :postal_code, presence: true
+  # validates :city, :presence => :true
+  # validates :country, :presence => :true
 
   # default_scope { where(:account_id => Account.current_id) }
 
@@ -190,10 +190,12 @@ REGIONS = {
   end
 
   def department_code
-    if self.postal_code.start_with?("97")
-      self.postal_code[0..2]
-    else
-      self.postal_code[0..1]
+    if self.postal_code && self.country
+      if self.postal_code.start_with?("97")
+        self.postal_code[0..2]
+      else
+        self.postal_code[0..1]
+      end
     end
   end
 
@@ -204,22 +206,18 @@ REGIONS = {
 
   def self.from_csv(row)
     address = Address.new
-    address.street = row.delete(:addresse)
+    address.street = row.delete(:adresse)
     address.country = Country.find_country_by_names(row.delete(:pays)).try(:alpha2) || "FR"
     address.postal_code = row.delete(:code_postal)
     address.format_postal_code
     address.city = row.delete(:ville)
-    if address.city && address.postal_code
-      lat_long = GeonamesPostalCode.get_latitude_and_longitude(city: address.city, postal_code: address.postal_code, country_code: address.country)
-      if lat_long
-        address.latitude = lat_long["latitude"]
-        address.longitude = lat_long["longitude"]
-      end
-      puts "addresse: #{address.to_yaml}"
-      address
-    else
-      nil
+    address.kind = :main_address
+    lat_long = GeonamesPostalCode.get_latitude_and_longitude(city: address.city, postal_code: address.postal_code, country_code: address.country)
+    if lat_long
+      address.latitude = lat_long["latitude"]
+      address.longitude = lat_long["longitude"]
     end
+    address
   end
   
   def format_postal_code
