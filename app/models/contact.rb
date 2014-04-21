@@ -399,10 +399,14 @@ class Contact < ActiveRecord::Base
     contact = Contact.where(name: normalize_name).first_or_initialize
     
     unless contact.new_record? || (contact.imported_at == imported_at && !duplicate_with_imported)
+      duplicate = contact
       duplicates = Contact.where("name LIKE ?", "#{contact.name} #%")
       nb_duplicates = duplicates.size
       contact = duplicates.where(imported_at: imported_at).first
-      contact = Contact.new(name: "#{normalize_name} ##{nb_duplicates + 1}") unless contact && !duplicate_with_imported
+      unless contact && !duplicate_with_imported
+        contact = Contact.new(name: "#{normalize_name} ##{nb_duplicates + 1}") 
+        contact.duplicate = duplicate
+      end
     end
     contact
 
