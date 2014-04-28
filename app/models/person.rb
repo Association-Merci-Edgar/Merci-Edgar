@@ -50,6 +50,7 @@ class Person < ActiveRecord::Base
     else
       write_attribute(:first_name, fname)
     end
+    set_contact_name
   end
   
   def last_name=(lname)
