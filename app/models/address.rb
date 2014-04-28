@@ -222,7 +222,7 @@ REGIONS = {
   
   def format_postal_code
     if self.postal_code && self.country == "FR" || country == nil
-      if self.postal_code.length == 4
+      if self.postal_code.to_s.length == 4
         self.postal_code = "0#{postal_code}"
       end
     end
