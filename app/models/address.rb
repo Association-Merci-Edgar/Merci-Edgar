@@ -178,19 +178,19 @@ REGIONS = {
   end
 
   def department_name
-    DEPARTEMENTS[department_code].try(:fetch,:name)
+    @department_name ||= DEPARTEMENTS[department_code].try(:fetch,:name)
   end
 
   def region_code
-    DEPARTEMENTS[department_code].try(:fetch,:region_code)
+    @region_code ||= DEPARTEMENTS[department_code].try(:fetch,:region_code)
   end
 
   def region_name
-    REGIONS[region_code].try(:fetch,:name)
+    @region_name ||= REGIONS[region_code].try(:fetch,:name)
   end
 
   def department_code
-    if self.postal_code && self.country
+    @department_code ||= if self.postal_code && self.country
       if self.postal_code.start_with?("97")
         self.postal_code[0..2]
       else

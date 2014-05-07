@@ -192,7 +192,7 @@ class Person < ActiveRecord::Base
       last_name = words.join(' ') if words.present?
       row[:nom] = [last_name, first_name].join(' ')
     end
-    contact = Contact.from_csv(row) #TODO
+    contact, invalid_keys = Contact.from_csv(row) #TODO
     if contact.new_record?
       person = Person.new
       person.name = contact.name

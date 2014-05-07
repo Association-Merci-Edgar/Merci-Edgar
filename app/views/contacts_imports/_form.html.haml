@@ -6,9 +6,11 @@
 = simple_form_for(@import, remote: true) do |f|
   .modal-body  
     .errors     
-    = f.input :filename, as: :file
+    = f.input :contact_file, as: :file, input_html: { accept: "text/csv, application/xml" }
     %p
-     
+    = f.input :contact_kind, collection: [:venue, :festival, :show_buyer], selected: :venue
+    = f.input :first_name_last_name_order, collection: [:first_name, :last_name], selected: :last_name
+    %p 
     = f.input :custom_tags, :input_html => { :class => "fullwidth custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
     
     %section.progressbar.ghost
@@ -17,5 +19,6 @@
         .message Import en cours ...
         
   .modal-footer
-    = f.button :submit
+    = f.submit t('helpers.submit.import.test')
+    = f.submit
         

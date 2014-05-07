@@ -422,8 +422,8 @@ class Contact < ActiveRecord::Base
   
   def self.from_csv(row, duplicate_with_imported=false)
     contact = get_or_init_from_csv(row, duplicate_with_imported)
-    contact.assign_from_csv(row)
-    contact
+    invalid_keys = contact.assign_from_csv(row)
+    [ contact, invalid_keys ]
   end
   
   def assign_from_csv(row)
@@ -483,6 +483,7 @@ class Contact < ActiveRecord::Base
         contact.send(:write_attribute, attribute,nil)
       end
     end
+    invalid_keys
   end
   
   def making_prospecting?

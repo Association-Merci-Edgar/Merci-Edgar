@@ -1,0 +1,21 @@
+%h1.page-title Importer un fichier contacts
+
+= simple_form_for(@import) do |f|
+  = display_errors(@import)
+  
+  .form-inputs
+    = f.input :contact_file, as: :file, input_html: { accept: "text/csv, application/xml" }
+    %p
+    = f.input :contact_kind, collection: [:venue, :festival, :show_buyer], selected: :venue
+    = f.input :first_name_last_name_order, collection: [:first_name, :last_name], selected: :last_name
+    %p 
+    = f.input :custom_tags, :input_html => { :class => "fullwidth custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
+    
+    %section.progressbar.ghost
+      .progress
+        .bar
+        .message Import en cours ...
+        
+  .form-actions
+    = f.submit t('helpers.submit.contacts_import.test')
+    = f.submit

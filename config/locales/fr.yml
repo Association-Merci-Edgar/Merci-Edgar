@@ -347,4 +347,7 @@ fr:
       update: "Enregistrer les modifications"
       create: "Créer"
       create_and_edit: "Ajouter davantage d'infos"
+      contacts_import:
+        create: "Lancer l'import"
+        test: "Tester avant d'importer"
       

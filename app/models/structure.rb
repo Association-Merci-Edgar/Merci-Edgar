@@ -212,8 +212,8 @@ class Structure < ActiveRecord::Base
         row.delete_if{|key| person_hash_keys_in_row.include?(key)}
       end
     end
-    structure.contact = Contact.from_csv(row, true)
-    structure
+    structure.contact, invalid_keys = Contact.from_csv(row, true)
+    [structure, invalid_keys]
   end
     
 end

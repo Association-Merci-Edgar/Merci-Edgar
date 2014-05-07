@@ -28,6 +28,8 @@ $(document).on('nested:fieldAdded', function(event){
 	input.multivalues_autocomplete({json_url: input.data('autocomplete-source')});
   }
   
+	address_input = field.find('.street')
+	setAddressPicker(address_input)
 });
 
 
@@ -195,4 +197,48 @@ $.fn.swipeable = function() {
 
 $('.swipeable span').swipeable();
 
+function get_cousin_id(parent, cousin_class) {
+	id = parent.find(cousin_class).attr("id")
+	if (id) {
+		return "#" + id
+	}
+	else {
+		return false
+	}
+}
+
+function setAddressPicker(element) {
+	address_input = $(element)
+	fields_parent = address_input.parents('.nested-fields.addresses')
+
+	latitude_input_id = get_cousin_id(fields_parent, ".latitude")
+	longitude_input_id = get_cousin_id(fields_parent, ".longitude")
+	city_input_id = get_cousin_id(fields_parent, ".city")
+	postal_code_id = get_cousin_id(fields_parent, ".postal_code")
+
+  var addresspicker = address_input.addresspicker({
+    componentsFilter: 'country:FR',
+		elements: {
+      lat:      latitude_input_id,
+      lng:      longitude_input_id,
+      street_number: '#street_number',
+      route: '#route',
+      locality: city_input_id,
+      country:  '#country',
+      postal_code: postal_code_id
+    }
+	});
+	
+}
+// Use of addresspicker
+$(function() {
+	addresses_input = $('.street').each(function(index,element){
+	setAddressPicker(element)
+		
+	})
+	
+	function showCallback(geocodeResult, parsedGeocodeResult){
+    console.log(JSON.stringify(parsedGeocodeResult, null, 4));
+  }
+});
 

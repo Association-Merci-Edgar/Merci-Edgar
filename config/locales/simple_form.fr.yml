@@ -75,8 +75,10 @@ fr:
         name: Projet artistique
       contact:
         remark: Observations
-      import:
-        filename: "Choisissez un fichier .mml"
+      contacts_import:
+        contact_file: "Choisissez un fichier à importer..."
+        contact_kind: "Type de contact"
+        first_name_last_name_order: "Ordre nom personne"
         custom_tags: "Tag(s) personnalisé(s) à ajouter aux contacts importés<br><span class='help-block'>(séparés par des virgules)</span>"
       schedulings: &schedulings
         external_show_buyer: Programmé par
@@ -245,9 +247,19 @@ fr:
           due_next_week: La semaine prochaine
           due_this_month: Ce mois ci
           specific: Date précise ...
-          
+      contacts_import:
+        contact_kind:
+          venue: Lieu
+          festival: Festival
+          show_buyer: Autre organisateur de spectacle
+          structure: Structure générique
+          person: Personne
+        first_name_last_name_order:
+          first_name: Prénom Nom
+          last_name: Nom Prénom    
     helpers:
       submit:
         venue:
-          
+        import:
+        create: "Importer..."  
           

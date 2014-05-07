@@ -89,6 +89,7 @@ people:
     first_name: Aurore
     last_name: "Boréale"
     contact_attributes:
+      name: "Boréale Aurore"
       custom_tags: "Exemple"
     people_structures_attributes:
       comm:

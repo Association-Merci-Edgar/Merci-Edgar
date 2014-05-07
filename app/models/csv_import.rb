@@ -34,19 +34,7 @@ class CsvImport
   end
 
   def load_csv_venue_file(filename, options = {})
-    imported_at = Time.zone.now.to_i
-    total_chunks = SmarterCSV.process(filename, chunk_size: 10, convert_values_to_numeric: {except: :code_postal}) do |chunk|
-      chunk.each do |venue_row|
-        puts "row: #{venue_row}"
-        venue_row[:imported_at] = imported_at
-        venue_row[:first_name_last_name_order] = options[:first_name_last_name_order]
-        venue = Venue.from_csv(venue_row)
-        unless venue.save
-          puts venue.errors.full_messages
-          return
-        end
-      end
-    end
+    
   end
 
 end

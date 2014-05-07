@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class XmlImportUploader < CarrierWave::Uploader::Base
+class ContactsImportUploader < CarrierWave::Uploader::Base
   include CarrierWave::MimeTypes
 
   process :set_content_type
@@ -17,7 +17,7 @@ class XmlImportUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(xml)
+    %w(xml csv)
   end
 
   # Override the filename of the uploaded files:

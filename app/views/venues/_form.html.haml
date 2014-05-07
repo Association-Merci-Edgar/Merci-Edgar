@@ -1,4 +1,6 @@
 - content_for :scripts do
+  = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
+  = javascript_include_tag "jquery.ui.addresspicker"
   = javascript_include_tag "contacts"
   = javascript_include_tag "tag"
   = javascript_include_tag "contacts_form"
@@ -91,17 +93,19 @@
                           %i.entypo.edi-minus2
 
                         = address.input :street, label:"Addresse", :wrapper => :append do
-                          = address.input_field :street,:placeholder =>"Addresse",  :label => false, :input_html => { :class => "input-xlarge" }
+                          = address.input_field :street,:placeholder =>"Addresse",  :label => false, autocomplete: :off, :class => "input-xlarge street"
                           = address.input_field :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "add-on btn dropdown-toggle" }
                           
                         .control-group.nolabel
-                          = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline"
-                          = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline"
+                          = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline city"
+                          = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline postal_code"
                           = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
                         .control-group.nolabel.state.hidden
                           = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
                       
                         = address.input :more_info, label:false
+                        = address.hidden_field :latitude, class: "latitude"
+                        = address.hidden_field :longitude, class: "longitude"
 
                     .links
                       = c.link_to_add :addresses, :title => 'Add a new address' do
