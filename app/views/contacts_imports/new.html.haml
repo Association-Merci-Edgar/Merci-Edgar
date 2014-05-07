@@ -6,8 +6,8 @@
   .form-inputs
     = f.input :contact_file, as: :file, input_html: { accept: "text/csv, application/xml" }
     %p
-    = f.input :contact_kind, collection: [:venue, :festival, :show_buyer], selected: :venue
-    = f.input :first_name_last_name_order, collection: [:first_name, :last_name], selected: :last_name
+    = f.input :contact_kind, collection: [:venue, :festival, :show_buyer], as: :radio_buttons,  selected: :venue
+    = f.input :first_name_last_name_order, collection: [:first_name, :last_name], as: :radio_buttons, selected: :last_name
     %p 
     = f.input :custom_tags, :input_html => { :class => "fullwidth custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
     
