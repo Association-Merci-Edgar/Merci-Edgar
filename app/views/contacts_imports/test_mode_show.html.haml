@@ -1,3 +1,82 @@
 %header
   %h1.page-title
     Import test
+
+%section.padded.progressbar
+  -# .ghost
+  -# .hidden
+  .progress
+    .bar
+    .message Import en cours…
+    
+    
+-#  ________________________________________________________ notice_success
+// remplace la progressbar aprés succés
+-# javascript :
+-#  $('.progressbar').toggleClass('hidden');
+-#  $('#notice_success').toggleClass('hidden');
+
+%section.padded#notice_success
+  .notice.success
+    %span.noticetitle
+      //
+      L'import test est terminé.
+      
+    %span
+      Les
+      = @nb_imported_contacts
+      premiers contacts du fichier 
+      %b NomDuFichier.ext 
+      ont été traités.
+    
+    %br
+    %button.btn.btn-primary Voir les contacts test
+    %button.btn.btn-primary Modifier les paramètres d’import
+    %br
+    %button.btn.btn-alert Lancer l’import complet
+    /%a.ico.btn-close{href:"#"}
+    
+  
+  
+-#  ________________________________________________________ Report
+%section.padded
+  Rapport ligne par ligne
+  %br
+  Rapport ligne par ligne
+  %br
+  Rapport ligne par ligne
+  %br
+  Rapport ligne par ligne
+  %br
+  Rapport ligne par ligne
+  
+  
+
+-#  ________________________________________________________ Autres notices
+%section.padded
+  %br
+  %br
+  %br
+  %br
+  %h2 //Autres notices
+
+  .notice.error
+    %span.noticetitle
+      Erreur lors de l’importation test.
+    %span
+      Il semble que le fichier 
+      %b NomDuFichier.ext 
+      ne soit pas au bon format...
+      %br
+      Edgar vous recommande de vérifiez le fichier.
+      %br
+      Vous pouvez 
+      %a consultez l’aide en ligne à propos de l'import
+      ou 
+      %a contactez Edgar.
+      %br
+      = link_to new_contacts_import_path, remote:false, :class=>"btn btn-primary " do
+        Retourner à la page d’import
+        /%i.ico.edi-import
+        
+    /%a.ico.btn-close{href:"#"}

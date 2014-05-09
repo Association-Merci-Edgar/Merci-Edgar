@@ -76,7 +76,7 @@ fr:
       contact:
         remark: Observations
       contacts_import:
-        contact_file: "Choisissez un fichier à importer..."
+        contact_file: "Choisissez un fichier à importer :"
         contact_kind: "Type de contact"
         first_name_last_name_order: "Ordre nom personne"
         custom_tags: "Tag(s) personnalisé(s) à ajouter aux contacts importés<br><span class='help-block'>(séparés par des virgules)</span>"

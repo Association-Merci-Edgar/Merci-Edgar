@@ -428,6 +428,8 @@ ActiveRecord::Schema.define(:version => 20140403140450) do
 
   create_table "venues", :force => true do |t|
     t.string       "kind"
+    t.integer      "start_season"
+    t.integer      "end_season"
     t.boolean      "residency"
     t.boolean      "accompaniment"
     t.string       "avatar"
