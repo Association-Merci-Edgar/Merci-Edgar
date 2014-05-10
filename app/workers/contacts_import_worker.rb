@@ -5,12 +5,18 @@ class ContactsImportWorker
 
   def perform(account_id, filename, options)
     Account.current_id = account_id
+    user = User.find(options["user_id"])
     uploader = ContactsImportUploader.new(account_id.to_s)
     uploader.retrieve_from_store!(filename)
     uploader.cache_stored_file!
     at(10,"Lecture du fichier")
     imported_at = Time.zone.now.to_i
-
+    test_mode = options["test_mode"]
+    current_account = Account.find(account_id)
+    current_account.destroy_test_contacts
+    current_account.test_imported_at = test_mode ? imported_at : nil
+    current_account.save!
+    
     case File.extname(filename)
     when ".xml"
       import_xml_file(uploader.file, imported_at, options)
@@ -23,6 +29,7 @@ class ContactsImportWorker
     nb_imported_contacts = imported_contacts.count
     nb_imported_contacts
     self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
+    UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless test_mode
   end
   
   def import_xml_file(file, imported_at, options)
@@ -89,7 +96,8 @@ class ContactsImportWorker
     total_chunks = SmarterCSV.process(file.path, chunk_size: 100, convert_values_to_numeric: {except: :code_postal}) do |chunk|
       chunk.each do |venue_row|
         imported_index += 1
-        return if imported_index > 20 && options["test_mode"]
+        test_mode = options["test_mode"]
+        return if imported_index > 20 && test_mode
         venue_row[:imported_at] = imported_at
         # venue_row[:first_name_last_name_order] = options[:first_name_last_name_order]
         venue_row[:first_name_last_name_order] = options["first_name_last_name_order"]
@@ -108,5 +116,6 @@ class ContactsImportWorker
     end
     log_message    
   end
+  
 end
   

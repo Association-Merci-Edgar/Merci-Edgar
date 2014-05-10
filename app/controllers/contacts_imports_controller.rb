@@ -12,7 +12,8 @@ class ContactsImportsController < AppController
         uploader = ContactsImportUploader.new(Account.current_id.to_s)
         uploader.store!(@import.contact_file)
       end
-      @job_id = ContactsImportWorker.perform_async(Account.current_id, @import.filename, @import.options)
+      import_worker_options = @import.options.merge({user_id: current_user.id})
+      @job_id = ContactsImportWorker.perform_async(Account.current_id, @import.filename, import_worker_options)
       session[:form_import_params] = @import.to_json if @import.test_mode
       
       redirect_to contacts_import_path(@job_id, test_mode: @import.test_mode)

@@ -21,7 +21,7 @@ development:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: www.lvh.me:3000
+  DOMAIN: lvh.me:3000
   SESSION_DOMAIN: ".lvh.me"
   
   AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
