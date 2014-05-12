@@ -30,7 +30,7 @@
             = f.input :contact_kind, collection: ["Fichier Edgar. (.xml)"], as: :radio_buttons, label: false, item_wrapper_class: "xml"
             = f.hint 'Ce type de fichier contient tous les types de contact.<br>Il est issu d’un export Edgar et contient également des images.'
           .span6
-            = f.input :contact_kind, collection: ["Structures génériques (.csv)", :venue, :festival, :show_buyer, :person], as: :radio_buttons,  :checked => :venue, label: false
+            = f.input :contact_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons,  :checked => :venue, label: false
             //, label: "Quel type de fichier allez-vous importer ?"
       
       %section

@@ -4,8 +4,8 @@ class ContactsImport
   extend ActiveModel::Naming
   extend ActiveModel::Translation
   
-  attr_accessor :contact_file, :custom_tags, :contact_kind, :first_name_last_name_order, :test_mode
-  validates_presence_of :contact_file
+  attr_accessor :contact_file, :custom_tags, :contact_kind, :first_name_last_name_order, :test_mode, :filename
+  # validates_presence_of :contact_file
   validates :contact_kind, inclusion: { in: %w(venue festival show_buyer structure person) }
   
   
@@ -24,6 +24,10 @@ class ContactsImport
   end
   
   def filename
-    contact_file.try(:original_filename)
+    @filename ||= contact_file.try(:original_filename)
+  end
+  
+  def to_json
+    { contact_kind: contact_kind, first_name_last_name_order: first_name_last_name_order, filename: filename, custom_tags: custom_tags }
   end
 end

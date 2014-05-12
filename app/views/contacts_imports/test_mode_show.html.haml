@@ -1,3 +1,7 @@
+-content_for :scripts do
+  = javascript_include_tag "tag"
+  = javascript_include_tag "contacts_import"
+
 %header
   %h1.page-title
     Import test
@@ -5,7 +9,7 @@
 %section.padded.progressbar
   -# .ghost
   -# .hidden
-  .progress
+  #progress_import.progress{:data => {url: @url }}
     .bar
     .message Import en cours…
     
@@ -16,7 +20,7 @@
 -#  $('.progressbar').toggleClass('hidden');
 -#  $('#notice_success').toggleClass('hidden');
 
-%section.padded#notice_success
+%section.padded#notice_success.hide
   .notice.success
     %span.noticetitle
       //
@@ -33,27 +37,17 @@
     %button.btn.btn-primary Voir les contacts test
     %button.btn.btn-primary Modifier les paramètres d’import
     %br
-    %button.btn.btn-alert Lancer l’import complet
+    = link_to contacts_imports_path(from_test_mode: true), method: :post do
+      %button.btn.btn-alert Lancer l’import complet
     /%a.ico.btn-close{href:"#"}
     
   
   
 -#  ________________________________________________________ Report
-%section.padded
-  Rapport ligne par ligne
-  %br
-  Rapport ligne par ligne
-  %br
-  Rapport ligne par ligne
-  %br
-  Rapport ligne par ligne
-  %br
-  Rapport ligne par ligne
-  
-  
+%section#log_import.padded
 
 -#  ________________________________________________________ Autres notices
-%section.padded
+%section.padded.hide
   %br
   %br
   %br

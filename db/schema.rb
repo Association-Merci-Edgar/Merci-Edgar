@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403140450) do
+ActiveRecord::Schema.define(:version => 20140509140319) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(:version => 20140403140450) do
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "domain"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "contacts_count", :default => 0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "contacts_count",   :default => 0
+    t.integer  "test_imported_at"
   end
 
   create_table "active_admin_comments", :force => true do |t|
