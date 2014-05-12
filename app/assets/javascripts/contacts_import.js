@@ -4,8 +4,10 @@ function pollJobidStatus() {
 	progressBarSection = progressBarElement.parent()
 	json_path = progressBarElement.data("url")
 	barElement = progressBarElement.find(".bar") 
-	messageElement = progressBarElement.find(".message") 
-  $.getJSON(json_path, function (response) {
+	//messageElement = progressBarElement.find(".message") 
+  messageElement = $("#log_import") 
+ 
+	$.getJSON(json_path, function (response) {
     if (response.status == "working") {
     	barElement.width(response.pct + 1 + '%');
 			if (response.message != null) {
@@ -14,7 +16,6 @@ function pollJobidStatus() {
 			}
     }
     if (response.status == "complete") {
-    	barElement.width('100%');
 			if (response.result["message"] != null) {
 				messageElement.empty()
 				messageElement.append(response.result["message"].replace(/\n/g, '<br />'))
@@ -23,10 +24,7 @@ function pollJobidStatus() {
 			nb_imported_contacts = response.result["nb_imported_contacts"]
 			nb_duplicates = response.result["nb_duplicates"]
 
-			// progressBarSection.toggleClass("ghost");
-			// $('#myModal').modal('toggle')
-			console.log("result import:" + nb_imported_contacts + " / " + nb_duplicates + ":" + response.pct)
-			// window.location = "<%= import_path(@job_id) %>"
+			showNoticeSuccessSection("toto.csv", nb_imported_contacts, "toto")
 			
 			return false;
     }
@@ -41,3 +39,13 @@ function pollJobidStatus() {
   });
 };
 pollJobidStatus();
+
+function showNoticeSuccessSection(filename, nb_imported_contacts, contacts_url) {
+	progressSection = $("#progress_section")
+	noticeSuccessSection = $("#notice_success")
+	nbImportedContactsSpan = $("#notice_success #nb_imported_contacts")
+	
+	nbImportedContactsSpan.text(nb_imported_contacts)
+	progressSection.fadeOut()
+	noticeSuccessSection.fadeIn()
+}

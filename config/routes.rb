@@ -97,7 +97,7 @@ Edgar::Application.routes.draw do
     
     resources :jobs, only: [:show]
 
-    resources :contacts_imports
+    resources :contacts_imports, only: [:new, :edit, :create]
     resources :exports, only: [:new]
     
     resources :announcements, only: [:index]

@@ -6,10 +6,10 @@
   %h1.page-title
     Import test
 
-%section.padded.progressbar
+%section#progress_section.padded.progressbar
   -# .ghost
   -# .hidden
-  #progress_import.progress{:data => {url: @url }}
+  #progress_import.progress{:data => {url: @job_url }}
     .bar
     .message Import en cours…
     
@@ -28,15 +28,20 @@
       
     %span
       Les
-      = @nb_imported_contacts
+      %span#nb_imported_contacts
       premiers contacts du fichier 
-      %b NomDuFichier.ext 
+      = @import.filename 
       ont été traités.
     
     %br
-    %button.btn.btn-primary Voir les contacts test
-    %button.btn.btn-primary Modifier les paramètres d’import
+    = link_to contacts_path(imported_at: @import.imported_at) do
+      %button.btn.btn-primary Voir les contacts test
+      
+    = link_to edit_contacts_import_path(@import.imported_at) do
+      %button.btn.btn-primary Modifier les paramètres d’import
+    
     %br
+    
     = link_to contacts_imports_path(from_test_mode: true), method: :post do
       %button.btn.btn-alert Lancer l’import complet
     /%a.ico.btn-close{href:"#"}

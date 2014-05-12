@@ -225,6 +225,9 @@ fr:
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      contacts_import:
+        filename:
+          blank: "blabla"
       <<: *errors
   activerecord:
     errors:
@@ -275,14 +278,14 @@ fr:
   
   activemodel:
     attributes:
-      import:
+      contacts_import:
         filename: Nom de fichier
     errors:
       models:
-        import:
+        contacts_import:
           attributes:
             filename:
-              blank: "Vous n'avez pas choisi de fichier .mml"
+              blank: "Vous n'avez pas choisi de fichier à importer"
   
   activerecord:
     models:

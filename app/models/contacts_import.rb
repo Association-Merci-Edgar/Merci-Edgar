@@ -4,30 +4,47 @@ class ContactsImport
   extend ActiveModel::Naming
   extend ActiveModel::Translation
   
-  attr_accessor :contact_file, :custom_tags, :contact_kind, :first_name_last_name_order, :test_mode, :filename
+  attr_accessor :contact_file, :contact_kind, :first_name_last_name_order, :test_mode, :account_id, :user_id, :imported_at
   # validates_presence_of :contact_file
   validates :contact_kind, inclusion: { in: %w(venue festival show_buyer structure person) }
+  validates :filename, :contact_kind, :first_name_last_name_order, presence: true
   
   
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+    @first_name_last_name_order ||= :last_name
+    @contact_kind ||= :venue
+  end
+  
+  def init
+    self.first_name_last_name_order = :last_name
+    self.contact_kind = :venue
   end
   
   def persisted?
     false
   end
 
-  def options
-    { custom_tags: custom_tags, contact_kind: contact_kind, first_name_last_name_order: first_name_last_name_order, test_mode: test_mode }
+  def filename
+    if contact_file.present?
+      filename = contact_file.original_filename
+    else
+      @filename
+    end
   end
   
-  def filename
-    @filename ||= contact_file.try(:original_filename)
+  def filename=(new_filename)
+    new_filename = nil unless new_filename.present?
+    @filename = new_filename
   end
   
   def to_json
-    { contact_kind: contact_kind, first_name_last_name_order: first_name_last_name_order, filename: filename, custom_tags: custom_tags }
+    { 
+      test_mode: test_mode, contact_kind: contact_kind, first_name_last_name_order: first_name_last_name_order, 
+      filename: filename, imported_at: imported_at, account_id: account_id, user_id: user_id 
+    }
   end
+  
 end

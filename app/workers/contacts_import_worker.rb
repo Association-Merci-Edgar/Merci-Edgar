@@ -3,14 +3,16 @@ class ContactsImportWorker
   include SidekiqStatus::Worker
   sidekiq_options retry: false
 
-  def perform(account_id, filename, options)
+  def perform(options)
+    account_id = options["account_id"]
     Account.current_id = account_id
     user = User.find(options["user_id"])
+    filename = options["filename"]
     uploader = ContactsImportUploader.new(account_id.to_s)
-    uploader.retrieve_from_store!(filename)
+    uploader.retrieve_from_store!(options["filename"])
     uploader.cache_stored_file!
     at(10,"Lecture du fichier")
-    imported_at = Time.zone.now.to_i
+    imported_at = options["imported_at"]
     test_mode = options["test_mode"]
     current_account = Account.find(account_id)
     current_account.destroy_test_contacts
