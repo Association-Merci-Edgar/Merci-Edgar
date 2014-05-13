@@ -1,0 +1,21 @@
+%section.padded
+  %h2 Dernier import
+  
+  .notice.success
+    %span.noticetitle
+      = pluralize(@nb_imported_contacts, 'contact importé', 'contacts importés')
+    %span
+      le 
+      = l Time.zone.at(@imported_at)
+    %a.ico.btn-close{href:"#"}
+      
+  
+  .notice.warning
+    %span.noticetitle
+      = pluralize(@nb_duplicates, 'doublon détecté', 'doublons détectés')
+    %span
+      Cliquez sur 
+      = link_to "ici", contacts_path(imported_at: @imported_at, duplicated:true)
+      pour en voir la liste.
+    %a.ico.btn-close{href:"#"}
+

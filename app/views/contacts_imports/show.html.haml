@@ -1,0 +1,31 @@
+= render 'contacts/header'
+/______________________________________________________ LISTS       
+.progress{:style => "display:none"}
+  .bar
+
+%section.padded
+  %h2 //Notices vue liste : Dernier import
+  
+  .notice.success
+    %span.noticetitle
+      = @nb_imported_contacts
+      ont été importés
+    %span
+      depuis le fichier 
+      %b NomDuFichier.ext 
+    %a.ico.btn-close{href:"#"}
+      
+  
+  .notice.warning
+    %span.noticetitle
+      = @nb_duplicates
+      doublons ont été détectés
+    %span
+      Cliquez sur 
+      = link_to "ici", contacts_path(imported_at: @imported_at, duplicated:true)
+      pour en voir la liste.
+    %a.ico.btn-close{href:"#"}
+
+
+.row-fluid
+  = render 'contacts/paginated_contacts'

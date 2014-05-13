@@ -86,6 +86,10 @@ class ContactsController < AppController
     else
       @contacts = Contact.advanced_search(params)
       @contacts = @contacts.where(id: addresses.map(&:contact_id)) if addresses
+      if params[:imported_at].present?
+        @nb_imported_contacts, @nb_duplicates = ContactsImport.get_payload(params[:imported_at])
+        @imported_at = params[:imported_at].to_i
+      end 
       @contacts = @contacts.page params[:page]
       if params[:category].present?
         raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false

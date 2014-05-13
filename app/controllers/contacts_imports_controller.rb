@@ -33,16 +33,4 @@ class ContactsImportsController < AppController
     end
   end
   
-  def show
-    job_id = params[:id]
-    status_container = SidekiqStatus::Container.load(job_id)
-    @nb_imported_contacts = status_container.payload["nb_imported_contacts"]
-    @nb_duplicates = status_container.payload["nb_duplicates"]
-    @imported_at = params[:imported_at]
-    if params[:test_mode] == "true"
-      @job_url = job_path(job_id)
-      render action: "test_mode_show"
-    end
-  end
-
 end

@@ -120,6 +120,11 @@
 
         %li.divider{role: "menuitem"}
         %li{role: "menuitem"}
+          = link_to contacts_path(imported_at: 1399972084), role: "menuitem", tabindex: "-1" do
+            Dernier import
+
+        %li.divider{role: "menuitem"}
+        %li{role: "menuitem"}
           = link_to contacts_path(duplicated: "true"), role: "menuitem", tabindex: "-1" do
             Tous les doublons
         
@@ -253,6 +258,7 @@
 
   /= select_tag :venue_kind, options_for_select([["Bar",:bar], ["Cafe Theatre", :theater_cafe], ["Centre culturel",:cultural_center], ["MJC", :mjc],["SMAC", :smac],["Théâtre",:theater],["Salle de concerts", :music_venue],["Autre",:other]], params[:venue_kind]), prompt: "Type de lieu ..."
   = hidden_field_tag :category, params[:category]
+  = hidden_field_tag :imported_at, params[:imported_at]
   = text_field_tag :venue_kind, params[:venue_kind], placeholder: "Type de salle", :class=>"tag-type", data: {text: translate_multiple_values(params[:venue_kind],"simple_form.options.venue.kind")}
   
   /= text_field_tag :capacity_lt, params[:capacity_lt], placeholder: "Jauge <"

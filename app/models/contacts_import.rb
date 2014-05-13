@@ -47,4 +47,11 @@ class ContactsImport
     }
   end
   
+  def self.get_payload(imported_at)
+    imported_contacts = Contact.where(imported_at: imported_at)
+    nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count
+    nb_imported_contacts = imported_contacts.count
+    [nb_imported_contacts, nb_duplicates]
+  end
+  
 end
