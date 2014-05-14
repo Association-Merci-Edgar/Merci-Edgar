@@ -52,30 +52,17 @@
 %section#log_import.padded
 
 -#  ________________________________________________________ Autres notices
-%section.padded.hide
-  %br
-  %br
-  %br
-  %br
-  %h2 //Autres notices
-
+%section#notice_error.padded.hide
   .notice.error
     %span.noticetitle
       Erreur lors de l’importation test.
     %span
-      Il semble que le fichier 
-      %b NomDuFichier.ext 
-      ne soit pas au bon format...
+      Une erreur interne est survenue lors de l'import du fichier de contacts
       %br
-      Edgar vous recommande de vérifiez le fichier.
-      %br
-      Vous pouvez 
-      %a consultez l’aide en ligne à propos de l'import
-      ou 
-      %a contactez Edgar.
+      Merci de réessayer ultérieurement.
       %br
       = link_to new_contacts_import_path, remote:false, :class=>"btn btn-primary " do
         Retourner à la page d’import
         /%i.ico.edi-import
-        
+  #exception_message      
     /%a.ico.btn-close{href:"#"}

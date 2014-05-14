@@ -29,9 +29,9 @@ function pollJobidStatus() {
 			return false;
     }
 		if (response.status == "failed") {
-			barElement.width("0%")
-			messageElement.text("FAILED")
-			// $('#myModal .errors').append("<div class='notice error'>Un problème est survenu. Edgar est averti !</div>")
+			$("#progress_section").hide()
+			$("#exception_message").text(response.message)
+			$("#notice_error").show()
 			return
 		}
 

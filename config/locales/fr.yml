@@ -284,8 +284,11 @@ fr:
       models:
         contacts_import:
           attributes:
+            base:
+              import_cannot_be_launched_if_import_already_running: "Un autre import dans le compte est déjà en cours. Attendez qu'il soit terminé"
             filename:
               blank: "Vous n'avez pas choisi de fichier à importer"
+            import_cannot_be_launched_if_import_already_running:
   
   activerecord:
     models:

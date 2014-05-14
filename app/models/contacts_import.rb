@@ -8,12 +8,14 @@ class ContactsImport
   # validates_presence_of :contact_file
   validates :contact_kind, inclusion: { in: %w(venue festival show_buyer structure person) }
   validates :filename, :contact_kind, :first_name_last_name_order, presence: true
+  validate :import_cannot_be_launched_if_import_already_running
   
   
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+    @account_id = Account.current_id
     @first_name_last_name_order ||= :last_name
     @contact_kind ||= :venue
   end
@@ -27,6 +29,13 @@ class ContactsImport
     false
   end
 
+  def import_cannot_be_launched_if_import_already_running
+    account = Account.find(@account_id)
+    if account.importing_now?
+      errors.add(:base, :import_cannot_be_launched_if_import_already_running)
+    end
+  end
+  
   def filename
     if contact_file.present?
       filename = contact_file.original_filename

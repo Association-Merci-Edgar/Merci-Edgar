@@ -6,6 +6,10 @@ class ContactsImportWorker
   def perform(options)
     account_id = options["account_id"]
     Account.current_id = account_id
+    current_account = Account.find(account_id)
+    raise "Un autre import est déjà en cours. Merci d'attendre qu'il soit terminé" if current_account.importing_now
+    current_account.importing_now = true
+    current_account.save!
     user = User.find(options["user_id"])
     filename = options["filename"]
     uploader = ContactsImportUploader.new(account_id.to_s)
@@ -14,9 +18,10 @@ class ContactsImportWorker
     at(10,"Lecture du fichier")
     imported_at = options["imported_at"]
     test_mode = options["test_mode"]
-    current_account = Account.find(account_id)
     current_account.destroy_test_contacts
     current_account.test_imported_at = test_mode ? imported_at : nil
+    current_account.last_import_at = imported_at unless test_mode
+    current_account.importing_now = true
     current_account.save!
     
     case File.extname(filename)
@@ -32,6 +37,12 @@ class ContactsImportWorker
     nb_imported_contacts
     self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
     UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless test_mode
+  rescue Exception => e
+    self.payload = { message: e.message}
+      
+  ensure
+    current_account.importing_now = false
+    current_account.save!
   end
   
   def import_xml_file(file, imported_at, options)

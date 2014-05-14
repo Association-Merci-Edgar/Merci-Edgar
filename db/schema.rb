@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140509140319) do
+ActiveRecord::Schema.define(:version => 20140513160004) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -28,7 +28,12 @@ ActiveRecord::Schema.define(:version => 20140509140319) do
     t.datetime "updated_at",                      :null => false
     t.integer  "contacts_count",   :default => 0
     t.integer  "test_imported_at"
+    t.integer  "last_import_at"
+    t.boolean  "importing_now"
   end
+
+  add_index "accounts", ["last_import_at"], :name => "index_accounts_on_last_import_at"
+  add_index "accounts", ["test_imported_at"], :name => "index_accounts_on_test_imported_at"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -429,8 +434,6 @@ ActiveRecord::Schema.define(:version => 20140509140319) do
 
   create_table "venues", :force => true do |t|
     t.string       "kind"
-    t.integer      "start_season"
-    t.integer      "end_season"
     t.boolean      "residency"
     t.boolean      "accompaniment"
     t.string       "avatar"
