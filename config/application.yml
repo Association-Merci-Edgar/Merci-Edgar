@@ -10,6 +10,7 @@
 ROLLBAR_ACCESS_TOKEN: 5e88fc5b50f7491b80f17a7c2f7defca
 SAMPLES_XML_DIR: samples
 SAMPLES_XML_FILE: merciedgar_initial_contacts.xml
+CSV_IMPORT_MAXLINES_LIMIT: 99
 
 development:
   MANDRILL_USERNAME: dev@merciedgar.com

@@ -295,6 +295,10 @@ GEM
     rolify (3.2.0)
     rollbar (0.12.10)
       multi_json (~> 1.3)
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -308,6 +312,7 @@ GEM
       rspec-mocks (~> 2.13.0)
     ruby-hmac (0.4.0)
     ruby-nuggets (0.9.6)
+    ruby-ole (1.2.11.7)
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
     rubyzip (0.9.9)
@@ -341,6 +346,8 @@ GEM
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     smarter_csv (1.0.17)
+    spreadsheet (0.9.7)
+      ruby-ole (>= 1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -423,6 +430,7 @@ DEPENDENCIES
   remotipart (~> 1.2)
   rolify
   rollbar
+  roo
   rspec-rails
   sass-rails (~> 3.2.3)
   selenium-webdriver

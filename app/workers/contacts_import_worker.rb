@@ -27,24 +27,31 @@ class ContactsImportWorker
     case File.extname(filename)
     when ".xml"
       import_xml_file(uploader.file, imported_at, options)
-    when ".csv"
-      log_message = import_csv_file(uploader.file, imported_at, options)
+    else
+      log_message, error = import_spreadsheet_file(uploader.file, imported_at, options)
     end
     
-    imported_contacts = Contact.where(imported_at: imported_at)
-    nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count
-    nb_imported_contacts = imported_contacts.count
-    nb_imported_contacts
-    self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
-    UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless test_mode
-  rescue Exception => e
-    self.payload = { message: e.message}
+    if error
+      self.payload = { invalid_file: true, message: log_message }
+      return
       
+    else
+      imported_contacts = Contact.where(imported_at: imported_at)
+      nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count
+      nb_imported_contacts = imported_contacts.count
+      self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
+      UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless test_mode
+    end
+  rescue Ole::Storage::FormatError
+    self.payload = { invalid_file: true, message: "Le fichier #{filename} n'est pas reconnu"}
+  rescue Exception => e
+    raise e.message
   ensure
     current_account.importing_now = false
     current_account.save!
   end
   
+
   def import_xml_file(file, imported_at, options)
     ActiveRecord::Base.transaction do
       File.open(file.path) do |io|
@@ -92,21 +99,23 @@ class ContactsImportWorker
     
   end
   
-  def get_lines(file_path)
-    nb_lines = 0
-    File.open(file_path) do |io|
-      nb_lines = io.readlines.size
+  def import_spreadsheet_file(file, imported_at, options)
+    spreadsheet = SpreadsheetFile.new(file.path)
+    spreadsheet.to_csv
+    if spreadsheet.invalid?
+      log_message = spreadsheet.errors[:base]
+      return [ log_message, :invalid_file ]
     end
-    nb_lines
-  end
-  
-  def import_csv_file(file, imported_at, options)
+    
+    log_message = imported_at
+    
     imported_index = 0
     test_mode = options["test_mode"]
-    nb_lines = get_lines(file.path)
+    nb_lines = spreadsheet.nb_lines
+    
     self.total = test_mode && 20 < nb_lines ? 20 : nb_lines
     log_message = ""
-    total_chunks = SmarterCSV.process(file.path, chunk_size: 100, convert_values_to_numeric: {except: :code_postal}) do |chunk|
+    total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, convert_values_to_numeric: {except: :code_postal}) do |chunk|
       chunk.each do |venue_row|
         imported_index += 1
         test_mode = options["test_mode"]

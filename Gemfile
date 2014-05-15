@@ -82,5 +82,6 @@ gem 'ar_pg_array'
 
 gem 'rollbar'
 
+gem 'roo'
 gem 'smarter_csv'
 gem 'cmess'

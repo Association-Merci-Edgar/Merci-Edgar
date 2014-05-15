@@ -36,7 +36,7 @@
       %section
         %b= @import.filename
         = f.hidden_field :filename, value: @import.filename
-        = f.input :contact_file, as: :file, input_html: { accept: "text/csv, application/xml" }
+        = f.input :contact_file, as: :file
       
       %section#first_name_last_name
         = f.input :first_name_last_name_order, collection: [:first_name, :last_name], as: :radio_buttons, label: "Comment sont nommés les personnes dans votre fichier ?", item_wrapper_class:"inline"

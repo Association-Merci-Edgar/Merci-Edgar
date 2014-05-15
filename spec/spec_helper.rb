@@ -9,6 +9,14 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+def test_tmp_path( *paths )
+  File.expand_path(File.join(File.dirname(__FILE__), 'tmp/test', *paths))
+end
+
+def spreadsheet_samples_path( *paths )
+  File.expand_path(File.join(File.dirname(__FILE__), 'files', *paths))
+end
+
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
