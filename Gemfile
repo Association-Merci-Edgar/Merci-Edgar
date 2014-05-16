@@ -37,7 +37,8 @@ gem 'mini_magick'
 gem 'fog'
 
 gem 'gmaps4rails'
-gem 'geocoder', git: 'git@github.com:alexreisner/geocoder.git', branch: 'master'
+# gem 'geocoder', git: 'git@github.com:alexreisner/geocoder.git', branch: 'master'
+gem 'geocoder', "~> 1.1.9"
 
 gem 'icalendar'
 
