@@ -291,8 +291,15 @@ fr:
             import_cannot_be_launched_if_import_already_running: "Un autre import dans le compte est déjà en cours. Attendez qu'il soit terminé"
         spreadsheet_file:
           attributes:
-            base:
-              max_lines_exceeded: "Le fichier ne peut contenir plus de 2000 lignes"
+            nb_lines:
+              less_than: "Le fichier ne peut contenir plus de %{count} lignes"
+            encoding:
+              inclusion: "Le fichier n'est pas correctement encodé"
+            readable:
+              inclusion: "Impossible de lire le fichier"
+            name_header_exist:
+              inclusion: "Le fichier ne contient pas la colonne nom"
+              
           
   
   activerecord:

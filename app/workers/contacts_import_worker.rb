@@ -101,9 +101,8 @@ class ContactsImportWorker
   
   def import_spreadsheet_file(file, imported_at, options)
     spreadsheet = SpreadsheetFile.new(file.path)
-    spreadsheet.to_csv
     if spreadsheet.invalid?
-      log_message = spreadsheet.errors[:base]
+      log_message = spreadsheet.errors.messages.values.flatten.join(' / ')
       return [ log_message, :invalid_file ]
     end
     
@@ -115,7 +114,7 @@ class ContactsImportWorker
     
     self.total = test_mode && 20 < nb_lines ? 20 : nb_lines
     log_message = ""
-    total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, convert_values_to_numeric: {except: :code_postal}) do |chunk|
+    total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {except: :code_postal}) do |chunk|
       chunk.each do |venue_row|
         imported_index += 1
         test_mode = options["test_mode"]
