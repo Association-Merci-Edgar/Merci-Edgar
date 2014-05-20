@@ -100,7 +100,7 @@ class ContactsImportWorker
   end
   
   def import_spreadsheet_file(file, imported_at, options)
-    spreadsheet = SpreadsheetFile.new(file.path)
+    spreadsheet = SpreadsheetFile.new(file.path, options["contact_kind"])
     if spreadsheet.invalid?
       log_message = spreadsheet.errors.messages.values.flatten.join(' / ')
       return [ log_message, :invalid_file ]
@@ -112,25 +112,24 @@ class ContactsImportWorker
     test_mode = options["test_mode"]
     nb_lines = spreadsheet.nb_lines
     
-    self.total = test_mode && 20 < nb_lines ? 20 : nb_lines
+    total = test_mode && 20 < nb_lines ? 20 : nb_lines
     log_message = ""
     total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {except: :code_postal}) do |chunk|
-      chunk.each do |venue_row|
+      chunk.each do |row|
         imported_index += 1
         test_mode = options["test_mode"]
         return if imported_index > 20 && test_mode
-        venue_row[:imported_at] = imported_at
-        # venue_row[:first_name_last_name_order] = options[:first_name_last_name_order]
-        venue_row[:first_name_last_name_order] = options["first_name_last_name_order"]
+        row[:imported_at] = imported_at
+        row[:first_name_last_name_order] = options["first_name_last_name_order"]
         
-        venue, invalid_keys = Venue.from_csv(venue_row)
+        fine_contact, invalid_keys = spreadsheet.kind_klass.from_csv(row)
         if options["test_mode"]
-          log_message << "#{venue_row[:nom]} en cours d'import...\n"
+          log_message << "#{row[:nom]} en cours d'import...\n"
           log_message << ">> Problème dans les colonnes #{invalid_keys.join(',')}\n" if invalid_keys
           at(imported_index, log_message)
         end
-        unless venue.save
-          puts venue.errors.full_messages
+        unless fine_contact.save
+          puts fine_contact.errors.full_messages
           return
         end
       end
