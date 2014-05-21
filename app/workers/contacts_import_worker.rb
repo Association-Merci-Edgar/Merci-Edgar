@@ -42,8 +42,6 @@ class ContactsImportWorker
       self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
       UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless test_mode
     end
-  rescue Ole::Storage::FormatError
-    self.payload = { invalid_file: true, message: "Le fichier #{filename} n'est pas reconnu"}
   rescue Exception => e
     raise e.message
   ensure
@@ -125,7 +123,7 @@ class ContactsImportWorker
         fine_contact, invalid_keys = spreadsheet.kind_klass.from_csv(row)
         if options["test_mode"]
           log_message << "#{row[:nom]} en cours d'import...\n"
-          log_message << ">> Problème dans les colonnes #{invalid_keys.join(',')}\n" if invalid_keys
+          log_message << ">> Problème dans les colonnes #{invalid_keys.join(',')}\n" if invalid_keys.present? 
           at(imported_index, log_message)
         end
         unless fine_contact.save
