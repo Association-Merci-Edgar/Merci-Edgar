@@ -217,8 +217,10 @@ class Scheduling < ActiveRecord::Base
     scheduling.name = "Programmation principale"
     
     period_with_integer = row.delete(:cycle_de_programmation)
-    scheduling.period_with_integer = period_with_integer
-    row[:cycle_de_programmation] =  period_with_integer unless scheduling.period_with_integer
+    if period_with_integer
+      scheduling.period_with_integer = period_with_integer
+      row[:cycle_de_programmation] =  period_with_integer unless scheduling.period_with_integer
+    end
     
     scheduling.style_tags = row.delete(:styles)
     
@@ -255,13 +257,15 @@ class Scheduling < ActiveRecord::Base
       end
     end
     scheduler_name = row.delete(:nom_programmateur)
-    if scheduler_name && scheduler_name.length > 1 && scheduler_name.split(' ').count > 1
-      # scheduling.scheduler_name = scheduler_name
-      scheduler_hash = {  nom: scheduler_name, imported_at: row[:imported_at], first_name_last_name_order: row[:first_name_last_name_order] }
-      scheduling.scheduler = Person.from_csv(scheduler_hash)
-    else
-      row[:nom_programmateur] = scheduler_name
+    if scheduler_name 
+      if scheduler_name.length > 1 && scheduler_name.split(' ').count > 1
+        scheduler_hash = {  nom: scheduler_name, imported_at: row[:imported_at], first_name_last_name_order: row[:first_name_last_name_order] }
+        scheduling.scheduler = Person.from_csv(scheduler_hash)
+      else
+        row[:nom_programmateur] = scheduler_name
+      end
     end
+    
     scheduling
   end
 end
