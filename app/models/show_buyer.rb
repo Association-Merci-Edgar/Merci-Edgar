@@ -18,7 +18,7 @@ class ShowBuyer < ActiveRecord::Base
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 
-  has_many :schedulings, autosave: true, order: "id ASC"
+  has_many :schedulings, order: "id ASC"
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
   has_many :show_hosts, through: :schedulings, uniq: true
@@ -29,7 +29,7 @@ class ShowBuyer < ActiveRecord::Base
 
   delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure  
 
-  before_update :set_contact_criteria 
+  before_save :set_contact_criteria 
   
   scope :by_contract, lambda { |tag_name| joins(:schedulings).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
   scope :by_style, lambda { |tag_name| joins(:schedulings).where("schedulings.style_tags LIKE ?", "%#{tag_name}%") }
@@ -108,5 +108,14 @@ class ShowBuyer < ActiveRecord::Base
     show_buyer
     
   end
+
+  def self.from_csv(row)
+    show_buyer = ShowBuyer.new
+    show_buyer.licence = row.delete("licence".to_sym)
+    scheduling = Scheduling.from_csv(row)
+    show_buyer.schedulings << scheduling if scheduling
+    show_buyer.structure, invalid_keys = Structure.from_csv(row)     
+    [show_buyer, invalid_keys]
+  end  
 
 end
