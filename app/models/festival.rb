@@ -21,7 +21,7 @@ class Festival < ActiveRecord::Base
   has_one :structure, as: :structurable, dependent: :destroy
   accepts_nested_attributes_for :structure
 
-  has_many :schedulings, as: :show_host, dependent: :destroy, autosave: true, order: "id ASC"
+  has_many :schedulings, as: :show_host, dependent: :destroy, order: "id ASC"
   has_many :show_buyers, through: :schedulings, uniq: true
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
@@ -124,6 +124,20 @@ class Festival < ActiveRecord::Base
     
     festival
     
+  end
+  
+  def self.from_csv(row)
+    festival = Festival.new
+    nb_edition = row["nb_editions".to_sym]
+    festival.nb_edition = row.delete("nb_editions".to_sym) if nb_edition.is_a? Integer
+    
+    last_edition = row["derniere_annee".to_sym]
+    festival.last_year = row.delete("derniere_annee".to_sym) if last_edition.is_a? Integer
+    
+    scheduling = Scheduling.from_csv(row)
+    festival.schedulings << scheduling if scheduling
+    festival.structure, invalid_keys = Structure.from_csv(row)     
+    [festival, invalid_keys]
   end
   
 
