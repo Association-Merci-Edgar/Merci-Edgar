@@ -252,14 +252,19 @@ class Scheduling < ActiveRecord::Base
           end
         end.flatten
       rescue
-        scheduling.prospecting_months_string = nil
+        scheduling.prospecting_months = nil
         row["mois_prospection".to_sym] = prospecting_months_string
       end
     end
-    scheduler_name = row.delete(:nom_programmateur)
+    scheduler_name = row[:nom_programmateur]
     if scheduler_name 
       if scheduler_name.length > 1 && scheduler_name.split(' ').count > 1
-        scheduler_hash = {  nom: scheduler_name, imported_at: row[:imported_at], first_name_last_name_order: row[:first_name_last_name_order] }
+        scheduler_hash = row.select{|k| k.to_s.end_with?("_programmateur")}
+        scheduler_hash.keys.each do |k| 
+          scheduler_hash[k.to_s.sub("_programmateur","").to_sym] = scheduler_hash.delete(k)
+          row.delete(k)
+        end
+        scheduler_hash.merge!({  nom: scheduler_name, imported_at: row[:imported_at], first_name_last_name_order: row[:first_name_last_name_order] })
         scheduling.scheduler = Person.from_csv(scheduler_hash)
       else
         row[:nom_programmateur] = scheduler_name

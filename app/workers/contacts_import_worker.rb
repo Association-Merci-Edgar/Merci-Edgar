@@ -98,41 +98,43 @@ class ContactsImportWorker
   end
   
   def import_spreadsheet_file(file, imported_at, options)
-    spreadsheet = SpreadsheetFile.new(file.path, options["contact_kind"])
-    if spreadsheet.invalid?
-      log_message = spreadsheet.errors.messages.values.flatten.join(' / ')
-      return [ log_message, :invalid_file ]
-    end
+    ActiveRecord::Base.transaction do
+      spreadsheet = SpreadsheetFile.new(file.path, options["contact_kind"])
+      if spreadsheet.invalid?
+        log_message = spreadsheet.errors.messages.values.flatten.join(' / ')
+        return [ log_message, :invalid_file ]
+      end
     
-    log_message = imported_at
+      log_message = imported_at
     
-    imported_index = 0
-    test_mode = options["test_mode"]
-    nb_lines = spreadsheet.nb_lines
+      imported_index = 0
+      test_mode = options["test_mode"]
+      nb_lines = spreadsheet.nb_lines
     
-    total = test_mode && 20 < nb_lines ? 20 : nb_lines
-    log_message = ""
-    total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {except: :code_postal}) do |chunk|
-      chunk.each do |row|
-        imported_index += 1
-        test_mode = options["test_mode"]
-        return if imported_index > 20 && test_mode
-        row[:imported_at] = imported_at
-        row[:first_name_last_name_order] = options["first_name_last_name_order"]
+      total = test_mode && 20 < nb_lines ? 20 : nb_lines
+      log_message = ""
+      total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {except: :code_postal}) do |chunk|
+        chunk.each do |row|
+          imported_index += 1
+          test_mode = options["test_mode"]
+          return if imported_index > 20 && test_mode
+          row[:imported_at] = imported_at
+          row[:first_name_last_name_order] = options["first_name_last_name_order"]
         
-        fine_contact, invalid_keys = spreadsheet.kind_klass.from_csv(row)
-        if options["test_mode"]
-          log_message << "#{row[:nom]} en cours d'import...\n"
-          log_message << ">> Problème dans les colonnes #{invalid_keys.join(',')}\n" if invalid_keys.present? 
-          at(imported_index, log_message)
-        end
-        unless fine_contact.save
-          puts fine_contact.errors.full_messages
-          return
+          fine_contact, invalid_keys = spreadsheet.kind_klass.from_csv(row)
+          if options["test_mode"]
+            log_message << "#{row[:nom]} en cours d'import...\n"
+            log_message << ">> Problème dans les colonnes #{invalid_keys.join(',')}\n" if invalid_keys.present? 
+            at(imported_index, log_message)
+          end
+          unless fine_contact.save
+            puts fine_contact.errors.full_messages
+            return
+          end
         end
       end
+      log_message
     end
-    log_message    
   end
   
 end

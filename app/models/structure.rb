@@ -189,8 +189,8 @@ class Structure < ActiveRecord::Base
   def self.from_csv(row)
     structure = Structure.new
     people = {}
-    row.keys.map(&:to_s).each do |key| 
-      elements = key.split('_')
+    row.keys.each do |key| 
+      elements = key.to_s.split('_')
       attribute = elements.shift
       title = elements.map(&:capitalize).join(' ')
       if title.present? && Contact::VALID_CSV_KEYS.include?(attribute)
@@ -199,6 +199,7 @@ class Structure < ActiveRecord::Base
         # row.delete(key.to_sym)
       end
     end
+
     people.each do |title,person_hash|
       person_name = person_hash[:nom]
       if person_name && person_name.strip.length > 1 && title != "programmateur"
@@ -212,6 +213,7 @@ class Structure < ActiveRecord::Base
         row.delete_if{|key| person_hash_keys_in_row.include?(key)}
       end
     end
+
     structure.contact, invalid_keys = Contact.from_csv(row, true)
     [structure, invalid_keys]
   end

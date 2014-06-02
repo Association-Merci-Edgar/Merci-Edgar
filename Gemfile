@@ -61,8 +61,10 @@ group :development do
   gem 'debugger', "~> 1.6.2"
   gem 'annotate'
 end
-group :test do
+group :development, :test do
   gem 'factory_girl_rails'
+end
+group :test do
   gem 'rspec-rails'
   gem 'mocha', require: false
   gem 'capybara'
