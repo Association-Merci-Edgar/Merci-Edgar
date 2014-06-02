@@ -1,9 +1,22 @@
 %section.padded
+  - if @test == true
+    .notice.warning
+      %span.noticetitle
+        Contacts tests
+      %span
+        Ces contacts seront supprimés lors du prochain import.
+        %br
+        Cliquez
+        = link_to "sur ce lien", destroy_test_contacts_account_path, method: :delete, data: { confirm: "Etes-vous sûr de supprimer tous les contacts tests ?" }
+        pour les supprimer dès maintenant !
+      %a.ico.btn-close{href:"#"}
+
+
   .notice.success
     %span.noticetitle
       = pluralize(@nb_imported_contacts, 'contact importé', 'contacts importés')
     %span
-      le 
+      Ces contacts ont été importés le 
       = l Time.zone.at(@imported_at)
     %a.ico.btn-close{href:"#"}
       
@@ -12,8 +25,8 @@
     %span.noticetitle
       = pluralize(@nb_duplicates, 'doublon détecté', 'doublons détectés')
     %span
-      Cliquez sur 
-      = link_to "ici", contacts_path(imported_at: @imported_at, duplicated:true)
+      Cliquez
+      = link_to "sur ce lien", contacts_path(imported_at: @imported_at, duplicated:true)
       pour en voir la liste.
     %a.ico.btn-close{href:"#"}
 

@@ -270,6 +270,10 @@ class Contact < ActiveRecord::Base
     name
   end
   
+  def test?
+    @test ||= imported_at == account.test_imported_at
+  end
+  
   # private
   def self.tagged_with(contacts, param_list, field)
     if contacts && param_list.present? && field.present? 

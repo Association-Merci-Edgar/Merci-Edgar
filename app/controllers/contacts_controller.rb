@@ -89,6 +89,7 @@ class ContactsController < AppController
       if params[:imported_at].present?
         @nb_imported_contacts, @nb_duplicates = ContactsImport.get_payload(params[:imported_at])
         @imported_at = params[:imported_at].to_i
+        @test = @imported_at == current_account.test_imported_at
       end 
       @contacts = @contacts.page params[:page]
       if params[:category].present?
