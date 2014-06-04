@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140513160004) do
+ActiveRecord::Schema.define(:version => 20140604152437) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -58,16 +58,18 @@ ActiveRecord::Schema.define(:version => 20140513160004) do
     t.string   "country"
     t.string   "kind"
     t.integer  "contact_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.text     "more_info"
     t.integer  "account_id"
+    t.boolean  "geocoded_precisely", :default => false
   end
 
   add_index "addresses", ["account_id"], :name => "index_addresses_on_account_id"
   add_index "addresses", ["contact_id"], :name => "index_addresses_on_contact_datum_id"
+  add_index "addresses", ["geocoded_precisely"], :name => "index_addresses_on_geocoded_precisely"
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

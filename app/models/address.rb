@@ -22,7 +22,7 @@
 class Address < ActiveRecord::Base
   belongs_to :contact, touch:true
   belongs_to :account
-  attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info, :latitude, :longitude
+  attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info, :latitude, :longitude, :geocoded_precisely
   acts_as_gmappable :process_geocoding => false, address: :full_address
   geocoded_by :full_address
   # after_validation :geocode, unless: :latitude_changed?
