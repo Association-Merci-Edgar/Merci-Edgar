@@ -1,3 +1,9 @@
+- content_for :scripts do
+  = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
+  = javascript_include_tag "contacts_show"
+
+    
+
 .row-fluid
   / _____________________________________________ left
   .span6
@@ -13,28 +19,17 @@
           / = gmaps4rails(address.to_gmaps4rails)
           
           - if address.kind == "main_address" and !map_displayed
-            = gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => false, :class => "gmaps4rails_map", :container_class => "map_container" },"markers" => { "data" => address.to_gmaps4rails })
+            -# =gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 8, "auto_adjust" => true, "auto_zoom" => false, :class => "gmaps4rails_map", :container_class => "map_container" },"markers" => { "data" => address.to_gmaps4rails })
             - map_displayed = true
+            
+            .map_container
+              #map.gmaps4rails_map{ data: {geocoded_precisely: address.geocoded_precisely.to_s, latitude: address.latitude, longitude: address.longitude, address: address.full_address, path: address_path(address)} }
+            
           %br
             = address.street
           = address.postal_code
           = address.city
           = address.more_info
-      -#  
-        -content_for :script do
-          <script type="text/javascript">
-      
-          Gmaps.map.callback = function() {
-          google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
-          //Map fully loaded here
-          $('#map').height($(".map_container").height());
-          $('#map').width($(".map_container").width());
-          google.maps.event.trigger($('#map'), 'resize');
-      
-          }
-          )};
-      
-        </script>
         
         
       - structure.emails.each do |email|

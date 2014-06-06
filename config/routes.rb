@@ -103,6 +103,7 @@ Edgar::Application.routes.draw do
     
     resources :announcements, only: [:index]
     resources :coupons
+    resources :addresses, only: [:update]
 
   end
 
