@@ -198,7 +198,6 @@ class Contact < ActiveRecord::Base
     else
       @contacts = Contact.order(:name)
     end
-
     @contacts = tagged_with(@contacts, params["style_list"], "style_tags") if params["style_list"].present?
     @contacts = tagged_with(@contacts, params["network_list"], "network_tags") if params["network_list"].present?
     @contacts = tagged_with(@contacts, params["custom_list"], "custom_tags") if params["custom_list"].present?
@@ -210,7 +209,7 @@ class Contact < ActiveRecord::Base
     # @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
     # @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
     # @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
-    @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"]
+    @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"].present?
     @contacts = @contacts.duplicated if params["duplicated"].present? && params["duplicated"]
     @contacts = @contacts.duplicate_of(params["duplicate_of"]) if params["duplicate_of"]
     @contacts
