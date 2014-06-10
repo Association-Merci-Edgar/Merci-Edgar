@@ -140,7 +140,7 @@
     
               -#  ________________________________________________________ kind of venue
               /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
-              = f.input :kind, :collection => [:bar, :theater_cafe, :mjc, :music_venue, :smac, :theater, :cultural_center, :other], :as => :radio_buttons, item_wrapper_class: "inline"
+              = f.input :kind, :collection => Venue::VENUE_KINDS, :as => :radio_buttons, item_wrapper_class: "inline"
     
     
               -#  ________________________________________________________ Services

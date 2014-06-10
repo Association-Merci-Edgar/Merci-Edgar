@@ -34,6 +34,8 @@ class Venue < ActiveRecord::Base
 
   delegate :name, :contact, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
   
+  VENUE_KINDS = [:bar, :theater_cafe, :mjc, :music_venue, :smac, :theater, :cultural_center, :other]
+  
   mount_uploader :avatar, AvatarUploader
   
   before_save :set_contact_criteria 
@@ -206,7 +208,21 @@ class Venue < ActiveRecord::Base
   
   def self.from_csv(row)
     venue = Venue.new
-    venue.kind = row.delete("type_lieu".to_sym)
+    kind = row["type_lieu".to_sym]
+    
+    if kind.present?
+      VENUE_KINDS.each do |k|
+        if kind.downcase == I18n.t(k, scope: "simple_form.options.venue.kind").downcase
+          venue.kind = k
+          row.delete("type_lieu".to_sym)
+          break
+        end
+      end
+      venue.kind = :other unless venue.kind
+    end
+      
+    
+    
     venue.residency = true if row.delete("residence".to_sym).try(:downcase) == "x"
     venue.accompaniment = true if row.delete("accompagnement".to_sym).try(:downcase) == "x"
     season_months_string = row.delete("saison".to_sym)
