@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140604152437) do
+ActiveRecord::Schema.define(:version => 20140610164602) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -65,9 +65,13 @@ ActiveRecord::Schema.define(:version => 20140604152437) do
     t.text     "more_info"
     t.integer  "account_id"
     t.boolean  "geocoded_precisely", :default => false
+    t.string   "admin_name1"
+    t.string   "admin_name2"
   end
 
   add_index "addresses", ["account_id"], :name => "index_addresses_on_account_id"
+  add_index "addresses", ["admin_name1"], :name => "index_addresses_on_admin_name1"
+  add_index "addresses", ["admin_name2"], :name => "index_addresses_on_admin_name2"
   add_index "addresses", ["contact_id"], :name => "index_addresses_on_contact_datum_id"
   add_index "addresses", ["geocoded_precisely"], :name => "index_addresses_on_geocoded_precisely"
 

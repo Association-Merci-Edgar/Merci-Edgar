@@ -212,10 +212,12 @@ REGIONS = {
     address.format_postal_code
     address.city = row.delete(:ville)
     address.kind = :main_address
-    lat_long = GeonamesPostalCode.get_latitude_and_longitude(city: address.city, postal_code: address.postal_code, country_code: address.country)
+    lat_long = GeonamesPostalCode.get_latitude_longitude_and_admin_names(city: address.city, postal_code: address.postal_code, country_code: address.country)
     if lat_long
       address.latitude = lat_long["latitude"]
       address.longitude = lat_long["longitude"]
+      address.admin_name1 = lat_long["admin_name1"]
+      address.admin_name2 = lat_long["admin_name2"]
     end
     address
   end

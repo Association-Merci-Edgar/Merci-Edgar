@@ -1,15 +1,26 @@
+require 'benchmark'
 module Geonames
   class Loader    
-    def load_postal_codes
-      File.open(File.join(Rails.root, 'db', 'geonames_FR.txt'), 'r') do |f|
-        f.each_line do |line|
-          next if line.match(/^#/) || line.match(/^iso/i)
-          postal_code_mapping = Mappings::PostalCode.new(line.chomp)
-          place = GeonamesPostalCode.where(postal_code: postal_code_mapping[:postal_code], place_name: postal_code_mapping[:place_name]).first_or_initialize
-          place.attributes = postal_code_mapping
-          place.save!
-        end
+    def load_geonames(geoname_filename)
+      Benchmark.bm do |x|
+        x.report { empty_geonames }
+        x.report {
+          headers = [:country_code, :postal_code, :place_name, :admin_name1, :admin_code1, :admin_name2, :admin_code2, :admin_name3, :admin_code3, :latitude, :longitude, :accuracy]
+          options = { convert_values_to_numeric: false, headers_in_file: false, user_provided_headers: headers, col_sep: "\t", force_simple_split: true, strip_chars_from_headers: /[\-"]/ }
+          n = SmarterCSV.process(geoname_filename, options ) do |array|
+            begin
+              GeonamesPostalCode.create(array.first)
+            rescue ActiveRecord::StatementInvalid
+            end
+          end
+        }
       end
     end
+    
+    private
+    def empty_geonames
+      GeonamesPostalCode.delete_all
+    end
+    
   end
 end

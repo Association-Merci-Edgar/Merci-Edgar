@@ -77,9 +77,9 @@ namespace :edgar do
     Account.find(1).empty
   end
   
-  task :load_geonames_postal_codes => :environment do
+  task :load_geonames => :environment do
     loader = Geonames::Loader.new
-    loader.load_postal_codes
+    loader.load_geonames("db/geonames_FR.txt")
   end
 
 end

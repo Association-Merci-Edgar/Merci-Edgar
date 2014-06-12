@@ -4,6 +4,8 @@ class AddressesController < AppController
     if address
       address.latitude = params[:latitude]
       address.longitude = params[:longitude]
+      address.admin_name1 = params[:admin_name1]
+      address.admin_name2 = params[:admin_name2]
       address.geocoded_precisely = true
       if address.save
         render json: {lat:address.latitude, lng: address.longitude, yupee: "ok"}
