@@ -33,10 +33,11 @@ db/*.sqlite3
 /coverage/
 /db/*.javadb/
 /db/*.sqlite3
-/doc/api/
-/doc/app/
-/doc/features.html
-/doc/specs.html
+#/doc/api/
+#/doc/app/
+#/doc/features.html
+#/doc/specs.html
+/doc/
 /public/cache
 /public/stylesheets/compiled
 /public/system/*
@@ -79,4 +80,9 @@ pickle-email-*.html
 
 *.dump
 dump.rdb
+db/*txt
+
+# Ignore temporary spreadsheet files
+/spec/files/*
+
 config/database_with_prod_in_dev.yml

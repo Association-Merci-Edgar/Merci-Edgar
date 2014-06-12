@@ -37,7 +37,8 @@ gem 'mini_magick'
 gem 'fog'
 
 gem 'gmaps4rails'
-gem 'geocoder'
+# gem 'geocoder', git: 'git@github.com:alexreisner/geocoder.git', branch: 'master'
+gem 'geocoder', "~> 1.1.9"
 
 gem 'icalendar'
 
@@ -60,8 +61,10 @@ group :development do
   gem 'debugger', "~> 1.6.2"
   gem 'annotate'
 end
-group :test do
+group :development, :test do
   gem 'factory_girl_rails'
+end
+group :test do
   gem 'rspec-rails'
   gem 'mocha', require: false
   gem 'capybara'
@@ -81,3 +84,7 @@ gem 'pg'
 gem 'ar_pg_array'
 
 gem 'rollbar'
+
+gem 'roo'
+gem 'smarter_csv'
+gem 'mimer_plus'

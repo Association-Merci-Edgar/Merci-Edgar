@@ -81,6 +81,7 @@ Edgar::Application.routes.draw do
     end
     resource :account do
       put 'import_samples', action: :import_samples, as: :import_samples
+      delete 'destroy_test_contacts', action: :destroy_test_contacts
       
       resources :abilitations
     end
@@ -97,11 +98,12 @@ Edgar::Application.routes.draw do
     
     resources :jobs, only: [:show]
 
-    resources :imports
+    resources :contacts_imports, only: [:new, :edit, :create]
     resources :exports, only: [:new]
     
     resources :announcements, only: [:index]
     resources :coupons
+    resources :addresses, only: [:update]
 
   end
 

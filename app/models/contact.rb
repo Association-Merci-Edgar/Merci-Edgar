@@ -27,7 +27,7 @@ class Contact < ActiveRecord::Base
   belongs_to :duplicate, class_name: "Contact"
   has_many :duplicates, class_name: "Contact", foreign_key: "duplicate_id"
   
-  validates_uniqueness_of :name, scope: [:account_id]
+  validates_uniqueness_of :name, scope: [:account_id], case_sensitive: false
   validates_presence_of :name
   # validates_associated :phones
 
@@ -51,7 +51,7 @@ class Contact < ActiveRecord::Base
 
   # mount_uploader :avatar, AvatarUploader
 
-  before_validation :titleize_name
+  # before_validation :titleize_name
   before_save :format_networks, if: "network_tags_changed?"
   before_save :format_customs, if: "custom_tags_changed?"
   
@@ -59,6 +59,9 @@ class Contact < ActiveRecord::Base
   after_save  :update_customs, if: "custom_tags_changed?"
 
   delegate :fine_model, to: :contactable
+  
+  VALID_CSV_KEYS = ["nom","tel","email","web", "reseaux", "tags_perso", "observations"]
+  
     
   def avatar  
     self.fine_model.avatar
@@ -109,15 +112,20 @@ class Contact < ActiveRecord::Base
     end
   end
   
-  def titleize_name
-    if self.name
+  def self.format_name(new_name)
+    if new_name
       # titleize with hyphen
-      self.name = name.split.map{|w| w.split('-').map(&:capitalize).join('-')}.join(' ')
+      new_name = new_name.split.map(&:capitalize).join(' ')
       
       # capitalize after l' or d'
       r = /[lLdD]'(\w*)/
-      self.name = self.name.gsub(r) {|m| m.gsub($1, $1.capitalize) }      
-    end
+      new_name = new_name.gsub(r) {|m| m.gsub($1, $1.capitalize) }
+    end    
+  end
+  
+  def name=(new_name)
+    name = Contact.format_name(new_name)
+    write_attribute(:name, name)
   end
 
   def phone_number
@@ -190,7 +198,6 @@ class Contact < ActiveRecord::Base
     else
       @contacts = Contact.order(:name)
     end
-
     @contacts = tagged_with(@contacts, params["style_list"], "style_tags") if params["style_list"].present?
     @contacts = tagged_with(@contacts, params["network_list"], "network_tags") if params["network_list"].present?
     @contacts = tagged_with(@contacts, params["custom_list"], "custom_tags") if params["custom_list"].present?
@@ -202,7 +209,7 @@ class Contact < ActiveRecord::Base
     # @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
     # @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
     # @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
-    @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"]
+    @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"].present?
     @contacts = @contacts.duplicated if params["duplicated"].present? && params["duplicated"]
     @contacts = @contacts.duplicate_of(params["duplicate_of"]) if params["duplicate_of"]
     @contacts
@@ -260,6 +267,10 @@ class Contact < ActiveRecord::Base
 
   def to_s
     name
+  end
+  
+  def test?
+    @test ||= imported_at == account.test_imported_at
   end
   
   # private
@@ -372,6 +383,110 @@ class Contact < ActiveRecord::Base
     contact.add_custom_tags(custom_tags)
     
     contact
+  end
+  
+  def assign_name_and_duplicate(name)
+    self.name = name
+    duplicate = Contact.where("name = ?", self.name).first
+    if duplicate
+      puts "CREATION DUPLICATE"
+      nb_duplicates = Contact.where("name LIKE ?","#{self.name} #%").size
+      self.name = "#{self.name} ##{nb_duplicates + 1}"
+      self.duplicate = duplicate
+      puts "DUPLICATE avec name: #{self.name}"
+    end    
+  end
+
+  def self.get_or_init_by_name(name, imported_at, duplicate_with_imported)
+    normalize_name = Contact.format_name(name.strip)
+    contact = Contact.where(name: normalize_name).first_or_initialize
+    
+    unless contact.new_record? || (contact.imported_at == imported_at && !duplicate_with_imported)
+      duplicate = contact
+      duplicates = Contact.where("name LIKE ?", "#{contact.name} #%")
+      nb_duplicates = duplicates.size
+      contact = duplicates.where(imported_at: imported_at).first
+      unless contact && !duplicate_with_imported
+        contact = Contact.new(name: "#{normalize_name} ##{nb_duplicates + 1}") 
+        contact.duplicate = duplicate
+      end
+    end
+    contact
+
+  end
+  
+  def self.get_or_init_from_csv(row, duplicate_with_imported=false)
+    imported_at = row.delete(:imported_at)
+    name = row[:nom]
+    contact = Contact.get_or_init_by_name(name, imported_at, duplicate_with_imported)
+    contact.imported_at = imported_at
+    contact    
+  end
+  
+  def self.from_csv(row, duplicate_with_imported=false)
+    contact = get_or_init_from_csv(row, duplicate_with_imported)
+    invalid_keys = contact.assign_from_csv(row)
+    [ contact, invalid_keys ]
+  end
+  
+  def assign_from_csv(row)
+    contact = self
+    # contact.assign_name_and_duplicate(name)
+    row.delete(:first_name_last_name_order)
+    contact.remark = ""
+    
+    if row[:observations].present?
+      contact.remark += row[:observations]
+    end
+
+    address = Address.from_csv(row)
+    contact.addresses << address if address
+    
+    if row[:tel].present?
+      phone = contact.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
+      unless phone.valid?
+        contact.phones.delete(phone)
+        contact.remark += "Tel: #{row[:tel]} / "
+      end
+    end
+    if row[:email].present?
+      email = contact.emails.build(address: row[:email].strip)
+      unless email.valid?
+        contact.remark += "Email: #{row[:email]} / "
+        contact.emails.delete(email)
+      end
+    end
+    if row[:web].present?
+      website = contact.websites.build(url: row[:web].strip)
+      unless website.valid?
+        contact.remark += "Web: #{row[:web]} / "
+        contact.websites.delete(website) 
+      end
+    end
+    if row[:reseaux].present?
+      contact.network_tags = row[:reseaux].split(',').map(&:strip).join(',')
+    end
+    if row[:tags_perso].present?
+      contact.custom_tags = row[:tags_perso].split(',').map(&:strip).join(',')
+    end
+    
+      
+    invalid_keys = row.keys.map(&:to_s).delete_if{|key| VALID_CSV_KEYS.include?(key)}
+    invalid_keys.each do |invalid_key|
+      value = row[invalid_key.to_sym]
+      contact.remark += "#{invalid_key}: #{value} /" if value.present?
+    end
+    unless contact.valid?
+      contact.errors.messages.keys.each do |attribute, value|
+        puts "error with contact #{contact.name} (#{attribute}:#{value})"
+        puts "message: #{contact.errors.full_messages}"
+        puts "attribute: #{attribute}"
+        puts "value: #{contact.send(attribute)}"
+        contact.remark += "#{attribute}: #{contact.send(attribute)} /"
+        contact.send(:write_attribute, attribute,nil)
+      end
+    end
+    invalid_keys
   end
   
   def making_prospecting?

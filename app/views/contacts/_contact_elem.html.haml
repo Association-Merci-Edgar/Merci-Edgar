@@ -52,9 +52,12 @@
                   %i.ico.edi-plus3
                   Nouvelle liste
    
+  - if contact.address.present?
+    - if contact.address.country == "FR"  
+      = content_tag("div",nil, class:"mini-map france reg-#{contact.address.region_code}") if contact.address.region_code.present?
+    - else
+      = content_tag("div",nil, class:"mini-map world") if contact.address.present?
     
-  = content_tag("div",nil, class:"mini-map france reg-#{contact.address.region_code}") if contact.address.present?
-  
   .actions
     = link_to edit_link_path, :class => "shybtn" do
       %i.entypo.edi-pencil

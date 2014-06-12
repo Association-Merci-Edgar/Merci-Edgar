@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228084103) do
+ActiveRecord::Schema.define(:version => 20140610164602) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -24,10 +24,16 @@ ActiveRecord::Schema.define(:version => 20140228084103) do
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "domain"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "contacts_count", :default => 0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "contacts_count",   :default => 0
+    t.integer  "test_imported_at"
+    t.integer  "last_import_at"
+    t.boolean  "importing_now"
   end
+
+  add_index "accounts", ["last_import_at"], :name => "index_accounts_on_last_import_at"
+  add_index "accounts", ["test_imported_at"], :name => "index_accounts_on_test_imported_at"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -52,16 +58,22 @@ ActiveRecord::Schema.define(:version => 20140228084103) do
     t.string   "country"
     t.string   "kind"
     t.integer  "contact_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.text     "more_info"
     t.integer  "account_id"
+    t.boolean  "geocoded_precisely", :default => false
+    t.string   "admin_name1"
+    t.string   "admin_name2"
   end
 
   add_index "addresses", ["account_id"], :name => "index_addresses_on_account_id"
+  add_index "addresses", ["admin_name1"], :name => "index_addresses_on_admin_name1"
+  add_index "addresses", ["admin_name2"], :name => "index_addresses_on_admin_name2"
   add_index "addresses", ["contact_id"], :name => "index_addresses_on_contact_datum_id"
+  add_index "addresses", ["geocoded_precisely"], :name => "index_addresses_on_geocoded_precisely"
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -179,6 +191,23 @@ ActiveRecord::Schema.define(:version => 20140228084103) do
   end
 
   add_index "festivals", ["account_id"], :name => "index_festivals_on_account_id"
+
+  create_table "geonames_postal_codes", :force => true do |t|
+    t.string  "country_code", :null => false
+    t.string  "postal_code",  :null => false
+    t.string  "place_name",   :null => false
+    t.string  "admin_name1"
+    t.string  "admin_code1"
+    t.string  "admin_name2"
+    t.string  "admin_code2"
+    t.string  "admin_name3"
+    t.string  "admin_code3"
+    t.float   "latitude",     :null => false
+    t.float   "longitude",    :null => false
+    t.integer "accuracy"
+  end
+
+  add_index "geonames_postal_codes", ["postal_code"], :name => "index_geonames_postal_codes_on_postal_code"
 
   create_table "networks", :force => true do |t|
     t.string   "network"

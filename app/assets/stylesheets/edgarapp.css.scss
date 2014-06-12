@@ -12,6 +12,8 @@ $lbeige:  lighten( $beige, 5% );
 $dbeige:  rgba(194, 194, 177, 1);
 $dbeige1:  rgba(221, 221, 212, 1);
 $dbeige2: rgba(209, 209, 197, 1);
+$brown: rgba(148, 148, 119, 1);
+
 $orange:  #ff5a3e;
 $yellow:  #EDE232;
 $green:   rgba(80, 190, 180, 1);//#50bfb2
@@ -345,6 +347,8 @@ a, .btn-link {color:$dblue; font-weight: 300;
   &:hover {color:$green; text-decoration:none; border-color:transparent;}
 }
 
+.notice .btn {margin-top:12px;}
+
 .infos-line a, .infos a {@extend .showlink;}
 
 .progress .bar { background-image: none; box-shadow: none;  background-color:$green; }
@@ -428,23 +432,23 @@ $lbrown: rgba(209, 209, 197, 1);
 	@include roundcorners;
 	padding: 25px 24px 25px 88px;//20px 24px 20px 90px;
 	background-repeat : no-repeat;
-	background-position: 22px 15px ;
+	background-position: 22px 18px ;
 	margin-bottom:24px;
 	//width: 40px;
 	min-height: 25px;
 	position:relative;
 	background-image: url('appli/sprites/notices-info.png');  background-color: $lblue2;
-	.noticetitle {font-weight:bold; clear:right;
-	  &:after{content:" — ";};
-	  } //display:block;
+	.noticetitle {font-weight:bold; clear:right;display:block;
+	  //&:after{content:" — ";};
+	  } //
     
   .btn-close{display:none;  font-size:36px; margin-top: -5px; position:absolute; top:25px; right:24px;
     &:hover{color:$red;};
     
-    &.ico:before {content: "\e07b";} //.edi-cross
+    &.ico:before {content: "\e678";} //.edi-cross
     }
     
-  &:hover .btn-close{display:block;};
+  &:hover .btn-close{display:block !important;}
 	&:hover {background-color:$white !important;}
 	
 	&.warning { background-image: url('appli/sprites/notices-warning.png');  background-color: $lyellow;}
@@ -460,10 +464,11 @@ $lbrown: rgba(209, 209, 197, 1);
 
 /* ______________________________________________________________ BTNs   */
 
-.btn {padding: 6px 12px; font-size:16px; text-shadow:none; font-weight: 300;}
+.btn {padding: 6px 12px; font-size:16px; text-shadow:none; font-weight: normal;} //font-weight: 300;
 
 .btn.disabled, .btn[disabled] {
   background:$vlblue;
+  &:hover{background:$vlblue;}
 }
 .btn:hover, btn:focus {
   //transition: background 0.2s;
@@ -483,10 +488,10 @@ $lbrown: rgba(209, 209, 197, 1);
 
 .btn-secondary {
   @extend .btn-primary;
-  background:$vlblue;
+  background:$brown;//$vlblue;
   color:$white;
   &:hover, &:focus, &:active {
-    background:$green;
+    background:$dblue;
     color:$white;
   }
 }
@@ -496,7 +501,7 @@ $lbrown: rgba(209, 209, 197, 1);
   background:$dbeige1;
   color:$mblue;
   &:hover, &:focus, &:active {
-    background:$green;
+    background:$dblue;
     color:$white;
   }
 }
@@ -507,7 +512,7 @@ $lbrown: rgba(209, 209, 197, 1);
   background:$orange;
   color:$white;
   &:hover, &:focus, &:active {
-    background:$green;
+    background:$dblue;//$green;
     color:$white;
   }
 }
@@ -520,7 +525,7 @@ $lbrown: rgba(209, 209, 197, 1);
 
 #menu-vertical {
   position: fixed;
-  right: -100px;
+  right: -104px;
   top: 153px;//112px;
   @include rotate( 270 );
   .btn {
@@ -535,6 +540,10 @@ $lbrown: rgba(209, 209, 197, 1);
     margin-bottom: 48px;
   }
 }
+
+.file.required + .input-append {margin-top:10px;}
+
+
 /*
 #menu-vertical {
   position: fixed;
@@ -557,7 +566,7 @@ $lbrown: rgba(209, 209, 197, 1);
 
 
 /* ______________________________________________________________ Headlines   */
-h1, h2, h3, h4 {font-weight:300; display:inline; line-height:inherit;}
+h1, h2, h3, h4, h5 {font-weight:300; display:inline; line-height:inherit;}
 
 h1 {font-size:37px; color:$orange;}
 h2 {font-size:32px; //font-weight:bold;
@@ -1106,7 +1115,8 @@ legend {font-size: 20px;
   select { width: 237px !important;}
 }
 
-.message a, .notice a { border-bottom:dotted 1px $green; }
+.message a, .notice a:not(.btn) { border-bottom:dotted 1px $green; }
+
 
 
 /*  ________________________________________ CUSTOM checkbox & radio */
@@ -1524,8 +1534,8 @@ a.label-large {
 .label-large {
   h4 { font-size:22px; display:block;}
   p { font-size:16px; color:$mblue;}
-  i:before{ line-height:140px;}
-  i {
+  
+  &>i {
     font-size:70px;
     display:inline-block;
     width:140px;
@@ -1535,8 +1545,25 @@ a.label-large {
     -moz-border-radius: 200px;
     border-radius: 200px;
     margin-bottom:8px;
+    text-align: center;
+    &:before{ line-height:140px;}
   }
 }
+
+.label-large-horizontal {
+  display:inline-block;
+  width: 100%;
+  &>i  {
+    margin-right:20px;
+    float:left;
+  }
+  .message{
+    margin-top:24px;
+    display:block;
+    }
+}
+
+
 
 .modal {
   form.simple_form {margin:0;}
@@ -1644,9 +1671,7 @@ span.boolean{display:inline-block;}
 }
 
 
-.nested-fields, .links {position: relative;
-  &:hover {background-color:$white;}
-}
+
 
 .remove_nested_fields, .add_nested_fields {
   margin-left:220px; font-size:18px; display:block;
@@ -1672,14 +1697,16 @@ input.other { margin-left:-2px;}
 
 .fields-group .fields:not(:last-child) {margin-bottom:10px;};
 
-
+.nested-fields, .links {
+  position: relative;
+  //&:hover {background-color:$white;}
+}
 
 label .help-block { margin:0; font-size:13px;}
 
 .fields-group { padding: 0;
-  &:hover {background-color:$white;}
+  //&:hover {background-color:$white;}
 }
-
 
   
 .fields {margin-bottom: 0px;
@@ -2248,7 +2275,7 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 }
 
 input[type="text"].input-xlarge {
-  //@include $bordredbox;
+  @include borderbox;
   //height:26px;
   height:42px;
   font-size: 20px;
@@ -2550,6 +2577,10 @@ ul.tagit li.tagit-choice-editable {
 .mini-map.france.reg-7 {background-position: -525px -95px;}
 .mini-map.france.reg-8 {background-position: -525px -185px;}
 .mini-map.france.reg-9 {background-position: -525px -275px;}
+
+.mini-map.world {
+  background: url(appli/sprites/france-minimap-sprite.png) no-repeat top left;
+  background-position: -525px -365px;}
 
 
 

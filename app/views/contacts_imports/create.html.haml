@@ -1,0 +1,74 @@
+%header
+  %h1.page-title
+    Import Lancé !
+
+    
+%section.padded
+  .row-fluid
+  
+    .label-large.label-large-horizontal
+      %i.edi-import
+    
+      %h5.message
+        L’import du fichier
+        %b= @import.filename
+        a été lancé.
+        %br
+        Cette opération peut prendre un certain temps.
+        %br
+        Vous recevrez un email lorsque l’import sera terminé.
+    
+
+
+
+-#  ________________________________________________________ Autres notices
+-# %section.padded
+  %br
+  %br
+  %br
+  %br
+
+   
+  %h2 //Notices erreur
+  .notice.error
+    %span.noticetitle
+      Erreur lors de l’importation
+    %span
+      Il semble que le fichier 
+      %b NomDuFichier.ext 
+      ne soit pas au bon format...
+      %br
+      Edgar vous recommande de vérifiez le fichier.
+      %br
+      Vous pouvez 
+      %a consultez l’aide en ligne à propos de l'import
+      ou 
+      %a contactez Edgar.
+      %br
+      = link_to new_contacts_import_path, remote:false, :class=>"btn btn-primary " do
+        Retourner à la page d’import
+        /%i.ico.edi-import
+        
+    /%a.ico.btn-close{href:"#"}
+    
+  %h2 //Notices vue liste : Dernier import
+  
+  .notice.success
+    %span.noticetitle
+      = @nb_imported_contacts
+      ont été importés
+    %span
+      depuis le fichier 
+      %b NomDuFichier.ext 
+    %a.ico.btn-close{href:"#"}
+      
+  
+  .notice.warning
+    %span.noticetitle
+      = @nb_duplicates
+      doublons ont été détectés
+    %span
+      Cliquez sur 
+      = link_to "ici", contacts_path(imported_at: @imported_at, duplicated:true)
+      pour en voir la liste.
+    %a.ico.btn-close{href:"#"}

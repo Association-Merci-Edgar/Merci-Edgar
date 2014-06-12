@@ -22,14 +22,15 @@
 class Address < ActiveRecord::Base
   belongs_to :contact, touch:true
   belongs_to :account
-  attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info, :latitude, :longitude
+  attr_accessible :city, :country, :kind, :postal_code, :state, :street, :more_info, :latitude, :longitude, :geocoded_precisely
   acts_as_gmappable :process_geocoding => false, address: :full_address
   geocoded_by :full_address
-  after_validation :geocode, unless: :latitude_changed?
+  # after_validation :geocode, unless: :latitude_changed?
+  before_validation :format_postal_code
   before_save :set_account
-  validates :postal_code, presence: true
-  validates :city, :presence => :true
-  validates :country, :presence => :true
+  # validates :postal_code, presence: true
+  # validates :city, :presence => :true
+  # validates :country, :presence => :true
 
   # default_scope { where(:account_id => Account.current_id) }
 
@@ -172,32 +173,60 @@ REGIONS = {
 
   def full_address
   #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-    "#{self.street}, #{self.city}, Country.new(#{self.country}).name"
-    [self.street, self.city, Country.new(self.country).name].reject(&:blank?).join(', ')
+    # "#{self.street}, #{self.city}, Country.new(#{self.country}).name"
+    [self.street, "#{self.postal_code} #{self.city}", Country.new(self.country).name].reject(&:blank?).join(', ')
   end
 
   def department_name
-    DEPARTEMENTS[department_code].try(:fetch,:name)
+    @department_name ||= DEPARTEMENTS[department_code].try(:fetch,:name)
   end
 
   def region_code
-    DEPARTEMENTS[department_code].try(:fetch,:region_code)
+    @region_code ||= DEPARTEMENTS[department_code].try(:fetch,:region_code)
   end
 
   def region_name
-    REGIONS[region_code].try(:fetch,:name)
+    @region_name ||= REGIONS[region_code].try(:fetch,:name)
   end
 
   def department_code
-    if self.postal_code.start_with?("97")
-      self.postal_code[0..2]
-    else
-      self.postal_code[0..1]
+    @department_code ||= if self.postal_code && self.country
+      if self.postal_code.start_with?("97")
+        self.postal_code[0..2]
+      else
+        self.postal_code[0..1]
+      end
     end
   end
 
   def gmaps4rails_infowindow
     self.contact.name
   end
+  
 
+  def self.from_csv(row)
+    address = Address.new
+    address.street = row.delete(:adresse)
+    address.country = Country.find_country_by_names(row.delete(:pays)).try(:alpha2) || "FR"
+    address.postal_code = row.delete(:code_postal)
+    address.format_postal_code
+    address.city = row.delete(:ville)
+    address.kind = :main_address
+    lat_long = GeonamesPostalCode.get_latitude_longitude_and_admin_names(city: address.city, postal_code: address.postal_code, country_code: address.country)
+    if lat_long
+      address.latitude = lat_long["latitude"]
+      address.longitude = lat_long["longitude"]
+      address.admin_name1 = lat_long["admin_name1"]
+      address.admin_name2 = lat_long["admin_name2"]
+    end
+    address
+  end
+  
+  def format_postal_code
+    if self.postal_code && self.country == "FR" || country == nil
+      if self.postal_code.to_s.length == 4
+        self.postal_code = "0#{postal_code}"
+      end
+    end
+  end
 end

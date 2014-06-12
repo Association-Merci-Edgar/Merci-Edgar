@@ -10,6 +10,7 @@
 ROLLBAR_ACCESS_TOKEN: 5e88fc5b50f7491b80f17a7c2f7defca
 SAMPLES_XML_DIR: samples
 SAMPLES_XML_FILE: merciedgar_initial_contacts.xml
+CSV_IMPORT_MAXLINES_LIMIT: 5000
 
 development:
   MANDRILL_USERNAME: dev@merciedgar.com
@@ -21,7 +22,7 @@ development:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: www.lvh.me:3000
+  DOMAIN: lvh.me:3000
   SESSION_DOMAIN: ".lvh.me"
   
   AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA

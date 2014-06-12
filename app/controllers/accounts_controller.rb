@@ -20,4 +20,10 @@ class AccountsController < AppController
     render 'contacts/import_samples'
   end
   
+  def destroy_test_contacts
+    account = Account.find(Account.current_id)
+    account.destroy_test_contacts
+    redirect_to contacts_path
+  end
+  
 end

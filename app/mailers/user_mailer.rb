@@ -15,6 +15,14 @@ class UserMailer < ActionMailer::Base
     abilitation_email(account, manager, member)
   end
   
+  def contacts_import_email(user, options)
+    @user = user
+    @filename = options[:filename]
+    @account = options[:account]
+    @imported_at = options[:imported_at]
+    mail(to: user.email, subject: "Import de contacts")
+  end
+  
   private
   def abilitation_email(account, manager, member)
     @account = account

@@ -173,4 +173,12 @@ class Account < ActiveRecord::Base
     Person.destroy_all
   end
   
+  def destroy_test_contacts
+    Contact.imported_at(self.test_imported_at).find_each do |contact|
+      fm = contact.fine_model
+      fm.destroy
+    end
+  end
+  
+  
 end

@@ -24,7 +24,7 @@ Edgar::Application.configure do
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
   # Precompile additional assets
-  config.assets.precompile += %w( jquery.js jquery_ujs contacts_index.js contacts.js tag.js contacts_form.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf multipage.css )
+  config.assets.precompile += %w( jquery.js jquery_ujs contacts_import.js contacts_index.js contacts.js tag.js contacts_form.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf multipage.css )
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH

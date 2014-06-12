@@ -35,7 +35,6 @@ class Structure < ActiveRecord::Base
   validates_presence_of :contact
   # validates_associated :contact
 
-
   def kind
     fm = self.fine_model
     if fm.present?
@@ -186,4 +185,37 @@ class Structure < ActiveRecord::Base
     structure.upload_base64_avatar(avatar_attributes)
     structure
   end
+  
+  def self.from_csv(row)
+    structure = Structure.new
+    people = {}
+    row.keys.each do |key| 
+      elements = key.to_s.split('_')
+      attribute = elements.shift
+      title = elements.map(&:capitalize).join(' ')
+      if title.present? && Contact::VALID_CSV_KEYS.include?(attribute)
+        people[title] ||= {}
+        people[title][attribute.to_sym] = row[key.to_sym]
+        # row.delete(key.to_sym)
+      end
+    end
+
+    people.each do |title,person_hash|
+      person_name = person_hash[:nom]
+      if person_name && person_name.strip.length > 1 && title != "programmateur"
+        ps = structure.people_structures.build
+        ps.title = title
+        person_hash[:imported_at] = row[:imported_at]
+        person_hash[:first_name_last_name_order] = row[:first_name_last_name_order]
+        ps.person = Person.from_csv(person_hash)
+        underscore_title = title.split.map(&:downcase).join('_')
+        person_hash_keys_in_row = person_hash.keys.map{ |key| [key.to_s,underscore_title].join('_').to_sym }
+        row.delete_if{|key| person_hash_keys_in_row.include?(key)}
+      end
+    end
+
+    structure.contact, invalid_keys = Contact.from_csv(row, true)
+    [structure, invalid_keys]
+  end
+    
 end
