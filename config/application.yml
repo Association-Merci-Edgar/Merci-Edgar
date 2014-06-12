@@ -11,6 +11,9 @@ ROLLBAR_ACCESS_TOKEN: 5e88fc5b50f7491b80f17a7c2f7defca
 SAMPLES_XML_DIR: samples
 SAMPLES_XML_FILE: merciedgar_initial_contacts.xml
 CSV_IMPORT_MAXLINES_LIMIT: 5000
+AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
+AWS_SECRET_ACCESS_KEY: r+gQ/0bsM3Sap/mvVQ3VYsKKfpY/g1g4RP9MYUSI
+
 
 development:
   MANDRILL_USERNAME: dev@merciedgar.com
@@ -25,8 +28,6 @@ development:
   DOMAIN: lvh.me:3000
   SESSION_DOMAIN: ".lvh.me"
   
-  AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
-  AWS_SECRET_ACCESS_KEY: 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
   AWS_S3_BUCKET: merciedgar-dev
   
 wip:
@@ -42,6 +43,8 @@ wip:
   DOMAIN: www.robiweb.net
   SESSION_DOMAIN: ".robiweb.net"  
 
+  AWS_S3_BUCKET: merciedgar-dev
+
 integration:
   MANDRILL_USERNAME: dev@merciedgar.com
   MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
@@ -55,9 +58,7 @@ integration:
   DOMAIN: www.lypso.fr
   SESSION_DOMAIN: ".lypso.fr"
 
-  AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
-  AWS_SECRET_ACCESS_KEY: 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
-  AWS_S3_BUCKET: merciedgar-prod
+  AWS_S3_BUCKET: merciedgar-int
 
 
 staging:
@@ -85,8 +86,6 @@ production:
   DOMAIN: www.merciedgar.com
   SESSION_DOMAIN: ".merciedgar.com"
 
-  AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
-  AWS_SECRET_ACCESS_KEY: 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
   AWS_S3_BUCKET: merciedgar-prod
 
 test:
