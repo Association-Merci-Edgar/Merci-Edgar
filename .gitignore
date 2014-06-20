@@ -83,6 +83,6 @@ dump.rdb
 db/*txt
 
 # Ignore temporary spreadsheet files
-/spec/files/*
+# /spec/files/*
 
 config/database_with_prod_in_dev.yml
