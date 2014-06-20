@@ -52,11 +52,11 @@ class Account < ActiveRecord::Base
   end
 
   def self.current_id=(id)
-    @@current_id = id
+    Thread.current[:account_id] = id
   end
 
   def self.current_id
-    @@current_id ||= 0
+    Thread.current[:account_id] ||= 0
   end
 
   def mystrip(value)
