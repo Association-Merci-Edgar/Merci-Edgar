@@ -45,8 +45,10 @@ class ContactsImportWorker
   rescue Exception => e
     raise e.message
   ensure
-    current_account.importing_now = false
-    current_account.save!
+    if current_account
+      current_account.importing_now = false
+      current_account.save
+    end
   end
   
 
