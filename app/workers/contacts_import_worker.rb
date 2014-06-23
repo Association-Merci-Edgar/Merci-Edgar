@@ -42,8 +42,6 @@ class ContactsImportWorker
       self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
       UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless test_mode
     end
-  rescue Exception => e
-    raise e.message
   ensure
     if current_account
       current_account.importing_now = false
