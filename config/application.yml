@@ -59,6 +59,9 @@ integration:
   SESSION_DOMAIN: ".lypso.fr"
 
   AWS_S3_BUCKET: merciedgar-int
+  
+  DB_POOL: 2
+  WEB_CONCURRENCY: 5
 
 
 staging:
