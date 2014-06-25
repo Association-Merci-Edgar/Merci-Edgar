@@ -30,6 +30,8 @@ development:
   
   AWS_S3_BUCKET: merciedgar-dev
   
+  SIDEKIQ_CONCURRENCY: 8
+  
 wip:
   MANDRILL_USERNAME: dev@merciedgar.com
   MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
@@ -62,6 +64,7 @@ integration:
   
   DB_POOL: 2
   WEB_CONCURRENCY: 5
+  SIDEKIQ_CONCURRENCY: 8
 
 
 staging:

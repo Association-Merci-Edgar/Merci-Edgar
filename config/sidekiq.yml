@@ -1,1 +1,1 @@
-:concurrency: 8
+:concurrency: ENV['SIDEKIQ_CONCURRENCY']
