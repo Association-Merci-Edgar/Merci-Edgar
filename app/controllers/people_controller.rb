@@ -62,6 +62,7 @@ class PeopleController < AppController
   # POST /people.json
   def create
     @person = Person.new(params[:person])
+    @person.set_contact_name
 
     respond_to do |format|
       if @person.save
@@ -78,7 +79,6 @@ class PeopleController < AppController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
-
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html { redirect_to @person, notice: t("activerecord.notices.models.person.updated", name: @person) }
