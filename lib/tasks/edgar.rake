@@ -81,5 +81,15 @@ namespace :edgar do
     loader = Geonames::Loader.new
     loader.load_geonames("db/geonames_FR.txt")
   end
-
+  
+  task :empty_load_accounts, [:start_index, :last_index] => :environment do |task, args|
+    unless Rails.env.production?
+      args.with_defaults(start_index:1, last_index:100)
+      (Range.new(args.start_index, args.last_index)).each do |i|
+        account = Account.find_by_domain("account#{i}")
+        Account.current_id = account.id
+        account.empty
+      end
+    end
+  end
 end
