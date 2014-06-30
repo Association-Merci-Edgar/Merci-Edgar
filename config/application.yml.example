@@ -68,7 +68,7 @@ integration:
   
   DB_POOL: 1
   WEB_CONCURRENCY: 5
-  SIDEKIQ_CONCURRENCY: 11
+  SIDEKIQ_CONCURRENCY: 7
 
 
 staging:
