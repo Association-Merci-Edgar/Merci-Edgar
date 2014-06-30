@@ -12,7 +12,7 @@ Sidekiq.configure_server do |config|
   if(database_url && sidekiq_concurrency)
     Rails.logger.info("Setting custom connection pool size of #{sidekiq_concurrency} for Sidekiq Server")
 
-    ENV['DATABASE_URL'] = "#{database_url}?pool=#{sidekiq_concurrency}"
+    ENV['DATABASE_URL'] = "#{database_url}?pool=#{ENV['DB_POOL']}"
     Rails.logger.info(%Q(DATABASE_URL => "#{ENV['DATABASE_URL']}"))
 
     ActiveRecord::Base.establish_connection
