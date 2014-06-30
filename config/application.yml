@@ -66,7 +66,7 @@ integration:
 
   AWS_S3_BUCKET: merciedgar-int
   
-  DB_POOL: 2
+  DB_POOL: 1
   WEB_CONCURRENCY: 5
   SIDEKIQ_CONCURRENCY: 8
 
