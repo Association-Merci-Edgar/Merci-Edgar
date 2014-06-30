@@ -75,8 +75,7 @@ pickle-email-*.html
 **.swp
 
 # Ignore application configuration
-# /config/application.yml
-/config/application-edgar.yml
+/config/application.yml
 
 *.dump
 dump.rdb
