@@ -1980,7 +1980,7 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="NB_USERS" elementType="Argument">
               <stringProp name="Argument.name">NB_USERS</stringProp>
-              <stringProp name="Argument.value">10</stringProp>
+              <stringProp name="Argument.value">5</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="KIND_IMPORT" elementType="Argument">
