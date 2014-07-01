@@ -4,8 +4,8 @@ class SpreadsheetFile
   extend ActiveModel::Naming
   extend ActiveModel::Translation
   
-  validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i }
-  validates :encoding, inclusion: { in: %w(utf-8 iso-8859-1)}
+  validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i, allow_nil: true }
+  validates :encoding, inclusion: { in: %w(utf-8 iso-8859-1 binary)}
   validates :readable, inclusion: { in: [ true ] }
   validates :is_csv?, inclusion: { in: [ true ] }
   validates :name_header_exist, inclusion: { in: [ true ] }
@@ -42,9 +42,7 @@ class SpreadsheetFile
   end
   
   def nb_lines
-    @nblines ||= File.open(csv_path) do |io|      
-      nblines = io.readlines.size
-    end if readable
+    @nblines ||= %x{wc -l < #{csv_path}}.to_i if readable
   end
   
   def encoding
@@ -64,9 +62,13 @@ class SpreadsheetFile
     
   def readable
     return @readable if @readable != nil
+    @readable = false
+    
+    @readable = true if is_csv?
+
     if is_csv?
       @readable = true
-    else
+    elsif SpreadsheetFile.xls_allowed?
       begin
         @spreadsheet ||= Roo::Spreadsheet.open(@filename)
         @readable = true
@@ -74,6 +76,7 @@ class SpreadsheetFile
         @readable = false
       end
     end
+    return @readable
   end
 
   def is_csv?
@@ -82,9 +85,15 @@ class SpreadsheetFile
 
   def to_csv(csv_path = nil)
     return @filename if is_csv?
-    csv_path = [@filename, ".csv"].join
-    @spreadsheet.to_csv(csv_path) if readable
-    csv_path
+    if xls_allowed?
+      csv_path = [@filename, ".csv"].join
+      @spreadsheet.to_csv(csv_path) if readable
+      csv_path
+    end
+  end
+  
+  def self.xls_allowed?
+    ENV["XLS_ALLOWED"].to_bool
   end
   
 end
