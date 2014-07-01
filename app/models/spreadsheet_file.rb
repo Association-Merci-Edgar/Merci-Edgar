@@ -33,7 +33,7 @@ class SpreadsheetFile
   def first_row
     File.open(csv_path) do |io|
       first_line = io.gets
-      first_line.parse_csv.map(&:downcase)
+      first_line.parse_csv.map{|k| k.try(:downcase)}
     end if readable
   end
   
