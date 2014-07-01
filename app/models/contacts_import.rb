@@ -37,11 +37,7 @@ class ContactsImport
   end
   
   def filename
-    if contact_file.present?
-      filename = contact_file.original_filename
-    else
-      @filename
-    end
+    @filename ||= contact_file.try(:original_filename)
   end
   
   def filename=(new_filename)

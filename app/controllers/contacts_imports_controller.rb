@@ -15,6 +15,7 @@ class ContactsImportsController < AppController
       if @import.contact_file
         uploader = ContactsImportUploader.new(Account.current_id.to_s)
         uploader.store!(@import.contact_file)
+        @import.filename = uploader.filename
       end
       
       @import.user_id = current_user.id
