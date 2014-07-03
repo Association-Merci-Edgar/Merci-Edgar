@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/Empact/roo.git
+  revision: 9e1b969762cbb80b1c52cfddd848e489f22f468f
+  ref: 9e1b969762cbb80b1c52cfddd848e489f22f468f
+  specs:
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: bae6cec4c38ac43deff4476b128796ecfad5741b
   specs:
@@ -286,10 +296,6 @@ GEM
     rolify (3.2.0)
     rollbar (0.12.10)
       multi_json (~> 1.3)
-    roo (1.13.2)
-      nokogiri
-      rubyzip
-      spreadsheet (> 0.6.4)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -420,7 +426,7 @@ DEPENDENCIES
   remotipart (~> 1.2)
   rolify
   rollbar
-  roo
+  roo!
   rspec-rails
   sass-rails (~> 3.2.3)
   selenium-webdriver

@@ -85,6 +85,6 @@ gem 'ar_pg_array'
 
 gem 'rollbar'
 
-gem 'roo'
+gem 'roo', git: 'git://github.com/Empact/roo.git', ref: '9e1b969762cbb80b1c52cfddd848e489f22f468f'
 gem 'smarter_csv'
 gem 'mimer_plus'

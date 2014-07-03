@@ -7,7 +7,7 @@ class SpreadsheetFile
   validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i, allow_nil: true }
   # validates :encoding, inclusion: { in: %w(utf-8 iso-8859-1 binary)}
   validates :readable, inclusion: { in: [ true ] }
-  validates :is_csv?, inclusion: { in: [ true ] }
+  # validates :is_csv?, inclusion: { in: [ true ] }
   validates :name_header_exist, inclusion: { in: [ true ] }
   validates :kind, inclusion: { in: %w(venue festival show_buyer structure person) }
   
@@ -89,7 +89,7 @@ class SpreadsheetFile
     return @filename if is_csv?
     if self.class.xls_allowed?
       csv_path = [@filename, ".csv"].join
-      @spreadsheet.to_csv(csv_path) if readable
+      @spreadsheet.to_csv(csv_path,nil,COL_SEP) if readable
       csv_path
     end
   end
