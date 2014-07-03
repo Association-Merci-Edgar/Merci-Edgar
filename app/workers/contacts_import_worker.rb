@@ -113,7 +113,7 @@ class ContactsImportWorker
     
       total = test_mode && 20 < nb_lines ? 20 : nb_lines
       log_message = ""
-      total_chunks = SmarterCSV.process(spreadsheet.csv_path, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {only: [:places_assises, :places_debout, :places_mixte]}) do |chunk|
+      total_chunks = SmarterCSV.process(spreadsheet.csv_path, col_sep: ';', chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {only: [:places_assises, :places_debout, :places_mixte]}) do |chunk|
         chunk.each do |row|
           imported_index += 1
           test_mode = options["test_mode"]
