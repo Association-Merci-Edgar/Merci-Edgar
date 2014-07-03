@@ -12,6 +12,8 @@
 #
 
 class Capacity < ActiveRecord::Base
+  CAPACITY_MAX = 500000
   belongs_to :room, touch:true
   attr_accessible :kind, :nb, :modular
+  validates :nb, numericality: { greater_than: 0, less_than: CAPACITY_MAX }
 end

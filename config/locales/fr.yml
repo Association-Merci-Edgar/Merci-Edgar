@@ -326,6 +326,8 @@ fr:
         depth: Profondeur
         height: Hauteur
         width: Largeur
+      venue/rooms/capacities:
+        nb: Jauge
       import:
         filename: Le nom de fichier
     errors:

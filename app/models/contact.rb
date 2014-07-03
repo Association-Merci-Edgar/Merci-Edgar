@@ -478,10 +478,6 @@ class Contact < ActiveRecord::Base
     end
     unless contact.valid?
       contact.errors.messages.keys.each do |attribute, value|
-        puts "error with contact #{contact.name} (#{attribute}:#{value})"
-        puts "message: #{contact.errors.full_messages}"
-        puts "attribute: #{attribute}"
-        puts "value: #{contact.send(attribute)}"
         contact.remark += "#{attribute}: #{contact.send(attribute)} /"
         contact.send(:write_attribute, attribute,nil)
       end
