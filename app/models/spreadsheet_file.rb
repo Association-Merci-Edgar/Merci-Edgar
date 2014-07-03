@@ -5,13 +5,15 @@ class SpreadsheetFile
   extend ActiveModel::Translation
   
   validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i, allow_nil: true }
-  validates :encoding, inclusion: { in: %w(utf-8 iso-8859-1 binary)}
+  # validates :encoding, inclusion: { in: %w(utf-8 iso-8859-1 binary)}
   validates :readable, inclusion: { in: [ true ] }
   validates :is_csv?, inclusion: { in: [ true ] }
   validates :name_header_exist, inclusion: { in: [ true ] }
   validates :kind, inclusion: { in: %w(venue festival show_buyer structure person) }
   
   attr_reader :kind
+  
+  COL_SEP = ';'
   
   def initialize(filename, kind = "venue")
     @filename = filename
@@ -33,7 +35,7 @@ class SpreadsheetFile
   def first_row
     File.open(csv_path) do |io|
       first_line = io.gets
-      first_line.parse_csv.map{|k| k.try(:downcase)}
+      first_line.parse_csv(col_sep:COL_SEP).map{|k| k.try(:downcase)}
     end if readable
   end
   
@@ -55,7 +57,7 @@ class SpreadsheetFile
     end
   end
   
-  private
+  
   def name_header_exist
     first_row.include?("nom") if readable
   end
@@ -85,7 +87,7 @@ class SpreadsheetFile
 
   def to_csv(csv_path = nil)
     return @filename if is_csv?
-    if xls_allowed?
+    if self.class.xls_allowed?
       csv_path = [@filename, ".csv"].join
       @spreadsheet.to_csv(csv_path) if readable
       csv_path

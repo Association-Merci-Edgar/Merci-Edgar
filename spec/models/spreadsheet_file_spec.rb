@@ -25,7 +25,7 @@ describe SpreadsheetFile do
   
   let(:ods_path) { spreadsheet_samples_path('/scene_5.ods') }
   let(:without_nom_path) { spreadsheet_samples_path('/without_nom.csv') }
-  let(:csv_path) { spreadsheet_samples_path('/scene_5.csv') }
+  let(:csv_path) { spreadsheet_samples_path('/scene_2.csv') }
   
   it "can transform xls file to csv file" do
     subject = SpreadsheetFile.new(xls_path)
