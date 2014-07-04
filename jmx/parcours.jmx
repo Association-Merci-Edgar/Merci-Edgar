@@ -1198,7 +1198,7 @@
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${NB_USERS}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">40</stringProp>
         <longProp name="ThreadGroup.start_time">1402949123000</longProp>
         <longProp name="ThreadGroup.end_time">1402949123000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -1754,7 +1754,7 @@
                 <elementProp name="commit" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">commit</stringProp>
-                  <stringProp name="Argument.value">${KIND_IMPORT}</stringProp>
+                  <stringProp name="Argument.value">${REAL_IMPORT}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -1773,8 +1773,8 @@
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
             <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
               <collectionProp name="HTTPFileArgs.files">
-                <elementProp name="/Users/krichtof/src/ruby/edgar2/spec/files/scene_5.csv" elementType="HTTPFileArg">
-                  <stringProp name="File.path">/Users/krichtof/src/ruby/edgar2/spec/files/scene_5.csv</stringProp>
+                <elementProp name="/Users/krichtof/src/ruby/edgar2/spec/files/lieux_spectacle_2011_scene.xls" elementType="HTTPFileArg">
+                  <stringProp name="File.path">/Users/krichtof/src/ruby/edgar2/spec/files/lieux_spectacle_2011_scene.xls</stringProp>
                   <stringProp name="File.paramname">contacts_import[contact_file]</stringProp>
                   <stringProp name="File.mimetype">text/csv</stringProp>
                 </elementProp>
@@ -1980,12 +1980,17 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="NB_USERS" elementType="Argument">
               <stringProp name="Argument.name">NB_USERS</stringProp>
-              <stringProp name="Argument.value">5</stringProp>
+              <stringProp name="Argument.value">20</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
-            <elementProp name="KIND_IMPORT" elementType="Argument">
-              <stringProp name="Argument.name">KIND_IMPORT</stringProp>
+            <elementProp name="TEST_IMPORT" elementType="Argument">
+              <stringProp name="Argument.name">TEST_IMPORT</stringProp>
               <stringProp name="Argument.value">Tester avant d&apos;importer</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="REAL_IMPORT" elementType="Argument">
+              <stringProp name="Argument.name">REAL_IMPORT</stringProp>
+              <stringProp name="Argument.value">Lancer l&apos;import</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
