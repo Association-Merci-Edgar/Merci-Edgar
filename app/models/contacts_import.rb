@@ -1,55 +1,20 @@
-class ContactsImport 
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
-  extend ActiveModel::Translation
+class ContactsImport < ActiveRecord::Base
+  attr_accessible :contacts_file, :contacts_file_cache, :contacts_kind, :first_name_last_name_order, :test_mode, :user_id
+  belongs_to :account
+  belongs_to :user
+  validates_presence_of :account
+  validates_presence_of :user
   
-  attr_accessor :contact_file, :contact_kind, :first_name_last_name_order, :test_mode, :account_id, :user_id, :imported_at
-  # validates_presence_of :contact_file
-  validates :contact_kind, inclusion: { in: %w(venue festival show_buyer structure person) }
-  validates :filename, :contact_kind, :first_name_last_name_order, presence: true
+  attr_accessor :contacts_file_cache
+  mount_uploader :contacts_file, ContactsImportUploader
+  process_in_background :contacts_file
+  
   validate :import_cannot_be_launched_if_import_already_running
   
-  
-  def initialize(attributes = {})
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end
-    @account_id = Account.current_id
-    @first_name_last_name_order ||= :last_name
-    @contact_kind ||= :venue
-  end
-  
-  def init
-    self.first_name_last_name_order = :last_name
-    self.contact_kind = :venue
-  end
-  
-  def persisted?
-    false
-  end
-
   def import_cannot_be_launched_if_import_already_running
-    account = Account.find(@account_id)
-    if account.importing_now?
+    if account && account.importing_now?
       errors.add(:base, :import_cannot_be_launched_if_import_already_running)
     end
-  end
-  
-  def filename
-    @filename ||= contact_file.try(:original_filename)
-  end
-  
-  def filename=(new_filename)
-    new_filename = nil unless new_filename.present?
-    @filename = new_filename
-  end
-  
-  def to_json
-    { 
-      test_mode: test_mode, contact_kind: contact_kind, first_name_last_name_order: first_name_last_name_order, 
-      filename: filename, imported_at: imported_at, account_id: account_id, user_id: user_id 
-    }
   end
   
   def self.get_payload(imported_at)

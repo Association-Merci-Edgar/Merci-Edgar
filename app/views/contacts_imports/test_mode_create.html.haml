@@ -30,14 +30,14 @@
       Les
       %span#nb_imported_contacts
       premiers contacts du fichier 
-      = @import.filename 
+      = @import.contacts_file.filename 
       ont été traités.
     
     %br
-    = link_to contacts_path(imported_at: @import.imported_at) do
+    = link_to contacts_path(imported_at: @import.updated_at.to_i) do
       %button.btn.btn-primary Voir les contacts test
       
-    = link_to edit_contacts_import_path(@import.imported_at) do
+    = link_to edit_contacts_import_path(@import) do
       %button.btn.btn-primary Modifier les paramètres d’import
     
     %br

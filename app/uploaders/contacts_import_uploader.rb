@@ -2,6 +2,7 @@
 
 class ContactsImportUploader < CarrierWave::Uploader::Base
   include CarrierWave::MimeTypes
+  include ::CarrierWave::Backgrounder::Delay
 
   process :set_content_type
 
@@ -11,7 +12,7 @@ class ContactsImportUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   def store_dir
-    "imports/#{@store_subdir}"
+    "imports/#{model.account_id}"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -30,8 +31,4 @@ class ContactsImportUploader < CarrierWave::Uploader::Base
     {'Content-Disposition' => "attachment"}
   end
   
-  def initialize(subdir=nil)
-    super
-    @store_subdir = subdir
-  end
 end

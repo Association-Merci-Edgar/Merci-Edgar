@@ -4,25 +4,23 @@ class ContactsImportsController < AppController
   end
   
   def edit
-    @import = ContactsImport.new(session[:form_import_params])
+    @import = ContactsImport.find(params[:id])
+  end
+  
+  def create_fake
+    @import = ContactsImport.find(4)
+    @job_id = ContactsImportWorker.perform_async(@import.id)
+    render "test_mode_create"
   end
   
   def create
-    contacts_import_params = params[:contacts_import].present? ? params[:contacts_import] : session[:form_import_params]
-    @import = ContactsImport.new(contacts_import_params)
-    if @import.valid?
-      @import.test_mode = (params[:commit] == t('helpers.submit.contacts_import.test'))
-      if @import.contact_file
-        uploader = ContactsImportUploader.new(Account.current_id.to_s)
-        uploader.store!(@import.contact_file)
-        @import.filename = uploader.filename
-      end
-      
-      @import.user_id = current_user.id
-      @import.imported_at = Time.zone.now.to_i
-      @import.account_id = Account.current_id
-      @job_id = ContactsImportWorker.perform_async(@import.to_json)
-      session[:form_import_params] = @import.to_json if @import.test_mode
+    @import = ContactsImport.new(params[:contacts_import])
+    @import.user = current_user
+    @import.account = current_account
+    @import.test_mode = (params[:commit] == t('helpers.submit.contacts_import.test'))
+    
+    if @import.save
+      @job_id = ContactsImportWorker.perform_async(@import.id)
       
       if @import.test_mode
         @job_url = job_path(@job_id)
@@ -34,4 +32,24 @@ class ContactsImportsController < AppController
     end
   end
   
+  def update
+    @import = ContactsImport.find(params[:id])
+    @import.user = current_user
+    @import.account = current_account
+    @import.test_mode = (params[:commit] == t('helpers.submit.contacts_import.test'))
+    if @import.update_attributes(params[:contacts_import])
+      @job_id = ContactsImportWorker.perform_async(@import.id)
+      
+      if @import.test_mode
+        @job_url = job_path(@job_id)
+        render "test_mode_create"
+      else
+        render "create"
+      end
+      
+    else
+      render "edit"
+    end
+  end
+    
 end

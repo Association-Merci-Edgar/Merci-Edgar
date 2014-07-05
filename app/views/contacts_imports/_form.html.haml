@@ -27,16 +27,16 @@
           Quel type de fichier allez-vous importer ?
         .row-fluid
           .span6
-            = f.input :contact_kind, collection: ["Fichier Edgar. (.xml)"], as: :radio_buttons, label: false, item_wrapper_class: "xml"
+            = f.input :contacts_kind, collection: ["Fichier Edgar. (.xml)"], as: :radio_buttons, label: false, item_wrapper_class: "xml"
             = f.hint 'Ce type de fichier contient tous les types de contact.<br>Il est issu d’un export Edgar et contient également des images.'
           .span6
-            = f.input :contact_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons, label: false
+            = f.input :contacts_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons, label: false
             //, label: "Quel type de fichier allez-vous importer ?"
       
       %section
-        %b= @import.filename
-        = f.hidden_field :filename, value: @import.filename
-        = f.input :contact_file, as: :file
+        %b= @import.contacts_file.present? ? @import.contacts_file.file.filename : "Aucun fichier choisi"
+        = f.input_field :contacts_file, as: :file
+        = f.hidden_field :contacts_file_cache
       
       %section#first_name_last_name
         = f.input :first_name_last_name_order, collection: [:first_name, :last_name], as: :radio_buttons, label: "Comment sont nommés les personnes dans votre fichier ?", item_wrapper_class:"inline"

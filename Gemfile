@@ -33,8 +33,11 @@ gem 'kaminari', '~> 0.15'
 gem "libxml-ruby", "~> 2.7.0"
 
 gem 'carrierwave'
+gem 'carrierwave_backgrounder', "~> 0.4.1" 
 gem 'mini_magick'
 gem 'fog'
+
+gem 'waitutil', "~> 0.2.1"
 
 gem 'gmaps4rails'
 # gem 'geocoder', git: 'git@github.com:alexreisner/geocoder.git', branch: 'master'

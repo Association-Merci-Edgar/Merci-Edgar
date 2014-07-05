@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140610164602) do
+ActiveRecord::Schema.define(:version => 20140704093249) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -27,13 +27,10 @@ ActiveRecord::Schema.define(:version => 20140610164602) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.integer  "contacts_count",   :default => 0
+    t.boolean  "importing_now"
     t.integer  "test_imported_at"
     t.integer  "last_import_at"
-    t.boolean  "importing_now"
   end
-
-  add_index "accounts", ["last_import_at"], :name => "index_accounts_on_last_import_at"
-  add_index "accounts", ["test_imported_at"], :name => "index_accounts_on_test_imported_at"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -132,13 +129,28 @@ ActiveRecord::Schema.define(:version => 20140610164602) do
     t.string   "capacity_tags"
     t.string   "venue_kind"
     t.integer  "duplicate_id"
-    t.integer  "imported_at"
     t.string   "source"
+    t.integer  "imported_at"
   end
 
   add_index "contacts", ["account_id"], :name => "index_contacts_on_account_id"
   add_index "contacts", ["contactable_id"], :name => "index_contacts_on_contactable_id"
   add_index "contacts", ["duplicate_id"], :name => "index_contacts_on_duplicate_id"
+
+  create_table "contacts_imports", :force => true do |t|
+    t.string   "contacts_file"
+    t.boolean  "contacts_file_processing",                            :null => false
+    t.string   "contacts_kind",              :default => "venue"
+    t.string   "first_name_last_name_order", :default => "last_name"
+    t.boolean  "test_mode"
+    t.integer  "account_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+  end
+
+  add_index "contacts_imports", ["account_id"], :name => "index_contacts_imports_on_account_id"
+  add_index "contacts_imports", ["user_id"], :name => "index_contacts_imports_on_user_id"
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
