@@ -7,7 +7,7 @@ class ContactsImport < ActiveRecord::Base
   
   attr_accessor :contacts_file_cache
   mount_uploader :contacts_file, ContactsImportUploader
-  process_in_background :contacts_file
+  store_in_background :contacts_file
   
   validate :import_cannot_be_launched_if_import_already_running
   

@@ -5,8 +5,9 @@ class ContactsImportWorker
 
   def perform(import_id)
     import = ContactsImport.find(import_id.to_i)
-    WaitUtil.wait_for_condition("processing #{import.contacts_file_url}", timeout_sec: 30) do
-      import.contacts_file_processing == false
+    WaitUtil.wait_for_condition("processing import for account #{import.account_id}") do
+      import = ContactsImport.find(import_id.to_i)
+      import.contacts_file_tmp.nil?
     end
     
     account_id = import.account_id
