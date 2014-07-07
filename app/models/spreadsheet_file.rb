@@ -4,22 +4,21 @@ class SpreadsheetFile
   extend ActiveModel::Naming
   extend ActiveModel::Translation
   
-  validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i, allow_nil: true }
-  validates :readable, inclusion: { in: [ true ] }
-  validates :encoding, inclusion: { in: %w(utf-8 iso-8859-1 us-ascii utf-16le)}, if: :is_csv?
+  validates :readable?, inclusion: { in: [ true ] }
+  validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i, allow_nil: true }, if: :readable?
   # validates :is_csv?, inclusion: { in: [ true ] }
-  validates :name_header_exist, inclusion: { in: [ true ] }
+  validates :name_header_exist, inclusion: { in: [ true ] }, if: :readable?
   validates :kind, inclusion: { in: %w(venue festival show_buyer structure person) }
   
   attr_reader :kind
   
-  
+  ACCEPTED_ENCODINGS = %w(utf-8 iso-8859-1 us-ascii utf-16le)
   COMMON_DELIMITERS = [',', ';', "\t"]
   COMMON_DELIMITERS_WITH_DOUBLE_QUOTES = ['","', '";"', "\"\t\""]
   
   def col_sep
     return @col_sep if @col_sep.present?
-    File.open(csv_path, "r:#{encoding}") do |io|
+    File.open(csv_path, "r:#{file_encoding}") do |io|
       first_line = io.gets
       return nil unless first_line
       snif = {}
@@ -46,15 +45,15 @@ class SpreadsheetFile
   end
 
   def csv_path
-    @csv_path ||= to_csv if readable
+    @csv_path ||= to_csv
   end
   
   def first_row
     local_col_sep = col_sep
-    File.open(csv_path) do |io|
+    File.open(csv_path, "r:#{file_encoding}") do |io|
       first_line = io.gets
       first_line.parse_csv(col_sep: local_col_sep).map{|k| k.try(:downcase)}
-    end if readable
+    end if readable?
   end
   
   def last_row
@@ -62,32 +61,34 @@ class SpreadsheetFile
   end
   
   def nb_lines
-    @nblines ||= %x{wc -l < #{csv_path}}.to_i if readable
+    @nblines ||= %x{wc -l < #{csv_path}}.to_i if readable?
   end
   
   def encoding
     return @encoding if @encoding
-    if readable
-      m = Mimer.identify(csv_path).mime_type
-      @encoding = m.match(/charset=(.*);?/)[1]
-    else
-      @encoding = false
-    end
+    m = Mimer.identify(csv_path).mime_type
+    @encoding = m.match(/charset=(.*);?/)[1]
+  end
+  
+  def file_encoding
+    @file_encoding ||= encoding.start_with?("utf") ? "bom|#{encoding}" : encoding if encoding 
+  end
+  
+  def well_encoded?
+    ACCEPTED_ENCODINGS.include?(encoding)
   end
   
   
   def name_header_exist
-    first_row.include?("nom") if readable
+    first_row.include?("nom") if readable?
   end
     
-  def readable
+  def readable?
     return @readable if @readable != nil
     @readable = false
     
-    @readable = true if is_csv?
-    if is_csv?
-      @readable = true
-    elsif SpreadsheetFile.xls_allowed?
+    @readable = true if is_csv? && well_encoded?
+    unless is_csv?
       begin
         @spreadsheet ||= Roo::Spreadsheet.open(@filename)
         @col_sep = ','
@@ -107,7 +108,8 @@ class SpreadsheetFile
     return @filename if is_csv?
     if self.class.xls_allowed?
       @csv_path = [@filename, ".csv"].join
-      @spreadsheet.to_csv(@csv_path,nil,col_sep) if readable
+      @spreadsheet.to_csv(@csv_path,nil,col_sep) if readable?
+      @encoding = Encoding.find("internal").to_s.downcase
       @csv_path
     end
   end

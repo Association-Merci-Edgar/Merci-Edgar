@@ -295,7 +295,7 @@ fr:
               less_than: "Le fichier ne peut contenir plus de %{count} lignes"
             encoding:
               inclusion: "Le fichier n'est pas correctement encodé"
-            readable:
+            readable?:
               inclusion: "Impossible de lire le fichier"
             name_header_exist:
               inclusion: "Le fichier ne contient pas la colonne nom"
