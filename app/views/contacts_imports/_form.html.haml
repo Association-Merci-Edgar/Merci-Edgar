@@ -24,7 +24,9 @@
     .form-inputs
       %section#contact-file-type
         %label.control-label
-          Quel type de fichier allez-vous importer ?
+          Le fichier 
+          %b= File.basename(params[:key] || @import.key)
+          contient quel type de contacts ?
         .row-fluid
           .span6
             = f.input :contacts_kind, collection: ["Fichier Edgar. (.xml)"], as: :radio_buttons, label: false, item_wrapper_class: "xml"
@@ -32,11 +34,9 @@
           .span6
             = f.input :contacts_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons, label: false
             //, label: "Quel type de fichier allez-vous importer ?"
-      
-      %section
-        %b= @import.contacts_file.present? ? @import.contacts_file.file.filename : "Aucun fichier choisi"
-        = f.input_field :contacts_file, as: :file
-        = f.hidden_field :contacts_file_cache
+        
+        %b= params[:key]
+        = f.hidden_field :key, value: params[:key] || @import.key
       
       %section#first_name_last_name
         = f.input :first_name_last_name_order, collection: [:first_name, :last_name], as: :radio_buttons, label: "Comment sont nommés les personnes dans votre fichier ?", item_wrapper_class:"inline"

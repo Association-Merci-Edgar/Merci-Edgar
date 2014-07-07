@@ -33,7 +33,8 @@ gem 'kaminari', '~> 0.15'
 gem "libxml-ruby", "~> 2.7.0"
 
 gem 'carrierwave'
-gem 'carrierwave_backgrounder', "~> 0.4.1" 
+gem 'carrierwave_direct', "~> 0.0.14"
+# gem 'carrierwave_backgrounder', "~> 0.4.1" 
 gem 'mini_magick'
 gem 'fog'
 

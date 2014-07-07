@@ -5,10 +5,6 @@ class ContactsImportWorker
 
   def perform(import_id)
     import = ContactsImport.find(import_id.to_i)
-    WaitUtil.wait_for_condition("processing import for account #{import.account_id}") do
-      import = ContactsImport.find(import_id.to_i)
-      import.contacts_file_tmp.nil?
-    end
     
     account_id = import.account_id
     Account.current_id = account_id
@@ -127,7 +123,7 @@ class ContactsImportWorker
       log_message = ""
       at(1,"Lecture du fichier...")
       
-      total_chunks = SmarterCSV.process(spreadsheet.csv_path, col_sep: SpreadsheetFile::COL_SEP, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {only: [:places_assises, :places_debout, :places_mixte]}) do |chunk|
+      total_chunks = SmarterCSV.process(spreadsheet.csv_path, col_sep: spreadsheet.col_sep, chunk_size: 100, file_encoding: spreadsheet.encoding, convert_values_to_numeric: {only: [:places_assises, :places_debout, :places_mixte]}) do |chunk|
         chunk.each do |row|
           imported_index += 1
           return if imported_index > 20 && import.test_mode

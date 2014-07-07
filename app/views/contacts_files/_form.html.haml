@@ -1,0 +1,28 @@
+%header
+  %h1.page-title Importer un fichier contacts
+
+%section.padded
+  .label-large.label-large-horizontal
+    %i.edi-import
+    %h5.message
+      %i.edi-warning
+      L’import en masse de contacts est une opération sensible.
+      %br
+      Avant d’importer un fichier, lisez d’abord 
+      %a l’aide en ligne.
+          
+      
+%section.padded
+  = direct_upload_form_for(@uploader) do |f|
+    = display_errors(@uploader)
+  
+    .form-inputs      
+      %section
+        = f.file_field :contacts_file
+        
+    .form-actions
+      .row-fluid
+        .span6
+          = f.submit "Envoyer le fichier", :class => "btn btn-primary btn-large "
+          %p
+

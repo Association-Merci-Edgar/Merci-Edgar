@@ -1,16 +1,11 @@
 class ContactsImportsController < AppController
   def new
     @import = ContactsImport.new
+    # @import.key = params[:key]
   end
   
   def edit
     @import = ContactsImport.find(params[:id])
-  end
-  
-  def create_fake
-    @import = ContactsImport.find(4)
-    @job_id = ContactsImportWorker.perform_async(@import.id)
-    render "test_mode_create"
   end
   
   def create

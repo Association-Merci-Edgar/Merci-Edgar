@@ -1,24 +1,26 @@
 # encoding: utf-8
 
 class ContactsImportUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MimeTypes
-  include ::CarrierWave::Backgrounder::Delay
+#  include CarrierWave::MimeTypes
+  include CarrierWaveDirect::Uploader
 
-  process :set_content_type
+  # process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
+=begin
   def store_dir
     "imports/#{model.account_id}"
   end
+=end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(xml csv xls ods)
+    %w(xml csv xls ods txt)
   end
 
   # Override the filename of the uploaded files:
@@ -26,9 +28,9 @@ class ContactsImportUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
+=begin
   def fog_attributes
     {'Content-Disposition' => "attachment"}
   end
-  
+=end  
 end

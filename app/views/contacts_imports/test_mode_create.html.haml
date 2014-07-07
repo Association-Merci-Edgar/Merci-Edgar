@@ -30,14 +30,14 @@
       Les
       %span#nb_imported_contacts
       premiers contacts du fichier 
-      = @import.contacts_file.filename 
+      = @import.contacts_file.file.filename 
       ont été traités.
     
     %br
     = link_to contacts_path(imported_at: @import.updated_at.to_i) do
       %button.btn.btn-primary Voir les contacts test
       
-    = link_to edit_contacts_import_path(@import) do
+    = link_to edit_contacts_file_path(@import.id) do
       %button.btn.btn-primary Modifier les paramètres d’import
     
     %br
@@ -61,8 +61,8 @@
       %br
       Merci de réessayer ultérieurement.
       %br
-      = link_to new_contacts_import_path, remote:false, :class=>"btn btn-primary " do
-        Retourner à la page d’import
+      = link_to edit_contacts_file_path(@import.id), remote:false, :class=>"btn btn-primary " do
+        Modifier les paramètres d’import
         /%i.ico.edi-import
   #exception_message      
     /%a.ico.btn-close{href:"#"}
