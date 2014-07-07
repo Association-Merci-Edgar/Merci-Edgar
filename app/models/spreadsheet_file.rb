@@ -89,7 +89,6 @@ class SpreadsheetFile
       @readable = true
     elsif SpreadsheetFile.xls_allowed?
       begin
-        puts "in readable before roo"
         @spreadsheet ||= Roo::Spreadsheet.open(@filename)
         @col_sep = ','
         @readable = true

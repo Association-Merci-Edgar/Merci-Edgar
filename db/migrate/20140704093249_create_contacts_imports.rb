@@ -2,7 +2,6 @@ class CreateContactsImports < ActiveRecord::Migration
   def change
     create_table :contacts_imports do |t|
       t.string :contacts_file
-      t.string :contacts_file_tmp
       t.string :contacts_kind, default: "venue"
       t.string :first_name_last_name_order, default: "last_name"
       t.boolean :test_mode
