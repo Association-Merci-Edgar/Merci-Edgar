@@ -27,13 +27,15 @@
           Le fichier 
           %b= File.basename(params[:key])
           contient quel type de contacts ?
+          
         .row-fluid
-          .span6
-            = f.input :contacts_kind, collection: ["Fichier Edgar. (.xml)"], as: :radio_buttons, label: false, item_wrapper_class: "xml"
-            = f.hint 'Ce type de fichier contient tous les types de contact.<br>Il est issu d’un export Edgar et contient également des images.'
-          .span6
-            = f.input :contacts_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons, label: false
-            //, label: "Quel type de fichier allez-vous importer ?"
+          -#
+            .span6
+              = f.input :contacts_kind, collection: ["Fichier Edgar. (.xml)"], as: :radio_buttons, label: false, item_wrapper_class: "xml"
+              = f.hint 'Ce type de fichier contient tous les types de contact.<br>Il est issu d’un export Edgar et contient également des images.'
+          .span12
+            = f.input :contacts_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons, label: false, item_wrapper_class: "inline"
+            -#, label: "Quel type de fichier allez-vous importer ?"
         
         = f.hidden_field :key, value: params[:key]
       
