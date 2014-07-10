@@ -10,10 +10,10 @@
       
       
 - content_for :facebook_og do
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_teamwork.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_map.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_filters.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/screenys/scr_560_reporting.jpg')}", :property => "og:image"}/
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/screenys/scr_560_teamwork.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/screenys/scr_560_map.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/screenys/scr_560_filters.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/screenys/scr_560_reporting.jpg')}", property: "og:image")
 
 
 %section.bkg-white.feat-section
