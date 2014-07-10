@@ -25,7 +25,7 @@
       %section#contact-file-type
         %label.control-label
           Le fichier 
-          %b= File.basename(params[:key] || @import.key)
+          %b= File.basename(params[:key])
           contient quel type de contacts ?
         .row-fluid
           .span6
@@ -35,8 +35,7 @@
             = f.input :contacts_kind, collection: [:venue, :festival, :show_buyer, :person, :structure], as: :radio_buttons, label: false
             //, label: "Quel type de fichier allez-vous importer ?"
         
-        %b= params[:key]
-        = f.hidden_field :key, value: params[:key] || @import.key
+        = f.hidden_field :key, value: params[:key]
       
       %section#first_name_last_name
         = f.input :first_name_last_name_order, collection: [:first_name, :last_name], as: :radio_buttons, label: "Comment sont nommés les personnes dans votre fichier ?", item_wrapper_class:"inline"

@@ -42,7 +42,7 @@
     
     %br
     
-    = link_to contacts_imports_path(from_test_mode: true), method: :post do
+    = link_to contacts_import_path(@import, commit: "Lancer import"), method: :put do
       %button.btn.btn-alert Lancer l’import complet
     /%a.ico.btn-close{href:"#"}
     
@@ -61,7 +61,7 @@
       %br
       Merci de consulter la documentation.
       %br
-      = link_to edit_contacts_file_path(@import.id), remote:false, :class=>"btn btn-primary " do
+      = link_to new_contacts_file_path, remote:false, :class=>"btn btn-primary " do
         Modifier les paramètres d’import
         /%i.ico.edi-import
   #exception_message      

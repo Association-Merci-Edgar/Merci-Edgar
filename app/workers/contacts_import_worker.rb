@@ -42,12 +42,13 @@ class ContactsImportWorker
       nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count
       nb_imported_contacts = imported_contacts.count
       self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
-      UserMailer.contacts_import_email(user, { account: current_account, filename: filename, imported_at: imported_at }).deliver unless import.test_mode
+      UserMailer.contacts_import_email(user, { account: current_account, filename: import.filename, imported_at: imported_at }).deliver unless import.test_mode
     end
   ensure
     if current_account
       current_account.importing_now = false
-      current_account.save
+      current_account.save!
+      import.destroy unless import.test_mode
     end
   end
   

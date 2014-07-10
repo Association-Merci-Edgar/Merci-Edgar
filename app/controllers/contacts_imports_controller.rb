@@ -29,7 +29,7 @@ class ContactsImportsController < AppController
   
   def update
     @import = ContactsImport.find(params[:id])
-    @import.user = current_user
+    raise "Operation impossible " if @import.user != current_user || @import.account != current_account
     @import.account = current_account
     @import.test_mode = (params[:commit] == t('helpers.submit.contacts_import.test'))
     if @import.update_attributes(params[:contacts_import])

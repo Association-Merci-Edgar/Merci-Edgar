@@ -11,11 +11,7 @@ class ContactsImportUploader < CarrierWave::Uploader::Base
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
-=begin
-  def store_dir
-    "imports/#{model.account_id}"
-  end
-=end
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

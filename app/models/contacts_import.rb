@@ -17,6 +17,10 @@ class ContactsImport < ActiveRecord::Base
     end
   end
   
+  def filename
+    contacts_file.file.filename
+  end
+  
   def self.get_payload(imported_at)
     imported_contacts = Contact.where(imported_at: imported_at)
     nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count
