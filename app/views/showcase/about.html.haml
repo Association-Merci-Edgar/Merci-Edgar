@@ -212,14 +212,14 @@
 
 
 - content_for :facebook_og do
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/robi.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/aurelie.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/jp.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/aline.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/lylian.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/nath.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/fred.jpg')}", :property => "og:image"}/
-  %meta{:content => "http://#{ENV["DOMAIN"]}#{image_path('multipage/staff/guillaume.jpg')}", :property => "og:image"}/
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/robi.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/aurelie.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/jp.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/aline.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/lylian.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/nath.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/fred.jpg')}", property: "og:image")
+  = tag('meta', content: "#{request.base_url}/#{image_path('multipage/staff/guillaume.jpg')}", property: "og:image")
 
 
   

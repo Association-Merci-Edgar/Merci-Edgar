@@ -7,7 +7,7 @@
     %p= t("home.thankyou.contact")
     %p= t("home.thankyou.share")
     #tweet{:style => "display:inline-block;"}
-      %a.twitter-share-button{"data-count" => "horizontal", "data-related" => "Merci Edgar", "data-text" => "#{t("home.thankyou.social_message")}", "data-url" => "http://#{ENV["DOMAIN"]}/", "data-via" => "Merci Edgar", :href => "https://twitter.com/share"}
+      %a.twitter-share-button{"data-count" => "horizontal", "data-related" => "Merci Edgar", "data-text" => "#{t("home.thankyou.social_message")}", "data-url" => "#{request.base_url}/", "data-via" => "Merci Edgar", :href => "https://twitter.com/share"}
     %span{:style => "display:inline-block; vertical-align:text-bottom;"}
-      .fb-like{"data-href" => "http://#{ENV["DOMAIN"]}/", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "90"}
-    .g-plusone{"data-annotation" => "inline", "data-href" => "http://#{ENV["DOMAIN"]}/", "data-size" => "medium", "data-width" => "120"}
+      .fb-like{"data-href" => "#{request.base_url}/", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "90"}
+    .g-plusone{"data-annotation" => "inline", "data-href" => "#{request.base_url}/", "data-size" => "medium", "data-width" => "120"}
