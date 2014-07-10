@@ -248,7 +248,7 @@ fr:
           due_this_month: Ce mois ci
           specific: Date précise ...
       contacts_import:
-        contact_kind:
+        contacts_kind:
           venue: Lieu
           festival: Festival
           show_buyer: Autre organisateur de spectacle
