@@ -43,7 +43,7 @@ wip:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: www.robiweb.net
+  DOMAIN: robiweb.net
   SESSION_DOMAIN: ".robiweb.net"  
 
   AWS_S3_BUCKET: merciedgar-dev
@@ -63,7 +63,7 @@ integration:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: www.lypso.fr
+  DOMAIN: lypso.fr
   SESSION_DOMAIN: ".lypso.fr"
 
   AWS_S3_BUCKET: merciedgar-int
@@ -83,7 +83,7 @@ staging:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: staging@merciedgar.com
-  DOMAIN: staging.merciedgar.com
+  DOMAIN: lypso.fr
 
 production:
   MANDRILL_USERNAME: edgar@merciedgar.com
@@ -95,7 +95,7 @@ production:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: edgar@merciedgar.com
-  DOMAIN: www.merciedgar.com
+  DOMAIN: merciedgar.com
   SESSION_DOMAIN: ".merciedgar.com"
 
   AWS_S3_BUCKET: merciedgar-prod
@@ -110,7 +110,7 @@ test:
   ADMIN_PASSWORD: MrcxloP1
   ROLES: [admin, user]
   EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: www.lvh.me:3000
+  DOMAIN: lvh.me:3000
   SESSION_DOMAIN: ".lvh.me"
 
 
