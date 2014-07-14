@@ -17,7 +17,7 @@
           -# = address.input :kind, :collection => [:main_address, :admin_address],  :selected => :main_address
         
   .form-actions
-    = f.submit :class => "btn-primary btn-large"
+    = f.submit :class => "btn-primary btn-large", disable_with: "En cours de création..."
     = f.submit t("helpers.submit.create_and_edit"), :class => "btn-primary btn-large"
     //= f.button :submit, :class => "btn-primary btn-large"
     ou
