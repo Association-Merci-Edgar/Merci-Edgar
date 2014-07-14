@@ -15,7 +15,7 @@ module CarrierWaveDirect
       end
 
       script = @template.content_tag(:script, type: 'text/javascript') do
-        "$('input[id=#{idf}]').change(function() { s = $(this).val(); $('#pbox_#{idf}').val(s.slice(s.lastIndexOf('\\\\')+1));$('#pbox_#{idf}').show() });".html_safe
+        "$('input[id=#{idf}]').change(function() { s = $(this).val(); $('#pbox_#{idf}').val(s.slice(s.lastIndexOf('\\\\')+1));$('#pbox_#{idf}').show(); $('input[type=\"submit\"]').attr('disabled',s == \"\") });".html_safe
       end
 
       fields << super + button + script
