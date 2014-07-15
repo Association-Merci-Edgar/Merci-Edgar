@@ -11,11 +11,15 @@
     = link_to venue do
       %h3
         = venue.name
+        = tag_link(contacts_path(category: venue.contact.fine_model.class.name.underscore.pluralize),t(venue.contact.fine_model.class.name.underscore,scope:"activerecord.models"),"tag-custom")
+        
         -# %a.badge.badge-green.badge-capsule En recherche active
         - if venue.contact.making_prospecting?
           %a.badge.badge-green.badge-capsule En recherche active
         - if venue.contact.has_duplicates?
           = link_to "Doublon", contacts_path(duplicate_of: venue.contact.dup_id), class: "a badge badge-grey doublons"
+        - if venue.contact.test?
+          = link_to "Test", contacts_path(imported_at: venue.contact.imported_at), class:"a badge badge-grey"
       .pic= image_tag venue.avatar_url
     .infos-line
       / = render venue.capacities if venue.capacities
