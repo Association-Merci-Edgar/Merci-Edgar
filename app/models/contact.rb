@@ -446,20 +446,20 @@ class Contact < ActiveRecord::Base
       phone = contact.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
       unless phone.valid?
         contact.phones.delete(phone)
-        contact.remark += "Tel: #{row[:tel]} / "
+        contact.remark += "\nTel: #{row[:tel]} / "
       end
     end
     if row[:email].present?
       email = contact.emails.build(address: row[:email].strip)
       unless email.valid?
-        contact.remark += "Email: #{row[:email]} / "
+        contact.remark += "\nEmail: #{row[:email]} / "
         contact.emails.delete(email)
       end
     end
     if row[:web].present?
       website = contact.websites.build(url: row[:web].strip)
       unless website.valid?
-        contact.remark += "Web: #{row[:web]} / "
+        contact.remark += "\nWeb: #{row[:web]} / "
         contact.websites.delete(website) 
       end
     end
@@ -474,11 +474,11 @@ class Contact < ActiveRecord::Base
     invalid_keys = row.keys.map(&:to_s).delete_if{|key| VALID_CSV_KEYS.include?(key)}
     invalid_keys.each do |invalid_key|
       value = row[invalid_key.to_sym]
-      contact.remark += "#{invalid_key}: #{value} /" if value.present?
+      contact.remark += "\n#{invalid_key}: #{value} /" if value.present?
     end
     unless contact.valid?
       contact.errors.messages.keys.each do |attribute, value|
-        contact.remark += "#{attribute}: #{contact.send(attribute)} /"
+        contact.remark += "\n#{attribute}: #{contact.send(attribute)} /"
         contact.send(:write_attribute, attribute,nil)
       end
     end
