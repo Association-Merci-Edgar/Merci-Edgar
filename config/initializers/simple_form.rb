@@ -140,3 +140,10 @@ SimpleForm.setup do |config|
   # Cache SimpleForm inputs discovery
   # config.cache_discovery = !Rails.env.development?
 end
+
+SimpleForm::FormBuilder.class_eval do
+  def submit_with_override(field, options = {})
+    submit_without_override(field, {:disable_with => I18n.t(:disable_with, scope: 'helpers.submit')}.merge(options))
+  end
+  alias_method_chain :submit, :override
+end
