@@ -1,11 +1,17 @@
 class ContactsImportsController < AppController
   def new
     @import = ContactsImport.new
-    # @import.key = params[:key]
+    @uploader = @import.contacts_file
+    @uploader.success_action_redirect = new_with_details_contacts_import_url
+    
   end
   
-  def edit
-    @import = ContactsImport.find(params[:id])
+  def new_with_details
+    if params[:key].present?
+      @import = ContactsImport.new
+    else
+      redirect_to new_contacts_file_path
+    end
   end
   
   def create
@@ -23,6 +29,9 @@ class ContactsImportsController < AppController
       end
       # render "create.js"
     else
+      @import.remove_contacts_file!
+      @uploader = ContactsImport.new.contacts_file
+      @uploader.success_action_redirect = new_with_details_contacts_import_url
       render "new"
     end
   end

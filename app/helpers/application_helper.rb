@@ -22,21 +22,27 @@ module ApplicationHelper
     @previous = @previous.blank? ? request.env['HTTP_REFERRER'] : @previous
   end
 
-  def display_errors(object)
-    notice = get_errors(object)
+  def display_errors(object, light_version = false)
+    notice = get_errors(object, light_version)
     content_tag(:div, notice, class:'notice error') if notice
   end
 
-  def display_inline_errors(object)
-    notice = get_errors(object)
+  def display_inline_errors(object, light_version = false)
+    notice = get_errors(object, light_version)
     content_tag(:span, notice, class:'help-inline') if notice
   end
   
-  def get_errors(object)
+  def get_errors(object, light_version)
     if object && object.respond_to?(:errors) && object.errors.present?
       notice = content_tag(:span, "Oups ! Quelques erreurs se sont glissées !", class:'noticetitle')
-      object.errors.full_messages.each do |m|
-        notice += content_tag(:span, m + ' / ')
+      if light_version
+        object.errors.messages.each do |attribute, m|
+          notice += content_tag(:span, m[0] + ' / ')
+        end
+      else
+        object.errors.full_messages.each do |m|
+          notice += content_tag(:span, m + ' / ')
+        end
       end
       notice
     end

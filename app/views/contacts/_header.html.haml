@@ -61,7 +61,7 @@
   // IMPORT
   -#
   .subpage-nav.pull-right
-    = link_to new_contacts_file_path, remote:false, :class=>"btn btn-tertiary ", :title =>"Importer des contacts...", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
+    = link_to new_contacts_import_path, remote:false, :class=>"btn btn-tertiary ", :title =>"Importer des contacts...", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
       %i.ico.edi-import
       
     .btn.btn-tertiary.bulk-switch{:title =>"Gestion par lot", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true"}

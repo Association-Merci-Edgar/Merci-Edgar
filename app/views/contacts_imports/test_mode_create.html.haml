@@ -37,7 +37,7 @@
     = link_to contacts_path(imported_at: @import.updated_at.to_i) do
       %button.btn.btn-primary Voir les contacts test
       
-    = link_to edit_contacts_file_path(@import.id) do
+    = link_to new_contacts_import_path do
       %button.btn.btn-primary Modifier les paramètres d’import
     
     %br
@@ -61,7 +61,7 @@
       %br
       Merci de consulter la documentation.
       %br
-      = link_to new_contacts_file_path, remote:false, :class=>"btn btn-primary " do
+      = link_to new_contacts_import_path, remote:false, :class=>"btn btn-primary " do
         Modifier les paramètres d’import
         /%i.ico.edi-import
   #exception_message      

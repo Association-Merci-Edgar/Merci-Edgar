@@ -13,16 +13,18 @@
           
       
 %section.padded
+  = display_errors(@import, true)
   = direct_upload_form_for(@uploader) do |f|
     = display_errors(@uploader)
   
     .form-inputs      
       %section
+        = f.label :contacts_file
         = f.file_field :contacts_file
         
     .form-actions
       .row-fluid
         .span6
-          = f.submit "Envoyer le fichier", :class => "btn btn-primary btn-large", disabled: true
+          = f.submit "Envoyer le fichier", :class => "btn btn-primary btn-large", disabled: true, disable_with: "En cours..."
           %p
 
