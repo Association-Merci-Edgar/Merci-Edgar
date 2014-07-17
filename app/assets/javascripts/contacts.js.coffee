@@ -16,7 +16,6 @@ jQuery ->
         # menu.focus(null,item) if item
 
       focus: (event, ui) ->
-        console.log("focus handler")
         typeaheadField.val ui.item.value
         false
 
@@ -29,7 +28,6 @@ jQuery ->
             console.log("new")
             typeaheadField.css("color", "blue")
           else
-            console.log("exist")
             typeaheadField.css("color", "")
           show_host_kind = ui.item.show_host_kind
           if show_host_kind

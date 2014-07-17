@@ -25,11 +25,16 @@ $(document).on('nested:fieldAdded', function(event){
   // trigger the autocomplete
 	input = field.find('.style_tags_input');
   if (input.length) {
-	input.multivalues_autocomplete({json_url: input.data('autocomplete-source')});
+		input.multivalues_autocomplete({json_url: input.data('autocomplete-source')});
   }
   
 	address_input = field.find('.street')
-	setAddressPicker(address_input)
+	console.log("address_input got: " + address_input)
+	console.log("field: " + $(event.field))
+	if (address_input.length) {
+		console.log("setAddressPicker...")
+		setAddressPicker(address_input)		
+	}
 });
 
 
