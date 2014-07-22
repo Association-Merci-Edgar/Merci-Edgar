@@ -15,5 +15,9 @@ class ReportingsController < AppController
     @reporting.update_attributes(params[:reporting])
     render "reportings/update"
   end
-      
+
+  def index
+    contact = Contact.find(params[:contact_id])
+    @reportings = contact.reportings
+  end
 end

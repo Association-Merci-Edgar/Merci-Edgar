@@ -1,0 +1,13 @@
+<div class='form_class'> 
+  {{textarea name='note_report_content' placeholder='ecrire une nouvelle note'}}
+  {{view Ember.Select content=projects prompt="Sélectionnez un projet"}}
+</div>
+Et oui {{assetId}} Darling
+<div>
+Voici les reports
+{{#each}}
+  <div class='report'>
+    {{content}}
+  </div>
+{{/each}}
+</div>

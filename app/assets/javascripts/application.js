@@ -30,6 +30,11 @@
 //= require edgarapp
 //= require tasks_group
 //= require jquery.autosize.min
+
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require report-app
 //= require_self
 
 /*

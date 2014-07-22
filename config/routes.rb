@@ -73,6 +73,7 @@ Edgar::Application.routes.draw do
         put 'complete', :on => :member
         put 'uncomplete', :on => :member
       end
+      resources :reportings
 
       get 'only/:filter', action: :only, on: :collection, as: :only
       get 'add_to_favorites', on: :member

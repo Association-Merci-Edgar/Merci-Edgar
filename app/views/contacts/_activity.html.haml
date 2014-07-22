@@ -9,13 +9,14 @@
         %ul.dropdown-menu
           %li projet 1
           %li projet 2
-
-    #activityfield-outter
-      = render partial: "reportings/form", locals: {reporting: @reporting, edit: false}
+    
+    #ember-activity
+      -# #activityfield-outter
+        = render partial: "reportings/form", locals: {reporting: @reporting, edit: false}
                             
-    / ____________________________________ list reportings
-    %ul.list.list-large#reportings
-      = render @reportings
+      / ____________________________________ list reportings
+      -# %ul.list.list-large#reportings
+        = render @reportings
    
 
   / _____________________ infos-mini  
