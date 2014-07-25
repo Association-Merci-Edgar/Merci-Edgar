@@ -35,14 +35,14 @@ class Room < ActiveRecord::Base
     room = Room.new
     room.name = row[:nom]
     standing_nb = row.delete(:places_debout)
-    if standing_nb.present? && standing_nb.is_a?(Integer) && standing_nb < Capacity::CAPACITY_MAX
+    if standing_nb.present? && standing_nb.is_a?(Integer) && standing_nb < Capacity::CAPACITY_MAX && standing_nb > 0
       standing_capacity = room.capacities.build(kind: :standing, nb: standing_nb)
       standing_capacity.modular = true if row.delete(:places_debout_modulable).try(:downcase) == "x"    
     else
       row[:places_debout] = standing_nb if standing_nb.present?
     end
     seating_nb = row.delete(:places_assises)
-    if seating_nb.present? && seating_nb.is_a?(Integer) && seating_nb < Capacity::CAPACITY_MAX
+    if seating_nb.present? && seating_nb.is_a?(Integer) && seating_nb < Capacity::CAPACITY_MAX && seating_nb > 0
       seating_capacity = room.capacities.build(kind: :seating, nb: seating_nb)
       seating_capacity.modular = true if row.delete(:places_assises_modulable).try(:downcase) == "x"    
     else
