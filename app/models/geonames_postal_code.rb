@@ -12,9 +12,9 @@ class GeonamesPostalCode < ActiveRecord::Base
     postal_code = options[:postal_code]
     
     if city.present?
-      city_pattern = city.strip.downcase.gsub(/st[ -]/,'saint\1')
-      city_pattern = city_pattern.gsub(/[ -]/,'%')
-      # city_pattern = "%#{city_pattern}%"
+      city_pattern = city.strip.downcase.gsub(/st[ -]/,'saint%')
+      city_pattern = I18n.transliterate(city_pattern)
+      city_pattern = "%#{city_pattern}%"
       places = by_place_name(city_pattern)
     end
     
