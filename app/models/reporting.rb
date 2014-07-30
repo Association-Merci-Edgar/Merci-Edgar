@@ -14,7 +14,7 @@
 #
 
 class Reporting < ActiveRecord::Base
-  attr_accessible :asset_id, :asset_type, :note_report_content, :project_id
+  attr_accessible :asset_id, :asset_type, :note_report_content, :project_id, :project
   belongs_to :asset, polymorphic:true
   belongs_to :report, polymorphic:true
   belongs_to :project

@@ -1,0 +1,30 @@
+= hb 'if isEditing' do
+  .form_class
+    = hb 'textarea', name:'note_report_content', valueBinding: 'note_report_content', placeholder: 'ecrire une nouvelle note'
+    = hb 'if controllers.projects.anyProject' do
+      = hb "view Ember.Select contentBinding='controllers.projects.content' prompt='Sélectionnez un projet' selection=selectedProject optionValuePath='content.id' optionLabelPath='content.name'"  
+  
+    %button.btn.btn-secondary.pull-right.submit{hb: "action 'updateNote' this"}
+      Enregistrer les modifications
+
+    %button.btn.btn-link.cancel.pull-right{hb: "action 'cancelEdit' this"}
+      Annuler
+  
+  
+  = hb 'else'
+  %h4= hb 'created_at'
+
+  .infos
+    %img.pic.pic-mini.pic-user{bind: {src: 'user.avatar_url'}}
+    = hb 'user.nickname'
+    = hb 'if project' do
+      %img.pic.pic-mini{bind: {src: 'project.avatar_url'}}
+    = hb 'project.name'
+  .actions  
+    %button.shybtn.cancel.pull-right{hb: "action 'deleteNote' this"}
+      %i.entypo.edi-cross
+    %button.shybtn.editbtn.pull-right{hb: "action 'toggleEdit' this"}
+      %i.entypo.edi-pencil
+
+  .content 
+    = hb "note_report_content"
