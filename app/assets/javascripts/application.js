@@ -34,7 +34,6 @@
 //= require handlebars
 //= require ember
 //= require ember-data
-//= require report-app
 //= require_self
 
 /*

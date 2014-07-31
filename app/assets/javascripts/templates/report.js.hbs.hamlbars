@@ -12,7 +12,7 @@
   
   
   = hb 'else'
-  %h4= hb 'created_at'
+  %h4= hb 'formattedDate created_at'
 
   .infos
     %img.pic.pic-mini.pic-user{bind: {src: 'user.avatar_url'}}
@@ -27,4 +27,4 @@
       %i.entypo.edi-pencil
 
   .content 
-    = hb "note_report_content"
+    = hb "simple_format note_report_content"

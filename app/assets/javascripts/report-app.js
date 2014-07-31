@@ -1,8 +1,37 @@
+//= require_self
+//= require moment-with-langs
 //= require_tree ./templates
 
-ReportApp = Ember.Application.create({
-	rootElement: '#ember-activity'
-})
+Ember.Handlebars.registerBoundHelper('formattedDate', function(date) {
+	moment.lang('fr')
+	now = moment(Date.now());
+	moment_date = moment(date);
+	if (now.diff(moment_date, 'days') > 2) {
+		return moment_date.format('LLL')
+	} else {
+	  return moment_date.fromNow();		
+	}
+});
+
+Ember.Handlebars.registerBoundHelper('simple_format', function(text) {
+  var carriage_returns, newline, paragraphs;
+	text = Handlebars.Utils.escapeExpression(text);
+  carriage_returns = /\r\n?/g;
+  paragraphs = /\n\n+/g;
+  newline = /([^\n]\n)(?=[^\n])/g;
+  text = text.replace(carriage_returns, "\n");
+  text = text.replace(paragraphs, "</p>\n\n<p>");
+  text = text.replace(newline, "$1<br/>");
+  text = "<p>" + text + "</p>";
+  return new Handlebars.SafeString(text);
+});
+
+if ($("#ember-activity").length > 0 ) {
+	ReportApp = Ember.Application.create({
+		rootElement: '#ember-activity'
+	})
+	
+}
 
 ReportApp.IndexRoute = Ember.Route.extend({
 	contactId: $('#contactable').data('contact-id'),
@@ -41,7 +70,6 @@ ReportApp.IndexController = Ember.ArrayController.extend({
        });
 		},
 		deleteNote: function(reporting) {
-			console.log("deleting note ...");
 			if (confirm('Etes-vous sûr de supprimer cette note ?')) {
 				//reporting = this.get('model');
 				controller = this
@@ -60,7 +88,6 @@ ReportApp.ReportController = Ember.ObjectController.extend({
 	needs: ['projects'],
 	isEditing: false,
 	selectedProject: function() {
-		console.log('selectedProject:' + this.get('project').get('id'))
 		return this.get('project')
 	}.property('project'),
 	actions: {
