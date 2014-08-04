@@ -1,0 +1,18 @@
+#activityfield-outter
+  .form_class
+    = hb 'textarea', name:'note_report_content', valueBinding: 'note_report_content', placeholder: 'ecrire une nouvelle note'
+    = hb 'if controllers.projects.anyProject' do
+      = hb "view Ember.Select contentBinding='controllers.projects.content' prompt='Sélectionnez un projet' selection=controllers.projects.selectedProject optionValuePath='content.id' optionLabelPath='content.name'"
+    
+    
+    %button.btn.btn-secondary.pull-right.submit{hb: "action 'createNote'"}
+      Creer la note
+    .message
+      = hb 'unless controllers.projects.anyProject' do
+        %i.entypo.edi-warning
+        Vous n’avez pas encore créé de projet artistique !
+    
+%ul.list.list-large#reportings
+  = hb 'each' do
+    = hb "render 'report' this" 
+    -# = hb 'view ReportApp.ReportView report=this' do

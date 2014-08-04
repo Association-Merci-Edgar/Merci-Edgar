@@ -1,3 +1,6 @@
+- content_for :scripts do
+  = javascript_include_tag 'ember_apps/contacts_app/contacts-app'
+  
 = render 'header'
 = render 'contacts_imports/notices' if @nb_imported_contacts.present?
 /______________________________________________________ LISTS       

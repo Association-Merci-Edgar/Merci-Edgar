@@ -1,0 +1,37 @@
+%ul#contact-list.list.list-large
+  = hb 'each' do
+    %li
+      -# = render partial: "contacts/contact_elem", locals: {contact: venue.structure.contact, edit_link_path:edit_venue_path(venue) } 
+      -# .bulkbox
+        %span
+          = check_box_tag "contact_ids[]", venue.contact.id, false, class: "checkbox bulk-one field"
+          -#%input#Field2.field.checkbox.bulk-one{name: "Field2", type: "checkbox", value: ""}/
+          %label.choice{for: "contact_ids"}
+          // First Choice
+      .mainrow
+
+        %a{bind: {href: 'show_link'}}
+          %h3= hb 'name'
+          .pic
+            %img{bind: {src: 'avatar'}}
+        .infos-line
+          = hb 'address'
+        .tags
+          = hb "each network_list" do
+            = hb "link-tag linkTagKind='network' linkTagValue=this"
+          = hb "each style_list" do
+            = hb "link-tag linkTagKind='style' linkTagValue=this"
+        
+          = hb "each capacity_list" do
+            = hb "link-tag linkTagKind='capacity' cssTag='tag-custom' linkTagValue=this"
+      
+          = hb "link-tag linkTagKind='venue_kind' cssTag='tag-type' linkTagValue=venue_kind"
+          
+          = hb "each contract_list" do
+            = hb "link-tag linkTagKind='contract' cssTag='tag-legal' linkTagValue=this" 
+            
+          = hb "each custom_list" do
+            = hb "link-tag linkTagKind='custom' linkTagValue=this"
+
+
+  

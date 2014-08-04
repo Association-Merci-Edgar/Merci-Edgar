@@ -28,7 +28,16 @@ Ember.Handlebars.registerBoundHelper('simple_format', function(text) {
 
 if ($("#ember-activity").length > 0 ) {
 	ReportApp = Ember.Application.create({
-		rootElement: '#ember-activity'
+		rootElement: '#ember-activity',
+		ready: function() {
+		    console.log("Ember.TEMPLATES: ", Ember.TEMPLATES);
+		},
+		Resolver: Ember.DefaultResolver.extend({
+	    resolveTemplate: function(parsedName) {
+	      parsedName.fullNameWithoutType = "ember_apps/report_app/" + parsedName.fullNameWithoutType;
+	      return this._super(parsedName);
+	    }
+	  })
 	})
 	
 }
