@@ -97,3 +97,5 @@ gem 'mimer_plus'
 gem 'ember-rails'
 gem 'ember-source', '1.7.0.beta.1'
 gem 'hamlbars', '~> 2.1'
+
+gem "active_model_serializers"

@@ -672,6 +672,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   activeadmin!
   activevalidators
   annotate

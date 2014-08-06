@@ -93,13 +93,16 @@ class ContactsController < AppController
       end 
       @contacts = @contacts.page params[:page]
       if params[:category].present?
-        raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
+        raise "Invalid Parameter" if %w(Venue Festival ShowBuyer Structure Person).include?(params[:category]) == false
         @label_category = params[:category]
       end
       
     end
+    respond_to do |format|
+      format.html
+      format.json { render json: @contacts}
+    end
   end
-  
   
   def show_map
     if params[:address].present?

@@ -34,6 +34,8 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require i18n
+//= require cldr-1.0.0
 //= require_self
 
 /*

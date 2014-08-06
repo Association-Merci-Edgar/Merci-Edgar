@@ -172,15 +172,15 @@ class Contact < ActiveRecord::Base
 
   def self.by_type(type)
     case type
-    when "venues"
+    when "Venue"
       contact_ids = Venue.joins(:structure => :contact).order("contacts.name").collect {|v| v.structure.contact.id }
-    when "festivals"
+    when "Festival"
       contact_ids = Festival.joins(:structure => :contact).order("contacts.name").collect {|f| f.structure.contact.id }
-    when "show_buyers"
+    when "ShowBuyer"
       contact_ids = ShowBuyer.joins(:structure => :contact).order("contacts.name").collect {|s| s.structure.contact.id }
-    when "structures"
+    when "Structure"
       contact_ids = Structure.joins(:contact).where("structurable_type IS NULL").order("contacts.name").collect {|s| s.contact.id }
-    when "people"
+    when "Person"
       contact_ids = Contact.where(contactable_type: "Person").pluck(:id)
     else
       raise "Invalid Parameter"

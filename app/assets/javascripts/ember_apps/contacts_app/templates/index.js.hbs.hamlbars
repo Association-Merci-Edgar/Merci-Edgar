@@ -11,27 +11,42 @@
       .mainrow
 
         %a{bind: {href: 'show_link'}}
-          %h3= hb 'name'
+          %h3
+            = hb 'name'
+            = hb "link-tag cssTag='tag-custom' linkTagKind='category' linkTagValue=type" do
+              = hb "pt type"
           .pic
-            %img{bind: {src: 'avatar'}}
+            %img{bind: {src: 'avatar_url'}}
         .infos-line
-          = hb 'address'
+          = hb 'city'
+          = hb 'if isPerson' do
+            = hb 'each people_structures' do
+              = hb 'title'
+              %a{bind: {href: 'structure.show_link'}}= hb 'structure.name'
         .tags
           = hb "each network_list" do
-            = hb "link-tag linkTagKind='network' linkTagValue=this"
+            = hb "link-tag linkTagKind='network' linkTagValue=this" do
+              = hb 'this'
           = hb "each style_list" do
-            = hb "link-tag linkTagKind='style' linkTagValue=this"
+            = hb "link-tag linkTagKind='style' linkTagValue=this" do
+              = hb 'this'
         
           = hb "each capacity_list" do
-            = hb "link-tag linkTagKind='capacity' cssTag='tag-custom' linkTagValue=this"
+            = hb "link-tag linkTagKind='capacity_range' cssTag='tag-custom' paramName='capacity_range' linkTagValue=this" do
+              = hb 'this'
+              
       
-          = hb "link-tag linkTagKind='venue_kind' cssTag='tag-type' linkTagValue=venue_kind"
+          = hb 'if venue_kind' do
+            = hb "link-tag linkTagKind='venue_kind' multiValued=false cssTag='tag-type' linkTagValue=venue_kind" do
+              = hb 'pt venue_kind'
           
           = hb "each contract_list" do
-            = hb "link-tag linkTagKind='contract' cssTag='tag-legal' linkTagValue=this" 
+            = hb "link-tag linkTagKind='contract' cssTag='tag-legal' linkTagValue=this"  do
+              = hb 'this'
             
           = hb "each custom_list" do
-            = hb "link-tag linkTagKind='custom' linkTagValue=this"
+            = hb "link-tag linkTagKind='custom' linkTagValue=this" do
+              = hb 'this'
 
 
   
