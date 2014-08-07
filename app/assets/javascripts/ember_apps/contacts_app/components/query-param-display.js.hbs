@@ -1,0 +1,10 @@
+<span class='close' {{action 'remove'}}>x</span>
+<span class='thevalue'>
+{{#if paramValue}}
+  {{#if toTranslate}}
+    {{pt paramValue}}
+  {{else}}
+    {{paramValue}}
+  {{/if}}
+{{/if}}
+</span>

@@ -67,6 +67,12 @@ App.IndexRoute = Ember.Route.extend({
 
 App.IndexController = Ember.ArrayController.extend({
 	queryParams: ['style_list', 'network_list', 'capacity_range', 'venue_kind', 'custom_list', 'contract_list'],
+	style_list: null,
+	network_list: null,
+	capacity_range: null,
+	venue_kind: null,
+	custom_list: null,
+	contract_list: null
 })
 
 App.Contact = DS.Model.extend({
@@ -147,4 +153,19 @@ App.LinkTagComponent = Ember.Component.extend({
 	href: function() {
 		return '#?' + this.get('paramName') + '=' + this.get('linkTagValue')
 	}.property()
+})
+
+App.QueryParamDisplayComponent = Ember.Component.extend({
+	tagName: 'button',
+	toTranslate: false,
+	classNames: ['tag', 'active'],
+	classNameBindings: ['cssTag'],
+	cssTag: function() {
+		return "tag-" + this.get('linkTagKind')
+	}.property(),
+	actions: {
+		remove: function() {
+			this.set('paramValue', null)
+		}			
+	}
 })

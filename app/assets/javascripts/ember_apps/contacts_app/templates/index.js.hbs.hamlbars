@@ -1,3 +1,41 @@
+%header.page-title
+  Contacts
+
+.row-fluid
+
+  .sorters
+    .dropdown
+      %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Contacts
+        %i.entypo.caret-ed
+    %button.filters-trigger.btn.btn-tertiary.active
+      Filtres
+      %i.entypo.caret-ed
+
+  .filters-outercontainer.open
+    .filters-container
+      .filters-pool
+        %a#f_style.tag.tag-style Esthétique
+      .filters-stage
+        = hb 'if network_list' do
+          = hb "query-param-display linkTagKind='network' paramValue=network_list"
+
+        = hb 'if style_list' do
+          = hb "query-param-display linkTagKind='style' paramName='style_list' paramValue=style_list"
+
+        = hb 'if capacity_range' do
+          = hb "query-param-display cssTag='tag-custom' paramValue=capacity_range"
+      
+        = hb 'if venue_kind' do
+          = hb "query-param-display linkTagKind='venue_kind' cssTag='tag-type' paramValue=venue_kind toTranslate=true"
+
+        = hb 'if contract_list' do
+          = hb "query-param-display cssTag='tag-legal' paramValue=contract_list"
+        
+        = hb 'if custom_list' do
+          = hb "query-param-display linkTagKind='custom' paramValue=custom_list"
+
+
 %ul#contact-list.list.list-large
   = hb 'each' do
     %li
