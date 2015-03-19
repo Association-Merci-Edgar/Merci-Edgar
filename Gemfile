@@ -10,10 +10,10 @@ end
 gem 'jquery-rails', '~> 3.0.4'
 gem 'jquery-ui-rails'
 gem 'remotipart', '~> 1.2'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'cancan'
 gem 'devise', '~> 3.2'
-gem 'figaro'
+gem 'figaro', '~> 0.6.4'
 gem 'gibbon'
 gem 'haml-rails'
 gem 'rolify'
@@ -21,8 +21,8 @@ gem 'rolify'
 gem 'simple_form'
 gem 'nested_form'
 # gem 'cocoon'
-gem 'country_select'
-gem 'activevalidators'
+gem 'country_select', '~> 1.2.0'
+gem 'activevalidators', '~> 2.0.2'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
@@ -32,12 +32,12 @@ gem 'kaminari', '~> 0.15'
 
 gem "libxml-ruby", "~> 2.7.0"
 
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog'
+gem 'carrierwave', '~> 0.9.0'
+gem 'mini_magick', '~> 3.6.0'
+gem 'fog', '~> 1.15.0'
 
-gem 'gmaps4rails'
-gem 'geocoder'
+gem 'gmaps4rails', '~> 1.5.6'
+gem 'geocoder', '~> 1.1.8'
 
 gem 'icalendar'
 
@@ -75,7 +75,7 @@ group :test do
   gem 'faker'
 end
 
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin'
 
 gem 'pg'
 gem 'ar_pg_array'
