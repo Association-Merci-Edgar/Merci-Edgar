@@ -26,7 +26,23 @@ The application is configured to send email using a Mandrill account.
 
 h2. Getting Started
 
-Copy config/application.example.yml to config/application.yml and customize it.
+1. Copy config/application.example.yml to config/application.yml and customize it with your credentials for:
+  * mandrill
+  * amazon S3
+  * mailchimp
+  * rollbar (for production)
+
+2. Create the postrgesql user and dev database both named  @merciedgar@
+If you are on ArchLinux you will "find some help here":https://wiki.archlinux.org/index.php/PostgreSQL.
+
+3. Install dependencies with @bundle install@ and run migrations with @rake db:migrate@
+
+4. Open 3 different terminals and launch
+  * a redis server
+  * a sidekiq worker with @sidekiq@
+  * a @rails server@
+
+Open a browser on "http://www.lvh.me:3000":http://www.lvh.me:3000
 
 h2. Documentation and Support
 
