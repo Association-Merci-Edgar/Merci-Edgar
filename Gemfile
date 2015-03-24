@@ -57,7 +57,7 @@ group :development do
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
-  gem 'debugger', "~> 1.6.2"
+  gem 'byebug'
   gem 'annotate'
 end
 group :test do
