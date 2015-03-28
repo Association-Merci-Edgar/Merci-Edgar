@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe OpportunitiesController do
   describe "routing" do
