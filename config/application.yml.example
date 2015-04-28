@@ -7,110 +7,24 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 # Add application configuration variables here, as shown below.
 #
-ROLLBAR_ACCESS_TOKEN: 5e88fc5b50f7491b80f17a7c2f7defca
+MANDRILL_USERNAME: change_me
+MANDRILL_API_KEY: change_me
+MAILCHIMP_API_KEY: change_me
+MAILCHIMP_LIST_ID: change_me
+ADMIN_NAME: Change Me
+ADMIN_EMAIL: change@me.com
+ADMIN_PASSWORD: change_me
+ROLES: [admin, user]
+EMAIL_ADDRESS: change@me.com
+DOMAIN: www.lvh.me:3000
+SESSION_DOMAIN: ".lvh.me"
+
+AWS_ACCESS_KEY_ID: change_me
+AWS_SECRET_ACCESS_KEY: change_me
+AWS_S3_BUCKET: change_me
+
+ROLLBAR_ACCESS_TOKEN: change_me
 SAMPLES_XML_DIR: samples
 SAMPLES_XML_FILE: merciedgar_initial_contacts.xml
-CSV_IMPORT_MAXLINES_LIMIT: 5000
-AWS_ACCESS_KEY_ID: AKIAJYW4ZKY4QIRDWGHA
-AWS_SECRET_ACCESS_KEY: r+gQ/0bsM3Sap/mvVQ3VYsKKfpY/g1g4RP9MYUSI
-XLS_ALLOWED: true
-
-
-development:
-  MANDRILL_USERNAME: dev@merciedgar.com
-  MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
-  MAILCHIMP_API_KEY: ad5ab5a0c2bf57ea770e60d109b0ea93-us7
-  MAILCHIMP_LIST_ID: 7f00a62716
-  ADMIN_NAME: Christophe Robillard
-  ADMIN_EMAIL: christophe@merciedgar.com
-  ADMIN_PASSWORD: MrcxloP1
-  ROLES: [admin, user]
-  EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: lvh.me:3000
-  SESSION_DOMAIN: ".lvh.me"
-  
-  AWS_S3_BUCKET: merciedgar-dev
-  
-  SIDEKIQ_CONCURRENCY: 8
-  
-wip:
-  MANDRILL_USERNAME: dev@merciedgar.com
-  MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
-  MAILCHIMP_API_KEY: ad5ab5a0c2bf57ea770e60d109b0ea93-us7
-  MAILCHIMP_LIST_ID: 7f00a62716
-  ADMIN_NAME: Christophe Robillard
-  ADMIN_EMAIL: christophe@merciedgar.com
-  ADMIN_PASSWORD: MrcxloP1
-  ROLES: [admin, user]
-  EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: robiweb.net
-  SESSION_DOMAIN: ".robiweb.net"  
-
-  AWS_S3_BUCKET: merciedgar-dev
-
-  DB_POOL: 2
-  WEB_CONCURRENCY: 5
-  SIDEKIQ_CONCURRENCY: 8
-  WEB_TIMEOUT: 25
-
-integration:
-  MANDRILL_USERNAME: dev@merciedgar.com
-  MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
-  MAILCHIMP_API_KEY: ad5ab5a0c2bf57ea770e60d109b0ea93-us7
-  MAILCHIMP_LIST_ID: 7f00a62716
-  ADMIN_NAME: Christophe Robillard
-  ADMIN_EMAIL: christophe@merciedgar.com
-  ADMIN_PASSWORD: MrcxloP1
-  ROLES: [admin, user]
-  EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: lypso.fr
-  SESSION_DOMAIN: ".lypso.fr"
-
-  AWS_S3_BUCKET: merciedgar-int
-  
-  DB_POOL: 1
-  WEB_CONCURRENCY: 5
-  SIDEKIQ_CONCURRENCY: 7
-
-
-staging:
-  MANDRILL_USERNAME: staging@merciedgar.com
-  MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
-  MAILCHIMP_API_KEY: 564be3b15f85b50665fc1b219bc0dd5d-us7
-  MAILCHIMP_LIST_ID: 47511467c9
-  ADMIN_NAME: Christophe Robillard
-  ADMIN_EMAIL: christophe@merciedgar.com
-  ADMIN_PASSWORD: MrcxloP1
-  ROLES: [admin, user]
-  EMAIL_ADDRESS: staging@merciedgar.com
-  DOMAIN: lypso.fr
-
-production:
-  MANDRILL_USERNAME: edgar@merciedgar.com
-  MANDRILL_API_KEY: zDUas3wxtHAaYy406mJkAw
-  MAILCHIMP_API_KEY: 72cef7c448a07b1691eac3ca7fe0c7e6-us7
-  MAILCHIMP_LIST_ID: 91666440be
-  ADMIN_NAME: Christophe Robillard
-  ADMIN_EMAIL: christophe@merciedgar.com
-  ADMIN_PASSWORD: MrcxloP1
-  ROLES: [admin, user]
-  EMAIL_ADDRESS: edgar@merciedgar.com
-  DOMAIN: merciedgar.com
-  SESSION_DOMAIN: ".merciedgar.com"
-
-  AWS_S3_BUCKET: merciedgar-prod
-
-test:
-  MANDRILL_USERNAME: dev@merciedgar.com
-  MANDRILL_API_KEY: cGexDJKQdMR684K1s9x4Og
-  MAILCHIMP_API_KEY: ad5ab5a0c2bf57ea770e60d109b0ea93-us7
-  MAILCHIMP_LIST_ID: 7f00a62716
-  ADMIN_NAME: Christophe Robillard
-  ADMIN_EMAIL: christophe@merciedgar.com
-  ADMIN_PASSWORD: MrcxloP1
-  ROLES: [admin, user]
-  EMAIL_ADDRESS: dev@merciedgar.com
-  DOMAIN: lvh.me:3000
-  SESSION_DOMAIN: ".lvh.me"
 
 
