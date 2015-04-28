@@ -20,7 +20,6 @@ $('document').ready(function() {
 	  $($(this).data('spinner')).hide();
 	});
 
-  
   /*
   Gmaps.map.callback = function() {
   google.maps.event.addListenerOnce(Gmaps.map.serviceObject, 'idle', function(){
@@ -96,7 +95,6 @@ $('document').ready(function() {
     
 	});
   
-
 
 	//______________________ Existing Entry - Cancel Button
 	$('#activity .list-large > li .cancel').on('click', function (event) {
@@ -210,7 +208,6 @@ $.fn.fadeUp = function() {
   $(this).animate({ height: 0, padding: 0, opacity: 0, min-height:0 }, 500);
 }
 */
-
 
 //  _________________________________ Hide Notices
 $(function() {
@@ -333,8 +330,6 @@ $('.search-backdrop').click(function(event) { event.preventDefault();
 });
 
 //  __________________________________________________________________
-
-
 
 
 //  _________________________________

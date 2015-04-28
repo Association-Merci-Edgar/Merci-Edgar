@@ -8,6 +8,7 @@ FactoryGirl.define do
     period "MyString"
     style_tags "MyString"
   end
+<<<<<<< HEAD
 
   factory :scheduling_attributes, class:Hash do
     styles "reggae, fusion"
@@ -17,4 +18,6 @@ FactoryGirl.define do
     mois_prospection "1..3, 9..11"    
   end
     
+=======
+>>>>>>> master
 end

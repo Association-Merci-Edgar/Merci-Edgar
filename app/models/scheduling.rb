@@ -41,7 +41,6 @@ class Scheduling < ActiveRecord::Base
   after_save :set_scheduler_function
   after_save :update_styles
   
-  
   def to_s
     result = name
     result = [result, show_host.try(:name)].compact.join(" à ")

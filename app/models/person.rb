@@ -31,8 +31,6 @@ class Person < ActiveRecord::Base
 
   delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
 
-  # before_validation :set_contact_name
-  
   mount_uploader :avatar, AvatarUploader
   
   def fine_model
@@ -62,7 +60,6 @@ class Person < ActiveRecord::Base
     end
     set_contact_name    
   end
-  
   
   # name : last_name first_name
   def name=(name)

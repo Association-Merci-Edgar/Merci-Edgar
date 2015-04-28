@@ -51,7 +51,6 @@ class Contact < ActiveRecord::Base
 
   # mount_uploader :avatar, AvatarUploader
 
-  # before_validation :titleize_name
   before_save :format_networks, if: "network_tags_changed?"
   before_save :format_customs, if: "custom_tags_changed?"
   
@@ -62,7 +61,6 @@ class Contact < ActiveRecord::Base
   
   VALID_CSV_KEYS = ["nom","tel","email","web", "reseaux", "tags_perso", "observations"]
   
-    
   def avatar  
     self.fine_model.avatar
   end
@@ -272,7 +270,6 @@ class Contact < ActiveRecord::Base
   def test?
     @test ||= imported_at == account.test_imported_at
   end
-  
   # private
   def self.tagged_with(contacts, param_list, field)
     if contacts && param_list.present? && field.present? 

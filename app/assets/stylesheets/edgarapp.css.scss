@@ -542,8 +542,6 @@ $lbrown: rgba(209, 209, 197, 1);
 }
 
 .file.required + .input-append {margin-top:10px;}
-
-
 /*
 #menu-vertical {
   position: fixed;
@@ -888,8 +886,6 @@ i {font-style: normal;}
 .recent li a {font-size:15px; height: 30px; padding: 6px 0 6px 44px;}
 //.recent .ico {width:20px;}
 .recent .pic { margin-top:2px;}
-
-
 /*
 .recent .pic i {
   &:before {
@@ -897,7 +893,6 @@ i {font-style: normal;}
   }
 }
 */
-
 
 ul#recent-menu{
   width:0px;
@@ -1016,7 +1011,6 @@ li a.rightbt {float:right;
   @include rotate(180);
 }
 
-
 a.btn-iconic {
   display:inline-block;
   color:$green;
@@ -1116,8 +1110,6 @@ legend {font-size: 20px;
 }
 
 .message a, .notice a:not(.btn) { border-bottom:dotted 1px $green; }
-
-
 
 /*  ________________________________________ CUSTOM checkbox & radio */
 
@@ -1563,8 +1555,6 @@ a.label-large {
     }
 }
 
-
-
 .modal {
   form.simple_form {margin:0;}
   @include roundcorners;
@@ -1671,8 +1661,6 @@ span.boolean{display:inline-block;}
 }
 
 
-
-
 .remove_nested_fields, .add_nested_fields {
   margin-left:220px; font-size:18px; display:block;
   //position:absolute;
@@ -1708,7 +1696,6 @@ label .help-block { margin:0; font-size:13px;}
   //&:hover {background-color:$white;}
 }
 
-  
 .fields {margin-bottom: 0px;
   //&:hover {background-color:$white;}
   }
@@ -2116,7 +2103,6 @@ header .badge.badge-capsule {padding: 6px 12px; margin-top:5px;}
 }
 
 
-
 /*  _____________________________________________________  ROWS   */
 
 //.row-table{display:inline;}
@@ -2284,7 +2270,6 @@ input[type="text"].input-xlarge {
   //width:100%;
 }
 
-
 .align-right{text-align:right;}
 
 li {line-height: inherit;}
@@ -2302,7 +2287,6 @@ button.shybtn {padding:4px 8px;}
   
 .dummy {position:absolute; top:0;margin-left:-48px; margin-top:-11px; display:none; z-index:3000;}
 .dumshow {display:block;}
-
 
 /* _______________________________________________________  List_large   */
 
@@ -2448,10 +2432,6 @@ li.system-reporting {
 }
 
 form#contact_us .uvFieldTextarea { height:150px; };
-
-
-
-
 
 /* __________________________________ tags   */
 
@@ -2987,7 +2967,6 @@ form .tabbable .tab-pane > *
 .popover[class*="tour-"] .popover-navigation *[data-role=next]:before {content: "\e6d0";} //.edi-arrow-right5
 .popover[class*="tour-"] .popover-navigation *[data-role=prev]:before {content: "\e6cd";}
 .popover[class*="tour-"] .popover-navigation *[data-role=end]:before {content: "\e678";} //.edi-cross
-
 
 
 /*

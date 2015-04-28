@@ -1,0 +1,30 @@
+$(".progressbar").toggleClass("ghost");
+(function pollJobidStatus() {
+  $.getJSON('<%= job_path(@job_id) %>', function (response) {
+    if (response.status == "working") {
+    	$(".bar").width(response.pct + 5 + '%');
+			if (response.message != null) {
+				$(".message").text(response.message)
+			}
+    }
+    if (response.status == "complete") {
+			nb_imported_contacts = response.result["nb_imported_contacts"]
+			nb_duplicates = response.result["nb_duplicates"]
+
+			$(".progressbar").toggleClass("ghost");
+			$('#myModal').modal('toggle')
+			console.log("result import:" + nb_imported_contacts + " / " + nb_duplicates)
+			window.location = "<%= import_path(@job_id) %>"
+			
+			return false;
+    }
+		if (response.status == "failed") {
+			$('#myModal .bar').width("0%")
+			$('#myModal .message').text("")
+			$('#myModal .errors').append("<div class='notice error'>Un problème est survenu. Edgar est averti !</div>")
+			return
+		}
+
+    setTimeout(pollJobidStatus, 1000);
+  });
+}());

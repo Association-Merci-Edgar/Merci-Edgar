@@ -29,8 +29,6 @@
           = link_to home_url(subdomain: account.domain) do
             %i.ico.edi-cog
             = account.name
-        
-          
 
 %nav.leftmenu
   .sidebar-nav
@@ -72,7 +70,6 @@
         %a{:href => "#"}
           %i.ico.edi-search
           Recherche
-      
       %li#recent-nav
         %a{:href => "#"}
           %i.ico.edi-pushpin
@@ -86,7 +83,6 @@
             %i.ico.edi-pushpin
             Dernièrement
             %i.ico.caret-ed.rightbt
-       
           %ul.nav.nav-list.recent.comingsoon
             /%li.nav-header Récemment consulté
             - if session[:history].present?
@@ -97,7 +93,6 @@
                       .pic.pic-mini= image_tag c.fine_model.avatar_url(:thumb)
                       = c
                 
-                        
 .footer
   /%a.pull-right{:href => "#"}
   /  %i.ico.edi-arrow-left-5
@@ -125,9 +120,6 @@
     %i.ico.edi-book2
     - if announcements_count > 0
       .badge.badge-mini= announcements_count
-      
-      
-      
 
 %ul#recent-menu.nav.nav-list
   %li.list-header

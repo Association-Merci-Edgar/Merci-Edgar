@@ -140,5 +140,4 @@ class Festival < ActiveRecord::Base
     [festival, invalid_keys]
   end
   
-
 end

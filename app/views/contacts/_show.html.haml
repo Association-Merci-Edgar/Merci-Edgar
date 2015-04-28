@@ -1,4 +1,3 @@
-
 .row-fluid.toppage.showitem
   %header
     
@@ -10,7 +9,6 @@
         - else
           %a.ico.contacted{:href => "#"}
         //%a.ico.dealed{:href => "#"}
-        
         
         -# _________________________ Listed
         .dropdown.dropdown-hover.dropdown-in-list
@@ -51,10 +49,6 @@
                       %i.ico.edi-plus3
                       Nouvelle liste
                 
-              
-              
-              
-
         / _________________________ favorite
         - if contact.favorite?(current_user)
           = link_to remove_to_favorites_contact_path(contact), remote: true do
@@ -81,7 +75,6 @@
         = link_to "Doublon", contacts_path(duplicate_of: contact.dup_id), class: "a badge badge-grey doublons"
       - if contact.test?
         = link_to "Test", contacts_path(imported_at: contact.imported_at), class:"a badge badge-grey"
-      
     
       .infos
         .infos-line

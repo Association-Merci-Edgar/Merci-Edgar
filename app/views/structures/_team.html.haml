@@ -1,5 +1,3 @@
-
-
 %ul.list.list-large#show-team
   - @people.each do |person|
   
@@ -41,7 +39,6 @@
       %h4= link_to "#{person.name}", person
       .infos-line
         = person.info_contact(@structure)
-      
       
   -# _____________________ New Person V2
   %li.btn-in-list.expandable

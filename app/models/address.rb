@@ -202,7 +202,6 @@ REGIONS = {
   def gmaps4rails_infowindow
     self.contact.name
   end
-  
 
   def self.from_csv(row)
     address = Address.new
