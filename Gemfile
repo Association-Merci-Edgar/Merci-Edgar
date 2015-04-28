@@ -7,6 +7,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
 gem 'jquery-rails', '~> 3.0.4'
 gem 'jquery-ui-rails'
 gem 'remotipart', '~> 1.2'
@@ -20,7 +21,6 @@ gem 'rolify'
 
 gem 'simple_form'
 gem 'nested_form'
-# gem 'cocoon'
 gem 'country_select'
 gem 'activevalidators'
 gem 'client_side_validations'
@@ -34,7 +34,6 @@ gem "libxml-ruby", "~> 2.7.0"
 
 gem 'carrierwave'
 gem 'carrierwave_direct', "~> 0.0.14"
-# gem 'carrierwave_backgrounder', "~> 0.4.1" 
 gem 'mini_magick'
 gem 'fog'
 
@@ -62,7 +61,7 @@ group :development do
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
-  gem 'debugger', "~> 1.6.2"
+  gem 'byebug'
   gem 'annotate'
 end
 group :development, :test do
@@ -82,13 +81,10 @@ group :test do
   gem 'faker'
 end
 
-gem 'activeadmin', github: 'gregbell/active_admin'
-
 gem 'pg'
 gem 'ar_pg_array'
 
 gem 'rollbar'
 
-gem 'roo', git: 'git://github.com/Empact/roo.git', ref: '9e1b969762cbb80b1c52cfddd848e489f22f468f'
 gem 'smarter_csv'
 gem 'mimer_plus'
