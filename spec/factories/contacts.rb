@@ -9,7 +9,6 @@ FactoryGirl.define do
     city "MyString"
     country "MyString"
   end
-<<<<<<< HEAD
   
   factory :contact_attributes, class: Hash do
     adresse "1 impasse du Cottage"
@@ -22,6 +21,4 @@ FactoryGirl.define do
     tags_perso "à contacter, faire recherche"    
     observations "Il est possible qu'ils ferment ..."
   end
-=======
->>>>>>> master
 end

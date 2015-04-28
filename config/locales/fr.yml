@@ -326,11 +326,8 @@ fr:
         depth: Profondeur
         height: Hauteur
         width: Largeur
-<<<<<<< HEAD
       venue/rooms/capacities:
         nb: Jauge
-=======
->>>>>>> master
       import:
         filename: Le nom de fichier
     errors:
@@ -366,7 +363,6 @@ fr:
           updated: "La personne %{name} a été modifiée avec succès"
   helpers:
     browse: Parcourir...
-<<<<<<< HEAD
     label:
       contacts_import_uploader:
         contacts_file: "Fichier à importer :"
@@ -378,10 +374,3 @@ fr:
       contacts_import:
         create: "Lancer l'import"
         test: "Tester avant d'importer"
-=======
-    submit:
-      update: "Enregistrer les modifications"
-      create: "Créer"
-      create_and_edit: "Ajouter davantage d'infos"
->>>>>>> master
-      
