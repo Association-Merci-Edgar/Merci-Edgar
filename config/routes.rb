@@ -1,23 +1,17 @@
 require 'sidekiq/web'
 
 Edgar::Application.routes.draw do
-
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
   get "backdoor/play1"
   get "backdoor/play2"
   get "backdoor/play3"
   get "tags/index"
-  
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/  do
     authenticated :user do
       root :to => 'home#index'
       get "search/index"
     end
-    
+
     authenticated :user, lambda {|u| u.id == 1} do
       mount Sidekiq::Web, at: "/sidekiq"
     end
@@ -29,7 +23,7 @@ Edgar::Application.routes.draw do
       match '', to: 'sessions#new', constraints: {subdomain: /.+/}
       get "features", to: "showcase#features"
       get "about", to: "showcase#about"
-      
+
 
     end
     devise_for :users, :controllers => { :registrations => "registrations", :confirmations => "confirmations", :sessions => "sessions"}
@@ -82,7 +76,7 @@ Edgar::Application.routes.draw do
     resource :account do
       put 'import_samples', action: :import_samples, as: :import_samples
       delete 'destroy_test_contacts', action: :destroy_test_contacts
-      
+
       resources :abilitations
     end
     resources :reportings
@@ -91,18 +85,18 @@ Edgar::Application.routes.draw do
     resources :opportunities
 
     resources :projects
-    
+
     resources :styles, only: [:index]
     resources :networks, only: [:index]
     resources :customs, only: [:index]
-    
+
     resources :jobs, only: [:show]
 
     resources :contacts_imports, only: [:new, :create, :update]
     get 'contacts_imports/new_with_details', to: 'contacts_imports#new_with_details', as: :new_with_details_contacts_import
-    
+
     resources :exports, only: [:new]
-    
+
     resources :announcements, only: [:index]
     resources :coupons
     resources :addresses, only: [:update]
