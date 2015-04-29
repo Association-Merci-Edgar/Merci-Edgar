@@ -268,28 +268,28 @@ class Contact < ActiveRecord::Base
   end
   
   def test?
-    @test ||= imported_at == account.test_imported_at
+    @test ||= imported_at.present? && imported_at == account.test_imported_at
   end
   # private
   def self.tagged_with(contacts, param_list, field)
-    if contacts && param_list.present? && field.present? 
+    if contacts && param_list.present? && field.present?
       query = []
       query_params = []
       param_array = param_list.split(',').map(&:strip)
       param_array.length.times { query.push("#{field} LIKE ?") }
       param_array.each { |s| query_params.push("%#{s}%") }
-      contacts.where(query.join(" OR "), *query_params)    
+      contacts.where(query.join(" OR "), *query_params)
     end
   end
-  
+
   def self.in_string_list(contacts, param_list, field)
-    if contacts && param_list.present? && field.present? 
+    if contacts && param_list.present? && field.present?
       hash_query = {}
       hash_query[field] = param_list.split(',').map(&:strip)
       contacts.where(hash_query)
     end
   end
-=begin  
+=begin
   @contacts = @contacts.by_style(params[:style_list]) if params[:style_list].present?
   @contacts = @contacts.by_network(params[:network_list]) if params[:network_list].present?
   @contacts = @contacts.by_custom(params[:custom_list]) if params[:custom_list].present?
@@ -300,11 +300,11 @@ class Contact < ActiveRecord::Base
   def style_list
     self.style_tags.split(',') if self.style_tags
   end
-  
+
   def contract_list
     self.contract_tags.split(',') if self.contract_tags
   end
-  
+
   def network_list
     self.network_tags.split(',') if self.network_tags
   end
@@ -312,7 +312,7 @@ class Contact < ActiveRecord::Base
   def custom_list
     self.custom_tags.split(',') if self.custom_tags
   end
-  
+
   def capacity_list
     self.capacity_tags.split(',') if self.capacity_tags
   end
@@ -320,11 +320,11 @@ class Contact < ActiveRecord::Base
   def update_networks
     Network.add_networks(network_list) if network_tags.present?
   end
-  
+
   def update_customs
     Custom.add_customs(custom_list) if custom_tags.present?
   end
-  
+
   def format_networks
     self.network_tags = self.network_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.network_tags.present?
   end
