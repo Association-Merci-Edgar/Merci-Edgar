@@ -80,6 +80,7 @@ end
 
 gem 'pg'
 gem 'ar_pg_array'
+gem 'rails_12factor', group: :production
 
 gem 'rollbar'
 
