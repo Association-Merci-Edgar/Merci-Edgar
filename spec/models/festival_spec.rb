@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe Festival do
+
+  it { expect(FactoryGirl.build(:festival)).to be_valid }
+
   describe "csv import" do
     let(:row) { merge_attributes(:festival_attributes, :contact_attributes, :scheduling_attributes, :people_structure_attributes) }
     subject { get_model(Festival, row) }
@@ -26,7 +29,7 @@ describe Festival do
       f.build_structure.build_contact
       f.structure.contact.name = "Festoche Genial"
       f.save!
- 
+
       f2 = get_model(Festival, row, nom: "festoche genial")
       f2.name.should == "Festoche Genial #1"
       Festival.count.should == 2
@@ -36,16 +39,15 @@ describe Festival do
       p = Person.new
       p.name = "Dusse Jean-Pierre"
       p.save!
-      
       p2 = Person.new
       p2.name = "Trop Yvan"
       p2.save!
- 
+
       f = get_model(Festival, row, nom: "festoche genial")
       p.contact.has_duplicates?.should be_true
       p2.contact.has_duplicates?.should be_true
-    end    
-        
+    end
+
     context "with invalid keys" do
       describe "with invalid email" do
         subject { get_model(Festival, row, email: "toto") }

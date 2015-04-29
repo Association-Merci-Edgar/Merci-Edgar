@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Person do
-  
+
   describe "csv import" do
     let(:row) { merge_attributes(:person_attributes, :contact_attributes) }
     subject { get_model(Person, row) }
@@ -36,7 +36,6 @@ describe Person do
           end
         end
       end
-      
     end
   end
 end
