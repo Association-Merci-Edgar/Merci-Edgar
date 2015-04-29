@@ -25,7 +25,7 @@ after_fork do |server, worker|
                     Rails.application.config.database_configuration[Rails.env]
     # config['reaping_frequency'] = ENV['DB_REAP_FREQ'] || 10 # seconds # For Rails 4
     config['pool']            =   ENV['DB_POOL'] || 2
-    
+
     ActiveRecord::Base.establish_connection(config)
   end
 =begin

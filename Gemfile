@@ -81,6 +81,7 @@ end
 gem 'pg'
 gem 'ar_pg_array'
 gem 'rails_12factor', group: :production
+gem 'rails_serve_static_assets', group: [:production]
 
 gem 'rollbar'
 
