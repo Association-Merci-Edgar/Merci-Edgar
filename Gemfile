@@ -38,13 +38,11 @@ gem 'fog'
 
 gem 'waitutil', "~> 0.2.1"
 
-gem 'gmaps4rails'
-# gem 'geocoder', git: 'git@github.com:alexreisner/geocoder.git', branch: 'master'
+gem 'gmaps4rails', "1.5.6"
 gem 'geocoder', "~> 1.1.9"
 
 gem 'icalendar'
 
-# gem 'thin'
 gem 'unicorn'
 gem 'sidekiq'
 gem 'sidekiq_status'
