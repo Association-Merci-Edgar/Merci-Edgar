@@ -6,9 +6,9 @@ describe Person do
     let(:row) { merge_attributes(:person_attributes, :contact_attributes) }
     subject { get_model(Person, row) }
 
-    its(:first_name) { should == "Jean-Pierre" }
-    its(:last_name) { should == "Dusse" }
-    its(:name) { should == "Dusse Jean-Pierre"}
+    it { should == "Jean-Pierre" }
+    it { should == "Dusse" }
+    it { should == "Dusse Jean-Pierre"}
     it_behaves_like "the contact" do
       let(:contact) { subject.contact }
     end

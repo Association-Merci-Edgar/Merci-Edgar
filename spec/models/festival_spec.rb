@@ -1,25 +1,26 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Festival do
   describe "csv import" do
     let(:row) { merge_attributes(:festival_attributes, :contact_attributes, :scheduling_attributes, :people_structure_attributes) }
     subject { get_model(Festival, row) }
 
-    its(:nb_edition) { should == 2 }
-    its(:last_year) { should == 2013 }
-    its(:name) { should == "Festoche Reggae"}
+    it { should == 2 }
+    it { should == 2013 }
+    it { should == "Festoche Reggae"}
+
     it_behaves_like "the contact" do
       let(:contact) { subject.contact }
     end
+
     it_behaves_like "a scheduling" do
       let(:scheduling) { subject.schedulings.first }
     end
-    
+
     it_behaves_like "a structure with people" do
       let!(:structure) { subject.structure }
     end
 
-    
     it "should create a festival with # for festival with same name" do
       f = Festival.new
       f.build_structure.build_contact
