@@ -27,10 +27,13 @@ ActiveRecord::Schema.define(:version => 20140704093249) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.integer  "contacts_count",   :default => 0
-    t.boolean  "importing_now"
     t.integer  "test_imported_at"
     t.integer  "last_import_at"
+    t.boolean  "importing_now"
   end
+
+  add_index "accounts", ["last_import_at"], :name => "index_accounts_on_last_import_at"
+  add_index "accounts", ["test_imported_at"], :name => "index_accounts_on_test_imported_at"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -129,8 +132,8 @@ ActiveRecord::Schema.define(:version => 20140704093249) do
     t.string   "capacity_tags"
     t.string   "venue_kind"
     t.integer  "duplicate_id"
-    t.string   "source"
     t.integer  "imported_at"
+    t.string   "source"
   end
 
   add_index "contacts", ["account_id"], :name => "index_contacts_on_account_id"

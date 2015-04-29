@@ -22,7 +22,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'nested_form'
 gem 'country_select'
-gem 'activevalidators'
+gem 'activevalidators', '~> 2.0.2'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
@@ -39,7 +39,7 @@ gem 'fog'
 gem 'waitutil', "~> 0.2.1"
 
 gem 'gmaps4rails', "1.5.6"
-gem 'geocoder', "~> 1.1.9"
+gem 'geocoder', "~> 1.1.8"
 
 gem 'icalendar'
 

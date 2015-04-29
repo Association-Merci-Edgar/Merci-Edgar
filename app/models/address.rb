@@ -140,7 +140,7 @@ class Address < ActiveRecord::Base
     "2B" => { name: "Haute corse", region_code: 7 },
     "95" => { name: "Val d''oise", region_code: 10 }
   }
-  
+
 REGIONS = {
   1 => { name: "Aquitaine" },
   2 => { name: "Auvergne" },
