@@ -1,6 +1,6 @@
 -content_for :scripts do
   = javascript_include_tag "tour/home-tour-fr"
-  
+
 %header.page-title
   %h1 Bienvenue chez Edgar !
   #dontshow
@@ -14,7 +14,7 @@
 %section.padded
   .section-title
     .title Faisons connaissance !
-    
+
   .row-fluid
     .span5
       %h4.message
@@ -26,7 +26,7 @@
           /
 
 
-    
+
 -#_________________________________________________________ Starting
 %section.padded
   .section-title
@@ -40,7 +40,7 @@
           Uploadez votre photo,<br>
           Créer votre projet artistique,<br>
           Et plus encore...
-        
+
     .span4
       = link_to contacts_path, :class => "label label-large" do
         %i.edi-book
@@ -49,11 +49,11 @@
           Importez, créez et <br>
           organisez vos contacts, <br>
           ils sont importants !
-          
-  
+
+
     .span4
       %a.label.label-large#uservoice-nav{"data-uv-default-mode" => "feedback", "data-uv-forum-id" => "170962", "data-uv-lightbox" => "classic_widget", "data-uv-link-color" => "#007dbf", "data-uv-mode" => "full", "data-uv-primary-color" => "#cc6d00", "data-uv-support-tab_name" => "Oups ! Je rencontre un problème !", href: "javascript:void(0)", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true"}
-      
+
         %i.edi-light-bulb
         %h4
           Des suggestions ?
@@ -61,68 +61,4 @@
           Nous avons besoin de vos retours ! <br>
           A tout moment, vous pouvez cliquer <br>
           sur cette icone en bas à gauche de l'écran.
-          
-          
--#
-  .row-fluid.label-blocks
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        %i.edi-directions
-        %h4
-          Perdu ?
-        %p
-          Visiter l’application  <br>à l’aide des liens en bas à gauche
-    .span4
-      = link_to new_venue_path, :class => "label label-large" do
-        %i
-          %img{alt: "Thumb_venue_default", src: "/assets/appli/label_block_pics_video0.png"}
-        %h4
-          Voir le tutoriel vidéo
-        %p
-          Edgar vous explique ses bases 
-          
 
--#_________________________________________________________ First Tutorials
-%section#dash-ednews.padded
-  .row-fluid
-    .span6
-      .section-title
-        .title Le dernier tutorial
-      .media.video
-        <iframe src="//player.vimeo.com/video/81417704?byline=0&amp;portrait=0&amp;color=fff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        
-    .span6
-      .section-title
-        .title
-          Plus de tutoriaux
-          /.badge.badge-medium.badge-shy 2
-       
-      %ul.list-small
-        %li
-          %a.btn-iconic
-            %i.ico.edi-play3
-            En cours de developpement : Traduire les messages d'erreur
-
-        %li
-          %a.btn-iconic
-            %i.ico.edi-play3
-            Multi-utilisateurs
-            
-        %li
-          %a.btn-iconic
-            %i.ico.edi-play3
-            En cours de developpement : Traduire les messages d'erreur
-          
-
-        %li.btn-in-list
-          %a.align-right{:href => "#"}
-            %span
-              Voir tous les tutoriaux
-            %i.entypo.edi-ellipsis
-  -#    
-    - if user_signed_in?
-      - if current_user.has_role? :admin
-        = link_to "Administration", users_path
-      = link_to t("simple_form.labels.defaults.signout"), destroy_user_session_path, :method => :delete
-    - else
-      = link_to t("simple_form.labels.defaults.signin"), new_user_session_path
