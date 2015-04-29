@@ -15,7 +15,7 @@ Edgar::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -25,22 +25,6 @@ Edgar::Application.configure do
 
   # Precompile additional assets
   config.assets.precompile += %w( jquery.js jquery_ujs jquery.ui.addresspicker.js contacts_import.js contacts_index.js contacts_show.js contacts.js tag.js contacts_form.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf multipage.css )
-
-  # Defaults to nil and saved in location specified by config.assets.prefix
-  # config.assets.manifest = YOUR_PATH
-
-  # Specifies the header that your server uses for sending files
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
-
-  # See everything in the log (default is :info)
-  # config.log_level = :debug
-
-  # Prepend all log lines with the following tags
-  # config.log_tags = [ :subdomain, :uuid ]
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
