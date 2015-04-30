@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
   private
 
   def add_user_to_mailchimp
-    return if email.include?(ENV['ADMIN_EMAIL'])
+    return if Rails.env == 'development' || email.include?(ENV['ADMIN_EMAIL'])
     mailchimp = Gibbon::API.new
     result = mailchimp.list_subscribe({
       :id => ENV['MAILCHIMP_LIST_ID'],
