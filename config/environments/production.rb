@@ -8,20 +8,11 @@ Edgar::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.serve_static_assets = true
   config.assets.compress = true
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.css_compressor = :yui
+  config.assets.js_compressor = :uglifier
   config.assets.compile = false
-
-  # Generate digests for assets URLs
   config.assets.digest = true
-
-  # Add the fonts path
-  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-
-  # Precompile additional assets
-  config.assets.precompile += %w( jquery.js jquery_ujs jquery.ui.addresspicker.js contacts_import.js contacts_index.js contacts_show.js contacts.js tag.js contacts_form.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf multipage.css )
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
