@@ -7,7 +7,8 @@ Edgar::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-
+  
+  config.assets.enabled = true
   #config.assets.compress = true
   #config.assets.css_compressor = :yui
   #config.assets.js_compressor = :uglifier
