@@ -8,11 +8,10 @@ Edgar::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.assets.compress = true
-  config.assets.css_compressor = :yui
-  config.assets.js_compressor = :uglifier
-  config.assets.compile = false
-  config.assets.digest = true
+  #config.assets.compress = true
+  #config.assets.css_compressor = :yui
+  #config.assets.js_compressor = :uglifier
+ # config.assets.digest = true
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
