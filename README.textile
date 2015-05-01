@@ -33,16 +33,16 @@ h2. Getting Started
   * rollbar (for production)
 
 2. Create the postgresql user and dev database both named  @merciedgar@
-If you are on ArchLinux you will "find some help here":https://wiki.archlinux.org/index.php/PostgreSQL.
+If you are on ArchLinux you will "find some help here": https://wiki.archlinux.org/index.php/PostgreSQL.
 
 3. Install dependencies with @bundle install@ and run migrations with @rake db:migrate@
 
-If you meet an error installing the gem 'capybara-webkit', try this, depending on your OS : https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
+If you meet an error installing the gem 'capybara-webkit', "try this solution, depending on your OS :" https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit.
 
 4. Open 3 different terminals and launch
-  * a redis server
-  * a sidekiq worker with @sidekiq@
-  * a @rails server@
+  * a redis server with @redis-server@ ("find some help here:" http://redis.io/topics/quickstart)
+  * a sidekiq worker with @sidekiq@ : @bundle exec sidekiq@ ("find some help here:" http://sidekiq.org/)
+  * a @rails server@ : @rails s@
 
 Open a browser on "http://www.lvh.me:3000":http://www.lvh.me:3000
 
