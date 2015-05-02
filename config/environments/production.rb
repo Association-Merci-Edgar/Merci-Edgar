@@ -6,9 +6,8 @@ Edgar::Application.configure do
 
   config.serve_static_assets = false
 
-  config.assets.enabled = true
   config.assets.compress = true
-  config.assets.js_compressor = :uglifier
+  config.assets.compile = false
   config.assets.digest = true
 
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
