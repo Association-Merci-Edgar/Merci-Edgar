@@ -45,7 +45,7 @@ module Edgar
     config.active_record.whitelist_attributes = true
 
     config.assets.enabled = true
-    config.assets.version = '1.5'
+    config.assets.version = '1.0'
     config.assets.initialize_on_precompile = false
 
     config.to_prepare do
