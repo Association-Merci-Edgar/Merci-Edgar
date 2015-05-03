@@ -17,8 +17,8 @@
           .actions
             %a.shybtn{href: "/fr/venues/2-l-olympia/edit"}
               %i.entypo.edi-pencil
-            
-              
+
+
             .dropdown
               / Link or button to toggle dropdown
               %button.shybtn.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
@@ -30,17 +30,17 @@
                   %a
                     %i.entypo.edi-bookmarks
                     Ajouter à une liste
-                  
+
                 %li{role: "presentation"}
                   %a
                     %i.entypo.edi-tag
                     Ajouter un mot-clés
-                  
+
                 %li{role: "presentation"}
                   %a
                     %i.entypo.edi-export
                     Exporter
-                  
+
                 %li{role: "presentation"}
                   %a
                     %i.entypo.edi-erase
@@ -67,7 +67,7 @@
           .tags
             %a.tag.tag-type{href: "/fr/contacts?venue_kind=bar"} Bar
             %a.tag.tag-legal{href: "/fr/contacts?contract_list=Co-realisation"} Co-realisation
-      
+
       %li.list-header
       %li.btns-in-list
         %i.entypo.edi-plus3
@@ -78,8 +78,6 @@
             Ajouter une personne
 
 %section
-=======
->>>>>>> master
   .controls.swipeable
     %span
       %input{:id => "m1", :type => "checkbox"}
@@ -104,53 +102,19 @@
     %span
       %input{:id => "m6", :type => "checkbox"}
       %label{:for=> "m6"} Juin
-      
+
     %span
       %input{:id => "m7", :type => "checkbox"}
-      %label{:for=> "m7"} Juil. 
-  
+      %label{:for=> "m7"} Juil.
+
     %span
       %input{:id => "m8", :type => "checkbox"}
       %label{:for=> "m8"} Aôut
--#      
-  %ul#mylist
-    %li
-      This is an element in a list and has a checkbox
-      %input{type: "checkbox", value: "1", :class=>"hidden"}/
-    %li
-      This is an element in a list and has a checkbox
-      %input{type: "checkbox", value: "1"}/
-    %li
-      This is an element in a list and has a checkbox
-      %input{type: "checkbox", value: "1"}/
-    %li.nono
-      This is an element in a list that has a checkbox but is nono
-      %input{type: "checkbox", value: "1"}/
-    %li
-      This is an element in a list and has a checkbox
-      %input{type: "checkbox", value: "1"}/
-    %li
-      %input{type: "checkbox", value: "1"}/
-      This is an element in a list and has a checkbox
-      
-    %li
-      %input{type: "checkbox", value: "1"}/
-      This is an element in a list and has a checkbox
-      
-    %li This is an element in a list
-      
--#    
-  %form.multicheck
-    %input{:type => "checkbox"}
-    %input{:type => "checkbox"}
-    %input{:type => "checkbox"}
-    %input{:type => "checkbox"}
-    %input{:type => "checkbox"}
-      
+
 - content_for :scripts do
   = javascript_include_tag "contacts_form"
-  
-  
+
+
 %section
   .row-fluid
     %section.span6
@@ -163,10 +127,7 @@
           .actions
             %a.shybtn{href: "/fr/people/41/edit"}
               %i.entypo.edi-pencil
-            -#
-              %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
-                %i.entypo.edi-cross
-          
+
           %a{href: "/fr/people/41"}
             %h3 Christophe Robillard
             .pic
@@ -176,20 +137,17 @@
             <br>
             +33 1 46 27 18 23 —
             %a christophe@merciedgar.com
-            
-            
-            
+
+
+
         %li
           .meta
-            
+
           .actions
             %a.shybtn{href: "/fr/people/41/edit"}
               %i.entypo.edi-pencil
-            -#
-              %a.shybtn{"data-confirm" => "DELETE : Are you sure?", "data-method" => "delete", href: "/fr/people/41", rel: "nofollow"}
-                %i.entypo.edi-cross
-          
-            
+
+
           %a{href: "/fr/people/41"}
             %h3 Aurélie Thuot
             .pic
@@ -201,11 +159,7 @@
             %a christophe@merciedgar.com
 
         -#_____________________________________________________ ADD NEW
-<<<<<<< HEAD
-        %li.btn-in-list
-=======
-        .btn-in-list
->>>>>>> master
+        %li.btns-in-list
           %a
             %i.entypo.edi-plus3
             %span
@@ -243,7 +197,7 @@
     %ul.list-infos
       %li.infolabel Observations
       %li
-      
+
     %ul.list-infos
       %li.infolabel Réseaux sociaux
       .tabbable
@@ -271,33 +225,3 @@
             %ul.social-list
               twitter
     %textarea#venue_structure_attributes_contact_attributes_addresses_attributes_0_more_info.text.optional{cols: "40", name: "venue[structure_attributes][contact_attributes][addresses_attributes][0][more_info]", placeholder: "Infos supplémentaires (Boite Postale, Digicode, ...)", rows: "20"}
-    
-    
-<<<<<<< HEAD
--# SEARCH AUTOCOMPLETE
-  %section
-    %ul#ui-id-1.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{style: "display: block; top: 467px; left: 240px; width: 1316px;", tabindex: "0"}
-      %li.ui-menu-item{role: "presentation"}
-        %span#ui-id-5.ui-corner-all.noresult{tabindex: "-1"} Pas de résultat...
-    
-    
-      %li.ui-menu-item{role: "presentation"}
-        %a#ui-id-5.ui-corner-all{tabindex: "-1"}
-          .pic.pic-mini
-            <img alt="User_default" src="/assets/fallback/thumb_user_default.png">
-          L'olympia
-        %span.infos Organisateur de spectacle
-    
-      %li.ui-menu-item{role: "presentation"}
-        %a#ui-id-5.ui-corner-all{tabindex: "-1"}
-          .pic.pic-mini
-            <img alt="User_default" src="/assets/fallback/thumb_user_default.png">
-          L'olympia
-        %span.infos Organisateur de spectacle
-     
-      %li.ui-menu-item.action{role: "presentation"}
-        %a#ui-id-4.ui-corner-all{tabindex: "-1",href: "#" }
-          %i.entypo.edi-plus3
-          Créer la structure : olymp
-
-
