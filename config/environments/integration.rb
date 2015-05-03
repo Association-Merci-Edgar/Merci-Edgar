@@ -4,9 +4,7 @@ Edgar::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-
   config.serve_static_assets = false
-  config.assets.enabled = true
   config.assets.compress = true
   config.assets.compile = false
   config.assets.digest = true
@@ -24,11 +22,11 @@ Edgar::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
-    config.action_mailer.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 25,
-      :user_name => ENV["MANDRILL_USERNAME"],
-      :password  => ENV["MANDRILL_API_KEY"]
-    }
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25,
+    :user_name => ENV["MANDRILL_USERNAME"],
+    :password  => ENV["MANDRILL_API_KEY"]
+  }
 
 end
