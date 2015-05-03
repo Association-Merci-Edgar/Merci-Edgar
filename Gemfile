@@ -57,7 +57,6 @@ group :development do
   gem 'awesome_print'
   gem 'html2haml'
   gem 'hub', :require=>nil
-  gem 'quiet_assets'
   gem 'byebug'
   gem 'annotate'
 end

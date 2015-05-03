@@ -6,6 +6,7 @@ Edgar::Application.configure do
 
 
   config.serve_static_assets = false
+  config.assets.enabled = true
   config.assets.compress = true
   config.assets.compile = false
   config.assets.digest = true
