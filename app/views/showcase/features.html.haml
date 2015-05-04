@@ -6,9 +6,9 @@
     .thehero
       %h4 Voici vos nouveaux meilleurs amis :
       = image_tag("multipage/showcase-banner-feat.png")
-      
-      
-      
+
+
+
 - content_for :facebook_og do
   = tag('meta', content: "#{request.base_url}/#{image_path('multipage/screenys/scr_560_teamwork.jpg')}", property: "og:image")
   = tag('meta', content: "#{request.base_url}/#{image_path('multipage/screenys/scr_560_map.jpg')}", property: "og:image")
@@ -26,32 +26,10 @@
           Merci Edgar permet aux artistes et aux tourneurs de gérer leurs contacts professionnels (lieux, festivals, autres organisateurs de spectacles, mais aussi tout type de structure comme les médias, les institutionnels, les imprimeurs, ...) à l'aide d'une interface simple et intuitive.
         %p.notes
           L’import de vos fichiers Excel bientot disponible
-          
-      -#
-        %a.btn-iconic
-          %i.ico.edi-play3
-          Voir le tutoriel vidéo
+
       .span7
         .img-box
           = image_tag("multipage/screenys/scr_560_list.jpg")
-      -#
-        #myCarousel.carousel.slide
-          %ol.carousel-indicators
-            %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
-            %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
-            %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
-          / Carousel items
-          .carousel-inner
-            .item.active
-              = image_tag("multipage/screenys/screeny2.jpg")
-            .item
-              = image_tag("multipage/screenys/screeny1.jpg")
-            .item
-              = image_tag("multipage/screenys/screeny1.jpg")
-          / Carousel nav
-          %a.carousel-control.left{"data-slide" => "prev", href: "#myCarousel"} ‹
-          %a.carousel-control.right{"data-slide" => "next", href: "#myCarousel"} ›
-
 
 %section.bkg-white.feat-section
   .container
@@ -64,14 +42,7 @@
         %h3 Travaillez vos contacts !
         %p
           Assignez-vous des tâches à propos de tel contact, rédigez des comptes-rendus pour suivre vos différentes intéractions avec vos contacts. En un mot, faites d'Edgar votre assistant virtuel qui saura tout de vos contacts pro !
-          
-      -#
-        %a.btn-iconic
-          %i.ico.edi-play3
-          Voir le tutoriel vidéo
-         
-          
-          
+
 %section.bkg-white.feat-section
   .container
     .row-fluid
@@ -79,14 +50,10 @@
         %h3 Segmentez et recherchez !
         %p
           Une fois vos contacts correctement qualifiés, profitez de notre puissant moteur de recherche pour segmenter votre base de données à l'aide de recherche multi-critères (par esthétique, proximité géographique, jauge,…) Envie de trouver dans votre base tous les lieux qui programment de la chanson, avec une jauge de moins de 100 personnes, dans un rayon de 100 km de Nantes ? Demandez à Edgar, en un clic, il vous apportera la réponse !
-      -#
-        %a.btn-iconic
-          %i.ico.edi-play3
-          Voir le tutoriel vidéo
       .span7
         .img-box
           = image_tag("multipage/screenys/scr_560_filters.jpg")
-  %space 
+  %space
 
 
 
@@ -100,13 +67,9 @@
         %h3 Géolocalisez !
         %p
           Une fois l'adresse de votre contact pro renseigné, Edgar saura le situer sur une carte. La géocalisation couplée avec notre puissant moteur de recherche vous permettra de trouver vos différents contacts (lieux, festivals, autres organisateurs de spectacles,…) à une certaine distance d'un lieu. Pratique pour organiser une tournée !
-      -#
-        %a.btn-iconic
-          %i.ico.edi-play3
-          Voir le tutoriel vidéo
-  %space 
+  %space
 
-  
+
 
 %section.bkg-white.feat-section
   .container
@@ -115,96 +78,54 @@
         %h3 Travaillez en équipe !
         %p
           Edgar vous permet un accès multi-utilisateurs à votre base. Vous saurez qui a rédigé le dernier compte-rendu sur tel contact, vous pourrez assigner une tâche à un de vos collèques. En un mot, vous pourrez travailler en équipe grâce à Edgar !
-        -# %p.notes
-          Disponible à partir  du 3 mars
-      -#
-        %a.btn-iconic
-          %i.ico.edi-play3
-          Voir le tutoriel vidéo
       .span7
         .img-box
           = image_tag("multipage/screenys/scr_560_teamwork.jpg")
-  %space 
-
-
--#
-  %section.cta.cta-brown
-    .container
-      %h3
-        = link_to features_path do
-          %i.ico.edi-play3
-          Voir tous les tutoriaux vidéo
-
+  %space
 
 %section.cta.cta-brown
   .container
     .section-title
       %h2 Les premiers pas sur Merci Edgar en vidéo :
     <iframe src="//player.vimeo.com/video/86027838?byline=0&amp;portrait=0&amp;color=fff" width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    
-    
-
 
 %section#soon-section
   .container
     .section-title
       %h2 Prochainement
       %p La version actuelle de pré-lancement de Merci Edgar ne contient que le module "Gestion de contacts". Nous sommes en train de développer de nouveaux modules (administration, communication). Nous communiquerons prochainement les tarifs de ces modules complémentaires.
-    
+
     .row-fluid.label-blocks
       .span4
         .label.label-large
           %i.ico.edi-dates
         %h4 Module administration
         %p gestion et suivi d'une date vendue
-        
+
       .span4
         .label.label-large
           %i.ico.edi-megaphone
         %h4 Module communication
         %p il permettra de coupler sa base de données Merci Edgar avec des outils d'envoi de mail en masse notamment
-        
+
       .span4
         .label.label-large
           %i.ico.edi-mobile
         %h4 Edgar Mobile
         %p Une version mobile est en cours de développement.
-  -#      
-    .row-fluid.label-blocks
-      .span4
-        .label.label-large
-          %i.ico.edi-plus3
-        %h4 Et bien plus !
-        %p On y travailles
-      
-        
-        
-        
-  -#
-    %p
-      Module d’administration : gestion et suivi d'une date vendue
-      %br
-      Module de communication : il permettra de coupler sa base de données Merci Edgar avec des outils d'envoi de mail en masse notamment
-      
 
-
-   
-/ Why Edgar ??    
 %section
   .container
     %h2.section-title= t("home.promise.why")
     .row-fluid
       .span6
         %p
-          = t("home.promise.alone")
+          = t("home.promise.alone")
           %br/
           = t("home.promise.more_time_for")
           %br/
           = t("home.promise.goal")
-          -#%p
-          -#%a.btn.btn-large.btn-danger.btn-block{"data-toggle" => "modal", :href => "#request-invite"}
-          -#= t("home.i_want_it")
-            
+
       .span6
         .row.paragraph-middle
           %ul.engagements
@@ -228,8 +149,8 @@
               %strong= t("home.commitments.evolutive")
               %br/
               = t("home.commitments.evolutive_details")
-              
-  
+
+
 %section.princing
   .container
     %h2.section-title Combien ça coûte ?
@@ -242,7 +163,7 @@
           %h4 Offre pré-lancement
           %p Gratuite jusqu'à septembre
           .badge Gratuit !
-        
+
       / ITEM
       .span6
         .label-round.plan-soon
@@ -252,4 +173,4 @@
           %p Lancement prévu en septembre
           .badge 10€/mois/utilisateur
           %p.small (avec uniquement le module gestion de contacts)
-       
+
