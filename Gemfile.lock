@@ -125,6 +125,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     email_spec (1.6.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -139,8 +142,6 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.8)
-    figaro (1.1.0)
-      thor (~> 0.14)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.29.0)
@@ -449,10 +450,10 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise (~> 3.2)
+  dotenv-rails
   email_spec
   factory_girl_rails
   faker
-  figaro
   fog
   geocoder (~> 1.1.8)
   gibbon

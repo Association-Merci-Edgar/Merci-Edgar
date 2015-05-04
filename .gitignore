@@ -88,3 +88,4 @@ config/database_with_prod_in_dev.yml
 
 # Libre Office artifacts
 .~*#
+.env

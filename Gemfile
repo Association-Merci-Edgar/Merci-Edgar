@@ -14,7 +14,6 @@ gem 'remotipart', '~> 1.2'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise', '~> 3.2'
-gem 'figaro'
 gem 'gibbon'
 gem 'haml-rails'
 gem 'rolify'
@@ -61,6 +60,7 @@ group :development do
   gem 'annotate'
 end
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
 end
 group :test do
@@ -69,7 +69,6 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
-  # gem 'mocha'
   gem 'cucumber-rails', :require=>false
   gem 'database_cleaner'
   gem 'email_spec'
