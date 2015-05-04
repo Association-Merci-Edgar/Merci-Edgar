@@ -5,11 +5,11 @@ module CarrierWaveDirect
       fields = required_base_fields
       fields << content_type_field(options)
       fields << success_action_field(options)
-      
+
       idf = [object_name, method.to_s].join("_")
       options[:style] ||= 'display:none;'
 
-      button = @template.content_tag(:div, class: 'input-append') do 
+      button = @template.content_tag(:div, class: 'input-append') do
         @template.tag(:input, id: "pbox_#{idf}", class: 'string input-medium', :style => "display:none", type: 'text') +
         @template.content_tag(:a, I18n.t('helpers.browse'), class: 'btn btn-secondary', onclick: "$('input[id=#{idf}]').click();")
       end
