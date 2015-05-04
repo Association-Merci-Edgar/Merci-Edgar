@@ -3,8 +3,9 @@ CarrierWave.configure do |config|
   if Rails.env.development? || Rails.env.test?
     config.fog_credentials = {
       provider: "Local",
-      local_root: "#{Rails.root}/publi/upload"
+      local_root: 'public'
     }
+    config.fog_directory = 'assets'
   else
     config.fog_credentials = {
       provider: "AWS",
