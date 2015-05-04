@@ -8,20 +8,19 @@
       %i.edi-warning
       L’import en masse de contacts est une opération sensible.
       %br
-      Avant d’importer un fichier, lisez d’abord 
+      Avant d’importer un fichier, lisez d’abord
       %a l’aide en ligne.
-          
-      
+
 %section.padded
   = display_errors(@import, true)
   = direct_upload_form_for(@uploader) do |f|
     = display_errors(@uploader)
-  
-    .form-inputs      
+
+    .form-inputs
       %section
         = f.label :contacts_file
         = f.file_field :contacts_file
-        
+
     .form-actions
       .row-fluid
         .span6

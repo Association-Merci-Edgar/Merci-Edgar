@@ -34,10 +34,10 @@
 
 /*
 $('document').ready(function() {
-	
+
 
   $("html").niceScroll();
-  			
+
 	$('.datepicker').datetimepicker();
 	// display validation errors for the "request invitation" form
   if ($('.alert-error').length > 0) {

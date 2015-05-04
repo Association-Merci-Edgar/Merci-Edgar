@@ -331,6 +331,8 @@ contacts.js: contacts-a3b9575d2135b711b7dbaadb149e5e3e.js
 contacts/index.js: contacts-a3b9575d2135b711b7dbaadb149e5e3e.js
 contacts_form.js: contacts_form-51435bcc4a7a551ad42469c218ce378b.js
 contacts_form/index.js: contacts_form-51435bcc4a7a551ad42469c218ce378b.js
+contacts_import.js: contacts_import-cb26247ea5d1689e870b452745555051.js
+contacts_import/index.js: contacts_import-cb26247ea5d1689e870b452745555051.js
 contacts_index.js: contacts_index-a5ecfdb324b0afb9a65263c39af1bbbb.js
 contacts_index/index.js: contacts_index-a5ecfdb324b0afb9a65263c39af1bbbb.js
 multipage/application.js: multipage/application-6fc8bf559a4fb80ee3e3408311619c85.js
