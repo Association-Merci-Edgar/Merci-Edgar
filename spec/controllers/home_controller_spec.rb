@@ -12,7 +12,7 @@ describe HomeController do
 
     describe "GET index" do
       before(:each) { get 'index' }
-      it { expect(response).to redirect_to(users_path) }
+      it { expect(response).to redirect_to(welcome_path) }
     end
   end
 
