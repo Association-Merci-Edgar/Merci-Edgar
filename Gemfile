@@ -60,6 +60,7 @@ group :development do
   gem 'annotate'
 end
 group :development, :test do
+  gem 'foreman'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
 end
