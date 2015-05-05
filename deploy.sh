@@ -8,7 +8,7 @@ echo "*** deploy $APPNAME to $DESTINATION"
 
 git pull origin $BRANCH && \
   git push origin $BRANCH && \
-  rake spec && \
+  bundle exec rake spec && \
   echo "git push $DESTINATION $BRANCH:master" && \
   git push $DESTINATION $BRANCH:master
 
