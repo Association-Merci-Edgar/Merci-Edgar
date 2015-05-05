@@ -1,6 +1,5 @@
 .row-fluid.toppage.showitem
   %header
-    
     .rightrow
       .meta
         -# _________________________ contacted
@@ -8,55 +7,6 @@
           %a.ico.contacted.full{:href => "#"}
         - else
           %a.ico.contacted{:href => "#"}
-        //%a.ico.dealed{:href => "#"}
-        
-        -# _________________________ Listed
-        .dropdown.dropdown-hover.dropdown-in-list
-          / Link or button to toggle dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-            %i.ico.listed
-
-          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
-            %li{role: "presentation"}
-              %span
-                Assigné à :
-                %a Liste 1
-                ,
-                %a Liste 2
-
-
-            %li.divider{role: "menuitem"}
-            -#%li{role: "menuitem"}
-              = link_to("Récemment consultés",only_contacts_path(filter:"recently_updated"), role: "menuitem", tabindex: "-1")
-            %li{role: "menuitem"}
-              .dropdown.dropdown-hover
-                %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-                  Ajouter à une liste
-                  %i.ico.caret-ed
-                %ul.dropdown-menu.list-lists{"aria-labelledby" => "dropdownMenu", role: "menu"}
-                  %li{role: "menuitem", tabindex: "-1"}
-                    %a.icon Liste 1
-                  %li{role: "menuitem", tabindex: "-1"}
-                    %a.icon Liste 2
-                  %li{role: "menuitem", tabindex: "-1"}
-                    %a.icon Liste 3
-                  /if > nolist :
-                  %li{role: "presentation", tabindex: "-1"}
-                    %span Aucune liste disponible !
-                    
-                  %li.special{role: "menuitem", tabindex: "-1"}
-                    %a
-                      %i.ico.edi-plus3
-                      Nouvelle liste
-                
-        / _________________________ favorite
-        - if contact.favorite?(current_user)
-          = link_to remove_to_favorites_contact_path(contact), remote: true do
-            %i.ico.favorite.full{id: "fav_contact_#{contact.id}"}
-        - else
-          = link_to add_to_favorites_contact_path(contact), remote: true do
-            %i.ico.favorite{id: "fav_contact_#{contact.id}"}
-
 
         = link_to edit_link_path, :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{contact.updated_at.present? ? contact.updated_at.to_date : '22/01/2013'}".html_safe, "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
           %i.entypo.edi-pencil
@@ -66,34 +16,33 @@
       - if !@person
         .pic= image_tag contact.avatar
       %h2= contact.name
-    
+
       = tag_link(contacts_path(category: contact.fine_model.class.name.underscore.pluralize),t(contact.fine_model.class.name.underscore,scope:"activerecord.models"),"tag-custom")
-    
+
       - if contact.making_prospecting?
         %a.badge.badge-green.badge-capsule En recherche active
       - if contact.has_duplicates?
         = link_to "Doublon", contacts_path(duplicate_of: contact.dup_id), class: "a badge badge-grey doublons"
       - if contact.test?
         = link_to "Test", contacts_path(imported_at: contact.imported_at), class:"a badge badge-grey"
-    
+
       .infos
         .infos-line
           /-  if contact.try(:capacities)
           /  - contact.capacities.each do |capacity|
           /    %span.jauge= render capacity
           = yield :contact_infoline
-            
+
           - if contact.city
             %span.location
               %span.city= contact.city
               = link_to contact.address.department_name, only_contacts_path(filter:"dept",no:contact.address.department_code) if contact.address.department_name
         .tags
           = render partial: "tags/tags", locals: {contact: contact}
-      
+
   - if notice.present?
     .notice= notice
-    
-      
+
 .row-fluid
   .span12
     .tabbable
@@ -109,17 +58,15 @@
             %span.badge.badge-shy="#{@pending_tasks.size}"
 
         = yield :navtabs
-          
-          
+
       .tab-content
         / ________________________________________________________ activity
         #activity.tab-pane.active
           = render partial:'contacts/activity', locals: {contact: contact}
-                  
+
         / ________________________________________________________ infos
         #infos.tab-pane
           = render partial:'infos'
-        
 
         / ________________________________________________________ tasks
         #tasks.tab-pane
