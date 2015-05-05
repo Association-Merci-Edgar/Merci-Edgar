@@ -9,7 +9,7 @@ Edgar::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-  config.assets.precompile += %w( jquery.js jquery_ujs contacts_index.js contacts.js tag.js contacts_form.js contacts_import.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf multipage.css )
+  config.assets.precompile += %w( jquery.js jquery_ujs contacts_index.js contacts.js tag.js contacts_form.js contacts_import.js contacts_show.js scheduling.js tasks_group.js simple/application.js onepage/application.js tour/home-tour-fr.js onepage.js onepage.css .svg .eot .woff .ttf multipage.css )
 
   config.i18n.fallbacks = true
 
