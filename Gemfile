@@ -17,6 +17,7 @@ gem 'devise', '~> 3.2'
 gem 'gibbon'
 gem 'haml-rails'
 gem 'rolify'
+gem 'redcarpet'
 
 gem 'simple_form'
 gem 'nested_form'

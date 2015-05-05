@@ -2,14 +2,14 @@
   - user = User.new
   = form_for(user, url: new_user_registration_path, method: :get) do |f|
     .container
-      %h3 S’incrire pour utiliser la version de pré-lancement
-      %p Ceci est une version de test. Pas de carte de crédit nécessaire. Sans engagement.
-    
+      %h3 Combien ça coûte ?
+
+      :markdown
+        L'utilisation de Merci Edgar sera bientôt reservée aux adhérents de l'association. Pour en savoir plus sur l'[association Merci Edgar](http://blog.merciedgar.com/post/108265370123/reponses-aux-questions-frequemment-posees)
+        Ceci est une version de test. Pas de carte de crédit nécessaire. Sans engagement.
+
       .row-fluid
         .span5.offset1
           = f.text_field(:email, placeholder: "Votre email")
         .span5
           = f.button "Je m'inscris !", class: "btn btn-large btn-danger btn-block"
-          -#= link_to new_user_registration_path, class: "btn btn-large btn-danger btn-block" do
-            -#J’essaie Merci Edgar !
-            Je m’inscris !

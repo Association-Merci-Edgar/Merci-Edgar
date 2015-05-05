@@ -336,6 +336,7 @@ GEM
     rake (10.4.2)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.2.3)
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -478,6 +479,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.18)
   rails_12factor
+  redcarpet
   remotipart (~> 1.2)
   rolify
   rollbar
