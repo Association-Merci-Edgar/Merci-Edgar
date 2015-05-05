@@ -1,29 +1,18 @@
 %li{id: "person_#{person.to_param}"}
   .meta
-    -# _________________________ favorite
-    - if person.favorite?(current_user)
-      = link_to remove_to_favorites_contact_path(person.contact), remote: true do
-        %i.ico.favorite.full{id: "fav_contact_#{person.contact.id}"}
-    - else
-      = link_to add_to_favorites_contact_path(person.contact), remote: true do
-        %i.ico.favorite{id: "fav_contact_#{person.contact.id}"}
-        
     -# _________________________ contacted
     - if person.contacted?
       %a.ico.contacted.full{:href => "#"}
     - else
       %a.ico.contacted{:href => "#"}
-    -# _________________________ dealed
-    -# %a.ico.dealed{:href => "#"}
-    
-    
-    
+
+
     .actions
       = link_to edit_person_path(person), :class => "shybtn" do
         %i.entypo.edi-pencil
       = link_to person, :class => "shybtn", :method => :delete, :data => { :confirm => 'DELETE : Are you sure?' }, remote: true do
         %i.entypo.edi-cross
-        
+
   = link_to person do
     %h3
       = person.name
@@ -31,23 +20,23 @@
         %a.badge.badge-green.badge-capsule En recherche active
       - if person.contact.has_duplicates?
         = link_to "Doublon", contacts_path(duplicate_of: person.contact.dup_id), class: "a badge badge-grey doublons"
-      
+
     .pic.pic-person= image_tag person.avatar_url
-        
+
   %span
     - ps = person.people_structures.first
     - if ps.present?
       = ps.title if ps.title.present?
       = link_to ps.structure.name,ps.structure.fine_model if ps.structure.present?
-    
+
     - email = person.emails.first
     - if email.present?
       = email.address
-    
+
     - phone = person.phones.first
     - if phone.present?
       = phone.national_number
-      
+
   .tags
     = render partial: "tags/tags", locals: { contact: person.contact}
-    
+

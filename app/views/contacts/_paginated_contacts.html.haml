@@ -2,30 +2,22 @@
   = hidden_field_tag "bulk_action"
   = hidden_field_tag "bulk_value"
   = hidden_field_tag "bulk_all"
-  
+
   %ul#contact-list.list.list-large
     - unless @no_paging
       %li.list-header
         %span.badge-count= @contacts.try(:total_count)
-      
+
         résultats
         = paginate @contacts if @contacts
         —
 
         // EXPORT
-        /= link_to "Exporter ces contacts", export_contacts_path(params), remote: true
-        -#
         = link_to new_export_path(params.except(:controller)), remote: true, :class=>"", :title =>"Exporter ces contacts dans un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
           %i.entypo.edi-export
-    -#  
-      .meta
-        %a.shybtn{:href => "#",:title => "bulk / Traitement par lot", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true"}
-          %i.edi-list
-  
     = render @contacts if @contacts
     - unless @no_paging
       %li#next_page_li.list-header
-        -#= paginate @contacts if @contacts
         #next_page_link= link_to_next_page @contacts, 'Next page', remote: true, data: { spinner: "#next_page_spinner" }
         = spinner_tag "next_page_spinner"
     %li.btns-in-list
@@ -35,3 +27,4 @@
         |
         = link_to new_person_path do
           Ajouter une personne
+

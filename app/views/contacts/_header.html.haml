@@ -116,8 +116,6 @@
 
     /______________________________________________________ STATUS
     .status
-      = link_to only_contacts_path(filter: "favorites"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Favoris", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
-        %i.ico.edi-heart
 
       = link_to only_contacts_path(filter: "contacted"), :class=>"shybtn", :title =>"Voir seulement  les contacts <br> marqués comme <br> Déjà échangé", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
         %i.ico.edi-comment

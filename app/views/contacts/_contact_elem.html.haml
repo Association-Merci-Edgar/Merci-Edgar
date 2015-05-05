@@ -1,13 +1,5 @@
 .rightrow
   .meta
-    -# _________________________ favorite
-    - if contact.favorite?(current_user)
-      = link_to remove_to_favorites_contact_path(contact), remote: true do
-        %i.ico.favorite.full{id: "fav_contact_#{contact.id}"}
-    - else
-      = link_to add_to_favorites_contact_path(contact), remote: true do
-        %i.ico.favorite{id: "fav_contact_#{contact.id}"}
-
     -# _________________________ contacted
     - if contact.contacted?
       %a.ico.contacted.full{:href => "#"}
@@ -15,49 +7,13 @@
       %a.ico.contacted{:href => "#"}
     -# _________________________ dealed
     -# %a.ico.dealed{:href => "#"}
-    
-    -# _________________________ Listed
-    .dropdown.dropdown-hover.dropdown-in-list
-      / Link or button to toggle dropdown
-      %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        %i.ico.listed
 
-      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu", role: "menu"}
-        %li{role: "presentation"}
-          %span
-            Assigné à :
-            %a Liste 1
-            ,
-            %a Liste 2
-
-
-        %li{role: "menuitem"}
-          .dropdown.dropdown-hover
-            %a.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-              Ajouter à une liste
-              %i.ico.caret-ed
-            %ul.dropdown-menu.list-lists{"aria-labelledby" => "dropdownMenu", role: "menu"}
-              %li{role: "menuitem", tabindex: "-1"}
-                %a.icon Liste 1
-              %li{role: "menuitem", tabindex: "-1"}
-                %a.icon Liste 2
-              %li{role: "menuitem", tabindex: "-1"}
-                %a.icon Liste 3
-              /if > nolist :
-              %li{role: "presentation", tabindex: "-1"}
-                %span Aucune liste !
-                
-              %li.special{role: "menuitem", tabindex: "-1"}
-                %a
-                  %i.ico.edi-plus3
-                  Nouvelle liste
-   
   - if contact.address.present?
-    - if contact.address.country == "FR"  
+    - if contact.address.country == "FR"
       = content_tag("div",nil, class:"mini-map france reg-#{contact.address.region_code}") if contact.address.region_code.present?
     - else
       = content_tag("div",nil, class:"mini-map world") if contact.address.present?
-    
+
   .actions
     = link_to edit_link_path, :class => "shybtn" do
       %i.entypo.edi-pencil
