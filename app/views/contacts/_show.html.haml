@@ -58,7 +58,7 @@
             %i.ico.favorite{id: "fav_contact_#{contact.id}"}
 
 
-        = link_to edit_link_path, :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{contact.updated_at.present? ? contact.updated_at.to_date : '22/01/2013'}", "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
+        = link_to edit_link_path, :class => "shybtn editbtn", :title => "<h5>Éditer cette fiche</h5>Modifié le #{contact.updated_at.present? ? contact.updated_at.to_date : '22/01/2013'}".html_safe, "data-toggle" => "tooltip", "data-placement" => "bottom-right", "data-html" => "true" do
           %i.entypo.edi-pencil
     .mainrow
       - if @person
