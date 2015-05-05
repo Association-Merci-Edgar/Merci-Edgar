@@ -337,6 +337,8 @@ contacts_index.js: contacts_index-a5ecfdb324b0afb9a65263c39af1bbbb.js
 contacts_index/index.js: contacts_index-a5ecfdb324b0afb9a65263c39af1bbbb.js
 contacts_show.js: contacts_show-05f1780fe9281343d3e761779fb7be56.js
 contacts_show/index.js: contacts_show-05f1780fe9281343d3e761779fb7be56.js
+jquery.ui.addresspicker.js: jquery.ui.addresspicker-215e3438c57d54a8cab288b02c9dd461.js
+jquery/index.ui.addresspicker.js: jquery.ui.addresspicker-215e3438c57d54a8cab288b02c9dd461.js
 multipage/application.js: multipage/application-6fc8bf559a4fb80ee3e3408311619c85.js
 multipage/application/index.js: multipage/application-6fc8bf559a4fb80ee3e3408311619c85.js
 onepage/application.js: onepage/application-dccb6994e546ae2f64795d936c7b47c9.js
