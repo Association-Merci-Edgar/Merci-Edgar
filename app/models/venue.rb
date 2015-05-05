@@ -220,8 +220,6 @@ class Venue < ActiveRecord::Base
       end
       venue.kind = :other unless venue.kind
     end
-      
-    
     
     venue.residency = true if row.delete("residence".to_sym).try(:downcase) == "x"
     venue.accompaniment = true if row.delete("accompagnement".to_sym).try(:downcase) == "x"

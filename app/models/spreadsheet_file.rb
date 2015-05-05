@@ -4,16 +4,22 @@ class SpreadsheetFile
   extend ActiveModel::Naming
   extend ActiveModel::Translation
 
-  validates :readable?, inclusion: { in: [ true ] }
-  validates :nb_lines, numericality: { only_integer:true, less_than: ENV["CSV_IMPORT_MAXLINES_LIMIT"].to_i, allow_nil: true }, if: :readable?
-  validates :name_header_exist, inclusion: { in: [ true ] }, if: :readable?
-  validates :kind, inclusion: { in: %w(venue festival show_buyer structure person) }
-
-  attr_reader :kind
-
+  CSV_IMPORT_MAXLINES_LIMIT = 10000
   ACCEPTED_ENCODINGS = %w(utf-8 iso-8859-1 us-ascii utf-16le)
   COMMON_DELIMITERS = [',', ';', "\t"]
   COMMON_DELIMITERS_WITH_DOUBLE_QUOTES = ['","', '";"', "\"\t\""]
+
+  attr_reader :kind
+
+  validates :readable?, inclusion: { in: [ true ] }
+  validates :nb_lines, numericality: { only_integer:true, less_than: CSV_IMPORT_MAXLINES_LIMIT, allow_nil: true }, if: :readable?
+  validates :name_header_exist, inclusion: { in: [ true ] }, if: :readable?
+  validates :kind, inclusion: { in: %w(venue festival show_buyer structure person) }
+
+  def initialize(filename, kind = "venue")
+    @filename = filename
+    @kind = kind
+  end
 
   def col_sep
     return @col_sep if @col_sep.present?
@@ -28,11 +34,6 @@ class SpreadsheetFile
       snif = snif.sort {|a,b| b[1]<=>a[1]}
       @col_sep = snif.size > 0 ? snif[0][0] : nil
     end
-  end
-
-  def initialize(filename, kind = "venue")
-    @filename = filename
-    @kind = kind
   end
 
   def persisted?
@@ -63,33 +64,27 @@ class SpreadsheetFile
     @nblines ||= %x{wc -l < #{csv_path}}.to_i if readable?
   end
 
-  def encoding
-    return @encoding if @encoding
-    m = Mimer.identify(csv_path).mime_type
-    @encoding = m.match(/charset=(.*);?/)[1]
+  def name_header_exist
+    first_row.include?("nom") if readable?
+  end
+
+  def readable?
+    ACCEPTED_ENCODINGS.include?(encoding)
+  end
+
+  def to_csv
+    @filename
   end
 
   def file_encoding
     @file_encoding ||= encoding.start_with?("utf") ? "bom|#{encoding}" : encoding if encoding
   end
 
-  def well_encoded?
-    ACCEPTED_ENCODINGS.include?(encoding)
-  end
+  private
 
-  def name_header_exist
-    first_row.include?("nom") if readable?
-  end
-
-  def readable?
-    return @readable if @readable != nil
-    @readable = false
-
-    @readable = true if well_encoded?
-    return @readable
-  end
-
-  def to_csv(csv_path = nil)
-    return @filename
+  def encoding
+    return @encoding if @encoding
+    m = Mimer.identify(@filename).mime_type
+    @encoding = m.match(/charset=(.*);?/)[1]
   end
 end
