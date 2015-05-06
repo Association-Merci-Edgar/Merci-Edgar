@@ -8,14 +8,14 @@
 
       .togglemenu
         = render 'layouts/togglemenu'
-        
+
       #plusmenu
         = render 'layouts/plus_menu' if ["index","show"].include?(params[:action]) && (controller_name != "projects")
         /= yield(:plus_menu)
-        
+
       .leftpanel
         = render 'layouts/left_panel'
-        
+
       .mainpanel
         = render 'layouts/search_modal'
         .maincontent
@@ -23,6 +23,5 @@
             = yield
 
     = render 'layouts/modal'
-      
-    = render 'layouts/javascripts_app
+    = render 'layouts/javascripts_app'
 
