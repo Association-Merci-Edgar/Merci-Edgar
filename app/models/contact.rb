@@ -17,7 +17,7 @@
 class Contact < ActiveRecord::Base
   extend ContactsHelper
   include MyAttributes
-  
+
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :name, :imported_at, :source, :emails_attributes, :phones_attributes, :addresses_attributes, :websites_attributes, :style_tags, :network_tags, :custom_tags, :remark
@@ -26,7 +26,7 @@ class Contact < ActiveRecord::Base
   belongs_to :contactable, polymorphic: true
   belongs_to :duplicate, class_name: "Contact"
   has_many :duplicates, class_name: "Contact", foreign_key: "duplicate_id"
-  
+
   validates_uniqueness_of :name, scope: [:account_id], case_sensitive: false
   validates_presence_of :name
   # validates_associated :phones
@@ -53,18 +53,18 @@ class Contact < ActiveRecord::Base
 
   before_save :format_networks, if: "network_tags_changed?"
   before_save :format_customs, if: "custom_tags_changed?"
-  
+
   after_save  :update_networks, if: "network_tags_changed?"
   after_save  :update_customs, if: "custom_tags_changed?"
 
   delegate :fine_model, to: :contactable
-  
+
   VALID_CSV_KEYS = ["nom","tel","email","web", "reseaux", "tags_perso", "observations"]
-  
-  def avatar  
+
+  def avatar
     self.fine_model.avatar
   end
-  
+
   def avatar_url(version)
     self.fine_model.avatar_url(version)
   end
@@ -74,7 +74,7 @@ class Contact < ActiveRecord::Base
   scope :by_style, lambda { |tag_name| where("style_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
   scope :by_contract, lambda { |tag_name| where("contract_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
   scope :by_capacity, lambda { |tag_name| where("capacity_tags LIKE ?", "%#{tag_name}%").order("contacts.name") }
-  
+
   scope :with_name_like, lambda { |pattern| where('name LIKE ? OR first_name LIKE ?', "%#{pattern}%", "%#{pattern}%").order("contacts.name")}
   scope :with_first_name_and_last_name, lambda { |pattern,fn,ln| where('first_name LIKE ? AND name LIKE ? OR name LIKE ?', "%#{fn}%", "%#{ln}%","%#{pattern}%").order("contacts.name")}
   scope :with_reportings, joins: :reportings
@@ -83,17 +83,17 @@ class Contact < ActiveRecord::Base
   scope :imported_at, lambda { |imported_at| where(imported_at: imported_at) }
   scope :duplicated, where("duplicate_id IS NOT NULL")
   scope :duplicate_of, lambda { |dup_id| where("contacts.duplicate_id = ? OR contacts.id = ?",dup_id, dup_id) }
-  
+
 
   scope :recently_created, order("created_at desc").limit(10)
   scope :recently_updated, order("updated_at desc").limit(10)
 
   AVAILABLE_STYLE_TAGS = ["Rock","Chanson","Electro","Jazz"]
-  
+
   def has_duplicates?
     self.duplicate.present? || self.duplicates.any?
   end
-  
+
   def dup_id
     if has_duplicates?
       return @dup_id if @dup_id
@@ -109,18 +109,18 @@ class Contact < ActiveRecord::Base
       nil
     end
   end
-  
+
   def self.format_name(new_name)
     if new_name
       # titleize with hyphen
       new_name = new_name.split.map(&:capitalize).join(' ')
-      
+
       # capitalize after l' or d'
       r = /[lLdD]'(\w*)/
       new_name = new_name.gsub(r) {|m| m.gsub($1, $1.capitalize) }
-    end    
+    end
   end
-  
+
   def name=(new_name)
     name = Contact.format_name(new_name)
     write_attribute(:name, name)
@@ -185,7 +185,7 @@ class Contact < ActiveRecord::Base
     else
       raise "Invalid Parameter"
     end
-    
+
     Contact.where(id: contact_ids)
 
   end
@@ -203,25 +203,21 @@ class Contact < ActiveRecord::Base
     @contacts = in_string_list(@contacts,params["venue_kind"], :venue_kind) if params["venue_kind"].present?
     @contacts = tagged_with(@contacts, params["capacity_range"], "capacity_tags") if params["capacity_range"].present?
     # @contacts = @contacts.by_department(params[:dept]) if params[:dept].present?
-    
-    # @contacts = @contacts.capacities_less_than(params[:capacity_lt]) if params[:capacity_lt].present?
-    # @contacts = @contacts.capacities_more_than(params[:capacity_gt]) if params[:capacity_gt].present?
-    # @contacts = @contacts.by_type(params[:venue_kind]) if params[:venue_kind].present?
+
     @contacts = @contacts.imported_at(params[:imported_at]) if params["imported_at"].present?
     @contacts = @contacts.duplicated if params["duplicated"].present? && params["duplicated"]
     @contacts = @contacts.duplicate_of(params["duplicate_of"]) if params["duplicate_of"]
     @contacts
   end
-  
+
   def self.advanced_search_for_structures(params)
     self.advanced_search(params).where(:contactable_type => "Structure")
   end
-  
+
   def self.advanced_search_for_people(params)
     self.advanced_search(params).where(:contactable_type => "Person")
   end
-  
-  
+
   def self.search(search)
     if search.present?
       a = search.split
@@ -254,7 +250,7 @@ class Contact < ActiveRecord::Base
       self.custom_tags = custom_tags.split(',').map(&:strip).uniq.join(',')
     end
   end
-  
+
   def network_list
     self.network_tags.split(',') if self.network_tags.present?
   end
@@ -266,7 +262,7 @@ class Contact < ActiveRecord::Base
   def to_s
     name
   end
-  
+
   def test?
     @test ||= imported_at.present? && imported_at == account.test_imported_at
   end
@@ -332,11 +328,11 @@ class Contact < ActiveRecord::Base
   def format_customs
     self.custom_tags = self.custom_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.custom_tags.present?
   end
-  
+
   def deep_xml(builder=nil)
-    to_xml(:builder => builder, 
-      :skip_instruct => true, 
-      :skip_types => true, 
+    to_xml(:builder => builder,
+      :skip_instruct => true,
+      :skip_types => true,
       except: [:id, :duplicate_id, :created_at, :updated_at, :contactable_type, :contactable_id, :account_id, :avatar, :contract_tags, :style_tags, :capacity_tags, :venue_kind],
       :include => {
         :phones => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
@@ -345,21 +341,19 @@ class Contact < ActiveRecord::Base
         :addresses => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]}
       }
       ) do |xml|
-      # contact.deep_xml(xml)
-    end    
+    end
   end
-  
+
   def fine_deep_xml
     self.fine_model.deep_xml
-#    self.fine_model.deep_xml unless self.contactable_type == "Person"
   end
-  
+
   def self.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
     addresses_attributes = contact_attributes.delete("addresses")
     phones_attributes = contact_attributes.delete("phones")
     websites_attributes = contact_attributes.delete("websites")
     emails_attributes = contact_attributes.delete("emails")
-    
+
     contact = Contact.new(contact_attributes)
     name = contact_attributes["name"]
     duplicate = Contact.find_by_name(name)
@@ -368,20 +362,18 @@ class Contact < ActiveRecord::Base
       contact.name = "#{name} ##{nb_duplicates + 1}"
       contact.duplicate = duplicate
     end
-    
+
     contact.imported_at = imported_at
-    
-    
-    
+
     contact.build_children(:addresses, addresses_attributes["address"]) if addresses_attributes
     contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
     contact.build_children(:websites, websites_attributes["website"]) if websites_attributes
     contact.build_children(:emails, emails_attributes["email"]) if emails_attributes
     contact.add_custom_tags(custom_tags)
-    
+
     contact
   end
-  
+
   def assign_name_and_duplicate(name)
     self.name = name
     duplicate = Contact.where("name = ?", self.name).first
@@ -391,54 +383,53 @@ class Contact < ActiveRecord::Base
       self.name = "#{self.name} ##{nb_duplicates + 1}"
       self.duplicate = duplicate
       puts "DUPLICATE avec name: #{self.name}"
-    end    
+    end
   end
 
   def self.get_or_init_by_name(name, imported_at, duplicate_with_imported)
     normalize_name = Contact.format_name(name.strip)
     contact = Contact.where(name: normalize_name).first_or_initialize
-    
+
     unless contact.new_record? || (contact.imported_at == imported_at && !duplicate_with_imported)
       duplicate = contact
       duplicates = Contact.where("name LIKE ?", "#{contact.name} #%")
       nb_duplicates = duplicates.size
       contact = duplicates.where(imported_at: imported_at).first
       unless contact && !duplicate_with_imported
-        contact = Contact.new(name: "#{normalize_name} ##{nb_duplicates + 1}") 
+        contact = Contact.new(name: "#{normalize_name} ##{nb_duplicates + 1}")
         contact.duplicate = duplicate
       end
     end
     contact
-
   end
-  
+
   def self.get_or_init_from_csv(row, duplicate_with_imported=false)
     imported_at = row.delete(:imported_at)
     name = row[:nom]
     contact = Contact.get_or_init_by_name(name, imported_at, duplicate_with_imported)
     contact.imported_at = imported_at
-    contact    
+    contact
   end
-  
+
   def self.from_csv(row, duplicate_with_imported=false)
     contact = get_or_init_from_csv(row, duplicate_with_imported)
     invalid_keys = contact.assign_from_csv(row)
     [ contact, invalid_keys ]
   end
-  
+
   def assign_from_csv(row)
     contact = self
     # contact.assign_name_and_duplicate(name)
     row.delete(:first_name_last_name_order)
     contact.remark = ""
-    
+
     if row[:observations].present?
       contact.remark += row[:observations]
     end
 
     address = Address.from_csv(row)
     contact.addresses << address if address
-    
+
     if row[:tel].present?
       phone = contact.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
       unless phone.valid?
@@ -457,7 +448,7 @@ class Contact < ActiveRecord::Base
       website = contact.websites.build(url: row[:web].strip)
       unless website.valid?
         contact.remark += "\nWeb: #{row[:web]} / "
-        contact.websites.delete(website) 
+        contact.websites.delete(website)
       end
     end
     if row[:reseaux].present?
@@ -466,8 +457,7 @@ class Contact < ActiveRecord::Base
     if row[:tags_perso].present?
       contact.custom_tags = row[:tags_perso].split(',').map(&:strip).join(',')
     end
-    
-      
+
     invalid_keys = row.keys.map(&:to_s).delete_if{|key| VALID_CSV_KEYS.include?(key)}
     invalid_keys.each do |invalid_key|
       value = row[invalid_key.to_sym]
@@ -481,9 +471,9 @@ class Contact < ActiveRecord::Base
     end
     invalid_keys
   end
-  
+
   def making_prospecting?
-    if self.fine_model.public_methods.include?(:schedulings)    
+    if self.fine_model.public_methods.include?(:schedulings)
       schedulings = self.fine_model.schedulings
       schedulings.each do |s|
         return true if s.making_prospecting?
@@ -491,5 +481,5 @@ class Contact < ActiveRecord::Base
     end
     return false
   end
-        
+
 end

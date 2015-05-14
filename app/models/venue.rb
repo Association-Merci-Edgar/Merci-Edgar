@@ -33,12 +33,12 @@ class Venue < ActiveRecord::Base
 
 
   delegate :name, :contact, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
-  
+
   VENUE_KINDS = [:bar, :theater_cafe, :mjc, :music_venue, :smac, :theater, :cultural_center, :other]
-  
+
   mount_uploader :avatar, AvatarUploader
-  
-  before_save :set_contact_criteria 
+
+  before_save :set_contact_criteria
 
   scope :by_type, (lambda do |kind|
     where(kind: kind) if kind.present?
@@ -66,35 +66,28 @@ class Venue < ActiveRecord::Base
   def to_s
     name
   end
-  
+
   def fine_model
     self
   end
-=begin
-  def season_months=(sm)
-  end
-  
-  def season_months
-    super.map(&:to_s) 
-  end
-=end  
+
   def set_contact_criteria
     self.build_structure unless structure.present?
     self.structure.build_contact unless structure.contact.present?
     contact = structure.contact
-    
+
     c_style_list = self.style_list
     contact.style_tags = c_style_list.join(',') if c_style_list.present?
-    
+
     c_contract_list = self.contract_list
     contact.contract_tags = c_contract_list.join(',') if c_contract_list.present?
-    
+
     c_capacity_tags = self.capacity_tags
     contact.capacity_tags = c_capacity_tags.join(',') if c_capacity_tags.present?
 
     contact.venue_kind = self.kind if self.kind.present?
   end
-  
+
   def venue_must_have_at_least_one_address
     if self.addresses.blank?
       errors.add(:addresses, "A venue must have at least one address")
@@ -137,16 +130,15 @@ class Venue < ActiveRecord::Base
     tags
   end
 
-
   def season
     season_months.present? ? season_months.map {|m| I18n.t("date.abbr_month_names")[m.to_i] if m.present? }.compact.join(' - ') : "Non renseigné"
   end
-  
+
   def services
     services = []
     services << "Accompagnement" if self.accompaniment
     services << "Résidence" if self.residency
-    services.present? ? services.join(', ') : "Non renseigné"     
+    services.present? ? services.join(', ') : "Non renseigné"
   end
 
   def contract_list
@@ -181,12 +173,11 @@ class Venue < ActiveRecord::Base
       smonths = [].push(smonths.to_s) unless smonths.is_a?(Array)
     end
 
-    
     venue = Venue.new(venue_attributes)
     venue.structure = structure
     venue.upload_base64_avatar(avatar_attributes)
     venue.season_months = smonths
-    
+
     if schedulings_attributes.present? && schedulings_attributes["scheduling"].present?
       if schedulings_attributes["scheduling"].is_a?(Hash)
         venue.schedulings << Scheduling.from_merciedgar_hash(schedulings_attributes["scheduling"], imported_at)
@@ -197,7 +188,7 @@ class Venue < ActiveRecord::Base
       end
     end
     venue
-    
+
   end
 
   def self.from_xml(xml)
@@ -205,11 +196,11 @@ class Venue < ActiveRecord::Base
     venue_attributes = attributes["venue"]
     self.from_merciedgar_hash(venue_attributes, Time.now)
   end
-  
+
   def self.from_csv(row)
     venue = Venue.new
     kind = row["type_lieu".to_sym]
-    
+
     if kind.present?
       VENUE_KINDS.each do |k|
         if kind.downcase == I18n.t(k, scope: "simple_form.options.venue.kind").downcase
@@ -220,7 +211,7 @@ class Venue < ActiveRecord::Base
       end
       venue.kind = :other unless venue.kind
     end
-    
+
     venue.residency = true if row.delete("residence".to_sym).try(:downcase) == "x"
     venue.accompaniment = true if row.delete("accompagnement".to_sym).try(:downcase) == "x"
     season_months_string = row.delete("saison".to_sym)
@@ -239,13 +230,12 @@ class Venue < ActiveRecord::Base
         row["saison".to_sym] = season_months_string
       end
     end
-    # scheduling_attributes = row.slice(:styles, :types_contrats, :nom_programmateur, :decouverte, :observations_programmation, :mois_prospection)
-    scheduling = Scheduling.from_csv(row) 
+    scheduling = Scheduling.from_csv(row)
     venue.schedulings << scheduling if scheduling
     venue.rooms << Room.from_csv(row) if (row.keys & Room::VALID_CSV_KEYS).any?
-    venue.structure, invalid_keys = Structure.from_csv(row) 
-    
+    venue.structure, invalid_keys = Structure.from_csv(row)
+
     [venue, invalid_keys]
   end
-  
+
 end

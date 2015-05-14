@@ -14,7 +14,7 @@ class Account < ActiveRecord::Base
   has_many :projects
   has_many :abilitations, dependent: :destroy
   # has_and_belongs_to_many :users
-  
+
   has_many :contacts
   attr_accessible :domain, :name
   validates_presence_of :name
@@ -23,19 +23,19 @@ class Account < ActiveRecord::Base
   validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
   before_validation :set_domain_name
   before_validation :ensure_domain_uniqueness, :on => :create
-  
+
   scope :featured, order("contacts_count DESC")
 
   def to_s
     self.name
   end
-  
+
   def set_domain_name
     if domain_changed?
       domain = domainnize(domain)
     end
   end
-  
+
   def ensure_domain_uniqueness
     if self.domain.blank?
       self.domain = domainnize(self.name)
@@ -46,7 +46,7 @@ class Account < ActiveRecord::Base
       num += 1
     end
   end
-  
+
   def domainnize(str)
     I18n.transliterate(str).delete("^a-zA-Z0-9").downcase if str.present?
   end
@@ -103,7 +103,7 @@ class Account < ActiveRecord::Base
       v.name   = params["NOM"].titleize if params["NOM"].present?
       vi = v.build_venue_info
       vi.kind   = params["TYPE DE LIEU"] if params["TYPE DE LIEU"].present?
-      
+
       room = v.rooms.build
       room.name = v.name
       room.width  = params["OUVERTURE PLATEAU"]
@@ -156,15 +156,15 @@ class Account < ActiveRecord::Base
       end
     end
   end
-  
+
   def member?(user)
     self.abilitations.where(user_id: user.id).first.member?
   end
-  
+
   def manager?(user)
     self.abilitations.where(user_id: user.id).first.manager?
   end
-  
+
   def empty
     Venue.destroy_all
     Festival.destroy_all
@@ -172,12 +172,12 @@ class Account < ActiveRecord::Base
     Structure.destroy_all
     Person.destroy_all
   end
-  
+
   def destroy_test_contacts
     Contact.imported_at(self.test_imported_at).find_each do |contact|
       fm = contact.fine_model
       fm.destroy
     end
   end
-  
+
 end
