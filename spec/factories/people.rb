@@ -1,8 +1,11 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
-  factory :person do
-    first_name "MyString"
-    last_name "MyString"
+  sequence :name do |n|
+    "name_#{n}"
   end
+
+  factory :person do
+    first_name { FactoryGirl.generate(:name) }
+    last_name { FactoryGirl.generate(:name) }
+  end
+
 end
