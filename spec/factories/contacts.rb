@@ -2,11 +2,6 @@
 
 FactoryGirl.define do
   factory :contact do
-    phone "MyString"
-    email "MyString"
-    street "MyString"
-    postal_code "MyString"
-    city "MyString"
-    country "MyString"
+    name "A name"
   end
 end

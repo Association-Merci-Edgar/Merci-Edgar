@@ -52,7 +52,7 @@ describe ProjectsController do
     end
 
     describe "POST create" do
-      before(:each) { post :create }
+      before(:each) { post :create, project: FactoryGirl.attributes_for(:project) }
       it { expect(response).to redirect_to(projects_path) }
       it { expect(Project.count).to eq(1) }
       it { expect(assigns(:project)).to be_a(Project) }
