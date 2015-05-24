@@ -1,7 +1,9 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :contact do
-    name "A name"
+    name { FactoryGirl.generate(:contact_name) }
+  end
+
+  sequence :contact_name do |n|
+    "name_contact_#{n}"
   end
 end
