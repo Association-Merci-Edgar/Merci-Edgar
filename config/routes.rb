@@ -1,3 +1,4 @@
+
 Edgar::Application.routes.draw do
   get "backdoor/play1"
   get "backdoor/play2"
@@ -95,12 +96,11 @@ Edgar::Application.routes.draw do
 
   end
 
-  root to: redirect("/#{I18n.default_locale}")
-
   require "sidekiq/web"
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     username == ENV["SIDEKIQ_USERNAME"] && password == ENV["SIDEKIQ_PASSWORD"]
   end if Rails.env.production?
   mount Sidekiq::Web, at: "/sidekiq"
 
+  root to: redirect("/#{I18n.default_locale}")
 end

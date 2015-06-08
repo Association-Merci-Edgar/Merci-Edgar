@@ -7,8 +7,8 @@ DESTINATION="git@heroku.com:$BRANCH-$APPNAME.git"
 echo "*** deploy $APPNAME to $DESTINATION"
 
 git pull origin $BRANCH && \
-  git push origin $BRANCH && \
   bundle exec rake spec && \
+  git push origin $BRANCH && \
   echo "git push $DESTINATION $BRANCH:master" && \
   git push $DESTINATION $BRANCH:master
 
