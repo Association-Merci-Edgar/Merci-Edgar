@@ -5,17 +5,16 @@ class ContactsImportWorker
 
   def perform(import_id)
     import = ContactsImport.find(import_id.to_i)
-
     Account.current_id = import.account_id
     current_account = import.account
     raise "Un autre import est déjà en cours. Merci d'attendre qu'il soit terminé" if current_account.importing_now
     current_account.importing_now = true
     current_account.save!
+
     user = import.user
     at(1, "Préparation du fichier...")
     import.contacts_file.cache_stored_file!
     at(1, "Suppression des anciens contacts tests...")
-
     current_account.destroy_test_contacts
     imported_at = import.updated_at.to_i
     current_account.test_imported_at = import.test_mode ? imported_at : nil
@@ -36,6 +35,9 @@ class ContactsImportWorker
       self.payload = { invalid_file: true, message: log_message }
       return
 
+      self.payload = { message: error }
+
+      UserMailer.contacts_import_invalid(user).deliver unless import.test_mode
     else
       imported_contacts = Contact.where(imported_at: imported_at)
       nb_duplicates = imported_contacts.where("duplicate_id IS NOT NULL").count
@@ -43,6 +45,8 @@ class ContactsImportWorker
       self.payload = { nb_imported_contacts: nb_imported_contacts, nb_duplicates: nb_duplicates, imported_at: imported_at, message: log_message }
       UserMailer.contacts_import_email(user, { account: current_account, filename: import.filename, imported_at: imported_at }).deliver unless import.test_mode
     end
+  rescue StandardError => e
+    UserMailer.contacts_import_error(user).deliver unless import.test_mode
   ensure
     if current_account
       current_account.importing_now = false
@@ -65,12 +69,12 @@ class ContactsImportWorker
 
         while xml_reader.read do
           case xml_reader.name
-            when "show-buyer", "person", "structure"
-              xml_node = xml_reader.expand.to_s
-              attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
-              instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, options[:custom_tags])
-              instance.save
-              at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
+          when "show-buyer", "person", "structure"
+            xml_node = xml_reader.expand.to_s
+            attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
+            instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, options[:custom_tags])
+            instance.save
+            at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
           end
           xml_reader.next
         end
@@ -85,12 +89,12 @@ class ContactsImportWorker
 
         while xml_reader.read do
           case xml_reader.name
-            when "venue", "festival"
-              xml_node = xml_reader.expand.to_s
-              attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
-              instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, options[:custom_tags])
-              instance.save
-              at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
+          when "venue", "festival"
+            xml_node = xml_reader.expand.to_s
+            attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
+            instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, options[:custom_tags])
+            instance.save
+            at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
 
           end
           xml_reader.next
