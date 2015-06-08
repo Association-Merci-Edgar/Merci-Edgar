@@ -1,5 +1,3 @@
-require 'sidekiq/web'
-
 Edgar::Application.routes.draw do
   get "backdoor/play1"
   get "backdoor/play2"
@@ -10,10 +8,6 @@ Edgar::Application.routes.draw do
     authenticated :user do
       root :to => 'home#index'
       get "search/index"
-    end
-
-    authenticated :user, lambda {|u| u.id == 1} do
-      mount Sidekiq::Web, at: "/sidekiq"
     end
 
     devise_scope :user do
@@ -102,4 +96,11 @@ Edgar::Application.routes.draw do
   end
 
   root to: redirect("/#{I18n.default_locale}")
+
+  require "sidekiq/web"
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == ENV["SIDEKIQ_USERNAME"] && password == ENV["SIDEKIQ_PASSWORD"]
+  end if Rails.env.production?
+  mount Sidekiq::Web, at: "/sidekiq"
+
 end
