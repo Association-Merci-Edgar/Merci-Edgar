@@ -12,7 +12,7 @@
     ou
   .btn.btn-alert.btn-large.btn-submit{:href => "#"}
     Enregistrer
-  
+
 
 %h1.page-title Modifier le lieu
 /%h2= @venue.name
@@ -20,7 +20,7 @@
 = simple_nested_form_for(@venue, :html => { :class => 'form-horizontal form-edit' }) do |f|
   /simple_form_for(@article, :html => { :class => 'form-horizontal' }) do |f|
   = display_errors(@venue)
-  
+
   .form-inputs
     %header
       .control-group
@@ -30,7 +30,7 @@
           = s.fields_for :contact do |c|
             = c.input :name, label: false, :class => "input-Xlarge"
         = f.input :avatar, label:false, :hint => "L’image doit faire au moins 80x80 pixels."
-  
+
     .row-fluid
       .span12
         .tabbable
@@ -44,8 +44,8 @@
               %a{"data-toggle" => "tab", :href => "#schedulings"} Programmation(s)
             %li
               %a{"data-toggle" => "tab", :href => "#rooms-infos"} Salle(s) du lieu
-          
-          
+
+
           .tab-content
             /__________________________________________________________________________ contact-infos
             #contact-infos.tab-pane.active
@@ -95,14 +95,14 @@
                         = address.input :street, label:"Addresse", :wrapper => :append do
                           = address.input_field :street,:placeholder =>"Addresse",  :label => false, autocomplete: :off, :class => "input-xlarge street"
                           = address.input_field :kind, :label => false, :collection => [:main_address, :admin_address], :selected => "Work", :input_html => { :class => "add-on btn dropdown-toggle" }
-                          
+
                         .control-group.nolabel
                           = address.input_field :city, :label => false, :placeholder =>"Ville, localité, …", :class => " inline city"
                           = address.input_field :postal_code, :label => false, :placeholder =>"Code postal", :class => "input-medium inline postal_code"
                           = address.input_field :country, :label => false, :priority => [ "France", "Spain", "Germany", "Austria", "United States", "United Kingdom" ], :class => "inline"
                         .control-group.nolabel.state.hidden
                           = address.input_field :state, :label => false, :placeholder =>"State", :class => "inline"
-                      
+
                         = address.input :more_info, label:false
                         = address.hidden_field :latitude, class: "latitude"
                         = address.hidden_field :longitude, class: "longitude"
@@ -137,17 +137,17 @@
               /%section#basic-infos
               /.section-title
               /.title Infos lieu
-    
+
               -#  ________________________________________________________ kind of venue
               /= v.input :kind, :collection => [:smac, :bar, :private_venue, :theater, :cultural_center], selected: :private_venue
               = f.input :kind, :collection => Venue::VENUE_KINDS, :as => :radio_buttons, item_wrapper_class: "inline"
-    
-    
+
+
               -#  ________________________________________________________ Services
               %label.control-label Services
               = f.input :residency, wrapper: :edgar_checkbox
               = f.input :accompaniment, wrapper: :edgar_checkbox
-      
+
               /= v.input :bar, label:"Services", :collection => ["Bar", "Residence", "Accompagnement"], label_method: :name, value_method: :id, item_wrapper_class:"inline", :as => :check_boxes,
 
 
@@ -155,15 +155,15 @@
                 = s.fields_for :contact do |c|
 
                   -#  ________________________________________________________ TAGS V1
-    
-                  = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span12 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
+
+                  = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>".html_safe, :input_html => { :class => "span12 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
 
                   -#  ________________________________________________________ TAGS V1
-                  = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
-    
+                  = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>".html_safe, :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
 
-              -#________________________________________________________ season 
-              .control-group  
+
+              -#________________________________________________________ season
+              .control-group
                 %label.control-label #{t("simple_form.labels.venue.season")}
                 .controls.swipeable
                   -#= f.input_field :season_months, collection: ["Jan","Fev", "Mar","Avr","Mai","Juin","Juil","Aout","Nov","Dec"], as: :check_boxes
@@ -178,7 +178,7 @@
 
 
 
-                    
+
             -#  ________________________________________________________ contracts
 
             / ________________________________________________________________________________________________________________ contact-infos
@@ -191,48 +191,48 @@
                   = v.link_to_remove :title => "Supprimer cette programmation" do
                     %i.entypo.edi-minus2
                   = v.input :name
-                  
-                  = v.input :external_show_buyer, collection: ["Cette structure", "Un autre organisateur de spectacles"], as: :radio_buttons, item_wrapper_class: "inline", input_html: {class: "external_show_buyer_radio"}  
-                 
+
+                  = v.input :external_show_buyer, collection: ["Cette structure", "Un autre organisateur de spectacles"], as: :radio_buttons, item_wrapper_class: "inline", input_html: {class: "external_show_buyer_radio"}
+
                   = v.input :show_buyer_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: structures_path(type: "ShowBuyer")} }
-                  
+
                   = v.input :scheduler_name, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
                   -# = v.input :scheduler, input_html: {autocomplete:"off", class: "jq_autocomplete", data: {autocomplete_source: people_path} }
                   = v.input :contract_list, :collection => ["Co-realisation","Co-production","Cession","Location","Engagement","Autre"], :as => :check_boxes, item_wrapper_class:"inline"
-          
+
 
                   = v.input :style_tags, label: "Styles programmés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span6 style_tags_input", :placeholder =>"Rock, humour…", data: {autocomplete_source: styles_path} }
 
 
                   %label.control-label Type d'artistes
                   = v.input :discovery, wrapper: :edgar_checkbox
-          
 
-      
+
+
                   -#  ________________________________________________________ period
                   = v.input :period, :collection => Scheduling::PERIOD_LIST.map(&:to_sym), as: :radio_buttons, item_wrapper_class: "inline"
 
-              
 
-                .control-group  
+
+                .control-group
                   %label.control-label #{t("simple_form.labels.schedulings.prospecting")}
                   .controls.swipeable
                     -#= f.input_field :season_months, collection: ["Jan","Fev", "Mar","Avr","Mai","Juin","Juil","Aout","Nov","Dec"], as: :check_boxes
                     = v.input_field :prospecting_months, collection: (1..12).to_a, label_method: lambda {|index| t("date.abbr_month_names")[index.to_i]}, as: :check_boxes
 
                 = v.input :remark
-                  
+
 
               .links
                 = f.link_to_add :schedulings, :title => 'Ajouter une programmation' do
                   %i.entypo.edi-plus2
                   Ajouter une programmation
 
-                                  
-    
-    
-    
-    
+
+
+
+
+
             / ________________________________________________________________________________________________________________ contact-infos
             #rooms-infos.tab-pane
               /%section#basic-infos
@@ -243,7 +243,7 @@
                 = f.fields_for :rooms do |room|
                   .nested-fields
                     = room.hidden_field :name
-                    / ________________________________________________ capacity 
+                    / ________________________________________________ capacity
                     = room.fields_for :capacities do |capacity|
                       .nested-fields.fields_for_capacities
                         = capacity.link_to_remove :title => "Supprimer cette jauge" do
@@ -253,19 +253,19 @@
 
                         %label.control-label
                           Jauge
-                        .inline-inputs  
+                        .inline-inputs
                           = capacity.input :nb, :wrapper => :append, :label => false do
                             = capacity.input_field :nb, :class => "input-small"
                             = capacity.input_field :kind, label:false, :collection => [:seating, :standing, :mixed], selected: :seating, :class => "add-on dropdown-toggle"
                           = capacity.input :modular, wrapper: :edgar_checkbox
-                            
+
                     .links
                       = room.link_to_add :capacities, :title => t("simple_form.buttons.add_capacity") do
                         %i.entypo.edi-plus2
                         #{t("simple_form.buttons.add_capacity")}
 
 
-                    / ____________________________ Dimensions     
+                    / ____________________________ Dimensions
 
                     .nested-fields
                       .control-group
@@ -283,15 +283,15 @@
                             = room.input_field :height, :class => "input-mini"
                             = content_tag :span, "H", :class => "add-on"
                           %p.help-block (Profondeur / Largeur / Hauteur)
-                          
-                          
+
+
                       %label.control-label
                       = room.input :bar, wrapper: :edgar_checkbox
                       //
-              
-              
 
-                
+
+
+
 
     / ________________________________________________________ actions
     .form-actions
