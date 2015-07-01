@@ -132,10 +132,10 @@
 
                 -#  ________________________________________________________ TAGS V1
   
-                = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span12 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
+                = c.input :network_tags, label: "Réseaux <br><span class='help-block'>(séparés par des virgules)</span>".html_safe, :input_html => { :class => "span12 network_tags_input", :placeholder =>"…", data: {autocomplete_source: networks_path} }
 
                 -#  ________________________________________________________ TAGS V1
-                = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>", :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
+                = c.input :custom_tags, label: "Tags personnalisés<br><span class='help-block'>(séparés par des virgules)</span>".html_safe, :input_html => { :class => "span12 custom_tags_input", :placeholder =>"…", data: {autocomplete_source: customs_path} }
   
 
 
