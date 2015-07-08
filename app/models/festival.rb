@@ -128,11 +128,11 @@ class Festival < ActiveRecord::Base
   
   def self.from_csv(row)
     festival = Festival.new
-    nb_edition = row["nb_editions".to_sym]
-    festival.nb_edition = row.delete("nb_editions".to_sym) if nb_edition.is_a? Integer
+    nb_edition = row["nb_editions".to_sym].to_i
+    festival.nb_edition = row.delete("nb_editions".to_sym)
     
-    last_edition = row["derniere_annee".to_sym]
-    festival.last_year = row.delete("derniere_annee".to_sym) if last_edition.is_a? Integer
+    last_edition = row["derniere_annee".to_sym].to_i
+    festival.last_year = row.delete("derniere_annee".to_sym)
     
     scheduling = Scheduling.from_csv(row)
     festival.schedulings << scheduling if scheduling
