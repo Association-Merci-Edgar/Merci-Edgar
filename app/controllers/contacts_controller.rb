@@ -35,15 +35,15 @@ class ContactsController < AppController
   end
   
   def autocomplete
-    @contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
+    contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
     json=[]
-    @contacts.each do |c| 
+    contacts.each do |c| 
       fm = c.fine_model
       link = send(fm.class.name.underscore + "_path", fm)
       kind = I18n.t(fm.class.name.underscore, scope: "activerecord.models")
       json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb), kind: kind})
     end
-    unless @contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
+    unless contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
       json.push({value:params[:term], 
         label: "Créer la structure : " + params[:term], new:"true", 
         link: new_structure_path(name: params[:term])
@@ -52,12 +52,10 @@ class ContactsController < AppController
         label: "Créer la personne : " + params[:term], new:"true", 
         link: new_person_path(name: params[:term])
         })
-      
     end
     render json: json
-    
   end
-  
+
   def index
     if Contact.count == 0
       render "empty"
@@ -77,8 +75,6 @@ class ContactsController < AppController
         contact = address.contact
         marker.infowindow render_to_string(:partial => "contacts/infowindow_venue", :locals => { :contact => contact})
         marker.title   address.contact.name
-        # marker.sidebar render_to_string(address.contact)
-        # marker.json({ :id => address.id, :foo => "bar" })
       end if addresses.present?
       render "show_map"
       
@@ -113,7 +109,6 @@ class ContactsController < AppController
       marker.infowindow render_to_string(:partial => "contacts/infowindow_#{model.class.name.downcase}", :locals => { :model => model})
       marker.title   address.contact.name
       # marker.sidebar render_to_string(address.contact)
-      # marker.json({ :id => address.id, :foo => "bar" })
     end if contacts.present?
   end
 
