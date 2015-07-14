@@ -10,6 +10,12 @@
   .row-fluid.label-blocks
     .span4
       = link_to import_samples_account_path, remote: true, method: :put, :class => "label label-large" do
+        %i.edi-import
+        %h4 Importer un fichier
+        %p (Excel, LibreOffice, ...)
+
+    .span4
+      = link_to import_samples_account_path, remote: true, method: :put, :class => "label label-large" do
         %i.edi-vcard
         %h4 Importer des contacts exemples
         %p (6 fiches pour tester)
