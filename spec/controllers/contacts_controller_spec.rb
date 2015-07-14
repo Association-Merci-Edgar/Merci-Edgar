@@ -14,5 +14,13 @@ describe ContactsController do
       it { expect(response).to be_success }
     end
 
+    describe "GET 'autocomplete'" do
+      before(:each) { get 'autocomplete', term: 'bac' }
+      it { expect(Contact.count).to eq(0)}
+      it { expect(response).to be_success }
+      it { expect(response.body).to eq([{value:"bac",label:"Cr\u00e9er la structure : bac", new:"true",link:"/fr/structures/new?name=bac"},{value:"bac",label:"Cr\u00e9er la personne : bac",new:"true",link:"/fr/people/new?name=bac"}].to_json) }
+    end
+
+
   end
 end
