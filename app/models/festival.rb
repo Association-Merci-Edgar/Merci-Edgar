@@ -27,10 +27,6 @@ class Festival < ActiveRecord::Base
 
 
   delegate :name, :contact, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
-  # validate :venue_must_have_at_least_one_address
-#  validate :venue_name_must_be_unique_by_city, :on => :create
-  # validates_presence_of :addresses
-
 
   before_save :set_contact_criteria 
   
