@@ -201,12 +201,17 @@ class Person < ActiveRecord::Base
     person
   end
 
+  def self.csv_header
+    %w(Nom Email Tél Rue CodePostal Ville Pays Siteweb Réseaux TagPerso Commentaires).join(',')
+  end
+
   def self.export(account)
     people = Person.where(account_id: account.id)
     return nil if people.empty?
 
     f = File.new("personnes-#{account.domain}.csv", "w")
     File.open(f, 'w') do |file|
+      file.puts csv_header 
       people.each do |p|
         file.puts p.to_csv
       end
@@ -214,8 +219,52 @@ class Person < ActiveRecord::Base
     f
   end
 
+  def email
+    self.emails.first.address if self.emails.any?
+  end
+
+  def phone
+    self.phones.first.number if self.phones.any?
+  end
+
+  def network_tags
+    self.contact.network_tags
+  end
+
+  def custom_tags
+    self.contact.custom_tags
+  end
+
+  def remark
+    self.contact.remark
+  end
+
+  def street
+    self.contact.addresses.first.street if self.contact.addresses.any?
+  end
+
+  def postal_code
+    self.contact.addresses.first.postal_code if self.contact.addresses.any?
+  end
+
+  def city
+    self.contact.addresses.first.city if self.contact.addresses.any?
+  end
+
+  def country
+    self.contact.addresses.first.country if self.contact.addresses.any?
+  end
+
+  def website
+    self.websites.first.url if self.websites.any?
+  end
+
   def to_csv
-    "#{self.last_name},#{self.first_name}"
+    [self.name, self.email, self.phone,
+     self.street, self.postal_code, self.city,
+     self.country, self.website, self.network_tags,
+     self.custom_tags, self.remark
+    ].join(',')
   end
 
 end

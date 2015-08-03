@@ -61,6 +61,7 @@ class Phone < ActiveRecord::Base
     end
     Phony.normalize(phone_number) if Phony.plausible?(phone_number)
   end
+
   def set_kind
     self.kind = @specific_kind if @specific_kind.present?
   end
@@ -84,7 +85,7 @@ class Phone < ActiveRecord::Base
       self.number = international if international
     end
   end
-  
+
   def check_number
     if !Phony.plausible?(self.number)
       errors.add(:national_number, "Wrong phone number")
