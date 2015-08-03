@@ -51,6 +51,9 @@ h2. Documentation and Support
 This is the only documentation.
 More documentation will come soon.
 
+To generate db Schema, you can use ERD:
+
+`bundle exec erd --inheritance --direct --attributes=foreign_keys,content`
 
 h2. Contributing
 

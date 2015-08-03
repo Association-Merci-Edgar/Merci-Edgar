@@ -59,6 +59,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'byebug'
   gem 'annotate'
+  gem 'rails-erd'
 end
 group :development, :test do
   gem 'foreman'
