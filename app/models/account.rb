@@ -1,3 +1,5 @@
+require 'zip'
+
 # == Schema Information
 #
 # Table name: accounts
@@ -180,8 +182,19 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def export_filename
+    today = DateTime.now
+    File.join(Dir.tmpdir, "#{domain}-#{today.strftime('%d%m%Y')}.zip")
+  end
+
   def export_contacts
-    [Person.export(self)].compact
+    File.delete(export_filename) if File.exists?(export_filename)
+    Zip::File.open(export_filename, Zip::File::CREATE) do |zipfile|
+      if people_file = Person.export(self)
+        zipfile.add(File.basename(people_file), File.absolute_path(people_file))
+      end
+    end
+    export_filename
   end
 
 end

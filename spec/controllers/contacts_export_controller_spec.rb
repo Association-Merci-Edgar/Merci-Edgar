@@ -8,6 +8,8 @@ describe ContactsExportsController do
 
     let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
 
+    let!(:person) { FactoryGirl.create(:person, account_id: account.id) }
+
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user

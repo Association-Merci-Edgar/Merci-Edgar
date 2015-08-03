@@ -53,20 +53,20 @@ describe Account do
     end
   end
 
-  describe "export_contacts" do
+  describe "export" do
+    before(:each) { DateTime.stubs(:now).returns(DateTime.new(2010, 12, 30)) }
+
     context "with an existing account" do
       let(:account) { FactoryGirl.build(:account) }
 
-      context "without contact" do
-        it { expect(account.export_contacts).to eq([]) }
+      describe "export_contacts" do
+        it { expect(account.export_contacts).to eq(account.export_filename) }
+
+        it { expect(File.stat(account.export_contacts).size).to satisfy {|v| v > 0} }
       end
 
-      context "with a person" do
-        let!(:george) { FactoryGirl.create(:person, account_id: account.id) }
-
-        it { expect(Person.where(account_id: account.id)).to eq([george]) }
-
-        it { expect(account.export_contacts.length).to eq(1) }
+      describe "export_filename" do
+        it { expect(account.export_filename).to eq(File.join(Dir.tmpdir, "#{account.domain}-30122010.zip")) }
       end
     end
   end
