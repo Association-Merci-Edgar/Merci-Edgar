@@ -201,4 +201,21 @@ class Person < ActiveRecord::Base
     person
   end
 
+  def self.export(account)
+    people = Person.where(account_id: account.id)
+    return nil if people.empty?
+
+    f = File.new("personnes-#{account.domain}.csv", "w")
+    File.open(f, 'w') do |file|
+      people.each do |p|
+        file.puts p.to_csv
+      end
+    end
+    f
+  end
+
+  def to_csv
+    "#{self.last_name},#{self.first_name}"
+  end
+
 end

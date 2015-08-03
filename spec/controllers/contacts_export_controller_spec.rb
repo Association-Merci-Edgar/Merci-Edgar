@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe ContactsExportsController do
+  let(:account) { FactoryGirl.create(:account) }
+  before(:each) { Account.current_id = account.id }
+
   context "with a logged user" do
+
     let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
 
     before(:each) do

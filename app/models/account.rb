@@ -180,4 +180,8 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def export_contacts
+    [Person.export(self)].compact
+  end
+
 end

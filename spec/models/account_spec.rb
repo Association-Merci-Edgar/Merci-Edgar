@@ -53,4 +53,22 @@ describe Account do
     end
   end
 
+  describe "export_contacts" do
+    context "with an existing account" do
+      let(:account) { FactoryGirl.build(:account) }
+
+      context "without contact" do
+        it { expect(account.export_contacts).to eq([]) }
+      end
+
+      context "with a person" do
+        let!(:george) { FactoryGirl.create(:person, account_id: account.id) }
+
+        it { expect(Person.where(account_id: account.id)).to eq([george]) }
+
+        it { expect(account.export_contacts.length).to eq(1) }
+      end
+    end
+  end
+
 end
