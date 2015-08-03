@@ -36,6 +36,8 @@ gem 'carrierwave_direct', "~> 0.0.14"
 gem 'mini_magick'
 gem 'fog'
 
+gem 'rubyzip'
+
 gem 'waitutil', "~> 0.2.1"
 
 gem 'gmaps4rails', "1.5.6"

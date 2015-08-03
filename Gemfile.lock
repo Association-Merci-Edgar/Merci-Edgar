@@ -492,6 +492,7 @@ DEPENDENCIES
   rolify
   rollbar
   rspec-rails
+  rubyzip
   sass-rails (~> 3.2.3)
   selenium-webdriver
   sidekiq

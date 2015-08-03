@@ -49,6 +49,9 @@
   // IMPORT
   -#
   .subpage-nav.pull-right
+    = link_to new_contacts_export_path, remote:false, :class=>"btn btn-tertiary ", :title =>"Exporter des contacts...", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
+      %i.ico.edi-export
+  .subpage-nav.pull-right
     = link_to new_contacts_import_path, remote:false, :class=>"btn btn-tertiary ", :title =>"Importer des contacts...", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
       %i.ico.edi-import
 
