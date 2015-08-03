@@ -12,7 +12,7 @@ describe Person do
 
       it { expect(File.basename(Person.export(account))).to eq("personnes-#{account.domain}.csv") }
 
-      it { expect(File.readlines(Person.export(account)).sort).to eq(["#{henri.to_csv}\n", "#{Person.csv_header}\n"].sort) }
+      it { expect(File.readlines(Person.export(account)).sort).to eq([henri.to_csv, Person.csv_header].sort) }
 
     end
 
@@ -21,7 +21,7 @@ describe Person do
       let!(:henri) { FactoryGirl.create(:person, account_id: account.id) }
       let!(:george) { FactoryGirl.create(:person, account_id: account.id) }
 
-      it { expect(File.readlines(Person.export(account)).sort).to eq(["#{henri.to_csv}\n", "#{george.to_csv}\n", "#{Person.csv_header}\n"].sort) }
+      it { expect(File.readlines(Person.export(account)).sort).to eq([henri.to_csv, george.to_csv, Person.csv_header].sort) }
     end
 
   end
@@ -35,7 +35,7 @@ describe Person do
         henri.street, henri.postal_code, henri.city,
         henri.country, henri.website, henri.network_tags,
         henri.custom_tags, henri.remark
-      ].join(',')}
+      ].to_csv}
 
       it { expect(henri.to_csv).to eq(expected_line) }
     end

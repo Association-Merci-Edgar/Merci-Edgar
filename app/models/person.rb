@@ -202,7 +202,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.csv_header
-    %w(Nom Email Tél Rue CodePostal Ville Pays Siteweb Réseaux TagPerso Commentaires).join(',')
+    %w(Nom Email Tél Rue CodePostal Ville Pays Siteweb Réseaux TagPerso Commentaires).to_csv
   end
 
   def self.export(account)
@@ -211,7 +211,7 @@ class Person < ActiveRecord::Base
 
     f = File.new("personnes-#{account.domain}.csv", "w")
     File.open(f, 'w') do |file|
-      file.puts csv_header 
+      file.puts csv_header
       people.each do |p|
         file.puts p.to_csv
       end
@@ -264,7 +264,7 @@ class Person < ActiveRecord::Base
      self.street, self.postal_code, self.city,
      self.country, self.website, self.network_tags,
      self.custom_tags, self.remark
-    ].join(',')
+    ].to_csv
   end
 
 end

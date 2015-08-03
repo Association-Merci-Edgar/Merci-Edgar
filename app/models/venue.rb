@@ -238,4 +238,95 @@ class Venue < ActiveRecord::Base
     [venue, invalid_keys]
   end
 
+  def self.csv_header
+    "Nom,Email,Tel,Adresse,Code postal,Ville,Pays,Site web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations".split(',').to_csv
+  end
+
+  def self.export(account)
+    venues = Venue.where(account_id: account.id).limit(100)
+    return nil if venues.empty?
+
+    f = File.new("lieux-#{account.domain}.csv", "w")
+    File.open(f, 'w') do |file|
+      file.puts csv_header
+      venues.each do |venue|
+        file.puts venue.to_csv
+      end
+    end
+    f
+  end
+
+  def email
+    self.emails.first.address if self.emails.any?
+  end
+
+  def phone
+    self.phones.first.number if self.phones.any?
+  end
+
+  def street
+    self.addresses.first.street if self.addresses.any?
+  end
+
+  def postal_code
+    self.addresses.first.postal_code if self.addresses.any?
+  end
+
+  def city
+    self.addresses.first.city if self.addresses.any?
+  end
+
+  def country
+    self.addresses.first.country if self.addresses.any?
+  end
+
+  def website
+    self.websites.first.url if self.websites.any?
+  end
+
+  def network_tags
+    self.structure.contact.network_tags
+  end
+
+  def custom_tags
+    self.structure.contact.custom_tags
+  end
+
+  def style_tags
+    self.schedulings.first.style_tags if self.schedulings.any?
+  end
+
+  def contract_tags
+    self.schedulings.first.contract_tags if self.schedulings.any?
+  end
+
+  def discovery
+    self.schedulings.first.discovery if self.schedulings.any?
+  end
+
+  def period
+    self.schedulings.first.period if self.schedulings.any?
+  end
+
+  def scheduling_remark
+    self.schedulings.first.remark if self.schedulings.any?
+  end
+
+  def prospecting_months
+    self.schedulings.first.prospecting_months if self.schedulings.any?
+  end
+
+  def to_csv
+    [self.name, self.email, self.phone,
+     self.street, self.postal_code, self.city,
+     self.country, self.website, self.kind,
+     self.residency, self.accompaniment,
+     self.network_tags, self.custom_tags,
+     self.season_months, self.style_tags,
+     self.contract_tags, self.discovery,
+     self.period, self.scheduling_remark,
+     self.prospecting_months, self.remark
+    ].to_csv
+  end
+
 end

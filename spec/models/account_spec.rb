@@ -59,7 +59,7 @@ describe Account do
     context "with an existing account" do
       let(:account) { FactoryGirl.build(:account) }
 
-      describe "export_contacts" do
+      context "export_contacts" do
         it { expect(account.export_contacts).to eq(account.export_filename) }
 
         it { expect(File.stat(account.export_contacts).size).to satisfy {|v| v > 0} }

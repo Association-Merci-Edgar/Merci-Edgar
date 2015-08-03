@@ -190,8 +190,13 @@ class Account < ActiveRecord::Base
   def export_contacts
     File.delete(export_filename) if File.exists?(export_filename)
     Zip::File.open(export_filename, Zip::File::CREATE) do |zipfile|
+
       if people_file = Person.export(self)
         zipfile.add(File.basename(people_file), File.absolute_path(people_file))
+      end
+
+      if venues_file = Venue.export(self)
+        zipfile.add(File.basename(venues_file), File.absolute_path(venues_file))
       end
     end
     export_filename
