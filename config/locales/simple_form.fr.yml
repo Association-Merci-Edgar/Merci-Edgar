@@ -54,6 +54,7 @@ fr:
     buttons:
       add_capacity : Ajouter une jauge à cette salle
       add_room : Ajouter une salle à ce lieu
+      remove_room : Supprimer cette salle
     labels:
       defaults:
         name: "Nom"
