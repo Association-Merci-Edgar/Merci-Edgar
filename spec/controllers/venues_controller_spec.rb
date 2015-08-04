@@ -3,7 +3,6 @@ require 'rails_helper'
 describe VenuesController do
 
   context "with a logged user" do
-
     let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
 
     before(:each) do
@@ -33,9 +32,22 @@ describe VenuesController do
       end
 
       describe "PUT update" do
-        before(:each) { post :update, id: venue.id }
-        it { expect(assigns(:venue)).to eq(venue) }
-        it { expect(response).to redirect_to(venue) }
+        context "simple" do
+          before(:each) { post :update, id: venue.id }
+          it { expect(assigns(:venue)).to eq(venue) }
+          it { expect(response).to redirect_to(venue) }
+        end
+
+        context "with a room update" do
+          before(:each) do
+            post :update, id: venue.id, venue: {rooms_attributes: [{name: 'Salle principale', seating: '10', standing: '30', modular_space: '0'}] }
+            venue.reload
+          end
+          it { expect(venue.rooms.first.name).to eq('Salle principale') }
+          it { expect(venue.rooms.first.seating).to eq(10) }
+          it { expect(venue.rooms.first.standing).to eq(30) }
+          it { expect(venue.rooms.first.modular_space).to be_falsy }
+        end
       end
 
       describe "DELETE destroy" do

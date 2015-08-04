@@ -35,4 +35,44 @@ describe Venue do
 
     it { expect(laclef.to_csv).to eq(expected_line) }
   end
+
+  describe "capacity_tags" do
+
+    let(:account) { FactoryGirl.create(:account) }
+    before(:each) { Account.current_id = account.id }
+
+    context "without room" do
+      let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+      it { expect(venue.capacity_tags).to eq([]) }
+    end
+
+    context "with just a room" do
+      context "with 45 seats and 200 standing" do
+        let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+        let(:room) { FactoryGirl.create(:room, seating: 45, standing: 200, venue_id: venue.id) }
+        it { expect(room.venue.capacity_tags).to eq(['< 100', '100-400']) }
+      end
+
+      context "with 4500 seats and 0 standing" do
+        let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+        let(:room) { FactoryGirl.create(:room, seating: 4500, standing: 0, venue_id: venue.id) }
+        it { expect(room.venue.capacity_tags).to eq(['> 1200']) }
+      end
+
+      context "with 423 seats and 1500 standing" do
+        let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+        let(:room) { FactoryGirl.create(:room, seating: 423, standing: 1500, venue_id: venue.id) }
+        it { expect(room.venue.capacity_tags).to eq(['401-1200', '> 1200']) }
+      end
+    end
+
+    context "with 2 rooms" do
+      let!(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+      let!(:first_room) { FactoryGirl.create(:room, seating: 423, standing: 1500, venue_id: venue.id) }
+      let!(:second_room) { FactoryGirl.create(:room, seating: 0, standing: 500, venue_id: venue.id) }
+
+      it { expect(first_room.venue.capacity_tags).to eq(['401-1200', '> 1200']) }
+    end
+  end
+
 end

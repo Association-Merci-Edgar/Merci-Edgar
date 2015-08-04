@@ -266,7 +266,7 @@ class Contact < ActiveRecord::Base
   def test?
     @test ||= imported_at.present? && imported_at == account.test_imported_at
   end
-  # private
+
   def self.tagged_with(contacts, param_list, field)
     if contacts && param_list.present? && field.present?
       query = []
@@ -285,13 +285,6 @@ class Contact < ActiveRecord::Base
       contacts.where(hash_query)
     end
   end
-=begin
-  @contacts = @contacts.by_style(params[:style_list]) if params[:style_list].present?
-  @contacts = @contacts.by_network(params[:network_list]) if params[:network_list].present?
-  @contacts = @contacts.by_custom(params[:custom_list]) if params[:custom_list].present?
-  @contacts = @contacts.by_contract(params[:contract_list]) if params[:contract_list].present?
-  @contacts = @contacts.by_capacity(params[:capacity_list]) if params[:contract_list].present?
-=end
 
   def style_list
     self.style_tags.split(',') if self.style_tags

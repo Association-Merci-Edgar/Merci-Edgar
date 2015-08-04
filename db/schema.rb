@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140704093249) do
+ActiveRecord::Schema.define(:version => 20150804082936) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -337,8 +337,11 @@ ActiveRecord::Schema.define(:version => 20140704093249) do
     t.float    "height"
     t.boolean  "bar"
     t.integer  "venue_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "seating",       :default => 0
+    t.integer  "standing",      :default => 0
+    t.boolean  "modular_space", :default => false
   end
 
   add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"

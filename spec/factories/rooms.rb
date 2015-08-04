@@ -7,6 +7,6 @@ FactoryGirl.define do
     width 1.5
     height 1.5
     bar false
-    venue nil
+    venue
   end
 end

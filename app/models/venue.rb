@@ -115,19 +115,20 @@ class Venue < ActiveRecord::Base
 
   def capacity_tags
     tags = []
-    self.capacities.each do |c|
-      case
-      when c.nb < 100
-        tags << "< 100" unless tags.include?("< 100")
-      when c.nb <= 400
-        tags << "100-400" unless tags.include?("100-400")
-      when c.nb <= 1200
-        tags << "401-1200" unless tags.include?("401-1200")
-      when c.nb > 1200
-        tags << "> 1200" unless tags.include?("> 1200")
+    seats = self.rooms.map{|r| [r.seating, r.standing]}.flatten.sort.uniq
+    seats.sort.each do |qty|
+      next if qty == 0
+      if qty < 100
+        tags << '< 100'
+      elsif qty >= 100 && qty <= 400
+        tags << '100-400'
+      elsif qty > 400 && qty <= 1200
+        tags << '401-1200'
+      else
+        tags << '> 1200'
       end
     end
-    tags
+    tags.uniq
   end
 
   def season

@@ -29,9 +29,6 @@ class ContactsController < AppController
         render "bulk_error"
       end
     end
-    # render "bulk_add_custom_tags"
-    
-    
   end
   
   def autocomplete
@@ -77,8 +74,6 @@ class ContactsController < AppController
         marker.title   address.contact.name
       end if addresses.present?
       render "show_map"
-      
-      
     else
       @contacts = Contact.advanced_search(params)
       @contacts = @contacts.where(id: addresses.map(&:contact_id)) if addresses
@@ -92,7 +87,6 @@ class ContactsController < AppController
         raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
         @label_category = params[:category]
       end
-      
     end
   end
   

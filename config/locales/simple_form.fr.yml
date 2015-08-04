@@ -53,7 +53,7 @@ fr:
         name: "Tâche"
     buttons:
       add_capacity : Ajouter une jauge à cette salle
-      add_room : Ajouter une salle à ce lieux
+      add_room : Ajouter une salle à ce lieu
     labels:
       defaults:
         name: "Nom"
@@ -126,6 +126,10 @@ fr:
             nb: Jauge
             modular: Modulable
           bar: Bar dans la salle
+          standing: Places debouts
+          seating: Places assises
+          modular_space: Espace modulable ?
+          name: Nom de la salle
         addresses:
           city: Ville
           postal_code: Code postal

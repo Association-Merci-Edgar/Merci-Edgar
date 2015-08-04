@@ -17,19 +17,16 @@
 class Room < ActiveRecord::Base
   belongs_to :venue, touch:true
   has_many :capacities, :dependent => :destroy
-  validates_presence_of :name
-#  validates :depth, :height, :width, numericality:true, allow_nil:true
+
   validates_numericality_of :depth, :height, :width, allow_nil:true
-  attr_accessible :capacities_attributes, :bar, :depth, :height, :name, :width
+  validates_presence_of :venue_id
+
+  attr_accessible :capacities_attributes, :bar, :depth, :height, :name, :width, :seating, :standing, :modular_space
   accepts_nested_attributes_for :capacities, :reject_if => proc { |attributes| attributes[:nb].blank? }, allow_destroy:true
 
   attr_localized :depth, :height, :width
-  
-  VALID_CSV_KEYS = [:places_debout, :places_assies, :modulable, :ouverture_plateau, :profondeur_plateau, :hauteur_plateau]
 
-  def stage
-    self.depth.present? || self.width.present? || self.height.present? ? [self.depth, self.width, self.height].join(" x ") : "Non précisé"
-  end
+  VALID_CSV_KEYS = [:places_debout, :places_assies, :modulable, :ouverture_plateau, :profondeur_plateau, :hauteur_plateau]
 
   def self.from_csv(row)
     room = Room.new
@@ -37,22 +34,22 @@ class Room < ActiveRecord::Base
     standing_nb = row.delete(:places_debout)
     if standing_nb.present? && standing_nb.is_a?(Integer) && standing_nb < Capacity::CAPACITY_MAX && standing_nb > 0
       standing_capacity = room.capacities.build(kind: :standing, nb: standing_nb)
-      standing_capacity.modular = true if row.delete(:places_debout_modulable).try(:downcase) == "x"    
+      standing_capacity.modular = true if row.delete(:places_debout_modulable).try(:downcase) == "x"
     else
       row[:places_debout] = standing_nb if standing_nb.present?
     end
     seating_nb = row.delete(:places_assises)
     if seating_nb.present? && seating_nb.is_a?(Integer) && seating_nb < Capacity::CAPACITY_MAX && seating_nb > 0
       seating_capacity = room.capacities.build(kind: :seating, nb: seating_nb)
-      seating_capacity.modular = true if row.delete(:places_assises_modulable).try(:downcase) == "x"    
+      seating_capacity.modular = true if row.delete(:places_assises_modulable).try(:downcase) == "x"
     else
       row[:places_assises] = seating_nb if seating_nb.present?
     end
-    
+
     room.width = row.delete(:ouverture_plateau) if row[:ouverture_plateau].is_a?(Integer)
     room.depth = row.delete(:profondeur_plateau) if row[:profondeur_plateau].is_a?(Integer)
     room.height = row.delete(:hauteur_plateau) if row[:hauteur_plateau].is_a?(Integer)
-    room.bar = true if row.delete(:bar_salle).try(:downcase) == "x" 
+    room.bar = true if row.delete(:bar_salle).try(:downcase) == "x"
     room
   end
 end

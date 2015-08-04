@@ -1,6 +1,6 @@
 # encoding: utf-8
 module ApplicationHelper
-  
+
   def spinner_tag id
     #Assuming spinner image is called "spinner.gif"
     image_tag("appli/ajax-loader.gif", :id => id, :alt => "Loading....", :style => "display:none")
@@ -31,7 +31,7 @@ module ApplicationHelper
     notice = get_errors(object, light_version)
     content_tag(:span, notice, class:'help-inline') if notice
   end
-  
+
   def get_errors(object, light_version)
     if object && object.respond_to?(:errors) && object.errors.present?
       notice = content_tag(:span, "Oups ! Quelques erreurs se sont glissées !", class:'noticetitle')
@@ -46,9 +46,9 @@ module ApplicationHelper
       end
       notice
     end
-    
+
   end
-  
+
   def menu_link(link_text, link, icon, controller, badge)
     class_name = controller.include?(controller_name) ? "active" : ""
     badge_tag = content_tag(:span,badge, class:"badge")
@@ -59,11 +59,11 @@ module ApplicationHelper
   end
 
   def showcase_menu_link(link_text, link, action)
-    class_name = action_name == action ? "active" : ""    
+    class_name = action_name == action ? "active" : ""
     link_tag = link_to(link_text, link)
     content_tag(:li,link_tag, class: class_name)
   end
-  
+
   def show_badge(color, text)
     badge_color = "badge-#{color}" if color
     content_tag(:div,text,class:"badge #{badge_color}")
@@ -75,7 +75,7 @@ module ApplicationHelper
     session[:history] << asset.id
     session[:history].shift if session[:history].length > 7
   end
-  
+
   def translate_multiple_values(values, scope)
     if values
       translated_values = []
@@ -84,6 +84,21 @@ module ApplicationHelper
       end
       translated_values.join(', ')
     end
+  end
+
+  def stage_of(room)
+    stage = "Dimension plateau "
+    if room.depth.blank? && room.width.blank? && room.height.blank?
+      stage += "non précisée"
+    else
+      stage += ": P #{room.depth || 0}, L #{room.width || 0}, H #{room.height || 0}"
+    end
+    stage
+  end
+
+  def name_of(room)
+    return "Salle : #{room.name}" if room.name
+    "Salle"
   end
 
 end
