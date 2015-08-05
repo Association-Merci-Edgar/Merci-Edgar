@@ -24,10 +24,15 @@ class Phone < ActiveRecord::Base
   FAX = :fax
   MOBILE = :mobile
   WORK = :work
+  RECEPTION = :reception
+  SCHEDULING = :scheduling
+  ADMINISTRATIVE = :administrative
+  TICKET = :ticket
+  TECHNICAL = :technical
 
-  VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, FAX, OTHER]
+  VENUE_KIND = [RECEPTION, SCHEDULING, ADMINISTRATIVE, TICKET, TECHNICAL, FAX, OTHER]
   PERSON_KIND = [WORK, MOBILE, PERSO, FAX, OTHER]
-  PHONE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, FAX, WORK, MOBILE, PERSO]
+  PHONE_KIND = [RECEPTION, SCHEDULING, ADMINISTRATIVE, TICKET, TECHNICAL, FAX, WORK, MOBILE, PERSO]
 
   def specific_kind
     self.kind unless kind_list.include?(self.kind.try(:to_sym))
@@ -99,6 +104,6 @@ class Phone < ActiveRecord::Base
   end
 
   def to_s
-    "#{number} [#{kind}]"
+    "#{number} [#{I18n.t(kind,scope:'simple_form.options.phones.classic_kind')}]"
   end
 end
