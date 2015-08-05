@@ -28,7 +28,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
 
-  delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
+  delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, :remark, to: :contact
 
   mount_uploader :avatar, AvatarUploader
 
@@ -219,26 +219,6 @@ class Person < ActiveRecord::Base
     f
   end
 
-  def email
-    self.emails.first.address if self.emails.any?
-  end
-
-  def phone
-    self.phones.first.number if self.phones.any?
-  end
-
-  def network_tags
-    self.contact.network_tags
-  end
-
-  def custom_tags
-    self.contact.custom_tags
-  end
-
-  def remark
-    self.contact.remark
-  end
-
   def street
     self.contact.addresses.first.street if self.contact.addresses.any?
   end
@@ -255,15 +235,11 @@ class Person < ActiveRecord::Base
     self.contact.addresses.first.country if self.contact.addresses.any?
   end
 
-  def website
-    self.websites.first.url if self.websites.any?
-  end
-
   def to_csv
-    [self.name, self.email, self.phone,
+    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones),
      self.street, self.postal_code, self.city,
-     self.country, self.website, self.network_tags,
-     self.custom_tags, self.remark
+     self.country, ExportTools.build_list(self.websites), self.network_list,
+     self.custom_list, self.remark
     ].to_csv
   end
 

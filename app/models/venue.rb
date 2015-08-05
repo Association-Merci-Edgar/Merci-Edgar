@@ -240,7 +240,7 @@ class Venue < ActiveRecord::Base
   end
 
   def self.csv_header
-    "Nom, Email, Tel, Adresse, Code postal, Ville, Pays, Site web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar".split(',').to_csv
+    "Nom, Emails, Tels, Adresse, Code postal, Ville, Pays, Sites web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar".split(',').to_csv
   end
 
   def self.export(account)
@@ -257,14 +257,6 @@ class Venue < ActiveRecord::Base
     f
   end
 
-  def email
-    self.emails.first.address if self.emails.any?
-  end
-
-  def phone
-    self.phones.first.number if self.phones.any?
-  end
-
   def street
     self.addresses.first.street if self.addresses.any?
   end
@@ -279,26 +271,6 @@ class Venue < ActiveRecord::Base
 
   def country
     self.addresses.first.country if self.addresses.any?
-  end
-
-  def website
-    self.websites.first.url if self.websites.any?
-  end
-
-  def network_tags
-    structure.network_list
-  end
-
-  def custom_tags
-    structure.custom_list
-  end
-
-  def style_tags
-    self.schedulings.first.style_tags if self.schedulings.any?
-  end
-
-  def contract_tags
-    self.schedulings.first.contract_tags if self.schedulings.any?
   end
 
   def discovery

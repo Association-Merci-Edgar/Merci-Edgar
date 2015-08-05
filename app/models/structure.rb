@@ -230,14 +230,6 @@ class Structure < ActiveRecord::Base
     f
   end
 
-  def email
-    self.emails.first.address if self.emails.any?
-  end
-
-  def phone
-    self.phones.first.number if self.phones.any?
-  end
-
   def street
     self.addresses.first.street if self.addresses.any?
   end
@@ -254,12 +246,8 @@ class Structure < ActiveRecord::Base
     self.addresses.first.country if self.addresses.any?
   end
 
-  def website
-    self.websites.first.url if self.websites.any?
-  end
-
   def to_csv
-    [self.name, self.email, self.phone, self.street, self.postal_code, self.city, self.country, self.website, self.network_list, self.custom_list, self.remark
+    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), self.street, self.postal_code, self.city, self.country, ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark
     ].to_csv
   end
 end

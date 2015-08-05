@@ -54,13 +54,13 @@ class Room < ActiveRecord::Base
   end
 
   def to_csv
-    [self.venue.name, self.venue.email, self.venue.phone,
+    [self.venue.name, ExportTools.build_list(self.venue.emails), ExportTools.build_list(self.venue.phones),
      self.venue.street, self.venue.postal_code, self.venue.city,
-     self.venue.country, self.venue.website, self.venue.kind,
+     self.venue.country, ExportTools.build_list(self.venue.websites), self.venue.kind,
      self.venue.residency, self.venue.accompaniment,
-     self.venue.network_tags, self.venue.custom_tags,
-     self.venue.season_months, self.venue.style_tags,
-     self.venue.contract_tags, self.venue.discovery,
+     self.venue.network_list, self.venue.custom_list,
+     self.venue.season_months, self.venue.style_list,
+     self.venue.contract_list, self.venue.discovery,
      self.venue.period, self.venue.scheduling_remark,
      self.venue.prospecting_months, self.venue.remark,
      self.name, self.seating, self.standing, self.modular_space,

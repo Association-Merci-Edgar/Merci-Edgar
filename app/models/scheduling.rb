@@ -273,7 +273,7 @@ class Scheduling < ActiveRecord::Base
 
   def self.csv_header
     ['Nom programmation', 'Period', 'Mois de prospection', 'Types de contrat', 'Styles', 'Observations Programmation', 'Scene découverte',
-     'Nom', 'Email', 'Tél', 'Rue', 'Code Postal', 'Ville', 'Pays', 'Site web', 'Réseaux', 'Tag Perso', 'Commentaires'].to_csv
+     'Nom', 'Emails', 'Téls', 'Rue', 'Code Postal', 'Ville', 'Pays', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires'].to_csv
   end
 
   def self.export(account)
@@ -291,8 +291,7 @@ class Scheduling < ActiveRecord::Base
   end
 
   def to_csv
-    [self.name, self.period, self.prospecting_months, self.contract_tags, self.style_tags, self.remark, self.discovery,
-     self.organizer.name, self.organizer.email, self.organizer.phone, self.organizer.street, self.organizer.postal_code, self.organizer.city, self.organizer.country, self.organizer.website, self.organizer.network_tags,self.organizer.custom_tags, self.organizer.remark
+    [self.name, self.period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer.name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), self.organizer.street, self.organizer.postal_code, self.organizer.city, self.organizer.country, ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark
     ].to_csv
   end
 

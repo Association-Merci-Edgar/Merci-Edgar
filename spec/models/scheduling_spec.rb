@@ -25,7 +25,7 @@ describe Scheduling do
 
       let(:expected_line) {[
     scheduling.name, scheduling.period, scheduling.prospecting_months, scheduling.contract_tags, scheduling.style_tags, scheduling.remark, scheduling.discovery,
-     buyer.name, buyer.email, buyer.phone, buyer.street, buyer.postal_code, buyer.city, buyer.country, buyer.website, buyer.network_tags,buyer.custom_tags, buyer.remark
+    buyer.name, ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), buyer.street, buyer.postal_code, buyer.city, buyer.country, ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark
       ].to_csv}
 
       it { expect(scheduling.to_csv).to eq(expected_line) }
