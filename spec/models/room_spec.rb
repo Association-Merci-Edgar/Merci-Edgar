@@ -11,9 +11,8 @@ describe Room do
     let(:room) { FactoryGirl.create(:room) }
     let(:expected_line) {[
       room.venue.name, ExportTools.build_list(room.venue.emails), ExportTools.build_list(room.venue.phones),
-      room.venue.street, room.venue.postal_code, room.venue.city,
-      room.venue.country, ExportTools.build_list(room.venue.websites), room.venue.kind,
-      room.venue.residency, room.venue.accompaniment,
+      ExportTools.build_list(room.venue.addresses), ExportTools.build_list(room.venue.websites), 
+      room.venue.kind, room.venue.residency, room.venue.accompaniment,
       room.venue.network_list, room.venue.custom_list,
       room.venue.season_months, room.venue.style_list,
       room.venue.contract_list, room.venue.discovery,

@@ -21,7 +21,7 @@ describe Structure do
     context "with a show buyer only" do
       let(:structure) { FactoryGirl.create(:structure, :generic) }
 
-      let(:expected_line) {[structure.name, ExportTools.build_list(structure.emails), ExportTools.build_list(structure.phones), structure.street, structure.postal_code, structure.city, structure.country, ExportTools.build_list(structure.websites), structure.network_list, structure.custom_list, structure.remark
+      let(:expected_line) {[structure.name, ExportTools.build_list(structure.emails), ExportTools.build_list(structure.phones), ExportTools.build_list(structure.addresses), ExportTools.build_list(structure.websites), structure.network_list, structure.custom_list, structure.remark
       ].to_csv}
 
       it { expect(structure.to_csv).to eq(expected_line) }

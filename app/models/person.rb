@@ -202,7 +202,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.csv_header
-    %w(Nom Email Tél Rue CodePostal Ville Pays Siteweb Réseaux TagPerso Commentaires).to_csv
+    "Nom, Emails, Téls, Adresses, Sites web, Réseaux, Tags Perso, Commentaires".split(',').to_csv
   end
 
   def self.export(account)
@@ -219,26 +219,9 @@ class Person < ActiveRecord::Base
     f
   end
 
-  def street
-    self.contact.addresses.first.street if self.contact.addresses.any?
-  end
-
-  def postal_code
-    self.contact.addresses.first.postal_code if self.contact.addresses.any?
-  end
-
-  def city
-    self.contact.addresses.first.city if self.contact.addresses.any?
-  end
-
-  def country
-    self.contact.addresses.first.country if self.contact.addresses.any?
-  end
-
   def to_csv
     [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones),
-     self.street, self.postal_code, self.city,
-     self.country, ExportTools.build_list(self.websites), self.network_list,
+     ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list,
      self.custom_list, self.remark
     ].to_csv
   end

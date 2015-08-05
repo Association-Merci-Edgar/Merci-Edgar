@@ -24,8 +24,7 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: nil) }
 
       let(:expected_line) {[
-    scheduling.name, scheduling.period, scheduling.prospecting_months, scheduling.contract_tags, scheduling.style_tags, scheduling.remark, scheduling.discovery,
-    buyer.name, ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), buyer.street, buyer.postal_code, buyer.city, buyer.country, ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark
+        scheduling.name, scheduling.period, scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, scheduling.remark, scheduling.discovery, buyer.name, ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), ExportTools.build_list(buyer.addresses), ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark
       ].to_csv}
 
       it { expect(scheduling.to_csv).to eq(expected_line) }

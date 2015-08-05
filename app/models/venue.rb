@@ -240,7 +240,7 @@ class Venue < ActiveRecord::Base
   end
 
   def self.csv_header
-    "Nom, Emails, Tels, Adresse, Code postal, Ville, Pays, Sites web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar".split(',').to_csv
+    "Nom, Emails, Tels, Adresses, Sites web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar".split(',').to_csv
   end
 
   def self.export(account)
@@ -255,22 +255,6 @@ class Venue < ActiveRecord::Base
       end
     end
     f
-  end
-
-  def street
-    self.addresses.first.street if self.addresses.any?
-  end
-
-  def postal_code
-    self.addresses.first.postal_code if self.addresses.any?
-  end
-
-  def city
-    self.addresses.first.city if self.addresses.any?
-  end
-
-  def country
-    self.addresses.first.country if self.addresses.any?
   end
 
   def discovery

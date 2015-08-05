@@ -135,20 +135,4 @@ class Festival < ActiveRecord::Base
     festival.structure, invalid_keys = Structure.from_csv(row)     
     [festival, invalid_keys]
   end
- 
-  def street
-    self.contact.addresses.first.street if self.contact.addresses.any?
-  end
-
-  def postal_code
-    self.contact.addresses.first.postal_code if self.contact.addresses.any?
-  end
-
-  def city
-    self.contact.addresses.first.city if self.contact.addresses.any?
-  end
-
-  def country
-    self.contact.addresses.first.country if self.contact.addresses.any?
-  end
 end

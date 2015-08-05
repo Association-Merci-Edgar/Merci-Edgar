@@ -32,9 +32,8 @@ describe Person do
 
       let(:expected_line) {[
         henri.name, ExportTools.build_list(henri.emails), ExportTools.build_list(henri.phones),
-        henri.street, henri.postal_code, henri.city,
-        henri.country, ExportTools.build_list(henri.websites), henri.network_list,
-        henri.custom_list, henri.remark
+        ExportTools.build_list(henri.addresses), ExportTools.build_list(henri.websites),
+        henri.network_list, henri.custom_list, henri.remark
       ].to_csv}
 
       it { expect(henri.to_csv).to eq(expected_line) }

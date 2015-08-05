@@ -213,7 +213,7 @@ class Structure < ActiveRecord::Base
   end
 
   def self.csv_header
-    ['Nom', 'Email', 'Tél', 'Rue', 'Code Postal', 'Ville', 'Pays', 'Site web', 'Réseaux', 'Tag Perso', 'Commentaires'].to_csv
+    ['Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires'].to_csv
   end
 
   def self.export(account)
@@ -230,24 +230,8 @@ class Structure < ActiveRecord::Base
     f
   end
 
-  def street
-    self.addresses.first.street if self.addresses.any?
-  end
-
-  def postal_code
-    self.addresses.first.postal_code if self.addresses.any?
-  end
-
-  def city
-    self.addresses.first.city if self.addresses.any?
-  end
-
-  def country
-    self.addresses.first.country if self.addresses.any?
-  end
-
   def to_csv
-    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), self.street, self.postal_code, self.city, self.country, ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark
+    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark
     ].to_csv
   end
 end
