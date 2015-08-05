@@ -28,12 +28,10 @@ class Structure < ActiveRecord::Base
   has_many :people, through: :people_structures, uniq:true, dependent: :destroy
 
   delegate :name, :tasks, :reportings, :addresses, :remark, :emails, :phones, :websites, :city, :country,  :address, :phone_number, :website, :website_url, :network_list, :custom_list, :contacted?, :favorite?, to: :contact
-  # delegate :avatar, to: :structurable
 
   mount_uploader :avatar, AvatarUploader
 
   validates_presence_of :contact
-  # validates_associated :contact
 
   def kind
     fm = self.fine_model
@@ -214,4 +212,54 @@ class Structure < ActiveRecord::Base
     [structure, invalid_keys]
   end
 
+  def self.csv_header
+    ['Nom', 'Email', 'Tél', 'Rue', 'Code Postal', 'Ville', 'Pays', 'Site web', 'Réseaux', 'Tag Perso', 'Commentaires'].to_csv
+  end
+
+  def self.export(account)
+    structures = Structure.where(structurable_type: nil, account_id: account.id)
+    return nil if structures.empty?
+
+    f = File.new("structures-#{account.domain}.csv", "w")
+    File.open(f, 'w') do |file|
+      file.puts csv_header
+      structures.each do |s|
+        file.puts s.to_csv
+      end
+    end
+    f
+  end
+
+  def email
+    self.emails.first.address if self.emails.any?
+  end
+
+  def phone
+    self.phones.first.number if self.phones.any?
+  end
+
+  def street
+    self.addresses.first.street if self.addresses.any?
+  end
+
+  def postal_code
+    self.addresses.first.postal_code if self.addresses.any?
+  end
+
+  def city
+    self.addresses.first.city if self.addresses.any?
+  end
+
+  def country
+    self.addresses.first.country if self.addresses.any?
+  end
+
+  def website
+    self.websites.first.url if self.websites.any?
+  end
+
+  def to_csv
+    [self.name, self.email, self.phone, self.street, self.postal_code, self.city, self.country, self.website, self.network_list, self.custom_list, self.remark
+    ].to_csv
+  end
 end

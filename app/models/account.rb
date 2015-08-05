@@ -191,7 +191,7 @@ class Account < ActiveRecord::Base
     File.delete(export_filename) if File.exists?(export_filename)
     Zip::File.open(export_filename, Zip::File::CREATE) do |zipfile|
 
-      [Person, Venue, Scheduling].each do |element|
+      [Person, Venue, Scheduling, Structure].each do |element|
         if file = element.export(self)
           zipfile.add(File.basename(file), File.absolute_path(file))
         end

@@ -286,11 +286,11 @@ class Venue < ActiveRecord::Base
   end
 
   def network_tags
-    self.structure.contact.network_tags
+    structure.network_list
   end
 
   def custom_tags
-    self.structure.contact.custom_tags
+    structure.custom_list
   end
 
   def style_tags
