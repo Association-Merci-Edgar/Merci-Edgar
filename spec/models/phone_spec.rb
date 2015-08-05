@@ -7,7 +7,7 @@ describe Phone do
   end
 
   describe "to_s" do
-    let(:phone) { FactoryGirl.build(:phone, kind: Phone::PERSO, number: 'crotte') }
-    it { expect(phone.to_s).to eq("crotte [#{Phone::PERSO}]") }
+    let(:phone) { FactoryGirl.build(:phone, kind: Phone::PERSO, number: '01 30 40 50 60') }
+    it { expect(phone.to_s).to eq("01 30 40 50 60 [#{Phone::PERSO}]") }
   end
 end
