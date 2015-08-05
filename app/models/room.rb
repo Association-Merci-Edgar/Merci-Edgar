@@ -15,7 +15,7 @@
 #
 
 class Room < ActiveRecord::Base
-  belongs_to :venue, touch:true
+  belongs_to :venue, touch: true
   has_many :capacities, :dependent => :destroy
 
   validates_numericality_of :depth, :height, :width, allow_nil:true
@@ -52,4 +52,21 @@ class Room < ActiveRecord::Base
     room.bar = true if row.delete(:bar_salle).try(:downcase) == "x"
     room
   end
+
+  def to_csv
+    [self.venue.name, self.venue.email, self.venue.phone,
+     self.venue.street, self.venue.postal_code, self.venue.city,
+     self.venue.country, self.venue.website, self.venue.kind,
+     self.venue.residency, self.venue.accompaniment,
+     self.venue.network_tags, self.venue.custom_tags,
+     self.venue.season_months, self.venue.style_tags,
+     self.venue.contract_tags, self.venue.discovery,
+     self.venue.period, self.venue.scheduling_remark,
+     self.venue.prospecting_months, self.venue.remark,
+     self.name, self.seating, self.standing, self.modular_space,
+     "#{self.depth || '?'} x #{self.width || '?'} x #{self.height || '?'}", self.bar
+    ].to_csv
+  end
+
+
 end

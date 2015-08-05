@@ -27,10 +27,10 @@ class Venue < ActiveRecord::Base
   has_many :show_buyers, through: :schedulings, uniq: true
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
-
   has_many :rooms, :dependent => :destroy
   accepts_nested_attributes_for :rooms, :reject_if => :all_blank, :allow_destroy => true
 
+  belongs_to :account
 
   delegate :name, :contact, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
 
@@ -240,18 +240,18 @@ class Venue < ActiveRecord::Base
   end
 
   def self.csv_header
-    "Nom,Email,Tel,Adresse,Code postal,Ville,Pays,Site web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations".split(',').to_csv
+    "Nom, Email, Tel, Adresse, Code postal, Ville, Pays, Site web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Période, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar".split(',').to_csv
   end
 
   def self.export(account)
-    venues = Venue.where(account_id: account.id).limit(100)
-    return nil if venues.empty?
+    rooms = Room.includes(:venue).where(venues: {account_id: account.id})
+    return nil if rooms.empty?
 
     f = File.new("lieux-#{account.domain}.csv", "w")
     File.open(f, 'w') do |file|
       file.puts csv_header
-      venues.each do |venue|
-        file.puts venue.to_csv
+      rooms.each do |room|
+        file.puts room.to_csv
       end
     end
     f
@@ -316,18 +316,4 @@ class Venue < ActiveRecord::Base
   def prospecting_months
     self.schedulings.first.prospecting_months if self.schedulings.any?
   end
-
-  def to_csv
-    [self.name, self.email, self.phone,
-     self.street, self.postal_code, self.city,
-     self.country, self.website, self.kind,
-     self.residency, self.accompaniment,
-     self.network_tags, self.custom_tags,
-     self.season_months, self.style_tags,
-     self.contract_tags, self.discovery,
-     self.period, self.scheduling_remark,
-     self.prospecting_months, self.remark
-    ].to_csv
-  end
-
 end
