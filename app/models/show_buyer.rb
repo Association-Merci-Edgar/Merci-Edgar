@@ -11,7 +11,7 @@
 
 class ShowBuyer < ActiveRecord::Base
   include Contacts::Xml
-  
+
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :licence, :structure_attributes, :schedulings_attributes, :avatar, :remote_avatar_url
@@ -27,10 +27,10 @@ class ShowBuyer < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure  
+  delegate :name, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
 
-  before_save :set_contact_criteria 
-  
+  before_save :set_contact_criteria
+
   scope :by_contract, lambda { |tag_name| joins(:schedulings).where("schedulings.contract_tags LIKE ?", "%#{tag_name}%") }
   scope :by_style, lambda { |tag_name| joins(:schedulings).where("schedulings.style_tags LIKE ?", "%#{tag_name}%") }
 
@@ -42,13 +42,13 @@ class ShowBuyer < ActiveRecord::Base
     self.build_structure unless structure.present?
     self.structure.build_contact unless structure.contact.present?
     contact = structure.contact
-    
+
     c_style_list = self.style_list
     contact.style_tags = c_style_list.join(',') if c_style_list.present?
-    
+
     c_contract_list = self.contract_list
     contact.contract_tags = c_contract_list.join(',') if c_contract_list.present?
-    
+
   end
 
   def contract_list
@@ -75,7 +75,7 @@ class ShowBuyer < ActiveRecord::Base
     attributes = Hash.from_xml(xml)
     show_buyer_attributes = attributes["show_buyer"]
     name = show_buyer_attributes.delete("name")
-    
+
     duplicate = Contact.find_by_name(name)
     if duplicate
       nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
@@ -92,8 +92,8 @@ class ShowBuyer < ActiveRecord::Base
     contact.name = name
     contact.duplicate = duplicate
     s.structure.contact = contact
-    
-    s    
+
+    s
   end
 
   def self.from_merciedgar_hash(show_buyer_attributes, imported_at, custom_tags)
@@ -104,9 +104,8 @@ class ShowBuyer < ActiveRecord::Base
     show_buyer = ShowBuyer.new(show_buyer_attributes)
     show_buyer.structure = structure
     show_buyer.upload_base64_avatar(avatar_attributes)
-    
+
     show_buyer
-    
   end
 
   def self.from_csv(row)
@@ -114,8 +113,49 @@ class ShowBuyer < ActiveRecord::Base
     show_buyer.licence = row.delete("licence".to_sym)
     scheduling = Scheduling.from_csv(row)
     show_buyer.schedulings << scheduling if scheduling
-    show_buyer.structure, invalid_keys = Structure.from_csv(row)     
+    show_buyer.structure, invalid_keys = Structure.from_csv(row)
     [show_buyer, invalid_keys]
-  end  
+  end
+
+  def email
+    self.emails.first.address if self.emails.any?
+  end
+
+  def phone
+    self.phones.first.number if self.phones.any?
+  end
+
+  def network_tags
+    self.contact.network_tags
+  end
+
+  def custom_tags
+    self.contact.custom_tags
+  end
+
+  def remark
+    self.contact.remark
+  end
+
+  def street
+    self.contact.addresses.first.street if self.contact.addresses.any?
+  end
+
+  def postal_code
+    self.contact.addresses.first.postal_code if self.contact.addresses.any?
+  end
+
+  def city
+    self.contact.addresses.first.city if self.contact.addresses.any?
+  end
+
+  def country
+    self.contact.addresses.first.country if self.contact.addresses.any?
+  end
+
+  def website
+    self.websites.first.url if self.websites.any?
+  end
+
 
 end

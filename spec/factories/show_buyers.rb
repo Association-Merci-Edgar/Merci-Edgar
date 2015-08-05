@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :show_buyer do
     licence "MyString"
+    structure
   end
 end

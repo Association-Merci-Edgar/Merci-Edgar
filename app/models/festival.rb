@@ -135,5 +135,46 @@ class Festival < ActiveRecord::Base
     festival.structure, invalid_keys = Structure.from_csv(row)     
     [festival, invalid_keys]
   end
-  
+ 
+  def email
+    self.emails.first.address if self.emails.any?
+  end
+
+  def phone
+    self.phones.first.number if self.phones.any?
+  end
+
+  def network_tags
+    self.contact.network_tags
+  end
+
+  def custom_tags
+    self.contact.custom_tags
+  end
+
+  def remark
+    self.contact.remark
+  end
+
+  def street
+    self.contact.addresses.first.street if self.contact.addresses.any?
+  end
+
+  def postal_code
+    self.contact.addresses.first.postal_code if self.contact.addresses.any?
+  end
+
+  def city
+    self.contact.addresses.first.city if self.contact.addresses.any?
+  end
+
+  def country
+    self.contact.addresses.first.country if self.contact.addresses.any?
+  end
+
+  def website
+    self.websites.first.url if self.websites.any?
+  end
+
+ 
 end
