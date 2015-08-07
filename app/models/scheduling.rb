@@ -278,6 +278,10 @@ class Scheduling < ActiveRecord::Base
 
   def self.export(account)
     schedulings = Scheduling.includes(:show_buyer).where(show_buyers: {account_id: account.id})
+    schedulings.concat(Venue.includes(:schedulings).where(account_id: account.id).map(&:schedulings).flatten)
+    schedulings.concat(Festival.includes(:schedulings).where(account_id: account.id).map(&:schedulings).flatten)
+    schedulings.uniq!
+
     return nil if schedulings.empty?
 
     f = File.new("festivals-et-autres-organisateurs-de-spectacles-#{account.domain}.csv", "w")
