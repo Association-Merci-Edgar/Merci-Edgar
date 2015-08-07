@@ -63,7 +63,7 @@ class Room < ActiveRecord::Base
      self.venue.period, self.venue.scheduling_remark,
      self.venue.prospecting_months, self.venue.remark,
      self.name, self.seating, self.standing, self.modular_space,
-     "#{self.depth || '?'} x #{self.width || '?'} x #{self.height || '?'}", self.bar
+     "#{self.depth || '?'} x #{self.width || '?'} x #{self.height || '?'}", self.bar, ExportTools.build_list(self.venue.people)
     ].to_csv
   end
 
