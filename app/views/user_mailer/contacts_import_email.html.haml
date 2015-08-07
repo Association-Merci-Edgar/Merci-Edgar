@@ -5,7 +5,7 @@
   %body
     %h1= "Cher #{@user.name}"
     %p
-      Nous tenons à vous informer que l'import du fichier 
+      Nous tenons à vous informer que l'import du fichier
       = @filename
       s'est correctement déroulé. Vous pouvez consulter l'ensemble des contacts importés  #{link_to "en cliquant sur ce lien", contacts_url(subdomain: @account.domain, domain: ENV["DOMAIN"], imported_at: @imported_at)}.
     %p

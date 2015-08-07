@@ -31,12 +31,9 @@ class ContactsImportWorker
       log_message, error = import_spreadsheet_file(import)
     end
 
-    if error
+    if error.present?
       self.payload = { invalid_file: true, message: log_message }
-      return
-
       self.payload = { message: error }
-
       UserMailer.contacts_import_invalid(user).deliver unless import.test_mode
     else
       imported_contacts = Contact.where(imported_at: imported_at)
@@ -104,6 +101,7 @@ class ContactsImportWorker
   end
 
   def import_spreadsheet_file(import)
+    error_messages = []
     ActiveRecord::Base.transaction do
       at(1,"Conversion du fichier...")
 
@@ -137,12 +135,11 @@ class ContactsImportWorker
             at(imported_index, log_message)
           end
           unless fine_contact.save
-            puts fine_contact.errors.full_messages
-            return
+            error_messages << fine_contact.errors.full_messages
           end
         end
       end
-      log_message
+      [log_message, error_messages.join(', ')]
     end
   end
 
