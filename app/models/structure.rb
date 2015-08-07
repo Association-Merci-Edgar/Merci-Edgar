@@ -208,6 +208,7 @@ class Structure < ActiveRecord::Base
       end
     end
 
+    structure.save
     structure.contact, invalid_keys = Contact.from_csv(row, true)
     [structure, invalid_keys]
   end

@@ -233,9 +233,12 @@ class Venue < ActiveRecord::Base
     end
     scheduling = Scheduling.from_csv(row)
     venue.schedulings << scheduling if scheduling
+    venue.save
     venue.rooms << Room.from_csv(row) if (row.keys & Room::VALID_CSV_KEYS).any?
+    venue.save
     venue.structure, invalid_keys = Structure.from_csv(row)
 
+    venue.save
     [venue, invalid_keys]
   end
 
