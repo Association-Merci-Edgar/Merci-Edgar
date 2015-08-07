@@ -213,7 +213,7 @@ class Structure < ActiveRecord::Base
   end
 
   def self.csv_header
-    ['Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires'].to_csv
+    ['Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires', 'Personnes'].to_csv
   end
 
   def self.export(account)
@@ -231,7 +231,16 @@ class Structure < ActiveRecord::Base
   end
 
   def to_csv
-    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark
+    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark, ExportTools.build_list(self.people)
     ].to_csv
+  end
+
+  def to_s
+    if self.structurable_type
+      type = I18n.t(self.structurable_type.to_s.underscore, scope: 'activerecord.models')
+    else
+      type = I18n.t('generic_structure')
+    end
+    "#{self.name} [#{type.capitalize}]"
   end
 end

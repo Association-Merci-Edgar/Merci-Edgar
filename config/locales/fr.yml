@@ -7,6 +7,7 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
+  generic_structure: Structure générique
   copyright:
     © Merci Edgar 2013
   manager: Administrateur
@@ -252,7 +253,7 @@ fr:
   due_this_week: Cette semaine
   due_next_week: La semaine prochaine
   due_this_month: Ce mois-ci
-  
+
   tasks: Tâches
   filters:
     favorites: favoris
@@ -272,12 +273,11 @@ fr:
     people: Personnes
     structures: Structures
     show_buyers: Organisateurs de spectacle
-     
-  
+
   # Kind of addresses
   main_address: Adresse principale
   admin_address: Adresse administrative
-  
+
   activemodel:
     attributes:
       contacts_import:
@@ -301,7 +301,7 @@ fr:
               inclusion: "Impossible de lire le fichier"
             name_header_exist:
               inclusion: "Le fichier ne contient pas la colonne nom"
-  
+
   activerecord:
     models:
       venue: Lieu
@@ -357,7 +357,7 @@ fr:
         show_buyer:
           created: "L'organisateur de spectacle %{name} a été créé avec succès"
           updated: "L'organisateur de spectacle %{name} a été modifiée avec succès"
-          
+
         person:
           created: "La personne %{name} a été créée avec succès"
           updated: "La personne %{name} a été modifiée avec succès"
