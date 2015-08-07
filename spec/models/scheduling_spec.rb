@@ -29,9 +29,26 @@ describe Scheduling do
 
       it { expect(scheduling.to_csv).to eq(expected_line) }
     end
+    
+    context "with a festival only" do
+      let(:festival) { FactoryGirl.create(:festival, nb_edition: 2, last_year: '1999')}
+      let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: nil, show_host: festival) }
+      
+      let(:expected_line) {[
+        scheduling.name, scheduling.period, scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, 
+        "Nb edition : 2 / Derniere annee : 1999", 
+        scheduling.discovery, festival.name, ExportTools.build_list(festival.emails), ExportTools.build_list(festival.phones), 
+        ExportTools.build_list(festival.addresses), ExportTools.build_list(festival.websites), festival.network_list,festival.custom_list, 
+        festival.remark, ExportTools.build_list(festival.people)
+      ].to_csv} 
+      
+      it { expect(scheduling.organizer).to respond_to(:nb_edition) }
+      it { expect(scheduling.to_csv).to eq(expected_line) }
+    end
+    
   end
 
-  describe "Oranizer" do
+  describe "Organizer" do
     context "with a show buyer only" do
       let(:buyer) { FactoryGirl.create(:show_buyer) }
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: nil) }
