@@ -5,7 +5,6 @@ describe ContactsExportsController do
   before(:each) { Account.current_id = account.id }
 
   context "with a logged user" do
-
     let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
 
     let!(:person) { FactoryGirl.create(:person, account_id: account.id) }
@@ -17,8 +16,8 @@ describe ContactsExportsController do
 
     describe "GET new" do
       before(:each) { get :new }
-      it { expect(response).to be_success }
-      it { expect(response.header["Content-Type"]).to eq('application/zip') }
+      it { expect(response).to redirect_to(contacts_path) }
+      it { expect(flash[:notice]).to eq(I18n.t("contacts_exports.notice")) }
     end
 
   end

@@ -279,6 +279,8 @@ GEM
     kgio (2.9.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libxml-ruby (2.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -477,6 +479,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari (~> 0.15)
   launchy
+  letter_opener
   libxml-ruby
   mimer_plus
   mini_magick
