@@ -176,6 +176,7 @@ class Account < ActiveRecord::Base
   end
 
   def destroy_test_contacts
+    return nil unless self.test_imported_at
     Contact.imported_at(self.test_imported_at).find_each do |contact|
       fm = contact.fine_model
       fm.destroy
