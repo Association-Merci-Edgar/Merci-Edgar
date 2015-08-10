@@ -92,7 +92,8 @@ class Account < ActiveRecord::Base
   end
 
   def manager?(user)
-    self.abilitations.where(user_id: user.id).first.manager?
+    first_abilitation = self.abilitations.where(user_id: user.id).first
+    first_abilitation && first_abilitation.manager?
   end
 
   def empty

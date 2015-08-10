@@ -98,4 +98,13 @@ describe Account do
     end
   end
 
+  describe "manager?" do
+    context "without habilitation, don't throw error" do
+      let(:account) { FactoryGirl.create(:account) }
+      let(:user) { FactoryGirl.create(:user) }
+
+      it { expect(account.manager?(user)).to be_falsy }
+    end
+  end
+
 end
