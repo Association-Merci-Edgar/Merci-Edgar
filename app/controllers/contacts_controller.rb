@@ -1,7 +1,6 @@
 class ContactsController < AppController
   def bulk
     @contact_ids = params[:contact_ids]
-    puts "contact_ids: #{@contact_ids}"
     case params[:bulk_action]
     when "delete"
       Contact.where(id: params[:contact_ids]).find_each do |contact|
@@ -30,23 +29,23 @@ class ContactsController < AppController
       end
     end
   end
-  
+
   def autocomplete
     contacts = Contact.order(:name).where("lower(contacts.name) LIKE ?", "%#{params[:term].downcase}%").limit(10)
     json=[]
-    contacts.each do |c| 
+    contacts.each do |c|
       fm = c.fine_model
       link = send(fm.class.name.underscore + "_path", fm)
       kind = I18n.t(fm.class.name.underscore, scope: "activerecord.models")
       json.push({value:c.name, label:c.name, new: "false", link: link, avatar: c.avatar_url(:thumb), kind: kind})
     end
     unless contacts.map(&:name).map(&:downcase).include?(params[:term].downcase)
-      json.push({value:params[:term], 
-        label: "Créer la structure : " + params[:term], new:"true", 
+      json.push({value:params[:term],
+        label: "Créer la structure : " + params[:term], new:"true",
         link: new_structure_path(name: params[:term])
         })
-      json.push({value:params[:term], 
-        label: "Créer la personne : " + params[:term], new:"true", 
+      json.push({value:params[:term],
+        label: "Créer la personne : " + params[:term], new:"true",
         link: new_person_path(name: params[:term])
         })
     end
@@ -63,7 +62,7 @@ class ContactsController < AppController
       radius = params[:radius].present? ? params[:radius] : 100
       addresses = Address.near(params[:address], radius, units: :km).where(account_id: Account.current_id)
     end
-    
+
     if params[:commit] == "show map"
       addresses = Address.where(account_id: Account.current_id) unless addresses.present?
       contact_ids = Contact.advanced_search(params).pluck(:id)
@@ -81,7 +80,7 @@ class ContactsController < AppController
         @nb_imported_contacts, @nb_duplicates = ContactsImport.get_payload(params[:imported_at])
         @imported_at = params[:imported_at].to_i
         @test = @imported_at == current_account.test_imported_at
-      end 
+      end
       @contacts = @contacts.page params[:page]
       if params[:category].present?
         raise "Invalid Parameter" if %w(venues festivals show_buyers structures people).include?(params[:category]) == false
@@ -89,8 +88,7 @@ class ContactsController < AppController
       end
     end
   end
-  
-  
+
   def show_map
     if params[:address].present?
       radius = params[:radius] || 100
@@ -102,7 +100,6 @@ class ContactsController < AppController
       model = address.contact.fine_model
       marker.infowindow render_to_string(:partial => "contacts/infowindow_#{model.class.name.downcase}", :locals => { :model => model})
       marker.title   address.contact.name
-      # marker.sidebar render_to_string(address.contact)
     end if contacts.present?
   end
 
@@ -111,34 +108,34 @@ class ContactsController < AppController
     @contacts = case params[:filter]
       when "favorites" then current_user.favorites.page params[:page]
       when "contacted" then Contact.with_reportings.page params[:page]
-      when "recently_created" then 
+      when "recently_created" then
         @no_paging = true
-        Contact.recently_created
-      when "recently_updated" then 
+        Contact.send(params[:filter])
+      when "recently_updated" then
         @no_paging = true
-        Contact.recently_updated
-      when 'style' then 
+        Contact.send(params[:filter])
+      when 'style' then
         @param_filter = params[:name]
         Kaminari.paginate_array(Contact.by_style(params[:name])).page params[:page]
-      when 'network' then 
+      when 'network' then
         @param_filter = params[:name]
         Contact.by_network(params[:name]).page params[:page]
-      when 'custom' then 
+      when 'custom' then
         @param_filter = params[:name]
         Contact.by_custom(params[:name]).page params[:page]
-      when 'contract' then 
+      when 'contract' then
         @param_filter = params[:name]
         Kaminari.paginate_array(Contact.by_contract(params[:name])).page params[:page]
-      when "dept" then 
+      when "dept" then
         @param_filter = params[:no]
         Contact.by_department(params[:no]).page params[:page]
-      when "capacities_less_than" then 
+      when "capacities_less_than" then
         @param_filter = params[:nb]
         Venue.capacities_less_than(params[:nb]).page params[:page]
-      when "capacities_more_than" then 
+      when "capacities_more_than" then
         @param_filter = params[:nb]
         Venue.capacities_more_than(params[:nb]).page params[:page]
-      when "capacities_between" then 
+      when "capacities_between" then
         @param_filter = [params[:nb1],params[:nb2]].join(" => ")
         Venue.capacities_between(params[:nb1],params[:nb2]).page params[:page]
       else
