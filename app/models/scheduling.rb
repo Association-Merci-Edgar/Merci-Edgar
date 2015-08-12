@@ -272,7 +272,7 @@ class Scheduling < ActiveRecord::Base
   end
 
   def self.csv_header
-    ['Nom programmation', 'Period', 'Mois de prospection', 'Types de contrat', 'Styles', 'Observations Programmation', 'Scene découverte',
+    ['Nom programmation', 'Cycle de programmation', 'Mois de prospection', 'Types de contrat', 'Styles', 'Observations Programmation', 'Scene découverte',
      'Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires', 'Personnes'].to_csv
   end
 
@@ -301,7 +301,8 @@ class Scheduling < ActiveRecord::Base
       remark_array.append("Derniere annee : #{show_host.last_year}") 
       self.remark = remark_array.compact.join(' / ')
     end
-    [self.name, self.period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer.name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
+    period_translated = I18n.t(self.period, scope: 'simple_form.options.schedulings.period') if self.period.present?
+    [self.name, period_translated, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer.name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
     ].to_csv
   end
 
