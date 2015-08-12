@@ -6,6 +6,18 @@ describe Scheduling do
     it { expect(FactoryGirl.build(:scheduling)).to be_valid }
   end
 
+  describe "translated_period" do
+    context "no specified period" do
+      let(:scheduling) { FactoryGirl.build(:scheduling, period: nil)}
+      it { expect(scheduling.translated_period).to eq(nil) }
+    end
+    
+    context "with period" do
+      let(:scheduling) { FactoryGirl.build(:scheduling, period: Scheduling::QUATERLY) }
+      it { expect(scheduling.translated_period).to eq(I18n.t(scheduling.period, scope: 'simple_form.options.schedulings.period')) }
+    end    
+  end
+  
   describe "export" do
     context "with an account with a scheduling" do
       let(:account) { FactoryGirl.create(:account) }

@@ -293,6 +293,11 @@ class Scheduling < ActiveRecord::Base
     end
     f
   end
+  
+  def translated_period
+    return nil unless self.period.present?
+    I18n.t(self.period, scope: 'simple_form.options.schedulings.period')
+  end
 
   def to_csv
     if show_host.respond_to?(:nb_edition) && show_host.respond_to?(:last_year)
@@ -301,8 +306,7 @@ class Scheduling < ActiveRecord::Base
       remark_array.append("Derniere annee : #{show_host.last_year}") 
       self.remark = remark_array.compact.join(' / ')
     end
-    period_translated = I18n.t(self.period, scope: 'simple_form.options.schedulings.period') if self.period.present?
-    [self.name, period_translated, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer.name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
+    [self.name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer.name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
     ].to_csv
   end
 
