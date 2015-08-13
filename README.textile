@@ -2,6 +2,8 @@ h1. Edgar
 
 Merci Edgar is a CRM dedicated to artists (musicians, actors...)
 
+[![Code Climate](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar.png)](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar)
+
 h2. Ruby on Rails
 
 This application requires:
