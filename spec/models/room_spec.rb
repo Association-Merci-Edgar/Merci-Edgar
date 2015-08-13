@@ -8,7 +8,9 @@ describe Room do
   end
 
   describe "to_csv" do
-    let(:room) { FactoryGirl.create(:room) }
+    let(:venue) { FactoryGirl.build(:venue, kind: :cultural_center)}
+    let(:room) { FactoryGirl.build(:room, venue: venue) }
+  
     let(:expected_line) {[
       room.venue.name, ExportTools.build_list(room.venue.emails), ExportTools.build_list(room.venue.phones),
       ExportTools.build_list(room.venue.addresses), ExportTools.build_list(room.venue.websites),

@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :venue do
-    kind 'cultural_center'
     structure
   end
 end
