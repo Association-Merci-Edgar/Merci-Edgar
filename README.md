@@ -1,20 +1,20 @@
-h1. Edgar
+# Edgar
 
 Merci Edgar is a CRM dedicated to artists (musicians, actors...)
 
 [![Code Climate](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar.png)](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar)
 
-h2. Ruby on Rails
+## Ruby on Rails
 
 This application requires:
 
 * Ruby version 2.0
 * Rails version 3.2.13
 
-Learn more about "Installing Rails":http://railsapps.github.io/installing-rails.html.
+Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
 
-h2. Development
+## Development
 
 * Template Engine: Haml
 * Front-end Framework: Twitter Bootstrap (Sass)
@@ -22,33 +22,33 @@ h2. Development
 * Authentication: Devise
 * Background processing : Sidekiq
 
-h2. Email
+## Email
 
 The application is configured to send email using a Mandrill account.
 
-h2. Getting Started
+## Getting Started
 
 1. Copy config/application.yml.example to config/application.yml and customize it with your credentials for:
   * amazon S3
   * mandrill
   * mailchimp
-  * "rollbar (for production)":https://rollbar.com/krichtof/Merci-Edgar/
+  * [rollbar (for production)](https://rollbar.com/krichtof/Merci-Edgar/)
 
 2. Create the postgresql user and dev database both named  @merciedgar@
-If you are on ArchLinux you will "find some help here":https://wiki.archlinux.org/index.php/PostgreSQL.
+If you are on ArchLinux you will [find some help here](https://wiki.archlinux.org/index.php/PostgreSQL).
 
 3. Install dependencies with @bundle install@ and run migrations with @rake db:migrate@
 
-If you meet an error installing the gem 'capybara-webkit', "try this solution, depending on your OS":https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit.
+If you meet an error installing the gem 'capybara-webkit', [try this solution, depending on your OS](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 4. Open 3 different terminals and launch
-  * a "redis":http://redis.io/topics/quickstart server with @redis-server@
-  * a "sidekiq":http://sidekiq.org/ worker with : @bundle exec sidekiq@
+  * a [redis](http://redis.io/topics/quickstart server with @redis-server@)
+  * a [sidekiq](http://sidekiq.org/) worker with : @bundle exec sidekiq@
   * @rails server@
 
-Open a browser on "http://www.lvh.me:3000":http://www.lvh.me:3000
+Open a browser on [http://www.lvh.me:3000](http://www.lvh.me:3000)
 
-h2. Documentation and Support
+## Documentation and Support
 
 This is the only documentation.
 More documentation will come soon.
@@ -57,7 +57,7 @@ To generate db Schema, you can use ERD:
 
 @bundle exec erd --inheritance --direct --attributes=foreign_keys,content@
 
-h2. Contributing
+## Contributing
 
 If you make improvements to this application, please share with others.
 
@@ -66,11 +66,10 @@ If you make improvements to this application, please share with others.
 * Commit with Git.
 * Send the author a pull request.
 
-
-h2. Credits
+## Credits
 
 See CREDITS.txt file
 
-h2. License
+## License
 
 See LICENSE.txt file
