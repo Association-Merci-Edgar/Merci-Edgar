@@ -60,7 +60,7 @@ class Room < ActiveRecord::Base
      self.venue.network_list, self.venue.custom_list,
      self.venue.season_months, self.venue.style_list,
      self.venue.contract_list, self.venue.discovery,
-     self.venue.period, self.venue.scheduling_remark,
+     self.venue.translated_period, self.venue.scheduling_remark,
      self.venue.prospecting_months, self.venue.remark,
      self.name, self.seating, self.standing, self.modular_space,
      "#{self.depth || '?'} x #{self.width || '?'} x #{self.height || '?'}", self.bar, ExportTools.build_list(self.venue.people)
