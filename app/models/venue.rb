@@ -27,7 +27,7 @@ class Venue < ActiveRecord::Base
   has_many :show_buyers, through: :schedulings, uniq: true
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
-  has_many :rooms, :dependent => :destroy
+  has_many :rooms, :dependent => :destroy, inverse_of: :venue
   accepts_nested_attributes_for :rooms, :reject_if => :all_blank, :allow_destroy => true
 
   belongs_to :account
