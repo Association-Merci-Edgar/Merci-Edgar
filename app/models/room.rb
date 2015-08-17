@@ -15,11 +15,11 @@
 #
 
 class Room < ActiveRecord::Base
-  belongs_to :venue, touch: true
+  belongs_to :venue, touch: true, inverse_of: :rooms
   has_many :capacities, :dependent => :destroy
 
   validates_numericality_of :depth, :height, :width, allow_nil:true
-  validates_presence_of :venue_id
+  validates_presence_of :venue
 
   attr_accessible :capacities_attributes, :bar, :depth, :height, :name, :width, :seating, :standing, :modular_space
   accepts_nested_attributes_for :capacities, :reject_if => proc { |attributes| attributes[:nb].blank? }, allow_destroy:true

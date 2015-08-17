@@ -5,10 +5,7 @@ venues:
     rooms_attributes:
       main_room:
         name: "Salle principale"
-        capacities_attributes:
-          1:
-            nb: 250
-            kind: seating
+        seating: 250
     structure_attributes:
       contact_attributes:
         name: "L'Olympiaf"
