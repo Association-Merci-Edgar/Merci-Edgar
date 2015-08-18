@@ -361,6 +361,10 @@ fr:
         person:
           created: "La personne %{name} a été créée avec succès"
           updated: "La personne %{name} a été modifiée avec succès"
+  notices:
+    contacts_export:
+      initiated: "L'export vient d'être lancé. Vous recevrez un mail une fois l'export terminé"
+
   helpers:
     browse: Parcourir...
     label:
