@@ -54,6 +54,7 @@ gem 'slim'
 gem 'newrelic_rpm'
 
 group :development do
+  gem 'foreman'
   gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'
