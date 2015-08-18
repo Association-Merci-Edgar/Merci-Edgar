@@ -3,6 +3,6 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1= "Cher #{@user.name}"
-    %p
-      Ci-joint l'export de vos données.
+    %p= t('hello')
+    %p= t('body', scope: 'mailers.contacts_export.success')
+    %p= t('see_you_soon')
