@@ -38,7 +38,7 @@ describe Scheduling do
         let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: nil, period: Scheduling::QUATERLY) }
 
         let(:expected_line) {[
-          scheduling.name, I18n.t(scheduling.period, scope: 'simple_form.options.schedulings.period'), scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, scheduling.remark, scheduling.discovery, buyer.name, ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), ExportTools.build_list(buyer.addresses), ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark, ExportTools.build_list(buyer.people)
+          scheduling.name, I18n.t(scheduling.period, scope: 'simple_form.options.schedulings.period'), scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, scheduling.remark, scheduling.discovery, "#{buyer.name} [#{ShowBuyer.model_name.human}]", ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), ExportTools.build_list(buyer.addresses), ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark, ExportTools.build_list(buyer.people)
         ].to_csv}
 
         it { expect(scheduling.to_csv).to eq(expected_line) }
@@ -48,7 +48,7 @@ describe Scheduling do
         let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: nil, period: nil) }
 
         let(:expected_line) {[
-          scheduling.name, scheduling.period, scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, scheduling.remark, scheduling.discovery, buyer.name, ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), ExportTools.build_list(buyer.addresses), ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark, ExportTools.build_list(buyer.people)
+          scheduling.name, scheduling.period, scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, scheduling.remark, scheduling.discovery, "#{buyer.name} [#{ShowBuyer.model_name.human}]", ExportTools.build_list(buyer.emails), ExportTools.build_list(buyer.phones), ExportTools.build_list(buyer.addresses), ExportTools.build_list(buyer.websites), buyer.network_list,buyer.custom_list, buyer.remark, ExportTools.build_list(buyer.people)
         ].to_csv}
 
         it { expect(scheduling.to_csv).to eq(expected_line) }
@@ -63,7 +63,7 @@ describe Scheduling do
       let(:expected_line) {[
         scheduling.name, I18n.t(scheduling.period, scope: 'simple_form.options.schedulings.period'), scheduling.prospecting_months, scheduling.contract_list, scheduling.style_list, 
         "Nb edition : 2 / Derniere annee : 1999", 
-        scheduling.discovery, festival.name, ExportTools.build_list(festival.emails), ExportTools.build_list(festival.phones), 
+        scheduling.discovery, "#{festival.name} [#{Festival.model_name.human}]", ExportTools.build_list(festival.emails), ExportTools.build_list(festival.phones), 
         ExportTools.build_list(festival.addresses), ExportTools.build_list(festival.websites), festival.network_list,festival.custom_list, 
         festival.remark, ExportTools.build_list(festival.people)
       ].to_csv} 
@@ -79,6 +79,7 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: nil) }
 
       it { expect(scheduling.organizer).to eq(buyer) }
+      it { expect(scheduling.organizer_name).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
     end
 
     context "with a show host only" do
@@ -86,6 +87,7 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: nil, show_host: host) }
 
       it { expect(scheduling.organizer).to eq(host) }
+      it { expect(scheduling.organizer_name).to eq("#{host.name} [#{host.class.model_name.human}]")}      
     end
 
     context "with a show host and a show buyer" do
@@ -94,6 +96,9 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: host) }
 
       it { expect(scheduling.organizer).to eq(buyer) }
+      it { expect(scheduling.organizer_name).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
+      
     end
+    
   end
 end
