@@ -36,7 +36,7 @@ class UserMailer < ActionMailer::Base
   def export_contacts(user, zipfile)
     attachments[zipfile] = File.read(zipfile)
     @user = user
-    mail(to: user.email, subject: I18n.t('usermail.export_contacts'), content_type: "multipart/mixed")
+    mail(to: user.email, subject: I18n.t('mailers.contacts_export.success.subject'), content_type: "multipart/mixed")
   end
 
   private

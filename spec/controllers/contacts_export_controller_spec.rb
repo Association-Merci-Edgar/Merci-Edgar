@@ -17,7 +17,7 @@ describe ContactsExportsController do
     describe "GET new" do
       before(:each) { get :new }
       it { expect(response).to redirect_to(contacts_path) }
-      it { expect(flash[:notice]).to eq(I18n.t("contacts_exports.notice")) }
+      it { expect(flash[:notice]).to eq(I18n.t("notices.contacts_export.initiated")) }
     end
 
   end

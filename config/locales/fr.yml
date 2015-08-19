@@ -7,6 +7,8 @@
 # Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
 
 fr:
+  hello: Bonjour
+  see_you_soon: A bientôt
   generic_structure: Structure générique
   copyright:
     © Merci Edgar 2013
@@ -361,6 +363,16 @@ fr:
         person:
           created: "La personne %{name} a été créée avec succès"
           updated: "La personne %{name} a été modifiée avec succès"
+  notices:
+    contacts_export:
+      initiated: "L'export vient d'être lancé. Vous recevrez un mail une fois l'export terminé"
+  mailers:
+    contacts_export:
+      success:
+        subject: "Export de votre compte Merci Edgar "
+        title: "Export de votre compte Merci Edgar"
+        body: "Vous trouverez ci-joint l'export de votre compte Merci Edgar"
+
   helpers:
     browse: Parcourir...
     label:
