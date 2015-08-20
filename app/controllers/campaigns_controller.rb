@@ -1,4 +1,6 @@
 class CampaignsController < AppController
+  before_filter :find_campaign, except: [:index, :new, :create]
+
   def index
     @campaigns = Campaign.all
     respond_to do |format|
@@ -8,7 +10,6 @@ class CampaignsController < AppController
   end
 
   def show
-    @campaign = Campaign.find(params[:id])
     respond_to do |format|
       format.html
       format.json { render json: @campaign }
@@ -18,13 +19,12 @@ class CampaignsController < AppController
   def new
     @campaign = Campaign.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @campaign }
     end
   end
 
   def edit
-    @campaign = Campaign.find(params[:id])
   end
 
   def create
@@ -41,7 +41,6 @@ class CampaignsController < AppController
   end
 
   def update
-    @campaign = Campaign.find(params[:id])
     respond_to do |format|
       if @campaign.update_attributes(params[:campaign])
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
@@ -54,13 +53,17 @@ class CampaignsController < AppController
   end
 
   def destroy
-    @campaign = Campaign.find(params[:id])
     @campaign.destroy
-
     respond_to do |format|
       format.html { redirect_to campaigns_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def find_campaign
+    @campaign = Campaign.find(params[:id])
   end
 end
 
