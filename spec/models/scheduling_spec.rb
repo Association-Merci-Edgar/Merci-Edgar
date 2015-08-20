@@ -99,6 +99,32 @@ describe Scheduling do
       it { expect(scheduling.organizer_name).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
       
     end
-    
+  end
+
+  describe "style_list for a ... " do
+    context "festival" do
+      let!(:festival) { FactoryGirl.create(:festival) }
+      let!(:first_scheduling) { FactoryGirl.create(:scheduling, show_host: festival, style_list: ['truc', 'muche'])}
+      let!(:second_scheduling) { FactoryGirl.create(:scheduling, show_host: festival, style_list: ['bidule', 'truc'])}
+
+      it { expect(Scheduling.style_for(festival.reload).sort).to eq(['bidule', 'muche', 'truc'].sort) }
+    end
+
+    context "venue" do
+      let!(:venue) { FactoryGirl.create(:venue) }
+      let!(:first_scheduling) { FactoryGirl.create(:scheduling, show_host: venue, style_list: ['truc', 'muche'])}
+      let!(:second_scheduling) { FactoryGirl.create(:scheduling, show_host: venue, style_list: ['bidule', 'truc'])}
+
+      it { expect(Scheduling.style_for(venue.reload).sort).to eq(['bidule', 'muche', 'truc'].sort) }
+    end
+
+    context "show_buyer" do
+      let!(:show_buyer) { FactoryGirl.create(:show_buyer) }
+      let!(:first_scheduling) { FactoryGirl.create(:scheduling, show_buyer: show_buyer, style_list: ['truc', 'muche'])}
+      let!(:second_scheduling) { FactoryGirl.create(:scheduling, show_buyer: show_buyer, style_list: ['bidule', 'truc'])}
+
+      it { expect(Scheduling.style_for(show_buyer.reload).sort).to eq(['bidule', 'muche', 'truc'].sort) }
+    end
+
   end
 end

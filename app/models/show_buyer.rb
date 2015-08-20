@@ -62,13 +62,7 @@ class ShowBuyer < ActiveRecord::Base
   end
 
   def style_list
-    sl = []
-    self.schedulings.each do |s|
-      s.style_list.each do |style|
-        sl.push(style) unless sl.include?(style)
-      end if s.style_list.present?
-    end
-    sl
+    Scheduling.style_for(self)
   end
 
   def self.from_xml(xml)

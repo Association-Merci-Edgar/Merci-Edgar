@@ -42,6 +42,10 @@ class Scheduling < ActiveRecord::Base
   after_save :set_scheduler_function
   after_save :update_styles
 
+  def self.style_for(show_host)
+    show_host.schedulings.map(&:style_list).flatten.compact.uniq
+  end
+
   def to_s
     result = name
     result = [result, show_host.try(:name)].compact.join(" à ")
