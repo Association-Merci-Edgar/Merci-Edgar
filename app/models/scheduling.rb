@@ -306,12 +306,16 @@ class Scheduling < ActiveRecord::Base
       remark_array.append("Derniere annee : #{show_host.last_year}") 
       self.remark = remark_array.compact.join(' / ')
     end
-    [self.name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer.name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
+    [self.name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer_name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
     ].to_csv
   end
 
   def organizer
     return show_host if show_buyer.nil?
     show_buyer
+  end
+  
+  def organizer_name
+    "#{organizer.name} [#{organizer.class.model_name.human}]"
   end
 end
