@@ -276,7 +276,7 @@ class Scheduling < ActiveRecord::Base
   end
 
   def self.csv_header
-    ['Nom programmation', 'Cycle de programmation', 'Mois de prospection', 'Types de contrat', 'Styles', 'Observations Programmation', 'Scene découverte',
+    ['Nom programmation', 'Programmateur', 'Cycle de programmation', 'Mois de prospection', 'Types de contrat', 'Styles', 'Observations Programmation', 'Scene découverte',
      'Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires', 'Personnes'].to_csv
   end
 
@@ -288,7 +288,7 @@ class Scheduling < ActiveRecord::Base
 
     return nil if schedulings.empty?
 
-    f = File.new("festivals-et-autres-organisateurs-de-spectacles-#{account.domain}.csv", "w")
+    f = File.new("programmations-#{account.domain}.csv", "w")
     File.open(f, 'w') do |file|
       file.puts csv_header
       schedulings.each do |s|
@@ -310,7 +310,7 @@ class Scheduling < ActiveRecord::Base
       remark_array.append("Derniere annee : #{show_host.last_year}") 
       self.remark = remark_array.compact.join(' / ')
     end
-    [self.name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer_name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
+    [self.full_name, self.scheduler_name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer_name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
     ].to_csv
   end
 
@@ -321,5 +321,17 @@ class Scheduling < ActiveRecord::Base
   
   def organizer_name
     "#{organizer.name} [#{organizer.class.model_name.human}]"
+  end
+  
+  def full_name
+    if self.show_buyer
+      if self.show_host
+        "#{self.name} (#{self.show_buyer.name} [#{ShowBuyer.model_name.human}] => #{show_host.name} [#{show_host.class.model_name.human}])"
+      else
+        "#{self.name} (#{self.show_buyer.name} [#{ShowBuyer.model_name.human}])"
+      end
+    else
+      "#{self.name} (#{self.show_host.name} [#{show_host.class.model_name.human}])"
+    end
   end
 end
