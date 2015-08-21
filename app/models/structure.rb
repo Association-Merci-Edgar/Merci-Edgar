@@ -218,7 +218,7 @@ class Structure < ActiveRecord::Base
   end
 
   def self.export(account)
-    structures = Structure.where(structurable_type: nil, account_id: account.id)
+    structures = Structure.where(account_id: account.id)
     return nil if structures.empty?
 
     f = File.new("structures-#{account.domain}.csv", "w")
@@ -232,7 +232,7 @@ class Structure < ActiveRecord::Base
   end
 
   def to_csv
-    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark, ExportTools.build_list(self.people)
+    [self.to_s, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones), ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list, self.custom_list, self.remark, ExportTools.build_list(self.people)
     ].to_csv
   end
 
