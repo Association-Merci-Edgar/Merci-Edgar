@@ -11,6 +11,7 @@
 
 class ShowBuyer < ActiveRecord::Base
   include Contacts::Xml
+  include Organizer
 
   default_scope { where(:account_id => Account.current_id) }
 

@@ -16,6 +16,7 @@
 
 class Venue < ActiveRecord::Base
   include Contacts::Xml
+  include Organizer
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :kind, :residency, :accompaniment, :season_months, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
