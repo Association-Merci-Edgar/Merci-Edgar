@@ -14,6 +14,7 @@
 
 class Festival < ActiveRecord::Base
   include Contacts::Xml
+  include Organizer
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :artists_kind, :last_year, :nb_edition, :structure_attributes, :schedulings_attributes, :network_tags, :avatar, :remote_avatar_url

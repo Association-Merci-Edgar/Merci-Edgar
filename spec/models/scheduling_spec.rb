@@ -105,7 +105,7 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: nil) }
 
       it { expect(scheduling.organizer).to eq(buyer) }
-      it { expect(scheduling.organizer_name).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
+      it { expect(scheduling.organizer_name_with_kind).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
     end
 
     context "with a show host only" do
@@ -113,7 +113,7 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: nil, show_host: host) }
 
       it { expect(scheduling.organizer).to eq(host) }
-      it { expect(scheduling.organizer_name).to eq("#{host.name} [#{host.class.model_name.human}]")}      
+      it { expect(scheduling.organizer_name_with_kind).to eq("#{host.name} [#{host.class.model_name.human}]")}      
     end
 
     context "with a show host and a show buyer" do
@@ -122,7 +122,7 @@ describe Scheduling do
       let(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer, show_host: host) }
 
       it { expect(scheduling.organizer).to eq(buyer) }
-      it { expect(scheduling.organizer_name).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
+      it { expect(scheduling.organizer_name_with_kind).to eq("#{buyer.name} [#{ShowBuyer.model_name.human}]")}      
       
     end
   end

@@ -310,7 +310,7 @@ class Scheduling < ActiveRecord::Base
       remark_array.append("Derniere annee : #{show_host.last_year}") 
       self.remark = remark_array.compact.join(' / ')
     end
-    [self.full_name, self.scheduler_name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer_name, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
+    [self.full_name, self.scheduler_name, translated_period, self.prospecting_months, self.contract_list, self.style_list, self.remark, self.discovery, self.organizer_name_with_kind, ExportTools.build_list(self.organizer.emails), ExportTools.build_list(self.organizer.phones), ExportTools.build_list(self.organizer.addresses), ExportTools.build_list(self.organizer.websites), self.organizer.network_list,self.organizer.custom_list, self.organizer.remark, ExportTools.build_list(self.organizer.people)
     ].to_csv
   end
 
@@ -319,19 +319,13 @@ class Scheduling < ActiveRecord::Base
     show_buyer
   end
   
-  def organizer_name
-    "#{organizer.name} [#{organizer.class.model_name.human}]"
+  def organizer_name_with_kind
+    organizer.name_with_kind
   end
   
   def full_name
-    if self.show_buyer
-      if self.show_host
-        "#{self.name} (#{self.show_buyer.name} [#{ShowBuyer.model_name.human}] => #{show_host.name} [#{show_host.class.model_name.human}])"
-      else
-        "#{self.name} (#{self.show_buyer.name} [#{ShowBuyer.model_name.human}])"
-      end
-    else
-      "#{self.name} (#{self.show_host.name} [#{show_host.class.model_name.human}])"
-    end
+    organizer_info = organizer_name_with_kind
+    organizer_info = "#{organizer_info} => #{show_host.name_with_kind}" if self.show_buyer && self.show_host
+    "#{self.name} (#{organizer_info})"    
   end
 end
