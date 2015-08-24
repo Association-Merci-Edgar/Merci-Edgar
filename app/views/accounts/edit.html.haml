@@ -12,13 +12,19 @@
           %p
           = f.button :submit, class:'btn-primary'
           
-      %section.span6.comingsoon
+      %section.span6
         %h4 Forfaits et facturation
         %p
           Forfait Beta Testeur
           .badge.inline GRATUIT
           jusqu'au 31/03/2013
-          <br>
+          
+      %section.span6
+        %h4 Export
+        %p
+          = link_to 'Exporter le compte', new_contacts_export_path, class:'btn btn-primary'
+      
+
 
 
     -#_____________________________________________________ USERS
