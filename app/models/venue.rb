@@ -15,7 +15,6 @@
 #
 
 class Venue < ActiveRecord::Base
-  include Contacts::Xml
   include Organizer
   default_scope { where(:account_id => Account.current_id) }
 
@@ -155,41 +154,6 @@ class Venue < ActiveRecord::Base
 
   def style_list
     Scheduling.style_for(self)
-  end
-
-  def self.from_merciedgar_hash(venue_attributes, imported_at, custom_tags)
-    avatar_attributes = venue_attributes.delete("base64_avatar")
-    structure_attributes = venue_attributes.delete("structure")
-    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)
-    schedulings_attributes = venue_attributes.delete("schedulings")
-    season_months = venue_attributes.delete("season_months")
-    if season_months
-      smonths = season_months.delete("season_month")
-      smonths = [].push(smonths.to_s) unless smonths.is_a?(Array)
-    end
-
-    venue = Venue.new(venue_attributes)
-    venue.structure = structure
-    venue.upload_base64_avatar(avatar_attributes)
-    venue.season_months = smonths
-
-    if schedulings_attributes.present? && schedulings_attributes["scheduling"].present?
-      if schedulings_attributes["scheduling"].is_a?(Hash)
-        venue.schedulings << Scheduling.from_merciedgar_hash(schedulings_attributes["scheduling"], imported_at)
-      else
-        schedulings_attributes["scheduling"].each do |scheduling_attributes|
-          venue.schedulings << Scheduling.from_merciedgar_hash(scheduling_attributes, imported_at)
-        end
-      end
-    end
-    venue
-
-  end
-
-  def self.from_xml(xml)
-    attributes = Hash.from_xml(xml)
-    venue_attributes = attributes["venue"]
-    self.from_merciedgar_hash(venue_attributes, Time.now)
   end
 
   def self.from_csv(row)

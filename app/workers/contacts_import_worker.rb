@@ -1,4 +1,3 @@
-require 'xml'
 class ContactsImportWorker
   include SidekiqStatus::Worker
   sidekiq_options retry: false

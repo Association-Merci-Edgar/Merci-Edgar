@@ -90,8 +90,6 @@ Edgar::Application.routes.draw do
 
     resources :contacts_exports, only: [:new]
 
-    resources :exports, only: [:new]
-
     resources :announcements, only: [:index]
     resources :coupons
     resources :addresses, only: [:update]

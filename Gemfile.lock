@@ -281,7 +281,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
-    libxml-ruby (2.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -480,7 +479,6 @@ DEPENDENCIES
   kaminari (~> 0.15)
   launchy
   letter_opener
-  libxml-ruby
   mimer_plus
   mini_magick
   mocha
@@ -508,3 +506,6 @@ DEPENDENCIES
   unicorn
   waitutil (~> 0.2.1)
   yaml_db
+
+BUNDLED WITH
+   1.10.6

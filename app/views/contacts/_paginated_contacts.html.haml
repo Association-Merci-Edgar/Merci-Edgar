@@ -12,9 +12,6 @@
         = paginate @contacts if @contacts
         —
 
-        // EXPORT
-        = link_to new_export_path(params.except(:controller)), remote: true, :class=>"", :title =>"Exporter ces contacts dans un fichier XML", "data-placement"=>"bottom-left", "data-toggle"=>"tooltip", "data-html"=>"true" do
-          %i.entypo.edi-export
     = render @contacts if @contacts
     - unless @no_paging
       %li#next_page_li.list-header

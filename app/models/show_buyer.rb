@@ -10,7 +10,6 @@
 #
 
 class ShowBuyer < ActiveRecord::Base
-  include Contacts::Xml
   include Organizer
 
   default_scope { where(:account_id => Account.current_id) }
@@ -64,43 +63,6 @@ class ShowBuyer < ActiveRecord::Base
 
   def style_list
     Scheduling.style_for(self)
-  end
-
-  def self.from_xml(xml)
-    attributes = Hash.from_xml(xml)
-    show_buyer_attributes = attributes["show_buyer"]
-    name = show_buyer_attributes.delete("name")
-
-    duplicate = Contact.find_by_name(name)
-    if duplicate
-      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
-      name = "#{name} ##{nb_duplicates + 1}"
-    end
-
-
-    structure_attributes = show_buyer_attributes.delete("structure")
-    contact_attributes = structure_attributes.delete("contact")
-    s = ShowBuyer.new(show_buyer_attributes)
-    s.structure = Structure.new(structure_attributes)
-
-    contact = Contact.new_from_mml_hash(contact_attributes)
-    contact.name = name
-    contact.duplicate = duplicate
-    s.structure.contact = contact
-
-    s
-  end
-
-  def self.from_merciedgar_hash(show_buyer_attributes, imported_at, custom_tags)
-    avatar_attributes = show_buyer_attributes.delete("base64_avatar")
-    structure_attributes = show_buyer_attributes.delete("structure")
-    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)
-
-    show_buyer = ShowBuyer.new(show_buyer_attributes)
-    show_buyer.structure = structure
-    show_buyer.upload_base64_avatar(avatar_attributes)
-
-    show_buyer
   end
 
   def self.from_csv(row)

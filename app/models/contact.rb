@@ -322,51 +322,6 @@ class Contact < ActiveRecord::Base
     self.custom_tags = self.custom_tags.split(',').map(&:strip).map(&:downcase).uniq.join(',') if self.custom_tags.present?
   end
 
-  def deep_xml(builder=nil)
-    to_xml(:builder => builder,
-      :skip_instruct => true,
-      :skip_types => true,
-      except: [:id, :duplicate_id, :created_at, :updated_at, :contactable_type, :contactable_id, :account_id, :avatar, :contract_tags, :style_tags, :capacity_tags, :venue_kind],
-      :include => {
-        :phones => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
-        :websites => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
-        :emails => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]},
-        :addresses => {:skip_types => true, except: [:id, :created_at, :updated_at, :account_id, :contact_id]}
-      }
-      ) do |xml|
-    end
-  end
-
-  def fine_deep_xml
-    self.fine_model.deep_xml
-  end
-
-  def self.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
-    addresses_attributes = contact_attributes.delete("addresses")
-    phones_attributes = contact_attributes.delete("phones")
-    websites_attributes = contact_attributes.delete("websites")
-    emails_attributes = contact_attributes.delete("emails")
-
-    contact = Contact.new(contact_attributes)
-    name = contact_attributes["name"]
-    duplicate = Contact.find_by_name(name)
-    if duplicate
-      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
-      contact.name = "#{name} ##{nb_duplicates + 1}"
-      contact.duplicate = duplicate
-    end
-
-    contact.imported_at = imported_at
-
-    contact.build_children(:addresses, addresses_attributes["address"]) if addresses_attributes
-    contact.build_children(:phones, phones_attributes["phone"]) if phones_attributes
-    contact.build_children(:websites, websites_attributes["website"]) if websites_attributes
-    contact.build_children(:emails, emails_attributes["email"]) if emails_attributes
-    contact.add_custom_tags(custom_tags)
-
-    contact
-  end
-
   def assign_name_and_duplicate(name)
     self.name = name
     duplicate = Contact.where("name = ?", self.name).first
