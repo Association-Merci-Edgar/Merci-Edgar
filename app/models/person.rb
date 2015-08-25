@@ -13,7 +13,6 @@
 #
 
 class Person < ActiveRecord::Base
-  include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
   attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar, :remote_avatar_url
   has_one :contact, as: :contactable, dependent: :destroy
@@ -114,49 +113,6 @@ class Person < ActiveRecord::Base
 
   def relative(user)
     relative = self.relatives.where(user_id: user.id).first
-  end
-
-  def deep_xml(builder=nil)
-    to_xml(
-      :builder => builder, :skip_instruct => true, :skip_types => true,
-      except: [:id, :created_at, :updated_at, :account_id, :avatar]
-      ) do |xml|
-      # contact.deep_xml(xml)
-      xml.base64_avatar do
-        xml.filename self.avatar.file.filename
-        xml.content self.base64_avatar
-      end  unless self.avatar_url == self.avatar.default_url
-    end
-  end
-
-  def self.from_merciedgar_hash(person_attributes, imported_at, custom_tags)
-    avatar_attributes = person_attributes.delete("base64_avatar")
-    contact_attributes = person_attributes.delete("contact") || {}
-    first_name = person_attributes.delete("first_name")
-    last_name = person_attributes.delete("last_name")
-    person = Person.find_or_initialize_by_first_name_and_last_name(first_name,last_name)
-    unless person.new_record?
-      old_person = person
-      duplicates = Contact.where("name LIKE ?", "#{person.name} #%")
-      nb_duplicates = duplicates.size
-      person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
-      unless person
-        fname = "#{first_name} ##{nb_duplicates + 1}"
-
-        person = Person.new(last_name:last_name, first_name:fname)
-        logger.info {"CONTACT ATTRIBUTES --------- #{contact_attributes}"}
-
-      end
-
-    end
-    person.assign_attributes(person_attributes)
-    person.upload_base64_avatar(avatar_attributes) if avatar_attributes.present?
-
-    person.contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
-    person.contact.duplicate = old_person.contact if old_person
-    person.contact.add_custom_tags(custom_tags)
-
-    person
   end
 
   def self.get_or_init_by_name(name, imported_at)

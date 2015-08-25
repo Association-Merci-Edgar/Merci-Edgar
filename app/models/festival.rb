@@ -13,7 +13,6 @@
 #
 
 class Festival < ActiveRecord::Base
-  include Contacts::Xml
   include Organizer
   default_scope { where(:account_id => Account.current_id) }
 
@@ -65,54 +64,6 @@ class Festival < ActiveRecord::Base
 
   def style_list
     Scheduling.style_for(self)
-  end
-
-  def self.from_xml(xml)
-    attributes = Hash.from_xml(xml)
-    festival_attributes = attributes["festival"]
-    name = festival_attributes.delete("name")
-
-    duplicate = Contact.find_by_name(name)
-    if duplicate
-      nb_duplicates = Contact.where("name LIKE ?","#{name} #%").size
-      name = "#{name} ##{nb_duplicates + 1}"
-    end
-
-
-    structure_attributes = festival_attributes.delete("structure")
-    contact_attributes = structure_attributes.delete("contact")
-    f = Festival.new(festival_attributes)
-    f.structure = Structure.new(structure_attributes)
-
-    contact = Contact.new_from_mml_hash(contact_attributes)
-    contact.name = name
-    contact.duplicate = duplicate
-    f.structure.contact = contact
-
-    f
-  end
-
-  def self.from_merciedgar_hash(festival_attributes, imported_at, custom_tags)
-    avatar_attributes = festival_attributes.delete("base64_avatar")
-    structure_attributes = festival_attributes.delete("structure")
-    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)
-    schedulings_attributes = festival_attributes.delete("schedulings")
-
-    festival = Festival.new(festival_attributes)
-    festival.structure = structure
-    festival.upload_base64_avatar(avatar_attributes)
-
-    if schedulings_attributes.present? && schedulings_attributes["scheduling"].present?
-      if schedulings_attributes["scheduling"].is_a?(Hash)
-        festival.schedulings << Scheduling.from_merciedgar_hash(schedulings_attributes["scheduling"], imported_at)
-      else
-        schedulings_attributes["scheduling"].each do |scheduling_attributes|
-          festival.schedulings << Scheduling.from_merciedgar_hash(scheduling_attributes, imported_at)
-        end
-      end
-    end
-
-    festival
   end
 
   def self.from_csv(row)

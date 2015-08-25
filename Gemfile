@@ -30,7 +30,6 @@ gem 'yaml_db'
 
 gem 'kaminari', '~> 0.15'
 
-gem "libxml-ruby"
 gem 'carrierwave'
 gem 'carrierwave_direct', "~> 0.0.14"
 gem 'mini_magick'
