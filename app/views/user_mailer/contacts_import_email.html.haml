@@ -3,9 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1= "Cher #{@user.name}"
+    %p= t('hello')
     %p
       Nous tenons à vous informer que l'import du fichier
       = @filename
-      s'est correctement déroulé. Vous pouvez consulter l'ensemble des contacts importés  #{link_to "en cliquant sur ce lien", contacts_url(subdomain: @account.domain, domain: ENV["DOMAIN"], imported_at: @imported_at)}.
+      s'est correctement déroulé. Vous pouvez consulter l'ensemble des contacts importés  #{link_to "en cliquant sur ce lien", contacts_url(subdomain: @account.domain, imported_at: @imported_at)}.
     %p
+
+    %p= t('see_you_soon')
