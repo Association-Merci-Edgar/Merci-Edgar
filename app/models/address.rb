@@ -175,7 +175,9 @@ REGIONS = {
   end
 
   def to_s
-    "#{full_address} [#{I18n.t(kind, scope: 'simple_form.options.addresses.kind')}]"
+    result = full_address
+    result += " [#{I18n.t(kind, scope: 'simple_form.options.addresses.kind')}]" if kind.present?
+    result
   end
 
   def department_name

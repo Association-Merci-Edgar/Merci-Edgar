@@ -7,6 +7,11 @@ describe Phone do
   end
 
   describe "to_s" do
+    context "without kind phone" do
+      let(:phone) { FactoryGirl.build(:phone, number: '01 30 40 50 60', kind: nil) }
+      it { expect(phone.to_s).to eq("01 30 40 50 60") }
+    end
+
     context "with predetermined kind phone" do
       let(:phone) { FactoryGirl.build(:phone, kind: Phone::RECEPTION, number: '01 30 40 50 60') }
       it { expect(phone.to_s).to eq("01 30 40 50 60 [#{I18n.t(Phone::RECEPTION, scope: 'simple_form.options.phones.classic_kind') }]") }

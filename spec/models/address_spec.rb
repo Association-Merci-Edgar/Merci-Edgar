@@ -12,10 +12,21 @@ describe Address do
   end
 
   describe "to_s" do
-    let(:address) { 
-      FactoryGirl.build(:address, street: '34 rue de la gare', city: 'Marseille', postal_code: '13003', 
-      more_info: 'près du piano, à coté du McDo', country: 'FR', kind: Address::MAIN_ADDRESS) 
-    }
-    it { expect(address.to_s).to eq("#{address.full_address} [Adresse principale]") }
+    context 'with kind' do
+      let(:address) { 
+        FactoryGirl.build(:address, street: '34 rue de la gare', city: 'Marseille', postal_code: '13003', 
+        more_info: 'près du piano, à coté du McDo', country: 'FR', kind: Address::MAIN_ADDRESS) 
+      }
+      it { expect(address.to_s).to eq("#{address.full_address} [Adresse principale]") }
+    end
+    
+    context 'without kind' do
+      let(:address) { 
+        FactoryGirl.build(:address, street: '34 rue de la gare', city: 'Marseille', postal_code: '13003', 
+        more_info: 'près du piano, à coté du McDo', country: 'FR', kind: nil) 
+      }
+      it { expect(address.to_s).to eq("#{address.full_address}") }
+    end
+    
   end
 end
