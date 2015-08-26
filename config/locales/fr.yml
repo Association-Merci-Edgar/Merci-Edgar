@@ -371,7 +371,8 @@ fr:
       success:
         subject: "Export de votre compte Merci Edgar "
         title: "Export de votre compte Merci Edgar"
-        body: "Vous trouverez ci-joint l'export de votre compte Merci Edgar"
+        body: "Vous trouverez l'export de votre compte Merci Edgar"
+        link: "en cliquant sur ce lien"
 
   helpers:
     browse: Parcourir...
