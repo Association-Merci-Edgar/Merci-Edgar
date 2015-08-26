@@ -12,6 +12,7 @@ class ExportContacts
   def store(filename)
     File.open(filename) do |f|
       uploader = ExportUploader.new
+      uploader.store_dir = "uploads/export/#{SecureRandom.hex(20)}"
       uploader.store!(f)
       uploader.url
     end
