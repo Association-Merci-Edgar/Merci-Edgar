@@ -4,5 +4,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     %p= t('hello')
-    %p= t('body', scope: 'mailers.contacts_export.success')
+    %p
+      = t('body', scope: 'mailers.contacts_export.success')
+      %a{href: @zip_url}
+        = t('link', scope: 'mailers.contacts_export.success')
     %p= t('see_you_soon')

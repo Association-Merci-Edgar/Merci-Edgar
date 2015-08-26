@@ -33,10 +33,10 @@ class UserMailer < ActionMailer::Base
     mail(to: user.email, subject: "Problème lors de l'import Merci Edgar")
   end
 
-  def export_contacts(user, zipfile)
-    attachments[zipfile] = File.read(zipfile)
+  def export_contacts(user, zip_url)
     @user = user
-    mail(to: user.email, subject: I18n.t('mailers.contacts_export.success.subject'), content_type: "multipart/mixed")
+    @zip_url = zip_url
+    mail(to: user.email, subject: I18n.t('mailers.contacts_export.success.subject'))
   end
 
   private
