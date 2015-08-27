@@ -104,6 +104,7 @@ class Phone < ActiveRecord::Base
   end
 
   def to_s
+    return number unless kind.present?
     if self.classic_kind == OTHER
       "#{number} [#{self.specific_kind}]"
     else    
