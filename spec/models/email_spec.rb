@@ -11,8 +11,13 @@ describe Email do
       let(:email) { FactoryGirl.build(:email, address: 'stephane@laposte.net', kind: Email::WORK) }
       it { expect(email.to_s).to eq("stephane@laposte.net [#{I18n.t(Email::WORK, scope: 'simple_form.options.emails.classic_kind') }]") }
     end
+
+    context "with other kind email" do
+      let(:email) { FactoryGirl.build(:email, address: 'fede-sud@mouvementrural.org', kind: nil) }
+      it { expect(email.to_s).to eq("fede-sud@mouvementrural.org") }
+    end
   
-    context "with other kind phone" do
+    context "with other kind email" do
       let(:email) { FactoryGirl.build(:email, address: 'fede-sud@mouvementrural.org', kind: 'Alpes du Sud') }
       it { expect(email.to_s).to eq("fede-sud@mouvementrural.org [Alpes du Sud]") }
     end

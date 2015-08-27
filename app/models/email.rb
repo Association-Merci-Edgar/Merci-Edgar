@@ -59,6 +59,7 @@ class Email < ActiveRecord::Base
   end
 
   def to_s
+    return self.address unless kind.present?
     if self.classic_kind == OTHER
       "#{self.address} [#{self.specific_kind}]"
     else    
