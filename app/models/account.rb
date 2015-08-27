@@ -1,3 +1,5 @@
+require 'zip'
+
 # == Schema Information
 #
 # Table name: accounts
@@ -85,84 +87,13 @@ class Account < ActiveRecord::Base
     end
   end
 
-
-  def import_contacts_from_csv(csv_file)
-    logger.debug "------------------\n"
-    logger.debug "Beggining scanning #{csv_file}\n"
-    lines = File.new(csv_file).readlines
-    header = lines.shift.strip
-    keys = header.split("#")
-    lines.each do |line|
-      params = {}
-      values = line.strip.split("#")
-      keys.each_with_index do |key,i|
-        params[key] = values[i].strip if !values[i].nil?
-      end
-
-      v = Venue.new
-      v.name   = params["NOM"].titleize if params["NOM"].present?
-      vi = v.build_venue_info
-      vi.kind   = params["TYPE DE LIEU"] if params["TYPE DE LIEU"].present?
-
-      room = v.rooms.build
-      room.name = v.name
-      room.width  = params["OUVERTURE PLATEAU"]
-      room.depth  = params["PROFONDEUR PLATEAU"]
-      room.height = params["HAUTEUR PLATEAU"]
-
-      seating = params["PLACES ASSISES"].to_i
-      room.capacities.build(nb:seating,kind: "seating") if seating && seating > 0
-      standing = params["PLACES DEBOUT"].to_i
-      room.capacities.build(nb:seating,kind: "standing") if standing && standing > 0
-
-
-      address1 = mystrip(params["ADRESSE 1"])
-      address1.titleize if !address1.nil?
-      address2 = mystrip(params["ADRESSE 2"])
-      address2.titleize if !address2.nil?
-      maddress = "#{address1},#{address2}"
-      a = v.addresses.build
-      a.street = maddress
-      a.postal_code = params["CODE POSTAL"]
-      a.city = params["VILLE"].titleize if !params["VILLE"].nil?
-      a.country = "FR"
-      a.kind = "main_address"
-
-      v.phones.build(national_number:params["TELEPHONE"], kind:"Work") if mystrip(params["TELEPHONE"]).present?
-      v.phones.build(national_number:params["TELECOPIE"], kind:"Fax") if mystrip(params["TELECOPIE"]).present?
-
-      v.emails.build(address:mystrip(params["EMAIL"]), kind:"Work") if mystrip(params["EMAIL"]).present?
-
-      v.websites.build(url:params["WEB"], kind:"Work") if mystrip(params["WEB"]).present?
-
-
-      if !v.save
-        logger.debug "Problem importing #{v.name} venue \n"
-      else
-        add_contact("DIRECTEUR", params, v)
-        add_contact("CODIRECTEUR", params, v)
-        add_contact("DIR ADJOINT", params, v)
-        add_contact("ADMINISTRATEUR", params, v)
-        add_contact("SEC GENERAL", params, v)
-        add_contact("RESP PROG ARTISTIQUE", params, v)
-        add_contact("CO RESP PROG", params, v)
-        add_contact("AUTRE RESP PROG", params, v)
-        add_contact("RESP JEUNE PUBLIC", params, v)
-        add_contact("RESP TECHNIQUE", params, v)
-        add_contact("COMPTABLE", params, v)
-        add_contact("RESP COMMUNICATION", params, v)
-        add_contact("RESP RELATIONS PUBLIQUES", params, v)
-        add_contact("RESP RELATIONS PRESSE", params, v)
-      end
-    end
-  end
-
   def member?(user)
     self.abilitations.where(user_id: user.id).first.member?
   end
 
   def manager?(user)
-    self.abilitations.where(user_id: user.id).first.manager?
+    first_abilitation = self.abilitations.where(user_id: user.id).first
+    first_abilitation && first_abilitation.manager?
   end
 
   def empty
@@ -179,6 +110,24 @@ class Account < ActiveRecord::Base
       fm = contact.fine_model
       fm.destroy
     end
+  end
+
+  def export_filename
+    today = DateTime.now
+    File.join(Dir.tmpdir, "#{domain}-#{today.strftime('%d%m%Y')}.zip")
+  end
+
+  def export_contacts
+    File.delete(export_filename) if File.exists?(export_filename)
+    Zip::File.open(export_filename, Zip::File::CREATE) do |zipfile|
+
+      [Person, Venue, Scheduling, Structure].each do |element|
+        if file = element.export(self)
+          zipfile.add(File.basename(file), File.absolute_path(file))
+        end
+      end
+    end
+    export_filename
   end
 
 end

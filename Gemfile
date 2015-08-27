@@ -30,11 +30,12 @@ gem 'yaml_db'
 
 gem 'kaminari', '~> 0.15'
 
-gem "libxml-ruby"
 gem 'carrierwave'
 gem 'carrierwave_direct', "~> 0.0.14"
 gem 'mini_magick'
 gem 'fog'
+
+gem 'rubyzip'
 
 gem 'waitutil', "~> 0.2.1"
 
@@ -52,6 +53,8 @@ gem 'slim'
 gem 'newrelic_rpm'
 
 group :development do
+  gem 'foreman'
+  gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'awesome_print'
@@ -59,6 +62,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'byebug'
   gem 'annotate'
+  gem 'rails-erd'
 end
 group :development, :test do
   gem 'foreman'

@@ -9,7 +9,7 @@
 %section.padded
   .row-fluid.label-blocks
     .span4
-      = link_to import_samples_account_path, remote: true, method: :put, :class => "label label-large" do
+      = link_to new_contacts_import_path, :class => "label label-large" do
         %i.edi-import
         %h4 Importer un fichier
         %p (Excel, LibreOffice, ...)

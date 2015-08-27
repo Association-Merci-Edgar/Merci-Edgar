@@ -1,4 +1,3 @@
-require 'xml'
 class ContactsImportWorker
   include SidekiqStatus::Worker
   sidekiq_options retry: false
@@ -24,19 +23,11 @@ class ContactsImportWorker
     at(1, "Démarrage de l'import...")
 
     filename = import.contacts_file.filename
-    case File.extname(filename)
-    when ".xml"
-      import_xml_file(import)
-    else
-      log_message, error = import_spreadsheet_file(import)
-    end
+    log_message, error = import_spreadsheet_file(import)
 
-    if error
+    if error.present?
       self.payload = { invalid_file: true, message: log_message }
-      return
-
       self.payload = { message: error }
-
       UserMailer.contacts_import_invalid(user).deliver unless import.test_mode
     else
       imported_contacts = Contact.where(imported_at: imported_at)
@@ -55,55 +46,9 @@ class ContactsImportWorker
     end
   end
 
-  def import_xml_file(import)
-    file = import.contacts_file.file
-    imported_at = import.updated_at.to_i
-    options = {}
-    ActiveRecord::Base.transaction do
-      File.open(file.path) do |io|
-        self.total = io.size
-        at(20, "Lecture du fichier ...")
-        xml_reader = XML::Reader.io(io)
-        xml_reader.read
-        raise "No valid Merci Edgar File" unless xml_reader.name == "merciedgar"
-
-        while xml_reader.read do
-          case xml_reader.name
-          when "show-buyer", "person", "structure"
-            xml_node = xml_reader.expand.to_s
-            attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
-            instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, options[:custom_tags])
-            instance.save
-            at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
-          end
-          xml_reader.next
-        end
-      end
-
-      File.open(file.path) do |io|
-        self.total = io.size
-        at(20, "Lecture du fichier ...")
-        xml_reader = XML::Reader.io(io)
-        xml_reader.read
-        raise "No valid Merci Edgar File" unless xml_reader.name == "merciedgar"
-
-        while xml_reader.read do
-          case xml_reader.name
-          when "venue", "festival"
-            xml_node = xml_reader.expand.to_s
-            attributes = Hash.from_xml(xml_node).fetch(xml_reader.name.underscore)
-            instance = Object.const_get(xml_reader.name.underscore.camelize).from_merciedgar_hash(attributes, imported_at, options[:custom_tags])
-            instance.save
-            at(xml_reader.byte_consumed, "Ajout de la fiche #{instance.name}")
-
-          end
-          xml_reader.next
-        end
-      end
-    end
-  end
 
   def import_spreadsheet_file(import)
+    error_messages = []
     ActiveRecord::Base.transaction do
       at(1,"Conversion du fichier...")
 
@@ -137,12 +82,11 @@ class ContactsImportWorker
             at(imported_index, log_message)
           end
           unless fine_contact.save
-            puts fine_contact.errors.full_messages
-            return
+            error_messages << fine_contact.errors.full_messages
           end
         end
       end
-      log_message
+      [log_message, error_messages.join(', ')]
     end
   end
 

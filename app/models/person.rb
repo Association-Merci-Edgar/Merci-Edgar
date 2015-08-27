@@ -13,7 +13,6 @@
 #
 
 class Person < ActiveRecord::Base
-  include Contacts::Xml
   default_scope { where(:account_id => Account.current_id) }
   attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar, :remote_avatar_url
   has_one :contact, as: :contactable, dependent: :destroy
@@ -28,7 +27,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :people_structures, :reject_if => :all_blank, allow_destroy: true
   accepts_nested_attributes_for :contact, :reject_if => :all_blank, allow_destroy: true
 
-  delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, to: :contact
+  delegate :imported_at, :tasks, :reportings, :network_list, :custom_list, :favorite?, :contacted?, :phone_number, :email_address, :addresses, :emails, :phones, :websites, :remark, to: :contact
 
   mount_uploader :avatar, AvatarUploader
 
@@ -116,49 +115,6 @@ class Person < ActiveRecord::Base
     relative = self.relatives.where(user_id: user.id).first
   end
 
-  def deep_xml(builder=nil)
-    to_xml(
-      :builder => builder, :skip_instruct => true, :skip_types => true,
-      except: [:id, :created_at, :updated_at, :account_id, :avatar]
-      ) do |xml|
-      # contact.deep_xml(xml)
-      xml.base64_avatar do
-        xml.filename self.avatar.file.filename
-        xml.content self.base64_avatar
-      end  unless self.avatar_url == self.avatar.default_url
-    end
-  end
-
-  def self.from_merciedgar_hash(person_attributes, imported_at, custom_tags)
-    avatar_attributes = person_attributes.delete("base64_avatar")
-    contact_attributes = person_attributes.delete("contact") || {}
-    first_name = person_attributes.delete("first_name")
-    last_name = person_attributes.delete("last_name")
-    person = Person.find_or_initialize_by_first_name_and_last_name(first_name,last_name)
-    unless person.new_record?
-      old_person = person
-      duplicates = Contact.where("name LIKE ?", "#{person.name} #%")
-      nb_duplicates = duplicates.size
-      person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
-      unless person
-        fname = "#{first_name} ##{nb_duplicates + 1}"
-
-        person = Person.new(last_name:last_name, first_name:fname)
-        logger.info {"CONTACT ATTRIBUTES --------- #{contact_attributes}"}
-
-      end
-
-    end
-    person.assign_attributes(person_attributes)
-    person.upload_base64_avatar(avatar_attributes) if avatar_attributes.present?
-
-    person.contact = Contact.new_from_merciedgar_hash(contact_attributes, imported_at, custom_tags)
-    person.contact.duplicate = old_person.contact if old_person
-    person.contact.add_custom_tags(custom_tags)
-
-    person
-  end
-
   def self.get_or_init_by_name(name, imported_at)
     normalize_name = Contact.format_name(name.strip)
     person = Person.joins(:contact).where(contacts: { name: normalize_name }).first_or_initialize if name.present?
@@ -201,4 +157,32 @@ class Person < ActiveRecord::Base
     person
   end
 
+  def self.csv_header
+    "Nom, Emails, Téls, Adresses, Sites web, Réseaux, Tags Perso, Commentaires, Structures".split(',').to_csv
+  end
+
+  def self.export(account)
+    people = Person.where(account_id: account.id)
+    return nil if people.empty?
+
+    f = File.new("personnes-#{account.domain}.csv", "w")
+    File.open(f, 'w') do |file|
+      file.puts csv_header
+      people.each do |p|
+        file.puts p.to_csv
+      end
+    end
+    f
+  end
+
+  def to_csv
+    [self.name, ExportTools.build_list(self.emails), ExportTools.build_list(self.phones),
+     ExportTools.build_list(self.addresses), ExportTools.build_list(self.websites), self.network_list,
+     self.custom_list, self.remark, ExportTools.build_list(self.structures)
+    ].to_csv
+  end
+
+  def to_s
+    "#{self.first_name} #{self.last_name}"
+  end
 end

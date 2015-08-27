@@ -1,5 +1,4 @@
 - content_for :infos do
-  / _____________________________________________ right
   %ul.list-infos
     %li.infolabel Info Lieu
     %li
@@ -9,23 +8,20 @@
   %ul.list-infos
     %li.infolabel Services
     %li= @venue.services
-    
+
   %ul.list-infos
-    /%i.entypo.edi-info
-  
     = render @venue.schedulings
-    
-  - if @venue.rooms.any?
-    - @venue.rooms.each do |room|
-      %ul.list-infos
-        %li.infolabel
-          Dimensions plateau (Profondeur / Largeur / Hauteur)
-          = " de #{room.name}" if @venue.rooms.size > 1
-        %li= room.stage
-        -  if room.capacities.any?
-          %li.infolabel Jauge(s)
-          - room.capacities.each do |capacity|
-            %span.jauge= render capacity
 
+  - @venue.rooms.each do |room|
+    %ul.list-infos
+      %li.infolabel
+        = name_of(room)
+      %li= stage_of(room)
+      %li= "#{room.seating} Places assises"
+      %li= "#{room.standing} Places debouts"
+      - if room.modular_space
+        %li Espace modulable
+      - if room.bar
+        %li Bar dans la salle
 
-= render partial: "structures/info", locals: {structure: @structure}  
+= render partial: "structures/info", locals: {structure: @structure}

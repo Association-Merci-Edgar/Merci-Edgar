@@ -11,15 +11,19 @@
 #
 
 class Email < ActiveRecord::Base
-  belongs_to :contact, touch:true
+  belongs_to :contact, touch: true
   attr_accessible :address, :kind, :specific_kind, :classic_kind
   validates_format_of :address, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true, :message => "Not a valid email"
 
   before_validation :set_kind
 
-  VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :other]
-  PERSON_KIND = [:work, :perso, :other]
-  EMAIL_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :work, :perso]
+  PERSO = :perso
+  WORK = :work
+  OTHER = :other
+
+  VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, OTHER]
+  PERSON_KIND = [WORK, PERSO, OTHER]
+  EMAIL_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, WORK, PERSO]
 
   def specific_kind
     self.kind unless kind_list.include?(self.kind.try(:to_sym))
@@ -54,5 +58,13 @@ class Email < ActiveRecord::Base
     self.kind = @specific_kind if @specific_kind.present?
   end
 
+  def to_s
+    return self.address unless kind.present?
+    if self.classic_kind == OTHER
+      "#{self.address} [#{self.specific_kind}]"
+    else    
+      "#{self.address} [#{I18n.t(kind,scope:'simple_form.options.emails.classic_kind')}]"
+    end
+  end
 
 end

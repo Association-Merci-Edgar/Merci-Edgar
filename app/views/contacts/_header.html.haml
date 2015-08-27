@@ -52,12 +52,14 @@
     = link_to new_contacts_import_path, remote:false, :class=>"btn btn-tertiary ", :title =>"Importer des contacts...", "data-placement"=>"bottom-right", "data-toggle"=>"tooltip", "data-html"=>"true" do
       %i.ico.edi-import
 
+.row-fluid.toppage.showitem
+  - if notice.present?
+    .notice= notice
+
 .row-fluid
   .sorters
 
-    /______________________________________________________ VIEWS
     .dropdown
-      / Link or button to toggle dropdown
       %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
         = @label_category.present? ? t(@label_category, scope: "filters").titleize : "Contacts"
         %i.entypo.caret-ed

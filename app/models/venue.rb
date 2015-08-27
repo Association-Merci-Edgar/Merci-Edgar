@@ -15,7 +15,7 @@
 #
 
 class Venue < ActiveRecord::Base
-  include Contacts::Xml
+  include Organizer
   default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :kind, :residency, :accompaniment, :season_months, :structure_attributes, :schedulings_attributes, :rooms_attributes, :network_tags, :avatar, :remote_avatar_url
@@ -27,10 +27,10 @@ class Venue < ActiveRecord::Base
   has_many :show_buyers, through: :schedulings, uniq: true
   accepts_nested_attributes_for :schedulings, :reject_if => :all_blank, :allow_destroy => true
 
-
-  has_many :rooms, :dependent => :destroy
+  has_many :rooms, :dependent => :destroy, inverse_of: :venue
   accepts_nested_attributes_for :rooms, :reject_if => :all_blank, :allow_destroy => true
 
+  belongs_to :account
 
   delegate :name, :contact, :people, :tasks, :reportings, :remark, :addresses, :emails, :phones, :websites, :city, :address, :network_list, :custom_list, :contacted?, :favorite?, :main_person, to: :structure
 
@@ -115,19 +115,20 @@ class Venue < ActiveRecord::Base
 
   def capacity_tags
     tags = []
-    self.capacities.each do |c|
-      case
-      when c.nb < 100
-        tags << "< 100" unless tags.include?("< 100")
-      when c.nb <= 400
-        tags << "100-400" unless tags.include?("100-400")
-      when c.nb <= 1200
-        tags << "401-1200" unless tags.include?("401-1200")
-      when c.nb > 1200
-        tags << "> 1200" unless tags.include?("> 1200")
+    seats = self.rooms.map{|r| [r.seating, r.standing]}.flatten.sort.uniq
+    seats.sort.each do |qty|
+      next if qty == 0
+      if qty < 100
+        tags << '< 100'
+      elsif qty >= 100 && qty <= 400
+        tags << '100-400'
+      elsif qty > 400 && qty <= 1200
+        tags << '401-1200'
+      else
+        tags << '> 1200'
       end
     end
-    tags
+    tags.uniq
   end
 
   def season
@@ -152,49 +153,7 @@ class Venue < ActiveRecord::Base
   end
 
   def style_list
-    sl = []
-    self.schedulings.each do |s|
-      s.style_list.each do |style|
-        sl.push(style) unless sl.include?(style)
-      end if s.style_list.present?
-    end
-    sl
-  end
-
-
-  def self.from_merciedgar_hash(venue_attributes, imported_at, custom_tags)
-    avatar_attributes = venue_attributes.delete("base64_avatar")
-    structure_attributes = venue_attributes.delete("structure")
-    structure = Structure.from_merciedgar_hash(structure_attributes, imported_at, custom_tags)
-    schedulings_attributes = venue_attributes.delete("schedulings")
-    season_months = venue_attributes.delete("season_months")
-    if season_months
-      smonths = season_months.delete("season_month")
-      smonths = [].push(smonths.to_s) unless smonths.is_a?(Array)
-    end
-
-    venue = Venue.new(venue_attributes)
-    venue.structure = structure
-    venue.upload_base64_avatar(avatar_attributes)
-    venue.season_months = smonths
-
-    if schedulings_attributes.present? && schedulings_attributes["scheduling"].present?
-      if schedulings_attributes["scheduling"].is_a?(Hash)
-        venue.schedulings << Scheduling.from_merciedgar_hash(schedulings_attributes["scheduling"], imported_at)
-      else
-        schedulings_attributes["scheduling"].each do |scheduling_attributes|
-          venue.schedulings << Scheduling.from_merciedgar_hash(scheduling_attributes, imported_at)
-        end
-      end
-    end
-    venue
-
-  end
-
-  def self.from_xml(xml)
-    attributes = Hash.from_xml(xml)
-    venue_attributes = attributes["venue"]
-    self.from_merciedgar_hash(venue_attributes, Time.now)
+    Scheduling.style_for(self)
   end
 
   def self.from_csv(row)
@@ -232,10 +191,57 @@ class Venue < ActiveRecord::Base
     end
     scheduling = Scheduling.from_csv(row)
     venue.schedulings << scheduling if scheduling
+    venue.save
     venue.rooms << Room.from_csv(row) if (row.keys & Room::VALID_CSV_KEYS).any?
+    venue.save
     venue.structure, invalid_keys = Structure.from_csv(row)
 
+    venue.save
     [venue, invalid_keys]
   end
 
+  def self.csv_header
+    "Nom, Emails, Tels, Adresses, Sites web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Cycle de programmation, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar, Personnes".split(',').to_csv
+  end
+
+  def self.export(account)
+    rooms = Room.includes(:venue).where(venues: {account_id: account.id})
+    return nil if rooms.empty?
+
+    f = File.new("lieux-#{account.domain}.csv", "w")
+    File.open(f, 'w') do |file|
+      file.puts csv_header
+      rooms.each do |room|
+        file.puts room.to_csv
+      end
+    end
+    f
+  end
+
+  def discovery
+    self.schedulings.first.discovery if self.schedulings.any?
+  end
+
+  def period
+    self.schedulings.first.period if self.schedulings.any?
+  end
+  
+  def translated_period
+    self.schedulings.first.translated_period if self.schedulings.any?
+  end
+
+  def scheduling_remark
+    self.schedulings.first.remark if self.schedulings.any?
+  end
+
+  def prospecting_months
+    self.schedulings.first.prospecting_months if self.schedulings.any?
+  end
+  
+  def translated_kind
+    return nil unless self.kind.present?
+    I18n.t(self.kind, scope: 'simple_form.options.venue.kind')
+  end
+  
+  
 end

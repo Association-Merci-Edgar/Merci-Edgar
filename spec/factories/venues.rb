@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :venue do
+    structure
   end
 end

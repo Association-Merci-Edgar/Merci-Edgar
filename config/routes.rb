@@ -88,7 +88,7 @@ Edgar::Application.routes.draw do
     resources :contacts_imports, only: [:new, :create, :update]
     get 'contacts_imports/new_with_details', to: 'contacts_imports#new_with_details', as: :new_with_details_contacts_import
 
-    resources :exports, only: [:new]
+    resources :contacts_exports, only: [:new]
 
     resources :announcements, only: [:index]
     resources :coupons

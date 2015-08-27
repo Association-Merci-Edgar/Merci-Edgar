@@ -21,6 +21,21 @@ describe ContactsController do
       it { expect(response.body).to eq([{value:"bac",label:"Cr\u00e9er la structure : bac", new:"true",link:"/fr/structures/new?name=bac"},{value:"bac",label:"Cr\u00e9er la personne : bac",new:"true",link:"/fr/people/new?name=bac"}].to_json) }
     end
 
+    describe "GET 'only'" do
 
+      describe "default" do
+          before(:each) { get 'only', filter: 'notexisting' }
+          it { expect(response).to redirect_to(contacts_path) }
+      end
+
+      FILTERS = %w(favorites contacted recently_created recently_updated style network custom contract dept capacities_less_than capacities_more_than capacities_between)
+
+      FILTERS.each do |filter|
+        describe filter do
+          before(:each) { get 'only', filter: filter }
+          it { expect(response).to be_success }
+        end
+      end
+    end
   end
 end

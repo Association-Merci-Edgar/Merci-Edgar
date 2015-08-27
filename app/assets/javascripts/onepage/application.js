@@ -20,7 +20,6 @@
 //= require onepage/jquery.prettyPhoto-3.1.4-W3C
 //= require onepage/jquery.ui.totop
 //= require onepage/jquery.inview
-//= require onepage/jquery.nicescroll
 //= require onepage/jquery.parallax-1.1.3
 //= require onepage/jquery.localscroll-1.2.7-min
 //= require onepage/jquery.scrollTo-1.4.2-min

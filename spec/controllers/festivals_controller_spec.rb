@@ -33,7 +33,6 @@ describe FestivalsController do
 
       describe "PUT update" do
         before(:each) { put :update, id: festival.id, :festival => { "nb_edition" => "1" }}
-
         it { expect(response).to redirect_to(festival) }
         it { expect(assigns(:festival)).to eq(festival) }
       end

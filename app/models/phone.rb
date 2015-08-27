@@ -13,15 +13,26 @@
 class Phone < ActiveRecord::Base
   belongs_to :contact, touch:true
   attr_accessible :kind, :national_number, :number, :country, :specific_kind, :classic_kind
-  # validates :national_number, :phone => true, :allow_blank => true
+
   validate :check_number
   before_validation :set_kind
   before_validation :set_number
-  
+
   attr_accessor :country
-  VENUE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :fax, :other]
-  PERSON_KIND = [:work, :mobile, :perso, :fax, :other]
-  PHONE_KIND = [:reception, :scheduling, :administrative, :ticket, :technical, :fax, :work, :mobile, :perso]
+  OTHER = :other
+  PERSO = :perso
+  FAX = :fax
+  MOBILE = :mobile
+  WORK = :work
+  RECEPTION = :reception
+  SCHEDULING = :scheduling
+  ADMINISTRATIVE = :administrative
+  TICKET = :ticket
+  TECHNICAL = :technical
+
+  VENUE_KIND = [RECEPTION, SCHEDULING, ADMINISTRATIVE, TICKET, TECHNICAL, FAX, OTHER]
+  PERSON_KIND = [WORK, MOBILE, PERSO, FAX, OTHER]
+  PHONE_KIND = [RECEPTION, SCHEDULING, ADMINISTRATIVE, TICKET, TECHNICAL, FAX, WORK, MOBILE, PERSO]
 
   def specific_kind
     self.kind unless kind_list.include?(self.kind.try(:to_sym))
@@ -61,6 +72,7 @@ class Phone < ActiveRecord::Base
     end
     Phony.normalize(phone_number) if Phony.plausible?(phone_number)
   end
+
   def set_kind
     self.kind = @specific_kind if @specific_kind.present?
   end
@@ -84,11 +96,19 @@ class Phone < ActiveRecord::Base
       self.number = international if international
     end
   end
-  
+
   def check_number
     if !Phony.plausible?(self.number)
       errors.add(:national_number, "Wrong phone number")
     end
   end
 
+  def to_s
+    return number unless kind.present?
+    if self.classic_kind == OTHER
+      "#{number} [#{self.specific_kind}]"
+    else    
+      "#{number} [#{I18n.t(kind,scope:'simple_form.options.phones.classic_kind')}]"
+    end
+  end
 end

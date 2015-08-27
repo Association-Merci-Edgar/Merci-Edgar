@@ -2,7 +2,6 @@
   %header
     .rightrow
       .meta
-        -# _________________________ contacted
         - if contact.contacted?
           %a.ico.contacted.full{:href => "#"}
         - else
@@ -27,9 +26,6 @@
 
       .infos
         .infos-line
-          /-  if contact.try(:capacities)
-          /  - contact.capacities.each do |capacity|
-          /    %span.jauge= render capacity
           = yield :contact_infoline
 
           - if contact.city
@@ -45,7 +41,6 @@
 .row-fluid
   .span12
     .tabbable
-      / ________________________________________________________ nav-tabs _________________
       %ul.nav.nav-tabs#contact_tabs
         %li.active
           %a{"data-toggle" => "tab", :href => "#activity"} Suivi
@@ -59,20 +54,16 @@
         = yield :navtabs
 
       .tab-content
-        / ________________________________________________________ activity
         #activity.tab-pane.active
           = render partial:'contacts/activity', locals: {contact: contact}
 
-        / ________________________________________________________ infos
         #infos.tab-pane
           = render partial:'infos'
 
-        / ________________________________________________________ tasks
         #tasks.tab-pane
           - if @tasks.any?
             = render partial:'tasks/tasks', locals: {asset: contact, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}
           - else
             = render partial:'tasks/empty_tasks', locals: {asset: contact}
-
 
         = yield :content_tabs

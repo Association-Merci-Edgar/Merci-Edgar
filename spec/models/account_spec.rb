@@ -80,4 +80,31 @@ describe Account do
     end
   end
 
+  describe "export" do
+    before(:each) { DateTime.stubs(:now).returns(DateTime.new(2010, 12, 30)) }
+
+    context "with an existing account" do
+      let(:account) { FactoryGirl.build(:account) }
+
+      context "export_contacts" do
+        it { expect(account.export_contacts).to eq(account.export_filename) }
+
+        it { expect(File.stat(account.export_contacts).size).to satisfy {|v| v > 0} }
+      end
+
+      describe "export_filename" do
+        it { expect(account.export_filename).to eq(File.join(Dir.tmpdir, "#{account.domain}-30122010.zip")) }
+      end
+    end
+  end
+
+  describe "manager?" do
+    context "without habilitation, don't throw error" do
+      let(:account) { FactoryGirl.create(:account) }
+      let(:user) { FactoryGirl.create(:user) }
+
+      it { expect(account.manager?(user)).to be_falsy }
+    end
+  end
+
 end

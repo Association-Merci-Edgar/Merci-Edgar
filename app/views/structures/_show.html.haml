@@ -3,17 +3,16 @@
     %a{"data-toggle" => "tab", :href => "#team"}
       = "Équipe"
       %span.badge.badge-shy="#{structure.people.size}"
-      
+
   = yield :extra_navtabs
-  
+
 - content_for :content_tabs do
-  / ________________________________________________________ team
   #team.tab-pane
     - if @people.any?
       = render partial:'structures/team'
     - else
       = render partial:'structures/empty_team'
-    
+
   = yield :extra_content_tabs
 
 - content_for :relative_infos do
@@ -29,5 +28,4 @@
       %li= @main_person.phone_number
       %li= @main_person.email_address
 
-
-= render partial: "contacts/show", locals: {contact: structure.contact, edit_link_path: edit_link_path}              
+= render partial: "contacts/show", locals: {contact: structure.contact, edit_link_path: edit_link_path}

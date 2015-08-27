@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140704093249) do
+ActiveRecord::Schema.define(:version => 20150805073655) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -34,21 +34,6 @@ ActiveRecord::Schema.define(:version => 20140704093249) do
 
   add_index "accounts", ["last_import_at"], :name => "index_accounts_on_last_import_at"
   add_index "accounts", ["test_imported_at"], :name => "index_accounts_on_test_imported_at"
-
-  create_table "active_admin_comments", :force => true do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -74,24 +59,6 @@ ActiveRecord::Schema.define(:version => 20140704093249) do
   add_index "addresses", ["admin_name2"], :name => "index_addresses_on_admin_name2"
   add_index "addresses", ["contact_id"], :name => "index_addresses_on_contact_datum_id"
   add_index "addresses", ["geocoded_precisely"], :name => "index_addresses_on_geocoded_precisely"
-
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
@@ -337,8 +304,11 @@ ActiveRecord::Schema.define(:version => 20140704093249) do
     t.float    "height"
     t.boolean  "bar"
     t.integer  "venue_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "seating",       :default => 0
+    t.integer  "standing",      :default => 0
+    t.boolean  "modular_space", :default => false
   end
 
   add_index "rooms", ["venue_id"], :name => "index_rooms_on_venue_id"
