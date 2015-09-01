@@ -1,0 +1,18 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.0.0
+
+env:
+  - DB=postgresql
+
+before_script:
+  - bundle exec rake db:create db:migrate
+
+addons:
+  code_climate:
+    repo_token: 8850bccc6911d74965627b1fafe753beb368fab00d33de0c7576c6598fc1220e
+
+script:
+  - bundle exec rake spec
