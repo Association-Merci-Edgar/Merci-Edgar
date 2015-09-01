@@ -2,7 +2,9 @@
 
 Merci Edgar is a CRM dedicated to artists (musicians, actors...)
 
+[![Build Status](https://travis-ci.org/publify/publify.png?branch=master)](https://travis-ci.org/publify/publify)
 [![Code Climate](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar.png)](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar)
+
 
 ## Ruby on Rails
 
