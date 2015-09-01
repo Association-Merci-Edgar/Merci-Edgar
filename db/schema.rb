@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150805073655) do
+ActiveRecord::Schema.define(:version => 20150901171004) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -24,12 +24,14 @@ ActiveRecord::Schema.define(:version => 20150805073655) do
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "domain"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "contacts_count",   :default => 0
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "contacts_count",       :default => 0
     t.integer  "test_imported_at"
     t.integer  "last_import_at"
     t.boolean  "importing_now"
+    t.string   "accounts"
+    t.date     "last_subscription_at"
   end
 
   add_index "accounts", ["last_import_at"], :name => "index_accounts_on_last_import_at"

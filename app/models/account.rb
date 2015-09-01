@@ -129,5 +129,25 @@ class Account < ActiveRecord::Base
     end
     export_filename
   end
+  
+  def trial_period_ended?
+    Date.current > ( self.created_at.to_date + 1.month) 
+  end
+
+  def subscription_up_to_date?
+    ( self.last_subscription_at + 1.year ) > Date.current
+  end
+  
+  def subscription_lasts_at
+    self.last_subscription_at + 1.year
+  end
+  
+  def subscription_ended_in_less_than_one_month?
+    subscription_lasts_at < ( Date.current + 1.month)
+  end
+
+  def subscription_ended_in_less_than_one_week?
+    subscription_lasts_at < ( Date.current + 1.week)
+  end
 
 end
