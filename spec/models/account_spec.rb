@@ -126,6 +126,11 @@ describe Account do
     end
     
   end
+  
+  describe "trial_period_lasts_at" do
+    let(:account) { FactoryGirl.create(:account, last_subscription_at: nil, created_at: Date.current) }
+    it { expect(account.trial_period_lasts_at).to eq(Date.current + 1.month) }
+  end
 
 
   describe "subscription_up_to_date?" do

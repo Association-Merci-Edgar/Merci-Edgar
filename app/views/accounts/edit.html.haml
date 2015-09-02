@@ -13,11 +13,19 @@
           = f.button :submit, class:'btn-primary'
           
       %section.span6
-        %h4 Forfaits et facturation
+        %h4 Adhésion association Merci Edgar
         %p
-          Forfait Beta Testeur
-          .badge.inline GRATUIT
-          jusqu'au 31/03/2013
+          - if @account.trial_period_ended?
+            - if @account.subscription_up_to_date?
+              .badge.inline ADHERENT
+              = "Votre adhésion expire le #{l(@account.subscription_lasts_at)}"
+            - else
+              .badge.inline EXPIRATION
+              Votre adhésion a expiré 
+              = "le #{l(@account.subscription_lasts_at)}" if @account.subscription_lasts_at.present?
+          - else
+            .badge.inline PERIODE D'ESSAI
+            = "jusqu'au #{l(@account.trial_period_lasts_at)}"
           
       %section.span6
         %h4 Export

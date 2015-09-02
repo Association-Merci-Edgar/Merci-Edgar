@@ -133,12 +133,18 @@ class Account < ActiveRecord::Base
   def trial_period_ended?
     Date.current > ( self.created_at.to_date + 1.month) 
   end
+  
+  def trial_period_lasts_at
+    self.created_at.to_date + 1.month
+  end
 
   def subscription_up_to_date?
-    ( self.last_subscription_at + 1.year ) > Date.current
+    return false if self.last_subscription_at.nil?
+    self.subscription_lasts_at > Date.current
   end
   
   def subscription_lasts_at
+    return nil if self.last_subscription_at.nil?
     self.last_subscription_at + 1.year
   end
   
