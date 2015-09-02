@@ -139,8 +139,7 @@ class Account < ActiveRecord::Base
   end
 
   def subscription_up_to_date?
-    return false if self.last_subscription_at.nil?
-    self.subscription_lasts_at > Date.current
+    self.last_subscription_at.present? && self.subscription_lasts_at > Date.current
   end
   
   def subscription_lasts_at
