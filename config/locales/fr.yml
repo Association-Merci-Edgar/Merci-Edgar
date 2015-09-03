@@ -366,6 +366,11 @@ fr:
   notices:
     contacts_export:
       initiated: "L'export vient d'être lancé. Vous recevrez un mail une fois l'export terminé"
+    subscriptions:
+      trial_period_ended: "La période d'essai est terminée."
+      not_up_to_date: "Votre abonnement a expiré"
+      need_to_subscribe_soon_html: "Attention ! Votre abonnement expire le %{end_subscription}.
+        <a href='%{link}'>Renouveler son abonnement</a>"
   mailers:
     contacts_export:
       success:
