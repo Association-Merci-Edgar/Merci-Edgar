@@ -115,7 +115,7 @@ class Task < ActiveRecord::Base
 
   def calendar=(s)
     if s.present?
-      self.due_at = Time.zone.parse(s,'%d/%m/%Y %H:%M')
+      self.due_at = Time.zone.parse(s)
       self.specific_time = true
     end
   end
