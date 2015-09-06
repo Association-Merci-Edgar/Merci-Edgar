@@ -4,9 +4,7 @@ describe HomeController do
   before(:each) do
     @request.host = "#{user.accounts.first.domain}.lvh.me"
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in user
-    Account.current_id = user.accounts.first.id 
-    
+    sign_in user    
   end
   
 

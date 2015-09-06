@@ -5,8 +5,6 @@ describe WelcomeController do
     @request.host = "#{user.accounts.first.domain}.lvh.me"
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in user
-    Account.current_id = user.accounts.first.id 
-    
   end
   
   context "with a logged user" do
