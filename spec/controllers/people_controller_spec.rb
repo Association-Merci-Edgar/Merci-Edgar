@@ -4,11 +4,13 @@ describe PeopleController do
 
   context "with a logged user" do
 
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:user) { FactoryGirl.create(:user, label_name: "truc") }
 
     before(:each) do
+      @request.host = "#{user.accounts.first.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
+      Account.current_id = user.accounts.first.id
     end
 
     context "with an existing person" do
@@ -52,9 +54,16 @@ describe PeopleController do
     end
 
     describe "POST create" do
-      before(:each) { post :create, person: {first_name: "truc", last_name: "bidule"} }
-      it { expect(response).to redirect_to(Person.first) }
-      it { expect(Person.count).to eq(1) }
+      before(:each) { 
+        post :create, person: {first_name: "truc", last_name: "bidule"} }
+      it { 
+        Account.current_id = user.accounts.first.id
+        expect(response).to redirect_to(Person.first) 
+      }
+      
+      it { 
+        Account.current_id = user.accounts.first.id
+        expect(Person.count).to eq(1) }
       it { expect(assigns(:person)).to be_a(Person) }
     end
   end

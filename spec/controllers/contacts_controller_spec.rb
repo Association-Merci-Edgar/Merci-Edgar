@@ -2,11 +2,12 @@ require 'rails_helper'
 
 describe ContactsController do
   context "with a logged user" do
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:user) { FactoryGirl.create(:user, label_name: "truc") }
 
     before(:each) do
+      @request.host = "#{user.accounts.first.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      sign_in user
+      sign_in user    
     end
 
     describe "GET 'index'" do
