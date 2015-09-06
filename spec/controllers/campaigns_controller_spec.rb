@@ -8,7 +8,8 @@ describe CampaignsController, :type => :controller do
     before(:each) do
       @request.host = "#{user.accounts.first.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      sign_in user    
+      sign_in user
+      Account.current_id = user.accounts.first.id
     end
 
     context "with an existing campaign" do
