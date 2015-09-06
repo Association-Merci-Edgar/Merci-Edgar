@@ -3,11 +3,12 @@ require 'rails_helper'
 describe CampaignsController, :type => :controller do
 
   context "with a logged user" do
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:user) { FactoryGirl.create(:admin) }
 
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
+      Account.current_id = user.accounts.first.id
     end
 
     context "with an existing campaign" do
