@@ -19,12 +19,12 @@ FactoryGirl.define do
       else
         if evaluator.with_account_subscription_up_to_date
           if evaluator.with_account_subscription_lasts_soon
-            account = FactoryGirl.build(:account, last_subscription_at: Date.current - 1.year + 3.days)            
+            account = FactoryGirl.build(:account, :with_account_subscription_lasts_soon)            
           else
-            account = FactoryGirl.build(:account, last_subscription_at: Date.current - 6.months)
+            account = FactoryGirl.build(:account, :with_account_subscription_up_to_date)
           end
         else 
-          account = FactoryGirl.build(:account, last_subscription_at: Date.current - 1.year - 1.day)
+          account = FactoryGirl.build(:account, :with_account_subscription_not_up_to_date)
         end
       end
       user.accounts = [account]
