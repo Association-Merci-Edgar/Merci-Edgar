@@ -1,33 +1,5 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :integer          not null, primary key
-#  email                  :string(255)      default(""), not null
-#  encrypted_password     :string(255)      default(""), not null
-#  reset_password_token   :string(255)
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0)
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  name                   :string(255)
-#  confirmation_token     :string(255)
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string(255)
-#  first_name             :string(255)
-#  last_name              :string(255)
-#  avatar                 :string(255)
-#
-
 class User < ActiveRecord::Base
   rolify
-  # has_and_belongs_to_many :accounts
   has_many :accounts, through: :abilitations
   has_many :abilitations, dependent: :destroy
 
@@ -36,25 +8,18 @@ class User < ActiveRecord::Base
 
   validates_presence_of :label_name
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :accounts_attributes, :avatar, :label_name
 
   has_many :favorite_contacts
   has_many :favorites, through: :favorite_contacts, source: :contact
-
 
   mount_uploader :avatar, AvatarUploader
 
   after_create :add_user_to_mailchimp
   before_destroy :remove_user_from_mailchimp
 
-  # override Devise method
-  # no password is required when the account is created; validate password when the user sets one
   validates_confirmation_of :password
   def password_required?
     if !persisted?
@@ -64,12 +29,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  # override Devise method
   def confirmation_required?
     false
   end
 
-  # override Devise method
   def active_for_authentication?
     confirmed? || confirmation_period_valid?
   end
@@ -82,7 +45,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # new function to set the password
   def attempt_set_password(params)
     p = {}
     p[:password] = params[:password]
@@ -112,7 +74,6 @@ class User < ActiveRecord::Base
   def name
     "#{self.first_name} #{self.last_name}"
   end
-
 
   def add_to_favorites(contact)
     fav = self.favorite_contacts.build
