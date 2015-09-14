@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150901171004) do
+ActiveRecord::Schema.define(:version => 20150914152024) do
 
   create_table "abilitations", :force => true do |t|
     t.integer  "user_id"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(:version => 20150901171004) do
     t.integer  "test_imported_at"
     t.integer  "last_import_at"
     t.boolean  "importing_now"
-    t.string   "accounts"
     t.date     "last_subscription_at"
   end
 
