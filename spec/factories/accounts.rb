@@ -14,6 +14,12 @@ FactoryGirl.define do
     trait :with_account_subscription_not_up_to_date do
       last_subscription_at Date.current - 1.year - 1.day
     end
+    trait :team_account do
+      team true
+    end
+    trait :solo_account do
+      team false
+    end
   end
 
   sequence :domain_name do |n|
