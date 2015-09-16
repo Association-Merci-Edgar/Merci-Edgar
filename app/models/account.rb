@@ -95,7 +95,12 @@ class Account < ActiveRecord::Base
     first_abilitation = self.abilitations.where(user_id: user.id).first
     first_abilitation && first_abilitation.manager?
   end
-
+  
+  def manager
+    abilitation = self.abilitations.where(kind: 'manager').try(:first)
+    manager = abilitation.user
+  end
+  
   def empty
     Venue.destroy_all
     Festival.destroy_all

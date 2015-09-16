@@ -11,10 +11,17 @@ describe SubscriptionsController do
 
     describe "GET new" do
       before(:each) { 
-        Account.current_id = user.accounts.first.id 
         get 'new' 
       }
       it { expect(response).to be_success }
     end
+    
+    describe "GET edit" do
+      before(:each) { 
+        get 'edit' 
+      }
+      it { expect(response).to be_success }
+    end
+    
   end
 end
