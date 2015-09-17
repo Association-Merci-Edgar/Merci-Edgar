@@ -4,13 +4,14 @@ describe ProjectsController do
 
   context "with a logged user" do
 
-    let(:user) { FactoryGirl.create(:user, label_name: "truc") }
+    let(:account) { FactoryGirl.create(:account) }
+    let(:user) { FactoryGirl.create(:user, account: account) }
 
     before(:each) do
-      @request.host = "#{user.accounts.first.domain}.lvh.me"
+      @request.host = "#{account.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
-      Account.current_id = user.accounts.first.id
+      Account.current_id = account.id
     end
 
     context "with an existing project" do
@@ -57,7 +58,7 @@ describe ProjectsController do
       before(:each) { post :create, project: FactoryGirl.attributes_for(:project) }
       it { expect(response).to redirect_to(projects_path) }
       it { 
-        Account.current_id = user.accounts.first.id
+        Account.current_id = account.id
         expect(Project.count).to eq(1) 
       }
       it { expect(assigns(:project)).to be_a(Project) }
