@@ -1,15 +1,36 @@
-= flash[:notice]
+%header.page-title
+  %h1 Envie d'une adhésion GOLD ?
 
-Vous avez choisi l'adhésion XX. SOLO (20€/an), accessible à un seul utilisateur.
-Si vous souhaitez modifier votre adhésion en mode BRONZE (50€/an) accessible à plusieurs utilisateurs, merci de nous adresser le complément :
-
-Envoyez un chèque de 30€ au siège de l'association MERCI EDGAR
-17 rue des Corroyés 
-78730 Saint-Arnoult-en-Yvelines
-%br
-Ou faites un virement de 30€ sur le compte de l'association MERCI EDGAR
-%br
-IBAN : FR76 1020 7000 1622 2112 2214 747
-%br
-RIB: 10207 00016 22211222147 47
-
+- if flash[:notice]
+  .row-fluid
+    .notice= flash[:notice]
+      
+%section.princing.padded
+  .row-fluid
+    %p
+      %br 
+      Si vous souhaitez modifier votre adhésion en mode GOLD (50€/an) accessible à plusieurs utilisateurs, merci de nous adresser le complément de 30€.
+      Votre adhésion expirera le
+      = l(current_account.subscription_lasts_at)
+      
+      %h3 Par chèque
+      %p
+      Envoyez un chèque de 30€ à l'ordre de l'association MERCI EDGAR
+      %br 17 rue des Corroyés, 78730 Saint-Arnoult-en-Yvelines
+      %b Merci de mentionner au dos du chèque le nom de votre compte Merci Edgar
+      %br
+      Votre compte sera en accessible à plusieurs utilisateurs des réception du chèque.
+      
+    %p
+      %br
+      %h3 Par virement
+      %p
+      Faites un virement de 30€ sur le compte de l'association MERCI EDGAR
+      %br
+      %b en mentionnant dans l'objet le nom de votre compte Merci Edgar
+      %br
+      Votre compte sera en accessible à plusieurs utilisateurs des que notre banque nous notifiera votre virement.
+      %br
+      IBAN : FR76 1020 7000 1622 2112 2214 747
+      %br
+      RIB: 10207 00016 22211222147 47
