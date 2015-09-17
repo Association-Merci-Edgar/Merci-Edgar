@@ -15,6 +15,16 @@ describe WelcomeController do
       it { expect(response).to be_success }
     end
     
+    context "with account trial period not expired" do
+      let!(:account) { FactoryGirl.create(:account, :with_trial_period_account_not_expired)}    
+      describe "GET 'index'" do
+        before(:each) { get :index }
+        it { expect(response).to be_success }
+        it { expect(flash[:notice]).to be_nil }
+      end
+    end
+
+
     context "with account trial period expired" do
       let!(:account) { FactoryGirl.create(:account, :with_trial_period_account_expired)}    
       describe "GET 'index'" do

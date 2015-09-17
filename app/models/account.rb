@@ -142,8 +142,13 @@ class Account < ActiveRecord::Base
   def trial_period_lasts_at
     self.created_at.to_date + 1.month
   end
-
+  
+  def in_trial_period?
+    self.created_at > Date.current - 1.month
+  end
+  
   def subscription_up_to_date?
+    return true if in_trial_period?
     self.last_subscription_at.present? && self.subscription_lasts_at > Date.current
   end
   
@@ -153,11 +158,11 @@ class Account < ActiveRecord::Base
   end
   
   def subscription_ended_in_less_than_one_month?
-    subscription_lasts_at < ( Date.current + 1.month)
+    subscription_lasts_at < ( Date.current + 1.month) unless in_trial_period?
   end
 
   def subscription_ended_in_less_than_one_week?
-    subscription_lasts_at < ( Date.current + 1.week)
+    subscription_lasts_at < ( Date.current + 1.week) unless in_trial_period?
   end
 
 end

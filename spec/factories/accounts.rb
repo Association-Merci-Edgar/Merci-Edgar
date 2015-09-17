@@ -2,7 +2,13 @@ FactoryGirl.define do
   factory :account do
     name "Test account"
     domain { FactoryGirl.generate(:domain_name) }
+    created_at Date.current - 2.years
     last_subscription_at Date.current - 6.months
+
+    trait :with_trial_period_account_not_expired do
+      created_at Date.current - 2.day
+      last_subscription_at nil
+    end
 
     trait :with_trial_period_account_expired do
       created_at Date.current - 1.month - 2.day
