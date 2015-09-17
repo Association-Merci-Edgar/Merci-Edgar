@@ -3013,3 +3013,35 @@ form .tabbable .tab-pane > *
   .footer {width:30px;}
 }
 
+
+.princing .label-round {
+  margin:30px auto;
+  background:$white;
+  @include roundcornersFX(800px);
+  text-align:center;
+  width:280px;
+  height:280px;
+  padding:50px;
+
+  &, h4 {color:$dblue;}
+
+  h4 { padding:0; margin:0; margin-top:12px;}
+  i {font-size:110px;}
+  .badge {
+    background:$orange;
+    font-size:21px;
+    padding:13px;
+    @include roundcornersFX(80px);
+  }
+
+  p {margin:0;}
+
+  &.plan-soon {background:$dbeige2; 
+    p.small {font-size:14px; width:80%; margin:0 auto; line-height:20px;}
+  }
+  &.plan-soon .badge {background:$blue;}
+  &.plan-free .badge {background:$green2;}
+
+}
+.plan-soon .badge {background-color:$blue;}
+

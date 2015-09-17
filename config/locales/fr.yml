@@ -372,7 +372,7 @@ fr:
       need_to_subscribe_soon_html: 
         "Attention ! Votre abonnement expire le %{end_subscription}.
         <a href='%{link}'>Renouveler son abonnement</a>"
-      single_user_access: "Le compte %{account_name} a adhéré au plan SOLO, réservé à un seul utilisateur (%{manager_name}). Pour avoir un accès multi-utilisateurs, merci d'adhérer au plan BRONZE"
+      single_user_access: "Le compte %{account_name} a adhéré à l'association MERCI EDGAR en mode SOLO (20€/an), réservé à un seul utilisateur (%{manager_name})."
   mailers:
     contacts_export:
       success:
