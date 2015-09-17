@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :user do
+    label_name 'coucou'
     transient do
-      with_trial_period_account_expired false
-      with_account_subscription_up_to_date true
-      with_account_subscription_lasts_soon false
+      manager true
+      account { FactoryGirl.create(:account) }
     end
     
     email { Faker::Internet.email}
@@ -14,24 +14,25 @@ FactoryGirl.define do
     confirmed_at Time.now
 
     after(:build) do |user, evaluator|
-      if evaluator.with_trial_period_account_expired
-        account = FactoryGirl.build(:account, created_at: Date.current - 1.month - 1.day)
+      # user.accounts << evaluator.account
+      
+      if evaluator.manager
+        kind = 'manager'
       else
-        if evaluator.with_account_subscription_up_to_date
-          if evaluator.with_account_subscription_lasts_soon
-            account = FactoryGirl.build(:account, :with_account_subscription_lasts_soon)            
-          else
-            account = FactoryGirl.build(:account, :with_account_subscription_up_to_date)
-          end
-        else 
-          account = FactoryGirl.build(:account, :with_account_subscription_not_up_to_date)
-        end
+        kind = 'member'
       end
-      user.accounts = [account]
-      FactoryGirl.build(:abilitation, user: user, account: account)
+  
+      abilitation = user.abilitations.build(kind: kind)
+      abilitation.account = evaluator.account
       user.add_role(:member)
     end
 
+  end
+  
+  factory :member, parent: :user do
+     transient do
+       manager false
+     end
   end
   
   factory :admin, parent: :user do
