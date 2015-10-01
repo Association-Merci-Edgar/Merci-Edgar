@@ -42,6 +42,18 @@ describe Venue do
         it { expect(room.venue.capacity_tags).to eq(['> 1200']) }
       end
 
+      context "with 4500 seats and nil standing" do
+        let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+        let(:room) { FactoryGirl.create(:room, seating: 4500, standing: nil, venue_id: venue.id) }
+        it { expect(room.venue.capacity_tags).to eq(['> 1200']) }
+      end
+
+      context "with nil seats and nil standing" do
+        let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
+        let(:room) { FactoryGirl.create(:room, seating: nil, standing: nil, venue_id: venue.id) }
+        it { expect(room.venue.capacity_tags).to eq([]) }
+      end
+
       context "with 423 seats and 1500 standing" do
         let(:venue) { FactoryGirl.create(:venue, account_id: account.id) }
         let(:room) { FactoryGirl.create(:room, seating: 423, standing: 1500, venue_id: venue.id) }

@@ -115,7 +115,7 @@ class Venue < ActiveRecord::Base
 
   def capacity_tags
     tags = []
-    seats = self.rooms.map{|r| [r.seating, r.standing]}.flatten.sort.uniq
+    seats = self.rooms.map{|r| [r.seating, r.standing]}.flatten.select{|capacity| capacity.present?}.sort.uniq
     seats.sort.each do |qty|
       next if qty == 0
       if qty < 100
