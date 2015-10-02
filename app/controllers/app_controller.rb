@@ -7,9 +7,9 @@ class AppController < ApplicationController
   def check_user
     if user_signed_in? && (!current_user.has_role? :admin)
       if ! current_user.authorized_for_domain?(request.subdomain)
-        #raise  ActionController::RoutingError.new('Not Found')
         sign_out current_user
-        redirect_to root_path, notice: "Vous n'avez pas le droit d'accéder à cette page"
+        flash[:notice] = "Vous n'avez pas le droit d'accéder à cette page" if request.subdomain != 'login'
+        redirect_to root_path
       end
     end
   end
