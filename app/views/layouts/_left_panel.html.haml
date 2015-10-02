@@ -97,7 +97,7 @@
   /%a.pull-right{:href => "#"}
   /  %i.ico.edi-arrow-left-5
       
-  = link_to destroy_user_session_path, :method => :delete, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion", :id=>"#logout-nav" do
+  = link_to destroy_user_session_path, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion", :id=>"#logout-nav" do
     /%a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion"}
     %i.ico.edi-moon
     /%i.ico.edi-cross-3
