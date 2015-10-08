@@ -94,8 +94,8 @@ Edgar::Application.routes.draw do
     resources :coupons
     resources :addresses, only: [:update]
     
-    resource :subscription, only: [:new, :edit]
-
+    resource :subscription, only: [:new, :edit, :create]
+    
   end
 
   require "sidekiq/web"

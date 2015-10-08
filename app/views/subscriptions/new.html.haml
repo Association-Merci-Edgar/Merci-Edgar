@@ -1,6 +1,48 @@
+- content_for :scripts do
+  = javascript_include_tag("https://checkout.stripe.com/checkout.js")
+  :javascript
+
+    $.fn.stripeify = function() {
+      this.each(function() {
+        var button = $(this);
+        
+        var handler = StripeCheckout.configure({
+          key: button.data('key'),
+          image: button.data('image'),
+          locale: 'auto',
+          token: function(token) {
+            var form = $(button.data('form'));
+            form.append($('<input type="hidden" name="stripeToken" />').val(token.id));
+            $('#processing_payment').show();
+            form.get(0).submit();
+
+          }
+        });
+        
+        button.on('click.stripeify', function(e) {
+          e.preventDefault();
+          var amount = button.data('amount') ? button.data('amount') : $(button.data('amount-input')).val();
+          handler.open({
+            name: button.data('name'),
+            email: button.data('email'),
+            description: button.data('description'),
+            currency: "eur",
+            amount: amount * 100
+          });
+          console.log("handler defined");
+        });
+        
+      });
+    };
+    $(document).ready(function() {
+      $('.stripeify').stripeify();
+    });
+
 %header.page-title
   %h1 Adhérez à Merci Edgar !
 
+.row-fluid#processing_payment{style: "display:none"}
+  .notice Merci de patienter ! En cours de paiement...
 - if flash[:notice]
   .row-fluid
     .notice= flash[:notice]
@@ -8,23 +50,50 @@
 %section.princing.padded
   .row-fluid
     / ITEM
-    .span6
+    .span5
       .label-round.plan-free
         %i.ico.edi-rocket
         %br
         %h4 ADHESION SOLO
         %p Un seul utilisateur par compte
-        .badge 20€/an
-
+        .badge= "#{Account::SOLO_PRICE}€/an"
+        &nbsp;
+        = form_tag subscription_path, method: :post, id: 'formSolo' do
+          = hidden_field_tag :amount, Account::SOLO_PRICE
+          = hidden_field_tag :team, false
+        
+          %button.stripeify.btn.btn-primary{"data-email" => current_user.email, "data-form" => "#formSolo", "data-name" => "Adhésion SOLO", "data-description" => "1 seul utilisateur", "data-image" => image_path('multipage/edgar-head.png'), "data-key" => ENV['STRIPE_PUBLIC_KEY'], "data-amount" => Account::SOLO_PRICE} Adhérer en ligne
     / ITEM
-    .span6
+    .span5
       .label-round.plan-soon
         %i.ico.edi-user
         %br
         %h4 ADHESION GOLD
         %p Plusieurs utilisateurs par compte
-        .badge 50€/an
+        .badge= "#{Account::TEAM_PRICE}€/an"
+        %p
+          &nbsp;
+          = form_tag subscription_path, method: :post, id: 'formGold' do
+            = hidden_field_tag :amount, Account::TEAM_PRICE
+            = hidden_field_tag :team, true
+            %button.stripeify.btn-alert.btn-large.btn-submit{"data-name" => "Adhésion GOLD", "data-description" => "Plan GOLD multi utilisateurs", "data-email" => current_user.email, "data-form" => "#formGold", "data-image" => image_path('multipage/edgar-head.png'), "data-key" => ENV['STRIPE_PUBLIC_KEY'], "data-amount" => Account::TEAM_PRICE} Adhérer en ligne
 
+  .row-fluid
+    / ITEM
+    .span5
+      .label-round.plan-free
+        %i.ico.edi-rocket
+        %br
+        %h4 ADHESION BIENFAITEUR
+        %p Plusieurs utilisateurs par compte
+        .badge= "Minimum 80€/an"
+        &nbsp;
+        = form_tag subscription_path, method: :post, id: 'formDonation' do
+          = hidden_field_tag :team, true
+
+          = number_field_tag :amount, 100, id: 'dynamicInput'
+          %button.stripeify.btn.btn-primary{"data-email" => current_user.email, "data-form" => "#formSolo", "data-name" => "Adhésion BIENFAITEUR", "data-description" => "Multi utilisateurs", "data-image" => image_path('multipage/edgar-head.png'), "data-key" => ENV['STRIPE_PUBLIC_KEY'], "data-amount-input" => "#dynamicInput"} Adhérer en ligne
+    
   .row-fluid
     %p
       %h3 Par chèque

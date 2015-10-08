@@ -25,6 +25,9 @@ class Account < ActiveRecord::Base
   validates_exclusion_of :domain, :in => ['www','blog','mail','ftp']
   before_validation :set_domain_name
   before_validation :ensure_domain_uniqueness, :on => :create
+  
+  SOLO_PRICE = 20
+  TEAM_PRICE = 50
 
   scope :featured, order("contacts_count DESC")
 
