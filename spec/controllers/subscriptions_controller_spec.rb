@@ -22,6 +22,6 @@ describe SubscriptionsController do
       }
       it { expect(response).to be_success }
     end
-    
+
   end
 end

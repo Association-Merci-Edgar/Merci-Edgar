@@ -65,7 +65,6 @@ group :development do
   gem 'rails-erd'
 end
 group :development, :test do
-  gem 'foreman'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
 end
@@ -90,3 +89,5 @@ gem 'rollbar'
 
 gem 'smarter_csv'
 gem 'mimer_plus'
+
+gem 'stripe'
