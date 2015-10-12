@@ -16,3 +16,6 @@ addons:
 
 script:
   - bundle exec rake db:seed spec
+
+notifications:
+  slack: merciedgar:HYdsoJI3d26VzdKgQYvMguWX
