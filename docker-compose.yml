@@ -1,0 +1,23 @@
+---
+webapp:
+  build: "."
+  ports:
+    - 3000:3000
+  volumes:
+    - ".:/usr/src/app"
+  working_dir: "/usr/src/app"
+  command: bundle exec rails s -b '0.0.0.0'
+  environment:
+    - DATABASE_URL=postgresql://postgres:mysecretpassword@db/
+  links:
+    - db:db
+db:
+  image: postgres
+  volumes_from:
+    - data
+  environment:
+    - POSTGRES_PASSWORD=mysecretpassword
+data:
+  image: busybox
+  volumes:
+    - "/var/lib/postgresql"
