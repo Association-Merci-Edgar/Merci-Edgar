@@ -36,17 +36,17 @@ The application is configured to send email using a Mandrill account.
   * mailchimp
   * [rollbar (for production)](https://rollbar.com/krichtof/Merci-Edgar/)
 
-2. Create the postgresql user and dev database both named  @merciedgar@
+2. Create the postgresql user and dev database both named  `merciedgar`
 If you are on ArchLinux you will [find some help here](https://wiki.archlinux.org/index.php/PostgreSQL).
 
-3. Install dependencies with @bundle install@ and run migrations with @rake db:migrate@
+3. Install dependencies with `bundle install` and run migrations with `rake db:migrate`
 
 If you meet an error installing the gem 'capybara-webkit', [try this solution, depending on your OS](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 4. Open 3 different terminals and launch
-  * a [redis](http://redis.io/topics/quickstart server with @redis-server@)
-  * a [sidekiq](http://sidekiq.org/) worker with : @bundle exec sidekiq@
-  * @rails server@
+  * a [redis](http://redis.io/topics/quickstart server with `redis-server`)
+  * a [sidekiq](http://sidekiq.org/) worker with : `bundle exec sidekiq`
+  * `rails server`
 
 Open a browser on [http://www.lvh.me:3000](http://www.lvh.me:3000)
 
@@ -57,9 +57,9 @@ More documentation will come soon.
 
 To generate db Schema, you can use ERD:
 
-@bundle exec erd --inheritance --direct --attributes=foreign_keys,content@
+`bundle exec erd --inheritance --direct --attributes=foreign_keys,content`
 
-## Contributing
+## Contributign
 
 If you make improvements to this application, please share with others.
 
