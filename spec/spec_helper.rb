@@ -7,6 +7,7 @@ RSpec.configure do |config|
   end
   config.before(:each) do
     DatabaseCleaner.start
+    Date.stubs(:current).returns(Account::OPENING_SUBSCRIPTION_DAY + 2.years)
   end
   config.after(:each) do
     DatabaseCleaner.clean
