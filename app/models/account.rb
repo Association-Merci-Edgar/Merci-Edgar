@@ -29,7 +29,7 @@ class Account < ActiveRecord::Base
   SOLO_PRICE = 20
   TEAM_PRICE = 50
 
-  OPENING_SUBSCRIPTION_DAY = Date.new(2015,11,1)
+  OPENING_SUBSCRIPTION_DAY = Date.parse(ENV["OPENING_SUBSCRIPTION_DAY"])
 
   scope :featured, order("contacts_count DESC")
 
