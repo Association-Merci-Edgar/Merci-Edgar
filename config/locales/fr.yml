@@ -369,6 +369,9 @@ fr:
     subscriptions:
       trial_period_ended: "La période d'essai est terminée."
       not_up_to_date: "Votre abonnement a expiré"
+      trial_period_lasts_soon_html: 
+        "Attention ! Votre période d'essai expire le %{end_trial_period}.
+        <a href='%{link}'>Je veux adhérer à l'association pour utiliser Merci Edgar</a>"
       need_to_subscribe_soon_html: 
         "Attention ! Votre abonnement expire le %{end_subscription}.
         <a href='%{link}'>Renouveler son abonnement</a>"
