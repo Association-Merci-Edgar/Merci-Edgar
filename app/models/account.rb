@@ -181,4 +181,11 @@ class Account < ActiveRecord::Base
     subscription_lasts_at < ( Date.current + 1.week) unless in_trial_period?
   end
 
+  def plan
+    if self.team
+      I18n.t('account.team_plan')
+    else
+      I18n.t('account.solo_plan')
+    end
+  end
 end

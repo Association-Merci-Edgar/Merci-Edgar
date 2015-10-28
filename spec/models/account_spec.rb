@@ -241,4 +241,16 @@ describe Account do
     end
   end
 
+  describe "plan" do
+    context "when account team is false" do
+      let(:account) { FactoryGirl.build(:account, team: false) }
+
+      it { expect(account.plan).to eq(I18n.t('account.solo_plan')) }
+    end
+    context "when account team is true" do
+      let(:account) { FactoryGirl.build(:account, team: true) }
+
+      it { expect(account.plan).to eq(I18n.t('account.team_plan')) }
+    end
+  end 
 end
