@@ -24,6 +24,7 @@ class SubscriptionsController < ApplicationController
       account.last_subscription_at = Date.current
       account.team = team
       if account.save
+        SendSubscriptionReceiptEmailWorker.perform_async(account.id, current_user.id, amount)
         render :create
       else
         redirect_to new_subscription_path, notice: "Une erreur est survenue mais votre carte a bien été débitée"

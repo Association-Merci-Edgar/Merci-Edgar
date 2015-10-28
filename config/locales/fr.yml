@@ -14,6 +14,9 @@ fr:
     © Merci Edgar 2013
   manager: Administrateur
   member: Membre
+  account:
+    team_plan: multi-utilisateurs
+    solo_plan: solo
   date:
     abbr_day_names:
       - dim
@@ -383,6 +386,10 @@ fr:
         title: "Export de votre compte Merci Edgar"
         body: "Vous trouverez l'export de votre compte Merci Edgar"
         link: "en cliquant sur ce lien"
+    subscription_receipt:
+      success:
+        subject: Adhesion validee
+        body_html: Chouette ! Votre compte %{account_name} a adhéré à l'association MERCI EDGAR en mode %{plan} pour la somme de %{amount}
 
   helpers:
     browse: Parcourir...

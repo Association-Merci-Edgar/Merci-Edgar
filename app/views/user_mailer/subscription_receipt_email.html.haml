@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p= t('hello')
+    %p
+      = t('body_html', scope: 'mailers.subscription_receipt.success', account_name: @account.name,
+        manager: @manager.name, amount: @amount, plan: @account.plan ).html_safe
+      
+    %p= t('see_you_soon')
