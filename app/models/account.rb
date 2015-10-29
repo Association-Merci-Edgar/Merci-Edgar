@@ -141,8 +141,7 @@ class Account < ActiveRecord::Base
   end
   
   def trial_period_ended?
-    return false if Date.current < OPENING_SUBSCRIPTION_DAY
-    Date.current > ( self.created_at.to_date + 1.month) && last_subscription_at.blank?
+    return !in_trial_period?
   end
   
   def trial_period_lasts_at
