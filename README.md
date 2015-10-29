@@ -30,11 +30,12 @@ The application is configured to send email using a Mandrill account.
 
 ## Getting Started
 
-1. Copy config/application.yml.example to config/application.yml and customize it with your credentials for:
+1. Copy .env.example to .env and customize it with your credentials for:
   * amazon S3
   * mandrill
   * mailchimp
   * [rollbar (for production)](https://rollbar.com/krichtof/Merci-Edgar/)
+  * stripe
 
 2. Create the postgresql user and dev database both named  `merciedgar`
 If you are on ArchLinux you will [find some help here](https://wiki.archlinux.org/index.php/PostgreSQL).

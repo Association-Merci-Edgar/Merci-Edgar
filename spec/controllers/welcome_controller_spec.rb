@@ -24,7 +24,20 @@ describe WelcomeController do
       end
     end
 
+    context "with account trial period lasts soon" do
+      let!(:account) { FactoryGirl.create(:account, :with_trial_period_lasts_soon)}    
+      describe "GET 'index'" do
+        before(:each) { get :index }
+        it { expect(flash[:notice]).to eq(
+          I18n.t('notices.subscriptions.trial_period_lasts_soon_html',
+            end_trial_period: I18n.l(account.trial_period_lasts_at),
+            link: new_subscription_path
+          )) 
+        }
+      end
+    end
 
+ 
     context "with account trial period expired" do
       let!(:account) { FactoryGirl.create(:account, :with_trial_period_account_expired)}    
       describe "GET 'index'" do

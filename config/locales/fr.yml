@@ -14,6 +14,9 @@ fr:
     © Merci Edgar 2013
   manager: Administrateur
   member: Membre
+  account:
+    team_plan: multi-utilisateurs
+    solo_plan: solo
   date:
     abbr_day_names:
       - dim
@@ -369,6 +372,9 @@ fr:
     subscriptions:
       trial_period_ended: "La période d'essai est terminée."
       not_up_to_date: "Votre abonnement a expiré"
+      trial_period_lasts_soon_html: 
+        "Attention ! Votre période d'essai expire le %{end_trial_period}.
+        <a href='%{link}'>Je veux adhérer à l'association pour utiliser Merci Edgar</a>"
       need_to_subscribe_soon_html: 
         "Attention ! Votre abonnement expire le %{end_subscription}.
         <a href='%{link}'>Renouveler son abonnement</a>"
@@ -380,6 +386,10 @@ fr:
         title: "Export de votre compte Merci Edgar"
         body: "Vous trouverez l'export de votre compte Merci Edgar"
         link: "en cliquant sur ce lien"
+    subscription_receipt:
+      success:
+        subject: Adhesion validee
+        body_html: Nous vous confirmons que votre compte %{account_name} a adhéré à l'association MERCI EDGAR en mode %{plan} pour la somme de %{amount}€ .<p>Votre adhésion expirera le %{end_subscription}.
 
   helpers:
     browse: Parcourir...

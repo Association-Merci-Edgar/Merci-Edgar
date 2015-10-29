@@ -29,6 +29,8 @@ class Account < ActiveRecord::Base
   SOLO_PRICE = 20
   TEAM_PRICE = 50
 
+  OPENING_SUBSCRIPTION_DAY = Date.parse(ENV["OPENING_SUBSCRIPTION_DAY"])
+
   scope :featured, order("contacts_count DESC")
 
   def to_s
@@ -139,17 +141,28 @@ class Account < ActiveRecord::Base
   end
   
   def trial_period_ended?
+    return false if Date.current < OPENING_SUBSCRIPTION_DAY
     Date.current > ( self.created_at.to_date + 1.month) && last_subscription_at.blank?
   end
   
   def trial_period_lasts_at
+    if (self.created_at.to_date < Date.current - 1.month) && (Date.current < OPENING_SUBSCRIPTION_DAY)
+      return OPENING_SUBSCRIPTION_DAY
+    end
+  
     self.created_at.to_date + 1.month
   end
   
   def in_trial_period?
+    return true if (Date.current < OPENING_SUBSCRIPTION_DAY) && (self.last_subscription_at.nil?)
     self.created_at > Date.current - 1.month
   end
   
+  def trial_period_ended_in_less_than_one_week?
+    return false unless in_trial_period?
+    Date.current > self.trial_period_lasts_at - 1.week 
+  end
+
   def subscription_up_to_date?
     return true if in_trial_period?
     self.last_subscription_at.present? && self.subscription_lasts_at > Date.current
@@ -168,4 +181,16 @@ class Account < ActiveRecord::Base
     subscription_lasts_at < ( Date.current + 1.week) unless in_trial_period?
   end
 
+  def plan
+    if self.team
+      I18n.t('account.team_plan')
+    else
+      I18n.t('account.solo_plan')
+    end
+  end
+
+  def subscribe(team=false)
+    self.last_subscription_at = Date.current
+    self.team = team
+  end
 end
