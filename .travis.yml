@@ -9,6 +9,7 @@ env:
     - ROLES=[admin, user] 
     - AWS_ACCESS_KEY_ID=change_me
     - AWS_SECRET_ACCESS_KEY=change_me
+    - OPENING_SUBSCRIPTION_DAY=2015-11-10
   matrix:
     - DB=postgresql
 
