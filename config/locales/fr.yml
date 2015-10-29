@@ -389,7 +389,7 @@ fr:
     subscription_receipt:
       success:
         subject: Adhesion validee
-        body_html: Chouette ! Votre compte %{account_name} a adhéré à l'association MERCI EDGAR en mode %{plan} pour la somme de %{amount}
+        body_html: Nous vous confirmons que votre compte %{account_name} a adhéré à l'association MERCI EDGAR en mode %{plan} pour la somme de %{amount}€ .<p>Votre adhésion expirera le %{end_subscription}.
 
   helpers:
     browse: Parcourir...

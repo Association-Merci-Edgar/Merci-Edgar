@@ -6,6 +6,7 @@
     %p= t('hello')
     %p
       = t('body_html', scope: 'mailers.subscription_receipt.success', account_name: @account.name,
-        manager: @manager.name, amount: @amount, plan: @account.plan ).html_safe
+        manager: @manager.name, amount: @amount, plan: @account.plan,
+        end_subscription: l(@account.subscription_lasts_at)).html_safe
       
     %p= t('see_you_soon')
