@@ -6,14 +6,16 @@ rvm:
 
 env:
   global:
-    - ROLES=[admin, user]
+    - ROLES=[admin, user] 
+    - AWS_ACCESS_KEY_ID=change_me
+    - AWS_SECRET_ACCESS_KEY=change_me
   matrix:
     - DB=postgresql
 
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database merciedgar_test;' -U postgres
-  - bundle exec rake db:create db:migrate db:seed
+  - bundle exec rake db:migrate db:seed
 
 addons:
   postgresql: "9.3"
