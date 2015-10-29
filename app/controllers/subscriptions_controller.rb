@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class SubscriptionsController < AppController
   skip_before_filter :check_membership, :check_plan
   def new
   end
