@@ -154,7 +154,7 @@ class Account < ActiveRecord::Base
   end
   
   def in_trial_period?
-    return true if Date.current < OPENING_SUBSCRIPTION_DAY
+    return true if (Date.current < OPENING_SUBSCRIPTION_DAY) && (self.last_subscription_at.nil?)
     self.created_at > Date.current - 1.month
   end
   
@@ -187,5 +187,10 @@ class Account < ActiveRecord::Base
     else
       I18n.t('account.solo_plan')
     end
+  end
+
+  def subscribe(team=false)
+    self.last_subscription_at = Date.current
+    self.team = team
   end
 end
