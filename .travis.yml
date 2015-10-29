@@ -6,28 +6,6 @@ rvm:
 
 env:
   - DB=postgresql
-  - MANDRILL_USERNAME=change_me
-  - MANDRILL_API_KEY=change_me
-  - MAILCHIMP_API_KEY=change_me
-  - MAILCHIMP_LIST_ID=change_me
-  - ADMIN_NAME=Change Me
-  - ADMIN_EMAIL=change@me.com
-  - ADMIN_PASSWORD=change_me
-  - ROLES=[admin, user]
-  - EMAIL_ADDRESS=change@me.com
-  - DOMAIN=www.lvh.me:3000
-  - SESSION_DOMAIN=".lvh.me"
-  - AWS_ACCESS_KEY_ID=change_me
-  - AWS_SECRET_ACCESS_KEY=change_me
-  - AWS_S3_BUCKET=change_me
-  - ROLLBAR_ACCESS_TOKEN=change_me
-  - SAMPLES_XML_DIR=samples
-  - SAMPLES_XML_FILE=merciedgar_initial_contacts.xml
-  - SIDEKIQ_CONCURRENCY=2
-  - PORT=3000
-  - STRIPE_PRIVATE_KEY=change_me
-  - STRIPE_PUBLIC_KEY=change_me
-  - OPENING_SUBSCRIPTION_DAY=2015-11-10
 
 before_script:
   - bundle exec rake db:create db:migrate db:seed
