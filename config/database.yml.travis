@@ -3,5 +3,5 @@ test: &test
   encoding: unicode
   host: localhost
   database: merciedgar_test
-  username: postgresql
+  username: postgres
 
