@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class SubscriptionsController < AppController
   skip_before_filter :check_membership, :check_plan
   def new
   end
@@ -26,7 +26,8 @@ class SubscriptionsController < ApplicationController
 
       if account.save
         SendSubscriptionReceiptEmailWorker.perform_async(account.id, current_user.id, amount)
-        render :create
+        redirect_to edit_account_path, 
+          notice: t('notices.subscriptions.done', end_subscription: l(account.subscription_lasts_at))
       else
         redirect_to new_subscription_path, notice: "Une erreur est survenue mais votre carte a bien été débitée"
       end
