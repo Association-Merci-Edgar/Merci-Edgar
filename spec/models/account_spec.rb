@@ -253,4 +253,13 @@ describe Account do
       it { expect(account.plan).to eq(I18n.t('account.team_plan')) }
     end
   end 
+
+  describe "upgrade!" do
+    let(:account) { FactoryGirl.build(:account, team: false) }
+    it "upgrades" do
+      account.upgrade!
+    expect(account.team).to be_truthy
+    end
+  end
+
 end

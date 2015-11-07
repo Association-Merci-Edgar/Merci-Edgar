@@ -28,6 +28,7 @@ class Account < ActiveRecord::Base
   
   SOLO_PRICE = 20
   TEAM_PRICE = 50
+  COMPLEMENT_PRICE = 30
 
   OPENING_SUBSCRIPTION_DAY = Date.parse(ENV["OPENING_SUBSCRIPTION_DAY"])
 
@@ -188,8 +189,12 @@ class Account < ActiveRecord::Base
     end
   end
 
-  def subscribe(team=false)
+  def subscribe!(team=false)
     self.last_subscription_at = Date.current
     self.team = team
+  end
+
+  def upgrade!
+    self.team = true
   end
 end
