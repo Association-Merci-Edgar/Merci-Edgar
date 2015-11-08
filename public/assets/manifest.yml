@@ -351,8 +351,8 @@ tasks_group.js: tasks_group-9d015fdf39de8aafd58ffd5ca757a938.js
 tasks_group/index.js: tasks_group-9d015fdf39de8aafd58ffd5ca757a938.js
 tour/home-tour-fr.js: tour/home-tour-fr-7d0a94deb3a5a7063527db8fd096c271.js
 tour/home-tour-fr/index.js: tour/home-tour-fr-7d0a94deb3a5a7063527db8fd096c271.js
-application.css: application-6156d6fcb796c46e7a5452767156903b.css
-application/index.css: application-6156d6fcb796c46e7a5452767156903b.css
+application.css: application-242bff95ac5063abf317dd4b6723d930.css
+application/index.css: application-242bff95ac5063abf317dd4b6723d930.css
 multipage.css: multipage-0015d5a9a1787f22c96801454ce47418.css
 multipage/index.css: multipage-0015d5a9a1787f22c96801454ce47418.css
 onepage.css: onepage-8b2c6dfb546fb66126f9e628c7a7fbd4.css
