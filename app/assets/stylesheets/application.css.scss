@@ -11,8 +11,8 @@
  *= require_self
  *= require jquery.ui.all
  *= require_directory ./bootstrap/
- *= require_directory ./appli/
  *= require edgarapp
+ *= require_directory ./appli/
  * require ./appli/edgarapp
  * require ./appli/jquery.tagit
  * require ./appli/tagit.ui-zendesk.css
