@@ -26,7 +26,6 @@ class SubscriptionsController < AppController
   def create
       amount = charge("Adhésion #{params[:team].to_bool ? 'GOLD' : 'SOLO'}", params)
       current_account.subscribe!(params[:team].to_bool)
-      ap "params: #{params}"
 
       if current_account.save
         SendSubscriptionReceiptEmailWorker.perform_async(current_account.id, current_user.id, amount)
