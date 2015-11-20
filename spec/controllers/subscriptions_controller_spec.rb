@@ -6,14 +6,25 @@ describe SubscriptionsController do
 
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
+      @request.env['HTTPS'] = 'on'
       sign_in user
     end
 
     describe "GET new" do
-      before(:each) { 
-        get 'new' 
-      }
-      it { expect(response).to be_success }
+      context "with http protocol" do
+        before(:each) { 
+          @request.env['HTTPS'] = 'off'
+          get 'new' 
+        }
+        it { expect(response).not_to be_success }
+      end
+
+      context "with https protocol" do
+        before(:each) { 
+          get 'new' 
+        }
+        it { expect(response).to be_success }
+      end
     end
     
     describe "GET edit" do
