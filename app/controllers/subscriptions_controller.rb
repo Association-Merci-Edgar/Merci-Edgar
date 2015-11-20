@@ -1,5 +1,7 @@
 class SubscriptionsController < AppController
   skip_before_filter :check_membership, :check_plan
+  force_ssl
+
   def new
   end
   
