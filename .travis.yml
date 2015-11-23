@@ -10,6 +10,9 @@ env:
     - AWS_ACCESS_KEY_ID=change_me
     - AWS_SECRET_ACCESS_KEY=change_me
     - OPENING_SUBSCRIPTION_DAY=2015-11-10
+    - ADMIN_NAME="Jean-Pierre"
+    - ADMIN_EMAIL="jp@laposte.net"
+    - ADMIN_PASSWORD="lacuisine"
   matrix:
     - DB=postgresql
 
