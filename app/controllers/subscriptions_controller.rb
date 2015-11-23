@@ -24,7 +24,7 @@ class SubscriptionsController < AppController
   end
 
   def create
-      amount = charge("Adhésion #{params[:team].to_bool ? 'GOLD' : 'SOLO'}", params)
+      amount = charge("Adhésion #{current_account.name} #{params[:team].to_bool ? 'GOLD' : 'SOLO'}", params)
       current_account.subscribe!(params[:team].to_bool)
 
       if current_account.save
