@@ -24,6 +24,17 @@ Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.
 * Authentication: Devise
 * Background processing : Sidekiq
 
+### Docker usage
+
+* `docker-compose up` to start server
+* `docker-compose run webapp rspec` to run test with rspec
+* `docker-compose run webapp rake [command]` to run rake command
+* `docker-compose run webapp rails [command]` to run rails command
+
+You need to have [`docker-compose`
+installed](http://docs.docker.com/compose/install/) on your machine :-).
+
+
 ## Email
 
 The application is configured to send email using a Mandrill account.
