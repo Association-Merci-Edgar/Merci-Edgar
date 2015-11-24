@@ -64,10 +64,13 @@ group :development do
   gem 'annotate'
   gem 'rails-erd'
 end
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
 end
+
 group :test do
   gem 'rspec-rails'
   gem 'mocha', require: false
@@ -78,7 +81,6 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
-  gem 'faker'
 end
 
 gem 'pg'

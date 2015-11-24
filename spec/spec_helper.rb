@@ -1,3 +1,6 @@
+require 'database_cleaner'
+require 'faker'
+
 RSpec.configure do |config|
   config.mock_with :mocha
   config.order = "random"
