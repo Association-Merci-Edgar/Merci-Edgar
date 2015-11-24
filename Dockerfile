@@ -13,5 +13,4 @@ RUN gem install rb-readline
 
 ADD . /app
 
-EXPOSE 3000
 CMD ["foreman", "start"]
