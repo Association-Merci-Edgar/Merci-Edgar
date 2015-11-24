@@ -18,10 +18,12 @@ class ApplicationController < ActionController::Base
   def announcements_count
     last_hit = cookies.signed[:last_hit]
     if last_hit 
-      Announcement.where("published_at >= ? AND published_at <= ?", Time.at(last_hit), Time.zone.now).count
+      count = Announcement.where("published_at >= ? AND published_at <= ?", Time.at(last_hit), Time.zone.now).count
     else
-      Announcement.where("published_at >= ? AND published_at <= ?", Time.zone.now - 1.week, Time.zone.now).count
+      count = Announcement.where("published_at >= ? AND published_at <= ?", Time.zone.now - 1.week, Time.zone.now).count
     end
+    count += 1 if current_account.ended_soon?
+    count
   end
 
   private

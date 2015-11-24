@@ -24,20 +24,6 @@ describe WelcomeController do
       end
     end
 
-    context "with account trial period lasts soon" do
-      let!(:account) { FactoryGirl.create(:account, :with_trial_period_lasts_soon)}    
-      describe "GET 'index'" do
-        before(:each) { get :index }
-        it { expect(flash[:notice]).to eq(
-          I18n.t('notices.subscriptions.trial_period_lasts_soon_html',
-            end_trial_period: I18n.l(account.trial_period_lasts_at),
-            link: new_subscription_path
-          )) 
-        }
-      end
-    end
-
- 
     context "with account trial period expired" do
       let!(:account) { FactoryGirl.create(:account, :with_trial_period_account_expired)}    
       describe "GET 'index'" do
@@ -56,16 +42,7 @@ describe WelcomeController do
       end    
     end
     
-    context "with an account with subscription lasts soon" do
-      let(:account) { FactoryGirl.create(:account, :with_account_subscription_lasts_soon) }
-
-      describe "GET index" do
-        before(:each) { get 'index' }
-        it { expect(response).to be_success }
-        it { expect(flash[:notice]).to eq(I18n.t('notices.subscriptions.need_to_subscribe_soon_html', end_subscription: I18n.l(account.subscription_lasts_at), link: new_subscription_path)) }
-      end    
-    end
-  end  
+  end
 
   context "with a logged user which is not a manager" do
     let(:user) {FactoryGirl.create(:member, account: account)}

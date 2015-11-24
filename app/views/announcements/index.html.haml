@@ -1,11 +1,11 @@
 -content_for :scripts do
   = javascript_include_tag "tour/home-tour-fr"
   
-%header.page-title
-  %h1 Nouveautés
+- if @membership_warning
+  .row-fluid
+    .notice= @membership_warning
 
     
--#_________________________________________________________ Nouveautés
 %section.padded
   .row-fluid
     .span12
