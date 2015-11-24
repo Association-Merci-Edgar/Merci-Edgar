@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SubscriptionsController do
   context "with a logged admin user" do
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:user) { FactoryGirl.create(:admin) }
 
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]

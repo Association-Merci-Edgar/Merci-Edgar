@@ -37,5 +37,8 @@ Edgar::Application.configure do
 
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.perform_deliveries = false
 
 end
