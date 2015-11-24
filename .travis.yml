@@ -16,6 +16,9 @@ env:
   matrix:
     - DB=postgresql
 
+services:
+  - redis-server
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database merciedgar_test;' -U postgres
