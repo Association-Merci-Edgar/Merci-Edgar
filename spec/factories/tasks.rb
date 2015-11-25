@@ -10,11 +10,11 @@ FactoryGirl.define do
   end
 
   factory :completed_task, :parent => :task do
-    completed_at { Date.yesterday }
+    completed_at { DateTime.new(2011, 8, 17, 6, 45) }
   end
 
   sequence :time do |n|
-    Time.now - n.hours
+    DateTime.new(2014, 10, 21, 11, n % 60)
   end
 
 end
