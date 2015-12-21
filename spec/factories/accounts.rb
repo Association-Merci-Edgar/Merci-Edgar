@@ -14,6 +14,12 @@ FactoryGirl.define do
       created_at { Date.current - 1.month + 2.day }
       last_subscription_at nil
     end
+
+    trait :with_trial_period_lasts_today do
+      created_at { Date.current - 1.month }
+      last_subscription_at nil
+    end
+
     trait :with_trial_period_account_expired do
       created_at  { Date.current - 1.month - 2.day }
       last_subscription_at nil

@@ -160,7 +160,7 @@ class Account < ActiveRecord::Base
   
   def trial_period_ended_in_less_than_one_week?
     return false unless in_trial_period?
-    Date.current > self.trial_period_lasts_at - 1.week 
+    Date.current >= self.trial_period_lasts_at - 1.week 
   end
 
   def subscription_up_to_date?
@@ -169,7 +169,7 @@ class Account < ActiveRecord::Base
   end
   
   def subscription_lasts_at
-    return nil if self.last_subscription_at.nil?
+    return trial_period_lasts_at if self.last_subscription_at.nil?
     self.last_subscription_at + 1.year
   end
   
