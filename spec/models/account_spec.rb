@@ -243,6 +243,11 @@ describe Account do
       it { expect(account.trial_period_ended_in_less_than_one_week?).to be_falsy }
       it { expect(account.ended_soon?).to be_falsy }
     end
+    context "when trial_period_ended_today" do
+      let(:account) { FactoryGirl.create(:account, :with_trial_period_lasts_today) }
+      it { expect(account.trial_period_ended_in_less_than_one_week?).to be_falsy }
+      it { expect(account.ended_soon?).to be_truthy }
+    end
   end
 
   
