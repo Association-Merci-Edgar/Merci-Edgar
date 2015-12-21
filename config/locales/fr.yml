@@ -379,7 +379,7 @@ fr:
         "Attention ! Votre abonnement expire le %{end_subscription}.
         <a href='%{link}'>Renouveler son abonnement</a>"
       single_user_access: "Le compte %{account_name} a adhéré à l'association MERCI EDGAR en mode SOLO (20€/an), réservé à un seul utilisateur (%{manager_name})."
-      done: "Félicitations ! Vous êtes ahdérent jusqu'au %{end_subscription}"
+      done: "Félicitations ! Vous êtes adhérent jusqu'au %{end_subscription}"
       upgrade_done: "Félicitations ! Vous êtes désormais adhérent avec un compte GOLD jusqu'au %{end_subscription}"
   mailers:
     contacts_export:

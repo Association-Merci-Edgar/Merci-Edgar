@@ -222,11 +222,13 @@ describe Account do
   describe "subscription_ended_in_less_than_one_month?" do
     let(:account) { FactoryGirl.create(:account, :with_account_subscription_lasts_in_less_than_one_month) }
     it { expect(account.subscription_ended_in_less_than_one_month?).to be_truthy } 
+    it { expect(account.ended_soon?).to be_truthy }
   end
 
   describe "subscription_ended_in_less_than_one_week?" do
     let(:account) { FactoryGirl.create(:account, :with_account_subscription_lasts_soon) }
     it { expect(account.subscription_ended_in_less_than_one_week?).to be_truthy } 
+    it { expect(account.ended_soon?).to be_truthy }
       
   end
   
@@ -234,13 +236,16 @@ describe Account do
     context "when trial_period_ended_in_less_than_one_week" do
       let(:account) { FactoryGirl.create(:account, :with_trial_period_lasts_soon) }
       it { expect(account.trial_period_ended_in_less_than_one_week?).to be_truthy }
+      it { expect(account.ended_soon?).to be_truthy }
     end
     context "when trial_period_ended_in_more_than_one_week" do
       let(:account) { FactoryGirl.create(:account, created_at: Date.current) }
       it { expect(account.trial_period_ended_in_less_than_one_week?).to be_falsy }
+      it { expect(account.ended_soon?).to be_falsy }
     end
   end
 
+  
   describe "plan" do
     context "when account team is false" do
       let(:account) { FactoryGirl.build(:account, team: false) }

@@ -16,29 +16,7 @@ class AppController < ApplicationController
   
   def check_membership
     if (!current_user.has_role? :admin)
-      if current_account.in_trial_period?
-        if current_account.trial_period_ended_in_less_than_one_week?
-          flash[:notice] = t('notices.subscriptions.trial_period_lasts_soon_html',
-            end_trial_period: l(current_account.trial_period_lasts_at),
-            link: new_subscription_path
-          ).html_safe
-        elsif current_account.subscription_ended_in_less_than_one_month?
-          flash[:notice] = t("notices.subscriptions.need_to_subscribe_soon_html",
-            link: new_subscription_path, 
-            end_subscription: l(current_account.subscription_lasts_at)).html_safe 
-        end
-      elsif current_account.subscription_up_to_date? 
-        if current_account.trial_period_ended_in_less_than_one_week?
-          flash[:notice] = t('notices.subscriptions.trial_period_lasts_soon_html',
-            end_trial_period: l(current_account.trial_period_lasts_at),
-            link: new_subscription_path
-          ).html_safe
-        elsif current_account.subscription_ended_in_less_than_one_month?
-          flash[:notice] = t("notices.subscriptions.need_to_subscribe_soon_html",
-            link: new_subscription_path, 
-            end_subscription: l(current_account.subscription_lasts_at)).html_safe 
-        end
-      else  
+      unless current_account.subscription_up_to_date? 
         if current_account.last_subscription_at.nil?
           notice = t("notices.subscriptions.trial_period_ended") 
         else
@@ -46,7 +24,7 @@ class AppController < ApplicationController
         end
         redirect_to new_subscription_path, notice: notice
       end 
-    end
+    end 
   end
   
   def check_plan
