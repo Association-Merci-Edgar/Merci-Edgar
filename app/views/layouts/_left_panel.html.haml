@@ -96,30 +96,28 @@
 .footer
   /%a.pull-right{:href => "#"}
   /  %i.ico.edi-arrow-left-5
-      
-  = link_to destroy_user_session_path, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion", :id=>"#logout-nav" do
-    /%a{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Déconnexion"}
-    %i.ico.edi-moon
-    /%i.ico.edi-cross-3
     
-  %a#start_tour.start{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Tour"}
+  %a#start_tour.start{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Tour"}
     %i.ico.edi-directions
     
-  %a#help-nav{:href => "https://merciedgar.uservoice.com/knowledgebase", "target" => "_blank", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Aide"}
+  %a#help-nav{:href => "https://merciedgar.uservoice.com/knowledgebase", "target" => "_blank", "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Aide"}
     /%i.ico.edi-graduation
     %i.ico.edi-info
     /%i.ico.edi-lifebuoy
     /%i.ico.edi-compass
     /%i.ico.edi-help
     
-  %a#uservoice-nav{"data-uv-default-mode" => "feedback", "data-uv-forum-id" => "170962", "data-uv-lightbox" => "classic_widget", "data-uv-link-color" => "#007dbf", "data-uv-mode" => "full", "data-uv-primary-color" => "#cc6d00", "data-uv-support-tab_name" => "Oups ! Je rencontre un problème !", href: "javascript:void(0)", "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Suggestions"}
+  %a#uservoice-nav{"data-uv-default-mode" => "feedback", "data-uv-forum-id" => "170962", "data-uv-lightbox" => "classic_widget", "data-uv-link-color" => "#007dbf", "data-uv-mode" => "full", "data-uv-primary-color" => "#cc6d00", "data-uv-support-tab_name" => "Oups ! Je rencontre un problème !", href: "javascript:void(0)", "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Suggestions"}
     %i.ico.edi-light-bulb
     /Suggestions et Support
     
-  = link_to announcements_path, "data-toggle"=>"tooltip", "data-placement"=>"top-left", "data-html"=>"true", :title => "Nouveautés", :id=>"ed-news-nav" do
+  = link_to announcements_path, "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Nouveautés", :id=>"ed-news-nav" do
     %i.ico.edi-book2
     - if announcements_count > 0
       .badge.badge-mini= announcements_count
+
+  = link_to destroy_user_session_path, method: :get,  "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Déconnexion" do
+    %i.ico.edi-logout
 
 %ul#recent-menu.nav.nav-list
   %li.list-header
