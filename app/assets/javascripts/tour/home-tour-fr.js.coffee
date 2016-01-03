@@ -5,7 +5,6 @@ $ ->
     onStart: -> $start.addClass "disabled", true
     onEnd: -> $start.removeClass "disabled", true
     backdrop: true
-#    debug: true
   )
 
   tour.addSteps [
@@ -28,20 +27,12 @@ $ ->
       content: "Cliquez ici pour paramétrer votre compte : <br> - renseigner vos données personnelles <br> - ajouter la photo de votre profil  <br> - créer vos projets artistiques"
       fixed: true
       
-#campaigns-nav
-
     ,
       element: "#search-nav"
       placement: "right"
       title: "Recherche"
       content: "Atteignez en un clin d’œil à une personne ou une structure."
       fixed: true
-    ,
-      element: "#plusmenu-trigger"
-      placement: "left"
-      title: "Le bouton +"
-      content: "Le bouton plus vous permet à tout moment de créer une nouvelle personne, structure ou tâche"
-      fixed: true 
     ,
 
       element: "#recent-nav"
@@ -50,7 +41,6 @@ $ ->
       content: "Ici une liste des fiches consultées récemment."
       fixed: true
       onShown: (tour) -> clickerShow()
-#      onNext: (tour) -> clickerHide()
     ,
       element: "#opportunities-nav"
       placement: "right"
@@ -73,7 +63,7 @@ $ ->
       content: "Easy is better, right? Easy like Bootstrap."
     ,
       title: "Ce tour est terminé"
-      content: "Un tour sera disponible pour la plupart des pages."
+      content: "Vous êtes maintenant prêt à utiliser Edgar ! Alors, on dit quoi ?"
       orphan: true
       
     ]
