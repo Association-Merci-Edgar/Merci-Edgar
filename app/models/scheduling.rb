@@ -264,7 +264,7 @@ class Scheduling < ActiveRecord::Base
 
     return nil if schedulings.empty?
 
-    f = File.new("programmations-#{account.domain}.csv", "w")
+    f = File.new(export_filename(account), "w")
     File.open(f, 'w') do |file|
       file.puts csv_header
       schedulings.each do |s|
@@ -272,6 +272,10 @@ class Scheduling < ActiveRecord::Base
       end
     end
     f
+  end
+
+  def self.export_filename(account)
+    "programmations-#{account.domain}.csv"
   end
   
   def translated_period

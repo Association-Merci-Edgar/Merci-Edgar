@@ -208,7 +208,7 @@ class Venue < ActiveRecord::Base
     rooms = Room.includes(:venue).where(venues: {account_id: account.id})
     return nil if rooms.empty?
 
-    f = File.new("lieux-#{account.domain}.csv", "w")
+    f = File.new(export_filename(account), "w")
     File.open(f, 'w') do |file|
       file.puts csv_header
       rooms.each do |room|
@@ -218,6 +218,10 @@ class Venue < ActiveRecord::Base
     f
   end
 
+  def self.export_filename(account)
+    "lieux-#{account.domain}.csv"
+  end
+
   def discovery
     self.schedulings.first.discovery if self.schedulings.any?
   end
@@ -225,7 +229,7 @@ class Venue < ActiveRecord::Base
   def period
     self.schedulings.first.period if self.schedulings.any?
   end
-  
+
   def translated_period
     self.schedulings.first.translated_period if self.schedulings.any?
   end
@@ -237,11 +241,10 @@ class Venue < ActiveRecord::Base
   def prospecting_months
     self.schedulings.first.prospecting_months if self.schedulings.any?
   end
-  
+
   def translated_kind
     return nil unless self.kind.present?
     I18n.t(self.kind, scope: 'simple_form.options.venue.kind')
   end
-  
-  
+
 end

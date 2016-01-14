@@ -132,7 +132,7 @@ class Structure < ActiveRecord::Base
     structures = Structure.where(account_id: account.id)
     return nil if structures.empty?
 
-    f = File.new("structures-#{account.domain}.csv", "w")
+    f = File.new(export_filename(account), "w")
     File.open(f, 'w') do |file|
       file.puts csv_header
       structures.each do |s|
@@ -140,6 +140,10 @@ class Structure < ActiveRecord::Base
       end
     end
     f
+  end
+
+  def self.export_filename(account)
+    "structures-#{account.domain}.csv"
   end
 
   def to_csv
