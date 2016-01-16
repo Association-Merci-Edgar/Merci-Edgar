@@ -1,0 +1,24 @@
+config: &config
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: 
+  pool: 5
+  host: db
+
+development:
+  database: merciedgar_dev
+  <<: *config
+
+test: &test
+  database: merciedgar_test
+  <<: *config
+
+production:
+  database: merciedgar_prod
+  username: merciedgar
+  password: PstxloP1
+  <<: *config
+
+cucumber:
+  <<: *test

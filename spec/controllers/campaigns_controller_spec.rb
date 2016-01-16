@@ -3,9 +3,11 @@ require 'rails_helper'
 describe CampaignsController, :type => :controller do
 
   context "with a logged user" do
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:account) { FactoryGirl.create(:account) }
+    let(:user) { FactoryGirl.create(:user, account: account) }
 
     before(:each) do
+      @request.host = "#{account.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
     end

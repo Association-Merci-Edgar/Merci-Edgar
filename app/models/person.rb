@@ -1,17 +1,3 @@
-# encoding: utf-8
-# == Schema Information
-#
-# Table name: people
-#
-#  id         :integer          not null, primary key
-#  first_name :string(255)
-#  last_name  :string(255)
-#  avatar     :string(255)
-#  account_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class Person < ActiveRecord::Base
   default_scope { where(:account_id => Account.current_id) }
   attr_accessible :first_name, :last_name, :people_structures_attributes, :contact_attributes, :avatar, :remote_avatar_url
@@ -113,26 +99,6 @@ class Person < ActiveRecord::Base
 
   def relative(user)
     relative = self.relatives.where(user_id: user.id).first
-  end
-
-  def self.get_or_init_by_name(name, imported_at)
-    normalize_name = Contact.format_name(name.strip)
-    person = Person.joins(:contact).where(contacts: { name: normalize_name }).first_or_initialize if name.present?
-    unless person.new_record?
-      old_person = person
-      duplicates = Contact.where("name LIKE ?", "#{person.name} #%")
-      nb_duplicates = duplicates.size
-      person = duplicates.where(imported_at: imported_at).first.try(:fine_model)
-      unless person
-        fname = "#{first_name} ##{nb_duplicates + 1}"
-
-        person = Person.new(last_name:last_name, first_name:fname)
-        logger.info {"CONTACT ATTRIBUTES --------- #{contact_attributes}"}
-
-      end
-    end
-    person
-
   end
 
   def self.from_csv(row)

@@ -1,39 +1,18 @@
-# == Schema Information
-#
-# Table name: tasks
-#
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  priority      :integer
-#  category      :string(255)
-#  specific_time :boolean
-#  due_at        :datetime
-#  completed_at  :datetime
-#  asset_id      :integer
-#  asset_type    :string(255)
-#  assigned_to   :integer
-#  completed_by  :integer
-#  account_id    :integer
-#  user_id       :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  project_id    :integer
-#
-
 class Task < ActiveRecord::Base
-  attr_accessible :bucket, :assigned_to, :user_id, :name, :asset_id, :asset_type, :calendar, :specific_time, :project_id
+
+
   belongs_to :user
   belongs_to :asset, polymorphic: true
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to
   belongs_to :completor, class_name: "User", foreign_key: :completed_by
   belongs_to :project
-  default_scope { where(:account_id => Account.current_id).order('tasks.due_at ASC') }
   
+  attr_accessible :bucket, :assigned_to, :user_id, :name, :asset_id, :asset_type, :calendar, :specific_time, :project_id
   attr_accessor :calendar
   
-
   validates :user, :name, presence: true
 
+  default_scope { where(:account_id => Account.current_id).order('tasks.due_at ASC') }
   scope :tracked_by, lambda { |user_id| where('user_id = ? OR assigned_to = ?', user_id, user_id) }
   scope :by_project, lambda { |project_id| where(project_id: project_id) }
 
@@ -124,21 +103,6 @@ class Task < ActiveRecord::Base
     self.due_at.in_time_zone.strftime("%d/%m/%Y %H:%M") if self.due_at && specific_time
   end
 
-=begin  def friendly_date
-    case
-    when self.due_at < Time.zone.now
-      "overdue"
-    when self.due_at >= Time.zone.now.midnight && self.due_at < Time.zone.now.midnight.tomorrow
-      I18n.localize(self.due_at.in_time_zone, format: :friendly_day, day:I18n.t(:due_today))
-    when self.due_at >= Time.zone.now.midnight.tomorrow && self.due_at < Time.zone.now.midnight.tomorrow + 1.day
-      I18n.localize(self.due_at.in_time_zone, format: :friendly_day, day:I18n.t(:due_tomorrow))
-    when self.due_at >= (Time.zone.now.midnight.tomorrow + 1.day) && self.due_at < Time.zone.now.next_week
-      I18n.localize(self.due_at.in_time_zone, format: :friendly)
-    else
-      I18n.localize(self.due_at.in_time_zone, format: :short)
-    end
-  end
-=end
   def to_ics
     event = Icalendar::Event.new
     event.start = self.due_at.strftime("%Y%m%dT%H%M%S")
@@ -176,6 +140,5 @@ class Task < ActiveRecord::Base
       end
     end
   end
-
 
 end

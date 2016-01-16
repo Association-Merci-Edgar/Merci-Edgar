@@ -14,6 +14,9 @@ fr:
     © Merci Edgar 2013
   manager: Administrateur
   member: Membre
+  account:
+    team_plan: multi-utilisateurs
+    solo_plan: solo
   date:
     abbr_day_names:
       - dim
@@ -366,6 +369,18 @@ fr:
   notices:
     contacts_export:
       initiated: "L'export vient d'être lancé. Vous recevrez un mail une fois l'export terminé"
+    subscriptions:
+      trial_period_ended: "La période d'essai est terminée."
+      not_up_to_date: "Votre abonnement a expiré"
+      trial_period_lasts_soon_html: 
+        "Attention ! Votre période d'essai expire le %{end_trial_period}.
+        <a href='%{link}'>Je veux adhérer à l'association pour utiliser Merci Edgar</a>"
+      need_to_subscribe_soon_html: 
+        "Attention ! Votre abonnement expire le %{end_subscription}.
+        <a href='%{link}'>Renouveler son abonnement</a>"
+      single_user_access: "Le compte %{account_name} a adhéré à l'association MERCI EDGAR en mode SOLO (20€/an), réservé à un seul utilisateur (%{manager_name})."
+      done: "Félicitations ! Vous êtes adhérent jusqu'au %{end_subscription}"
+      upgrade_done: "Félicitations ! Vous êtes désormais adhérent avec un compte GOLD jusqu'au %{end_subscription}"
   mailers:
     contacts_export:
       success:
@@ -373,6 +388,15 @@ fr:
         title: "Export de votre compte Merci Edgar"
         body: "Vous trouverez l'export de votre compte Merci Edgar"
         link: "en cliquant sur ce lien"
+    subscription_receipt:
+      success:
+        subject: Adhesion validee
+        body_html: Nous vous confirmons que votre compte %{account_name} a adhéré à l'association MERCI EDGAR en mode %{plan} pour la somme de %{amount}€ .<p>Votre adhésion expirera le %{end_subscription}.
+    upgrade_receipt:
+      success:
+        subject: Mise à jour de votre compte validee
+        body_html: Nous vous confirmons que votre compte %{account_name} est désormais un compte GOLD. Nous avons bien reçu votre complément de %{amount}€ .<p>Votre adhésion expirera le %{end_subscription}.
+
 
   helpers:
     browse: Parcourir...

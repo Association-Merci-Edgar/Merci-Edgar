@@ -3,15 +3,18 @@ require 'rails_helper'
 describe FestivalsController do
   context "with a logged user" do
 
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:account) { FactoryGirl.create(:account) }
+    let(:user) { FactoryGirl.create(:user, account: account) }
 
     before(:each) do
+      @request.host = "#{account.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
+      Account.current_id = account.id
     end
 
     context "with a valid festival" do
-      let!(:festival) { FactoryGirl.create(:festival, account_id: Account.current_id) }
+      let!(:festival) { FactoryGirl.create(:festival) }
 
       describe "GET index" do
         before(:each) { get :index }
@@ -52,10 +55,16 @@ describe FestivalsController do
 
     describe "POST create" do
       before(:each) { post :create }
-      it { expect(Festival.count).to eq(1) }
+      it { 
+        Account.current_id = account.id
+        expect(Festival.count).to eq(1) 
+      }
       it { expect(assigns(:festival)).to be_a(Festival) }
       it { expect(assigns(:festival)).to be_persisted }
-      it { expect(response).to redirect_to(Festival.last) }
+      it { 
+        Account.current_id = account.id
+        expect(response).to redirect_to(Festival.last) 
+      }
     end
   end
 end

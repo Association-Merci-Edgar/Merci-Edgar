@@ -3,11 +3,14 @@ require 'rails_helper'
 describe VenuesController do
 
   context "with a logged user" do
-    let(:user) { FactoryGirl.create(:admin, label_name: "truc") }
+    let(:account) { FactoryGirl.create(:account) }
+    let(:user) { FactoryGirl.create(:user, account: account) }
 
     before(:each) do
+      @request.host = "#{account.domain}.lvh.me"
       @request.env["devise.mapping"] = Devise.mappings[:user]
       sign_in user
+      Account.current_id = account.id
     end
 
     context "with an existing venue" do
@@ -16,7 +19,9 @@ describe VenuesController do
       describe "GET index" do
         before(:each) { get :index }
         it { expect(response).to be_success }
-        it { expect(assigns(:contacts)).to eq([venue]) }
+        it { 
+          Account.current_id = account.id
+          expect(assigns(:contacts)).to eq([venue]) }
       end
 
       describe "GET show" do
@@ -65,10 +70,12 @@ describe VenuesController do
 
     describe "POST create" do
       before(:each) { post :create, venue: {} }
-      it { expect(Venue.count).to eq(1) }
+      it { expect(Venue.where(account_id:account.id).count).to eq(1) }
       it { expect(assigns(:venue)).to be_a(Venue) }
       it { expect(assigns(:venue)).to be_persisted }
-      it { expect(response).to redirect_to(edit_venue_path(Venue.last)) }
+      it { 
+        Account.current_id = account.id
+        expect(response).to redirect_to(edit_venue_path(Venue.last)) }
     end
   end
 end

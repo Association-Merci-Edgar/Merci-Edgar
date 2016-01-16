@@ -1,19 +1,3 @@
-# == Schema Information
-#
-# Table name: contacts
-#
-#  id               :integer          not null, primary key
-#  contactable_id   :integer
-#  contactable_type :string(255)
-#  name             :string(255)
-#  network_tags     :string(255)
-#  custom_tags      :string(255)
-#  remark           :text
-#  account_id       :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
-
 class Contact < ActiveRecord::Base
   extend ContactsHelper
   include MyAttributes
@@ -29,7 +13,6 @@ class Contact < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: [:account_id], case_sensitive: false
   validates_presence_of :name
-  # validates_associated :phones
 
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
@@ -48,8 +31,6 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => proc { |attributes| attributes[:national_number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :addresses, :reject_if => proc { |attributes| attributes[:street].blank? && attributes[:city].blank? && attributes[:postal_code].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :websites, :reject_if => :all_blank, :allow_destroy => true
-
-  # mount_uploader :avatar, AvatarUploader
 
   before_save :format_networks, if: "network_tags_changed?"
   before_save :format_customs, if: "custom_tags_changed?"
@@ -366,58 +347,61 @@ class Contact < ActiveRecord::Base
   end
 
   def assign_from_csv(row)
-    contact = self
-    # contact.assign_name_and_duplicate(name)
     row.delete(:first_name_last_name_order)
-    contact.remark = ""
+    self.remark = ""
 
     if row[:observations].present?
-      contact.remark += row[:observations]
+      self.remark += row[:observations]
     end
 
     address = Address.from_csv(row)
-    contact.addresses << address if address
+    self.addresses << address if address
 
     if row[:tel].present?
-      phone = contact.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
-      unless phone.valid?
-        contact.phones.delete(phone)
-        contact.remark += "\nTel: #{row[:tel]} / "
-      end
+      phone = self.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
+      delete_after_store phone if phone.invalid?
     end
     if row[:email].present?
-      email = contact.emails.build(address: row[:email].strip)
-      unless email.valid?
-        contact.remark += "\nEmail: #{row[:email]} / "
-        contact.emails.delete(email)
-      end
+      email = self.emails.build(address: row[:email].strip)
+      delete_after_store email if email.invalid?
     end
     if row[:web].present?
-      website = contact.websites.build(url: row[:web].strip)
-      unless website.valid?
-        contact.remark += "\nWeb: #{row[:web]} / "
-        contact.websites.delete(website)
-      end
+      website = self.websites.build(url: row[:web].strip)
+      delete_after_store website if website.invalid?
     end
-    if row[:reseaux].present?
-      contact.network_tags = row[:reseaux].split(',').map(&:strip).join(',')
-    end
-    if row[:tags_perso].present?
-      contact.custom_tags = row[:tags_perso].split(',').map(&:strip).join(',')
-    end
+
+    self.network_tags = build_list(row[:reseaux]) if row[:reseaux].present?
+    self.custom_tags = build_list(row[:tags_perso]) if row[:tags_perso].present?
 
     invalid_keys = row.keys.map(&:to_s).delete_if{|key| VALID_CSV_KEYS.include?(key)}
     invalid_keys.each do |invalid_key|
       value = row[invalid_key.to_sym]
-      contact.remark += "\n#{invalid_key}: #{value} /" if value.present?
+      store_invalid_element(value, invalid_key) if value.present?
     end
-    unless contact.valid?
-      contact.errors.messages.keys.each do |attribute, value|
-        contact.remark += "\n#{attribute}: #{contact.send(attribute)} /"
-        contact.send(:write_attribute, attribute,nil)
+    unless self.valid?
+      self.errors.messages.keys.each do |attribute, value|
+        store_invalid_element(self.send(attribute), attribute)
+        self.send(:write_attribute, attribute,nil)
       end
     end
     invalid_keys
+  end
+
+  def build_list(element)
+    element.split(',').map(&:strip).join(',')
+  end
+
+  def delete_after_store!(element)
+
+    label = {Phone: "Tel", Email: "Email", Website: "Site"}
+    element_label = element.class.to_s
+    store_invalid_element(element, label[element_label.to_sym])
+    send(element_label.downcase.pluralize).delete(element)
+  end
+
+  def store_invalid_element(element, label)
+    self.remark = '' if self.remark.blank?
+    self.remark += "\n#{label}: #{element} /"
   end
 
   def making_prospecting?

@@ -1,0 +1,36 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.0.0
+
+env:
+  global:
+    - ROLES="[admin, user]"
+    - AWS_ACCESS_KEY_ID=change_me
+    - AWS_SECRET_ACCESS_KEY=change_me
+    - OPENING_SUBSCRIPTION_DAY=2015-11-10
+    - ADMIN_NAME="Jean-Pierre"
+    - ADMIN_EMAIL="jp@laposte.net"
+    - ADMIN_PASSWORD="lacuisine"
+  matrix:
+    - DB=postgresql
+
+services:
+  - redis-server
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database merciedgar_test;' -U postgres
+  - bundle exec rake db:migrate db:seed
+
+addons:
+  postgresql: "9.3"
+  code_climate:
+    repo_token: 8850bccc6911d74965627b1fafe753beb368fab00d33de0c7576c6598fc1220e
+
+script:
+  - bundle exec rake db:seed spec
+
+notifications:
+  slack: merciedgar:HYdsoJI3d26VzdKgQYvMguWX

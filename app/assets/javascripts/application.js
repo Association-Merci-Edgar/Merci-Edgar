@@ -26,7 +26,9 @@
 
 //= require contacts
 //= require nested_form
-//= require_tree ./appli
+//= require appli/bootstrap-tour
+//= require appli/jquery.smoothscroll.min
+//= require appli/mousetrap.min
 //= require edgarapp
 //= require tasks_group
 //= require jquery.autosize.min
