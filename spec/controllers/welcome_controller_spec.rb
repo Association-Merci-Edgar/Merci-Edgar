@@ -52,7 +52,7 @@ describe WelcomeController do
       let(:account) { FactoryGirl.create(:account, :solo_account) }
       describe "GET index" do
         before(:each) { get :index }
-        it { expect(response).to redirect_to(edit_subscription_path)}
+        it { expect(response).to redirect_to(new_subscription_path)}
         it { expect(flash[:notice]).to eq(I18n.t('notices.subscriptions.single_user_access', account_name: account.name, manager_name: manager.name)) }
       end
     end
