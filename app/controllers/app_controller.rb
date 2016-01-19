@@ -29,7 +29,7 @@ class AppController < ApplicationController
   
   def check_plan
     if (!current_user.has_role? :admin) && !current_account.team? && current_account.member?(current_user)
-      redirect_to edit_subscription_path, notice: t('notices.subscriptions.single_user_access', account_name: current_account.name, manager_name: current_account.manager.name)
+      redirect_to new_subscription_path, notice: t('notices.subscriptions.single_user_access', account_name: current_account.name, manager_name: current_account.manager.name)
     end
   end
 end
