@@ -1,4 +1,9 @@
 class ErrorsController < ApplicationController
+  skip_filter :authenticate_user!
+  skip_filter :check_user
+  skip_filter :check_membership
+  skip_filter :check_plan
+
   def routing
     render_404
   end

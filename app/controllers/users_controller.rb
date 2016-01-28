@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  # layout "application", only: [:edit]
-  before_filter :authenticate_user!
+  skip_filter :check_user
+  skip_filter :check_membership
+  skip_filter :check_plan
 
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
