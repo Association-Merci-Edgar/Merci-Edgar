@@ -88,13 +88,13 @@ describe Account do
 
       context "export_contacts" do
         it { expect(account.export_contacts).to eq(account.export_filename) }
-
         it { expect(File.stat(account.export_contacts).size).to satisfy {|v| v > 0} }
       end
 
       describe "export_filename" do
         it { expect(account.export_filename).to eq(File.join(Dir.tmpdir, "#{account.domain}-30122010.zip")) }
       end
+
     end
   end
 
@@ -106,7 +106,7 @@ describe Account do
       it { expect(account.manager?(user)).to be_falsy }
     end
   end
-  
+
   describe "trial_period_ended?" do
     context "today is before the opening subscription day" do
       before(:each) { Date.stubs(:current).returns(Account::OPENING_SUBSCRIPTION_DAY - 10.days) }
@@ -124,7 +124,7 @@ describe Account do
 
     end
 
-      
+
     context "today is after the opening subscription day" do
       before(:each) { Date.stubs(:current).returns(Account::OPENING_SUBSCRIPTION_DAY + 10.days) }
       context "account created more than one month" do
@@ -139,12 +139,12 @@ describe Account do
         it { expect(account.trial_period_ended?).to be_falsy }
       end
     end
-      
+
     context "already subscribed" do
       let(:account) { FactoryGirl.create(:account, last_subscription_at: Date.current - 1.day) }
       it { expect(account.trial_period_ended?).to be_truthy } 
     end
-    
+
   end
 
   describe "in_trial_period?" do
@@ -162,7 +162,7 @@ describe Account do
         let(:account) { FactoryGirl.create(:account, last_subscription_at: nil, created_at: date) }
         it { expect(account.in_trial_period?).to be_falsy }
       end
-    
+
       context "when account created less than one month" do
         let(:date) { Date.current - 2.weeks }
         let(:account) { FactoryGirl.create(:account, last_subscription_at: nil, created_at: date) }
@@ -181,7 +181,7 @@ describe Account do
         let(:account) { FactoryGirl.create(:account, last_subscription_at: nil, created_at: date) }
         it { expect(account.trial_period_lasts_at).to eq(Account::OPENING_SUBSCRIPTION_DAY) }
       end
-    
+
       context "when account created less than one month" do
         let(:date) { Date.current - 2.weeks }
         let(:account) { FactoryGirl.create(:account, last_subscription_at: nil, created_at: date) }
@@ -210,15 +210,15 @@ describe Account do
       let(:account) { FactoryGirl.create(:account, last_subscription_at: date) }
       it { expect(account.subscription_up_to_date?).to be_truthy }
     end
-    
+
   end
-    
+
   describe "subscription_lasts_at" do
     let(:date) { Date.current - 100.days } 
     let(:account) { FactoryGirl.create(:account, last_subscription_at: date) }
     it { expect(account.subscription_lasts_at).to eq(account.last_subscription_at + 1.year)}
   end
-  
+
   describe "subscription_ended_in_less_than_one_month?" do
     let(:account) { FactoryGirl.create(:account, :with_account_subscription_lasts_in_less_than_one_month) }
     it { expect(account.subscription_ended_in_less_than_one_month?).to be_truthy } 
@@ -229,9 +229,9 @@ describe Account do
     let(:account) { FactoryGirl.create(:account, :with_account_subscription_lasts_soon) }
     it { expect(account.subscription_ended_in_less_than_one_week?).to be_truthy } 
     it { expect(account.ended_soon?).to be_truthy }
-      
+
   end
-  
+
   describe "trial_period_ended_in_less_than_one_week?" do
     context "when trial_period_ended_in_less_than_one_week" do
       let(:account) { FactoryGirl.create(:account, :with_trial_period_lasts_soon) }
@@ -250,7 +250,7 @@ describe Account do
     end
   end
 
-  
+
   describe "plan" do
     context "when account team is false" do
       let(:account) { FactoryGirl.build(:account, team: false) }
@@ -268,7 +268,7 @@ describe Account do
     let(:account) { FactoryGirl.build(:account, team: false) }
     it "upgrades" do
       account.upgrade!
-    expect(account.team).to be_truthy
+      expect(account.team).to be_truthy
     end
   end
 

@@ -4,26 +4,22 @@ describe Person do
 
   it { expect(FactoryGirl.build(:person)).to be_valid }
 
-  describe "export" do
+  describe "elements_to_export" do
 
     context "with an account with a person" do
       let(:account) { FactoryGirl.create(:account) }
       let!(:henri) { FactoryGirl.create(:person, account_id: account.id) }
 
-      it { expect(File.basename(Person.export(account))).to eq("personnes-#{account.domain}.csv") }
-
-      it { expect(File.readlines(Person.export(account)).sort).to eq([henri.to_csv, Person.csv_header].sort) }
-
+      it { expect(Person.export_filename(account)).to eq("personnes-#{account.domain}.csv") }
+      it { expect(Person.elements_to_export(account)).to eq([henri]) }
     end
 
     context "with an account with 2 people" do
       let(:account) { FactoryGirl.create(:account) }
       let!(:henri) { FactoryGirl.create(:person, account_id: account.id) }
       let!(:george) { FactoryGirl.create(:person, account_id: account.id) }
-
-      it { expect(File.readlines(Person.export(account)).sort).to eq([henri.to_csv, george.to_csv, Person.csv_header].sort) }
+      it { expect(Person.elements_to_export(account).sort).to eq([henri, george].sort) }
     end
-
   end
 
   describe "to_csv" do

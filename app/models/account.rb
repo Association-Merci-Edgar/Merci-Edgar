@@ -132,32 +132,43 @@ class Account < ActiveRecord::Base
     File.delete(export_filename) if File.exists?(export_filename)
     Zip::File.open(export_filename, Zip::File::CREATE) do |zipfile|
 
-      [Person, Venue, Scheduling, Structure].each do |element|
-        if file = element.export(self)
+      [Person, Venue, Scheduling, Structure].each do |klass_to_export|
+        elements = klass_to_export.elements_to_export(self)
+        next if elements.empty?
+
+        file = File.new(klass_to_export.send(export_filename, self), "w")
+        File.open(file 'w') do |line|
+          line.puts csv_header
+          people.each do |p|
+            line.puts p.to_csv
+          end
+        end
+
+        if file
           zipfile.add(File.basename(file), File.absolute_path(file))
         end
       end
     end
     export_filename
   end
-  
+
   def trial_period_ended?
     return !in_trial_period?
   end
-  
+
   def trial_period_lasts_at
     if (self.created_at.to_date < Date.current - 1.month) && (Date.current < OPENING_SUBSCRIPTION_DAY)
       return OPENING_SUBSCRIPTION_DAY
     end
-  
+
     self.created_at.to_date + 1.month
   end
-  
+
   def in_trial_period?
     return true if (Date.current < OPENING_SUBSCRIPTION_DAY) && (self.last_subscription_at.nil?)
     self.created_at > Date.current - 1.month
   end
-  
+
   def trial_period_ended_in_less_than_one_week?
     return false unless in_trial_period?
     Date.current >= self.trial_period_lasts_at - 1.week 
@@ -167,12 +178,12 @@ class Account < ActiveRecord::Base
     return true if in_trial_period?
     self.last_subscription_at.present? && self.subscription_lasts_at > Date.current
   end
-  
+
   def subscription_lasts_at
     return trial_period_lasts_at if self.last_subscription_at.nil?
     self.last_subscription_at + 1.year
   end
-  
+
   def subscription_ended_in_less_than_one_month?
     subscription_lasts_at < ( Date.current + 1.month) unless in_trial_period?
   end

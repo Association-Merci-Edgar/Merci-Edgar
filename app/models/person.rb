@@ -17,6 +17,8 @@ class Person < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  scope :elements_to_export, ->(account) { where(account_id: account.id) }
+
   def fine_model
     self
   end
@@ -125,20 +127,6 @@ class Person < ActiveRecord::Base
 
   def self.csv_header
     "Nom, Emails, Téls, Adresses, Sites web, Réseaux, Tags Perso, Commentaires, Structures".split(',').to_csv
-  end
-
-  def self.export(account)
-    people = Person.where(account_id: account.id)
-    return nil if people.empty?
-
-    f = File.new(export_filename(account), "w")
-    File.open(f, 'w') do |file|
-      file.puts csv_header
-      people.each do |p|
-        file.puts p.to_csv
-      end
-    end
-    f
   end
 
   def self.export_filename(account)

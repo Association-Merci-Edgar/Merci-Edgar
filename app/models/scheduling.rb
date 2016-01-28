@@ -256,22 +256,11 @@ class Scheduling < ActiveRecord::Base
      'Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires', 'Personnes'].to_csv
   end
 
-  def self.export(account)
+  def self.elements_to_export(account)
     schedulings = Scheduling.includes(:show_buyer).where(show_buyers: {account_id: account.id})
     schedulings.concat(Venue.includes(:schedulings).where(account_id: account.id).map(&:schedulings).flatten)
     schedulings.concat(Festival.includes(:schedulings).where(account_id: account.id).map(&:schedulings).flatten)
-    schedulings.uniq!
-
-    return nil if schedulings.empty?
-
-    f = File.new(export_filename(account), "w")
-    File.open(f, 'w') do |file|
-      file.puts csv_header
-      schedulings.each do |s|
-        file.puts s.to_csv
-      end
-    end
-    f
+    schedulings.uniq
   end
 
   def self.export_filename(account)

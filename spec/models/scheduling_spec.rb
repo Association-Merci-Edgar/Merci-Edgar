@@ -44,15 +44,13 @@ describe Scheduling do
     end    
   end
   
-  describe "export" do
+  describe "elements_to_export" do
     context "with an account with a scheduling" do
       let(:account) { FactoryGirl.create(:account) }
       let!(:buyer) { FactoryGirl.create(:show_buyer, account_id: account.id) }
       let!(:scheduling) { FactoryGirl.create(:scheduling, show_buyer: buyer) }
 
-    it { expect(File.basename(Scheduling.export(account))).to eq("programmations-#{account.domain}.csv") }
-
-    it { expect(File.readlines(Scheduling.export(account)).sort).to eq([scheduling.to_csv, Scheduling.csv_header].sort) }
+    it { expect(Scheduling.elements_to_export(account)).to eq([scheduling]) }
     end
   end
 

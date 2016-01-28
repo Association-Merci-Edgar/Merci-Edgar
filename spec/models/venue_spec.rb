@@ -6,7 +6,7 @@ describe Venue do
     it { expect(FactoryGirl.build(:venue)).to be_valid }
   end
 
-  describe "export" do
+  describe "elements_to_export" do
     let(:account) { FactoryGirl.create(:account) }
     before(:each) { Account.current_id = account.id }
 
@@ -14,8 +14,7 @@ describe Venue do
       let!(:venue) { FactoryGirl.create(:venue, account: account) }
       let!(:room) { FactoryGirl.create(:room, venue: venue) }
 
-      it { expect(File.basename(Venue.export(account))).to eq("lieux-#{account.domain}.csv") }
-      it { expect(File.readlines(Venue.export(account)).sort).to eq([room.to_csv, Venue.csv_header].sort) }
+      it { expect(Venue.elements_to_export(account)).to eq([room]) }
     end
   end
 

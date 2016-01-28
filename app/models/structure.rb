@@ -32,6 +32,8 @@ class Structure < ActiveRecord::Base
 
   validates_presence_of :contact
 
+  scope :elements_to_export, ->(account) { where(account_id: account.id) }
+
   def kind
     fm = self.fine_model
     if fm.present?
@@ -126,20 +128,6 @@ class Structure < ActiveRecord::Base
 
   def self.csv_header
     ['Nom', 'Emails', 'Téls', 'Adresses', 'Sites web', 'Réseaux', 'Tag Perso', 'Commentaires', 'Personnes'].to_csv
-  end
-
-  def self.export(account)
-    structures = Structure.where(account_id: account.id)
-    return nil if structures.empty?
-
-    f = File.new(export_filename(account), "w")
-    File.open(f, 'w') do |file|
-      file.puts csv_header
-      structures.each do |s|
-        file.puts s.to_csv
-      end
-    end
-    f
   end
 
   def self.export_filename(account)

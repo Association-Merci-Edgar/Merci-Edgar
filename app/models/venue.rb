@@ -204,18 +204,8 @@ class Venue < ActiveRecord::Base
     "Nom, Emails, Tels, Adresses, Sites web, Type, Residence, Accompagnement, Réseaux, Tags perso, Saison, Style, Contrats, Découverte, Cycle de programmation, Observations Programmations, Mois de prospection, Observations, Nom Salle, Places assises, Places debout, Modulable, Dimension Plateau (PxLxH), Bar, Personnes".split(',').to_csv
   end
 
-  def self.export(account)
-    rooms = Room.includes(:venue).where(venues: {account_id: account.id})
-    return nil if rooms.empty?
-
-    f = File.new(export_filename(account), "w")
-    File.open(f, 'w') do |file|
-      file.puts csv_header
-      rooms.each do |room|
-        file.puts room.to_csv
-      end
-    end
-    f
+  def self.elements_to_export(account)
+    Room.includes(:venue).where(venues: {account_id: account.id})
   end
 
   def self.export_filename(account)

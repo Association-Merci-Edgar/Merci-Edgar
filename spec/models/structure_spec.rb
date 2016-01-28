@@ -7,13 +7,13 @@ describe Structure do
     it { expect(FactoryGirl.build(:structure, :generic)).to be_valid }
   end
 
-  describe "export" do
+  describe "elements_to_export" do
     context "with an account with a generic structure" do
       let(:account) { FactoryGirl.create(:account) }
       let!(:structure) { FactoryGirl.create(:structure, :generic, account_id: account.id) }
 
-      it { expect(File.basename(Structure.export(account))).to eq("structures-#{account.domain}.csv") }
-      it { expect(File.readlines(Structure.export(account)).sort).to eq([structure.to_csv, Structure.csv_header].sort) }
+      it { expect(Structure.export_filename(account)).to eq("structures-#{account.domain}.csv") }
+      it { expect(Structure.elements_to_export(account)).to eq([structure]) }
     end
   end
 
