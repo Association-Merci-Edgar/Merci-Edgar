@@ -1,4 +1,6 @@
 class SessionsController < Devise::SessionsController
+  skip_before_filter :check_user, :check_membership, :check_plan
+
   def create
     self.resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
