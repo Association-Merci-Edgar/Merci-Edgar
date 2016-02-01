@@ -50,6 +50,10 @@
   .row-fluid
     .notice= flash[:notice]
       
+.row-fluid.padded
+  Si vous ne souhaitez pas adhérer, vous pouvez
+  = link_to "exporter votre compte", new_contacts_export_path, target: '_blank'
+
 %section.princing.padded
   .row-fluid
     / ITEM
