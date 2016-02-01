@@ -1,5 +1,4 @@
-
-class VenuesController < AppController
+class VenuesController < ApplicationController
   include ApplicationHelper
 
   def index

@@ -1,14 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_current_tenant
-  before_filter :authenticate_user!
-  before_filter :check_user
-  before_filter :check_membership
-  before_filter :check_plan
+  prepend_before_filter :set_current_tenant, :authenticate_user!
+  before_filter :check_user, :check_membership, :check_plan
 
   after_filter :reset_tenant
-  
+ 
   helper_method :current_account
   helper_method :announcements_count
 

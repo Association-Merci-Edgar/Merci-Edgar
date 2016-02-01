@@ -1,5 +1,4 @@
-
-class ShowBuyersController < AppController
+class ShowBuyersController < ApplicationController
   include ApplicationHelper
   
   def index

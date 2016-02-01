@@ -1,4 +1,4 @@
-class AnnouncementsController < AppController
+class AnnouncementsController < ApplicationController
   after_filter :set_last_hit_cookie
   def index
     if current_account.in_trial_period?
