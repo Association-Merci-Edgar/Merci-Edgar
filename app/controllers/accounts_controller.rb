@@ -1,4 +1,8 @@
 class AccountsController < ApplicationController
+  skip_filter :check_user
+  skip_filter :check_membership
+  skip_filter :check_plan
+
   def create
   end
   def edit
