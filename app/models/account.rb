@@ -136,7 +136,7 @@ class Account < ActiveRecord::Base
         elements = klass_to_export.elements_to_export(self)
         next if elements.empty?
 
-        file = File.new(klass_to_export.send(export_filename, self), "w")
+        file = File.new(klass_to_export.send("export_filename", self), "w")
         File.open(file 'w') do |line|
           line.puts csv_header
           people.each do |p|
