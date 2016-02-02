@@ -1,7 +1,5 @@
 class ContactsExportsController < ApplicationController
-  skip_filter :check_user
-  skip_filter :check_membership
-  skip_filter :check_plan
+#  skip_before_filter :check_user, :check_membership, :check_plan
 
   def new
     ExportContacts.perform_async(current_account.id, current_user.id)
