@@ -136,16 +136,16 @@ class Account < ActiveRecord::Base
         elements = klass_to_export.elements_to_export(self)
         next if elements.empty?
 
-        file = File.new(klass_to_export.send("export_filename", self), "w")
-        File.open(file 'w') do |line|
-          line.puts csv_header
-          people.each do |p|
+        dest_file = File.new(klass_to_export.send("export_filename", self), "w")
+        File.open(dest_file, 'w') do |line|
+          line.puts klass_to_export.csv_header
+          elements.each do |p|
             line.puts p.to_csv
           end
         end
 
-        if file
-          zipfile.add(File.basename(file), File.absolute_path(file))
+        if dest_file
+          zipfile.add(File.basename(dest_file), File.absolute_path(dest_file))
         end
       end
     end
