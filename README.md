@@ -71,7 +71,7 @@ To generate db Schema, you can use ERD:
 
 `bundle exec erd --inheritance --direct --attributes=foreign_keys,content`
 
-## Contributign
+## Contributing
 
 If you make improvements to this application, please share with others.
 
