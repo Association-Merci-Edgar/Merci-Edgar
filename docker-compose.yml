@@ -14,6 +14,18 @@ webapp:
     - db
     - redis
 
+rspec:
+  build: .
+  volumes:
+    - ".:/usr/src/app"
+  working_dir: "/usr/src/app"
+  command: bundle exec rspec --color
+  environment:
+    - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_dev
+  links:
+    - db
+
+
 worker:
   build: .
   volumes:

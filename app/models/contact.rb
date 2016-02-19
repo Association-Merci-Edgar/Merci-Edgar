@@ -359,15 +359,15 @@ class Contact < ActiveRecord::Base
 
     if row[:tel].present?
       phone = self.phones.build(national_number: row[:tel].to_s.strip, classic_kind: "reception")
-      delete_after_store phone if phone.invalid?
+      delete_after_store! phone if phone.invalid?
     end
     if row[:email].present?
       email = self.emails.build(address: row[:email].strip)
-      delete_after_store email if email.invalid?
+      delete_after_store! email if email.invalid?
     end
     if row[:web].present?
       website = self.websites.build(url: row[:web].strip)
-      delete_after_store website if website.invalid?
+      delete_after_store! website if website.invalid?
     end
 
     self.network_tags = build_list(row[:reseaux]) if row[:reseaux].present?
