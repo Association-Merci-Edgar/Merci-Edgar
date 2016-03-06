@@ -1,11 +1,11 @@
 # Edgar
 
 [![Join the chat at https://gitter.im/Association-Merci-Edgar/Merci-Edgar](https://badges.gitter.im/Association-Merci-Edgar/Merci-Edgar.svg)](https://gitter.im/Association-Merci-Edgar/Merci-Edgar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-Merci Edgar is a CRM dedicated to artists (musicians, actors...)
-
 [![Build Status](https://travis-ci.org/Association-Merci-Edgar/Merci-Edgar.png?branch=wip)](https://travis-ci.org/Association-Merci-Edgar/Merci-Edgar)
 [![Code Climate](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar.png)](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar)
+
+
+Merci Edgar is a CRM dedicated to artists (musicians, actors...)
 
 
 ## Ruby on Rails
