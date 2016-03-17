@@ -45,26 +45,12 @@ jQuery ->
         $("<li>").append(item_html).appendTo ul
 
 
-      
-  ###
-  $('.typeah').typeahead
-    source: (query, process) ->
-      $.ajax(
-        url= "/fr/structures?term=" + query
-        success: (data) =>
-          process(data)
-      )
-    minLength: 3
-  ###    
-  
-
   $(document).on "nested:fieldAdded", (event) ->
 
     # this field was just inserted into your form
     field = event.field
 
     field.find(".jq_autocomplete").each (index,element) =>
-    
       # it's a jQuery object already! Now you can find date input
       typeaheadField = $(element)
       console.debug("field:" + typeaheadField.attr("name"))
@@ -108,15 +94,3 @@ jQuery ->
             item_html = item_html + "<span class='infos'>" + item.kind + "</span>"
           $("<li>").append(item_html).appendTo ul
 
-          
-  ###
-    # and activate datepicker on it
-    typeaheadField.typeahead
-      source: (query, process) ->
-        $.ajax(
-          url= "/fr/structures?term=" + query
-          success: (data) =>
-            process(data)
-        )
-      minLength: 3
-  ###

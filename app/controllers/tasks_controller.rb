@@ -1,8 +1,7 @@
 # encoding: utf-8
 class TasksController < ApplicationController
+
   def new
-    #@asset = Venue.find(params[:venue_id]) if params[:venue_id]
-    #@asset = Person.find(params[:person_id]) if params[:person_id]
     @asset = Contact.find(params[:contact_id]) if params[:contact_id]
     @task = Task.new
     @task.project = Project.first
@@ -57,14 +56,12 @@ class TasksController < ApplicationController
       else
         @redirect = true
       end
-      
       render "create"
     else
       respond_to do |format|
         render "errors"
       end
     end
-    
   end
 
   def index

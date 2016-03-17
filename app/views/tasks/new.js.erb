@@ -3,31 +3,18 @@ $('.datepicker').datetimepicker();
 
 $('.task_calendar').hide();
 
-
-
 $('#task_bucket').change(function() {
   $('.datepicker').val("");
-  
-  //alert( $('#task_bucket').val() )
-  
   if ( $(this).val() == "specific" ) {
-    //$('.task_calendar').show();
     $('.task_calendar').css('display', 'inline-block');
-    //$(this).next().focus();
     $('.datepicker').focus();
-    
-    } else {
-      $('.task_calendar').hide();
-    }
-    
-    
+  } else {
+    $('.task_calendar').hide();
+  }
 });
-
-
 
 $('.datepicker').change(function() {
   $('#task_bucket').val("specific");
 });
-
 
 $('#myModal').modal('toggle')

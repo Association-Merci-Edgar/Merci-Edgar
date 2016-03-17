@@ -10,20 +10,17 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-// require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require tag-it
 //= require tag
 //= require bootstrap
-// require bootstrap-typeahead
 //= require_tree ./datetimepicker
 //= require jquery_nested_form
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 //= require uservoice
-
 //= require contacts
 //= require nested_form
 //= require appli/bootstrap-tour
