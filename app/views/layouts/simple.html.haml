@@ -1,9 +1,14 @@
 !!!
-%html
-  %head
-    = render 'layouts/head_simple'
-    
-  %body
-    = yield
-    = javascript_include_tag 'simple/application'
-    
+%title Merci Edgar
+%meta{:charset => "utf-8"}
+%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+
+= csrf_meta_tags
+/[if lt IE 9]
+  <script src="/assets/js/html5shiv.js"></script>
+
+= stylesheet_link_tag "application"
+= favicon_link_tag 'favicon.ico'
+
+= yield
+= javascript_include_tag 'simple/application'

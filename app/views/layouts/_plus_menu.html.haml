@@ -1,13 +1,13 @@
 #plusmenu-trigger
   %i.entypo.edi-plus3
-  
+
 %ul.pluslist
   %li.list-header
     Ajouter
 
   - contact = @structure.contact if @structure.present?
   - contact = @person.contact if @person.present?
-    
+
   - if params[:action] == "show" && @structure.present? || @person.present?
     %li
       /= link_to "une tâche", new_venue_task_path(@venue), :data => {:toggle => "modal", :target => "#myModal"}
@@ -33,15 +33,3 @@
     = link_to new_structure_path do
       %i.entypo.edi-venue
       une structure
-  
--#
-  %li
-    /= link_to new_oportunitie do
-    %a{:href=>"#"}
-      %i.entypo.edi-dates
-      une date
-  %li
-    /= link_to new_oportunitie do
-    %a{:href=>"#"}
-      %i.entypo.edi-megaphone
-      une campagne

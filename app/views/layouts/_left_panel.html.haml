@@ -1,15 +1,3 @@
-
-/______________________________________________________ LINK TO HOMEPAGE
--#
-  = link_to home_path do
-    .logo
-      #logo-nav
-      .account-tab
-        = Account.find(Account.current_id).name.truncate(18)
-      %i.ico.edi-cog.righticon
-    
-    
-/______________________________________________________ ACCOUNT SWITCH
 .dropdown
   %a{"data-toggle" => "dropdown"}
     .logo
@@ -17,8 +5,7 @@
       .account-tab
         = Account.find(Account.current_id).name.truncate(18)
       %i.ico.edi-cog.righticon
-      
-      
+
   - if current_user.accounts.size > 1
     %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu-accounts", role: "menu"}
       %li{role: "presentation"}
@@ -33,40 +20,29 @@
 %nav.leftmenu
   .sidebar-nav
     %ul.nav.nav-list
-      -#= menu_link(current_user.name, edit_user_path(current_user),"edi-cog righticon",["accounts","users","projects"],nil)
-      -# %li#account-nav.user-tab
       %li#accounts-tab
-        /%a.user-tab.rightbt{:href => "#"}
-        /%i.ico.edi-cog
-        /%a.user-tab{:href => "/accounts"}
-        
+
         = link_to edit_user_path(current_user) do
           %span
             = current_user.display_name.truncate(18)
           %i.ico.edi-cog.righticon
-          /User: #{@user.name}
-      
+
       = menu_link("Bienvenue", welcome_path, "edi-new",["welcome"],nil)
-      -#= menu_link("Tableau de bord", dashboard_path, "edi-gauge",["home"],nil)
       = menu_link("Contacts", contacts_path, "edi-book",["contacts","venues","people","show_buyers", "structures", "festivals"], Contact.count)
       = menu_link("Tâches", tasks_path, "edi-check",["tasks"], Task.pending.size)
-            
+
       %li#opportunities-nav.comingsoon
-        -#= link_to opportunities_path do
         %a{:href => "#"}
 
           %i.ico.edi-contracts
           Représentations
-          /Contrats
-          
+
       %li#campaigns-nav.comingsoon
-        -# = link_to campaigns_path do
         %a{:href => "#"}
           %i.ico.edi-megaphone
           Campagnes
-          
+
       %li#search-nav
-        //= link_to search_index_path do
         %a{:href => "#"}
           %i.ico.edi-search
           Recherche
@@ -75,42 +51,18 @@
           %i.ico.edi-pushpin
           Dernièrement
           %i.ico.caret-ed.caret-ed-right.righticon
-          
-    -# 
-      %li#recent-nav.click-nav
-        .ul.no-js
-          %a.clicker{:href => "#"}
-            %i.ico.edi-pushpin
-            Dernièrement
-            %i.ico.caret-ed.rightbt
-          %ul.nav.nav-list.recent.comingsoon
-            /%li.nav-header Récemment consulté
-            - if session[:history].present?
-              - session[:history].reverse.map{|i| Contact.find_by_id(i)}.each do |c|
-                - if c.present?
-                  %li
-                    = link_to c.fine_model do
-                      .pic.pic-mini= image_tag c.fine_model.avatar_url(:thumb)
-                      = c
-                
+
 .footer
-  /%a.pull-right{:href => "#"}
-  /  %i.ico.edi-arrow-left-5
-    
+
   %a#start_tour.start{:href => "#", "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Tour"}
     %i.ico.edi-directions
-    
+
   %a#help-nav{:href => "https://merciedgar.uservoice.com/knowledgebase", "target" => "_blank", "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Aide"}
-    /%i.ico.edi-graduation
     %i.ico.edi-info
-    /%i.ico.edi-lifebuoy
-    /%i.ico.edi-compass
-    /%i.ico.edi-help
-    
+
   %a#uservoice-nav{"data-uv-default-mode" => "feedback", "data-uv-forum-id" => "170962", "data-uv-lightbox" => "classic_widget", "data-uv-link-color" => "#007dbf", "data-uv-mode" => "full", "data-uv-primary-color" => "#cc6d00", "data-uv-support-tab_name" => "Oups ! Je rencontre un problème !", href: "javascript:void(0)", "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Suggestions"}
     %i.ico.edi-light-bulb
-    /Suggestions et Support
-    
+
   = link_to announcements_path, "data-toggle"=>"tooltip", "data-placement"=>"top", "data-html"=>"true", :title => "Nouveautés", :id=>"ed-news-nav" do
     %i.ico.edi-book2
     - if announcements_count > 0
@@ -121,7 +73,6 @@
 
 %ul#recent-menu.nav.nav-list
   %li.list-header
-    -#Éléments
     Récemment consultés :
   - if session[:history].present?
     - session[:history].reverse.map{|i| Contact.find_by_id(i)}.each do |c|
@@ -132,9 +83,8 @@
               .pic.pic-person= image_tag c.fine_model.avatar_url
             - else
               .pic= image_tag c.fine_model.avatar_url
-            
-            -#(:thumb)
+
             .infos
               %span= c
               %span= t(c.fine_model.class.name.underscore,scope:"activerecord.models")
-            
+
