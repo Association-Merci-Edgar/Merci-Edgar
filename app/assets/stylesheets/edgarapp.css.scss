@@ -197,12 +197,6 @@ textarea {@include borderbox;}
   display:inline-block;
 }
 
-
-
-/* ____________  */
-
-/* ________________________________________________________________________ ICO  */
-
 .entypo:before { font-family: 'icomoon'; line-height: 1;}
 
 .ico {vertical-align: middle; font-size:22px; margin-left:2px;
@@ -219,7 +213,7 @@ textarea {@include borderbox;}
 }
 .ico.contacted {
   &:before, &.full:hover:before {content: "\e110";}//.edi-comment-2
-  &:hover:before, &.full:before {content: "\e024";} //.edi-comment
+  &:hover:before, &.full:before {content: "\e620";} //.edi-comment
 }
 .ico.dealed {
   &:before, &.full:hover:before {content: "\e111";}//.edi-flag-2
@@ -305,39 +299,9 @@ textarea {@include borderbox;}
   padding-right: 6px;
 }
 
-
-/*
-//\e02f";}//.edi-tools
-"\e025";}//.edi-quote
-"\e030";}//.edi-trophy
-*/
-/*
-.ico.favorite {
-  &:before, &.full:hover:before {content: "\e01e";}//.edi-heart-2
-  &:hover:before, &.full:before {content: "\e01d";} //.edi-heart
-}
-.ico.contacted {
-  &:before, &.full:hover:before {content: "\e024";}//.edi-quote
-  &:hover:before, &.full:before {content: "\e025";} //.edi-comment
-}
-.ico.dealed {
-  &:before, &.full:hover:before {content: "\e030";}//.edi-trophy
-  &:hover:before, &.full:before {content: "\e02d";} //.edi-flag
-}
-.ico.principal {
-  &:before, &.full:hover:before {content: "\e020";}//.edi-star-2
-  &:hover:before, &.full:before {content: "\e01f";} //.edi-star
-}
-*/
-
-
-/* ____________  */
-
-
-
 a, .btn-link {color:$dblue; font-weight: 300;
   &:hover, &:focus {color:$green; text-decoration:none;}
-} //&:active,
+}
 
 .btn.btn-link {color:$dblue; padding: 4px 19px;}
 
