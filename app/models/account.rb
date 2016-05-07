@@ -212,4 +212,17 @@ class Account < ActiveRecord::Base
   def upgrade!
     self.team = true
   end
+
+  def amount
+    self.team ? TEAM_PRICE : SOLO_PRICE
+  end
+
+  def generate_pdf_receipt
+    return nil if self.last_subscription_at.nil?
+    options = { "name" => self.manager.name, "accountName" => self.name, "date" => self.last_subscription_at, "amount" => self.amount,"last" => self.subscription_lasts_at }
+    template = File.read("adhesions/receipt_template.md")
+    content = Markdowny.render_template(template, options)
+    Markdowny.markdown2pdf("adhesions/recu_adhesion_merciedgar_#{self.domain}", content)
+  end
+
 end

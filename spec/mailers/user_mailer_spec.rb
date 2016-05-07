@@ -18,4 +18,14 @@ describe UserMailer do
     it { expect(email.body.encoded). to match('20') }
     it { expect(email.subject).to match('Adhesion validee') }
   end
+
+  describe "subscription official receipt email" do
+    let(:account) { FactoryGirl.create(:account) }
+    let!(:manager) { FactoryGirl.create(:user, manager: true, account: account) }
+    let(:email) { UserMailer.subscription_official_receipt_email(account) }
+    it { expect(email.to).to eq([manager.email]) }
+    it { expect(email.body.encoded).to match('20') }
+    it { expect(email.attachments.count).to eq(1) }
+    it { expect(email.subject).to match('Recu adhesion Merci Edgar') }
+  end
 end

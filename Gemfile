@@ -93,3 +93,6 @@ gem 'smarter_csv'
 gem 'mimer_plus'
 
 gem 'stripe'
+
+gem 'liquid'
+gem 'gimli'

@@ -46,6 +46,15 @@ class UserMailer < ActionMailer::Base
     mail(to: manager.email, subject: I18n.t('mailers.subscription_receipt.success.subject'))
   end
 
+  def subscription_official_receipt_email(account)
+    @account = account
+    @manager = account.manager
+    @amount = account.amount
+    pdf_filename = @account.generate_pdf_receipt
+    attachments[pdf_filename] = File.read(pdf_filename)
+    mail(to: @manager.email, subject: I18n.t('mailers.official_subscription_receipt.success.subject'))
+  end
+
   def upgrade_receipt_email(account, manager, amount)
     @account = account
     @manager = manager

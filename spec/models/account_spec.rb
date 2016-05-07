@@ -272,4 +272,17 @@ describe Account do
     end
   end
 
+  describe "generate_pdf_receipt" do
+    context "when account subscribed" do
+      let(:account) { FactoryGirl.create(:account) }
+      let!(:manager) { FactoryGirl.create(:user, manager: true, account: account) }
+      it { expect(account.generate_pdf_receipt).to eq("adhesions/recu_adhesion_merciedgar_#{account.domain}.pdf") }
+      it { expect(File.exist?(account.generate_pdf_receipt)).to be_truthy }
+    end
+
+    context "when account not subscribed" do
+      let(:account) { FactoryGirl.create(:account, :with_trial_period_account_not_expired ) }
+      it { expect(account.generate_pdf_receipt).to be_nil }
+    end
+  end
 end
