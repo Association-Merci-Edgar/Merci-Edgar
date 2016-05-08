@@ -4,7 +4,7 @@ namespace :receipt do
     accounts = Account.where('last_subscription_at IS NOT NULL')
     accounts.each do |account|
       puts "Sending official receipt to #{account.manager.name} from #{account.name}"
-      UserMailer.subscription_official_receipt_email(account) 
+      UserMailer.subscription_official_receipt_email(account).deliver 
     end
   end
 end
