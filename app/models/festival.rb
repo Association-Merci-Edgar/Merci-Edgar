@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: festivals
-#
-#  id           :integer          not null, primary key
-#  nb_edition   :integer
-#  last_year    :integer
-#  artists_kind :string(255)
-#  avatar       :string(255)
-#  account_id   :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#
-
 class Festival < ActiveRecord::Base
   include Organizer
   default_scope { where(:account_id => Account.current_id) }
@@ -48,7 +34,6 @@ class Festival < ActiveRecord::Base
 
     c_contract_list = self.contract_list
     contact.contract_tags = c_contract_list.join(',') if c_contract_list.present?
-
   end
 
 

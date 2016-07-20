@@ -14,6 +14,8 @@ class Contact < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:account_id], case_sensitive: false
   validates_presence_of :name
 
+  validates :contactable_type, :name, :network_tags, :custom_tags, :style_tags, :contract_tags, :capacity_tags, :venue_kind, :source, length: { maximum: 255}
+
   has_many :emails, :dependent => :destroy
   has_many :phones, :dependent => :destroy
   has_many :addresses, :dependent => :destroy

@@ -1,57 +1,42 @@
----
-webapp:
-  build: .
-  ports:
-    - 3000:3000
-  volumes:
-    - ".:/usr/src/app"
-  working_dir: "/usr/src/app"
-  command: bundle exec rails s -p 3000 -b '0.0.0.0'
-  environment:
-    - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_dev
-    - REDIS_URL=redis://redis:6379
-  links:
-    - db
-    - redis
+version: "2"
 
-rspec:
-  build: .
-  volumes:
-    - ".:/usr/src/app"
-  working_dir: "/usr/src/app"
-  command: bundle exec rspec
-  environment:
-    - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_test
-  links:
-    - db
+services:
+  webapp:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ".:/app"
+    working_dir: "/app"
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_dev
+      - REDIS_URL=redis://redis:6379
 
+  worker:
+    build: .
+    volumes:
+      - ".:/usr/src/app"
+    working_dir: "/usr/src/app"
+    command: bundle exec sidekiq -c 2 -v -q default -q carrierwave
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_dev
+      - REDIS_URL=redis://redis:6379
+      - EMAIL_ADDRESS=change@me.com
 
-worker:
-  build: .
-  volumes:
-    - ".:/usr/src/app"
-  working_dir: "/usr/src/app"
-  command: bundle exec sidekiq -c 2 -v -q default -q carrierwave
-  environment:
-    - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_dev
-    - REDIS_URL=redis://redis:6379
-  links:
-    - db
-    - redis
+  db:
+    image: postgres
+    volumes_from:
+      - data
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
 
-db:
-  image: postgres
-  volumes_from:
-    - data
-  environment:
-    - POSTGRES_PASSWORD=mysecretpassword
+  data:
+    image: busybox
+    volumes:
+      - "/var/lib/postgresql"
 
-data:
-  image: busybox
-  volumes:
-    - "/var/lib/postgresql"
-
-redis:
-  image: redis
-  volumes:
-    - /data/redis:/data
+  redis:
+    image: redis
+    volumes:
+      - /data/redis:/data

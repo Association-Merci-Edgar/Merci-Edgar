@@ -71,18 +71,26 @@ class ContactsImportWorker
       total_chunks = SmarterCSV.process(spreadsheet.csv_path, col_sep: spreadsheet.col_sep, chunk_size: 100, file_encoding: spreadsheet.file_encoding, convert_values_to_numeric: {only: [:places_assises, :places_debout, :places_mixte, :ouverture_plateau, :profondeur_plateau, :hauteur_plateau]}) do |chunk|
         chunk.each do |row|
           imported_index += 1
-          return if imported_index > 20 && import.test_mode
+
+          break if import.test_mode && imported_index > 20
           row[:imported_at] = import.updated_at.to_i
           row[:first_name_last_name_order] = import.first_name_last_name_order
 
           fine_contact, invalid_keys = spreadsheet.kind_klass.from_csv(row)
+
           if import.test_mode
             log_message << "#{row[:nom]} en cours d'import...\n"
             log_message << ">> Problème dans les colonnes #{invalid_keys.join(',')}\n" if invalid_keys.present?
             at(imported_index, log_message)
           end
-          unless fine_contact.save
-            error_messages << fine_contact.errors.full_messages
+
+          begin
+            unless fine_contact.save
+              error_messages << fine_contact.errors.full_messages
+            end
+          rescue StandardError => e
+            error_messages << e.message
+            break
           end
         end
       end

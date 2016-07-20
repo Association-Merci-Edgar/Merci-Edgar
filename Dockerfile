@@ -5,12 +5,10 @@ RUN apt-get update && apt-get install -y nodejs build-essential qt5-default libq
 RUN mkdir -p /app
 WORKDIR /app
 
-ADD Gemfile /app/Gemfile  
-ADD Gemfile.lock /app/Gemfile.lock  
+ADD Gemfile /app/Gemfile
+ADD Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
 RUN gem install rb-readline
-
-ADD . /app
 
 CMD ["foreman", "start"]
