@@ -8,16 +8,6 @@
 Merci Edgar is a CRM dedicated to artists (musicians, actors...)
 
 
-## Ruby on Rails
-
-This application requires:
-
-* Ruby version 2.0
-* Rails version 3.2.13
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-
 ## Development
 
 * Template Engine: Haml
@@ -25,6 +15,18 @@ Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.
 * Form Builder: SimpleForm
 * Authentication: Devise
 * Background processing : Sidekiq
+
+### Makefile
+
+Pour faciliter l'utilisation de l'application en mode développement, un fichier `Makefile` a été ajouté. Pour le moment nous avons :
+
+* `make install` pour construire l'application (en lançant bundler par exemple)
+* `make run`
+* `make test`
+* `make clean`
+
+Ou alors, on peut continuer à utiliser `docker-compose` comme ci-dessous.
+
 
 ### Docker usage
 
@@ -64,14 +66,6 @@ If you meet an error installing the gem 'capybara-webkit', [try this solution, d
 
 Open a browser on [http://www.lvh.me:3000](http://www.lvh.me:3000)
 
-## Documentation and Support
-
-This is the only documentation.
-More documentation will come soon.
-
-To generate db Schema, you can use ERD:
-
-`bundle exec erd --inheritance --direct --attributes=foreign_keys,content`
 
 ## Contributing
 
@@ -84,8 +78,8 @@ If you make improvements to this application, please share with others.
 
 ## Credits
 
-See CREDITS.txt file
+voir le fichier CREDITS.txt
 
 ## License
 
-See LICENSE.txt file
+Voir le fichier LICENSE.txt
