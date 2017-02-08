@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
       if params[:bulk_value].present?
         @contacts = Contact.where(id: params[:contact_ids])
         @contacts.each do |contact|
-          contact.add_custom_tags(params[:bulk_value])
+          contact.add_custom_tags(TagHelper.clean(params[:bulk_value]))
           unless contact.save
             @error_message = "Une erreur est survenue lors de la modificaton du contact #{contact.name}"
             render "bulk_error"
