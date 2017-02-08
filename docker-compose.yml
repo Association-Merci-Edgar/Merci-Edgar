@@ -34,7 +34,7 @@ services:
   data:
     image: busybox
     volumes:
-      - "/var/lib/postgresql"
+      - "/edgar-data:/var/lib/postgresql"
 
   redis:
     image: redis

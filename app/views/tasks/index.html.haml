@@ -1,25 +1,13 @@
 %header.page-title
-  -# Tâches
   = t(params[:controller]).titleize
   = @filtered_by if @filtered_by.present?
-  
+
   .subpage-nav
-    -#
-      = link_to tasks_path, :class =>"active" do
-        à faire
-    -#%a{href: "#"}
-      Tâches effectuées
-      /achevé, consommé, fini, passé, réalisé, terminé
-      /Voir les tâches récemment effectués
-      
 .sorters
-  /______________________________________________________ USERS
   .dropdown
-    / Link or button to toggle dropdown
     %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-      = params[:user_id].present? ? User.find(params[:user_id]) : "Tous les utilisateurs"
+      = @selected_user
       %i.entypo.caret-ed
-    
     %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", role: "menu"}
       - if params[:user_id]
         %li{role: "menuitem"}
@@ -29,11 +17,7 @@
           = link_to tasks_path(params.merge(user_id: account_user.id)), role: "menuitem", tabindex: "-1" do
             .pic.pic-mini= image_tag account_user.avatar
             = account_user
-          
-        
-  /______________________________________________________ PROJECTS
   .dropdown
-    / Link or button to toggle dropdown
     %button.btn.btn-tertiary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
       = params[:project_id].present? ? Project.find(params[:project_id]) : "Tous les projets"
       %i.entypo.caret-ed
@@ -46,12 +30,6 @@
           = link_to tasks_path(params.merge(project_id: account_project.id)), role: "menuitem", tabindex: "-1" do
             .pic.pic-mini= image_tag account_project.avatar
             = account_project
-    -#
-      %li.divider{role: "menuitem"}
-      %li{role: "menuitem"}
-        %button.btn-primary Créer une liste
-          
-  
 #dash-tasks.row-fluid
   .section-title
     .title
@@ -63,7 +41,4 @@
       en retard,
       .badge.badge-small.badge-red= @pending_tasks.due_today.size
       pour aujourd’hui
-      
-
 = render :partial => "pending", :locals => {:tasks => @pending_tasks, :asset => nil}
--# = render partial:'tasks/tasks', locals: {asset: nil, pending_tasks: @pending_tasks, completed_tasks: @completed_tasks}

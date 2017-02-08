@@ -70,6 +70,13 @@ class TasksController < ApplicationController
     @tasks = @tasks.by_project(params[:project_id]) if params[:project_id]
     @pending_tasks = @tasks.pending
     @completed_tasks = @tasks.completed
+
+    if params[:user_id] && User.exists?(params[:user_id])
+      @selected_user =  User.find(params[:user_id])
+    else
+      @selected_user = "Tous les utilisateurs"
+    end
+
     respond_to do |format|
       format.html
       format.ics do
