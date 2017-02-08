@@ -1,19 +1,3 @@
-# encoding: utf-8
-# == Schema Information
-#
-# Table name: rooms
-#
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  depth      :float
-#  width      :float
-#  height     :float
-#  bar        :boolean
-#  venue_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class Room < ActiveRecord::Base
   belongs_to :venue, touch: true, inverse_of: :rooms
   has_many :capacities, :dependent => :destroy
@@ -31,26 +15,25 @@ class Room < ActiveRecord::Base
   def self.from_csv(row)
     room = Room.new
     room.name = row[:nom]
-    standing_nb = row.delete(:places_debout)
-    if standing_nb.present? && standing_nb.is_a?(Integer) && standing_nb < Capacity::CAPACITY_MAX && standing_nb > 0
-      standing_capacity = room.capacities.build(kind: :standing, nb: standing_nb)
-      standing_capacity.modular = true if row.delete(:places_debout_modulable).try(:downcase) == "x"
-    else
-      row[:places_debout] = standing_nb if standing_nb.present?
-    end
-    seating_nb = row.delete(:places_assises)
-    if seating_nb.present? && seating_nb.is_a?(Integer) && seating_nb < Capacity::CAPACITY_MAX && seating_nb > 0
-      seating_capacity = room.capacities.build(kind: :seating, nb: seating_nb)
-      seating_capacity.modular = true if row.delete(:places_assises_modulable).try(:downcase) == "x"
-    else
-      row[:places_assises] = seating_nb if seating_nb.present?
-    end
+
+    extract_capacity_for(:places_debout, :standing, :places_debout_modulable)
+    extract_capacity_for(:places_assises, :seating, :places_assises_modulable)
 
     room.width = row.delete(:ouverture_plateau) if row[:ouverture_plateau].is_a?(Integer)
     room.depth = row.delete(:profondeur_plateau) if row[:profondeur_plateau].is_a?(Integer)
     room.height = row.delete(:hauteur_plateau) if row[:hauteur_plateau].is_a?(Integer)
     room.bar = true if row.delete(:bar_salle).try(:downcase) == "x"
     room
+  end
+
+  def extract_capacity_for(type, kind, modular)
+    capacity  = row.delete(type)
+    if capacity.present? && capacity.is_a?(Integer) && capacity < Capacity::CAPACITY_MAX && capacity > 0
+      standing_capacity = room.capacities.build(kind: kind, nb: capacity)
+      standing_capacity.modular = true if row.delete(modular).try(:downcase) == "x"
+    else
+      row[type] = capacity if capacity.present?
+    end
   end
 
   def to_csv
