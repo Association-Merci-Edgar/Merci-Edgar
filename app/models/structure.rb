@@ -1,18 +1,4 @@
-# == Schema Information
-#
-# Table name: structures
-#
-#  id                :integer          not null, primary key
-#  structurable_id   :integer
-#  structurable_type :string(255)
-#  avatar            :string(255)
-#  account_id        :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#
-
 class Structure < ActiveRecord::Base
-  default_scope { where(:account_id => Account.current_id) }
 
   attr_accessible :contact_attributes, :avatar, :remote_avatar_url, :kind
 
@@ -32,7 +18,9 @@ class Structure < ActiveRecord::Base
 
   validates_presence_of :contact
 
+  default_scope { where(:account_id => Account.current_id) }
   scope :elements_to_export, ->(account) { where(account_id: account.id) }
+  scope :search_for, ->(contact_name) { joins(:contact).order("contacts.name").where("lower(contacts.name) LIKE ?", "%#{contact_name.downcase}%")}
 
   def kind
     fm = self.fine_model

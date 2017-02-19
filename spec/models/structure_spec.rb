@@ -50,4 +50,24 @@ describe Structure do
     end
   end
 
+  describe "#search_for" do
+    it "bring empty array when no structure founded" do
+      expect(Structure.search_for("something")).to eq([])
+    end
+
+    it "bring structure when contact name mathce term" do
+      contact = FactoryGirl.create(:contact, name: "Henri Des")
+      structure = FactoryGirl.create(:structure, contact: contact)
+      other_contact = FactoryGirl.create(:contact, name: "Other")
+      FactoryGirl.create(:structure, contact: other_contact)
+
+      expect(Structure.search_for("henri")).to eq([structure])
+    end
+
+    it "bring structure when contact name mathce term" do
+      contact = FactoryGirl.create(:contact, name: "Henri Des")
+      structure = FactoryGirl.create(:structure, contact: contact)
+      expect(Structure.search_for("Henri")).to eq([structure])
+    end
+  end
 end
