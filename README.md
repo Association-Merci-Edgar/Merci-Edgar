@@ -1,22 +1,38 @@
 # Edgar
 
-[![Join the chat at https://gitter.im/Association-Merci-Edgar/Merci-Edgar](https://badges.gitter.im/Association-Merci-Edgar/Merci-Edgar.svg)](https://gitter.im/Association-Merci-Edgar/Merci-Edgar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![le chat sur https://gitter.im/Association-Merci-Edgar/Merci-Edgar](https://badges.gitter.im/Association-Merci-Edgar/Merci-Edgar.svg)](https://gitter.im/Association-Merci-Edgar/Merci-Edgar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/Association-Merci-Edgar/Merci-Edgar.png?branch=wip)](https://travis-ci.org/Association-Merci-Edgar/Merci-Edgar)
 [![Code Climate](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar.png)](https://codeclimate.com/github/Association-Merci-Edgar/Merci-Edgar)
 
 
-Merci Edgar is a CRM dedicated to artists (musicians, actors...)
+Merci Edgar est un outil pour vous aider à monter leurs spectacle, organiser vos tournée. Si vous en faite un autre usage, merci de nous ternir informé, nous pourrons l'ajouter ici :-D
 
 
-## Development
+## Pour participer au développement
 
-* Template Engine: Haml
-* Front-end Framework: Twitter Bootstrap (Sass)
-* Form Builder: SimpleForm
-* Authentication: Devise
-* Background processing : Sidekiq
+1. Copier le fichier `.env.example` en `.env` et remplir les _crédentials_ pour:
+  * amazon S3
+  * mandrill
+  * mailchimp
+  * [rollbar (for production)](https://rollbar.com/krichtof/Merci-Edgar/)
+  * stripe
 
-### Makefile
+2. Installer les dépendances du projet avec `bundle install`
+_Si vous rencontrez des erreurs lors de l'installation de la gem 'capybara-webkit', [cette solution fonctionnera peut-être](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)._
+
+3. Avoir PostgreSQL et lancer `rake db:setup`.
+
+
+4. Démarrer ces trois processu
+  * [redis](http://redis.io/topics/quickstart) : `redis-server`
+  * [sidekiq](http://sidekiq.org/)  : `bundle exec sidekiq`
+  * `rails server`
+
+
+5. Ouvrir un navigateur à l'adresse [http://www.lvh.me:3000](http://www.lvh.me:3000)
+
+
+## Développement
 
 Pour faciliter l'utilisation de l'application en mode développement, un fichier `Makefile` a été ajouté. Pour le moment nous avons :
 
@@ -28,58 +44,13 @@ Pour faciliter l'utilisation de l'application en mode développement, un fichier
 Ou alors, on peut continuer à utiliser `docker-compose` comme ci-dessous.
 
 
-### Docker usage
+## Utilisation de Docker
 
-* `docker-compose up` to start server
-* `docker-compose run webapp rspec` to run test with rspec
-* `docker-compose run webapp rake [command]` to run rake command
-* `docker-compose run webapp rails [command]` to run rails command
+* `docker-compose up` pour démarrer le serveur
+* `docker-compose run webapp rspec` pour lancer les specs
+* `docker-compose run webapp rake [command]` pour lancer une commande `rake`
+* `docker-compose run webapp rails [command]` pour lancer une commande `rails`
 
-You need to have [`docker-compose`
-installed](http://docs.docker.com/compose/install/) on your machine :-).
-
-
-## Email
-
-The application is configured to send email using a Mandrill account.
-
-## Getting Started
-
-1. Copy .env.example to .env and customize it with your credentials for:
-  * amazon S3
-  * mandrill
-  * mailchimp
-  * [rollbar (for production)](https://rollbar.com/krichtof/Merci-Edgar/)
-  * stripe
-
-2. Create the postgresql user and dev database both named  `merciedgar`
-If you are on ArchLinux you will [find some help here](https://wiki.archlinux.org/index.php/PostgreSQL).
-
-3. Install dependencies with `bundle install` and run migrations with `rake db:migrate`
-
-If you meet an error installing the gem 'capybara-webkit', [try this solution, depending on your OS](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
-
-4. Open 3 different terminals and launch
-  * a [redis](http://redis.io/topics/quickstart server with `redis-server`)
-  * a [sidekiq](http://sidekiq.org/) worker with : `bundle exec sidekiq`
-  * `rails server`
-
-Open a browser on [http://www.lvh.me:3000](http://www.lvh.me:3000)
+_Vous devez avoir [`docker-compose` installé_](http://docs.docker.com/compose/install/) sur votre machine pour que cela fonctionne.
 
 
-## Contributing
-
-If you make improvements to this application, please share with others.
-
-* Fork the project on GitHub.
-* Make your feature addition or bug fix.
-* Commit with Git.
-* Send the author a pull request.
-
-## Credits
-
-voir le fichier CREDITS.txt
-
-## License
-
-Voir le fichier LICENSE.txt
