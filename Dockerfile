@@ -1,4 +1,4 @@
-FROM ruby:2.0.0
+FROM ruby:2.2.7
 
 RUN apt-get update && apt-get install -y nodejs build-essential qt5-default libqt5webkit5-dev
 

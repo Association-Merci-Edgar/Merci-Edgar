@@ -288,6 +288,7 @@ GEM
     pg (0.18.1)
     phony (1.7.12)
     polyglot (0.3.5)
+    power_assert (1.0.2)
     rack (1.4.7)
     rack-cache (1.7.0)
       rack (>= 0.4)
@@ -391,6 +392,8 @@ GEM
       json (~> 1.8.1)
       rest-client (~> 1.4)
     temple (0.7.5)
+    test-unit (3.2.5)
+      power_assert
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -425,35 +428,35 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activevalidators (~> 2.0.2)
+  activevalidators
   ar_pg_array
   bootstrap-sass
   cancan
   capybara
   capybara-webkit
   carrierwave
-  carrierwave_direct (~> 0.0.14)
+  carrierwave_direct
   client_side_validations
   client_side_validations-simple_form
-  coffee-rails (~> 3.2.1)
+  coffee-rails
   country_select
   cucumber-rails
   database_cleaner
-  devise (~> 3.2)
+  devise
   dotenv-rails
   email_spec
   factory_girl_rails
   faker
   fog
   foreman
-  geocoder (~> 1.1.8)
+  geocoder
   gibbon
-  gmaps4rails (= 1.5.6)
+  gmaps4rails
   haml-rails
   icalendar
-  jquery-rails (~> 3.0.4)
+  jquery-rails
   jquery-ui-rails
-  kaminari (~> 0.15)
+  kaminari
   launchy
   letter_opener
   mimer_plus
@@ -465,12 +468,12 @@ DEPENDENCIES
   rails (= 3.2.22)
   rails_12factor
   redcarpet
-  remotipart (~> 1.2)
+  remotipart
   rolify
   rollbar
   rspec-rails
   rubyzip
-  sass-rails (~> 3.2.3)
+  sass-rails
   selenium-webdriver
   sidekiq
   sidekiq_status
@@ -479,10 +482,14 @@ DEPENDENCIES
   slim
   smarter_csv
   stripe
-  uglifier (>= 1.0.3)
+  test-unit
+  uglifier
   unicorn
-  waitutil (~> 0.2.1)
+  waitutil
   yaml_db
 
+RUBY VERSION
+   ruby 2.2.7p470
+
 BUNDLED WITH
-   1.11.2
+   1.15.1
