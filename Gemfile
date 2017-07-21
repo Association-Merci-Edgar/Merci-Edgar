@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.2.7'
-gem 'rails', '3.2.22'
+gem 'rails', '3.2.22.5'
 
 gem 'activevalidators'
 gem 'ar_pg_array'
