@@ -30,7 +30,7 @@ addons:
     repo_token: 8850bccc6911d74965627b1fafe753beb368fab00d33de0c7576c6598fc1220e
 
 script:
-  - bundle exec rake db:seed spec
+  - bundle exec rspec
 
 notifications:
   slack: merciedgar:HYdsoJI3d26VzdKgQYvMguWX
