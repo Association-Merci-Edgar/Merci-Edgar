@@ -60,6 +60,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rake'
   gem 'rspec-rails'
   gem 'mocha', require: false
   gem 'capybara'
