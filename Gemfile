@@ -31,7 +31,7 @@ gem 'rails_12factor', group: :production
 gem 'redcarpet'
 gem 'remotipart'
 gem 'rolify'
-gem 'rollbar'
+gem 'rollbar', '2.15.0'
 gem 'rubyzip'
 gem 'sass-rails'
 gem 'simple_form'

@@ -20,8 +20,10 @@ services:
   - redis-server
 
 before_script:
+  - gem update bundler
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database merciedgar_test;' -U postgres
+  - rake --version
   - bundle exec rake db:setup
 
 addons:
