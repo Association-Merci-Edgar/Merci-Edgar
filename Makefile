@@ -1,7 +1,7 @@
 ## Test Makefile
 
 test: ## Run the tests
-	docker-compose up -d && docker-compose run webapp rspec
+	docker-compose up -d && docker-compose run --rm webapp rspec
 
 install: ## Install or update dependencies
 	docker-compose build
