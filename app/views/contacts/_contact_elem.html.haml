@@ -1,15 +1,12 @@
 .rightrow
   .meta
-    -# _________________________ contacted
     - if contact.contacted?
       %a.ico.contacted.full{:href => "#"}
     - else
       %a.ico.contacted{:href => "#"}
-    -# _________________________ dealed
-    -# %a.ico.dealed{:href => "#"}
 
   - if contact.address.present?
-    - if contact.address.country == "FR"
+    - if contact.address.country == "France"
       = content_tag("div",nil, class:"mini-map france reg-#{contact.address.region_code}") if contact.address.region_code.present?
     - else
       = content_tag("div",nil, class:"mini-map world") if contact.address.present?

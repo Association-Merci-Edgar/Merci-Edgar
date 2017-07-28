@@ -1,32 +1,17 @@
 .row-fluid
   .span8
-    -#
-      .btn-group
-        //ici un select :
-        %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          Selectionner un projet
-          %span.caret
-        %ul.dropdown-menu
-          %li projet 1
-          %li projet 2
 
     #activityfield-outter
       = render partial: "reportings/form", locals: {reporting: @reporting, edit: false}
-                            
-    / ____________________________________ list reportings
     %ul.list.list-large#reportings
       = render @reportings
-   
 
-  / _____________________ infos-mini  
   #infos-mini.span4
     = yield :relative_infos
-  
     %ul.list-infos
       - if contact.address
         %li.infolabel= t(contact.address.kind, scope: "simple_form.options.venue.addresses.kind")
         %li= contact.address.full_address
-      
     %ul.list-infos
       %li.infolabel Coordonnées
       - contact.emails.each do |email|
@@ -34,6 +19,5 @@
 
       - contact.phones.each do |phone|
         = render phone
-        
       - contact.websites.each do |website|
         = render website
