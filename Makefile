@@ -10,7 +10,7 @@ run: ## Start the app server
 	docker-compose up --no-recreate -d && docker-compose logs -f
 
 clean: ## Clean temporary files and installed dependencies
-	docker-compose stop && docker-compose rm --all
+	docker-compose stop && docker-compose rm worker webapp test
 
 .PHONY: install run test clean
 
