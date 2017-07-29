@@ -1,4 +1,4 @@
-version: "2"
+version: "3.2"
 
 services:
   webapp:
@@ -13,6 +13,18 @@ services:
       - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_dev
       - REDIS_URL=redis://redis:6379
 
+  test:
+    build: .
+    volumes:
+      - ".:/app"
+    working_dir: "/app"
+    command: bundle exec rspec
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@db/merciedgar_test
+      - REDIS_URL=redis://redis:6379
+      - RAILS_ENV=test
+
+
   worker:
     build: .
     volumes:
@@ -26,15 +38,10 @@ services:
 
   db:
     image: postgres
-    volumes_from:
-      - data
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-
-  data:
-    image: busybox
     volumes:
       - "edgar-data:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
 
   redis:
     image: redis

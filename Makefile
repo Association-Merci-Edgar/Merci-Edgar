@@ -1,13 +1,13 @@
 ## Test Makefile
 
 test: ## Run the tests
-	docker-compose up -d && docker-compose run --rm webapp rspec
+	docker-compose run --rm test
 
 install: ## Install or update dependencies
 	docker-compose build
 
 run: ## Start the app server
-	docker-compose up -d && docker-compose logs -f
+	docker-compose up --no-recreate -d && docker-compose logs -f
 
 clean: ## Clean temporary files and installed dependencies
 	docker-compose stop && docker-compose rm --all
