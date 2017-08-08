@@ -44,9 +44,6 @@ GEM
       execjs
       json
     bcrypt (3.1.11)
-    bootstrap-sass (3.3.4.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (2.4.4)
@@ -443,7 +440,6 @@ PLATFORMS
 DEPENDENCIES
   activevalidators
   ar_pg_array
-  bootstrap-sass
   cancan
   capybara
   capybara-webkit

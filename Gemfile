@@ -4,7 +4,6 @@ gem 'rails', '3.2.22.5'
 
 gem 'activevalidators'
 gem 'ar_pg_array'
-gem 'bootstrap-sass'
 gem 'cancan'
 gem 'carrierwave'
 gem 'carrierwave_direct'
