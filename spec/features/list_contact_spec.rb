@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-describe "Test home acces", :type => :feature do
-  it "home" do
+describe "list contact", :type => :feature do
+
+  it "show only venue from same account" do
     other_venue = FactoryGirl.create(:venue, account: FactoryGirl.create(:account))
+
     account = FactoryGirl.create(:account)
     Account.current_id = account.id
-    expect(Account.count).to eq(2)
     user = FactoryGirl.create(:admin)
     login_as user
     my_venue = FactoryGirl.create(:venue, account: account)
