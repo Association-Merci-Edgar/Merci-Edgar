@@ -47,7 +47,7 @@ Ou alors, on peut continuer à utiliser `docker-compose` comme ci-dessous.
 ## Utilisation de Docker
 
 * `docker-compose up` pour démarrer le serveur
-* `docker-compose run webapp rspec` pour lancer les specs
+* `docker-compose run test` pour lancer les specs
 * `docker-compose run webapp rake [command]` pour lancer une commande `rake`
 * `docker-compose run webapp rails [command]` pour lancer une commande `rails`
 
