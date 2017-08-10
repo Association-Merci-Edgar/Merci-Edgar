@@ -1,105 +1,37 @@
 - content_for :facebook_og do
   = tag('meta', content: "#{request.base_url}/#{image_path('multipage/edgar-head.png')}", property: "og:image")
   = tag('meta', content: "#{request.base_url}/#{image_path('multipage/vitrinne-banner-launch2.jpg')}", property: "og:image")
-  
+
 - content_for :hero do
-  / HEADER MAIN
-.hero-unit#hero-launch.gradient
-  .container
-    = render 'showcase/submenu'
-    
+  .hero-unit#hero-launch.gradient
+    .container
+      = render 'showcase/submenu'
     .row-fluid.hero-launch
       = image_tag("multipage/vitrinne-banner-launch2.png")
-    
-    // OLD HERO
-    -#
-      .row-fluid
-        .span12
-          .sticker.sticker-big
-            Lancement le<br>
-            %span.bold
-              6 février 2014 !
-          = image_tag("multipage/hero-img2d.png")
-          
-      .row-fluid
-        .span12
-          %div
-            .slogan
-              %span.slogan-primo
-                %span.de= t("home.slogan.of")
-                = t("home.slogan.management")
-              
-              %span.slogan-secundo
-                %span.de= t("home.slogan.of")
-              = t("home.slogan.creation")
-            
--#
-  .container#cta-enroll-light
-    .row-fluid
-      .span8.offset2
-        .argu
-          %p
-            = t("home.slogan.are_you_artist")
-            %br/
-            /=t("home.slogan.time")
-            /%br/
-            =t("home.slogan.virtual_assistant")
-            %span.lenom Merci Edgar
-            =t("home.slogan.edgar_for_you")
-          /%hr.half/
-      .span4
-        .camein
-          = link_to "Je m’inscris", new_user_registration_path, class: "btn btn-large btn-danger btn-block"
-
-
-
 
 %section#features-section
   .container
     .row-fluid.label-blocks
-      -#
-        / ITEM
-        .span4
-          .label.label-large.label-info
-            = image_tag("multipage/pic-photo-1.png")
-          %h4= t("home.features.find")
-          %p= t("home.features.find_what")
-        / / ITEM
-      
-      / ITEM
       .span4
         .label.label-large.label-info
           = image_tag("multipage/pic-photo-2.png")
         %h4= t("home.features.track_1")
         %p= t("home.features.track_what_1")
-      / / ITEM
-      
-      / ITEM
       .span4
         .label.label-large.label-info
           = image_tag("multipage/pic-photo-4.png")
         %h4= t("home.features.schedule")
         %p= t("home.features.schedule_what")
-      / / ITEM
-      
-      / ITEM
       .span4
-        
         .label.label-large.label-info
-          -#
-            .sticker.sticker-small
-              Prochainement
           = image_tag("multipage/pic-photo-3.png")
         %h4= t("home.features.communicate")
         %p= t("home.features.communicate_what").html_safe
-      / / ITEM
-      
 %section.cta.cta-invi
   .container
     %h3
       = link_to features_path do
         %i.ico.edi-info2
-        Découvrir les fonctionnalités de Merci Edgar
+          Découvrir les fonctionnalités de Merci Edgar
 %space
-     
 

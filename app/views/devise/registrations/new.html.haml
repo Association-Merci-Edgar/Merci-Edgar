@@ -7,7 +7,6 @@
     #{t("simple_form.labels.defaults.firsttime_welcome")}
     %legend
       #{t("simple_form.labels.defaults.firsttime_wording1")}
-    
   = simple_form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}, :id => 'activation-form' do |f|
     = devise_error_messages!
 
@@ -15,7 +14,6 @@
       .row-fluid.control-group
         = f.input_field :first_name, :class=>"span6"
         = f.input_field :last_name, autocomplete: "off", :class=>"span6 inline"
-        
       .row-fluid.control-group
         = f.input_field :email, autocomplete: "off", placeholder: "user@example.com", :class=>"span12"
 
@@ -23,14 +21,11 @@
         = f.input_field :password, :class=>"span6", autocomplete: "off"
         = f.input_field :password_confirmation, :class=>"span6 "
         %span.help-block
-          #{t("simple_form.labels.defaults.recommnandations_password")}        
+          #{t("simple_form.labels.defaults.recommnandations_password")}
 
       .row-fluid.control-group
         = f.input_field :label_name, placeholder: "Nom de votre label, association, groupe, compagnie…", :class=>"span12"
 
       = hidden_field_tag :confirmation_token, @confirmation_token
 
-      = f.submit "C’est parti !", :class => "btn-primary btn-large pull-right"
--#
-  #footer
-    #{t("copyright")}
+      = f.submit "C'est parti !", :class => "btn-primary btn-large pull-right"
