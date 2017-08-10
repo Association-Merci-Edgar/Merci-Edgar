@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       @user = User.new(params[:user])
       if @user.valid?
-        @user.confirm!
+        @user.confirm
         abilitation = @user.abilitations.build
         abilitation.build_account(name: @user.label_name)
         abilitation.kind = "manager"
