@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "Inscription", :type => :feature do
 
   it "quand tout va bien" do
+    Account.current_id = nil
     visit root_path
     within('#cta-enroll') do
       fill_in 'user_email', with: 'henri@ford.com'

@@ -12,8 +12,9 @@ describe "Signin", :type => :feature do
   end
 
   it "work with a valid user" do
-    user = FactoryGirl.create(:admin)
-    Account.current_id = user.accounts.first.id
+    account = FactoryGirl.create(:account)
+    user = FactoryGirl.create(:admin, accounts: [account])
+    Account.current_id = account.id
     visit root_path
     click_button "Se connecter"
     fill_in "user_email", with: user.email
