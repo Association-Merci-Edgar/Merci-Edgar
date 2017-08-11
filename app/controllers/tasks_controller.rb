@@ -56,7 +56,10 @@ class TasksController < ApplicationController
       else
         @redirect = true
       end
-      render "create"
+      respond_to do |format|
+        format.html { redirect_to tasks_path }
+        format.js
+      end
     else
       respond_to do |format|
         render "errors"
