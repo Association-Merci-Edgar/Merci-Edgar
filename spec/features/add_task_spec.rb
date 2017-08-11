@@ -9,7 +9,6 @@ describe "Create a task", :type => :feature do
     login_as user
 
     Capybara.app_host = "http://#{user.accounts.first.domain}.lvh.me"
-    Capybara.always_include_port = true
 
     venue = FactoryGirl.create(:venue)
     visit venue_path(venue, locale: :fr)
