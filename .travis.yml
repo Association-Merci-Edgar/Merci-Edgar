@@ -13,6 +13,8 @@ env:
     - ADMIN_NAME="Jean-Pierre"
     - ADMIN_EMAIL="jp@laposte.net"
     - ADMIN_PASSWORD="lacuisine"
+    - DOMAIN=www.lvh.me:3000
+    - SESSION_DOMAIN=".lvh.me"
   matrix:
     - DB=postgresql
 
