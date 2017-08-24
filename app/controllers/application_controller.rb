@@ -4,15 +4,13 @@ class ApplicationController < ActionController::Base
   prepend_before_filter :set_current_tenant, :authenticate_user!
   before_filter :check_user, :check_membership, :check_plan
 
-  after_filter :reset_tenant
- 
   helper_method :current_account
   helper_method :announcements_count
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
-  
+
   def current_account
     @current_account ||= Account.find(Account.current_id)
   end
@@ -46,10 +44,6 @@ class ApplicationController < ActionController::Base
   def set_current_tenant
     account = Account.find_by_domain(request.subdomain)
     Account.current_id = account.id if account
-  end
-
-  def reset_tenant
-    Account.current_id = nil
   end
 
   def check_user

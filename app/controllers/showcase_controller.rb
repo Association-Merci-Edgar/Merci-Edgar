@@ -3,10 +3,10 @@ class ShowcaseController < Devise::SessionsController
 
   def index
   end
-  
+
   def features
   end
-  
+
   def about
   end
 end

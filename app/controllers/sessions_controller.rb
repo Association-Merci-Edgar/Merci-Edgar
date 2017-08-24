@@ -3,6 +3,9 @@ class SessionsController < Devise::SessionsController
 
   def create
     self.resource = warden.authenticate!(auth_options)
+    if Account.current_id.nil? || Account.current_id == 0
+      Account.current_id = resource.accounts.first.id
+    end
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
 

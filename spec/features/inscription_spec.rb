@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe "Inscription", :type => :feature do
 
-  it "quand tout va bien" do
+  it "Première inscription, redirection sur la souscription à l'association" do
     Account.current_id = nil
+    Capybara.app_host = "http://www.lvh.me"
     visit root_path
+    expect(page).to have_content("Je m'inscris !")
     within('#cta-enroll') do
       fill_in 'user_email', with: 'henri@ford.com'
       click_button "Je m'inscris !"
@@ -19,14 +21,18 @@ describe "Inscription", :type => :feature do
     fill_in 'user_label_name', with: 'mycompany'
 
     click_button "C'est parti !"
-    expect(page).to have_content("Bienvenue ! Mot de passe oublié ? Se souvenir de moi")
+
+    expect(page).to have_content("Adhérez à Merci Edgar !")
     expect(User.count).to eq(1)
     expect(User.first.email).to eq('henri@ford.com')
     expect(Account.count).to eq(1)
   end
 
   it "quand l'email n'est pas valide" do
+    Account.current_id = nil
+    Capybara.app_host = "http://www.lvh.me"
     visit root_path
+    expect(page).to have_content("Je m'inscris !")
     within('#cta-enroll') do
       fill_in 'user_email', with: 'henri'
       click_button "Je m'inscris !"

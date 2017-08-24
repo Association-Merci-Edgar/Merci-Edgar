@@ -13,15 +13,16 @@ describe "Signin", :type => :feature do
 
   it "work with a valid user" do
     account = FactoryGirl.create(:account, domain: "tesst")
-    Account.current_id = nil
+    Account.current_id = 0
     user = FactoryGirl.create(:admin, accounts: [account])
+    Capybara.app_host = "http://www.lvh.me"
 
     visit root_path
     click_button "Se connecter"
     fill_in "user_email", with: user.email
     fill_in "user_password", with: user.password
     click_button "Se connecter"
-    expect(page).to have_content("C'est aujourd'hui gratuit")
+    expect(page).to have_content("Ne plus afficher cette écran de bienvenue")
   end
 
   it "doesnt work whit the wrong email" do
