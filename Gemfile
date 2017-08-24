@@ -63,8 +63,6 @@ group :test do
   gem 'mocha', require: false
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'selenium-webdriver'
-  gem 'cucumber-rails', :require=>false
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
