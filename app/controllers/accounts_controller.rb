@@ -3,8 +3,6 @@ class AccountsController < ApplicationController
   skip_filter :check_membership
   skip_filter :check_plan
 
-  def create
-  end
   def edit
     @account = Account.find(Account.current_id)
   end

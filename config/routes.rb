@@ -66,12 +66,14 @@ Edgar::Application.routes.draw do
       get 'remove_to_favorites', on: :member
       get 'show_map', on: :collection
     end
+
     resource :account do
       put 'import_samples', action: :import_samples, as: :import_samples
       delete 'destroy_test_contacts', action: :destroy_test_contacts
 
       resources :abilitations
     end
+
     resources :reportings
 
     resources :campaigns

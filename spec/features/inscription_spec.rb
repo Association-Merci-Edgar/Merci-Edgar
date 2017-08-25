@@ -29,7 +29,7 @@ describe "Inscription", :type => :feature do
   end
 
   it "quand l'email n'est pas valide" do
-    Account.current_id = nil
+    expect(User.count).to eq(0)
     Capybara.app_host = "http://www.lvh.me"
     visit root_path
     expect(page).to have_content("Je m'inscris !")
