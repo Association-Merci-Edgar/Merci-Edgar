@@ -1,3 +1,9 @@
+# WARNING
+
+Nous avons migré le repository vers Framagit !
+
+Toutes les issues, PR sont à créer sur Framagit : https://framagit.org/merciedgar/merci-edgar
+
 # Edgar
 
 [![le chat sur https://gitter.im/Association-Merci-Edgar/Merci-Edgar](https://badges.gitter.im/Association-Merci-Edgar/Merci-Edgar.svg)](https://gitter.im/Association-Merci-Edgar/Merci-Edgar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
